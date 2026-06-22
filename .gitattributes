@@ -1,0 +1,13 @@
+# Normalize line endings to LF in the repository regardless of contributor OS.
+# Cloudflare builds on Linux; this keeps diffs clean and avoids CRLF churn.
+* text=auto eol=lf
+
+# Binary assets — never touch line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.ico binary
