@@ -1,0 +1,2 @@
+# Specimen entries land here in Phase 3 (taxon hubs). Keeps the collection's
+# base directory present so the glob loader doesn't warn before the first entry.

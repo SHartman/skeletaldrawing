@@ -1,0 +1,56 @@
+/* ============================================================================
+   Design tokens — Graphite palette (the single shipped theme).
+   Visual system of record is CLAUDEDESIGN.md; these values mirror its Graphite
+   set. The prototype's other palettes (Drafting/Sepia) and theme-switching are
+   intentionally dropped on port (CLAUDE.md §10).
+   ========================================================================== */
+:root {
+  /* palette */
+  --paper:        #ECEDEE; /* page background (cool light gray) */
+  --plate:        #FFFFFF; /* image/card plates — WHITE so white-bg drawings dissolve in */
+  --ink:          #1B1D1F; /* primary text */
+  --slate:        #5C636B; /* secondary text / labels */
+  --hair:         #DDDFE1; /* hairlines / cell borders */
+  --hair-strong:  #CDD0D3; /* card & sheet borders */
+  --measure:      #94A0AB; /* measurement gray (scale bars, captions, axes) */
+  --accent:       #B07A2E; /* warm gold — links, active states */
+  --accent-soft:  #B07A2E55;
+  --accent-weak:  #B07A2E22;
+  --mast-bg:      #17191B; /* masthead background (dark charcoal) */
+  --mast-fg:      #F4F2EC; /* masthead logo / active text */
+  --mast-link:    #AAB0B6; /* masthead nav links */
+  --mast-border:  #17191B;
+
+  /* type */
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* layout */
+  --measure-max: 1180px;  /* reading-column max width (Skeletal Page Direction A) */
+  --pad-side: 28px;       /* side padding */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--accent-weak); }
+
+img { max-width: 100%; height: auto; }
+
+/* Shared entry animation; always settles to opacity:1 (CLAUDEDESIGN handoff note). */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+}

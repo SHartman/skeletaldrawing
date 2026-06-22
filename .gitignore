@@ -1,0 +1,21 @@
+# build output
+dist/
+
+# generated Astro types & cache
+.astro/
+
+# dependencies
+node_modules/
+
+# environment / secrets
+.env
+.env.*
+!.env.example
+
+# logs
+*-debug.log*
+npm-debug.log*
+
+# OS cruft
+.DS_Store
+Thumbs.db

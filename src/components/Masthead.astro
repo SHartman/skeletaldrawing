@@ -1,0 +1,66 @@
+---
+// Data-driven primary nav (CLAUDE.md: masthead anticipates Galleries / Blog /
+// About / Resources / Store; Articles will live under Resources). Hrefs are
+// placeholders until each section exists — reshuffling IA later is a one-line edit.
+const nav = [
+  { label: 'Galleries', href: '/galleries/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Resources', href: '/resources/' },
+  { label: 'Store', href: '/store/' },
+];
+---
+
+<header class="masthead">
+  <div class="inner">
+    <a class="logo" href="/">
+      <span class="logo-strong">Skeletal</span> <span class="logo-italic">Drawing</span>
+    </a>
+    <nav aria-label="Primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .masthead {
+    background: var(--mast-bg);
+    border-bottom: 1px solid var(--mast-border);
+  }
+  .inner {
+    max-width: var(--measure-max);
+    margin: 0 auto;
+    padding: 22px var(--pad-side);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    text-decoration: none;
+    color: var(--mast-fg);
+    font-size: 23px;
+    letter-spacing: .01em;
+    white-space: nowrap;
+  }
+  .logo-strong { font-weight: 600; }
+  .logo-italic { font-style: italic; color: var(--mast-link); }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+  }
+  nav a { color: var(--mast-link); text-decoration: none; }
+  nav a:hover { color: var(--mast-fg); }
+
+  /* Mobile: stack the logo and nav so nothing forces horizontal scroll. */
+  @media (max-width: 600px) {
+    .inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+    nav { gap: 14px 18px; }
+  }
+</style>

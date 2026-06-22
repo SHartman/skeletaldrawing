@@ -1,0 +1,6 @@
+# 301 redirect map — Cloudflare Pages format:  <from>  <to>  <status>
+# Highest-priority migration artifact (CLAUDE.md §8). Expand from the legacy
+# URL inventory before cutover.
+
+# Corrected clade slug (was misspelled "ornithiscians" on the live Squarespace site).
+/ornithiscians  /ornithischians  301

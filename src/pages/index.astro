@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// TEMPORARY Phase 0 smoke test. Exercises the whole pipeline — base layout,
+// Graphite tokens, fonts, masthead/footer, AND content-collection parsing.
+// The real home page is designed and built last (CLAUDE.md §5).
+const taxa = await getCollection('taxa');
+---
+
+<BaseLayout
+  title="Skeletal Drawing — rebuild in progress"
+  description="Scaffold smoke test for the skeletaldrawing.com rebuild."
+>
+  <main class="wrap">
+    <p class="eyebrow">Scaffold online · Phase 0</p>
+    <h1>Foundation in place</h1>
+    <p class="lede">
+      Temporary placeholder. Confirms the base layout, Graphite tokens, web fonts,
+      masthead, and footer all render — and that the content collection loads and
+      validates against the schema. The real home page comes last.
+    </p>
+
+    <h2 class="eyebrow">Taxa loaded from content collection ({taxa.length})</h2>
+    <ul class="taxa">
+      {taxa.map((t) => (
+        <li>
+          <em>{t.data.taxon}</em>
+          <span class="meta"> · {t.data.gallery} · {t.data.lengthLabel ?? `${t.data.lengthM} m`}</span>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--measure-max);
+    margin: 0 auto;
+    padding: 44px var(--pad-side) 0;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.02;
+    letter-spacing: -.015em;
+    margin: 0 0 18px;
+  }
+  .lede { font-size: 19px; line-height: 1.66; max-width: 64ch; color: var(--ink); }
+  .taxa { padding-left: 1.1em; }
+  .taxa li { font-size: 18px; margin: 6px 0; }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
+</style>
