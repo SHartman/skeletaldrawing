@@ -1,0 +1,309 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Picture } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadSkeletal } from '../../lib/images';
+import {
+  taxonImageGraph,
+  reconstructionNode,
+  lengthText,
+} from '../../lib/schema';
+
+// One page per taxon, nested under its gallery slug → /<gallery>/<taxon>/
+export async function getStaticPaths() {
+  const taxa = await getCollection('taxa');
+  return taxa.map((entry) => ({
+    params: { gallery: entry.data.gallery, taxon: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+// Optimized on-page images (fall back to the plain public path if no src asset).
+const reconImg = await loadSkeletal(d.reconstruction.src);
+const rigImg = d.rigorous ? await loadSkeletal(d.rigorous.src) : null;
+
+// Absolute URLs: canonical page + stable image URLs for metadata.
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(d.reconstruction.src, Astro.site).href;
+const rigorousUrl = d.rigorous ? new URL(d.rigorous.src, Astro.site).href : undefined;
+
+// Derived text (shares helpers with the JSON-LD so the two can't drift).
+const lt = lengthText(d);
+const eyebrow = [d.clade[0], d.family, d.specimenId].filter(Boolean).join(' · ');
+const caption = `Scale bar = 1 metre · ${d.drawingCredit ?? d.creditText}`;
+
+// Title-block cells (the Taxon cell is rendered separately for its mixed italic).
+const restFields = [
+  { k: 'Clade', v: d.clade.join(' → ') },
+  { k: 'Specimen', v: d.specimenId ? `${d.specimenId}${d.specimenName ? ` — “${d.specimenName}”` : ''}` : '' },
+  { k: 'Also known as', v: d.alsoKnownAs.join(' · ') },
+  { k: 'Reconstructed length', v: lt },
+  { k: 'View', v: d.view },
+  { k: 'Basis', v: d.basis ?? '' },
+  { k: 'Drawing', v: d.drawingCredit ?? '' },
+].filter((f) => f.v);
+
+// Related: other taxa in the same gallery (graceful — section hidden when none).
+const related = (await getCollection('taxa'))
+  .filter((t) => t.id !== entry.id && t.data.gallery === d.gallery)
+  .slice(0, 4);
+
+// SEO payload.
+const title = `${d.taxon} — skeletal reconstruction${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
+const description = `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ~${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
+const jsonLd = taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
+const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
+---
+
+<BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <main class="wrap">
+    <!-- ===================== unified specimen card ===================== -->
+    <article class="card">
+      <span class="reg tl"></span><span class="reg tr"></span>
+      <span class="reg bl"></span><span class="reg br"></span>
+
+      <header class="card-header">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1 class="binomial">{d.taxon}</h1>
+      </header>
+
+      <figure class="plate">
+        {reconImg ? (
+          <Picture
+            src={reconImg}
+            formats={['avif', 'webp']}
+            alt={d.reconstruction.alt}
+            widths={[480, 760, 1024, 1425]}
+            sizes="(min-width: 1180px) 1120px, 92vw"
+            class="plate-img"
+            loading="eager"
+          />
+        ) : (
+          <img src={d.reconstruction.src} alt={d.reconstruction.alt} class="plate-img" />
+        )}
+        <figcaption class="caption">{caption}</figcaption>
+      </figure>
+
+      <div class="titleblock">
+        <div class="cell">
+          <div class="k">Taxon</div>
+          <div class="v"><em>{d.taxon}</em> ({d.authority})</div>
+        </div>
+        {restFields.map((f) => (
+          <div class="cell">
+            <div class="k">{f.k}</div>
+            <div class="v">{f.v}</div>
+          </div>
+        ))}
+      </div>
+    </article>
+
+    <p class="licensing">
+      Available for editorial, museum &amp; print licensing —
+      <a href={d.license}>inquiries &amp; rates →</a>
+    </p>
+
+    <!-- ===================== methodology prose ===================== -->
+    <div class="prose">
+      <Content />
+    </div>
+
+    <!-- ============ known-material (rigorous), only when present ============ -->
+    {d.rigorous && (
+      <section class="rigorous">
+        <p class="eyebrow">The evidence · known material</p>
+        <h2 class="rig-h">What the specimen actually preserves</h2>
+        <figure class="rig-fig">
+          <div class="rig-plate">
+            {rigImg ? (
+              <Picture
+                src={rigImg}
+                formats={['avif', 'webp']}
+                alt={d.rigorous.alt}
+                widths={[480, 760, 1024, 1425]}
+                sizes="(min-width: 1180px) 1120px, 92vw"
+                class="plate-img"
+                loading="lazy"
+              />
+            ) : (
+              <img src={d.rigorous.src} alt={d.rigorous.alt} class="plate-img" />
+            )}
+          </div>
+          <figcaption class="rig-cap">
+            Rigorous skeletal{d.specimenId ? ` of ${d.specimenId}` : ''}: elements preserved in the
+            specimen are shown in white; unpreserved regions are left as black silhouette. This is the
+            evidence the reconstruction above is built on.
+          </figcaption>
+        </figure>
+      </section>
+    )}
+
+    <!-- ===================== related ===================== -->
+    {related.length > 0 && (
+      <section class="related">
+        <h2 class="related-h">Related reconstructions</h2>
+        <div class="related-grid">
+          {related.map((t) => (
+            <a class="related-card" href={`/${t.data.gallery}/${t.id}/`}>
+              <div class="related-thumb"></div>
+              <div class="related-name">{t.data.taxon}</div>
+              <div class="related-fam">{t.data.family ?? t.data.clade.at(-1)}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ===================== SEO disclosure ===================== -->
+    <details class="seo">
+      <summary>
+        <span class="seo-title">What search engines &amp; AI see
+          <span class="seo-sub">— the metadata this page emits</span>
+        </span>
+        <span class="seo-plus">+</span>
+      </summary>
+      <div class="seo-body">
+        <p class="seo-note">
+          Generated from the record above when the page builds — you never touch it. It's the piece a
+          Squarespace gallery can't really do, and most of why individual skeletals will start surfacing
+          on their own.
+        </p>
+        <pre class="seo-pre">{JSON.stringify(ldSample, null, 2)}</pre>
+      </div>
+    </details>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  /* ---- specimen card ---- */
+  .card {
+    margin-top: 40px;
+    border: 1px solid var(--hair-strong);
+    background: var(--plate);
+    position: relative;
+    animation: riseIn .6s cubic-bezier(.2, .7, .2, 1) both;
+  }
+  .reg {
+    position: absolute; width: 14px; height: 14px;
+    border-color: var(--slate); border-style: solid; border-width: 0;
+  }
+  .reg.tl { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
+  .reg.tr { top: -1px; right: -1px; border-top-width: 2px; border-right-width: 2px; }
+  .reg.bl { bottom: -1px; left: -1px; border-bottom-width: 2px; border-left-width: 2px; }
+  .reg.br { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
+
+  .card-header { padding: 26px 34px 22px; border-bottom: 1px solid var(--hair); }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--slate);
+  }
+  .binomial {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(40px, 6.5vw, 68px); line-height: 1.0; letter-spacing: -.015em;
+  }
+
+  .plate { margin: 0; padding: 32px 34px 26px; }
+  .plate-img { width: 100%; height: auto; display: block; }
+  .caption {
+    margin-top: 16px; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--measure);
+  }
+
+  .titleblock {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    border-top: 1px solid var(--hair);
+  }
+  .cell {
+    padding: 15px 22px;
+    border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+  }
+  .cell .k {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--slate); margin-bottom: 7px;
+  }
+  .cell .v { font-size: 15.5px; }
+  .cell .v em { font-style: italic; }
+
+  .licensing { margin: 16px 0 0; font-size: 14.5px; color: var(--slate); }
+  .licensing a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+  /* ---- methodology prose (Content is global markup) ---- */
+  .prose { max-width: 64ch; padding: 36px 0 6px; }
+  .prose :global(p) { font-size: 19px; line-height: 1.66; margin: 0 0 1.1em; }
+  .prose :global(p:first-of-type::first-letter) {
+    font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
+    font-weight: 500; color: var(--accent);
+  }
+
+  /* ---- rigorous / known material ---- */
+  .rigorous { margin: 40px 0 0; border-top: 1px solid var(--hair); padding-top: 30px; }
+  .rig-h {
+    margin: 0 0 20px; font-style: italic; font-weight: 500;
+    font-size: clamp(26px, 4vw, 38px); line-height: 1.05;
+  }
+  .rig-fig { margin: 0; }
+  .rig-plate { background: var(--plate); border: 1px solid var(--hair); padding: 30px 34px; }
+  .rig-cap {
+    margin-top: 16px; font-size: 15px; color: var(--slate);
+    line-height: 1.55; max-width: 760px;
+  }
+
+  /* ---- related ---- */
+  .related { border-top: 1px solid var(--hair); margin-top: 46px; padding-top: 28px; }
+  .related-h {
+    margin: 0 0 20px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
+  }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+  .related-card { text-decoration: none; color: var(--ink); }
+  .related-thumb {
+    aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
+  }
+  .related-name { font-style: italic; font-size: 17px; }
+  .related-fam {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--slate); margin-top: 3px;
+  }
+
+  /* ---- SEO disclosure ---- */
+  .seo { margin-top: 44px; border: 1px solid var(--hair); background: var(--plate); border-radius: 4px; }
+  .seo summary {
+    cursor: pointer; list-style: none; padding: 18px 22px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .seo summary::-webkit-details-marker { display: none; }
+  .seo-title {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .seo-sub {
+    color: var(--slate); letter-spacing: 0; text-transform: none;
+    font-family: var(--font-serif); font-size: 14px;
+  }
+  .seo-plus { font-family: var(--font-mono); color: var(--accent); }
+  .seo-body { padding: 0 22px 22px; }
+  .seo-note { font-size: 14.5px; color: var(--slate); margin: 0 0 14px; max-width: 70ch; }
+  .seo-pre {
+    margin: 0; background: #1A1F26; color: #D8E0E8; border-radius: 4px;
+    padding: 18px 20px; overflow: auto; font-family: var(--font-mono);
+    font-size: 12.5px; line-height: 1.65;
+  }
+
+  /* ---- mobile: keep everything within the viewport ---- */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+    .card-header, .plate { padding-left: 18px; padding-right: 18px; }
+    .rig-plate { padding: 18px; }
+    .cell { padding: 14px 16px; }
+  }
+</style>
