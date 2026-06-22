@@ -31,10 +31,11 @@ export function reconstructionName(d: TaxonData): string {
 }
 
 export function reconstructionDescription(d: TaxonData): string {
-  const lt = lengthText(d);
+  // Use a clean numeric form here so it doesn't collide with "approximately".
+  const lm = d.lengthM != null ? `${d.lengthM} metres` : (d.lengthLabel ?? '');
   const spec = d.specimenId ? ` specimen ${d.specimenId}` : '';
   const nick = d.specimenName ? ` (“${d.specimenName}”)` : '';
-  return `Skeletal reconstruction of ${d.taxon}${spec}${nick} in ${d.view.toLowerCase()} view${lt ? `, reconstructed length approximately ${lt}` : ''}.`;
+  return `Skeletal reconstruction of ${d.taxon}${spec}${nick} in ${d.view.toLowerCase()} view${lm ? `, reconstructed length approximately ${lm}` : ''}.`;
 }
 
 function imageNode(

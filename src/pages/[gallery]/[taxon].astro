@@ -54,7 +54,7 @@ const related = (await getCollection('taxa'))
 
 // SEO payload.
 const title = `${d.taxon} — skeletal reconstruction${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
-const description = `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ~${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
+const description = `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
 const jsonLd = taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
 const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
 ---
