@@ -7,10 +7,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "credit": "node scripts/watermark.mjs",
+    "credit:regen": "node scripts/generate-credit.mjs"
   },
   "dependencies": {
-    "astro": "6.4.8",
-    "@astrojs/sitemap": "3.7.3"
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "6.4.8"
+  },
+  "devDependencies": {
+    "opentype.js": "2.0.0"
   }
 }
