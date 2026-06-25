@@ -1,0 +1,80 @@
+# Sveltia CMS configuration.
+# Mirrors the Astro content schema (src/content.config.ts). The Markdown/YAML in
+# src/content/** is the source of truth; this is just the editing layer.
+# Add collections (post, article, page, publication) here as those are built.
+
+backend:
+  name: github
+  repo: SHartman/skeletaldrawing
+  branch: main
+  # Auth = GitHub personal access token via Sveltia's "Sign In with Token" button.
+  # No OAuth app / Worker needed (Sveltia's recommended method for a solo editor).
+  # Switch to PKCE login if/when GitHub ships it.
+
+# Uploaded images land here and are served as-is. For build-optimized images,
+# use the local watermark → commit flow (which also writes src/assets/skeletals/).
+media_folder: "public/images/skeletals"
+public_folder: "/images/skeletals"
+
+collections:
+  - name: taxa
+    label: "Taxa — skeletal pages"
+    label_singular: "Taxon"
+    folder: "src/content/taxa"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: taxon
+    slug: "{{slug}}"
+    summary: "{{taxon}}"
+    fields:
+      - { name: taxon, label: "Taxon (binomial)", widget: string, hint: "Rendered italic, e.g. Diplodocus carnegii" }
+      - { name: author, label: "Author (name citation)", widget: string, hint: "Who named the species, and when — e.g. Hatcher, 1901" }
+      - { name: gallery, label: "Gallery", widget: string, default: "sauropods-and-kin", hint: "URL section / gallery bucket" }
+      - name: clade
+        label: "Clade path (broad → specific)"
+        widget: list
+        field: { name: node, label: "Clade", widget: string }
+        hint: "Ordered, e.g. Sauropodomorpha, Sauropoda, Diplodocoidea, Diplodocidae"
+      - { name: family, label: "Family (card label)", widget: string, required: false, hint: "Defaults to the last clade node" }
+      - { name: specimenId, label: "Specimen (catalog no.)", widget: string, required: false, hint: "Verbatim, e.g. GPIT/RE/7288" }
+      - { name: specimenName, label: "Specimen nickname", widget: string, required: false }
+      - name: alsoKnownAs
+        label: "Also known as"
+        widget: list
+        required: false
+        field: { name: name, widget: string }
+      - { name: lengthM, label: "Length (metres)", widget: number, required: false, value_type: float, hint: "Numeric; displays as m or cm automatically." }
+      - { name: lengthLabel, label: "Length display override", widget: string, required: false }
+      - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float, hint: "Numeric; displays as kg or tonnes automatically." }
+      - { name: massSource, label: "Mass source", widget: string, required: false, hint: "e.g. PaleoGDI" }
+      - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "e.g. Juvenile (adult proportions differ)" }
+      - { name: view, label: "View", widget: string, default: "Left lateral" }
+      - { name: basis, label: "Basis", widget: string, required: false }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", hint: "What the baked-in bar measures, e.g. 1 m, 50 cm" }
+      - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman" }
+      - { name: license, label: "License URL", widget: string, default: "https://www.skeletaldrawing.com/licensing", required: false }
+      - name: reconstruction
+        label: "Reconstruction image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - name: rigorous
+        label: "Known-material image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - name: additionalFigures
+        label: "Additional figures (bonus)"
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+          - { name: caption, label: "Caption", widget: string, required: false }
+      - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
+      - { name: body, label: "Description", widget: markdown, hint: "The prose shown beneath the record." }
