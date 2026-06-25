@@ -8,6 +8,8 @@
 //
 //   Flags:  --no-trim          skip auto-crop (just stamp)
 //           --margin <pct>     white margin to leave around content (default 1.5)
+//           --max-width <px>   cap output width; oversized exports scale down (default 3000)
+//           --no-max           don't cap width
 //
 // Auto-crop finds the bounding box of all non-white content (skeleton + scale
 // bar), then re-frames it with a uniform white margin — so however you export,
@@ -27,6 +29,7 @@ const CREDIT_SVG = join(here, 'credit.svg');
 const WIDTH_FRAC = 0.25; // credit width as a fraction of image width
 const PAD_FRAC = 0.02; // credit padding from right & bottom (fraction of width)
 const DEFAULT_MARGIN_PCT = 1.5; // white margin left around content when trimming
+const DEFAULT_MAX_WIDTH = 3000; // cap output width in px; oversized exports scale down (0 = off)
 const EXTS = new Set(['.png', '.jpg', '.jpeg', '.webp']);
 
 // Bounding box of non-white, non-transparent pixels.
@@ -64,7 +67,7 @@ function darkFraction(data, w, h, ch, rect) {
   return total ? dark / total : 0;
 }
 
-async function processOne(inputPath, outputPath, { trim, marginPct }) {
+async function processOne(inputPath, outputPath, { trim, marginPct, maxWidth }) {
   let base = await sharp(inputPath).png().toBuffer();
 
   if (trim) {
@@ -79,6 +82,14 @@ async function processOne(inputPath, outputPath, { trim, marginPct }) {
         .extend({ top: margin, bottom: margin, left: margin, right: margin, background: '#ffffff' })
         .png()
         .toBuffer();
+    }
+  }
+
+  // Cap oversized exports so the committed web master stays a sane size.
+  if (maxWidth) {
+    const m = await sharp(base).metadata();
+    if (m.width && m.width > maxWidth) {
+      base = await sharp(base).resize({ width: maxWidth }).png().toBuffer();
     }
   }
 
@@ -101,19 +112,22 @@ async function processOne(inputPath, outputPath, { trim, marginPct }) {
 }
 
 function usage() {
-  console.error('Usage: npm run credit -- <input.png | folder> [output] [--no-trim] [--margin <pct>]');
+  console.error('Usage: npm run credit -- <input.png | folder> [output] [--no-trim] [--margin <pct>] [--max-width <px>]');
   process.exit(1);
 }
 
 // ---- args ----
 const argv = process.argv.slice(2);
-let trim = true, marginPct = DEFAULT_MARGIN_PCT;
+let trim = true, marginPct = DEFAULT_MARGIN_PCT, maxWidth = DEFAULT_MAX_WIDTH;
 const pos = [];
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i];
   if (a === '--no-trim') trim = false;
+  else if (a === '--no-max') maxWidth = 0;
   else if (a === '--margin') marginPct = parseFloat(argv[++i]);
   else if (a.startsWith('--margin=')) marginPct = parseFloat(a.slice(9));
+  else if (a === '--max-width') maxWidth = parseInt(argv[++i], 10);
+  else if (a.startsWith('--max-width=')) maxWidth = parseInt(a.slice(12), 10);
   else pos.push(a);
 }
 const [inputArg, outputArg] = pos;
@@ -129,7 +143,8 @@ if (!info) {
   process.exit(1);
 }
 
-const opts = { trim, marginPct };
+if (!Number.isFinite(maxWidth) || maxWidth < 0) maxWidth = 0;
+const opts = { trim, marginPct, maxWidth };
 const warn = (r, name) => (r.collision ? `   ⚠ drawing intrudes into the credit zone — check ${name}` : '');
 
 if (info.isDirectory()) {
