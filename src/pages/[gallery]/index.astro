@@ -1,0 +1,221 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadSkeletal } from '../../lib/images';
+import { heroRef, formatLength, formatMass, isKnownMaterialOnly } from '../../lib/schema';
+
+// A gallery (section) page per distinct `gallery` bucket → /<gallery>/
+export async function getStaticPaths() {
+  const taxa = await getCollection('taxa');
+  const galleries = [...new Set(taxa.map((t) => t.data.gallery))];
+  return galleries.map((gallery) => ({ params: { gallery }, props: { gallery } }));
+}
+
+const GALLERY_META: Record<string, { label: string; intro: string }> = {
+  'sauropods-and-kin': {
+    label: 'Sauropodomorpha',
+    intro:
+      'Long-necked plant-eaters and their earliest relatives — from cat-sized Triassic forms to the largest animals ever to walk the Earth.',
+  },
+  theropods: {
+    label: 'Theropoda',
+    intro: 'Predatory dinosaurs and their kin, including the lineage that became birds.',
+  },
+};
+
+const { gallery } = Astro.props;
+const meta = GALLERY_META[gallery] ?? { label: gallery, intro: '' };
+
+const all = (await getCollection('taxa')).filter((t) => t.data.gallery === gallery);
+all.sort((a, b) => a.data.taxon.localeCompare(b.data.taxon));
+
+const cards = await Promise.all(
+  all.map(async (t) => {
+    const h = heroRef(t.data);
+    return {
+      id: t.id,
+      data: t.data,
+      img: await loadSkeletal(h.src),
+      alt: h.alt,
+      family: t.data.family ?? t.data.clade.at(-1) ?? '',
+      length: formatLength(t.data),
+      km: isKnownMaterialOnly(t.data),
+    };
+  }),
+);
+
+// Clade filter chips: the major shared clades in this gallery (count ≥ 3),
+// minus the two universal roots — a derived facet over the clade paths.
+const counts: Record<string, number> = {};
+for (const t of all) for (const c of t.data.clade) counts[c] = (counts[c] ?? 0) + 1;
+const chips = Object.entries(counts)
+  .filter(([c, n]) => n >= 3 && !['Sauropodomorpha', 'Sauropoda'].includes(c))
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 6)
+  .map(([c]) => c);
+
+const title = `${meta.label} — skeletal reconstructions | Skeletal Drawing`;
+const description = `${all.length} skeletal reconstructions of ${meta.label} by Scott Hartman — ${meta.intro}`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Gallery</p>
+        <h1 class="display">{meta.label}</h1>
+        <p class="intro">{meta.intro}</p>
+      </div>
+      <p class="count"><span id="count">{all.length}</span> reconstructions</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="chips" role="group" aria-label="Filter by clade">
+        <button class="chip is-active" data-clade="">All</button>
+        {chips.map((c) => <button class="chip" data-clade={c}>{c}</button>)}
+      </div>
+      <label class="sort">
+        Sort
+        <select id="sort">
+          <option value="name">Name · A–Z</option>
+          <option value="length">Length · longest</option>
+          <option value="mass">Mass · heaviest</option>
+        </select>
+      </label>
+    </div>
+
+    <ul class="grid" id="grid">
+      {cards.map((c) => (
+        <li
+          class="card"
+          data-name={c.data.taxon}
+          data-length={c.data.lengthM ?? 0}
+          data-mass={c.data.massKg ?? 0}
+          data-clade={c.data.clade.join('|')}
+        >
+          <a href={`/${gallery}/${c.id}/`}>
+            <div class="thumb">
+              {c.length && <span class="badge">{c.length}</span>}
+              {c.km && <span class="badge badge-km">known material</span>}
+              {c.img ? (
+                <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
+              ) : (
+                <img src={heroRef(c.data).src} alt={c.alt} class="thumb-img" />
+              )}
+            </div>
+            <div class="body">
+              <span class="text">
+                <span class="name">{c.data.taxon}</span>
+                <span class="fam">{c.family}</span>
+              </span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
+
+<script>
+  const grid = document.getElementById('grid')!;
+  const cards = [...grid.querySelectorAll<HTMLElement>('.card')];
+  const countEl = document.getElementById('count')!;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+  const sortEl = document.getElementById('sort') as HTMLSelectElement;
+  let activeClade = '';
+
+  function apply() {
+    let shown = 0;
+    for (const card of cards) {
+      const clades = (card.dataset.clade ?? '').split('|');
+      const ok = !activeClade || clades.includes(activeClade);
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    }
+    countEl.textContent = String(shown);
+
+    const key = sortEl.value;
+    const visible = cards.filter((c) => c.style.display !== 'none');
+    visible.sort((a, b) => {
+      if (key === 'name') return (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '');
+      const f = (c: HTMLElement) => Number(c.dataset[key] ?? 0);
+      return f(b) - f(a); // length / mass: descending
+    });
+    for (const c of visible) grid.appendChild(c);
+  }
+
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      activeClade = chip.dataset.clade ?? '';
+      apply();
+    }),
+  );
+  sortEl.addEventListener('change', apply);
+</script>
+
+<style>
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .page-head {
+    display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: flex-end;
+    justify-content: space-between; margin-top: 44px;
+  }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(36px, 6vw, 60px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .intro { margin: 14px 0 0; font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 60ch; }
+  .count { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); white-space: nowrap; }
+
+  .toolbar {
+    display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; justify-content: space-between;
+    margin: 28px 0 24px; padding: 16px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 7px 13px; border: 1px solid var(--hair-strong); border-radius: 4px; background: var(--plate);
+    color: var(--slate); cursor: pointer; transition: all .15s ease;
+  }
+  .chip:hover { border-color: var(--slate); color: var(--ink); }
+  .chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .sort { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); display: inline-flex; align-items: center; gap: 8px; }
+  .sort select {
+    font-family: var(--font-mono); font-size: 12px; padding: 7px 10px;
+    border: 1px solid var(--hair-strong); border-radius: 4px; background: var(--plate); color: var(--ink);
+  }
+
+  .grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(296px, 1fr)); gap: 22px;
+  }
+  .card { border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 4px; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+  .card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(26, 24, 21, .10); }
+  .card a { text-decoration: none; color: var(--ink); display: block; }
+  .thumb { position: relative; aspect-ratio: 16 / 10; background: var(--plate); display: flex; align-items: center; justify-content: center; padding: 14px; }
+  .thumb-img { width: 100%; height: 100%; object-fit: contain; }
+  .badge {
+    position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc; padding: 2px 6px; border-radius: 3px;
+  }
+  .badge-km { right: auto; left: 10px; color: var(--slate); }
+  .body { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--hair); }
+  .text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .name { font-style: italic; font-size: 18px; line-height: 1.15; }
+  .fam { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+  .arrow { color: var(--accent); flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .name { font-size: 16px; }
+  }
+</style>

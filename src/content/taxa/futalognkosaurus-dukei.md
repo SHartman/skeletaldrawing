@@ -1,0 +1,15 @@
+---
+taxon: "Futalognkosaurus dukei"
+author: "Calvo et al., 2007"
+gallery: "sauropods-and-kin"
+clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
+specimenId: "MUCPv-323"
+lengthM: 22
+view: "Left lateral"
+scaleBar: "1 m"
+reconstruction:
+  src: "/images/skeletals/futalognkosaurus-dukei-skeletal.png"
+  alt: "Futalognkosaurus dukei skeletal reconstruction, left lateral view, specimen MUCPv-323, reconstructed length ~22 m."
+---
+
+A giant lognkosaurian titanosaur from the Late Cretaceous of Argentina, known from a relatively complete neck and torso.

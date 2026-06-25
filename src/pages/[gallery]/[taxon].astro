@@ -1,12 +1,15 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Picture } from 'astro:assets';
+import { Picture, Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../../lib/images';
 import {
   taxonImageGraph,
-  reconstructionNode,
-  lengthText,
+  primaryNode,
+  formatLength,
+  formatMass,
+  isKnownMaterialOnly,
+  heroRef,
 } from '../../lib/schema';
 
 // One page per taxon, nested under its gallery slug → /<gallery>/<taxon>/
@@ -22,41 +25,69 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 
-// Optimized on-page images (fall back to the plain public path if no src asset).
-const reconImg = await loadSkeletal(d.reconstruction.src);
-const rigImg = d.rigorous ? await loadSkeletal(d.rigorous.src) : null;
+const kmOnly = isKnownMaterialOnly(d);
+const hero = heroRef(d); // reconstruction if present, else the known-material image
+const heroImg = await loadSkeletal(hero.src);
+
+// A separate "known material" section only when a taxon has BOTH images.
+const showRigorousSection = !!(d.reconstruction && d.rigorous);
+const rigImg = showRigorousSection ? await loadSkeletal(d.rigorous!.src) : null;
+
+// Bonus figures (e.g. Malawisaurus armor), optimized.
+const figs = await Promise.all(
+  d.additionalFigures.map(async (f) => ({ ...f, img: await loadSkeletal(f.src) })),
+);
 
 // Absolute URLs: canonical page + stable image URLs for metadata.
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
-const imageUrl = new URL(d.reconstruction.src, Astro.site).href;
-const rigorousUrl = d.rigorous ? new URL(d.rigorous.src, Astro.site).href : undefined;
+const imageUrl = new URL(hero.src, Astro.site).href;
+const rigorousUrl = showRigorousSection ? new URL(d.rigorous!.src, Astro.site).href : undefined;
 
 // Derived text (shares helpers with the JSON-LD so the two can't drift).
-const lt = lengthText(d);
-const eyebrow = [d.clade[0], d.family, d.specimenId].filter(Boolean).join(' · ');
-const caption = `Scale bar = 1 metre · ${d.drawingCredit ?? d.creditText}`;
+const family = d.family ?? d.clade.at(-1);
+const lt = formatLength(d);
+const mass = formatMass(d.massKg);
+const eyebrow = [d.clade[0], family, d.specimenId].filter(Boolean).join(' · ');
+const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar} · ${d.drawingCredit}`;
 
 // Title-block cells (the Taxon cell is rendered separately for its mixed italic).
 const restFields = [
   { k: 'Clade', v: d.clade.join(' → ') },
   { k: 'Specimen', v: d.specimenId ? `${d.specimenId}${d.specimenName ? ` — “${d.specimenName}”` : ''}` : '' },
   { k: 'Also known as', v: d.alsoKnownAs.join(' · ') },
-  { k: 'Reconstructed length', v: lt },
+  { k: kmOnly ? 'Estimated length' : 'Reconstructed length', v: lt },
+  { k: 'Body mass', v: mass },
+  { k: 'Life stage', v: d.lifeStage ?? '' },
   { k: 'View', v: d.view },
-  { k: 'Basis', v: d.basis ?? '' },
-  { k: 'Drawing', v: d.drawingCredit ?? '' },
+  { k: 'Basis', v: d.basis ?? (kmOnly ? 'Known material only — too incompletely known to restore' : '') },
+  { k: 'Drawing', v: d.drawingCredit },
 ].filter((f) => f.v);
 
-// Related: other taxa in the same gallery (graceful — section hidden when none).
-const related = (await getCollection('taxa'))
-  .filter((t) => t.id !== entry.id && t.data.gallery === d.gallery)
-  .slice(0, 4);
+// Related: same-gallery taxa, ranked by how much of the clade path they share.
+const others = (await getCollection('taxa')).filter(
+  (t) => t.id !== entry.id && t.data.gallery === d.gallery,
+);
+const shared = (t: (typeof others)[number]) =>
+  t.data.clade.filter((c) => d.clade.includes(c)).length;
+others.sort((a, b) => shared(b) - shared(a) || a.data.taxon.localeCompare(b.data.taxon));
+const related = await Promise.all(
+  others.slice(0, 4).map(async (t) => ({
+    id: t.id,
+    data: t.data,
+    img: await loadSkeletal(heroRef(t.data).src),
+    alt: heroRef(t.data).alt,
+    family: t.data.family ?? t.data.clade.at(-1),
+  })),
+);
 
 // SEO payload.
-const title = `${d.taxon} — skeletal reconstruction${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
-const description = `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
+const kind = kmOnly ? 'known skeletal material' : 'skeletal reconstruction';
+const title = `${d.taxon} — ${kind}${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
+const description = kmOnly
+  ? `Known skeletal material of ${d.taxon}${d.specimenId ? `, specimen ${d.specimenId}` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
+  : `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
 const jsonLd = taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
-const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
+const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
 ---
 
 <BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
@@ -76,18 +107,18 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
       </header>
 
       <figure class="plate">
-        {reconImg ? (
+        {heroImg ? (
           <Picture
-            src={reconImg}
+            src={heroImg}
             formats={['avif', 'webp']}
-            alt={d.reconstruction.alt}
+            alt={hero.alt}
             widths={[640, 1120, 1680, 2240]}
             sizes="(min-width: 1180px) 1120px, 92vw"
             class="plate-img"
             loading="eager"
           />
         ) : (
-          <img src={d.reconstruction.src} alt={d.reconstruction.alt} class="plate-img" />
+          <img src={hero.src} alt={hero.alt} class="plate-img" />
         )}
         <figcaption class="caption">{caption}</figcaption>
       </figure>
@@ -95,7 +126,7 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
       <div class="titleblock">
         <div class="cell">
           <div class="k">Taxon</div>
-          <div class="v"><em>{d.taxon}</em> ({d.authority})</div>
+          <div class="v"><em>{d.taxon}</em> ({d.author})</div>
         </div>
         {restFields.map((f) => (
           <div class="cell">
@@ -116,8 +147,8 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
       <Content />
     </div>
 
-    <!-- ============ known-material (rigorous), only when present ============ -->
-    {d.rigorous && (
+    <!-- ============ known-material (rigorous), only when paired with a reconstruction ============ -->
+    {showRigorousSection && (
       <section class="rigorous">
         <p class="eyebrow">The evidence · known material</p>
         <h2 class="rig-h">What the specimen actually preserves</h2>
@@ -127,22 +158,48 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
               <Picture
                 src={rigImg}
                 formats={['avif', 'webp']}
-                alt={d.rigorous.alt}
+                alt={d.rigorous!.alt}
                 widths={[640, 1120, 1680, 2240]}
                 sizes="(min-width: 1180px) 1120px, 92vw"
                 class="plate-img"
                 loading="lazy"
               />
             ) : (
-              <img src={d.rigorous.src} alt={d.rigorous.alt} class="plate-img" />
+              <img src={d.rigorous!.src} alt={d.rigorous!.alt} class="plate-img" />
             )}
           </div>
           <figcaption class="rig-cap">
-            Rigorous skeletal{d.specimenId ? ` of ${d.specimenId}` : ''}: elements preserved in the
+            Known material{d.specimenId ? ` of ${d.specimenId}` : ''}: elements preserved in the
             specimen are shown in white; unpreserved regions are left as black silhouette. This is the
             evidence the reconstruction above is built on.
           </figcaption>
         </figure>
+      </section>
+    )}
+
+    <!-- ============ bonus figures (e.g. speculative armor), only when present ============ -->
+    {figs.length > 0 && (
+      <section class="extras">
+        {figs.map((f) => (
+          <figure class="rig-fig">
+            <div class="rig-plate">
+              {f.img ? (
+                <Picture
+                  src={f.img}
+                  formats={['avif', 'webp']}
+                  alt={f.alt}
+                  widths={[640, 1120, 1680, 2240]}
+                  sizes="(min-width: 1180px) 1120px, 92vw"
+                  class="plate-img"
+                  loading="lazy"
+                />
+              ) : (
+                <img src={f.src} alt={f.alt} class="plate-img" />
+              )}
+            </div>
+            {f.caption && <figcaption class="rig-cap">{f.caption}</figcaption>}
+          </figure>
+        ))}
       </section>
     )}
 
@@ -152,10 +209,16 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
         <h2 class="related-h">Related reconstructions</h2>
         <div class="related-grid">
           {related.map((t) => (
-            <a class="related-card" href={`/${t.data.gallery}/${t.id}/`}>
-              <div class="related-thumb"></div>
+            <a class="related-card" href={`/${d.gallery}/${t.id}/`}>
+              <div class="related-thumb">
+                {t.img ? (
+                  <Image src={t.img} alt={t.alt} widths={[260, 520]} sizes="220px" class="related-img" loading="lazy" />
+                ) : (
+                  <img src={heroRef(t.data).src} alt={t.alt} class="related-img" />
+                )}
+              </div>
               <div class="related-name">{t.data.taxon}</div>
-              <div class="related-fam">{t.data.family ?? t.data.clade.at(-1)}</div>
+              <div class="related-fam">{t.family}</div>
             </a>
           ))}
         </div>
@@ -258,6 +321,12 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
     line-height: 1.55; max-width: 760px;
   }
 
+  /* ---- bonus figures ---- */
+  .extras {
+    border-top: 1px solid var(--hair); margin-top: 40px; padding-top: 30px;
+    display: grid; gap: 30px;
+  }
+
   /* ---- related ---- */
   .related { border-top: 1px solid var(--hair); margin-top: 46px; padding-top: 28px; }
   .related-h {
@@ -268,7 +337,9 @@ const ldSample = reconstructionNode(entry, { pageUrl, imageUrl, rigorousUrl });
   .related-card { text-decoration: none; color: var(--ink); }
   .related-thumb {
     aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center; padding: 10px;
   }
+  .related-img { width: 100%; height: 100%; object-fit: contain; }
   .related-name { font-style: italic; font-size: 17px; }
   .related-fam {
     font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em;

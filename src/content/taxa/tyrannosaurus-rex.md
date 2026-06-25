@@ -1,6 +1,6 @@
 ---
 taxon: "Tyrannosaurus rex"
-authority: "Osborn, 1905"
+author: "Osborn, 1905"
 gallery: "theropods"
 clade: ["Theropoda", "Coelurosauria", "Tyrannosauroidea", "Tyrannosauridae"]
 family: "Tyrannosauridae"
