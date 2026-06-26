@@ -47,14 +47,14 @@ const taxa = defineCollection({
       specimenId: optStr,                 // catalog number, verbatim, e.g. "GPIT/RE/7288"
       specimenName: optStr,               // nickname, e.g. "The Nation's T. rex"
       alsoKnownAs: nullableDefault(z.array(z.string()).default([])),
-      lengthM: optNum,                    // numeric metres — sorting + the scale figure
+      lengthM: optNum,                    // numeric meters — sorting + the scale figure
       lengthLabel: optStr,                // display override; else scale-aware (m / cm)
       massKg: optNum,                     // body mass; scale-aware display (kg → tonnes)
       massSource: optStr,                 // provenance, e.g. "PaleoGDI" (future credit/link)
       lifeStage: optStr,                  // e.g. "Juvenile" — renders a record cell
       view: defStr('Left lateral'),
       basis: optStr,
-      scaleBar: defStr('1 metre'),        // caption value, e.g. "1 metre", "50 cm"
+      scaleBar: defStr('1 meter'),        // caption value, spelled out, e.g. "1 meter", "50 centimeters"
       license: defStr('https://www.skeletaldrawing.com/licensing'),
       creditText: defStr('Skeletal reconstruction © Scott Hartman / skeletaldrawing.com'),
       drawingCredit: defStr('© Scott Hartman'), // shown in the plate caption
@@ -82,14 +82,14 @@ const specimens = defineCollection({
       repository: optStr,                 // holding institution, e.g. "Field Museum, Chicago"
       formation: optStr,
       locality: optStr,
-      lengthM: optNum,                    // numeric metres — sorting + scale figure
+      lengthM: optNum,                    // numeric meters — sorting + scale figure
       femurM: optNum,
       massKg: optNum,                     // scale-aware display (kg → tonnes)
       completenessPct: optNum,
       collectedYear: optNum,
       view: defStr('Left lateral'),
       basis: optStr,
-      scaleBar: defStr('1 metre'),
+      scaleBar: defStr('1 meter'),
       license: defStr('https://www.skeletaldrawing.com/licensing'),
       creditText: defStr('Skeletal reconstruction © Scott Hartman / skeletaldrawing.com'),
       drawingCredit: defStr('© Scott Hartman'),

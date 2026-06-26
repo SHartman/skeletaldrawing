@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
 specimenId: "SAM-7405"
 lengthM: 10
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/malawisaurus-dixeyi-skeletal.png"
   alt: "Malawisaurus dixeyi skeletal reconstruction, left lateral view, specimen SAM-7405, reconstructed length ~10 m."

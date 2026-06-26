@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha (basal)"]
 lengthM: 0.8
 view: "Left lateral"
-scaleBar: "20 cm"
+scaleBar: "20 centimeters"
 reconstruction:
   src: "/images/skeletals/mbiresaurus-raathi-skeletal.png"
   alt: "Mbiresaurus raathi skeletal reconstruction, left lateral view, reconstructed length 80 cm."

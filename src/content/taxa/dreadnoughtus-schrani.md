@@ -7,7 +7,7 @@ lengthM: 21
 massKg: 33600
 massSource: "PaleoGDI"
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/dreadnoughtus-schrani-skeletal.png"
   alt: "Dreadnoughtus schrani skeletal reconstruction, left lateral view, reconstructed length ~21 m."

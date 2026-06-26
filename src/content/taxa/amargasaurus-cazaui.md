@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Dicraeosauridae"]
 specimenId: "MACN-N 15"
 lengthM: 13.5
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/amargasaurus-cazaui-skeletal.png"
   alt: "Amargasaurus cazaui skeletal reconstruction, left lateral view, specimen MACN-N 15, reconstructed length ~13.5 m."

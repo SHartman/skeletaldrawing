@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
 lengthM: 16
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/opisthocoelicaudia-skarzynskii-skeletal.png"
   alt: "Opisthocoelicaudia skarzynskii skeletal reconstruction, left lateral view, reconstructed length ~16 m."

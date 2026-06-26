@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
 specimenId: "MUCPv-323"
 lengthM: 22
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/futalognkosaurus-dukei-skeletal.png"
   alt: "Futalognkosaurus dukei skeletal reconstruction, left lateral view, specimen MUCPv-323, reconstructed length ~22 m."

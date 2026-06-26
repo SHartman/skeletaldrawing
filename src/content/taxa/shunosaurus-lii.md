@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Eusauropoda"]
 specimenId: "T5401"
 lengthM: 10
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/shunosaurus-lii-skeletal.png"
   alt: "Shunosaurus lii skeletal reconstruction, left lateral view, specimen T5401, reconstructed length ~10 m."

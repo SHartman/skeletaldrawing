@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
 specimenId: "MPM 10002"
 lengthM: 27
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 rigorous:
   src: "/images/skeletals/puertasaurus-reuli-known-material.png"
   alt: "Known skeletal material of Puertasaurus reuli MPM 10002 — elements preserved in the specimen drawn in white against a black body silhouette, estimated length ~27 m."

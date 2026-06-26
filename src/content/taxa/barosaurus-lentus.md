@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplod
 specimenId: "AMNH 6341"
 lengthM: 25
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/barosaurus-lentus-skeletal.png"
   alt: "Barosaurus lentus skeletal reconstruction, left lateral view, specimen AMNH 6341, reconstructed length ~25 m."

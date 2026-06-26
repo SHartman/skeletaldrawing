@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Plateosauridae"]
 specimenId: "GPIT/RE/7288"
 lengthM: 6
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/plateosaurus-trossingensis-skeletal.png"
   alt: "Plateosaurus trossingensis skeletal reconstruction, left lateral view, specimen GPIT/RE/7288, reconstructed length ~6 m."

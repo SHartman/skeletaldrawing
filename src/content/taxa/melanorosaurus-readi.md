@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Melanorosauridae"]
 lengthM: 8
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/melanorosaurus-readi-skeletal.png"
   alt: "Melanorosaurus readi skeletal reconstruction, left lateral view, reconstructed length ~8 m."

@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Macronaria", "Titanosauriformes", "Brachiosauridae"]
 lengthM: 20
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/cedarosaurus-weiskopfae-skeletal.png"
   alt: "Cedarosaurus weiskopfae skeletal reconstruction, left lateral view, reconstructed length ~20 m."

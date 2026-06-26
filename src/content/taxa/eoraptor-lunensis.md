@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha (basal)"]
 specimenId: "PVSJ 512"
 lengthM: 1.3
 view: "Left lateral"
-scaleBar: "10 cm"
+scaleBar: "10 centimeters"
 reconstruction:
   src: "/images/skeletals/eoraptor-lunensis-skeletal.png"
   alt: "Eoraptor lunensis skeletal reconstruction, left lateral view, specimen PVSJ 512, reconstructed length ~1.3 m."

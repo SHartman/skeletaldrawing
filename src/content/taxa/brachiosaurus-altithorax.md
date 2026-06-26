@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Macronaria", "Brachiosauridae"]
 lengthM: 23
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/brachiosaurus-altithorax-skeletal.png"
   alt: "Brachiosaurus altithorax skeletal reconstruction, left lateral view, reconstructed length ~23 m."

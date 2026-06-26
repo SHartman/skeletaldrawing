@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Saltasauridae"]
 lengthM: 9
 view: "Dorsal and left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/saltasaurus-loricatus-skeletal.png"
   alt: "Saltasaurus loricatus skeletal reconstruction, dorsal and left lateral view, reconstructed length ~9 m."

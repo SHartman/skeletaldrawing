@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplod
 specimenId: "UMMNH 3690"
 lengthM: 28
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 rigorous:
   src: "/images/skeletals/diplodocus-hallorum-known-material.png"
   alt: "Known skeletal material of Diplodocus hallorum UMMNH 3690 — elements preserved in the specimen drawn in white against a black body silhouette, estimated length ~28 m."

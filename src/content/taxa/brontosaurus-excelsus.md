@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Apatos
 specimenId: "CM 563"
 lengthM: 20
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/brontosaurus-excelsus-skeletal.png"
   alt: "Brontosaurus excelsus skeletal reconstruction, left lateral view, specimen CM 563, reconstructed length ~20 m."

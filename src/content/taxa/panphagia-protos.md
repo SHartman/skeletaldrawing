@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha (basal)"]
 specimenId: "PVSJ 874"
 lengthM: 1
 view: "Left lateral"
-scaleBar: "20 cm"
+scaleBar: "20 centimeters"
 reconstruction:
   src: "/images/skeletals/panphagia-protos-skeletal.png"
   alt: "Panphagia protos skeletal reconstruction, left lateral view, specimen PVSJ 874, reconstructed length ~1 m."

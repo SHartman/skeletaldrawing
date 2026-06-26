@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae"]
 lengthM: 32
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/supersaurus-vivianae-skeletal.png"
   alt: "Supersaurus vivianae skeletal reconstruction, left lateral view, reconstructed length ~32 m."

@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Mamenchisauridae"]
 specimenId: "ZDM 0083"
 lengthM: 15
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/mamenchisaurus-youngi-skeletal.png"
   alt: "Mamenchisaurus youngi skeletal reconstruction, left lateral view, specimen ZDM 0083, reconstructed length ~15 m."

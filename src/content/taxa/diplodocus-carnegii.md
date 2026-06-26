@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplod
 specimenId: "CM 84"
 lengthM: 26
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/diplodocus-carnegii-skeletal.png"
   alt: "Diplodocus carnegii skeletal reconstruction, left lateral view, specimen CM 84, reconstructed length ~26 m."

@@ -5,7 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
 lengthM: 12
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/isisaurus-colberti-skeletal.png"
   alt: "Isisaurus colberti skeletal reconstruction, left lateral view, reconstructed length ~12 m."

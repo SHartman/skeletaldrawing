@@ -7,7 +7,7 @@ specimenId: "FMNH PR 2209"
 lengthM: 4
 lifeStage: "Juvenile (adult proportions differ)"
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/rapetosaurus-krausei-skeletal.png"
   alt: "Rapetosaurus krausei skeletal reconstruction, left lateral view, specimen FMNH PR 2209, reconstructed length ~4 m."

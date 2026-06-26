@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Massospondylidae"]
 specimenId: "IVPP V15"
 lengthM: 6
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/lufengosaurus-huenei-skeletal.png"
   alt: "Lufengosaurus huenei skeletal reconstruction, left lateral view, specimen IVPP V15, reconstructed length ~6 m."

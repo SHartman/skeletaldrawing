@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplod
 specimenId: "SMA 0011"
 lengthM: 17
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/galeamopus-pabsti-skeletal.png"
   alt: "Galeamopus pabsti skeletal reconstruction, left lateral view, specimen SMA 0011, reconstructed length ~17 m."

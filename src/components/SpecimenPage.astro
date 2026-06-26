@@ -35,8 +35,10 @@ const imageUrl = new URL(hero.src, Astro.site).href;
 const rigorousUrl = showRigorous ? new URL(s.rigorous!.src, Astro.site).href : undefined;
 const figures = figs.map((f) => ({ url: new URL(f.src, Astro.site).href, label: f.label, alt: f.alt }));
 
+// Credit shown once, in the "Drawing" record cell below — caption stays scale-only so
+// the visible credit isn't tripled against the baked-in mark + JSON-LD (CLAUDE.md §3).
 const drawingCredit = s.drawingCredit.startsWith('©') ? s.drawingCredit : `© ${s.drawingCredit}`;
-const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${s.scaleBar} · ${drawingCredit}`;
+const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${s.scaleBar}`;
 
 const lt = formatMeters(s.lengthM);
 const femur = formatMeters(s.femurM);

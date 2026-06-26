@@ -3,14 +3,14 @@ import silData from '../data/silhouettes.json';
 
 // Tail-tip-aligned scale comparison (CLAUDE.md §5). Silhouettes are traced offline
 // (scripts/silhouette.mjs) to vector paths in src/data/silhouettes.json; here they're
-// scaled to a common metre, grounded on a shared baseline, and aligned at the tail —
+// scaled to a common meter, grounded on a shared baseline, and aligned at the tail —
 // so size reads as how far each snout reaches. Largest = soft-filled envelope; the
 // rest are outlines (the smallest dashed). Renders nothing if no silhouettes exist.
 const { taxonId, total } = Astro.props as { taxonId: string; total: number };
 const raw = (silData as Record<string, any[]>)[taxonId] ?? [];
 const items = [...raw].sort((a, b) => b.lengthM - a.lengthM);
 
-const PXM = 100; // svg units per metre
+const PXM = 100; // svg units per meter
 const padL = 16;
 const padT = 16;
 
@@ -34,8 +34,8 @@ const humanW = 48;
 const HUMAN =
   'M12 40 L36 40 L38 108 L33 108 L31 52 L32 100 L35 150 L33 180 L27 180 L24 120 L21 180 L15 180 L17 150 L16 100 L17 52 L15 108 L10 108 Z';
 
-// Metre ruler along the ground, 0 at the tail (right), increasing toward the snout.
-const metres = Math.floor(maxLen);
+// meter ruler along the ground, 0 at the tail (right), increasing toward the snout.
+const meters = Math.floor(maxLen);
 const rulerY = groundY + 20;
 const rightPad = humanGap + humanW + 26;
 const vbW = Math.round(guideX + rightPad);
@@ -47,14 +47,14 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
 {
   hasData && (
     <section class="scale">
-      <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common metre</span></h2>
+      <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common meter</span></h2>
       <figure class="fig">
-        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} Tyrannosaurus specimens, ${maxLen} metres at the largest, with a 1.8-metre human for scale`}>
+        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} Tyrannosaurus specimens, ${maxLen} meters at the largest, with a 1.8-meter human for scale`}>
           {/* ground line */}
           <line x1={padL} y1={groundY} x2={humanX + humanW} y2={groundY} class="ground" />
 
-          {/* metre ruler: ticks each metre, labels every 5 m, 0 at the tail */}
-          {Array.from({ length: metres + 1 }, (_, m) => {
+          {/* meter ruler: ticks each meter, labels every 5 m, 0 at the tail */}
+          {Array.from({ length: meters + 1 }, (_, m) => {
             const x = guideX - m * PXM;
             const major = m % 5 === 0;
             return (
@@ -64,7 +64,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
               </g>
             );
           })}
-          <text x={guideX - metres * PXM} y={rulerY + 6} class="tick-unit" text-anchor="start" dx="-2" dy="14">metres from tail tip</text>
+          <text x={guideX - meters * PXM} y={rulerY + 6} class="tick-unit" text-anchor="start" dx="-2" dy="14">meters from tail tip</text>
 
           {/* silhouettes: largest filled, others outlined (smallest dashed) */}
           {scaled

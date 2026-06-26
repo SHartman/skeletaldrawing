@@ -16,7 +16,7 @@ massSource: ''
 lifeStage: ''
 view: Left lateral
 basis: ''
-scaleBar: 1 m
+scaleBar: "1 meter"
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/alamosaurus-sanjuanensis-skeletal.png

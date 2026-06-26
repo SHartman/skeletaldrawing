@@ -9,7 +9,7 @@ lengthLabel: "11.6–12.7 m"
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/tyrannosaurus-rex-usnm-555000-skeletal.png"
-  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen USNM 555000, reconstructed length about 11.6 metres"
+  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen USNM 555000, reconstructed length about 11.6 meters"
 featured: true
 ---
 

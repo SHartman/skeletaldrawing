@@ -6,7 +6,7 @@ clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Apatos
 specimenId: "CM 3018"
 lengthM: 23
 view: "Left lateral"
-scaleBar: "1 m"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/apatosaurus-louisae-skeletal.png"
   alt: "Apatosaurus louisae skeletal reconstruction, left lateral view, specimen CM 3018, reconstructed length ~23 m."

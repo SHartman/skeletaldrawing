@@ -43,7 +43,7 @@ export function formatLength(d: TaxonData): string {
   return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
 }
 
-/** Scale-aware length from raw metres (specimens have no lengthLabel override). */
+/** Scale-aware length from raw meters (specimens have no lengthLabel override). */
 export function formatMeters(m?: number): string {
   if (m == null) return '';
   return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
@@ -62,7 +62,7 @@ export function formatMass(kg?: number): string {
 
 function lengthPhrase(d: TaxonData): string {
   if (d.lengthM == null) return '';
-  return d.lengthM < 1 ? `${Math.round(d.lengthM * 100)} cm` : `${d.lengthM} metres`;
+  return d.lengthM < 1 ? `${Math.round(d.lengthM * 100)} cm` : `${d.lengthM} meters`;
 }
 
 function primaryName(d: TaxonData): string {
@@ -173,7 +173,7 @@ function specimenName(s: SpecimenData, taxonName: string): string {
 }
 
 function specimenDescription(s: SpecimenData, taxonName: string): string {
-  const len = s.lengthM == null ? '' : s.lengthM < 1 ? `${Math.round(s.lengthM * 100)} cm` : `${s.lengthM} metres`;
+  const len = s.lengthM == null ? '' : s.lengthM < 1 ? `${Math.round(s.lengthM * 100)} cm` : `${s.lengthM} meters`;
   const comp = s.completenessPct != null ? `, about ${s.completenessPct}% complete` : '';
   const nick = s.nickname ? ` (“${s.nickname}”)` : '';
   if (specimenIsKnownMaterialOnly(s)) {

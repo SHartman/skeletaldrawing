@@ -15,7 +15,7 @@ overlay: true
 featured: true
 reconstruction:
   src: "/images/skeletals/tyrannosaurus-rex-scotty-rsm-p2523-8-skeletal.png"
-  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen RSM P2523.8 (Scotty), reconstructed length about 12.7 metres"
+  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen RSM P2523.8 (Scotty), reconstructed length about 12.7 meters"
 rigorous:
   src: "/images/skeletals/tyrannosaurus-rex-scotty-rsm-p2523-8-known-material.png"
   alt: "Known-material diagram of Tyrannosaurus rex RSM P2523.8 (Scotty) — elements preserved in the specimen shown in white against a black body silhouette"

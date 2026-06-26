@@ -51,7 +51,7 @@ collections:
       - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "e.g. Juvenile (adult proportions differ)" }
       - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }
-      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", required: false, hint: "What the baked-in bar measures, e.g. 1 m, 50 cm" }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: false, hint: "What the baked-in bar measures, spelled out — e.g. 1 meter, 50 centimeters" }
       - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false, hint: "Leave blank for the default © Scott Hartman" }
       # `license` and `creditText` are site-wide constants — provided by the schema defaults in
       # content.config.ts and intentionally NOT exposed here, so the CMS never writes them per entry.
@@ -104,7 +104,7 @@ collections:
       - { name: collectedYear, label: "Collected (year)", widget: number, required: false, value_type: int }
       - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }
-      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", required: false }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: false, hint: "Spelled out — e.g. 1 meter, 50 centimeters" }
       - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false }
       - name: reconstruction
         label: "Reconstruction image"
