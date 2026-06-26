@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../../lib/images';
-import { heroRef, formatLength, formatMass, isKnownMaterialOnly } from '../../lib/schema';
+import { heroRef, formatLength, formatMass } from '../../lib/schema';
 
 // A gallery (section) page per distinct `gallery` bucket → /<gallery>/
 export async function getStaticPaths() {
@@ -40,7 +40,6 @@ const cards = await Promise.all(
       alt: h.alt,
       family: t.data.family ?? t.data.clade.at(-1) ?? '',
       length: formatLength(t.data),
-      km: isKnownMaterialOnly(t.data),
     };
   }),
 );
@@ -97,7 +96,6 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
           <a href={`/${gallery}/${c.id}/`}>
             <div class="thumb">
               {c.length && <span class="badge">{c.length}</span>}
-              {c.km && <span class="badge badge-km">known material</span>}
               {c.img ? (
                 <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
               ) : (
@@ -206,7 +204,6 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
     letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc; padding: 2px 6px; border-radius: 3px;
   }
-  .badge-km { right: auto; left: 10px; color: var(--slate); }
   .body { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--hair); }
   .text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
   .name { font-style: italic; font-size: 18px; line-height: 1.15; }
