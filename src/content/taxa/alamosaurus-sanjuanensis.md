@@ -17,7 +17,7 @@ lifeStage: ''
 view: Left lateral
 basis: ''
 scaleBar: 1 m
-drawingCredit: Scott Hartman
+drawingCredit: ''
 license: ''
 reconstruction:
   src: /images/skeletals/alamosaurus-sanjuanensis-skeletal.png
