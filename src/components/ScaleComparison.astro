@@ -1,0 +1,154 @@
+---
+import silData from '../data/silhouettes.json';
+
+// Tail-tip-aligned scale comparison (CLAUDE.md §5). Silhouettes are traced offline
+// (scripts/silhouette.mjs) to vector paths in src/data/silhouettes.json; here they're
+// scaled to a common metre, grounded on a shared baseline, and aligned at the tail —
+// so size reads as how far each snout reaches. Largest = soft-filled envelope; the
+// rest are outlines (the smallest dashed). Renders nothing if no silhouettes exist.
+const { taxonId, total } = Astro.props as { taxonId: string; total: number };
+const raw = (silData as Record<string, any[]>)[taxonId] ?? [];
+const items = [...raw].sort((a, b) => b.lengthM - a.lengthM);
+
+const PXM = 100; // svg units per metre
+const padL = 16;
+const padT = 16;
+
+const scaled = items.map((it, idx) => {
+  const s = (PXM * it.lengthM) / it.w;
+  return { ...it, idx, s, sw: it.w * s, sh: it.h * s };
+});
+const hasData = scaled.length > 0;
+
+const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0;
+const maxSW = PXM * maxLen;
+const maxSH = hasData ? Math.max(...scaled.map((d) => d.sh)) : 0;
+const guideX = padL + maxSW;
+const groundY = padT + maxSH;
+
+// 1.8 m human, authored at 180 units tall (feet at y=180).
+const humanH = 1.8 * PXM;
+const humanGap = 40;
+const humanX = guideX + humanGap;
+const humanW = 48;
+const HUMAN =
+  'M12 40 L36 40 L38 108 L33 108 L31 52 L32 100 L35 150 L33 180 L27 180 L24 120 L21 180 L15 180 L17 150 L16 100 L17 52 L15 108 L10 108 Z';
+
+// Metre ruler along the ground, 0 at the tail (right), increasing toward the snout.
+const metres = Math.floor(maxLen);
+const rulerY = groundY + 20;
+const rightPad = humanGap + humanW + 26;
+const vbW = Math.round(guideX + rightPad);
+const vbH = Math.round(rulerY + 18);
+
+const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
+---
+
+{
+  hasData && (
+    <section class="scale">
+      <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common metre</span></h2>
+      <figure class="fig">
+        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} Tyrannosaurus specimens, ${maxLen} metres at the largest, with a 1.8-metre human for scale`}>
+          {/* ground line */}
+          <line x1={padL} y1={groundY} x2={humanX + humanW} y2={groundY} class="ground" />
+
+          {/* metre ruler: ticks each metre, labels every 5 m, 0 at the tail */}
+          {Array.from({ length: metres + 1 }, (_, m) => {
+            const x = guideX - m * PXM;
+            const major = m % 5 === 0;
+            return (
+              <g>
+                <line x1={x} y1={groundY} x2={x} y2={groundY + (major ? 8 : 4)} class={major ? 'tick major' : 'tick'} />
+                {major && <text x={x} y={rulerY + 6} class="tick-label">{m}</text>}
+              </g>
+            );
+          })}
+          <text x={guideX - metres * PXM} y={rulerY + 6} class="tick-unit" text-anchor="start" dx="-2" dy="14">metres from tail tip</text>
+
+          {/* silhouettes: largest filled, others outlined (smallest dashed) */}
+          {scaled
+            .slice()
+            .reverse()
+            .map((d) => (
+              <path
+                d={d.path}
+                transform={tx(d)}
+                class={d.idx === 0 ? 'sil envelope' : d.idx === scaled.length - 1 ? 'sil outline dashed' : 'sil outline'}
+              />
+            ))}
+
+          {/* tail-tip guide */}
+          <line x1={guideX} y1={padT} x2={guideX} y2={groundY} class="guide" />
+
+          {/* 1.8 m human */}
+          <g transform={`translate(${humanX} ${groundY - humanH})`}>
+            <circle cx="24" cy="17" r="13" class="human" />
+            <path d={HUMAN} class="human" />
+          </g>
+          <text x={humanX + humanW / 2} y={groundY + 14} class="human-label" text-anchor="middle">1.8 m</text>
+        </svg>
+
+        <figcaption class="legend">
+          {scaled.map((d) => (
+            <span class="leg-item">
+              <span class={d.idx === 0 ? 'sw sw-fill' : d.idx === scaled.length - 1 ? 'sw sw-dash' : 'sw sw-line'} />
+              <span class="leg-name">{d.label}</span>
+              <span class="leg-len">{d.lengthM} m</span>
+            </span>
+          ))}
+        </figcaption>
+        <p class="note">Overlay shows {items.length} of {total} documented specimens — the full set is in the table below.</p>
+      </figure>
+    </section>
+  )
+}
+
+<style>
+  .scale { margin-top: 40px; }
+  .sec-h {
+    margin: 0 0 18px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
+  }
+  .sec-sub { letter-spacing: 0; text-transform: none; }
+
+  .fig {
+    margin: 0; border: 1px solid var(--hair-strong); background: var(--plate);
+    border-radius: 4px; padding: 24px 26px 18px;
+  }
+  svg { display: block; width: 100%; height: auto; max-width: 960px; margin: 0 auto; overflow: visible; }
+
+  .ground { stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .guide { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; opacity: .6; }
+  .tick { stroke: var(--slate); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .tick.major { stroke: var(--ink); }
+  .tick-label { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); text-anchor: middle; }
+  .tick-unit { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
+
+  .sil { vector-effect: non-scaling-stroke; }
+  .envelope { fill: var(--accent); fill-opacity: .16; stroke: var(--accent); stroke-width: 1.6; }
+  .outline { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-opacity: .85; }
+  .outline.dashed { stroke: var(--slate); stroke-dasharray: 6 4; }
+
+  .human { fill: var(--slate); stroke: none; }
+  .human-label { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 18px 0 0;
+    padding-top: 16px; border-top: 1px solid var(--hair);
+  }
+  .leg-item { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
+  .sw { width: 22px; height: 12px; flex: 0 0 auto; border-radius: 2px; }
+  .sw-fill { background: var(--accent); opacity: .55; border: 1px solid var(--accent); }
+  .sw-line { height: 0; border-top: 2px solid var(--ink); }
+  .sw-dash { height: 0; border-top: 2px dashed var(--slate); }
+  .leg-name { font-style: italic; }
+  .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
+
+  .note { margin: 14px 0 0; font-size: 13.5px; color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .fig { padding: 16px 14px 14px; }
+    .legend { gap: 6px 16px; }
+  }
+</style>

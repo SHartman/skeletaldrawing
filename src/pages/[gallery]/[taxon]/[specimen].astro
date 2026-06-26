@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import SpecimenPage from '../../../components/SpecimenPage.astro';
+
+// A specimen page nests one level below its taxon hub:
+//   /<gallery>/<taxon>/<specimen>/  e.g. /theropods/tyrannosaurus-rex/sue/
+export async function getStaticPaths() {
+  const taxa = await getCollection('taxa');
+  const byId = new Map(taxa.map((t) => [t.id, t]));
+  const specimens = await getCollection('specimens');
+
+  return specimens
+    .map((entry) => {
+      const taxon = byId.get(entry.data.taxon);
+      if (!taxon) return null; // orphan specimen (no parent taxon) — skip
+      return {
+        params: { gallery: taxon.data.gallery, taxon: entry.data.taxon, specimen: entry.id },
+        props: { entry, taxon },
+      };
+    })
+    .filter(Boolean);
+}
+
+const { entry, taxon } = Astro.props;
+---
+
+<SpecimenPage entry={entry} taxon={taxon} />

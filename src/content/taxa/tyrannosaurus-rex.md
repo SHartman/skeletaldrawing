@@ -4,26 +4,15 @@ author: "Osborn, 1905"
 gallery: "theropods"
 clade: ["Theropoda", "Coelurosauria", "Tyrannosauroidea", "Tyrannosauridae"]
 family: "Tyrannosauridae"
-specimenId: "USNM 555000"
-specimenName: "The Nation's T. rex"
-alsoKnownAs: ["MOR 555", "Wankel rex"]
-lengthM: 12
-lengthLabel: "~12 m"
+lengthM: 12.7
+lengthLabel: "11.6–12.7 m"
 view: "Left lateral"
-basis: "Single skeleton, restored from referred material"
-license: "https://www.skeletaldrawing.com/licensing"
-creditText: "Skeletal reconstruction © Scott Hartman / skeletaldrawing.com"
-drawingCredit: "© Scott Hartman, 2023"
-drawingYear: 2023
 reconstruction:
   src: "/images/skeletals/tyrannosaurus-rex-usnm-555000-skeletal.png"
-  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen USNM 555000, reconstructed length about 12 metres"
-rigorous:
-  src: "/images/skeletals/tyrannosaurus-rex-usnm-555000-known-material.png"
-  alt: "Rigorous skeletal diagram of Tyrannosaurus rex USNM 555000 — elements preserved in the specimen shown in white against a black body silhouette"
+  alt: "Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen USNM 555000, reconstructed length about 11.6 metres"
 featured: true
 ---
 
-This is USNM 555000 — better known as "The Nation's T. rex," and to an earlier generation of researchers as MOR 555, the "Wankel rex." The reconstruction restores the living skeleton in left lateral view, with proportions measured element by element from the specimen and missing regions inferred from referred material and close relatives.
+*Tyrannosaurus rex* is known from more good skeletons than almost any other large dinosaur, and the individuals differ enough — in size, build, completeness, and age — that no single drawing speaks for the species. This hub gathers the specimens documented here, each reconstructed to a common method so they can be compared on equal terms.
 
-The rigorous skeletal below strips that away: every element actually preserved in USNM 555000 is drawn in white, and everything missing is left as black silhouette. Read together, the two images show exactly how much of this animal is bone and how much is inference — and this page states all of it as real text, so the drawing is indexed, cited, and found here rather than surfacing as an uncredited repost.
+Pick a specimen below to see its own reconstruction, its known material, and its record — or scan the table for how they stack up by size and completeness. The holotype, CM 9380, anchors the species; the more complete skeletons, from Sue to Scotty, fill in what the name-bearer cannot.

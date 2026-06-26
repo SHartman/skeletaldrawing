@@ -79,3 +79,56 @@ collections:
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
       - { name: body, label: "Description", widget: markdown, required: false, hint: "The prose shown beneath the record." }
+
+  - name: specimens
+    label: "Specimens — specimen pages"
+    label_singular: "Specimen"
+    folder: "src/content/specimens"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: catalog
+    slug: "{{slug}}"
+    summary: "{{catalog}}{{#if fields.nickname}} — {{nickname}}{{/if}}"
+    fields:
+      - { name: taxon, label: "Parent taxon (slug)", widget: string, hint: "The taxa entry id this belongs to, e.g. tyrannosaurus-rex" }
+      - { name: catalog, label: "Catalog number", widget: string, hint: "Verbatim, e.g. FMNH PR 2081" }
+      - { name: nickname, label: "Nickname", widget: string, required: false, hint: "e.g. Sue" }
+      - { name: repository, label: "Repository", widget: string, required: false, hint: "Holding institution" }
+      - { name: formation, label: "Formation", widget: string, required: false }
+      - { name: locality, label: "Locality", widget: string, required: false }
+      - { name: lengthM, label: "Length (metres)", widget: number, required: false, value_type: float }
+      - { name: femurM, label: "Femur length (metres)", widget: number, required: false, value_type: float }
+      - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float }
+      - { name: completenessPct, label: "Completeness (%)", widget: number, required: false, value_type: int }
+      - { name: collectedYear, label: "Collected (year)", widget: number, required: false, value_type: int }
+      - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
+      - { name: basis, label: "Basis", widget: string, required: false }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", required: false }
+      - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false }
+      - name: reconstruction
+        label: "Reconstruction image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - name: rigorous
+        label: "Known-material image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - name: additionalFigures
+        label: "Additional figures (e.g. muscle reconstruction)"
+        widget: list
+        required: false
+        fields:
+          - { name: label, label: "Label (heading)", widget: string, required: false, hint: "e.g. Muscle reconstruction" }
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+          - { name: caption, label: "Caption", widget: string, required: false }
+      - { name: overlay, label: "In scale-comparison overlay", widget: boolean, default: false, required: false, hint: "Curate ~3–6 for the scale figure" }
+      - { name: featured, label: "Featured (show as a card)", widget: boolean, default: false, required: false }
+      - { name: body, label: "Description", widget: markdown, required: false }

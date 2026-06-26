@@ -2,18 +2,35 @@
 import { getCollection } from 'astro:content';
 import SkeletalPage from '../../components/SkeletalPage.astro';
 import GenusHub from '../../components/GenusHub.astro';
+import SpecimenHub from '../../components/SpecimenHub.astro';
 
-// Generates a page per taxon (the skeletal page) PLUS a genus hub for any gallery+genus
-// with ≥2 taxa — e.g. /sauropods-and-kin/diplodocus/ aggregating its two species.
+// One page per taxon, which resolves to one of three templates:
+//   • SpecimenHub — a taxon with specimen children (e.g. /theropods/tyrannosaurus-rex/)
+//   • SkeletalPage — a plain single taxon
+//   • GenusHub     — a synthetic genus path aggregating ≥2 species (e.g. /…/diplodocus/)
 export async function getStaticPaths() {
   const taxa = await getCollection('taxa');
+  const specimens = await getCollection('specimens');
   const taxonIds = new Set(taxa.map((t) => t.id));
 
-  const paths = taxa.map((entry) => ({
-    params: { gallery: entry.data.gallery, taxon: entry.id },
-    props: { entry, hub: null },
-  }));
+  const kidsByTaxon = new Map<string, typeof specimens>();
+  for (const sp of specimens) {
+    const arr = kidsByTaxon.get(sp.data.taxon) ?? [];
+    arr.push(sp);
+    kidsByTaxon.set(sp.data.taxon, arr);
+  }
 
+  const paths = taxa.map((entry) => {
+    const kids = kidsByTaxon.get(entry.id) ?? [];
+    return {
+      params: { gallery: entry.data.gallery, taxon: entry.id },
+      props: kids.length
+        ? { entry, specimens: kids, hub: null }
+        : { entry, specimens: null, hub: null },
+    };
+  });
+
+  // Synthetic genus hubs: a gallery+genus with ≥2 taxa and no taxon already on that slug.
   const groups = new Map();
   for (const t of taxa) {
     const genus = t.data.taxon.split(' ')[0];
@@ -24,13 +41,24 @@ export async function getStaticPaths() {
   }
   for (const g of groups.values()) {
     if (g.species.length >= 2 && !taxonIds.has(g.slug)) {
-      paths.push({ params: { gallery: g.gallery, taxon: g.slug }, props: { entry: null, hub: g } });
+      paths.push({
+        params: { gallery: g.gallery, taxon: g.slug },
+        props: { entry: null, specimens: null, hub: g },
+      });
     }
   }
   return paths;
 }
 
-const { entry, hub } = Astro.props;
+const { entry, specimens, hub } = Astro.props;
 ---
 
-{hub ? <GenusHub hub={hub} /> : <SkeletalPage entry={entry} />}
+{
+  hub ? (
+    <GenusHub hub={hub} />
+  ) : specimens ? (
+    <SpecimenHub taxon={entry} specimens={specimens} />
+  ) : (
+    <SkeletalPage entry={entry} />
+  )
+}

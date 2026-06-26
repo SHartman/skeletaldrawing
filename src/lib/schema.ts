@@ -8,12 +8,16 @@ import type { CollectionEntry } from 'astro:content';
  */
 
 type TaxonData = CollectionEntry<'taxa'>['data'];
+type SpecimenData = CollectionEntry<'specimens'>['data'];
 
 const AUTHOR = {
   '@type': 'Person',
   name: 'Scott Hartman',
   url: 'https://www.skeletaldrawing.com/about/',
 } as const;
+
+const LICENSE_DEFAULT = 'https://www.skeletaldrawing.com/licensing';
+const CREDIT_DEFAULT = 'Skeletal reconstruction © Scott Hartman / skeletaldrawing.com';
 
 export interface SchemaContext {
   pageUrl: string; // absolute canonical URL of the page
@@ -35,6 +39,12 @@ export function heroRef(d: TaxonData) {
 export function formatLength(d: TaxonData): string {
   if (d.lengthLabel) return d.lengthLabel;
   const m = d.lengthM;
+  if (m == null) return '';
+  return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
+}
+
+/** Scale-aware length from raw metres (specimens have no lengthLabel override). */
+export function formatMeters(m?: number): string {
   if (m == null) return '';
   return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
 }
@@ -121,6 +131,124 @@ export function taxonImageGraph(entry: CollectionEntry<'taxa'>, ctx: SchemaConte
         url: ctx.rigorousUrl,
         name: `${d.taxon} — known material${d.specimenId ? ` (${d.specimenId})` : ''}`,
         description: `Known-material diagram of ${d.taxon}${d.specimenId ? ` ${d.specimenId}` : ''}: elements preserved in the specimen are shown in white against a black body silhouette.`,
+        representative: false,
+      }),
+    );
+  }
+
+  return { '@context': 'https://schema.org', '@graph': nodes };
+}
+
+/* ---------------------------------------------------------------------------
+   Specimens. A specimen is an instance of the skeletal page at a nested URL;
+   its parent taxon supplies the binomial + author for the `about` node, since
+   the specimen record itself stores only the catalog identity.
+   ------------------------------------------------------------------------- */
+
+export function specimenIsKnownMaterialOnly(s: SpecimenData): boolean {
+  return !s.reconstruction && !!s.rigorous;
+}
+
+/** Hero plate: the reconstruction if present, else the known-material diagram. */
+export function specimenHero(s: SpecimenData) {
+  return s.reconstruction ?? s.rigorous!;
+}
+
+export interface SpecimenSchemaContext {
+  taxonName: string; // parent binomial, e.g. "Tyrannosaurus rex"
+  author: string; // parent author citation, e.g. "Osborn, 1905"
+  pageUrl: string;
+  imageUrl: string;
+  rigorousUrl?: string;
+  figures?: { url: string; label?: string; alt: string }[]; // labeled extras (e.g. muscle study)
+}
+
+function specimenIdLabel(s: SpecimenData): string {
+  return s.nickname ? `${s.catalog}, “${s.nickname}”` : s.catalog;
+}
+
+function specimenName(s: SpecimenData, taxonName: string): string {
+  const kind = specimenIsKnownMaterialOnly(s) ? 'known skeletal material' : 'skeletal reconstruction';
+  return `${taxonName} — ${kind} (${specimenIdLabel(s)}, ${s.view.toLowerCase()})`;
+}
+
+function specimenDescription(s: SpecimenData, taxonName: string): string {
+  const len = s.lengthM == null ? '' : s.lengthM < 1 ? `${Math.round(s.lengthM * 100)} cm` : `${s.lengthM} metres`;
+  const comp = s.completenessPct != null ? `, about ${s.completenessPct}% complete` : '';
+  const nick = s.nickname ? ` (“${s.nickname}”)` : '';
+  if (specimenIsKnownMaterialOnly(s)) {
+    return `Known skeletal material of ${taxonName} specimen ${s.catalog}${nick}: elements preserved are drawn in white against a black silhouette${comp}${len ? `, estimated length approximately ${len}` : ''}.`;
+  }
+  return `Skeletal reconstruction of ${taxonName} specimen ${s.catalog}${nick} in ${s.view.toLowerCase()} view${len ? `, reconstructed length approximately ${len}` : ''}${comp}.`;
+}
+
+function specimenImageNode(
+  s: SpecimenData,
+  taxonName: string,
+  author: string,
+  opts: { url: string; name: string; description: string; representative: boolean },
+) {
+  const credit = s.creditText || CREDIT_DEFAULT;
+  const license = s.license || LICENSE_DEFAULT;
+  return {
+    '@type': 'ImageObject',
+    '@id': opts.url,
+    name: opts.name,
+    description: opts.description,
+    contentUrl: opts.url,
+    creator: AUTHOR,
+    copyrightHolder: AUTHOR,
+    creditText: credit,
+    copyrightNotice: credit,
+    license,
+    acquireLicensePage: license,
+    encodingFormat: 'image/png',
+    representativeOfPage: opts.representative,
+    about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} (${author})` },
+  };
+}
+
+/** The representative ImageObject for a specimen page (also shown in the SEO panel). */
+export function specimenPrimaryNode(
+  entry: CollectionEntry<'specimens'>,
+  ctx: SpecimenSchemaContext,
+) {
+  const s = entry.data;
+  return specimenImageNode(s, ctx.taxonName, ctx.author, {
+    url: ctx.imageUrl,
+    name: specimenName(s, ctx.taxonName),
+    description: specimenDescription(s, ctx.taxonName),
+    representative: true,
+  });
+}
+
+/** Full graph: hero + (when both present) known material + each labeled extra figure. */
+export function specimenImageGraph(
+  entry: CollectionEntry<'specimens'>,
+  ctx: SpecimenSchemaContext,
+) {
+  const s = entry.data;
+  const nodes: Record<string, unknown>[] = [specimenPrimaryNode(entry, ctx)];
+
+  if (s.reconstruction && s.rigorous && ctx.rigorousUrl) {
+    nodes.push(
+      specimenImageNode(s, ctx.taxonName, ctx.author, {
+        url: ctx.rigorousUrl,
+        name: `${ctx.taxonName} — known material (${s.catalog})`,
+        description: `Known-material diagram of ${ctx.taxonName} ${s.catalog}: elements preserved in the specimen are shown in white against a black body silhouette.`,
+        representative: false,
+      }),
+    );
+  }
+
+  for (const f of ctx.figures ?? []) {
+    nodes.push(
+      specimenImageNode(s, ctx.taxonName, ctx.author, {
+        url: f.url,
+        name: f.label
+          ? `${ctx.taxonName} — ${f.label.toLowerCase()} (${s.catalog})`
+          : `${ctx.taxonName} — figure (${s.catalog})`,
+        description: f.alt,
         representative: false,
       }),
     );

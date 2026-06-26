@@ -1,0 +1,317 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadSkeletal } from '../lib/images';
+import { specimenHero, specimenIsKnownMaterialOnly, formatMeters, formatMass } from '../lib/schema';
+import ScaleComparison from './ScaleComparison.astro';
+
+// Taxon hub for specimen-rich taxa (CLAUDE.md §5): header + compact record →
+// specimen cards (featured) → [scale-comparison overlay — deferred] → sortable
+// table (all specimens). The taxon page becomes this when it has specimen children.
+const GALLERY_LABEL: Record<string, string> = {
+  'sauropods-and-kin': 'Sauropodomorpha',
+  theropods: 'Theropoda',
+};
+
+const { taxon, specimens } = Astro.props;
+const t = taxon.data;
+const gallery: string = t.gallery;
+const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
+const { Content } = await render(taxon);
+
+// Largest first. Cards = featured (fall back to all if none are flagged).
+const all = [...specimens].sort((a: any, b: any) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0));
+const featured = all.filter((s: any) => s.data.featured);
+const cardSrc = featured.length ? featured : all;
+
+const cards = await Promise.all(
+  cardSrc.map(async (s: any) => ({
+    id: s.id,
+    data: s.data,
+    img: await loadSkeletal(specimenHero(s.data).src),
+    alt: specimenHero(s.data).alt,
+    length: formatMeters(s.data.lengthM),
+    km: specimenIsKnownMaterialOnly(s.data),
+  })),
+);
+
+const rows = all.map((s: any) => ({
+  id: s.id,
+  data: s.data,
+  length: formatMeters(s.data.lengthM),
+  femur: formatMeters(s.data.femurM),
+  mass: formatMass(s.data.massKg),
+}));
+
+// Compact record.
+const lengths = all.map((s: any) => s.data.lengthM).filter((n: number) => n != null);
+const sizeRange = lengths.length
+  ? Math.min(...lengths) === Math.max(...lengths)
+    ? `~${Math.max(...lengths)} m`
+    : `${Math.min(...lengths)}–${Math.max(...lengths)} m`
+  : '—';
+const formations = [...new Set(all.map((s: any) => s.data.formation).filter(Boolean))];
+
+const idLabel = (d: any) => (d.nickname ? `${d.catalog} — “${d.nickname}”` : d.catalog);
+
+const title = `${t.taxon} — documented specimens & skeletal reconstructions | Skeletal Drawing`;
+const description = `${all.length} specimens of ${t.taxon} reconstructed by Scott Hartman, ${sizeRange} in length — each with its own skeletal, known material, and full record.`;
+const imageUrl = new URL(t.reconstruction?.src ?? '', Astro.site).href;
+---
+
+<BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
+  <main class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href={`/${gallery}/`}>{galleryLabel}</a>
+      <span aria-hidden="true">/</span>
+      <em>{t.taxon}</em>
+    </nav>
+
+    <header class="hub-head">
+      <div class="head-main">
+        <p class="eyebrow">{[t.clade[0], t.family].filter(Boolean).join(' · ')}</p>
+        <h1 class="display"><em>{t.taxon}</em> <span class="auth">({t.author})</span></h1>
+        <div class="intro prose"><Content /></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Specimens shown</dt><dd>{all.length}</dd></div>
+        <div><dt>Size range</dt><dd>{sizeRange}</dd></div>
+        {formations.length > 0 && (
+          <div><dt>Formations</dt><dd>{formations.join(' · ')}</dd></div>
+        )}
+      </dl>
+    </header>
+
+    <section class="block">
+      <h2 class="sec-h">Specimens</h2>
+      <ul class="cards">
+        {cards.map((c) => (
+          <li class="card">
+            <a href={`/${gallery}/${taxon.id}/${c.id}/`}>
+              <div class="thumb">
+                {c.length && <span class="badge">{c.length}</span>}
+                {c.km && <span class="badge badge-km">known material</span>}
+                {c.img ? (
+                  <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 320px" class="thumb-img" loading="lazy" />
+                ) : (
+                  <img src={specimenHero(c.data).src} alt={c.alt} class="thumb-img" />
+                )}
+              </div>
+              <div class="cbody">
+                <div class="cnames">
+                  <span class="cname">{c.data.catalog}</span>
+                  {c.data.nickname && <span class="cnick">“{c.data.nickname}”</span>}
+                </div>
+                <span class="arrow">→</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <ScaleComparison taxonId={taxon.id} total={all.length} />
+
+    <section class="block">
+      <h2 class="sec-h">All documented specimens <span class="sec-sub">— tap a column to sort</span></h2>
+      <div class="table-wrap">
+        <table id="sptable">
+          <thead>
+            <tr>
+              <th data-key="catalog">Specimen</th>
+              <th data-key="length" class="num">Length</th>
+              <th data-key="femur" class="num">Femur</th>
+              <th data-key="complete" class="num">Complete</th>
+              <th data-key="year" class="num">Collected</th>
+              <th data-key="repo">Repository</th>
+              <th aria-hidden="true"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr
+                data-catalog={r.data.catalog}
+                data-length={r.data.lengthM ?? 0}
+                data-femur={r.data.femurM ?? 0}
+                data-complete={r.data.completenessPct ?? 0}
+                data-year={r.data.collectedYear ?? 0}
+                data-repo={r.data.repository ?? ''}
+              >
+                <td class="sp-cell">
+                  <a href={`/${gallery}/${taxon.id}/${r.id}/`}>{idLabel(r.data)}</a>
+                </td>
+                <td class="num" data-label="Length">{r.length || '—'}</td>
+                <td class="num" data-label="Femur">{r.femur || '—'}</td>
+                <td class="num" data-label="Complete">
+                  {r.data.completenessPct != null ? (
+                    <span class="bar-wrap" title={`~${r.data.completenessPct}% complete`}>
+                      <span class="bar" style={`width:${Math.max(4, r.data.completenessPct)}%`}></span>
+                      <span class="bar-n">{r.data.completenessPct}%</span>
+                    </span>
+                  ) : (
+                    '—'
+                  )}
+                </td>
+                <td class="num" data-label="Collected">{r.data.collectedYear ?? '—'}</td>
+                <td class="muted" data-label="Repository">{r.data.repository || '—'}</td>
+                <td class="num go"><a href={`/${gallery}/${taxon.id}/${r.id}/`}>View →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  const table = document.getElementById('sptable');
+  if (table) {
+    const tbody = table.querySelector('tbody')!;
+    const rows = [...tbody.querySelectorAll('tr')];
+    const headers = [...table.querySelectorAll<HTMLElement>('th[data-key]')];
+    let sortKey = 'catalog';
+    let asc = true;
+    const numeric = (k: string) => k === 'length' || k === 'femur' || k === 'complete' || k === 'year';
+    headers.forEach((th) =>
+      th.addEventListener('click', () => {
+        const key = th.dataset.key!;
+        asc = sortKey === key ? !asc : true;
+        sortKey = key;
+        headers.forEach((h) => h.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+        rows.sort((a, b) => {
+          const r = numeric(key)
+            ? Number(a.dataset[key] ?? 0) - Number(b.dataset[key] ?? 0)
+            : (a.dataset[key] ?? '').localeCompare(b.dataset[key] ?? '');
+          return asc ? r : -r;
+        });
+        rows.forEach((row) => tbody.appendChild(row));
+      }),
+    );
+  }
+</script>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .crumbs {
+    margin-top: 34px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .1em; color: var(--slate); display: flex; gap: 10px; align-items: baseline;
+  }
+  .crumbs a { color: var(--slate); text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs em { font-style: italic; color: var(--ink); }
+
+  .hub-head {
+    display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: flex-start;
+    justify-content: space-between; margin: 18px 0 0; padding-bottom: 26px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(40px, 7vw, 76px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .display .auth {
+    font-style: normal; font-weight: 400; color: var(--slate);
+    font-size: clamp(16px, 2.4vw, 24px); letter-spacing: 0;
+  }
+  .head-main { flex: 1 1 380px; }
+  .intro { margin: 16px 0 0; max-width: 60ch; }
+  .intro :global(p) { font-size: 17px; line-height: 1.62; margin: 0 0 .9em; color: var(--ink); }
+
+  .facts { margin: 6px 0 0; display: grid; gap: 14px; align-content: start; }
+  .facts div { border-top: 2px solid var(--ink); padding-top: 8px; min-width: 150px; }
+  .facts dt {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--slate); margin-bottom: 4px;
+  }
+  .facts dd { margin: 0; font-size: 17px; }
+
+  .block { margin-top: 40px; }
+  .sec-h {
+    margin: 0 0 18px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
+  }
+  .sec-sub { letter-spacing: 0; text-transform: none; }
+
+  .cards {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px;
+  }
+  .card {
+    border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 4px;
+    overflow: hidden; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(26,24,21,.10); }
+  .card a { text-decoration: none; color: var(--ink); display: block; }
+  .thumb { position: relative; aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; padding: 14px; }
+  .thumb-img { width: 100%; height: 100%; object-fit: contain; }
+  .badge {
+    position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc;
+    padding: 2px 6px; border-radius: 3px;
+  }
+  .badge-km { right: auto; left: 10px; color: var(--slate); }
+  .cbody { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 13px 16px; border-top: 1px solid var(--hair); }
+  .cnames { display: flex; flex-direction: column; gap: 2px; }
+  .cname { font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; }
+  .cnick { font-style: italic; font-size: 15px; color: var(--slate); }
+  .arrow { color: var(--accent); }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+  thead th {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--slate); font-weight: 400; cursor: pointer; user-select: none; border-bottom: 2px solid var(--ink);
+  }
+  thead th[data-key]:hover { color: var(--ink); }
+  thead th[aria-sort]::after { content: " ▲"; color: var(--accent); font-size: 9px; }
+  thead th[aria-sort="descending"]::after { content: " ▼"; }
+  td a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  td.muted { color: var(--slate); }
+
+  .bar-wrap { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .bar { display: inline-block; height: 6px; min-width: 4px; max-width: 60px; background: var(--accent-soft); border-radius: 3px; }
+  .bar-n { font-size: 12.5px; color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+    .cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  }
+
+  /* Wide specimen table collapses to stacked cards — no horizontal scroll (CLAUDE.md §3). */
+  @media (max-width: 680px) {
+    .table-wrap { overflow-x: visible; }
+    table, tbody, tr, td { display: block; width: 100%; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    tr {
+      border: 1px solid var(--hair-strong); border-radius: 4px;
+      margin-bottom: 14px; padding: 4px 0; background: var(--plate);
+    }
+    td {
+      border: none; border-bottom: 1px solid var(--hair); white-space: normal;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      padding: 9px 16px; text-align: right;
+    }
+    td[data-label]::before {
+      content: attr(data-label); text-align: left; flex: 0 0 auto;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--slate);
+    }
+    td.sp-cell {
+      justify-content: flex-start; text-align: left; font-size: 16px;
+      padding-top: 13px; padding-bottom: 13px;
+    }
+    td.go { border-bottom: none; justify-content: flex-end; }
+    .bar-wrap { justify-content: flex-end; }
+  }
+</style>

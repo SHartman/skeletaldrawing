@@ -16,13 +16,6 @@ const imageRef = z.object({
   alt: z.string(), // descriptive alt text (taxon + view + length) — hard rule §3
 });
 
-// A bonus figure shown below the main plates (e.g. a speculative armor variant).
-const figureRef = z.object({
-  src: z.string(),
-  alt: z.string(),
-  caption: z.string().optional(),
-});
-
 // Sveltia materializes empty fields as '' (strings) or null (numbers). Normalize
 // those to `undefined` so optional fields stay optional and defaults still apply.
 const blank = (v: unknown) => (v === '' || v === null ? undefined : v);
@@ -31,6 +24,16 @@ const optNum = z.preprocess(blank, z.number().optional());
 const defStr = (d: string) => z.preprocess(blank, z.string().default(d));
 const nullableDefault = <T extends z.ZodTypeAny>(s: T) =>
   z.preprocess((v) => (v == null ? undefined : v), s);
+
+// A bonus figure shown below the main plates. An optional `label` (e.g.
+// "Muscle reconstruction") gives it a heading and its own ImageObject; without
+// one it renders as a plain figure (e.g. a speculative armor variant).
+const figureRef = z.object({
+  src: z.string(),
+  alt: z.string(),
+  label: optStr,
+  caption: optStr,
+});
 
 const taxa = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/taxa' }),
@@ -69,26 +72,38 @@ const taxa = defineCollection({
 
 const specimens = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/specimens' }),
-  schema: z.object({
-    taxon: z.string(),                   // parent taxon slug (→ reference('taxa') in Phase 3)
-    catalog: z.string(),                 // e.g. "FMNH PR 2081"
-    nickname: z.string().optional(),     // e.g. "Sue"
-    institution: z.string().optional(),
-    lengthM: z.number().optional(),
-    femurM: z.number().optional(),
-    completenessPct: z.number().optional(),
-    collectedYear: z.number().optional(),
-    formation: z.string().optional(),
-    locality: z.string().optional(),
-    repository: z.string().optional(),
-    view: z.string().default('Left lateral'),
-    basis: z.string().optional(),
-    license: z.string().optional(),
-    creditText: z.string().optional(),
-    reconstruction: imageRef,
-    rigorous: imageRef.optional(),
-    featured: z.boolean().default(false),
-  }),
+  // Same CMS empty-value hardening as `taxa` (Sveltia writes ''/null). A specimen
+  // is an instance of the skeletal-page template at a nested URL (CLAUDE.md §5).
+  schema: z
+    .object({
+      taxon: z.string(),                  // parent taxon slug (matches a taxa entry id)
+      catalog: z.string(),                // e.g. "FMNH PR 2081"
+      nickname: optStr,                   // e.g. "Sue"
+      repository: optStr,                 // holding institution, e.g. "Field Museum, Chicago"
+      formation: optStr,
+      locality: optStr,
+      lengthM: optNum,                    // numeric metres — sorting + scale figure
+      femurM: optNum,
+      massKg: optNum,                     // scale-aware display (kg → tonnes)
+      completenessPct: optNum,
+      collectedYear: optNum,
+      view: defStr('Left lateral'),
+      basis: optStr,
+      scaleBar: defStr('1 metre'),
+      license: defStr('https://www.skeletaldrawing.com/licensing'),
+      creditText: defStr('Skeletal reconstruction © Scott Hartman / skeletaldrawing.com'),
+      drawingCredit: defStr('© Scott Hartman'),
+      reconstruction: nullableDefault(imageRef.optional()), // present for most specimens
+      rigorous: nullableDefault(imageRef.optional()),       // known-material diagram
+      additionalFigures: nullableDefault(z.array(figureRef).default([])), // e.g. muscle study
+      overlay: nullableDefault(z.boolean().default(false)), // include in the scale-comparison figure
+      featured: nullableDefault(z.boolean().default(false)),// show as a card on the hub
+    })
+    // Like taxa: at least one image. Most specimens carry a reconstruction; a few
+    // are too incomplete to restore and carry only the known-material diagram.
+    .refine((d) => d.reconstruction || d.rigorous, {
+      message: 'Each specimen needs at least a reconstruction or a known-material image.',
+    }),
 });
 
 // Reserved for later phases (defined when their first entry/template lands):
