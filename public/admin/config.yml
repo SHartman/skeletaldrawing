@@ -49,10 +49,10 @@ collections:
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float, hint: "Numeric; displays as kg or tonnes automatically." }
       - { name: massSource, label: "Mass source", widget: string, required: false, hint: "e.g. PaleoGDI" }
       - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "e.g. Juvenile (adult proportions differ)" }
-      - { name: view, label: "View", widget: string, default: "Left lateral" }
+      - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }
-      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", hint: "What the baked-in bar measures, e.g. 1 m, 50 cm" }
-      - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman" }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", required: false, hint: "What the baked-in bar measures, e.g. 1 m, 50 cm" }
+      - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false, hint: "Leave blank for the default © Scott Hartman" }
       - { name: license, label: "License URL", widget: string, default: "https://www.skeletaldrawing.com/licensing", required: false }
       - name: reconstruction
         label: "Reconstruction image"
@@ -77,4 +77,4 @@ collections:
           - { name: alt, label: "Alt text", widget: string }
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
-      - { name: body, label: "Description", widget: markdown, hint: "The prose shown beneath the record." }
+      - { name: body, label: "Description", widget: markdown, required: false, hint: "The prose shown beneath the record." }
