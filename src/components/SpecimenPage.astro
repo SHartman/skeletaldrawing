@@ -47,9 +47,9 @@ const family = t.family ?? t.clade.at(-1);
 const eyebrow = [t.clade[0], family, s.catalog].filter(Boolean).join(' · ');
 const idSub = s.nickname ? `“${s.nickname}” · ${s.catalog}` : s.catalog;
 
-const restFields = [
+const restFields: { k: string; v: string; href?: string }[] = [
   { k: 'Specimen', v: s.catalog },
-  { k: 'Repository', v: s.repository ?? '' },
+  { k: 'Repository', v: s.repository ?? '', href: s.repositoryUrl },
   { k: 'Formation', v: s.formation ?? '' },
   { k: 'Locality', v: s.locality ?? '' },
   { k: kmOnly ? 'Estimated length' : 'Reconstructed length', v: lt },
@@ -137,7 +137,9 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
         {restFields.map((f) => (
           <div class="cell">
             <div class="k">{f.k}</div>
-            <div class="v">{f.v}</div>
+            <div class="v">
+              {f.href ? <a href={f.href} target="_blank" rel="noopener">{f.v}</a> : f.v}
+            </div>
           </div>
         ))}
       </div>

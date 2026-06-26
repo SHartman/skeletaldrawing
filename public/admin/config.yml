@@ -95,6 +95,7 @@ collections:
       - { name: catalog, label: "Catalog number", widget: string, hint: "Verbatim, e.g. FMNH PR 2081" }
       - { name: nickname, label: "Nickname", widget: string, required: false, hint: "e.g. Sue" }
       - { name: repository, label: "Repository", widget: string, required: false, hint: "Holding institution" }
+      - { name: repositoryUrl, label: "Repository URL", widget: string, required: false, hint: "Links the repository name to the museum/collection page (opens in a new tab)" }
       - { name: formation, label: "Formation", widget: string, required: false }
       - { name: locality, label: "Locality", widget: string, required: false }
       - { name: lengthM, label: "Length (metres)", widget: number, required: false, value_type: float }

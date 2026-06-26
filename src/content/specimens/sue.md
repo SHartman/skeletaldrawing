@@ -3,6 +3,7 @@ taxon: "tyrannosaurus-rex"
 catalog: "FMNH PR 2081"
 nickname: "Sue"
 repository: "Field Museum, Chicago"
+repositoryUrl: "https://www.fieldmuseum.org/"
 formation: "Hell Creek Formation"
 lengthM: 12.3
 femurM: 1.32

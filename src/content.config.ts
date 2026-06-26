@@ -80,6 +80,7 @@ const specimens = defineCollection({
       catalog: z.string(),                // e.g. "FMNH PR 2081"
       nickname: optStr,                   // e.g. "Sue"
       repository: optStr,                 // holding institution, e.g. "Field Museum, Chicago"
+      repositoryUrl: optStr,              // museum/collection page — renders the repository as a link
       formation: optStr,
       locality: optStr,
       lengthM: optNum,                    // numeric meters — sorting + scale figure

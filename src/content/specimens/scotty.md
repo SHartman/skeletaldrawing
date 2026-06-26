@@ -3,6 +3,7 @@ taxon: "tyrannosaurus-rex"
 catalog: "RSM P2523.8"
 nickname: "Scotty"
 repository: "Royal Saskatchewan Museum"
+repositoryUrl: "https://royalsaskmuseum.ca/"
 formation: "Frenchman Formation"
 locality: "Saskatchewan, Canada"
 lengthM: 12.7
