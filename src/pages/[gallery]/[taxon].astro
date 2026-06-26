@@ -48,7 +48,9 @@ const family = d.family ?? d.clade.at(-1);
 const lt = formatLength(d);
 const mass = formatMass(d.massKg);
 const eyebrow = [d.clade[0], family, d.specimenId].filter(Boolean).join(' · ');
-const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar} · ${d.drawingCredit}`;
+// Ensure the caption credit always carries the © (the CMS can strip it on save).
+const drawingCredit = d.drawingCredit.startsWith('©') ? d.drawingCredit : `© ${d.drawingCredit}`;
+const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar} · ${drawingCredit}`;
 
 // Title-block cells (the Taxon cell is rendered separately for its mixed italic).
 const restFields = [
@@ -60,7 +62,7 @@ const restFields = [
   { k: 'Life stage', v: d.lifeStage ?? '' },
   { k: 'View', v: d.view },
   { k: 'Basis', v: d.basis ?? (kmOnly ? 'Known material only — too incompletely known to restore' : '') },
-  { k: 'Drawing', v: d.drawingCredit },
+  { k: 'Drawing', v: drawingCredit },
 ].filter((f) => f.v);
 
 // Related: same-gallery taxa, ranked by how much of the clade path they share.
