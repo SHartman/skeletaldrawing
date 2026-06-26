@@ -53,7 +53,8 @@ collections:
       - { name: basis, label: "Basis", widget: string, required: false }
       - { name: scaleBar, label: "Scale bar", widget: string, default: "1 metre", required: false, hint: "What the baked-in bar measures, e.g. 1 m, 50 cm" }
       - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false, hint: "Leave blank for the default © Scott Hartman" }
-      - { name: license, label: "License URL", widget: string, default: "https://www.skeletaldrawing.com/licensing", required: false }
+      # `license` and `creditText` are site-wide constants — provided by the schema defaults in
+      # content.config.ts and intentionally NOT exposed here, so the CMS never writes them per entry.
       - name: reconstruction
         label: "Reconstruction image"
         widget: object

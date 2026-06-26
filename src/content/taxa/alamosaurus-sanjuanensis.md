@@ -18,7 +18,6 @@ view: Left lateral
 basis: ''
 scaleBar: 1 m
 drawingCredit: ''
-license: ''
 reconstruction:
   src: /images/skeletals/alamosaurus-sanjuanensis-skeletal.png
   alt: Alamosaurus sanjuanensis skeletal reconstruction, left lateral view, reconstructed length ~26 m.
