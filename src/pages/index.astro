@@ -1,63 +1,416 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { existsSync } from 'node:fs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadSkeletal } from '../lib/images';
+import heroImg from '../assets/home-golden-hero.png';
 
-// TEMPORARY Phase 0 smoke test. Exercises the whole pipeline — base layout,
-// Graphite tokens, fonts, masthead/footer, AND content-collection parsing.
-// The real home page is designed and built last (CLAUDE.md §5).
+// Home page — design "Golden Specimen" (HOMEDESIGN.md). Custom chrome (transparent
+// header over the hero + its own bio strip/footer), so it runs BaseLayout in `bare` mode.
+// Real data where it exists; clearly-flagged placeholders where a section's source
+// collection isn't built yet (blog) or an asset hasn't been supplied (hero image).
+
+// Header logo glyph — the skeletal silhouette from the design.
+const SIL =
+  'M111.1 0.0L152.5 2.2L198.3 34.9L217.9 34.9L254.9 26.1L337.7 15.3L392.2 13.1L422.7 15.3L610.0 56.6L666.7 61.0L740.7 61.0L812.6 71.9L880.2 93.7L923.7 117.6L980.4 161.2L1000.0 183.0L1000.0 189.5L991.3 187.4L947.7 152.5L921.6 137.3L884.5 122.0L814.8 106.8L740.7 106.8L620.9 130.7L540.3 132.9L501.1 148.1L483.7 159.0L496.7 180.8L531.6 207.0L549.0 241.8L562.1 246.2L559.9 254.9L566.4 259.3L566.4 294.1L557.7 307.2L522.9 307.2L522.9 302.8L529.4 305.0L531.6 298.5L544.7 291.9L544.7 283.2L525.1 241.8L498.9 215.7L479.3 207.0L435.7 200.4L413.9 185.2L368.2 198.3L359.5 213.5L359.5 244.0L337.7 268.0L320.3 281.0L320.3 287.6L296.3 300.7L281.0 305.0L272.3 302.8L270.2 307.2L265.8 307.2L263.6 302.8L252.7 298.5L244.0 300.7L244.0 296.3L250.5 289.8L257.1 291.9L259.3 287.6L278.9 283.2L291.9 268.0L300.7 265.8L318.1 252.7L333.3 228.8L335.5 213.5L322.4 183.0L287.6 180.8L254.9 172.1L252.7 178.6L257.1 193.9L252.7 193.9L246.2 185.2L244.0 191.7L239.7 191.7L239.7 165.6L202.6 148.1L187.4 124.2L148.1 106.8L137.3 106.8L113.3 128.5L108.9 128.5L115.5 117.6L111.1 115.5L113.3 100.2L119.8 100.2L122.0 106.8L126.4 95.9L126.4 85.0L117.6 82.8L115.5 74.1L104.6 80.6L93.7 93.7L80.6 139.4L56.6 163.4L71.9 165.6L85.0 154.7L100.2 130.7L104.6 130.7L100.2 141.6L91.5 148.1L91.5 152.5L76.3 169.9L52.3 169.9L47.9 167.8L47.9 159.0L50.1 152.5L78.4 122.0L87.1 100.2L87.1 95.9L78.4 87.1L43.6 111.1L19.6 117.6L8.7 117.6L4.4 113.3L0.0 104.6L0.0 98.0L4.4 95.9L0.0 93.7L0.0 89.3L4.4 82.8L10.9 80.6L19.6 67.5L39.2 56.6L63.2 32.7L74.1 28.3L91.5 10.9L108.9 2.2Z';
+
+const NAV = [
+  { label: 'Skeletals', href: '/galleries/' },
+  { label: 'Learn', href: '/resources/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Store', href: '/store/' },
+];
+
+const GALLERY_LABEL: Record<string, string> = {
+  'sauropods-and-kin': 'Sauropodomorpha',
+  theropods: 'Theropoda',
+  ornithischians: 'Ornithischia',
+  'non-dinosaurs': 'Non-dinosaurs',
+};
+
+// Browse by clade — one card per gallery that has content, with real taxon counts.
 const taxa = await getCollection('taxa');
+const counts = new Map<string, number>();
+for (const t of taxa) counts.set(t.data.gallery, (counts.get(t.data.gallery) ?? 0) + 1);
+const clades = [...counts.entries()]
+  .map(([slug, count]) => ({ slug, name: GALLERY_LABEL[slug] ?? slug, count, href: `/${slug}/` }))
+  .sort((a, b) => b.count - a.count)
+  .map((c, i) => ({ ...c, idx: String(i + 1).padStart(2, '0') }));
+
+// Featured reconstruction — a recent specimen reconstruction (static for now; rotating
+// among the most-recently-added work is the next step, and pairs with an `added` date).
+const specimens = await getCollection('specimens');
+const pool = specimens.filter((s) => s.data.taxon === 'tyrannosaurus-rex' && s.data.reconstruction);
+const fEntry = pool.find((s) => s.id === 'usnm-555000') ?? pool[0];
+const fImg = fEntry?.data.reconstruction ? await loadSkeletal(fEntry.data.reconstruction.src) : null;
+const featured = fEntry
+  ? {
+      taxon: 'Tyrannosaurus rex',
+      href: `/theropods/tyrannosaurus-rex/${fEntry.id}/`,
+      alt: fEntry.data.reconstruction!.alt,
+      specimenLine: fEntry.data.nickname
+        ? `${fEntry.data.catalog} · “${fEntry.data.nickname}”`
+        : fEntry.data.catalog,
+      credit: `Scale bar = ${fEntry.data.scaleBar} · © Scott Hartman`,
+    }
+  : null;
+
+// Blog image — render only when present (self-healing placeholder).
+const blogImgExists = existsSync('public/images/blog-dimetrodon.png');
+
+// Blog — placeholder copy from the design until the `post` collection is built.
+const leadPost = {
+  kind: 'You’re doing it wrong',
+  title: 'I did it wrong: Dimetrodon had a longer neck',
+  excerpt:
+    'A series on the common errors that turn up in documentaries, art, and museum mounts — beginning, fittingly, with one of my own: a neck I had drawn a few vertebrae too short.',
+  date: 'Feb 19, 2026',
+  href: '/blog/',
+};
+const morePosts = [
+  { kind: 'Reconstruction notes', title: 'Reassessing the proportions of Spinosaurus', date: 'Jan 30, 2026', href: '/blog/' },
+  { kind: 'In the literature', title: 'What a new Triceratops growth series tells us', date: 'Jan 8, 2026', href: '/blog/' },
+];
+
+// og:image uses the stable public PNG (Astro-optimized URLs are hashed, not share-stable).
+const ogImage = new URL('/images/home-golden-hero.png', Astro.site).href;
+const title = 'Skeletal Drawing — scientific reconstructions by Dr. Scott Hartman';
+const description =
+  'Rigorous skeletal reconstructions and life restorations of extinct animals, drawn from the fossils themselves, by vertebrate paleontologist Dr. Scott Hartman.';
 ---
 
-<BaseLayout
-  title="Skeletal Drawing — rebuild in progress"
-  description="Scaffold smoke test for the skeletaldrawing.com rebuild."
->
-  <main class="wrap">
-    <p class="eyebrow">Scaffold online · Phase 0</p>
-    <h1>Foundation in place</h1>
-    <p class="lede">
-      Temporary placeholder. Confirms the base layout, Graphite tokens, web fonts,
-      masthead, and footer all render — and that the content collection loads and
-      validates against the schema. The real home page comes last.
-    </p>
+<BaseLayout title={title} description={description} ogImage={ogImage} bare>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <Picture
+      src={heroImg}
+      formats={['avif', 'webp']}
+      alt="Silhouette of a feathered theropod wading at golden hour"
+      widths={[800, 1280, 1920, 2560, 3200]}
+      sizes="100vw"
+      class="hero-img"
+      loading="eager"
+    />
+    <div class="hero-grad-top"></div>
+    <div class="hero-grad-bottom"></div>
 
-    <h2 class="eyebrow">Taxa loaded from content collection ({taxa.length})</h2>
-    <ul class="taxa">
-      {taxa.map((t) => (
-        <li>
-          <em>{t.data.taxon}</em>
-          <span class="meta"> · {t.data.gallery} · {t.data.lengthLabel ?? `${t.data.lengthM} m`}</span>
-        </li>
-      ))}
-    </ul>
-  </main>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/">
+          <svg viewBox="0 0 1000 307" class="brand-glyph" aria-hidden="true"><path d={SIL} fill="var(--accent)"></path></svg>
+          <span class="brand-word"><span class="brand-strong">Skeletal</span> <span class="brand-italic">Drawing</span></span>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          {NAV.map((item, i) => (
+            <a href={item.href} class:list={{ dim: i !== 0 }}>{item.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero-foot">
+      <div class="hero-foot-inner">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">Dr. Scott Hartman</p>
+          <h1 class="hero-h1">Bringing extinct animals back to <span class="i">scientific life.</span></h1>
+          <p class="hero-sub">Rigorous skeletal reconstructions and life restorations, drawn from the fossils themselves — the science beneath the silhouette.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWEST RECONSTRUCTION ============ -->
+  <section class="band newest">
+    <div class="cta-row">
+      <a class="btn btn-gold" href="/galleries/">Explore the skeletals →</a>
+      <a class="btn btn-plain" href="/galleries/">Search the database</a>
+    </div>
+
+    {featured && (
+      <>
+        <figure class="plate">
+          <a href={featured.href} class="plate-link">
+            {fImg ? (
+              <Picture
+                src={fImg}
+                formats={['avif', 'webp']}
+                alt={featured.alt}
+                widths={[640, 1040, 1560]}
+                sizes="(min-width: 1100px) 1040px, 92vw"
+                class="plate-img"
+                loading="eager"
+              />
+            ) : (
+              <img src="/images/skeletals/tyrannosaurus-rex-usnm-555000-skeletal.png" alt={featured.alt} class="plate-img" />
+            )}
+          </a>
+          <div class="plate-rule"></div>
+          <div class="plate-credit">{featured.credit}</div>
+        </figure>
+
+        <div class="newest-meta">
+          <p class="newest-eyebrow">Just added · newest reconstruction</p>
+          <a href={featured.href} class="newest-taxon-link"><div class="newest-taxon">{featured.taxon}</div></a>
+          <div class="newest-specimen">{featured.specimenLine}</div>
+        </div>
+      </>
+    )}
+  </section>
+
+  <!-- ============ BROWSE BY CLADE ============ -->
+  <section class="band bordered">
+    <div class="band-inner">
+      <div class="sec-head">
+        <h2 class="sec-title">Browse by clade</h2>
+        <a class="sec-link" href="/galleries/">All galleries →</a>
+      </div>
+      <div class="clade-grid">
+        {clades.map((c) => (
+          <a class="clade-card" href={c.href}>
+            <span class="clade-idx">{c.idx}</span>
+            <span class="clade-name">{c.name}</span>
+            <span class="clade-count">{c.count} {c.count === 1 ? 'skeletal' : 'skeletals'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FROM THE BLOG (placeholder until the post collection lands) ============ -->
+  <section class="band bordered">
+    <div class="band-inner">
+      <div class="sec-head">
+        <h2 class="sec-title">From the blog</h2>
+        <a class="sec-link" href="/blog/">All posts →</a>
+      </div>
+      <div class="blog-grid">
+        <a class="lead-post" href={leadPost.href}>
+          <div class="lead-thumb">
+            {blogImgExists ? (
+              <img src="/images/blog-dimetrodon.png" alt="Dimetrodon skeletal reconstruction — skull and sail, lateral view" class="lead-img" />
+            ) : (
+              <span class="thumb-ph">image to come</span>
+            )}
+          </div>
+          <div class="lead-body">
+            <span class="post-kind">{leadPost.kind}</span>
+            <h3 class="lead-title">{leadPost.title}</h3>
+            <p class="lead-excerpt">{leadPost.excerpt}</p>
+            <div class="lead-foot">
+              <span class="read-more">Read more →</span>
+              <span class="post-date">{leadPost.date}</span>
+            </div>
+          </div>
+        </a>
+        <div class="more-posts">
+          <p class="more-label">More recent</p>
+          {morePosts.map((p) => (
+            <a class="more-post" href={p.href}>
+              <span class="post-kind sm">{p.kind}</span>
+              <span class="more-title">{p.title}</span>
+              <span class="post-date">{p.date}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIO STRIP ============ -->
+  <div class="bio">
+    <div class="bio-inner">
+      <p class="bio-text">Skeletal reconstructions by <strong>Dr. Scott Hartman</strong> — vertebrate paleontologist. Two decades of measured, specimen-based drawings used in peer-reviewed research, museum exhibits, and print.</p>
+      <div class="bio-cta">
+        <a class="btn btn-gold sm" href="/about/">About Scott</a>
+        <a class="btn btn-dark sm" href="/store/">Licensing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="home-footer">
+    <div class="home-footer-inner">
+      <span class="foot-word"><span class="brand-strong">Skeletal</span> <span class="foot-italic">Drawing</span></span>
+      <span>© 2026 Scott Hartman · paleontological illustration since 1997</span>
+    </div>
+  </footer>
 </BaseLayout>
 
 <style>
-  .wrap {
-    max-width: var(--measure-max);
-    margin: 0 auto;
-    padding: 44px var(--pad-side) 0;
+  /* ---- hero ---- */
+  .hero { position: relative; background: var(--mast-bg); }
+  .hero-img {
+    display: block; width: 100%; height: clamp(440px, 56vw, 560px);
+    object-fit: cover; object-position: 50% 36%;
   }
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--slate);
-    font-weight: 400;
-    margin: 0 0 10px;
+  .hero-grad-top {
+    position: absolute; top: 0; left: 0; right: 0; height: 160px;
+    background: linear-gradient(to bottom, rgba(12,11,9,.5), rgba(12,11,9,0));
   }
-  h1 {
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(34px, 6vw, 58px);
-    line-height: 1.02;
-    letter-spacing: -.015em;
-    margin: 0 0 18px;
+  .hero-grad-bottom {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 62%;
+    background: linear-gradient(to top, rgba(12,11,9,.84), rgba(12,11,9,0));
   }
-  .lede { font-size: 19px; line-height: 1.66; max-width: 64ch; color: var(--ink); }
-  .taxa { padding-left: 1.1em; }
-  .taxa li { font-size: 18px; margin: 6px 0; }
-  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
+
+  .topbar { position: absolute; top: 0; left: 0; right: 0; }
+  .topbar-inner {
+    max-width: 1280px; margin: 0 auto; padding: 21px 56px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+  .brand-glyph { width: 44px; height: auto; display: block; }
+  .brand-word { font-size: 21px; letter-spacing: .01em; }
+  .brand-strong { font-weight: 600; }
+  .brand-italic { font-style: italic; color: rgba(255,255,255,.78); }
+  .topnav {
+    display: flex; gap: 28px; font-family: var(--font-mono); font-size: 12px;
+    text-transform: uppercase; letter-spacing: .16em;
+  }
+  .topnav a { color: #fff; text-decoration: none; }
+  .topnav a.dim { color: rgba(255,255,255,.82); }
+  .topnav a:hover { color: #fff; }
+
+  .hero-foot { position: absolute; left: 0; right: 0; bottom: 0; }
+  .hero-foot-inner { max-width: 1280px; margin: 0 auto; padding: 0 56px 52px; }
+  .hero-copy { max-width: 820px; animation: riseIn .6s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em;
+    text-transform: uppercase; color: rgba(255,255,255,.82); margin: 0;
+  }
+  .hero-h1 {
+    color: #fff; font-weight: 500; font-size: clamp(38px, 5.4vw, 56px); line-height: 1.04;
+    letter-spacing: -.02em; margin: 14px 0 0; text-shadow: 0 2px 34px rgba(0,0,0,.45);
+  }
+  .hero-h1 .i { font-style: italic; }
+  .hero-sub {
+    color: rgba(255,255,255,.9); font-size: clamp(17px, 2vw, 19px); line-height: 1.5;
+    max-width: 620px; margin: 16px 0 0;
+  }
+
+  /* ---- bands ---- */
+  .band { max-width: 1280px; margin: 0 auto; }
+  .newest { padding: 60px 56px 58px; }
+  .bordered { max-width: none; border-top: 1px solid var(--hair); }
+  .band-inner { max-width: 1280px; margin: 0 auto; padding: 50px 56px 54px; }
+
+  .cta-row { display: flex; gap: 13px; justify-content: center; flex-wrap: wrap; margin-bottom: 34px; }
+  .btn {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 14px 24px; border-radius: 6px; text-decoration: none; white-space: nowrap;
+  }
+  .btn.sm { font-size: 11px; padding: 11px 16px; border-radius: 5px; }
+  .btn-gold { color: #fff; background: var(--accent); }
+  .btn-plain { color: var(--ink); background: var(--plate); border: 1px solid var(--hair-strong); }
+  .btn-dark { color: #E7E3DA; border: 1px solid #3A3D40; }
+  .btn:hover { opacity: .9; }
+
+  .plate {
+    margin: 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 7px;
+    padding: clamp(22px, 3vw, 36px) clamp(24px, 4vw, 48px) 26px;
+  }
+  .plate-link { display: block; text-decoration: none; }
+  .plate-img { width: 100%; max-width: 1040px; display: block; margin: 0 auto; height: auto; }
+  .plate-rule { margin-top: 16px; height: 1px; background: var(--hair); }
+  .plate-credit {
+    margin-top: 10px; text-align: right; font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--measure);
+  }
+
+  .newest-meta { text-align: center; margin-top: 20px; }
+  .newest-eyebrow {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 10px;
+  }
+  .newest-taxon-link { text-decoration: none; }
+  .newest-taxon { font-style: italic; font-size: clamp(22px, 3vw, 26px); color: var(--ink); line-height: 1.1; }
+  .newest-specimen {
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; color: var(--slate); margin-top: 9px;
+  }
+
+  /* ---- section heads ---- */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .sec-title { font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; margin: 0; }
+  .sec-link {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+
+  /* ---- browse by clade ---- */
+  .clade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px; }
+  .clade-card {
+    display: flex; flex-direction: column; gap: 9px; padding: 18px; border: 1px solid var(--hair);
+    background: var(--plate); text-decoration: none; border-radius: 5px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .clade-card:hover { border-color: var(--slate); transform: translateY(-2px); }
+  .clade-idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+  .clade-name { font-style: italic; font-size: 18px; color: var(--ink); line-height: 1.1; }
+  .clade-count { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+
+  /* ---- blog ---- */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start; }
+  .lead-post { display: grid; grid-template-columns: 236px 1fr; gap: 26px; text-decoration: none; align-items: stretch; }
+  .lead-post:hover { opacity: .86; }
+  .lead-thumb {
+    background: var(--plate); border: 1px solid var(--hair); border-radius: 6px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 14px; min-height: 214px;
+  }
+  .lead-img { max-width: 100%; max-height: 202px; display: block; }
+  .thumb-ph {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--measure);
+  }
+  .lead-body { align-self: center; }
+  .post-kind {
+    display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .post-kind.sm { font-size: 9.5px; }
+  .lead-title { font-size: clamp(22px, 2.6vw, 27px); line-height: 1.16; letter-spacing: -.01em; margin: 11px 0 0; color: var(--ink); }
+  .lead-excerpt { font-size: 16px; line-height: 1.55; color: var(--slate); margin: 13px 0 0; }
+  .lead-foot { display: flex; align-items: center; gap: 16px; margin-top: 17px; }
+  .read-more { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .post-date { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; color: var(--measure); }
+
+  .more-posts { border-left: 1px solid var(--hair); padding-left: 32px; }
+  .more-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--slate); margin: 0 0 4px; }
+  .more-post { display: block; text-decoration: none; padding: 17px 0; border-top: 1px solid var(--hair); }
+  .more-post:hover { opacity: .7; }
+  .more-title { display: block; font-size: 18px; line-height: 1.25; color: var(--ink); margin-top: 8px; }
+  .more-post .post-date { display: block; margin-top: 9px; }
+
+  /* ---- bio strip ---- */
+  .bio { background: var(--mast-bg); color: var(--mast-fg); }
+  .bio-inner {
+    max-width: 1280px; margin: 0 auto; padding: 30px 56px;
+    display: flex; gap: 30px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  }
+  .bio-text { margin: 0; max-width: 720px; font-size: 16.5px; line-height: 1.5; color: #D7DADD; }
+  .bio-text strong { color: #fff; font-weight: 600; }
+  .bio-cta { display: flex; gap: 10px; flex: none; }
+  .bio-cta .btn-gold { color: var(--mast-bg); }
+
+  /* ---- footer ---- */
+  .home-footer { background: var(--paper); }
+  .home-footer-inner {
+    max-width: 1280px; margin: 0 auto; padding: 22px 56px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    color: var(--slate); font-size: 13px;
+  }
+  .foot-word { font-size: 16px; color: var(--ink); }
+  .foot-italic { font-style: italic; color: var(--slate); }
+
+  /* ---- responsive ---- */
+  @media (max-width: 860px) {
+    .topbar-inner, .hero-foot-inner, .newest, .band-inner, .bio-inner, .home-footer-inner { padding-left: 24px; padding-right: 24px; }
+    .lead-post { grid-template-columns: 1fr; }
+    .lead-thumb { min-height: 0; aspect-ratio: 16 / 10; }
+    .more-posts { border-left: 0; padding-left: 0; border-top: 1px solid var(--hair); padding-top: 8px; }
+  }
+  @media (max-width: 600px) {
+    .topbar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .topnav { gap: 12px 18px; flex-wrap: wrap; }
+    .newest { padding-top: 40px; }
+  }
 </style>
