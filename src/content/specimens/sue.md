@@ -1,4 +1,5 @@
 ---
+added: "2026-06-02T12:00:00.000Z"
 taxon: "tyrannosaurus-rex"
 catalog: "FMNH PR 2081"
 nickname: "Sue"

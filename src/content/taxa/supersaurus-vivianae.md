@@ -1,4 +1,5 @@
 ---
+added: "2026-05-22T12:00:00.000Z"
 taxon: "Supersaurus vivianae"
 author: "Jensen, 1985"
 gallery: "sauropods-and-kin"

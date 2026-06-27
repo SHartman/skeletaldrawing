@@ -1,4 +1,5 @@
 ---
+added: "2026-05-01T12:00:00.000Z"
 taxon: "Dreadnoughtus schrani"
 author: "Lacovara et al., 2014"
 gallery: "sauropods-and-kin"

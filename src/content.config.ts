@@ -21,6 +21,7 @@ const imageRef = z.object({
 const blank = (v: unknown) => (v === '' || v === null ? undefined : v);
 const optStr = z.preprocess(blank, z.string().optional());
 const optNum = z.preprocess(blank, z.number().optional());
+const optDate = z.preprocess(blank, z.coerce.date().optional()); // CMS-stamped "date added"
 const defStr = (d: string) => z.preprocess(blank, z.string().default(d));
 const nullableDefault = <T extends z.ZodTypeAny>(s: T) =>
   z.preprocess((v) => (v == null ? undefined : v), s);
@@ -63,6 +64,7 @@ const taxa = defineCollection({
       rigorous: nullableDefault(imageRef.optional()),       // known-material diagram
       additionalFigures: nullableDefault(z.array(figureRef).default([])), // bonus figures
       featured: nullableDefault(z.boolean().default(false)),
+      added: optDate, // when this was added — feeds the home page's rotating "newest" plate
     })
     // A taxon needs at least one image. Most have a reconstruction; a few are
     // known-material only (e.g. Puertasaurus) and carry just `rigorous`.
@@ -100,6 +102,7 @@ const specimens = defineCollection({
       additionalFigures: nullableDefault(z.array(figureRef).default([])), // e.g. muscle study
       overlay: nullableDefault(z.boolean().default(false)), // include in the scale-comparison figure
       featured: nullableDefault(z.boolean().default(false)),// show as a card on the hub
+      added: optDate, // when this was added — feeds the home page's rotating "newest" plate
     })
     // Like taxa: at least one image. Most specimens carry a reconstruction; a few
     // are too incomplete to restore and carry only the known-material diagram.

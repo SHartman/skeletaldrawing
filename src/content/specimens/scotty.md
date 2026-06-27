@@ -1,4 +1,5 @@
 ---
+added: "2026-05-12T12:00:00.000Z"
 taxon: "tyrannosaurus-rex"
 catalog: "RSM P2523.8"
 nickname: "Scotty"

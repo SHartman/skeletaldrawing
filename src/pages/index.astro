@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import { existsSync } from 'node:fs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Glyph from '../components/Glyph.astro';
@@ -37,23 +37,69 @@ const clades = [...counts.entries()]
   .sort((a, b) => b.count - a.count)
   .map((c, i) => ({ ...c, idx: String(i + 1).padStart(2, '0') }));
 
-// Featured reconstruction — a recent specimen reconstruction (static for now; rotating
-// among the most-recently-added work is the next step, and pairs with an `added` date).
+// Featured reconstruction — rotates (weighted toward newest) among the most-recently-added
+// reconstructions. "Recent" = entries carrying an `added` date (CMS-stamped on create),
+// sorted newest-first, top N. The server renders the newest; the client may rotate to another.
 const specimens = await getCollection('specimens');
-const pool = specimens.filter((s) => s.data.taxon === 'tyrannosaurus-rex' && s.data.reconstruction);
-const fEntry = pool.find((s) => s.id === 'usnm-555000') ?? pool[0];
-const fImg = fEntry?.data.reconstruction ? await loadSkeletal(fEntry.data.reconstruction.src) : null;
-const featured = fEntry
-  ? {
-      taxon: 'Tyrannosaurus rex',
-      href: `/theropods/tyrannosaurus-rex/${fEntry.id}/`,
-      alt: fEntry.data.reconstruction!.alt,
-      specimenLine: fEntry.data.nickname
-        ? `${fEntry.data.catalog} · “${fEntry.data.nickname}”`
-        : fEntry.data.catalog,
-      credit: `Scale bar = ${fEntry.data.scaleBar} · © Scott Hartman`,
-    }
-  : null;
+const taxaById = new Map(taxa.map((t) => [t.id, t]));
+
+interface Recon {
+  added: Date;
+  src: string;
+  alt: string;
+  taxon: string;
+  href: string;
+  specimenLine: string;
+  scaleBar: string;
+}
+const recons: Recon[] = [];
+for (const t of taxa) {
+  if (t.data.reconstruction && t.data.added) {
+    recons.push({
+      added: t.data.added,
+      src: t.data.reconstruction.src,
+      alt: t.data.reconstruction.alt,
+      taxon: t.data.taxon,
+      href: `/${t.data.gallery}/${t.id}/`,
+      specimenLine: t.data.specimenId ?? t.data.family ?? t.data.clade.at(-1) ?? '',
+      scaleBar: t.data.scaleBar,
+    });
+  }
+}
+for (const s of specimens) {
+  const parent = taxaById.get(s.data.taxon);
+  if (s.data.reconstruction && s.data.added && parent) {
+    recons.push({
+      added: s.data.added,
+      src: s.data.reconstruction.src,
+      alt: s.data.reconstruction.alt,
+      taxon: parent.data.taxon,
+      href: `/${parent.data.gallery}/${s.data.taxon}/${s.id}/`,
+      specimenLine: s.data.nickname ? `${s.data.catalog} · “${s.data.nickname}”` : s.data.catalog,
+      scaleBar: s.data.scaleBar,
+    });
+  }
+}
+recons.sort((a, b) => b.added.getTime() - a.added.getTime());
+
+// Pool carries optimized webp URLs so a client-swapped plate stays light.
+const POOL_SIZE = 6;
+const pool = await Promise.all(
+  recons.slice(0, POOL_SIZE).map(async (r, i) => {
+    const meta = await loadSkeletal(r.src);
+    const img = meta ? (await getImage({ src: meta, format: 'webp', width: 1400 })).src : r.src;
+    return {
+      img,
+      alt: r.alt,
+      taxon: r.taxon,
+      href: r.href,
+      specimenLine: r.specimenLine,
+      credit: `Scale bar = ${r.scaleBar} · © Scott Hartman`,
+      newest: i === 0,
+    };
+  }),
+);
+const featured = pool[0] ?? null;
 
 // Blog image — render only when present (self-healing placeholder).
 const blogImgExists = existsSync('public/images/blog-dimetrodon.png');
@@ -129,30 +175,45 @@ const description =
     {featured && (
       <>
         <figure class="plate">
-          <a href={featured.href} class="plate-link">
-            {fImg ? (
-              <Picture
-                src={fImg}
-                formats={['avif', 'webp']}
-                alt={featured.alt}
-                widths={[640, 1040, 1560]}
-                sizes="(min-width: 1100px) 1040px, 92vw"
-                class="plate-img"
-                loading="eager"
-              />
-            ) : (
-              <img src="/images/skeletals/tyrannosaurus-rex-usnm-555000-skeletal.png" alt={featured.alt} class="plate-img" />
-            )}
+          <a href={featured.href} class="plate-link" id="feat-link">
+            <img src={featured.img} alt={featured.alt} class="plate-img" id="feat-img" loading="lazy" />
           </a>
           <div class="plate-rule"></div>
-          <div class="plate-credit">{featured.credit}</div>
+          <div class="plate-credit" id="feat-credit">{featured.credit}</div>
         </figure>
 
         <div class="newest-meta">
-          <p class="newest-eyebrow">Just added · newest reconstruction</p>
-          <a href={featured.href} class="newest-taxon-link"><div class="newest-taxon">{featured.taxon}</div></a>
-          <div class="newest-specimen">{featured.specimenLine}</div>
+          <p class="newest-eyebrow" id="feat-eyebrow">{featured.newest ? 'Just added · newest reconstruction' : 'Recent work · from the galleries'}</p>
+          <a href={featured.href} class="newest-taxon-link" id="feat-taxon-link"><div class="newest-taxon" id="feat-taxon">{featured.taxon}</div></a>
+          <div class="newest-specimen" id="feat-specimen">{featured.specimenLine}</div>
         </div>
+
+        <script type="application/json" id="feat-pool" is:inline set:html={JSON.stringify(pool)}></script>
+        <script is:inline>
+          (() => {
+            const el = document.getElementById('feat-pool');
+            if (!el) return;
+            const pool = JSON.parse(el.textContent);
+            if (pool.length < 2) return;
+            // weighted: newest gets weight N, oldest gets 1
+            const n = pool.length;
+            const weights = [];
+            let total = 0;
+            for (let i = 0; i < n; i++) { weights.push(n - i); total += n - i; }
+            let r = Math.random() * total, idx = 0;
+            for (let i = 0; i < n; i++) { r -= weights[i]; if (r < 0) { idx = i; break; } }
+            if (idx === 0) return; // newest already rendered
+            const p = pool[idx];
+            const set = (id, fn) => { const e = document.getElementById(id); if (e) fn(e); };
+            set('feat-img', (e) => { e.src = p.img; e.alt = p.alt; });
+            set('feat-link', (e) => (e.href = p.href));
+            set('feat-taxon-link', (e) => (e.href = p.href));
+            set('feat-taxon', (e) => (e.textContent = p.taxon));
+            set('feat-specimen', (e) => (e.textContent = p.specimenLine));
+            set('feat-credit', (e) => (e.textContent = p.credit));
+            set('feat-eyebrow', (e) => (e.textContent = p.newest ? 'Just added · newest reconstruction' : 'Recent work · from the galleries'));
+          })();
+        </script>
       </>
     )}
   </section>

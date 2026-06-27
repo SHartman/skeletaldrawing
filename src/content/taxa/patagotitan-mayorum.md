@@ -1,4 +1,5 @@
 ---
+added: "2026-06-10T12:00:00.000Z"
 taxon: "Patagotitan mayorum"
 author: "Carballido et al., 2017"
 gallery: "sauropods-and-kin"

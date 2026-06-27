@@ -1,4 +1,5 @@
 ---
+added: "2026-04-20T12:00:00.000Z"
 taxon: "tyrannosaurus-rex"
 catalog: "NHMAD 2020.00001"
 nickname: "Stan"

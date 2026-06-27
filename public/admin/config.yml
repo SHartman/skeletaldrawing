@@ -79,6 +79,7 @@ collections:
           - { name: alt, label: "Alt text", widget: string }
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
+      - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }
       - { name: body, label: "Description", widget: markdown, required: false, hint: "The prose shown beneath the record." }
 
   - name: specimens
@@ -133,4 +134,5 @@ collections:
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: overlay, label: "In scale-comparison overlay", widget: boolean, default: false, required: false, hint: "Curate ~3–6 for the scale figure" }
       - { name: featured, label: "Featured (show as a card)", widget: boolean, default: false, required: false }
+      - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }
       - { name: body, label: "Description", widget: markdown, required: false }

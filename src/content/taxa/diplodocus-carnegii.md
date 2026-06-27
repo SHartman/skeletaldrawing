@@ -1,4 +1,5 @@
 ---
+added: "2026-06-25T12:00:00.000Z"
 taxon: "Diplodocus carnegii"
 author: "Hatcher, 1901"
 gallery: "sauropods-and-kin"
