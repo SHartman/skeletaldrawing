@@ -85,8 +85,8 @@ const title = `${t.taxon} — ${s.catalog}${s.nickname ? ` (“${s.nickname}”)
 const description = kmOnly
   ? `Known skeletal material of ${t.taxon} specimen ${s.catalog}${s.nickname ? ` (“${s.nickname}”)` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
   : `Skeletal reconstruction of ${t.taxon} specimen ${s.catalog}${s.nickname ? ` (“${s.nickname}”)` : ''}, ${s.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
-const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author, pageUrl, imageUrl, rigorousUrl, figures });
-const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.author, pageUrl, imageUrl, rigorousUrl });
+const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author, recombination: t.recombination, pageUrl, imageUrl, rigorousUrl, figures });
+const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.author, recombination: t.recombination, pageUrl, imageUrl, rigorousUrl });
 ---
 
 <BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
@@ -133,7 +133,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
       <div class="titleblock">
         <div class="cell">
           <div class="k">Taxon</div>
-          <div class="v"><a href={hubUrl}><em>{t.taxon}</em></a> {formatAuthor(t.author)}</div>
+          <div class="v"><a href={hubUrl}><em>{t.taxon}</em></a> {formatAuthor(t.author, t.recombination)}</div>
         </div>
         {restFields.map((f) => (
           <div class="cell">

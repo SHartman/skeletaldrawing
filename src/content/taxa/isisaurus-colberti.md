@@ -1,6 +1,7 @@
 ---
 taxon: "Isisaurus colberti"
-author: "(Jain & Bandyopadhyay, 1997)"
+author: "Jain & Bandyopadhyay, 1997"
+recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
 lengthM: 12

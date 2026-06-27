@@ -1,6 +1,7 @@
 ---
 taxon: "Diplodocus hallorum"
-author: "(Gillette, 1991)"
+author: "Gillette, 1991"
+recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplodocinae"]
 lengthM: 28

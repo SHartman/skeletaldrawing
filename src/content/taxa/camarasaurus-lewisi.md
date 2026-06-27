@@ -1,6 +1,7 @@
 ---
 taxon: "Camarasaurus lewisi"
-author: "(Jensen, 1988)"
+author: "Jensen, 1988"
+recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Macronaria", "Camarasauridae"]
 specimenId: "BYU 9047"

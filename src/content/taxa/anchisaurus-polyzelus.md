@@ -1,6 +1,7 @@
 ---
 taxon: "Anchisaurus polyzelus"
-author: "(Hitchcock, 1865)"
+author: "Hitchcock, 1865"
+recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Anchisauria"]
 lengthM: 1.7

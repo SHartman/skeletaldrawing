@@ -40,7 +40,8 @@ const taxa = defineCollection({
   schema: z
     .object({
       taxon: z.string(),                  // binomial, rendered italic
-      author: z.string(),                 // nomenclatural author citation, e.g. "Osborn, 1905"
+      author: z.string(),                 // bare author citation, e.g. "Osborn, 1905" (no parens)
+      recombination: nullableDefault(z.boolean().default(false)), // ICZN: parenthesizes the author
       gallery: z.string(),                // section bucket / URL parent, e.g. "sauropods-and-kin"
       clade: z.array(z.string()),         // ORDERED cladistic path, broad → specific
       family: optStr,                     // card "family" line; defaults to the last clade node

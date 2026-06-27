@@ -1,6 +1,7 @@
 ---
 taxon: "Malawisaurus dixeyi"
-author: "(Haughton, 1928)"
+author: "Haughton, 1928"
+recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
 specimenId: "SAM-7405"

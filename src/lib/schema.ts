@@ -26,15 +26,16 @@ export interface SchemaContext {
 }
 
 /**
- * Author citation for display, e.g. "(Osborn, 1905)". The stored `author` already
- * follows the ICZN parenthesis convention — parens for a recombination (species moved
- * from its original genus, e.g. "(Gillette, 1991)"), none for an original combination.
- * We add the wrapping parens only when they aren't already present, so a stored
- * recombination doesn't end up double-parenthesized.
+ * Author citation for display. Per the ICZN, parentheses mean the species was moved
+ * from the genus it was originally described in (a recombination) — e.g. "Diplodocus
+ * hallorum (Gillette, 1991)" vs. the original combination "Tyrannosaurus rex Osborn,
+ * 1905". The `recombination` flag is the single source of truth: the stored `author`
+ * is the bare "Name, year", and we add the parens only when the flag is set. Any stray
+ * parens typed into the field are stripped first, so the flag always wins.
  */
-export function formatAuthor(author: string): string {
-  const a = author.trim();
-  return a.startsWith('(') ? a : `(${a})`;
+export function formatAuthor(author: string, recombination = false): string {
+  const bare = author.trim().replace(/^\(\s*(.*?)\s*\)$/, '$1');
+  return recombination ? `(${bare})` : bare;
 }
 
 /** A few taxa are known only from fragments and carry no restored reconstruction. */
@@ -115,7 +116,7 @@ function imageNode(
     about: {
       '@type': 'Thing',
       name: d.taxon,
-      alternateName: `${d.taxon} ${formatAuthor(d.author)}`,
+      alternateName: `${d.taxon} ${formatAuthor(d.author, d.recombination)}`,
     },
   };
 }
@@ -169,6 +170,7 @@ export function specimenHero(s: SpecimenData) {
 export interface SpecimenSchemaContext {
   taxonName: string; // parent binomial, e.g. "Tyrannosaurus rex"
   author: string; // parent author citation, e.g. "Osborn, 1905"
+  recombination?: boolean; // parent's recombination flag (parenthesizes the author)
   pageUrl: string;
   imageUrl: string;
   rigorousUrl?: string;
@@ -198,6 +200,7 @@ function specimenImageNode(
   s: SpecimenData,
   taxonName: string,
   author: string,
+  recombination: boolean | undefined,
   opts: { url: string; name: string; description: string; representative: boolean },
 ) {
   const credit = s.creditText || CREDIT_DEFAULT;
@@ -216,7 +219,7 @@ function specimenImageNode(
     acquireLicensePage: license,
     encodingFormat: 'image/png',
     representativeOfPage: opts.representative,
-    about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} ${formatAuthor(author)}` },
+    about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} ${formatAuthor(author, recombination)}` },
   };
 }
 
@@ -226,7 +229,7 @@ export function specimenPrimaryNode(
   ctx: SpecimenSchemaContext,
 ) {
   const s = entry.data;
-  return specimenImageNode(s, ctx.taxonName, ctx.author, {
+  return specimenImageNode(s, ctx.taxonName, ctx.author, ctx.recombination, {
     url: ctx.imageUrl,
     name: specimenName(s, ctx.taxonName),
     description: specimenDescription(s, ctx.taxonName),
@@ -244,7 +247,7 @@ export function specimenImageGraph(
 
   if (s.reconstruction && s.rigorous && ctx.rigorousUrl) {
     nodes.push(
-      specimenImageNode(s, ctx.taxonName, ctx.author, {
+      specimenImageNode(s, ctx.taxonName, ctx.author, ctx.recombination, {
         url: ctx.rigorousUrl,
         name: `${ctx.taxonName} — known material (${s.catalog})`,
         description: `Known-material diagram of ${ctx.taxonName} ${s.catalog}: elements preserved in the specimen are shown in white against a black body silhouette.`,
@@ -255,7 +258,7 @@ export function specimenImageGraph(
 
   for (const f of ctx.figures ?? []) {
     nodes.push(
-      specimenImageNode(s, ctx.taxonName, ctx.author, {
+      specimenImageNode(s, ctx.taxonName, ctx.author, ctx.recombination, {
         url: f.url,
         name: f.label
           ? `${ctx.taxonName} — ${f.label.toLowerCase()} (${s.catalog})`

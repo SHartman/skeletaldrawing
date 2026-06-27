@@ -71,7 +71,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
     <header class="hub-head">
       <div class="head-main">
         <p class="eyebrow">{[t.clade[0], t.family].filter(Boolean).join(' · ')}</p>
-        <h1 class="display"><em>{t.taxon}</em> <span class="auth">{formatAuthor(t.author)}</span></h1>
+        <h1 class="display"><em>{t.taxon}</em> <span class="auth">{formatAuthor(t.author, t.recombination)}</span></h1>
         <div class="intro prose"><Content /></div>
       </div>
       <dl class="facts">

@@ -8,6 +8,7 @@ import {
   heroRef,
   formatLength,
   formatMeters,
+  formatAuthor,
   isKnownMaterialOnly,
   specimenHero,
   specimenIsKnownMaterialOnly,
@@ -39,6 +40,7 @@ interface Member {
   href: string;
   taxon: string;
   author: string;
+  recombination: boolean;
   sub: string; // catalog (specimen) or family (plain species)
   lengthM: number | null;
   lengthLabel: string;
@@ -57,6 +59,7 @@ for (const t of hub.species) {
         href: `/${gallery}/${t.id}/${k.id}/`,
         taxon: t.data.taxon,
         author: t.data.author,
+        recombination: t.data.recombination,
         sub: k.data.catalog,
         lengthM: k.data.lengthM ?? null,
         lengthLabel: formatMeters(k.data.lengthM),
@@ -72,6 +75,7 @@ for (const t of hub.species) {
       href: `/${gallery}/${t.id}/`,
       taxon: t.data.taxon,
       author: t.data.author,
+      recombination: t.data.recombination,
       sub: t.data.family ?? t.data.clade.at(-1) ?? '',
       lengthM: t.data.lengthM ?? null,
       lengthLabel: formatLength(t.data),
@@ -173,7 +177,7 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
                 data-specimen={m.specimen}
               >
                 <td><a href={m.href}><em>{m.taxon}</em></a></td>
-                <td class="muted">{m.author}</td>
+                <td class="muted">{formatAuthor(m.author, m.recombination)}</td>
                 <td class="num">{m.lengthLabel || '—'}</td>
                 <td class="muted">{m.specimen || '—'}</td>
                 <td class="num"><a href={m.href}>View →</a></td>

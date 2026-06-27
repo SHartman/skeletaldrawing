@@ -123,7 +123,7 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
       <div class="titleblock">
         <div class="cell">
           <div class="k">Taxon</div>
-          <div class="v"><em>{d.taxon}</em> {formatAuthor(d.author)}</div>
+          <div class="v"><em>{d.taxon}</em> {formatAuthor(d.author, d.recombination)}</div>
         </div>
         {restFields.map((f) => (
           <div class="cell">

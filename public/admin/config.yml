@@ -29,7 +29,8 @@ collections:
     summary: "{{taxon}}"
     fields:
       - { name: taxon, label: "Taxon (binomial)", widget: string, hint: "Rendered italic, e.g. Diplodocus carnegii" }
-      - { name: author, label: "Author (name citation)", widget: string, hint: "Who named the species, and when — e.g. Hatcher, 1901" }
+      - { name: author, label: "Author (name citation)", widget: string, hint: "Who named the species, and when — name and year only, NO parentheses (e.g. Hatcher, 1901). Use the Recombination toggle below for parentheses." }
+      - { name: recombination, label: "Recombination — wrap author in parentheses", widget: boolean, default: false, required: false, hint: "Tick if the species was originally described in a DIFFERENT genus (ICZN: the author citation then takes parentheses, e.g. Diplodocus hallorum (Gillette, 1991))." }
       - { name: gallery, label: "Gallery", widget: string, default: "sauropods-and-kin", hint: "URL section / gallery bucket" }
       - name: clade
         label: "Clade path (broad → specific)"
