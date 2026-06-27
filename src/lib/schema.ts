@@ -25,6 +25,18 @@ export interface SchemaContext {
   rigorousUrl?: string; // absolute URL of the known-material image when shown separately
 }
 
+/**
+ * Author citation for display, e.g. "(Osborn, 1905)". The stored `author` already
+ * follows the ICZN parenthesis convention — parens for a recombination (species moved
+ * from its original genus, e.g. "(Gillette, 1991)"), none for an original combination.
+ * We add the wrapping parens only when they aren't already present, so a stored
+ * recombination doesn't end up double-parenthesized.
+ */
+export function formatAuthor(author: string): string {
+  const a = author.trim();
+  return a.startsWith('(') ? a : `(${a})`;
+}
+
 /** A few taxa are known only from fragments and carry no restored reconstruction. */
 export function isKnownMaterialOnly(d: TaxonData): boolean {
   return !d.reconstruction && !!d.rigorous;
@@ -103,7 +115,7 @@ function imageNode(
     about: {
       '@type': 'Thing',
       name: d.taxon,
-      alternateName: `${d.taxon} (${d.author})`,
+      alternateName: `${d.taxon} ${formatAuthor(d.author)}`,
     },
   };
 }
@@ -204,7 +216,7 @@ function specimenImageNode(
     acquireLicensePage: license,
     encodingFormat: 'image/png',
     representativeOfPage: opts.representative,
-    about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} (${author})` },
+    about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} ${formatAuthor(author)}` },
   };
 }
 

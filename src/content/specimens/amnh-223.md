@@ -1,0 +1,19 @@
+---
+taxon: "diplodocus-hallorum"
+catalog: "AMNH 223"
+repository: "American Museum of Natural History"
+repositoryUrl: "https://www.amnh.org/"
+formation: "Morrison Formation"
+lengthM: 27
+view: "Left lateral"
+basis: "Known material only — formerly referred to Diplodocus longus"
+overlay: true
+featured: true
+rigorous:
+  src: "/images/skeletals/diplodocus-hallorum-amnh-223-known-material.png"
+  alt: "Known skeletal material of Diplodocus hallorum AMNH 223 — elements preserved drawn in white against a black body silhouette, estimated length ~27 m"
+---
+
+For most of a century AMNH 223 was referred to *Diplodocus longus* — the genus's original type species. But the *D. longus* holotype is too incomplete to diagnose, so the name lost its standing, and specimens once placed under it have been reassigned; AMNH 223 now falls within *Diplodocus hallorum*, the species it most closely resembles. At an estimated ~27 m it sits just shy of the NMMNH holotype.
+
+As with the holotype, the page shows only what the specimen preserves — the recovered elements in white against a body silhouette — rather than a full reconstruction.

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
-import { specimenHero, specimenIsKnownMaterialOnly, formatMeters, formatMass } from '../lib/schema';
+import { specimenHero, specimenIsKnownMaterialOnly, formatMeters, formatMass, formatAuthor } from '../lib/schema';
 import ScaleComparison from './ScaleComparison.astro';
 
 // Taxon hub for specimen-rich taxa (CLAUDE.md §5): header + compact record →
@@ -57,7 +57,7 @@ const idLabel = (d: any) => (d.nickname ? `${d.catalog} — “${d.nickname}”`
 
 const title = `${t.taxon} — documented specimens & skeletal reconstructions | Skeletal Drawing`;
 const description = `${all.length} specimens of ${t.taxon} reconstructed by Scott Hartman, ${sizeRange} in length — each with its own skeletal, known material, and full record.`;
-const imageUrl = new URL(t.reconstruction?.src ?? '', Astro.site).href;
+const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.site).href;
 ---
 
 <BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
@@ -71,7 +71,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? '', Astro.site).href;
     <header class="hub-head">
       <div class="head-main">
         <p class="eyebrow">{[t.clade[0], t.family].filter(Boolean).join(' · ')}</p>
-        <h1 class="display"><em>{t.taxon}</em> <span class="auth">({t.author})</span></h1>
+        <h1 class="display"><em>{t.taxon}</em> <span class="auth">{formatAuthor(t.author)}</span></h1>
         <div class="intro prose"><Content /></div>
       </div>
       <dl class="facts">

@@ -10,6 +10,7 @@ import {
   formatMass,
   isKnownMaterialOnly,
   heroRef,
+  formatAuthor,
 } from '../lib/schema';
 
 // Rendered by [gallery]/[taxon].astro for a single taxon. (Genus hubs go to GenusHub.astro.)
@@ -122,7 +123,7 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
       <div class="titleblock">
         <div class="cell">
           <div class="k">Taxon</div>
-          <div class="v"><em>{d.taxon}</em> ({d.author})</div>
+          <div class="v"><em>{d.taxon}</em> {formatAuthor(d.author)}</div>
         </div>
         {restFields.map((f) => (
           <div class="cell">

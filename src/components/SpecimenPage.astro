@@ -10,6 +10,7 @@ import {
   specimenIsKnownMaterialOnly,
   formatMeters,
   formatMass,
+  formatAuthor,
 } from '../lib/schema';
 
 // One specimen, rendered as an instance of the skeletal-page template at a nested
@@ -132,7 +133,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
       <div class="titleblock">
         <div class="cell">
           <div class="k">Taxon</div>
-          <div class="v"><a href={hubUrl}><em>{t.taxon}</em></a> ({t.author})</div>
+          <div class="v"><a href={hubUrl}><em>{t.taxon}</em></a> {formatAuthor(t.author)}</div>
         </div>
         {restFields.map((f) => (
           <div class="cell">

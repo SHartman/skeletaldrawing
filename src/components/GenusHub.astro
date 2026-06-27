@@ -1,12 +1,20 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
-import { heroRef, formatLength, formatMass, isKnownMaterialOnly } from '../lib/schema';
+import {
+  heroRef,
+  formatLength,
+  formatMeters,
+  isKnownMaterialOnly,
+  specimenHero,
+  specimenIsKnownMaterialOnly,
+} from '../lib/schema';
 
-// Genus hub: aggregates the species of a multi-species genus (hub-and-spoke, one rank up
-// from the specimen hub). Scale-comparison silhouette overlay is deferred (needs traced
-// outlines); lands with the T. rex specimen hub. For now: record + species cards + table.
+// Genus hub: aggregates a multi-species genus. A species that has documented specimens is
+// FLATTENED — each specimen becomes its own card/row — so the hub surfaces every skeletal in
+// the genus, not just one per species (e.g. Diplodocus: carnegii + the two hallorum specimens).
 const GALLERY_LABEL: Record<string, string> = {
   'sauropods-and-kin': 'Sauropodomorpha',
   theropods: 'Theropoda',
@@ -16,31 +24,75 @@ const { hub } = Astro.props;
 const gallery: string = hub.gallery;
 const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
 
-const species = [...hub.species].sort(
-  (a: any, b: any) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0),
-); // largest first
+const speciesIds = new Set(hub.species.map((s: any) => s.id));
+const specimens = (await getCollection('specimens')).filter((sp) => speciesIds.has(sp.data.taxon));
+const byTaxon = new Map<string, any[]>();
+for (const sp of specimens) {
+  const arr = byTaxon.get(sp.data.taxon) ?? [];
+  arr.push(sp);
+  byTaxon.set(sp.data.taxon, arr);
+}
 
-const cards = await Promise.all(
-  species.map(async (t: any) => ({
-    id: t.id,
-    data: t.data,
-    img: await loadSkeletal(heroRef(t.data).src),
-    alt: heroRef(t.data).alt,
-    length: formatLength(t.data),
-    mass: formatMass(t.data.massKg),
-    km: isKnownMaterialOnly(t.data),
-  })),
-);
+// One member per skeletal: a species' specimens if it has any, else the species itself.
+interface Member {
+  href: string;
+  taxon: string;
+  author: string;
+  sub: string; // catalog (specimen) or family (plain species)
+  lengthM: number | null;
+  lengthLabel: string;
+  img: Awaited<ReturnType<typeof loadSkeletal>>;
+  alt: string;
+  km: boolean;
+  specimen: string;
+}
+const members: Member[] = [];
+for (const t of hub.species) {
+  const kids = byTaxon.get(t.id) ?? [];
+  if (kids.length) {
+    for (const k of kids) {
+      const h = specimenHero(k.data);
+      members.push({
+        href: `/${gallery}/${t.id}/${k.id}/`,
+        taxon: t.data.taxon,
+        author: t.data.author,
+        sub: k.data.catalog,
+        lengthM: k.data.lengthM ?? null,
+        lengthLabel: formatMeters(k.data.lengthM),
+        img: await loadSkeletal(h.src),
+        alt: h.alt,
+        km: specimenIsKnownMaterialOnly(k.data),
+        specimen: k.data.catalog,
+      });
+    }
+  } else {
+    const h = heroRef(t.data);
+    members.push({
+      href: `/${gallery}/${t.id}/`,
+      taxon: t.data.taxon,
+      author: t.data.author,
+      sub: t.data.family ?? t.data.clade.at(-1) ?? '',
+      lengthM: t.data.lengthM ?? null,
+      lengthLabel: formatLength(t.data),
+      img: await loadSkeletal(h.src),
+      alt: h.alt,
+      km: isKnownMaterialOnly(t.data),
+      specimen: t.data.specimenId ?? '',
+    });
+  }
+}
+members.sort((a, b) => (b.lengthM ?? 0) - (a.lengthM ?? 0)); // largest first
 
-const lengths = species.map((s: any) => s.data.lengthM).filter((n: number) => n != null);
+const lengths = members.map((m) => m.lengthM).filter((n): n is number => n != null);
 const sizeRange = lengths.length
   ? Math.min(...lengths) === Math.max(...lengths)
     ? `~${Math.max(...lengths)} m`
     : `${Math.min(...lengths)}–${Math.max(...lengths)} m`
   : '—';
 
+const speciesCount = hub.species.length;
 const title = `${hub.genus} — skeletal reconstructions | Skeletal Drawing`;
-const description = `The ${species.length} species of ${hub.genus} reconstructed by Scott Hartman, ${sizeRange} in length — lateral skeletal reconstructions with full specimen records.`;
+const description = `The genus ${hub.genus} by Scott Hartman — ${members.length} documented skeletals across ${speciesCount} species, ${sizeRange} in length, each with a full record.`;
 ---
 
 <BaseLayout title={title} description={description} ogType="article">
@@ -56,34 +108,38 @@ const description = `The ${species.length} species of ${hub.genus} reconstructed
         <p class="eyebrow">Genus</p>
         <h1 class="display"><em>{hub.genus}</em></h1>
         <p class="intro">
-          The {species.length} species of <em>{hub.genus}</em> documented here, each reconstructed
-          to a common method in left lateral view. Pick a species below, or compare their records in
-          the table.
+          {members.length} documented skeletals across {speciesCount} {speciesCount === 1 ? 'species' : 'species'}
+          of <em>{hub.genus}</em>, each drawn to a common method in left lateral view. Pick one below,
+          or compare their records in the table.
         </p>
       </div>
       <dl class="facts">
-        <div><dt>Species shown</dt><dd>{species.length}</dd></div>
+        <div><dt>Skeletals shown</dt><dd>{members.length}</dd></div>
+        <div><dt>Species</dt><dd>{speciesCount}</dd></div>
         <div><dt>Size range</dt><dd>{sizeRange}</dd></div>
       </dl>
     </header>
 
     <section class="block">
-      <h2 class="sec-h">Species</h2>
+      <h2 class="sec-h">Skeletals</h2>
       <ul class="cards">
-        {cards.map((c) => (
+        {members.map((m) => (
           <li class="card">
-            <a href={`/${gallery}/${c.id}/`}>
+            <a href={m.href}>
               <div class="thumb">
-                {c.length && <span class="badge">{c.length}</span>}
-                {c.km && <span class="badge badge-km">known material</span>}
-                {c.img ? (
-                  <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 320px" class="thumb-img" loading="lazy" />
+                {m.lengthLabel && <span class="badge">{m.lengthLabel}</span>}
+                {m.km && <span class="badge badge-km">known material</span>}
+                {m.img ? (
+                  <Image src={m.img} alt={m.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 320px" class="thumb-img" loading="lazy" />
                 ) : (
-                  <img src={heroRef(c.data).src} alt={c.alt} class="thumb-img" />
+                  <img src={m.href} alt={m.alt} class="thumb-img" />
                 )}
               </div>
               <div class="cbody">
-                <span class="cname">{c.data.taxon}</span>
+                <span class="cnames">
+                  <span class="cname">{m.taxon}</span>
+                  <span class="csub">{m.sub}</span>
+                </span>
                 <span class="arrow">→</span>
               </div>
             </a>
@@ -93,34 +149,31 @@ const description = `The ${species.length} species of ${hub.genus} reconstructed
     </section>
 
     <section class="block">
-      <h2 class="sec-h">All documented species <span class="sec-sub">— tap a column to sort</span></h2>
+      <h2 class="sec-h">All documented skeletals <span class="sec-sub">— tap a column to sort</span></h2>
       <div class="table-wrap">
         <table id="sptable">
           <thead>
             <tr>
-              <th data-key="name" aria-sort="ascending">Species</th>
+              <th data-key="name">Taxon</th>
               <th data-key="author">Author</th>
               <th data-key="length" class="num">Length</th>
-              <th data-key="mass" class="num">Mass</th>
               <th data-key="specimen">Specimen</th>
               <th aria-hidden="true"></th>
             </tr>
           </thead>
           <tbody>
-            {cards.map((c) => (
+            {members.map((m) => (
               <tr
-                data-name={c.data.taxon}
-                data-author={c.data.author}
-                data-length={c.data.lengthM ?? 0}
-                data-mass={c.data.massKg ?? 0}
-                data-specimen={c.data.specimenId ?? ''}
+                data-name={m.taxon}
+                data-author={m.author}
+                data-length={m.lengthM ?? 0}
+                data-specimen={m.specimen}
               >
-                <td><a href={`/${gallery}/${c.id}/`}><em>{c.data.taxon}</em></a></td>
-                <td class="muted">{c.data.author}</td>
-                <td class="num">{c.length || '—'}</td>
-                <td class="num">{c.mass || '—'}</td>
-                <td class="muted">{c.data.specimenId || '—'}</td>
-                <td class="num"><a href={`/${gallery}/${c.id}/`}>View →</a></td>
+                <td><a href={m.href}><em>{m.taxon}</em></a></td>
+                <td class="muted">{m.author}</td>
+                <td class="num">{m.lengthLabel || '—'}</td>
+                <td class="muted">{m.specimen || '—'}</td>
+                <td class="num"><a href={m.href}>View →</a></td>
               </tr>
             ))}
           </tbody>
@@ -138,7 +191,7 @@ const description = `The ${species.length} species of ${hub.genus} reconstructed
     const headers = [...table.querySelectorAll<HTMLElement>('th[data-key]')];
     let sortKey = 'name';
     let asc = true;
-    const numeric = (k: string) => k === 'length' || k === 'mass';
+    const numeric = (k: string) => k === 'length';
     headers.forEach((th) =>
       th.addEventListener('click', () => {
         const key = th.dataset.key!;
@@ -217,8 +270,10 @@ const description = `The ${species.length} species of ${hub.genus} reconstructed
     padding: 2px 6px; border-radius: 3px;
   }
   .badge-km { right: auto; left: 10px; color: var(--slate); }
-  .cbody { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--hair); }
+  .cbody { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 13px 16px; border-top: 1px solid var(--hair); }
+  .cnames { display: flex; flex-direction: column; gap: 2px; }
   .cname { font-style: italic; font-size: 18px; }
+  .csub { font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: var(--slate); }
   .arrow { color: var(--accent); }
 
   .table-wrap { overflow-x: auto; }
