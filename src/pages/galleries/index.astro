@@ -1,0 +1,169 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadSkeletal } from '../../lib/images';
+import { heroRef } from '../../lib/schema';
+
+// Top-level galleries index (/galleries/). Rich + image-forward: a representative skeletal per
+// section, with a friendly label glossing the scientific clade name — an accessible front door
+// that still teaches the formal term (the gloss-don't-toggle approach). Lists only sections that
+// have content; it grows on its own as galleries fill in.
+//
+// The friendly labels + blurbs are a first pass — easy to refine; eventually they could live in a
+// `gallery` content collection rather than here.
+const GALLERY: Record<string, { sci: string; friendly: string; blurb: string }> = {
+  theropods: {
+    sci: 'Theropoda',
+    friendly: 'Predatory dinosaurs',
+    blurb: 'The bird-line carnivores — from Tyrannosaurus to the small, feathered hunters.',
+  },
+  'sauropods-and-kin': {
+    sci: 'Sauropodomorpha',
+    friendly: 'Long-necked dinosaurs',
+    blurb: 'The long-necked plant-eaters and their early relatives — including the largest animals ever to walk.',
+  },
+  ornithischians: {
+    sci: 'Ornithischia',
+    friendly: 'Beaked dinosaurs',
+    blurb: 'The beaked, bird-hipped plant-eaters — horned, armoured, and duck-billed.',
+  },
+  'non-dinosaurs': {
+    sci: 'Non-dinosaurs',
+    friendly: 'Other prehistoric animals',
+    blurb: 'Pterosaurs, synapsids, and other extinct animals beyond the dinosaurs.',
+  },
+};
+const ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'non-dinosaurs'];
+
+const taxa = await getCollection('taxa');
+const byGallery = new Map<string, typeof taxa>();
+for (const t of taxa) {
+  const arr = byGallery.get(t.data.gallery) ?? [];
+  arr.push(t);
+  byGallery.set(t.data.gallery, arr);
+}
+
+// Representative: the featured taxon if one is flagged, else the largest, else the first.
+const pickRep = (list: typeof taxa) =>
+  list.find((t) => t.data.featured && t.data.reconstruction) ??
+  [...list]
+    .filter((t) => t.data.reconstruction)
+    .sort((a, b) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0))[0] ??
+  list[0];
+
+const galleries = await Promise.all(
+  ORDER.filter((slug) => byGallery.has(slug)).map(async (slug) => {
+    const list = byGallery.get(slug)!;
+    const rep = pickRep(list);
+    const hero = heroRef(rep.data);
+    return {
+      slug,
+      ...GALLERY[slug],
+      count: list.length,
+      img: await loadSkeletal(hero.src),
+      alt: hero.alt,
+      fallbackSrc: hero.src,
+    };
+  }),
+);
+
+const total = taxa.length;
+const title = 'Skeletal galleries — reconstructions by group | Skeletal Drawing';
+const description = `Browse Scott Hartman's skeletal reconstructions by group: ${galleries
+  .map((g) => g.sci)
+  .join(', ')} — ${total} taxa in all, each with live records and structured data.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap">
+    <header class="head">
+      <p class="eyebrow">Galleries</p>
+      <h1 class="display">Browse by group</h1>
+      <p class="intro">
+        Every reconstruction here is drawn to a common method and measured to a common scale. Start with
+        a major group, then filter down by clade, size, or specimen.
+      </p>
+    </header>
+
+    <ul class="grid">
+      {galleries.map((g) => (
+        <li class="card">
+          <a href={`/${g.slug}/`}>
+            <div class="thumb">
+              {g.img ? (
+                <Image src={g.img} alt={g.alt} widths={[460, 920]} sizes="(max-width: 760px) 92vw, 520px" class="thumb-img" loading="lazy" />
+              ) : (
+                <img src={g.fallbackSrc} alt={g.alt} class="thumb-img" />
+              )}
+            </div>
+            <div class="body">
+              <span class="friendly">{g.friendly}</span>
+              <span class="sci"><em>{g.sci}</em></span>
+              <p class="blurb">{g.blurb}</p>
+              <span class="count">
+                {g.count} {g.count === 1 ? 'skeletal' : 'skeletals'}
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 44px var(--pad-side) 0; }
+
+  .head { max-width: 64ch; margin-bottom: 38px; }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(40px, 7vw, 72px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--ink); max-width: 60ch; }
+
+  .grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 26px;
+  }
+  .card {
+    border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 6px; overflow: hidden;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,24,21,.10); }
+  .card a { text-decoration: none; color: var(--ink); display: block; }
+
+  .thumb {
+    aspect-ratio: 16 / 8; display: flex; align-items: center; justify-content: center;
+    padding: 22px 26px; border-bottom: 1px solid var(--hair);
+  }
+  .thumb-img { width: 100%; height: 100%; object-fit: contain; }
+
+  .body { padding: 22px 26px 24px; }
+  .friendly {
+    display: block; font-style: italic; font-weight: 500;
+    font-size: clamp(24px, 3vw, 30px); line-height: 1.05; letter-spacing: -.01em;
+  }
+  .sci {
+    display: block; margin-top: 7px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--slate);
+  }
+  .sci em { font-style: normal; }
+  .blurb { margin: 14px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--slate); max-width: 46ch; }
+  .count {
+    display: inline-flex; align-items: baseline; gap: 10px; margin-top: 18px;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
+  }
+  .arrow { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 30px 18px 0; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .thumb { aspect-ratio: 16 / 9; padding: 16px; }
+  }
+</style>
