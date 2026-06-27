@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Blog index (/blog/). Lists published posts, newest first. Reuses the Graphite system;
+// blog images are plain public-path <img> for now (no skeletal optimization pipeline).
+const posts = (await getCollection('posts')).filter((p) => !p.data.draft);
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+const title = 'Blog | Skeletal Drawing';
+const description =
+  'Reconstruction notes, corrections, and commentary on the science of skeletal reconstruction, by Scott Hartman.';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap">
+    <header class="head">
+      <p class="eyebrow">Blog</p>
+      <h1 class="display">Notes from the drawing table</h1>
+      <p class="intro">
+        Reconstruction notes, corrections, and what the new literature changes — the thinking behind
+        the drawings.
+      </p>
+    </header>
+
+    <ul class="posts">
+      {posts.map((p) => (
+        <li class:list={['post', { 'has-img': !!p.data.image }]}>
+          <a href={`/blog/${p.id}/`}>
+            {p.data.image && (
+              <div class="thumb">
+                <img src={p.data.image.src} alt={p.data.image.alt} class="thumb-img" loading="lazy" />
+              </div>
+            )}
+            <div class="body">
+              {p.data.kind && <span class="kind">{p.data.kind}</span>}
+              <h2 class="ptitle">{p.data.title}</h2>
+              {p.data.excerpt && <p class="excerpt">{p.data.excerpt}</p>}
+              <div class="foot">
+                <span class="readmore">Read more →</span>
+                <span class="date">{fmtDate(p.data.date)}</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 44px var(--pad-side) 0; }
+
+  .head { max-width: 64ch; margin-bottom: 30px; }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(38px, 6.5vw, 66px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--ink); max-width: 60ch; }
+
+  .posts { list-style: none; margin: 0; padding: 0; }
+  .post { border-top: 1px solid var(--hair); }
+  .post:last-child { border-bottom: 1px solid var(--hair); }
+  .post a {
+    display: block; text-decoration: none; color: var(--ink); padding: 26px 0;
+    transition: opacity .15s ease;
+  }
+  .post.has-img a { display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: center; }
+  .post a:hover { opacity: .82; }
+  .thumb {
+    background: var(--plate); border: 1px solid var(--hair); border-radius: 5px; overflow: hidden;
+    aspect-ratio: 16 / 11; display: flex; align-items: center; justify-content: center; padding: 12px;
+  }
+  .thumb-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  .kind {
+    display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .ptitle {
+    margin: 9px 0 0; font-weight: 500; font-size: clamp(22px, 2.8vw, 28px);
+    line-height: 1.16; letter-spacing: -.01em;
+  }
+  .excerpt { margin: 12px 0 0; font-size: 16px; line-height: 1.55; color: var(--slate); max-width: 64ch; }
+  .foot { display: flex; align-items: center; gap: 16px; margin-top: 15px; }
+  .readmore {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  }
+  .date { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; color: var(--measure); }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 30px 18px 0; }
+    .post.has-img a { grid-template-columns: 1fr; gap: 14px; }
+    .thumb { aspect-ratio: 16 / 9; }
+  }
+</style>

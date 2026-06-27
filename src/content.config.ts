@@ -111,10 +111,23 @@ const specimens = defineCollection({
     }),
 });
 
+// Dated blog. Posts live at /blog/<slug>; the ~99 legacy /home/<slug> posts get 301'd here at launch.
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.preprocess(blank, z.coerce.date()), // publish date — sorts the blog + home section
+    kind: optStr, // category eyebrow, e.g. "Reconstruction notes"
+    excerpt: optStr, // card/teaser summary
+    image: nullableDefault(imageRef.optional()), // optional lead image (+ alt)
+    featured: nullableDefault(z.boolean().default(false)), // pin as the home page's lead post
+    draft: nullableDefault(z.boolean().default(false)), // hide from index + routes
+  }),
+});
+
 // Reserved for later phases (defined when their first entry/template lands):
-//   post        — dated blog
 //   article     — evergreen explainers (own namespace /articles/)
 //   page        — standalone pages (About spokes, licensing, …)
 //   publication — phase 2 (folding in scotthartman.info)
 
-export const collections = { taxa, specimens };
+export const collections = { taxa, specimens, posts };

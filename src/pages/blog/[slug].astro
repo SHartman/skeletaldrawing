@@ -1,0 +1,123 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).filter((p) => !p.data.draft);
+  return posts.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const fmtDate = (dt: Date) =>
+  dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = d.image ? new URL(d.image.src, Astro.site).href : undefined;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  datePublished: d.date.toISOString(),
+  author: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
+  publisher: { '@type': 'Person', name: 'Scott Hartman' },
+  mainEntityOfPage: pageUrl,
+  ...(d.excerpt ? { description: d.excerpt } : {}),
+  ...(imageUrl ? { image: imageUrl } : {}),
+};
+
+const title = `${d.title} | Skeletal Drawing`;
+---
+
+<BaseLayout title={title} description={d.excerpt} ogImage={imageUrl} ogType="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <main class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/blog/">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span class="here">{d.title}</span>
+    </nav>
+
+    <article class="post">
+      <header class="phead">
+        {d.kind && <p class="kind">{d.kind}</p>}
+        <h1 class="ptitle">{d.title}</h1>
+        <p class="date">{fmtDate(d.date)}</p>
+      </header>
+
+      {d.image && (
+        <figure class="hero">
+          <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+        </figure>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <p class="back"><a href="/blog/">← all posts</a></p>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .crumbs {
+    margin-top: 34px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+    color: var(--slate); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+  }
+  .crumbs a { color: var(--slate); text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .here { color: var(--ink); }
+
+  .post { max-width: 720px; margin: 0 auto; }
+
+  .phead { margin: 26px 0 0; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+  .kind {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .ptitle {
+    margin: 0; font-weight: 500; font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -.015em;
+  }
+  .date {
+    margin: 16px 0 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--measure);
+  }
+
+  .hero {
+    margin: 30px 0 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 5px;
+    padding: 22px; display: flex; justify-content: center;
+  }
+  .hero-img { max-width: 100%; height: auto; display: block; }
+
+  .prose { padding: 30px 0 6px; }
+  .prose :global(p) { font-size: 19px; line-height: 1.7; margin: 0 0 1.2em; }
+  .prose :global(p:first-of-type::first-letter) {
+    font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
+    font-weight: 500; color: var(--accent);
+  }
+  .prose :global(h2) { font-size: 26px; font-weight: 500; letter-spacing: -.01em; margin: 1.6em 0 .5em; }
+  .prose :global(h3) { font-size: 20px; font-weight: 600; margin: 1.4em 0 .4em; }
+  .prose :global(a) { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .prose :global(em) { font-style: italic; }
+  .prose :global(strong) { font-weight: 600; }
+  .prose :global(blockquote) {
+    margin: 1.4em 0; padding-left: 20px; border-left: 2px solid var(--accent-soft);
+    color: var(--slate); font-style: italic;
+  }
+  .prose :global(img) { max-width: 100%; height: auto; border: 1px solid var(--hair); border-radius: 4px; }
+
+  .back { margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--hair); font-size: 14.5px; }
+  .back a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+  }
+</style>

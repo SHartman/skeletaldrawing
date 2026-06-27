@@ -136,3 +136,30 @@ collections:
       - { name: featured, label: "Featured (show as a card)", widget: boolean, default: false, required: false }
       - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }
       - { name: body, label: "Description", widget: markdown, required: false }
+
+  - name: posts
+    label: "Blog posts"
+    label_singular: "Post"
+    folder: "src/content/posts"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: date, label: "Date", widget: datetime, hint: "Publish date — sorts the blog and the home page's 'From the blog' section." }
+      - { name: kind, label: "Category", widget: string, required: false, hint: "Small eyebrow label, e.g. Reconstruction notes, In the literature, You're doing it wrong" }
+      - { name: excerpt, label: "Excerpt", widget: text, required: false, hint: "Teaser shown on the blog index and the home page." }
+      - name: image
+        label: "Lead image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - { name: featured, label: "Featured (home lead post)", widget: boolean, default: false, required: false }
+      - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
+      - { name: body, label: "Body", widget: markdown }

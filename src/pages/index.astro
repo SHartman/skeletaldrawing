@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import { Picture, getImage } from 'astro:assets';
-import { existsSync } from 'node:fs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Glyph from '../components/Glyph.astro';
 import ScaleComparison from '../components/ScaleComparison.astro';
@@ -101,22 +100,26 @@ const pool = await Promise.all(
 );
 const featured = pool[0] ?? null;
 
-// Blog image — render only when present (self-healing placeholder).
-const blogImgExists = existsSync('public/images/blog-dimetrodon.png');
-
-// Blog — placeholder copy from the design until the `post` collection is built.
-const leadPost = {
-  kind: 'You’re doing it wrong',
-  title: 'I did it wrong: Dimetrodon had a longer neck',
-  excerpt:
-    'A series on the common errors that turn up in documentaries, art, and museum mounts — beginning, fittingly, with one of my own: a neck I had drawn a few vertebrae too short.',
-  date: 'Feb 19, 2026',
-  href: '/blog/',
-};
-const morePosts = [
-  { kind: 'Reconstruction notes', title: 'Reassessing the proportions of Spinosaurus', date: 'Jan 30, 2026', href: '/blog/' },
-  { kind: 'In the literature', title: 'What a new Triceratops growth series tells us', date: 'Jan 8, 2026', href: '/blog/' },
-];
+// Blog — real posts, newest first. Lead = the featured post (else newest); the rest fill "More recent".
+const allPosts = (await getCollection('posts')).filter((p) => !p.data.draft);
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const fmtDate = (dt: Date) =>
+  dt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+const leadEntry = allPosts.find((p) => p.data.featured) ?? allPosts[0] ?? null;
+const leadPost = leadEntry
+  ? {
+      kind: leadEntry.data.kind,
+      title: leadEntry.data.title,
+      excerpt: leadEntry.data.excerpt,
+      date: fmtDate(leadEntry.data.date),
+      href: `/blog/${leadEntry.id}/`,
+      image: leadEntry.data.image,
+    }
+  : null;
+const morePosts = allPosts
+  .filter((p) => p !== leadEntry)
+  .slice(0, 2)
+  .map((p) => ({ kind: p.data.kind, title: p.data.title, date: fmtDate(p.data.date), href: `/blog/${p.id}/` }));
 
 // og:image uses the stable public PNG (Astro-optimized URLs are hashed, not share-stable).
 const ogImage = new URL('/images/home-golden-hero.png', Astro.site).href;
@@ -259,34 +262,38 @@ const description =
         <a class="sec-link" href="/blog/">All posts →</a>
       </div>
       <div class="blog-grid">
-        <a class="lead-post" href={leadPost.href}>
-          <div class="lead-thumb">
-            {blogImgExists ? (
-              <img src="/images/blog-dimetrodon.png" alt="Dimetrodon skeletal reconstruction — skull and sail, lateral view" class="lead-img" />
-            ) : (
-              <span class="thumb-ph">image to come</span>
-            )}
-          </div>
-          <div class="lead-body">
-            <span class="post-kind">{leadPost.kind}</span>
-            <h3 class="lead-title">{leadPost.title}</h3>
-            <p class="lead-excerpt">{leadPost.excerpt}</p>
-            <div class="lead-foot">
-              <span class="read-more">Read more →</span>
-              <span class="post-date">{leadPost.date}</span>
+        {leadPost && (
+          <a class="lead-post" href={leadPost.href}>
+            <div class="lead-thumb">
+              {leadPost.image ? (
+                <img src={leadPost.image.src} alt={leadPost.image.alt} class="lead-img" />
+              ) : (
+                <span class="thumb-ph">image to come</span>
+              )}
             </div>
+            <div class="lead-body">
+              {leadPost.kind && <span class="post-kind">{leadPost.kind}</span>}
+              <h3 class="lead-title">{leadPost.title}</h3>
+              {leadPost.excerpt && <p class="lead-excerpt">{leadPost.excerpt}</p>}
+              <div class="lead-foot">
+                <span class="read-more">Read more →</span>
+                <span class="post-date">{leadPost.date}</span>
+              </div>
+            </div>
+          </a>
+        )}
+        {morePosts.length > 0 && (
+          <div class="more-posts">
+            <p class="more-label">More recent</p>
+            {morePosts.map((p) => (
+              <a class="more-post" href={p.href}>
+                {p.kind && <span class="post-kind sm">{p.kind}</span>}
+                <span class="more-title">{p.title}</span>
+                <span class="post-date">{p.date}</span>
+              </a>
+            ))}
           </div>
-        </a>
-        <div class="more-posts">
-          <p class="more-label">More recent</p>
-          {morePosts.map((p) => (
-            <a class="more-post" href={p.href}>
-              <span class="post-kind sm">{p.kind}</span>
-              <span class="more-title">{p.title}</span>
-              <span class="post-date">{p.date}</span>
-            </a>
-          ))}
-        </div>
+        )}
       </div>
     </div>
   </section>
