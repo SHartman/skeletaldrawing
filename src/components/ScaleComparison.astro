@@ -49,7 +49,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
     <section class="scale">
       <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common meter</span></h2>
       <figure class="fig">
-        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} Tyrannosaurus specimens, ${maxLen} meters at the largest, with a 1.8-meter human for scale`}>
+        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest, with a 1.8-meter human for scale`}>
           {/* ground line */}
           <line x1={padL} y1={groundY} x2={humanX + humanW} y2={groundY} class="ground" />
 
@@ -98,7 +98,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
             </span>
           ))}
         </figcaption>
-        <p class="note">Overlay shows {items.length} of {total} documented specimens — the full set is in the table below.</p>
+        <p class="note">Overlay shows {items.length} of {total} documented skeletals — the full set is in the table below.</p>
       </figure>
     </section>
   )

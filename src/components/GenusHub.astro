@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
+import ScaleComparison from './ScaleComparison.astro';
 import {
   heroRef,
   formatLength,
@@ -147,6 +148,8 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
         ))}
       </ul>
     </section>
+
+    <ScaleComparison taxonId={hub.slug} total={members.length} />
 
     <section class="block">
       <h2 class="sec-h">All documented skeletals <span class="sec-sub">— tap a column to sort</span></h2>
