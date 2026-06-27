@@ -1,4 +1,6 @@
 ---
+import Glyph from './Glyph.astro';
+
 // Data-driven primary nav (CLAUDE.md: masthead anticipates Galleries / Blog /
 // About / Resources / Store; Articles will live under Resources). Hrefs are
 // placeholders until each section exists — reshuffling IA later is a one-line edit.
@@ -14,7 +16,8 @@ const nav = [
 <header class="masthead">
   <div class="inner">
     <a class="logo" href="/">
-      <span class="logo-strong">Skeletal</span> <span class="logo-italic">Drawing</span>
+      <Glyph class="logo-glyph" />
+      <span class="logo-text"><span class="logo-strong">Skeletal</span> <span class="logo-italic">Drawing</span></span>
     </a>
     <nav aria-label="Primary">
       {nav.map((item) => <a href={item.href}>{item.label}</a>)}
@@ -42,7 +45,11 @@ const nav = [
     font-size: 23px;
     letter-spacing: .01em;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
   }
+  .logo-glyph { height: 28px; width: auto; flex: none; }
   .logo-strong { font-weight: 600; }
   .logo-italic { font-style: italic; color: var(--mast-link); }
 
