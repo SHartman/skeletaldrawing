@@ -4,6 +4,7 @@ import { Picture } from 'astro:assets';
 import { existsSync } from 'node:fs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Glyph from '../components/Glyph.astro';
+import ScaleComparison from '../components/ScaleComparison.astro';
 import { loadSkeletal } from '../lib/images';
 import heroImg from '../assets/home-golden-hero.png';
 
@@ -154,6 +155,20 @@ const description =
         </div>
       </>
     )}
+  </section>
+
+  <!-- ============ DRAWN TO SCALE (sampler from a genus hub) ============ -->
+  <section class="band bordered">
+    <div class="band-inner">
+      <ScaleComparison
+        taxonId="diplodocus"
+        total={3}
+        heading="Drawn to one scale"
+        href="/sauropods-and-kin/diplodocus/"
+        linkLabel="Open the Diplodocus hub →"
+        note="Every reconstruction is measured to a common metre, so a genus like Diplodocus can be read specimen against specimen — here its two species and their specimens, with a 1.8 m human for scale."
+      />
+    </div>
   </section>
 
   <!-- ============ BROWSE BY CLADE ============ -->

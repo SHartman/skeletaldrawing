@@ -6,7 +6,21 @@ import silData from '../data/silhouettes.json';
 // scaled to a common meter, grounded on a shared baseline, and aligned at the tail —
 // so size reads as how far each snout reaches. Largest = soft-filled envelope; the
 // rest are outlines (the smallest dashed). Renders nothing if no silhouettes exist.
-const { taxonId, total } = Astro.props as { taxonId: string; total: number };
+const {
+  taxonId,
+  total,
+  heading,
+  href,
+  linkLabel = 'See the hub →',
+  note,
+} = Astro.props as {
+  taxonId: string;
+  total: number;
+  heading?: string; // home-context: a serif title + optional hub link instead of the mono label
+  href?: string;
+  linkLabel?: string;
+  note?: string;
+};
 const raw = (silData as Record<string, any[]>)[taxonId] ?? [];
 const items = [...raw].sort((a, b) => b.lengthM - a.lengthM);
 
@@ -47,7 +61,14 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
 {
   hasData && (
     <section class="scale">
-      <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common meter</span></h2>
+      {heading ? (
+        <div class="sc-head">
+          <h2 class="sc-title">{heading}</h2>
+          {href && <a class="sc-link" href={href}>{linkLabel}</a>}
+        </div>
+      ) : (
+        <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common meter</span></h2>
+      )}
       <figure class="fig">
         <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest, with a 1.8-meter human for scale`}>
           {/* ground line */}
@@ -98,7 +119,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
             </span>
           ))}
         </figcaption>
-        <p class="note">Overlay shows {items.length} of {total} documented skeletals — the full set is in the table below.</p>
+        <p class="note">{note ?? `Overlay shows ${items.length} of ${total} documented skeletals — the full set is in the table below.`}</p>
       </figure>
     </section>
   )
@@ -111,6 +132,13 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
   }
   .sec-sub { letter-spacing: 0; text-transform: none; }
+
+  .sc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 18px; }
+  .sc-title { font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; margin: 0; }
+  .sc-link {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
 
   .fig {
     margin: 0; border: 1px solid var(--hair-strong); background: var(--plate);
