@@ -1,0 +1,290 @@
+---
+import { getCollection } from 'astro:content';
+import silData from '../../data/silhouettes.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Interactive size-comparison tool (prototype). Pick 2–5 animals; a client-side renderer draws the
+// chosen silhouettes to a common scale (tail-tips aligned, feet grounded), with a 1.8 m human and a
+// metre ruler. Pure static data + client JS — the same engine as the hub ScaleComparison, but the
+// selection lives in the browser. The catalog grows on its own as the silhouette library fills in.
+const taxa = await getCollection('taxa');
+const specimens = await getCollection('specimens');
+const taxaById = new Map(taxa.map((t) => [t.id, t]));
+const specById = new Map(specimens.map((s) => [s.id, s]));
+
+// Flatten silhouettes.json into a de-duplicated catalog, with a readable label per animal.
+const seen = new Map<string, any>();
+for (const group of Object.values(silData as Record<string, any[]>)) {
+  for (const e of group) {
+    if (seen.has(e.slug)) continue;
+    let label = e.label;
+    let taxon = '';
+    const sp = specById.get(e.slug);
+    if (sp) {
+      const parent = taxaById.get(sp.data.taxon);
+      taxon = parent?.data.taxon ?? '';
+      const who = sp.data.nickname ?? sp.data.catalog;
+      label = taxon ? `${taxon} — ${who}` : e.label;
+    } else {
+      const tx = taxaById.get(e.slug);
+      if (tx) {
+        taxon = tx.data.taxon;
+        label = tx.data.taxon;
+      }
+    }
+    seen.set(e.slug, { id: e.slug, label, taxon, lengthM: e.lengthM, w: e.w, h: e.h, path: e.path });
+  }
+}
+const catalog = [...seen.values()].sort((a, b) => a.lengthM - b.lengthM);
+
+// Default selection: a clear small-vs-large contrast, falling back to the extremes.
+const prefer = ['scotty', 'diplodocus-carnegii'].filter((id) => seen.has(id));
+const defaultSel =
+  prefer.length >= 2
+    ? prefer
+    : [catalog[0]?.id, catalog[catalog.length - 1]?.id].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i);
+
+const title = 'Size comparison — build your own | Skeletal Drawing';
+const description =
+  'Pick any two to five extinct animals and see them drawn to a single scale, with a human for reference — measured from the same skeletal reconstructions used across the site.';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap">
+    <header class="head">
+      <p class="eyebrow">Tools</p>
+      <h1 class="display">Size comparison</h1>
+      <p class="intro">
+        Pick two to five animals and see them drawn to a single scale — tails aligned, feet on a common
+        ground line, with a 1.8&nbsp;m human for reference. Every silhouette comes from the measured
+        reconstructions used across the site. <span class="beta">More animals are added as the library grows.</span>
+      </p>
+    </header>
+
+    <section class="picker-sec" aria-label="Choose animals">
+      <div class="picker" id="picker">
+        {catalog.map((a) => (
+          <button type="button" class="chip" data-id={a.id} aria-pressed="false">
+            <span class="chip-name">{a.label}</span>
+            <span class="chip-len">{a.lengthM} m</span>
+          </button>
+        ))}
+      </div>
+      <div class="controls">
+        <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Human for scale</label>
+        <span class="spacer"></span>
+        <button type="button" class="ctl" id="clear">Clear</button>
+        <button type="button" class="ctl" id="copy">Copy link</button>
+        <span class="copied" id="copied" hidden>Link copied</span>
+      </div>
+    </section>
+
+    <section class="stage-sec">
+      <div class="stage" id="stage"></div>
+      <p class="hint" id="hint">Pick at least one animal above to begin.</p>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <noscript>
+      <p class="noscript">This comparison tool needs JavaScript. Every animal is also shown to scale on its own page and on the genus hubs.</p>
+    </noscript>
+  </main>
+</BaseLayout>
+
+<script type="application/json" id="catalog" is:inline set:html={JSON.stringify(catalog)}></script>
+<script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel })}></script>
+
+<script is:inline>
+  (() => {
+    const catalog = JSON.parse(document.getElementById('catalog').textContent);
+    const cfg = JSON.parse(document.getElementById('cfg').textContent);
+    const byId = Object.fromEntries(catalog.map((a) => [a.id, a]));
+    const PXM = 100,
+      MAX = 5;
+    const COLORS = ['#B07A2E', '#1D9E75', '#D85A30', '#378ADD', '#7F77DD', '#5C636B'];
+    const HUMAN =
+      'M12 40 L36 40 L38 108 L33 108 L31 52 L32 100 L35 150 L33 180 L27 180 L24 120 L21 180 L15 180 L17 150 L16 100 L17 52 L15 108 L10 108 Z';
+
+    const stage = document.getElementById('stage');
+    const legend = document.getElementById('legend');
+    const hint = document.getElementById('hint');
+    const humanToggle = document.getElementById('human-toggle');
+    const chips = [...document.querySelectorAll('.chip')];
+    let selected = [];
+
+    const fromUrl = () => {
+      const p = new URLSearchParams(location.search).get('ids');
+      return p ? p.split(',').filter((id) => byId[id]).slice(0, MAX) : [];
+    };
+    const toUrl = () => {
+      const u = new URL(location.href);
+      if (selected.length) u.searchParams.set('ids', selected.join(','));
+      else u.searchParams.delete('ids');
+      history.replaceState(null, '', u);
+    };
+    const syncChips = () => {
+      chips.forEach((c) => {
+        const on = selected.includes(c.dataset.id);
+        c.classList.toggle('on', on);
+        c.setAttribute('aria-pressed', String(on));
+        c.disabled = !on && selected.length >= MAX;
+      });
+    };
+
+    function render() {
+      syncChips();
+      const items = selected.map((id) => byId[id]).filter(Boolean).sort((a, b) => b.lengthM - a.lengthM);
+      if (!items.length) {
+        stage.innerHTML = '';
+        legend.innerHTML = '';
+        hint.hidden = false;
+        return;
+      }
+      hint.hidden = true;
+      const showHuman = humanToggle.checked;
+      const padL = 16,
+        padT = 16;
+      const scaled = items.map((it, idx) => {
+        const s = (PXM * it.lengthM) / it.w;
+        return { it, idx, s, sw: it.w * s, sh: it.h * s };
+      });
+      const maxLen = Math.max(...items.map((i) => i.lengthM));
+      const maxSW = PXM * maxLen;
+      const maxSH = Math.max(...scaled.map((d) => d.sh), showHuman ? 180 : 0);
+      const guideX = padL + maxSW,
+        groundY = padT + maxSH;
+      const humanGap = 40,
+        humanW = 48,
+        humanH = 180,
+        humanX = guideX + humanGap;
+      const meters = Math.floor(maxLen);
+      const rulerY = groundY + 20;
+      const rightPad = (showHuman ? humanGap + humanW : 0) + 30;
+      const vbW = Math.round(guideX + rightPad),
+        vbH = Math.round(rulerY + 22);
+
+      let s = `<svg viewBox="0 0 ${vbW} ${vbH}" role="img" aria-label="Scale comparison of ${items.length} animals, largest ${maxLen} metres">`;
+      s += `<line x1="${padL}" y1="${groundY}" x2="${showHuman ? humanX + humanW : guideX}" y2="${groundY}" class="c-ground"/>`;
+      for (let m = 0; m <= meters; m++) {
+        const x = guideX - m * PXM;
+        const major = m % 5 === 0;
+        s += `<line x1="${x}" y1="${groundY}" x2="${x}" y2="${groundY + (major ? 8 : 4)}" class="c-tick${major ? ' major' : ''}"/>`;
+        if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
+      }
+      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">metres from tail tip</text>`;
+      scaled.forEach((d) => {
+        const c = COLORS[d.idx % COLORS.length];
+        const tx = `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
+        s += `<path d="${d.it.path}" transform="${tx}" fill="${c}" fill-opacity="0.2" stroke="${c}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`;
+      });
+      s += `<line x1="${guideX}" y1="${padT}" x2="${guideX}" y2="${groundY}" class="c-guide"/>`;
+      if (showHuman) {
+        s += `<g transform="translate(${humanX} ${groundY - humanH})"><circle cx="24" cy="17" r="13" class="c-human"/><path d="${HUMAN}" class="c-human"/></g>`;
+        s += `<text x="${humanX + humanW / 2}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">1.8 m</text>`;
+      }
+      s += `</svg>`;
+      stage.innerHTML = s;
+      legend.innerHTML = scaled
+        .map(
+          (d) =>
+            `<span class="leg"><span class="leg-sw" style="background:${COLORS[d.idx % COLORS.length]}"></span><span class="leg-name">${d.it.label}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
+        )
+        .join('');
+    }
+
+    const toggle = (id) => {
+      const i = selected.indexOf(id);
+      if (i >= 0) selected.splice(i, 1);
+      else {
+        if (selected.length >= MAX) return;
+        selected.push(id);
+      }
+      toUrl();
+      render();
+    };
+
+    chips.forEach((c) => c.addEventListener('click', () => toggle(c.dataset.id)));
+    humanToggle.addEventListener('change', render);
+    document.getElementById('clear').addEventListener('click', () => {
+      selected = [];
+      toUrl();
+      render();
+    });
+    document.getElementById('copy').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        const c = document.getElementById('copied');
+        c.hidden = false;
+        setTimeout(() => (c.hidden = true), 1600);
+      } catch (e) {}
+    });
+
+    selected = fromUrl();
+    if (!selected.length) selected = (cfg.def || []).filter((id) => byId[id]).slice(0, MAX);
+    render();
+  })();
+</script>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 44px var(--pad-side) 0; }
+  .head { max-width: 64ch; margin-bottom: 28px; }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display { margin: 0; font-style: italic; font-weight: 500; font-size: clamp(38px, 6.5vw, 64px); line-height: 1.0; letter-spacing: -.015em; }
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--ink); max-width: 62ch; }
+  .beta { color: var(--slate); }
+
+  /* picker */
+  .picker-sec { border-top: 1px solid var(--hair); padding-top: 22px; }
+  .picker { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: baseline; gap: 9px; cursor: pointer;
+    font: inherit; color: var(--ink); background: var(--plate);
+    border: 1px solid var(--hair-strong); border-radius: 999px; padding: 9px 16px;
+    transition: border-color .14s ease, background .14s ease, transform .1s ease;
+  }
+  .chip:hover:not(:disabled) { border-color: var(--slate); }
+  .chip.on { border-color: var(--accent); background: var(--accent-weak); }
+  .chip:disabled { opacity: .42; cursor: not-allowed; }
+  .chip-name { font-size: 15px; }
+  .chip-name::first-line { font-style: italic; }
+  .chip-len { font-family: var(--font-mono); font-size: 11px; color: var(--slate); }
+
+  .controls { display: flex; align-items: center; gap: 18px; margin-top: 18px; flex-wrap: wrap; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--slate); cursor: pointer; }
+  .toggle input { accent-color: var(--accent); }
+  .spacer { flex: 1; }
+  .ctl {
+    font: inherit; font-size: 12px; font-family: var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); background: none; border: 1px solid var(--hair-strong); border-radius: 5px; padding: 7px 14px; cursor: pointer;
+  }
+  .ctl:hover { border-color: var(--slate); }
+  .copied { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: .06em; }
+
+  /* stage */
+  .stage-sec { margin-top: 26px; border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 6px; padding: 24px 26px 20px; }
+  .stage :global(svg) { display: block; width: 100%; height: auto; max-width: 1000px; margin: 0 auto; overflow: visible; }
+  .stage :global(.c-ground) { stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .stage :global(.c-guide) { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; opacity: .55; }
+  .stage :global(.c-tick) { stroke: var(--slate); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .stage :global(.c-tick.major) { stroke: var(--ink); }
+  .stage :global(.c-ticklabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); text-anchor: middle; }
+  .stage :global(.c-unit) { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
+  .stage :global(.c-human) { fill: var(--slate); }
+  .stage :global(.c-humanlabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
+
+  .hint { margin: 14px 0 0; font-size: 14.5px; color: var(--slate); text-align: center; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--hair); }
+  .leg { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; }
+  .leg-sw { width: 22px; height: 12px; border-radius: 3px; flex: 0 0 auto; opacity: .85; }
+  .leg-name { font-style: italic; }
+  .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
+  .noscript { margin-top: 20px; color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 30px 18px 0; }
+    .stage-sec { padding: 16px 14px 14px; }
+  }
+</style>
