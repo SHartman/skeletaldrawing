@@ -163,3 +163,64 @@ collections:
       - { name: featured, label: "Featured (home lead post)", widget: boolean, default: false, required: false }
       - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
       - { name: body, label: "Body", widget: markdown }
+
+  - name: articles
+    label: "Learn — guides & articles"
+    label_singular: "Article"
+    folder: "src/content/articles"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [order, title, updated]
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: kind, label: "Kind (eyebrow)", widget: string, required: false, hint: "Small label, e.g. Anatomy guide, Methodology, Tutorial" }
+      - { name: summary, label: "Summary", widget: text, required: false, hint: "Teaser shown on the Learn hub." }
+      - name: image
+        label: "Lead image"
+        widget: object
+        required: false
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+      - { name: path, label: "URL override", widget: string, required: false, hint: "Leave blank for the normal /learn/<slug> URL. Set only to keep a legacy page at its existing URL (the anatomy guide uses /anatomy/)." }
+      - { name: updated, label: "Last updated", widget: datetime, required: false, hint: "Evergreen content — when you last revised it (not a publish date)." }
+      - { name: order, label: "Sort order", widget: number, required: false, value_type: int, hint: "Lower sorts first on the hub. Leave blank to sort by title." }
+      - name: downloads
+        label: "Downloads (classroom handout / deck)"
+        widget: list
+        required: false
+        hint: "Upload a branded PDF and/or PowerPoint to public/downloads/. They show up as a 'Use this in your classroom' block."
+        fields:
+          - { name: format, label: "Format", widget: select, options: ["pdf", "pptx"] }
+          - { name: src, label: "File path", widget: string, hint: "e.g. /downloads/skeletal-anatomy-guide.pdf" }
+          - { name: label, label: "Button label", widget: string, required: false }
+          - { name: note, label: "Note", widget: string, required: false, hint: "e.g. 12 MB · 18 slides" }
+      - { name: licenseNote, label: "Use grant (shown with downloads)", widget: text, required: false, hint: "The terms under which classrooms may use the download. Leave blank for the default educational-use line." }
+      - { name: featured, label: "Featured (flagship card)", widget: boolean, default: false, required: false }
+      - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
+      - { name: body, label: "Body", widget: markdown }
+
+  - name: resources
+    label: "Learn — external resources"
+    label_singular: "Resource"
+    folder: "src/content/resources"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [order, title, category]
+    fields:
+      - { name: title, label: "Name", widget: string, hint: "The place, person, or site." }
+      - { name: url, label: "URL", widget: string, hint: "The outbound link (opens in a new tab)." }
+      - { name: category, label: "Category", widget: select, options: ["museum", "artist", "blog", "reference"], default: "museum" }
+      - { name: region, label: "Region (museums)", widget: string, required: false, hint: "Groups museums on the hub, e.g. North America, Europe. Ignored for other categories." }
+      - { name: blurb, label: "Your take (annotation)", widget: text, hint: "One line in your voice on why it's worth visiting/reading. This is the point — a bare link adds nothing." }
+      - { name: order, label: "Sort order", widget: number, required: false, value_type: int, hint: "Lower sorts first within its group." }
+      - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
+      - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }

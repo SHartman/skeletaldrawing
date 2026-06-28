@@ -4,3 +4,10 @@
 
 # Corrected clade slug (was misspelled "ornithiscians" on the live Squarespace site).
 /ornithiscians  /ornithischians  301
+
+# Anatomy guide stays at /anatomy/ (a top-ranking, heavily-linked page — NOT moved, so it
+# needs no redirect of its own). These three are the original pre-Squarespace deep links,
+# carried forward so those decades-old inbound links keep landing on the guide.
+/shdguide/shdg.htm      /anatomy/  301
+/shdguide/shdgmain.htm  /anatomy/  301
+/shdguide/anatomy.htm   /anatomy/  301

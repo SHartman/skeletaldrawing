@@ -1,14 +1,15 @@
 ---
 import Glyph from './Glyph.astro';
 
-// Data-driven primary nav (CLAUDE.md: masthead anticipates Galleries / Blog /
-// About / Resources / Store; Articles will live under Resources). Hrefs are
-// placeholders until each section exists — reshuffling IA later is a one-line edit.
+// Data-driven primary nav. "Learn" is the single inviting door for first-party
+// guides/articles AND curated external resources (the /learn/ hub) — it reads as an
+// invitation where a bare "Resources" gets skipped. Remaining hrefs are placeholders
+// until each section exists; reshuffling IA later is a one-line edit.
 const nav = [
   { label: 'Galleries', href: '/galleries/' },
   { label: 'Blog', href: '/blog/' },
+  { label: 'Learn', href: '/learn/' },
   { label: 'About', href: '/about/' },
-  { label: 'Resources', href: '/resources/' },
   { label: 'Store', href: '/store/' },
 ];
 ---

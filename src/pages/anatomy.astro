@@ -1,0 +1,14 @@
+---
+import { getEntry } from 'astro:content';
+import ArticleView from '../components/ArticleView.astro';
+
+// The anatomy guide keeps its existing, well-ranked URL: /anatomy/ (avg position ~4.3,
+// thousands of monthly impressions, two decades of inbound links — CLAUDE.md §8). It is
+// served here at its own path rather than moved under /learn/, so no equity-bleeding 301
+// is needed. It remains a member of the Learn hub (which links to /anatomy/). The legacy
+// /shdguide/*.htm originals 301 here via public/_redirects.
+const entry = await getEntry('articles', 'anatomy-guide');
+if (!entry) throw new Error('Missing articles/anatomy-guide.md — the /anatomy/ guide source.');
+---
+
+<ArticleView entry={entry} />

@@ -1,0 +1,208 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// The Learn hub (/learn/). One inviting door that unites first-party content (guides &
+// articles) with curated, ANNOTATED external links (museums to visit, peers to read).
+// Framed as "everywhere to go deeper" — both halves are about learning more. The hub
+// assembles itself from the `articles` and `resources` collections, like the galleries
+// index: adding a guide or a link is one CMS entry and this page updates on its own.
+
+const articles = (await getCollection('articles'))
+  .filter((a) => !a.data.draft)
+  .sort(
+    (a, b) =>
+      (a.data.order ?? 99) - (b.data.order ?? 99) || a.data.title.localeCompare(b.data.title),
+  );
+
+const resources = (await getCollection('resources'))
+  .filter((r) => !r.data.draft)
+  .sort(
+    (a, b) =>
+      (a.data.order ?? 99) - (b.data.order ?? 99) || a.data.title.localeCompare(b.data.title),
+  );
+
+// Category sections, in display order. Each renders only if it has entries.
+const CATS = [
+  {
+    key: 'museum',
+    heading: 'Museums to visit',
+    blurb: 'Where to stand in front of the real thing — grouped by region.',
+  },
+  {
+    key: 'artist',
+    heading: 'Other skeletal reconstructions & paleoartists',
+    blurb: 'A small field. These are people whose work is worth your time.',
+  },
+  {
+    key: 'blog',
+    heading: 'Paleoart blogs & reading',
+    blurb: 'Long-running sites and writers covering the science and the art.',
+  },
+  {
+    key: 'reference',
+    heading: 'References & tools',
+    blurb: 'Databases, primary literature, and the odd useful utility.',
+  },
+] as const;
+
+type Resource = (typeof resources)[number];
+const byCat = (key: string) => resources.filter((r) => r.data.category === key);
+
+// Museums group by region (others render as a flat list).
+function groupByRegion(list: Resource[]) {
+  const groups = new Map<string, Resource[]>();
+  for (const r of list) {
+    const region = r.data.region ?? 'Elsewhere';
+    const arr = groups.get(region) ?? [];
+    arr.push(r);
+    groups.set(region, arr);
+  }
+  return [...groups.entries()];
+}
+
+const sections = CATS.map((c) => ({ ...c, items: byCat(c.key) })).filter((s) => s.items.length);
+
+const title = 'Learn — guides, articles & resources | Skeletal Drawing';
+const description =
+  "Ways to go deeper on skeletal anatomy and paleoart: Scott Hartman's guides and explainers, plus a curated, annotated set of museums to visit and paleoartists and blogs worth following.";
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap">
+    <header class="head">
+      <p class="eyebrow">Learn</p>
+      <h1 class="display">Go deeper</h1>
+      <p class="intro">
+        Two kinds of thing live here: guides and explainers I've written about how these
+        reconstructions are made and read — and a curated set of places to go next, from museums
+        worth the trip to other artists and writers worth following.
+      </p>
+    </header>
+
+    {articles.length > 0 && (
+      <section class="block" aria-labelledby="guides-h">
+        <h2 id="guides-h" class="sec-h">Guides &amp; articles</h2>
+        <ul class="cards">
+          {articles.map((a) => (
+            <li class={`card${a.data.featured ? ' is-feat' : ''}`}>
+              <a href={a.data.path ?? `/learn/${a.id}/`}>
+                {a.data.kind && <span class="card-kind">{a.data.kind}</span>}
+                <span class="card-title">{a.data.title}</span>
+                {a.data.summary && <p class="card-sum">{a.data.summary}</p>}
+                <span class="card-go">Read <span class="arrow">→</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {sections.map((s) => (
+      <section class="block" aria-labelledby={`${s.key}-h`}>
+        <h2 id={`${s.key}-h`} class="sec-h">{s.heading}</h2>
+        <p class="sec-sub">{s.blurb}</p>
+
+        {s.key === 'museum' ? (
+          groupByRegion(s.items).map(([region, items]) => (
+            <div class="region">
+              <h3 class="region-h">{region}</h3>
+              <ul class="links">
+                {items.map((r) => (
+                  <li class="link-row">
+                    <a class="link-title" href={r.data.url} target="_blank" rel="noopener">
+                      {r.data.title} <span class="ext" aria-hidden="true">↗</span>
+                    </a>
+                    <p class="link-blurb">{r.data.blurb}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <ul class="links">
+            {s.items.map((r) => (
+              <li class="link-row">
+                <a class="link-title" href={r.data.url} target="_blank" rel="noopener">
+                  {r.data.title} <span class="ext" aria-hidden="true">↗</span>
+                </a>
+                <p class="link-blurb">{r.data.blurb}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ))}
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 44px var(--pad-side) 0; }
+
+  .head { max-width: 64ch; margin-bottom: 42px; }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(40px, 7vw, 72px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--ink); max-width: 62ch; }
+
+  .block { margin: 0 0 48px; }
+  .sec-h {
+    margin: 0; font-style: italic; font-weight: 500; font-size: clamp(24px, 3.4vw, 32px);
+    letter-spacing: -.01em; padding-bottom: 12px; border-bottom: 1px solid var(--hair-strong);
+  }
+  .sec-sub { margin: 12px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--slate); max-width: 56ch; }
+
+  /* Article cards */
+  .cards {
+    list-style: none; margin: 22px 0 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+  }
+  .card {
+    border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 6px;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,24,21,.10); }
+  .card.is-feat { border-color: var(--accent-soft); }
+  .card a { text-decoration: none; color: var(--ink); display: block; padding: 22px 24px 22px; }
+  .card-kind {
+    display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+  .card-title {
+    display: block; font-style: italic; font-weight: 500; font-size: 23px; line-height: 1.15; letter-spacing: -.01em;
+  }
+  .card-sum { margin: 12px 0 0; font-size: 15px; line-height: 1.55; color: var(--slate); }
+  .card-go {
+    display: inline-flex; align-items: baseline; gap: 8px; margin-top: 18px;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .arrow { color: var(--accent); }
+
+  /* Resource links */
+  .region { margin-top: 24px; }
+  .region-h {
+    margin: 0 0 4px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--measure);
+  }
+  .links { list-style: none; margin: 18px 0 0; padding: 0; }
+  .region .links { margin-top: 10px; }
+  .link-row { padding: 16px 0; border-top: 1px solid var(--hair); }
+  .link-row:first-child { border-top: none; }
+  .link-title {
+    font-size: 18px; font-weight: 500; color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+  }
+  .link-title:hover { color: var(--accent); }
+  .ext { font-size: 13px; color: var(--slate); border: none; }
+  .link-blurb { margin: 7px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--slate); max-width: 64ch; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 30px 18px 0; }
+    .cards { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>

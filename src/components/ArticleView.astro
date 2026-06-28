@@ -1,0 +1,190 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Shared renderer for an `articles` entry. Used by /learn/[slug] (default articles)
+// and by dedicated routes for legacy-ranking guides served at their own path
+// (e.g. /anatomy). The breadcrumb always points back to the Learn hub — an article
+// is a member of Learn regardless of which URL it lives at.
+interface Props {
+  entry: CollectionEntry<'articles'>;
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const fmtDate = (dt: Date) =>
+  dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = d.image ? new URL(d.image.src, Astro.site).href : undefined;
+
+const downloads = d.downloads ?? [];
+const FMT: Record<string, string> = { pdf: 'PDF', pptx: 'PowerPoint' };
+
+// Site default for openly-licensed teaching downloads: CC BY-NC-SA 4.0. NC keeps
+// commercial/publisher reuse routed through Scott while leaving individual classroom
+// use free (owner decision, 2026-06-28). `licenseNote` overrides only the wording.
+const LICENSE_URL = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
+const LICENSE_LABEL = 'CC BY-NC-SA 4.0';
+const licenseLine =
+  d.licenseNote ??
+  'Free for classroom and educational use — share and adapt with credit, non-commercially. For commercial, institutional, or publisher use, please get in touch.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  ...(d.updated ? { dateModified: d.updated.toISOString() } : {}),
+  author: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
+  publisher: { '@type': 'Person', name: 'Scott Hartman' },
+  mainEntityOfPage: pageUrl,
+  ...(d.summary ? { description: d.summary } : {}),
+  ...(imageUrl ? { image: imageUrl } : {}),
+  ...(downloads.length ? { license: LICENSE_URL } : {}),
+};
+
+const title = `${d.title} | Skeletal Drawing`;
+---
+
+<BaseLayout title={title} description={d.summary} ogImage={imageUrl} ogType="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <main class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/learn/">Learn</a>
+      <span aria-hidden="true">/</span>
+      <span class="here">{d.title}</span>
+    </nav>
+
+    <article class="post">
+      <header class="phead">
+        {d.kind && <p class="kind">{d.kind}</p>}
+        <h1 class="ptitle">{d.title}</h1>
+        {d.updated && <p class="date">Updated {fmtDate(d.updated)}</p>}
+      </header>
+
+      {d.image && (
+        <figure class="hero">
+          <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+        </figure>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      {downloads.length > 0 && (
+        <aside class="use" aria-labelledby="use-h">
+          <h2 id="use-h" class="use-h">Use this in your classroom</h2>
+          <p class="use-note">{licenseLine}</p>
+          <p class="use-cc">
+            <a href={LICENSE_URL} rel="license noopener" target="_blank">{LICENSE_LABEL} ↗</a>
+            <span class="use-credit">© Scott Hartman · skeletaldrawing.com</span>
+          </p>
+          <div class="use-actions">
+            {downloads.map((f) => (
+              <a class="dl" href={f.src} download>
+                <span class="dl-fmt">{FMT[f.format] ?? f.format.toUpperCase()}</span>
+                <span class="dl-label">{f.label ?? `Download ${FMT[f.format] ?? f.format}`}</span>
+                {f.note && <span class="dl-note">{f.note}</span>}
+              </a>
+            ))}
+          </div>
+        </aside>
+      )}
+
+      <p class="back"><a href="/learn/">← back to Learn</a></p>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .crumbs {
+    margin-top: 34px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+    color: var(--slate); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+  }
+  .crumbs a { color: var(--slate); text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .here { color: var(--ink); }
+
+  .post { max-width: 720px; margin: 0 auto; }
+
+  .phead { margin: 26px 0 0; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+  .kind {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .ptitle {
+    margin: 0; font-weight: 500; font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -.015em;
+  }
+  .date {
+    margin: 16px 0 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--measure);
+  }
+
+  .hero {
+    margin: 30px 0 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 5px;
+    padding: 22px; display: flex; justify-content: center;
+  }
+  .hero-img { max-width: 100%; height: auto; display: block; }
+
+  .prose { padding: 30px 0 6px; }
+  .prose :global(p) { font-size: 19px; line-height: 1.7; margin: 0 0 1.2em; }
+  .prose :global(p:first-of-type::first-letter) {
+    font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
+    font-weight: 500; color: var(--accent);
+  }
+  .prose :global(h2) { font-size: 26px; font-weight: 500; letter-spacing: -.01em; margin: 1.6em 0 .5em; }
+  .prose :global(h3) { font-size: 20px; font-weight: 600; margin: 1.4em 0 .4em; }
+  .prose :global(a) { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .prose :global(em) { font-style: italic; }
+  .prose :global(strong) { font-weight: 600; }
+  .prose :global(blockquote) {
+    margin: 1.4em 0; padding-left: 20px; border-left: 2px solid var(--accent-soft);
+    color: var(--slate); font-style: italic;
+  }
+  .prose :global(img) { max-width: 100%; height: auto; border: 1px solid var(--hair); border-radius: 4px; }
+
+  /* "Use this in your classroom" — the downloadable, openly-licensed handout/deck. */
+  .use {
+    margin: 34px 0 0; padding: 24px 26px; background: var(--plate);
+    border: 1px solid var(--hair-strong); border-radius: 6px;
+  }
+  .use-h {
+    margin: 0; font-style: italic; font-weight: 500; font-size: 22px; letter-spacing: -.01em;
+  }
+  .use-note { margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--slate); }
+  .use-cc {
+    margin: 10px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em;
+  }
+  .use-cc a { color: var(--accent); text-decoration: none; }
+  .use-cc a:hover { text-decoration: underline; }
+  .use-credit { color: var(--measure); }
+  .use-actions { margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  .dl {
+    display: inline-flex; flex-direction: column; gap: 2px; text-decoration: none;
+    padding: 12px 18px; border: 1px solid var(--hair-strong); border-radius: 5px; background: var(--paper);
+    transition: border-color .14s ease, transform .14s ease;
+  }
+  .dl:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .dl-fmt {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .dl-label { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .dl-note { font-family: var(--font-mono); font-size: 11px; color: var(--measure); }
+
+  .back { margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--hair); font-size: 14.5px; }
+  .back a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+  }
+</style>

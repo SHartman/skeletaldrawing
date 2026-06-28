@@ -125,9 +125,58 @@ const posts = defineCollection({
   }),
 });
 
+// A downloadable, classroom-ready version of an article (the branded handout/deck).
+// Static files live in public/downloads/ and travel with their baked-in credit + an
+// explicit use grant, so an educator can take them without asking (CLAUDE.md §3).
+const downloadRef = z.object({
+  format: z.enum(['pdf', 'pptx']),
+  src: z.string(),              // /downloads/<file>
+  label: optStr,                // button label override; else "Download PDF/PowerPoint"
+  note: optStr,                 // e.g. "12 MB · 18 slides"
+});
+
+// Evergreen explainers and guides — the first-party content of the Learn hub
+// (the anatomy guide is the flagship). Distinct from the dated blog: an article is
+// durable and "updated", not "published on". Lives at /learn/<slug> by default; a
+// `path` override keeps a legacy-ranking guide at its existing URL (the anatomy guide
+// stays at /anatomy/ — a position-4.29 asset we will NOT move behind a redirect).
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    kind: optStr,                 // eyebrow, e.g. "Anatomy guide", "Methodology"
+    summary: optStr,              // teaser shown on the Learn hub
+    image: nullableDefault(imageRef.optional()), // optional lead image (+ alt)
+    path: optStr,                 // canonical URL override, e.g. "/anatomy/"; else /learn/<slug>
+    updated: optDate,             // evergreen: last meaningfully revised
+    order: optNum,                // manual sort on the hub (lower = earlier); else by title
+    downloads: nullableDefault(z.array(downloadRef).default([])), // classroom handouts/decks
+    licenseNote: optStr,          // the use grant shown beside the downloads
+    featured: nullableDefault(z.boolean().default(false)), // flagship card on the hub
+    draft: nullableDefault(z.boolean().default(false)),
+  }),
+});
+
+// Curated, ANNOTATED outbound links — the "around the web" half of the Learn hub.
+// The blurb (the owner's expert take) is the whole point: a bare link list adds
+// nothing in 2026, but an annotated, need-organized one serves readers AND ranks.
+// Grouped by `category` on the hub; museums additionally group by `region`.
+const resources = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
+  schema: z.object({
+    title: z.string(),            // the place / person / site
+    url: z.string(),              // the outbound link
+    category: z.enum(['museum', 'artist', 'blog', 'reference']),
+    region: optStr,               // for museums — groups them, e.g. "North America"
+    blurb: z.string(),            // REQUIRED annotation — the owner's one-line take
+    order: optNum,                // manual sort within a group
+    featured: nullableDefault(z.boolean().default(false)),
+    draft: nullableDefault(z.boolean().default(false)),
+  }),
+});
+
 // Reserved for later phases (defined when their first entry/template lands):
-//   article     — evergreen explainers (own namespace /articles/)
 //   page        — standalone pages (About spokes, licensing, …)
 //   publication — phase 2 (folding in scotthartman.info)
 
-export const collections = { taxa, specimens, posts };
+export const collections = { taxa, specimens, posts, articles, resources };
