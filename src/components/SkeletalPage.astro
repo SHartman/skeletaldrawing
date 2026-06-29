@@ -330,7 +330,9 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
     margin: 0 0 20px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
   }
-  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+  /* auto-fit (not auto-fill) so the cards expand to fill the row and line up with the
+     record row above — no phantom empty track / ragged gap on wide screens. */
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
   .related-card { text-decoration: none; color: var(--ink); }
   .related-thumb {
     aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
@@ -375,7 +377,7 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
     .cell { padding: 14px 16px; }
     /* Two-up related cards (matches the gallery grid) — reads as a clearly separate
        footer of suggestions and cuts the scrolling to see them all. */
-    .related-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .related-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
     .related-name { font-size: 16px; }
   }
 </style>
