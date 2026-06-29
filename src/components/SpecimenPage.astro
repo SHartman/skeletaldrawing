@@ -395,5 +395,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
     .card-header, .plate { padding-left: 18px; padding-right: 18px; }
     .rig-plate { padding: 18px; }
     .cell { padding: 14px 16px; }
+    /* Two-up related cards (matches the gallery grid). */
+    .related-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
   }
 </style>
