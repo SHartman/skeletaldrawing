@@ -109,6 +109,46 @@ function largestComponent(mask, W, H) {
   return out;
 }
 
+// ----- connected components (4-neighbour) → list with bbox + size, plus the label map -----
+function labelComponents(mask, W, H) {
+  const label = new Int32Array(W * H);
+  const comps = [];
+  const stack = [];
+  let cur = 0;
+  for (let s = 0; s < W * H; s++) {
+    if (!mask[s] || label[s]) continue;
+    cur++;
+    let size = 0,
+      minX = W,
+      minY = H,
+      maxX = 0,
+      maxY = 0;
+    stack.push(s);
+    label[s] = cur;
+    while (stack.length) {
+      const p = stack.pop();
+      size++;
+      const x = p % W,
+        y = (p / W) | 0;
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+      const nb = [];
+      if (x > 0) nb.push(p - 1);
+      if (x < W - 1) nb.push(p + 1);
+      if (y > 0) nb.push(p - W);
+      if (y < H - 1) nb.push(p + W);
+      for (const q of nb) if (mask[q] && !label[q]) {
+        label[q] = cur;
+        stack.push(q);
+      }
+    }
+    comps.push({ id: cur, size, minX, minY, maxX, maxY, w: maxX - minX, h: maxY - minY });
+  }
+  return { label, comps };
+}
+
 // ----- Moore-neighbour boundary tracing (clockwise) -----
 function traceBoundary(mask, W, H) {
   const get = (x, y) => (x >= 0 && y >= 0 && x < W && y < H && mask[y * W + x] ? 1 : 0);
@@ -277,6 +317,56 @@ async function traceImage(file, { alpha = false } = {}) {
   return { w, h, path, points: contour.length };
 }
 
+// Trace the human scale reference from the owner's transparent adult+child PNG. The file
+// also carries a 1 m bar and a "1m" label as separate blobs; we keep only the components
+// taller than 40% of the tallest (the two people), drop the bar/text, and emit one path of
+// two subpaths in a shared coordinate space (relative size + stance preserved as drawn).
+// The taller figure (the ~1.8 m adult) sets the overall height; the child scales with it.
+async function traceHuman(file) {
+  const { data, info } = await sharp(file)
+    .ensureAlpha()
+    .resize({ width: TRACE_WIDTH })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const W = info.width,
+    H = info.height;
+  const mask = new Uint8Array(W * H);
+  for (let i = 0; i < W * H; i++) mask[i] = data[i * info.channels + 3] > 16 ? 1 : 0;
+
+  const { label, comps } = labelComponents(mask, W, H);
+  const maxH = Math.max(...comps.map((c) => c.h));
+  const figures = comps.filter((c) => c.h >= 0.4 * maxH); // people only — drops the bar + "1m"
+
+  let minX = Infinity,
+    minY = Infinity,
+    maxX = -Infinity,
+    maxY = -Infinity;
+  for (const c of figures) {
+    minX = Math.min(minX, c.minX);
+    minY = Math.min(minY, c.minY);
+    maxX = Math.max(maxX, c.maxX);
+    maxY = Math.max(maxY, c.maxY);
+  }
+  const subs = [];
+  for (const c of figures.sort((a, b) => a.minX - b.minX)) {
+    const m = new Uint8Array(W * H);
+    for (let i = 0; i < W * H; i++) if (label[i] === c.id) m[i] = 1;
+    const contour = rdp(traceBoundary(m, W, H), RDP_EPS);
+    subs.push(
+      contour
+        .map(([x, y], i) => `${i ? 'L' : 'M'}${+(x - minX).toFixed(1)} ${+(y - minY).toFixed(1)}`)
+        .join('') + 'Z',
+    );
+  }
+  return { w: +(maxX - minX).toFixed(1), h: +(maxY - minY).toFixed(1), path: subs.join(''), figures: subs.length };
+}
+
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const binomial = (slug) => {
+  const [g, s] = slug.split('-');
+  return s ? `${cap(g)} ${s}` : cap(g);
+};
+
 // Curated genus-level comparisons, drawn from owner-supplied transparent silhouettes in
 // silhouettes/. Lengths come from the content entries (single source of truth); labels are
 // explicit for legend clarity. Output is keyed by the genus slug (what the genus hub passes).
@@ -333,6 +423,54 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
     console.log(`${key}/${g.label}: ${lengthM} m  bbox ${w}x${h}  ${points} pts`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
+}
+
+// ----- pass 3: taxon-level silhouettes for the compare-tool catalog -----
+// Every full-body owner silhouette whose taxon already exists gets a taxon-keyed entry, so the
+// /compare/ catalog grows on its own. Partial (known-material/elements) silhouettes are skipped —
+// they don't span the full body, so length-scaling them would be wrong. Genus-grouped taxa
+// (pass 2) and overlay specimens (pass 1) are left to those passes.
+const SIL_DIR = 'silhouettes';
+const NON_TAXON = new Set(['psittacosaurus-glyph.png', 'Humans.png']);
+const isPartial = (f) => /known-(material|elements|remains)/i.test(f);
+const isFull = (f) => !isPartial(f) && /silhouette|skeletal/i.test(f);
+const taxonSlugOf = (f) => {
+  const t = f.replace(/\.png$/i, '').toLowerCase().split('-');
+  return `${t[0]}-${t[1]}`;
+};
+
+const fullByTaxon = {};
+for (const f of readdirSync(SIL_DIR))
+  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && isFull(f)) (fullByTaxon[taxonSlugOf(f)] ??= []).push(f);
+
+const catalogAdds = [];
+for (const [slug, fs] of Object.entries(fullByTaxon).sort()) {
+  if (GENUS_GROUPS[slug.split('-')[0]]) continue; // curated genus group owns these
+  if (out[slug]) continue; // already produced by the overlay-specimen pass
+  const taxPath = `src/content/taxa/${slug}.md`;
+  if (!existsSync(taxPath)) continue; // taxon page not built yet — wait for its .md
+  const lm = readFileSync(taxPath, 'utf8').match(/\blengthM:\s*([\d.]+)/);
+  if (!lm) continue; // no numeric length → can't scale it
+  const lengthM = parseFloat(lm[1]);
+  // pick the cleanest full-body file: explicit -silhouette, else body-only (no armor), else a -skeletal
+  const pick =
+    fs.find((f) => /-silhouette\.png$/i.test(f)) ??
+    fs.find((f) => /without-armor/i.test(f)) ??
+    fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f)) ??
+    fs[0];
+  const { w, h, path, points } = await traceImage(join(SIL_DIR, pick), { alpha: true });
+  out[slug] = [{ slug, label: binomial(slug), lengthM, w, h, path }];
+  catalogAdds.push(slug);
+  console.log(`taxon ${slug}: ${lengthM} m  bbox ${w}x${h} (ar ${(w / h).toFixed(2)})  ${points} pts  <- ${pick}`);
+}
+console.log(`\npass 3 added ${catalogAdds.length} taxon silhouettes to the catalog`);
+
+// ----- human scale reference (owner's adult + child silhouette) -----
+const humanFile = join(SIL_DIR, 'Humans.png');
+if (existsSync(humanFile)) {
+  const human = await traceHuman(humanFile);
+  writeFileSync('src/data/human.json', JSON.stringify(human, null, 2));
+  console.log(`human: bbox ${human.w}x${human.h} (ar ${(human.w / human.h).toFixed(2)}), ${human.figures} figures`);
 }
 
 writeFileSync('src/data/silhouettes.json', JSON.stringify(out, null, 2));

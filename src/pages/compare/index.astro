@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import silData from '../../data/silhouettes.json';
+import human from '../../data/human.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Interactive size-comparison tool (prototype). Pick 2–5 animals; a client-side renderer draws the
@@ -93,17 +94,21 @@ const description =
 
 <script type="application/json" id="catalog" is:inline set:html={JSON.stringify(catalog)}></script>
 <script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel })}></script>
+<script type="application/json" id="human" is:inline set:html={JSON.stringify(human)}></script>
 
 <script is:inline>
   (() => {
     const catalog = JSON.parse(document.getElementById('catalog').textContent);
     const cfg = JSON.parse(document.getElementById('cfg').textContent);
+    const human = JSON.parse(document.getElementById('human').textContent);
     const byId = Object.fromEntries(catalog.map((a) => [a.id, a]));
     const PXM = 100,
       MAX = 5;
     const COLORS = ['#B07A2E', '#1D9E75', '#D85A30', '#378ADD', '#7F77DD', '#5C636B'];
-    const HUMAN =
-      'M12 40 L36 40 L38 108 L33 108 L31 52 L32 100 L35 150 L33 180 L27 180 L24 120 L21 180 L15 180 L17 150 L16 100 L17 52 L15 108 L10 108 Z';
+    // Human scale reference: the owner's adult + child silhouette, adult scaled to 1.8 m.
+    const humanH = 180,
+      humanScale = humanH / human.h,
+      humanW = +(human.w * humanScale).toFixed(1);
 
     const stage = document.getElementById('stage');
     const legend = document.getElementById('legend');
@@ -154,8 +159,6 @@ const description =
       const guideX = padL + maxSW,
         groundY = padT + maxSH;
       const humanGap = 40,
-        humanW = 48,
-        humanH = 180,
         humanX = guideX + humanGap;
       const meters = Math.floor(maxLen);
       const rulerY = groundY + 20;
@@ -179,7 +182,7 @@ const description =
       });
       s += `<line x1="${guideX}" y1="${padT}" x2="${guideX}" y2="${groundY}" class="c-guide"/>`;
       if (showHuman) {
-        s += `<g transform="translate(${humanX} ${groundY - humanH})"><circle cx="24" cy="17" r="13" class="c-human"/><path d="${HUMAN}" class="c-human"/></g>`;
+        s += `<g transform="translate(${humanX} ${groundY - humanH}) scale(${humanScale.toFixed(4)})"><path d="${human.path}" class="c-human"/></g>`;
         s += `<text x="${humanX + humanW / 2}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">1.8 m</text>`;
       }
       s += `</svg>`;

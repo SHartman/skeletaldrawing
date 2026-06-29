@@ -1,5 +1,6 @@
 ---
 import silData from '../data/silhouettes.json';
+import human from '../data/human.json';
 
 // Tail-tip-aligned scale comparison (CLAUDE.md §5). Silhouettes are traced offline
 // (scripts/silhouette.mjs) to vector paths in src/data/silhouettes.json; here they're
@@ -40,13 +41,13 @@ const maxSH = hasData ? Math.max(...scaled.map((d) => d.sh)) : 0;
 const guideX = padL + maxSW;
 const groundY = padT + maxSH;
 
-// 1.8 m human, authored at 180 units tall (feet at y=180).
+// Human scale reference — the owner's traced adult + child silhouette (src/data/human.json).
+// The taller figure is the ~1.8 m adult; scale the whole group so the adult reads 1.8 m.
 const humanH = 1.8 * PXM;
+const humanScale = humanH / human.h;
+const humanW = +(human.w * humanScale).toFixed(1);
 const humanGap = 40;
 const humanX = guideX + humanGap;
-const humanW = 48;
-const HUMAN =
-  'M12 40 L36 40 L38 108 L33 108 L31 52 L32 100 L35 150 L33 180 L27 180 L24 120 L21 180 L15 180 L17 150 L16 100 L17 52 L15 108 L10 108 Z';
 
 // meter ruler along the ground, 0 at the tail (right), increasing toward the snout.
 const meters = Math.floor(maxLen);
@@ -70,7 +71,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
         <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common meter</span></h2>
       )}
       <figure class="fig">
-        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest, with a 1.8-meter human for scale`}>
+        <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest, with a 1.8-meter adult and a child for scale`}>
           {/* ground line */}
           <line x1={padL} y1={groundY} x2={humanX + humanW} y2={groundY} class="ground" />
 
@@ -102,10 +103,9 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
           {/* tail-tip guide */}
           <line x1={guideX} y1={padT} x2={guideX} y2={groundY} class="guide" />
 
-          {/* 1.8 m human */}
-          <g transform={`translate(${humanX} ${groundY - humanH})`}>
-            <circle cx="24" cy="17" r="13" class="human" />
-            <path d={HUMAN} class="human" />
+          {/* human scale reference — adult + child, adult at 1.8 m */}
+          <g transform={`translate(${humanX} ${groundY - humanH}) scale(${humanScale.toFixed(4)})`}>
+            <path d={human.path} class="human" />
           </g>
           <text x={humanX + humanW / 2} y={groundY + 14} class="human-label" text-anchor="middle">1.8 m</text>
         </svg>
