@@ -432,19 +432,33 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
 // (pass 2) and overlay specimens (pass 1) are left to those passes.
 const SIL_DIR = 'silhouettes';
 const NON_TAXON = new Set(['psittacosaurus-glyph.png', 'Humans.png']);
-const isPartial = (f) => /known-(material|elements|remains)/i.test(f);
-const isFull = (f) => !isPartial(f) && /silhouette|skeletal/i.test(f);
+// Every one of these is a full-body body-envelope silhouette — including the "known-material/
+// elements" ones (the owner sometimes traces the silhouette off the known-material drawing; the
+// silhouette is still the whole animal regardless of how complete the real fossil is). So a known-*
+// file is only DEMOTED, never dropped: it's used as the fallback when a taxon has no plain -skeletal
+// silhouette (e.g. Puertasaurus), and skipped only as a duplicate when a plain skeletal exists.
+const isKnown = (f) => /known-(material|elements|remains)/i.test(f);
+const isSilFile = (f) => /silhouette|skeletal|known-(material|elements|remains)/i.test(f);
 const taxonSlugOf = (f) => {
   const t = f.replace(/\.png$/i, '').toLowerCase().split('-');
   return `${t[0]}-${t[1]}`;
 };
 
-const fullByTaxon = {};
+// Source files that aren't clean body-only silhouettes yet — they have the scale humans (and a
+// ground line) baked in, so tracing them would embed little figures under the animal. Drop until a
+// body-only version is supplied; then remove from this set and it auto-ingests.
+const SKIP_SLUGS = new Set(['puertasaurus-reuli']);
+
+const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
-  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && isFull(f)) (fullByTaxon[taxonSlugOf(f)] ??= []).push(f);
+  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && isSilFile(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
 
 const catalogAdds = [];
-for (const [slug, fs] of Object.entries(fullByTaxon).sort()) {
+for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
+  if (SKIP_SLUGS.has(slug)) {
+    console.log(`(skip ${slug}: silhouette has embedded scale figures — needs a body-only version)`);
+    continue;
+  }
   if (GENUS_GROUPS[slug.split('-')[0]]) continue; // curated genus group owns these
   if (out[slug]) continue; // already produced by the overlay-specimen pass
   const taxPath = `src/content/taxa/${slug}.md`;
@@ -452,12 +466,13 @@ for (const [slug, fs] of Object.entries(fullByTaxon).sort()) {
   const lm = readFileSync(taxPath, 'utf8').match(/\blengthM:\s*([\d.]+)/);
   if (!lm) continue; // no numeric length → can't scale it
   const lengthM = parseFloat(lm[1]);
-  // pick the cleanest full-body file: explicit -silhouette, else body-only (no armor), else a -skeletal
+  // Prefer a plain skeletal silhouette; fall back to a known-* one only when that's all there is.
   const pick =
-    fs.find((f) => /-silhouette\.png$/i.test(f)) ??
+    fs.find((f) => /-silhouette\.png$/i.test(f) && !isKnown(f)) ??
     fs.find((f) => /without-armor/i.test(f)) ??
-    fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f)) ??
-    fs[0];
+    fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
+    fs.find((f) => !isKnown(f)) ??
+    fs[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
   const { w, h, path, points } = await traceImage(join(SIL_DIR, pick), { alpha: true });
   out[slug] = [{ slug, label: binomial(slug), lengthM, w, h, path }];
   catalogAdds.push(slug);
