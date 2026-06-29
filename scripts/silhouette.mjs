@@ -438,20 +438,20 @@ const NON_TAXON = new Set(['psittacosaurus-glyph.png', 'Humans.png']);
 // file is only DEMOTED, never dropped: it's used as the fallback when a taxon has no plain -skeletal
 // silhouette (e.g. Puertasaurus), and skipped only as a duplicate when a plain skeletal exists.
 const isKnown = (f) => /known-(material|elements|remains)/i.test(f);
-const isSilFile = (f) => /silhouette|skeletal|known-(material|elements|remains)/i.test(f);
 const taxonSlugOf = (f) => {
   const t = f.replace(/\.png$/i, '').toLowerCase().split('-');
   return `${t[0]}-${t[1]}`;
 };
 
-// Source files that aren't clean body-only silhouettes yet — they have the scale humans (and a
-// ground line) baked in, so tracing them would embed little figures under the animal. Drop until a
-// body-only version is supplied; then remove from this set and it auto-ingests.
-const SKIP_SLUGS = new Set(['puertasaurus-reuli']);
+// Source files that aren't clean body-only silhouettes yet (scale humans / ground line baked in).
+// Drop until a body-only version is supplied; then remove from this set and it auto-ingests.
+const SKIP_SLUGS = new Set();
 
+// The silhouettes/ folder is dedicated to silhouette sources, so every PNG here (minus the brand
+// glyph and the human reference, in NON_TAXON) is a candidate — regardless of how it's named.
 const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
-  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && isSilFile(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
+  if (/\.png$/i.test(f) && !NON_TAXON.has(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
 
 const catalogAdds = [];
 for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
