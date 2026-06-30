@@ -2,7 +2,7 @@
 taxon: "Opisthocoelicaudia skarzynskii"
 author: "Borsuk-Bialynicka, 1977"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
+clade: ["Titanosauria"]
 lengthM: 16
 view: "Left lateral"
 scaleBar: "1 meter"

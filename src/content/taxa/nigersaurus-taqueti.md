@@ -2,7 +2,7 @@
 taxon: "Nigersaurus taqueti"
 author: "Sereno et al., 1999"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Rebbachisauridae"]
+clade: ["Rebbachisauridae"]
 lengthM: 13
 view: "Left lateral"
 scaleBar: "1 meter"

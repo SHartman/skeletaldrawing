@@ -4,6 +4,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
 import { specimenHero, specimenIsKnownMaterialOnly, formatMeters, formatMass, formatAuthor } from '../lib/schema';
+import { expandClades } from '../lib/clades';
 import ScaleComparison from './ScaleComparison.astro';
 
 // Taxon hub for specimen-rich taxa (CLAUDE.md §5): header + compact record →
@@ -16,6 +17,7 @@ const GALLERY_LABEL: Record<string, string> = {
 
 const { taxon, specimens } = Astro.props;
 const t = taxon.data;
+const tClades = expandClades(t.clade);
 const gallery: string = t.gallery;
 const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
 const { Content } = await render(taxon);
@@ -70,7 +72,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
 
     <header class="hub-head">
       <div class="head-main">
-        <p class="eyebrow">{[t.clade[0], t.family].filter(Boolean).join(' · ')}</p>
+        <p class="eyebrow">{[tClades[0], t.family ?? tClades.at(-1)].filter(Boolean).join(' · ')}</p>
         <h1 class="display"><em>{t.taxon}</em> <span class="auth">{formatAuthor(t.author, t.recombination)}</span></h1>
         <div class="intro prose"><Content /></div>
       </div>

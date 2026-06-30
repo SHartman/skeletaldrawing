@@ -2,7 +2,7 @@
 taxon: "Apatosaurus louisae"
 author: "Holland, 1916"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Apatosaurinae"]
+clade: ["Apatosaurinae"]
 specimenId: "CM 3018"
 lengthM: 23
 view: "Left lateral"

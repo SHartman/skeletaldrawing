@@ -2,7 +2,7 @@
 taxon: "Lufengosaurus huenei"
 author: "Young, 1941"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Massospondylidae"]
+clade: ["Massospondylidae"]
 specimenId: "IVPP V15"
 lengthM: 6
 view: "Left lateral"

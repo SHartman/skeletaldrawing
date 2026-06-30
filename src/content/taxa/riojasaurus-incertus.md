@@ -2,7 +2,7 @@
 taxon: "Riojasaurus incertus"
 author: "Bonaparte, 1969"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Riojasauridae"]
+clade: ["Riojasauridae"]
 lengthM: 7.5
 view: "Left lateral"
 scaleBar: "50 centimeters"

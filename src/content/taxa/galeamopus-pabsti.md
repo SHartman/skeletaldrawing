@@ -2,7 +2,7 @@
 taxon: "Galeamopus pabsti"
 author: "Tschopp & Mateus, 2017"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplodocinae"]
+clade: ["Diplodocinae"]
 specimenId: "SMA 0011"
 lengthM: 17
 view: "Left lateral"

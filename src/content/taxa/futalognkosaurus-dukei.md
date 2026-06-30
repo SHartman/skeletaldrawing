@@ -2,7 +2,7 @@
 taxon: "Futalognkosaurus dukei"
 author: "Calvo et al., 2007"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
+clade: ["Lognkosauria"]
 specimenId: "MUCPv-323"
 lengthM: 22
 view: "Left lateral"

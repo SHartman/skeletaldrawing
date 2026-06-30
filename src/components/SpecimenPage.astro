@@ -12,6 +12,7 @@ import {
   formatMass,
   formatAuthor,
 } from '../lib/schema';
+import { expandClades } from '../lib/clades';
 
 // One specimen, rendered as an instance of the skeletal-page template at a nested
 // URL. `taxon` is the parent taxa entry (supplies binomial, author, clade, hub link).
@@ -44,8 +45,9 @@ const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${s.scaleBar}`
 const lt = formatMeters(s.lengthM);
 const femur = formatMeters(s.femurM);
 const mass = formatMass(s.massKg);
-const family = t.family ?? t.clade.at(-1);
-const eyebrow = [t.clade[0], family, s.catalog].filter(Boolean).join(' · ');
+const tClades = expandClades(t.clade);
+const family = t.family ?? tClades.at(-1);
+const eyebrow = [tClades[0], family, s.catalog].filter(Boolean).join(' · ');
 const idSub = s.nickname ? `“${s.nickname}” · ${s.catalog}` : s.catalog;
 
 const restFields: { k: string; v: string; href?: string }[] = [

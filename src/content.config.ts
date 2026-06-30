@@ -44,8 +44,8 @@ const taxa = defineCollection({
       author: z.string(),                 // bare author citation, e.g. "Osborn, 1905" (no parens)
       recombination: nullableDefault(z.boolean().default(false)), // ICZN: parenthesizes the author
       gallery: z.string(),                // section bucket / URL parent, e.g. "sauropods-and-kin"
-      clade: z.array(z.string()),         // ORDERED cladistic path, broad → specific
-      family: optStr,                     // card "family" line; defaults to the last clade node
+      clade: z.array(z.string()),         // most-specific clade(s); full lineage derived in lib/clades
+      family: optStr,                     // card "family" line; defaults to the most-specific clade
       specimenId: optStr,                 // catalog number, verbatim, e.g. "GPIT/RE/7288"
       specimenName: optStr,               // nickname, e.g. "The Nation's T. rex"
       alsoKnownAs: nullableDefault(z.array(z.string()).default([])),

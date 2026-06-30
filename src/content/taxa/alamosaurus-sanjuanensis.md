@@ -2,10 +2,7 @@
 taxon: Alamosaurus sanjuanensis
 author: Gilmore, 1922
 gallery: sauropods-and-kin
-clade:
-  - Sauropodomorpha
-  - Sauropoda
-  - Titanosauria
+clade: ["Titanosauria"]
 family: ''
 specimenId: ''
 specimenName: ''

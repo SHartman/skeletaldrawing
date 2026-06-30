@@ -2,7 +2,7 @@
 taxon: "Mbiresaurus raathi"
 author: "Griffin et al., 2022"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha (basal)"]
+clade: ["Sauropodomorpha"]
 lengthM: 0.8
 view: "Left lateral"
 scaleBar: "20 centimeters"

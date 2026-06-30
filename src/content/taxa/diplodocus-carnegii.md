@@ -3,7 +3,7 @@ added: "2026-06-25T12:00:00.000Z"
 taxon: "Diplodocus carnegii"
 author: "Hatcher, 1901"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplodocinae"]
+clade: ["Diplodocinae"]
 specimenId: "CM 84"
 lengthM: 26
 view: "Left lateral"

@@ -12,6 +12,7 @@ import {
   heroRef,
   formatAuthor,
 } from '../lib/schema';
+import { expandClades } from '../lib/clades';
 
 // Rendered by [gallery]/[taxon].astro for a single taxon. (Genus hubs go to GenusHub.astro.)
 const { entry } = Astro.props;
@@ -37,10 +38,11 @@ const imageUrl = new URL(hero.src, Astro.site).href;
 const rigorousUrl = showRigorousSection ? new URL(d.rigorous!.src, Astro.site).href : undefined;
 
 // Derived text (shares helpers with the JSON-LD so the two can't drift).
-const family = d.family ?? d.clade.at(-1);
+const cladePath = expandClades(d.clade); // full lineage, derived from the authored terminal clade
+const family = d.family ?? cladePath.at(-1);
 const lt = formatLength(d);
 const mass = formatMass(d.massKg);
-const eyebrow = [d.clade[0], family, d.specimenId].filter(Boolean).join(' · ');
+const eyebrow = [cladePath[0], family, d.specimenId].filter(Boolean).join(' · ');
 // Ensure the credit always carries the © (the CMS can strip it on save). Shown once,
 // in the "Drawing" record cell below — the caption stays scale-only so the visible
 // credit isn't tripled against the baked-in image mark + JSON-LD (CLAUDE.md §3).
@@ -49,7 +51,7 @@ const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar}`
 
 // Title-block cells (the Taxon cell is rendered separately for its mixed italic).
 const restFields = [
-  { k: 'Clade', v: d.clade.join(' → ') },
+  { k: 'Clade', v: cladePath.join(' → ') },
   { k: 'Specimen', v: d.specimenId ? `${d.specimenId}${d.specimenName ? ` — “${d.specimenName}”` : ''}` : '' },
   { k: 'Also known as', v: d.alsoKnownAs.join(' · ') },
   { k: kmOnly ? 'Estimated length' : 'Reconstructed length', v: lt },
@@ -65,7 +67,7 @@ const others = (await getCollection('taxa')).filter(
   (t) => t.id !== entry.id && t.data.gallery === d.gallery,
 );
 const shared = (t: (typeof others)[number]) =>
-  t.data.clade.filter((c) => d.clade.includes(c)).length;
+  expandClades(t.data.clade).filter((c) => cladePath.includes(c)).length;
 others.sort((a, b) => shared(b) - shared(a) || a.data.taxon.localeCompare(b.data.taxon));
 const related = await Promise.all(
   others.slice(0, 4).map(async (t) => ({

@@ -3,7 +3,7 @@ added: "2026-05-22T12:00:00.000Z"
 taxon: "Supersaurus vivianae"
 author: "Jensen, 1985"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae"]
+clade: ["Diplodocidae"]
 lengthM: 32
 view: "Left lateral"
 scaleBar: "1 meter"

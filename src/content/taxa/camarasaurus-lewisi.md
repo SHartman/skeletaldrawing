@@ -3,7 +3,7 @@ taxon: "Camarasaurus lewisi"
 author: "Jensen, 1988"
 recombination: true
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Macronaria", "Camarasauridae"]
+clade: ["Camarasauridae"]
 specimenId: "BYU 9047"
 lengthM: 14
 view: "Left lateral"

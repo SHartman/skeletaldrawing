@@ -2,7 +2,7 @@
 taxon: "Cedarosaurus weiskopfae"
 author: "Tidwell, Carpenter & Brooks, 1999"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Macronaria", "Titanosauriformes", "Brachiosauridae"]
+clade: ["Brachiosauridae"]
 lengthM: 20
 view: "Left lateral"
 scaleBar: "1 meter"

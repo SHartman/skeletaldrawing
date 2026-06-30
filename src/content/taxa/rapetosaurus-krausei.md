@@ -2,7 +2,7 @@
 taxon: "Rapetosaurus krausei"
 author: "Curry Rogers & Forster, 2001"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria"]
+clade: ["Titanosauria"]
 specimenId: "FMNH PR 2209"
 lengthM: 4
 lifeStage: "Juvenile (adult proportions differ)"

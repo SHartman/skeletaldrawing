@@ -2,7 +2,7 @@
 taxon: "Barosaurus lentus"
 author: "Marsh, 1890"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Diplodocinae"]
+clade: ["Diplodocinae"]
 specimenId: "AMNH 6341"
 lengthM: 25
 view: "Left lateral"

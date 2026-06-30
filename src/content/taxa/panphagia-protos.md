@@ -2,7 +2,7 @@
 taxon: "Panphagia protos"
 author: "Martinez & Alcober, 2009"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha (basal)"]
+clade: ["Sauropodomorpha"]
 specimenId: "PVSJ 874"
 lengthM: 1
 view: "Left lateral"

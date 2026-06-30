@@ -2,7 +2,7 @@
 taxon: "Puertasaurus reuli"
 author: "Novas et al., 2005"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
+clade: ["Lognkosauria"]
 specimenId: "MPM 10002"
 lengthM: 27
 view: "Left lateral"

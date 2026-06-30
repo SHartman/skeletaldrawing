@@ -2,7 +2,7 @@
 taxon: "Brontosaurus excelsus"
 author: "Marsh, 1879"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Diplodocidae", "Apatosaurinae"]
+clade: ["Apatosaurinae"]
 specimenId: "CM 563"
 lengthM: 20
 view: "Left lateral"

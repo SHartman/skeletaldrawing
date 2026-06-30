@@ -2,7 +2,7 @@
 taxon: "Shunosaurus lii"
 author: "Dong, Zhou & Zhang, 1983"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Eusauropoda"]
+clade: ["Eusauropoda"]
 specimenId: "T5401"
 lengthM: 10
 view: "Left lateral"

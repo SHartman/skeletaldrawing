@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../../lib/images';
 import { heroRef, formatLength, formatMass } from '../../lib/schema';
+import { expandClades } from '../../lib/clades';
 
 // A gallery (section) page per distinct `gallery` bucket → /<gallery>/
 export async function getStaticPaths() {
@@ -44,14 +45,16 @@ const cards = await Promise.all(
   }),
 );
 
-// Clade filter chips: the major shared clades in this gallery (count ≥ 3),
-// minus the two universal roots — a derived facet over the clade paths.
+// Clade filter chips: the major shared clades in this gallery (count ≥ 3), derived from each
+// taxon's FULL lineage (lib/clades expands the authored terminal clade up its ancestry) — so a
+// broad chip like Macronaria catches everything nested within it (titanosaurs included). The
+// gallery's universal root (matches every taxon) is dropped; it isn't a useful filter.
 const counts: Record<string, number> = {};
-for (const t of all) for (const c of t.data.clade) counts[c] = (counts[c] ?? 0) + 1;
+for (const t of all) for (const c of expandClades(t.data.clade)) counts[c] = (counts[c] ?? 0) + 1;
 const chips = Object.entries(counts)
-  .filter(([c, n]) => n >= 3 && !['Sauropodomorpha', 'Sauropoda'].includes(c))
+  .filter(([, n]) => n >= 3 && n < all.length)
   .sort((a, b) => b[1] - a[1])
-  .slice(0, 6)
+  .slice(0, 8)
   .map(([c]) => c);
 
 const title = `${meta.label} — skeletal reconstructions | Skeletal Drawing`;
@@ -91,7 +94,7 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
           data-name={c.data.taxon}
           data-length={c.data.lengthM ?? 0}
           data-mass={c.data.massKg ?? 0}
-          data-clade={c.data.clade.join('|')}
+          data-clade={expandClades(c.data.clade).join('|')}
         >
           <a href={`/${gallery}/${c.id}/`}>
             <div class="thumb">

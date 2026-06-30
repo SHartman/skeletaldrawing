@@ -2,7 +2,7 @@
 taxon: "Plateosaurus trossingensis"
 author: "Fraas, 1913"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Plateosauridae"]
+clade: ["Plateosauridae"]
 specimenId: "GPIT/RE/7288"
 lengthM: 6
 view: "Left lateral"

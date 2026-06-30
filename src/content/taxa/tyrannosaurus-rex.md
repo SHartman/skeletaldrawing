@@ -2,7 +2,7 @@
 taxon: "Tyrannosaurus rex"
 author: "Osborn, 1905"
 gallery: "theropods"
-clade: ["Theropoda", "Coelurosauria", "Tyrannosauroidea", "Tyrannosauridae"]
+clade: ["Tyrannosauridae"]
 family: "Tyrannosauridae"
 lengthM: 12.7
 lengthLabel: "11.6–12.7 m"

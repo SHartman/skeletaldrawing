@@ -2,7 +2,7 @@
 taxon: "Mamenchisaurus youngi"
 author: "Pi, Ouyang & Ye, 1996"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Mamenchisauridae"]
+clade: ["Mamenchisauridae"]
 specimenId: "ZDM 0083"
 lengthM: 15
 view: "Left lateral"

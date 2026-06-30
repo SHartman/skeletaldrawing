@@ -2,7 +2,7 @@
 taxon: "Melanorosaurus readi"
 author: "Haughton, 1924"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Melanorosauridae"]
+clade: ["Melanorosauridae"]
 lengthM: 8
 view: "Left lateral"
 scaleBar: "1 meter"

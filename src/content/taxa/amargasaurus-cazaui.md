@@ -2,7 +2,7 @@
 taxon: "Amargasaurus cazaui"
 author: "Salgado & Bonaparte, 1991"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Diplodocoidea", "Dicraeosauridae"]
+clade: ["Dicraeosauridae"]
 specimenId: "MACN-N 15"
 lengthM: 13.5
 view: "Left lateral"

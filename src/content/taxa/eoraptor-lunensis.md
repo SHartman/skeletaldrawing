@@ -2,7 +2,7 @@
 taxon: "Eoraptor lunensis"
 author: "Sereno et al., 1993"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha (basal)"]
+clade: ["Sauropodomorpha"]
 specimenId: "PVSJ 512"
 lengthM: 1.3
 view: "Left lateral"

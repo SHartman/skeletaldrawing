@@ -3,7 +3,7 @@ added: "2026-06-10T12:00:00.000Z"
 taxon: "Patagotitan mayorum"
 author: "Carballido et al., 2017"
 gallery: "sauropods-and-kin"
-clade: ["Sauropodomorpha", "Sauropoda", "Titanosauria", "Lognkosauria"]
+clade: ["Lognkosauria"]
 lengthM: 27
 view: "Left lateral"
 scaleBar: "1 meter"
