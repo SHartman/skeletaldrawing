@@ -64,6 +64,10 @@ const taxa = defineCollection({
       rigorous: nullableDefault(imageRef.optional()),       // known-material diagram
       additionalFigures: nullableDefault(z.array(figureRef).default([])), // bonus figures
       featured: nullableDefault(z.boolean().default(false)),
+      // Withhold an outdated/superseded skeletal without losing the page: render an "under
+      // revision" notice + the supplied placeholder (a black silhouette), keep all live metadata
+      // and the URL/301s/links, and don't assert the placeholder as the reconstruction in SEO.
+      underRevision: nullableDefault(z.boolean().default(false)),
       added: optDate, // when this was added — feeds the home page's rotating "newest" plate
     })
     // A taxon needs at least one image. Most have a reconstruction; a few are

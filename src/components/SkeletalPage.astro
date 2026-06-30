@@ -20,6 +20,7 @@ const d = entry.data;
 const { Content } = await render(entry);
 
 const kmOnly = isKnownMaterialOnly(d);
+const underRevision = !!d.underRevision; // outdated skeletal withheld behind a placeholder + notice
 const hero = heroRef(d); // reconstruction if present, else the known-material image
 const heroImg = await loadSkeletal(hero.src);
 
@@ -47,7 +48,9 @@ const eyebrow = [cladePath[0], family, d.specimenId].filter(Boolean).join(' · '
 // in the "Drawing" record cell below — the caption stays scale-only so the visible
 // credit isn't tripled against the baked-in image mark + JSON-LD (CLAUDE.md §3).
 const drawingCredit = d.drawingCredit.startsWith('©') ? d.drawingCredit : `© ${d.drawingCredit}`;
-const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar}`;
+const caption = underRevision
+  ? 'Placeholder — skeletal under revision, not the current reconstruction'
+  : `${kmOnly ? 'Known material · ' : ''}Scale bar = ${d.scaleBar}`;
 
 // Title-block cells (the Taxon cell is rendered separately for its mixed italic).
 const restFields = [
@@ -64,7 +67,7 @@ const restFields = [
 
 // Related: same-gallery taxa, ranked by how much of the clade path they share.
 const others = (await getCollection('taxa')).filter(
-  (t) => t.id !== entry.id && t.data.gallery === d.gallery,
+  (t) => t.id !== entry.id && t.data.gallery === d.gallery && !t.data.underRevision,
 );
 const shared = (t: (typeof others)[number]) =>
   expandClades(t.data.clade).filter((c) => cladePath.includes(c)).length;
@@ -80,16 +83,35 @@ const related = await Promise.all(
 );
 
 // SEO payload.
-const kind = kmOnly ? 'known skeletal material' : 'skeletal reconstruction';
+const kind = underRevision
+  ? 'skeletal reconstruction (under revision)'
+  : kmOnly
+    ? 'known skeletal material'
+    : 'skeletal reconstruction';
 const title = `${d.taxon} — ${kind}${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
-const description = kmOnly
-  ? `Known skeletal material of ${d.taxon}${d.specimenId ? `, specimen ${d.specimenId}` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
-  : `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
-const jsonLd = taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
-const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
+const description = underRevision
+  ? `Skeletal reconstruction of ${d.taxon} — currently under revision. An updated skeletal is in progress; the previous version is withheld to avoid circulating an outdated figure. © Scott Hartman, skeletaldrawing.com.`
+  : kmOnly
+    ? `Known skeletal material of ${d.taxon}${d.specimenId ? `, specimen ${d.specimenId}` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
+    : `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
+// Under revision → a text-only CreativeWork (no ImageObject), so the page stays indexed for its
+// metadata but we never assert the placeholder as the skeletal. Otherwise the full image graph.
+const jsonLd = underRevision
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      '@id': pageUrl,
+      name: `${d.taxon} — skeletal reconstruction (under revision)`,
+      creativeWorkStatus: 'Under revision',
+      creditText: d.creditText,
+      creator: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
+      about: { '@type': 'Thing', name: d.taxon, alternateName: `${d.taxon} ${formatAuthor(d.author, d.recombination)}` },
+    }
+  : taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
+const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
 ---
 
-<BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
+<BaseLayout title={title} description={description} ogImage={underRevision ? undefined : imageUrl} ogType="article">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
@@ -105,7 +127,14 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
         <h1 class="binomial">{d.taxon}</h1>
       </header>
 
-      <figure class="plate">
+      <figure class={underRevision ? 'plate is-revision' : 'plate'}>
+        {underRevision && (
+          <p class="revision-banner">
+            <strong>Under revision.</strong> The skeletal of <em>{d.taxon}</em> is being updated; this
+            placeholder stands in so the page stays available, and the outdated version is withheld to
+            avoid circulating it. If you have an older copy, please treat it as superseded.
+          </p>
+        )}
         {heroImg ? (
           <Picture
             src={heroImg}
@@ -370,6 +399,15 @@ const ldSample = primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
     padding: 18px 20px; overflow: auto; font-family: var(--font-mono);
     font-size: 12.5px; line-height: 1.65;
   }
+
+  /* ---- under revision: an outdated skeletal withheld behind an honest placeholder ---- */
+  .revision-banner {
+    margin: 0 0 16px; padding: 12px 16px; border-radius: 5px;
+    background: var(--accent-weak, #f3ece1); border: 1px solid var(--accent-soft);
+    font-size: 14.5px; line-height: 1.55; color: var(--ink);
+  }
+  .revision-banner strong { color: var(--accent); }
+  .is-revision .caption { color: var(--accent); }
 
   /* ---- mobile: keep everything within the viewport ---- */
   @media (max-width: 600px) {

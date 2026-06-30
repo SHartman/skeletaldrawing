@@ -79,6 +79,7 @@ collections:
           - { name: alt, label: "Alt text", widget: string }
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
+      - { name: underRevision, label: "Under revision (withhold the skeletal)", widget: boolean, default: false, required: false, hint: "Tick to show an 'under revision' notice + your placeholder (black silhouette) instead of presenting it as the current skeletal. Keeps the page, URL, and links; the image is dropped from SEO. Untick when the updated skeletal is ready." }
       - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }
       - { name: body, label: "Description", widget: markdown, required: false, hint: "The prose shown beneath the record." }
 

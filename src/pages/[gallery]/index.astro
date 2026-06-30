@@ -98,11 +98,17 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
         >
           <a href={`/${gallery}/${c.id}/`}>
             <div class="thumb">
-              {c.length && <span class="badge">{c.length}</span>}
-              {c.img ? (
-                <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
+              {c.data.underRevision ? (
+                <span class="revising">Under revision</span>
               ) : (
-                <img src={heroRef(c.data).src} alt={c.alt} class="thumb-img" />
+                <>
+                  {c.length && <span class="badge">{c.length}</span>}
+                  {c.img ? (
+                    <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
+                  ) : (
+                    <img src={heroRef(c.data).src} alt={c.alt} class="thumb-img" />
+                  )}
+                </>
               )}
             </div>
             <div class="body">
@@ -206,6 +212,12 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   .badge {
     position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
     letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc; padding: 2px 6px; border-radius: 3px;
+  }
+  /* under-revision card: a clear badge instead of a thumbnail (a small silhouette could mislead) */
+  .revising {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent-soft); border-radius: 4px;
+    padding: 8px 12px; background: var(--accent-weak, #f3ece1);
   }
   .body { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--hair); }
   .text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }

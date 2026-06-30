@@ -53,7 +53,7 @@ interface Recon {
 }
 const recons: Recon[] = [];
 for (const t of taxa) {
-  if (t.data.reconstruction && t.data.added) {
+  if (t.data.reconstruction && t.data.added && !t.data.underRevision) {
     recons.push({
       added: t.data.added,
       src: t.data.reconstruction.src,

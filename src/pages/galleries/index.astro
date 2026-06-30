@@ -46,9 +46,9 @@ for (const t of taxa) {
 
 // Representative: the featured taxon if one is flagged, else the largest, else the first.
 const pickRep = (list: typeof taxa) =>
-  list.find((t) => t.data.featured && t.data.reconstruction) ??
+  list.find((t) => t.data.featured && t.data.reconstruction && !t.data.underRevision) ??
   [...list]
-    .filter((t) => t.data.reconstruction)
+    .filter((t) => t.data.reconstruction && !t.data.underRevision)
     .sort((a, b) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0))[0] ??
   list[0];
 
