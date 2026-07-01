@@ -225,7 +225,20 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
                 <img src={f.src} alt={f.alt} class="plate-img" />
               )}
             </div>
-            {f.caption && <figcaption class="rig-cap">{f.caption}</figcaption>}
+            {(f.caption || f.credit) && (
+              <figcaption class="rig-cap">
+                {f.caption}
+                {f.credit && (
+                  <span class="fig-credit">
+                    {f.source ? (
+                      <a href={f.source} target="_blank" rel="noopener">{f.credit}</a>
+                    ) : (
+                      f.credit
+                    )}
+                  </span>
+                )}
+              </figcaption>
+            )}
           </figure>
         ))}
       </section>
@@ -408,6 +421,10 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
   }
   .revision-banner strong { color: var(--accent); }
   .is-revision .caption { color: var(--accent); }
+
+  /* attribution for a third-party (CC-BY paper) figure */
+  .fig-credit { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
+  .fig-credit a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
 
   /* ---- mobile: keep everything within the viewport ---- */
   @media (max-width: 600px) {

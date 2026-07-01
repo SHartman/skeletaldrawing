@@ -34,6 +34,10 @@ const figureRef = z.object({
   alt: z.string(),
   label: optStr,
   caption: optStr,
+  // For a THIRD-PARTY figure (e.g. a CC-BY paper figure): attribution + a link to the original.
+  // The credit names the real authors/journal/licence; source links the paper. Own figures omit both.
+  credit: optStr,
+  source: optStr,
 });
 
 const taxa = defineCollection({
