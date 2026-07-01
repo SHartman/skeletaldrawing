@@ -71,6 +71,10 @@ const PARENT: Record<string, string> = {
   Allosauridae: 'Allosauroidea',
   Megalosauridae: 'Megalosauroidea',
   Ornithomimidae: 'Ornithomimosauria',
+  // round-2 (L–Z) additions:
+  Noasauridae: 'Abelisauroidea',
+  Alvarezsauridae: 'Maniraptora',
+  Scansoriopterygidae: 'Avialae',
   // Avialae → bird internal topology. This branch is where consensus is busiest and my
   // placements are least certain (esp. Anchiornithidae, Avibrevicauda) — vet it against your usage.
   Anchiornithidae: 'Avialae',
