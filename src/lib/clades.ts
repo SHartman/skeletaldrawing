@@ -148,3 +148,15 @@ export const POPULAR_MIN = 6;
 
 /** Whether a clade is a curated navigation landmark. */
 export const isLandmark = (clade: string): boolean => LANDMARKS.has(clade);
+
+/**
+ * The clade chain to display on a taxon/specimen page: the landmark ancestors PLUS the taxon's
+ * own most-specific clade (always kept, even if it isn't a landmark, so the terminal isn't lost).
+ * Root→specific. This prunes the full lineage down to a short, readable indented ladder instead
+ * of the entire ancestry, using the same curated names as the gallery chips.
+ */
+export function cladeLadder(authored: string[]): string[] {
+  const path = expandClades(authored);
+  const terminal = path.at(-1);
+  return path.filter((c) => LANDMARKS.has(c) || c === terminal);
+}
