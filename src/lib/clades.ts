@@ -66,6 +66,22 @@ const PARENT: Record<string, string> = {
   Dromaeosauridae: 'Paraves',
   Troodontidae: 'Paraves',
   Avialae: 'Paraves',
+
+  // families/clades used by the theropod gallery (A–K batch):
+  Allosauridae: 'Allosauroidea',
+  Megalosauridae: 'Megalosauroidea',
+  Ornithomimidae: 'Ornithomimosauria',
+  // Avialae → bird internal topology. This branch is where consensus is busiest and my
+  // placements are least certain (esp. Anchiornithidae, Avibrevicauda) — vet it against your usage.
+  Anchiornithidae: 'Avialae',
+  Archaeopterygidae: 'Avialae',
+  Pygostylia: 'Avialae',
+  Avibrevicauda: 'Pygostylia',
+  Ornithothoraces: 'Avibrevicauda',
+  Enantiornithines: 'Ornithothoraces',
+  Euornithes: 'Ornithothoraces',
+  Ornithuromorpha: 'Euornithes',
+  Aves: 'Ornithuromorpha',
 };
 
 /** Full ancestry of a single clade, root-first and inclusive of the clade itself. */

@@ -1,0 +1,12 @@
+---
+taxon: "Gastornis giganteus"
+author: "Cope, 1876"
+recombination: true
+gallery: "theropods"
+clade: ["Aves"]
+lengthM: 2.3
+view: "Left lateral"
+reconstruction:
+  src: "/images/skeletals/gastornis-giganteus-skeletal.png"
+  alt: "Gastornis giganteus skeletal reconstruction, left lateral view, reconstructed length ~2.3 m."
+---
