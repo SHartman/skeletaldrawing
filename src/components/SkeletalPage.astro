@@ -172,18 +172,18 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
           <div class="k">Taxon</div>
           <div class="v"><em>{d.taxon}</em> {formatAuthor(d.author, d.recombination)}</div>
         </div>
-        <div class="cell cell-clade">
-          <div class="k">Clade</div>
-          <ol class="ladder">
-            {ladder.map((c, i) => <li style={`--i:${i}`}>{c}</li>)}
-          </ol>
-        </div>
         {restFields.map((f) => (
           <div class="cell">
             <div class="k">{f.k}</div>
             <div class="v">{f.v}</div>
           </div>
         ))}
+        <div class="cell cell-clade">
+          <div class="k">Clade</div>
+          <ol class="ladder">
+            {ladder.map((c, i) => <li style={`--i:${i}`}>{c}</li>)}
+          </ol>
+        </div>
       </div>
     </article>
 
@@ -369,7 +369,7 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
      the full record width so deep chains have room. */
   .cell-clade { grid-column: 1 / -1; }
   .ladder { margin: 0; padding: 0; list-style: none; }
-  .ladder li { font-size: 15px; line-height: 1.55; padding-left: calc(var(--i) * 0.95em); }
+  .ladder li { font-size: 14px; line-height: 1.32; padding-left: calc(var(--i) * 0.8em); }
   .ladder li:last-child { font-weight: 600; }
 
   .licensing { margin: 16px 0 0; font-size: 14.5px; color: var(--slate); }
