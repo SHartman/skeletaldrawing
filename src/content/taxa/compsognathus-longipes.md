@@ -3,7 +3,7 @@ added: "2026-06-28T12:16:00.000Z"
 taxon: "Compsognathus longipes"
 author: "Wagner, 1859"
 gallery: "theropods"
-clade: ["Tetanurae"]
+clade: ["Compsognathidae"]
 specimenId: "BSP AS I 563"
 lengthM: 0.85
 view: "Left lateral"

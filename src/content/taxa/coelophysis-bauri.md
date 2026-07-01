@@ -4,7 +4,7 @@ taxon: "Coelophysis bauri"
 author: "Cope, 1887"
 recombination: true
 gallery: "theropods"
-clade: ["Neotheropoda"]
+clade: ["Coelophysoidea"]
 lengthM: 2.4
 view: "Left lateral"
 scaleBar: "50 centimeters"

@@ -3,7 +3,7 @@ added: "2026-06-29T13:17:00.000Z"
 taxon: "Sinosauropteryx prima"
 author: "Ji & Ji, 1996"
 gallery: "theropods"
-clade: ["Tetanurae"]
+clade: ["Compsognathidae"]
 lengthM: 1
 scaleBar: "25 centimeters"
 view: "Left lateral"

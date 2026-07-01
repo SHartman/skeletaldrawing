@@ -3,8 +3,8 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../../lib/images';
-import { heroRef, formatLength, formatMass } from '../../lib/schema';
-import { expandClades } from '../../lib/clades';
+import { heroRef, formatLength } from '../../lib/schema';
+import { expandClades, LANDMARKS, POPULAR_MIN } from '../../lib/clades';
 
 // A gallery (section) page per distinct `gallery` bucket → /<gallery>/
 export async function getStaticPaths() {
@@ -45,17 +45,26 @@ const cards = await Promise.all(
   }),
 );
 
-// Clade filter chips: the major shared clades in this gallery (count ≥ 3), derived from each
-// taxon's FULL lineage (lib/clades expands the authored terminal clade up its ancestry) — so a
-// broad chip like Macronaria catches everything nested within it (titanosaurs included). The
-// gallery's universal root (matches every taxon) is dropped; it isn't a useful filter.
-const counts: Record<string, number> = {};
-for (const t of all) for (const c of expandClades(t.data.clade)) counts[c] = (counts[c] ?? 0) + 1;
-const chips = Object.entries(counts)
-  .filter(([, n]) => n >= 3 && n < all.length)
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 8)
-  .map(([c]) => c);
+// ── Clade drill-down nav data (CLAUDE.md §5 faceting; lib/clades LANDMARKS = the curated chip
+// pool). Precompute the subtree taxon-counts and the parent map for the clades actually present in
+// THIS gallery, then hand it all to the client, which recomputes chips as you drill in/out. ──
+const count: Record<string, number> = {};
+const parent: Record<string, string> = {};
+for (const t of all) {
+  const lineage = expandClades(t.data.clade); // root-first, inclusive
+  lineage.forEach((c, i) => {
+    count[c] = (count[c] ?? 0) + 1; // subtree count (taxa nested at/under c)
+    if (i > 0) parent[c] = lineage[i - 1];
+  });
+}
+const present = Object.keys(count);
+const navData = {
+  parent,
+  count,
+  landmarks: present.filter((c) => LANDMARKS.has(c)),
+  root: present.find((c) => !(c in parent)) ?? meta.label, // the gallery's universal ancestor
+  popularMin: POPULAR_MIN,
+};
 
 const title = `${meta.label} — skeletal reconstructions | Skeletal Drawing`;
 const description = `${all.length} skeletal reconstructions of ${meta.label} by Scott Hartman — ${meta.intro}`;
@@ -72,19 +81,33 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
       <p class="count"><span id="count">{all.length}</span> reconstructions</p>
     </header>
 
-    <div class="toolbar">
-      <div class="chips" role="group" aria-label="Filter by clade">
-        <button class="chip is-active" data-clade="">All</button>
-        {chips.map((c) => <button class="chip" data-clade={c}>{c}</button>)}
+    <!-- Clade drill-down nav (populated by the script from #navdata) -->
+    <nav class="clade-nav" aria-label="Browse by clade">
+      <div class="here-row">
+        <span class="grp-label" id="here-label">You are here</span>
+        <ol class="crumbs" id="crumbs"></ol>
       </div>
-      <label class="sort">
-        Sort
-        <select id="sort">
-          <option value="name">Name · A–Z</option>
-          <option value="length">Length · longest</option>
-          <option value="mass">Mass · heaviest</option>
-        </select>
-      </label>
+      <div class="descend">
+        <span class="grp-label" id="descend-label">Go deeper</span>
+        <div class="chip-row" id="descend-row"></div>
+      </div>
+      <div class="jump" id="jump-wrap">
+        <span class="grp-label">Jump to</span>
+        <div class="chip-row" id="jump-row"></div>
+      </div>
+    </nav>
+
+    <div class="toolbar">
+      <p class="showing"><span id="here-count"></span> in <span id="here-name" class="here-name"></span></p>
+      <div class="tools">
+        <label class="sort">Sort
+          <select id="sort">
+            <option value="name">Name · A–Z</option>
+            <option value="length">Length · longest</option>
+            <option value="mass">Mass · heaviest</option>
+          </select>
+        </label>
+      </div>
     </div>
 
     <ul class="grid" id="grid">
@@ -123,21 +146,124 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
       ))}
     </ul>
   </main>
+
+  <script type="application/json" id="navdata" set:html={JSON.stringify(navData)} />
 </BaseLayout>
 
 <script>
+  type Nav = {
+    parent: Record<string, string>;
+    count: Record<string, number>;
+    landmarks: string[];
+    root: string;
+    popularMin: number;
+  };
+  const nav: Nav = JSON.parse(document.getElementById('navdata')!.textContent!);
+  const LM = new Set(nav.landmarks);
+  const { parent, count, root, popularMin } = nav;
+
+  // ── clade helpers (mirror lib/clades, over the injected parent map) ──
+  const ancestry = (c: string): string[] => {
+    const a: string[] = [];
+    let x: string | undefined = c;
+    while (x) { a.unshift(x); x = parent[x]; }
+    return a;
+  };
+  const isDesc = (c: string, X: string): boolean => c !== X && ancestry(c).includes(X);
+  const closestLandmarkAncestor = (c: string): string | null => {
+    let x = parent[c];
+    while (x) { if (LM.has(x)) return x; x = parent[x]; }
+    return null;
+  };
+
+  // nearest landmarks below X (nothing landmark-ish between) — the "go deeper" chips
+  const descendChips = (X: string) =>
+    [...LM].filter((L) => isDesc(L, X) && closestLandmarkAncestor(L) === X)
+           .sort((a, b) => count[b] - count[a]);
+
+  // popular landmarks anywhere below X — the "jump to" chips; mode decides how chains collapse
+  const jumpChips = (X: string, exclude: Set<string>, mode: string) => {
+    let cands = [...LM].filter(
+      (L) => isDesc(L, X) && count[L] >= popularMin && !exclude.has(L),
+    );
+    if (mode === 'tips') // keep only the tip of each chain (drop candidates that are an ancestor of another)
+      cands = cands.filter((L) => !cands.some((o) => o !== L && isDesc(o, L)));
+    else if (mode === 'broad') // keep only the broadest of each chain (drop candidates nested in another)
+      cands = cands.filter((L) => !cands.some((o) => o !== L && isDesc(L, o)));
+    return cands.sort((a, b) => count[b] - count[a]);
+  };
+
+  // ── DOM ──
   const grid = document.getElementById('grid')!;
   const cards = [...grid.querySelectorAll<HTMLElement>('.card')];
   const countEl = document.getElementById('count')!;
-  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+  const crumbs = document.getElementById('crumbs')!;
+  const hereLabel = document.getElementById('here-label')!;
+  const descendRow = document.getElementById('descend-row')!;
+  const descendLabel = document.getElementById('descend-label')!;
+  const jumpRow = document.getElementById('jump-row')!;
+  const jumpWrap = document.getElementById('jump-wrap')!;
+  const hereName = document.getElementById('here-name')!;
+  const hereCount = document.getElementById('here-count')!;
   const sortEl = document.getElementById('sort') as HTMLSelectElement;
-  let activeClade = '';
+
+  const CAP = 6;              // max chips shown at once (descend first, jumps fill the rest)
+  const JUMP_MODE = 'tips';   // jump chips favour the branch tips over the backbone spine
+
+  let node = root;
+
+  const chipBtn = (clade: string, kind: 'descend' | 'jump') => {
+    const b = document.createElement('button');
+    b.className = `chip chip-${kind}`;
+    b.dataset.clade = clade;
+    b.innerHTML = `<span class="cname">${clade}</span><span class="cn">(${count[clade]})</span>`;
+    b.addEventListener('click', () => setNode(clade));
+    return b;
+  };
+
+  function renderNav() {
+    // breadcrumb: landmark ancestry of the current node, each a step back up
+    crumbs.innerHTML = '';
+    const trail = ancestry(node).filter((c) => LM.has(c) || c === root);
+    hereLabel.textContent = 'You are here'; // always shown — the reserved label column would sit blank otherwise
+    trail.forEach((c, i) => {
+      const li = document.createElement('li');
+      if (i === trail.length - 1) {
+        const s = document.createElement('span'); // current node: not clickable, styled as a filled pill
+        s.className = 'crumb here';
+        s.textContent = c;
+        li.appendChild(s);
+      } else {
+        const b = document.createElement('button');
+        b.className = 'crumb';
+        b.textContent = c;
+        b.addEventListener('click', () => setNode(c));
+        li.appendChild(b);
+      }
+      crumbs.appendChild(li);
+    });
+
+    const descend = descendChips(node);
+    const exclude = new Set<string>([node, ...descend]);
+    const jumps = jumpChips(node, exclude, JUMP_MODE).slice(0, Math.max(0, CAP - descend.length));
+
+    descendRow.innerHTML = '';
+    descend.forEach((c) => descendRow.appendChild(chipBtn(c, 'descend')));
+    descendLabel.parentElement!.style.display = descend.length ? '' : 'none';
+
+    jumpRow.innerHTML = '';
+    jumps.forEach((c) => jumpRow.appendChild(chipBtn(c, 'jump')));
+    jumpWrap.style.display = jumps.length ? '' : 'none';
+
+    hereName.textContent = node;
+    hereCount.textContent = String(count[node] ?? 0);
+  }
 
   function apply() {
     let shown = 0;
     for (const card of cards) {
       const clades = (card.dataset.clade ?? '').split('|');
-      const ok = !activeClade || clades.includes(activeClade);
+      const ok = node === root || clades.includes(node);
       card.style.display = ok ? '' : 'none';
       if (ok) shown++;
     }
@@ -153,15 +279,16 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     for (const c of visible) grid.appendChild(c);
   }
 
-  chips.forEach((chip) =>
-    chip.addEventListener('click', () => {
-      chips.forEach((c) => c.classList.remove('is-active'));
-      chip.classList.add('is-active');
-      activeClade = chip.dataset.clade ?? '';
-      apply();
-    }),
-  );
+  function setNode(c: string) {
+    node = c;
+    renderNav();
+    apply();
+    document.querySelector('.clade-nav')?.scrollIntoView({ block: 'nearest' });
+  }
+
   sortEl.addEventListener('change', apply);
+  renderNav();
+  apply();
 </script>
 
 <style>
@@ -182,21 +309,34 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   .intro { margin: 14px 0 0; font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 60ch; }
   .count { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); white-space: nowrap; }
 
+  /* ── clade drill-down nav ── */
+  /* Layout containers are in the template, so scoped styles reach them. The chips/crumbs INSIDE
+     them are built in the client script (createElement) → they get no scope attribute → their
+     styles must be global; see the is:global block after this one. */
+  .clade-nav { margin: 30px 0 4px; padding-top: 20px; border-top: 1px solid var(--hair); }
+  .here-row { display: flex; align-items: center; gap: 12px; margin: 10px 0 26px; }
+  .descend, .jump { display: flex; align-items: baseline; gap: 12px; margin: 10px 0; }
+  .grp-label {
+    flex-shrink: 0; width: 96px; white-space: nowrap; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--slate); padding-top: 3px;
+  }
+  .here-row .grp-label { padding-top: 0; }
+  .crumbs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
   .toolbar {
-    display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; justify-content: space-between;
-    margin: 28px 0 24px; padding: 16px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between;
+    margin: 18px 0 24px; padding: 14px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
   }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
+  .showing { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--slate); }
+  .here-name { color: var(--ink); }
+  .tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+  .sort {
     font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    padding: 7px 13px; border: 1px solid var(--hair-strong); border-radius: 4px; background: var(--plate);
-    color: var(--slate); cursor: pointer; transition: all .15s ease;
+    color: var(--slate); display: inline-flex; align-items: center; gap: 8px;
   }
-  .chip:hover { border-color: var(--slate); color: var(--ink); }
-  .chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .sort { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); display: inline-flex; align-items: center; gap: 8px; }
   .sort select {
-    font-family: var(--font-mono); font-size: 12px; padding: 7px 10px;
+    font-family: var(--font-mono); font-size: 12px; padding: 6px 9px;
     border: 1px solid var(--hair-strong); border-radius: 4px; background: var(--plate); color: var(--ink);
   }
 
@@ -213,7 +353,6 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
     letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc; padding: 2px 6px; border-radius: 3px;
   }
-  /* under-revision card: a clear badge instead of a thumbnail (a small silhouette could mislead) */
   .revising {
     font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
     color: var(--accent); border: 1px solid var(--accent-soft); border-radius: 4px;
@@ -227,7 +366,43 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
 
   @media (max-width: 600px) {
     .wrap { padding: 0 18px; }
+    .grp-label { width: 100%; padding-top: 0; }
+    .descend, .jump { flex-direction: column; gap: 6px; }
     .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
     .name { font-size: 16px; }
   }
+</style>
+
+<!-- Chips and crumbs are created in the client script, so they never get Astro's scope attribute.
+     These rules are global, but anchored under .clade-nav (which only exists on this page) so they
+     can't leak onto .chip elsewhere in the site. -->
+<style is:global>
+  .clade-nav .crumbs li { display: inline-flex; align-items: center; }
+  .clade-nav .crumbs li:not(:first-child)::before { content: '›'; color: var(--slate); margin: 0 9px; opacity: .7; }
+  .clade-nav .crumb {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em;
+    background: none; border: 0; padding: 2px 2px; color: var(--slate);
+    cursor: pointer; border-bottom: 1px solid transparent;
+  }
+  .clade-nav button.crumb:hover { color: var(--ink); border-bottom-color: var(--slate); }
+  /* current node: heavier + larger ink type (no fill) — the always-on "You are here" label plus
+     the plain text ancestors give it enough contrast without a box */
+  .clade-nav .crumb.here {
+    color: var(--ink); font-size: 15px; font-weight: 700; letter-spacing: .01em; cursor: default;
+  }
+  .clade-nav button:focus:not(:focus-visible) { outline: none; }
+
+  .clade-nav .chip {
+    display: inline-flex; align-items: baseline; font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .08em; padding: 7px 11px; border-radius: 4px;
+    border: 1px solid var(--hair-strong); background: var(--plate); color: var(--ink);
+    cursor: pointer; transition: all .15s ease;
+  }
+  .clade-nav .chip .cn { margin-left: 6px; font-size: 10px; color: var(--slate); }
+  .clade-nav .chip:hover { border-color: var(--slate); transform: translateY(-1px); }
+  .clade-nav .chip-descend:hover { border-color: var(--accent); }
+  /* jump chips: dashed + gold, so the "shortcut" chips read clearly and stand apart from descend */
+  .clade-nav .chip-jump { background: transparent; border-style: dashed; border-color: var(--accent); color: var(--accent); }
+  .clade-nav .chip-jump .cn { color: var(--accent); opacity: .7; }
+  .clade-nav .chip-jump:hover { background: var(--accent-weak); border-color: var(--accent); color: var(--accent); }
 </style>
