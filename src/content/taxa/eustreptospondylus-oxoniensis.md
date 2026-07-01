@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Megalosauridae"]
 lengthM: 4.5
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/eustreptospondylus-oxoniensis-type-oum-j13558-skeletal.png"
   alt: "Eustreptospondylus oxoniensis skeletal reconstruction, left lateral view, reconstructed length ~4.5 m."

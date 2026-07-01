@@ -7,6 +7,7 @@ clade: ["Oviraptorosauria"]
 lengthM: 1.1
 lifeStage: "subadult"
 view: "Left lateral"
+scaleBar: "25 centimeters"
 reconstruction:
   src: "/images/skeletals/khaan-mckennai-type-igm-100-1002-skeletal.png"
   alt: "Khaan mckennai skeletal reconstruction, left lateral view, reconstructed length ~1.1 m."

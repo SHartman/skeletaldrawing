@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 2
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/dromaeosaurus-albertensis-skeletal.png"
   alt: "Dromaeosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~2 m."

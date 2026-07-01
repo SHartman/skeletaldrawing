@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Avibrevicauda"]
 lengthM: 0.25
 view: "Left lateral"
+scaleBar: "10 centimeters"
 reconstruction:
   src: "/images/skeletals/confuciusornis-sanctus-skeletal.png"
   alt: "Confuciusornis sanctus skeletal reconstruction, left lateral view, reconstructed length ~0.25 m."

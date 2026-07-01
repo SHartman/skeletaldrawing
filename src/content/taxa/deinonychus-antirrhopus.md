@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 3.4
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/deinonychus-antirrhopus-skeleta-upright-pose.png"
   alt: "Deinonychus antirrhopus skeletal reconstruction, left lateral view, reconstructed length ~3.4 m."

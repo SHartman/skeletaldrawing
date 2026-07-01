@@ -6,6 +6,7 @@ repository: "Field Museum of Natural History"
 lengthM: 0.26
 massKg: 0.098
 view: "Left lateral"
+scaleBar: "10 centimeters"
 basis: "One of the most recently described Archaeopteryx individuals"
 reconstruction:
   src: "/images/skeletals/archaeopteryx-lithographica-chicago-specimen-skeletal.png"

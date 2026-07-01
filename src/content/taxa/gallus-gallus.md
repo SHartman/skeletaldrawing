@@ -7,6 +7,7 @@ gallery: "theropods"
 clade: ["Aves"]
 lengthM: 0.35
 view: "Left lateral"
+scaleBar: "5 centimeters"
 reconstruction:
   src: "/images/skeletals/gallus-gallus-broiler-hen-skeletal.png"
   alt: "Gallus gallus skeletal reconstruction, left lateral view, reconstructed length ~0.35 m."

@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Tetanurae"]
 lengthM: 1.7
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/huaxiagnathus-orientalis-type-cags-ig02-301-skeletal.png"
   alt: "Huaxiagnathus orientalis skeletal reconstruction, left lateral view, reconstructed length ~1.7 m."

@@ -7,6 +7,7 @@ clade: ["Tetanurae"]
 specimenId: "BSP AS I 563"
 lengthM: 0.85
 view: "Left lateral"
+scaleBar: "10 centimeters"
 reconstruction:
   src: "/images/skeletals/Compsognathus-longipes-type-bsp-as-i-563-skeletal.png"
   alt: "Compsognathus longipes skeletal reconstruction, left lateral view, reconstructed length ~0.85 m."

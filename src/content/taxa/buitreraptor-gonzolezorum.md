@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 1.3
 view: "Left lateral"
+scaleBar: "25 centimeters"
 reconstruction:
   src: "/images/skeletals/buitreraptor-gonzolezorum-skeletal.png"
   alt: "Buitreraptor gonzolezorum skeletal reconstruction, left lateral view, reconstructed length ~1.3 m."

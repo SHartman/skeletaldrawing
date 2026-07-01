@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Anchiornithidae"]
 lengthM: 0.32
 view: "Left lateral"
+scaleBar: "5 centimeters"
 reconstruction:
   src: "/images/skeletals/eosinopteryx-brevipenna-skeletal.png"
   alt: "Eosinopteryx brevipenna skeletal reconstruction, left lateral view, reconstructed length ~0.32 m."

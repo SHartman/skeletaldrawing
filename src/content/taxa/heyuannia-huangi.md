@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 1.6
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/heyuannia-huangi-skeletal.png"
   alt: "Heyuannia huangi skeletal reconstruction, left lateral view, reconstructed length ~1.6 m."

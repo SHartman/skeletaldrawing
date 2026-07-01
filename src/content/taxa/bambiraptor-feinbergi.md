@@ -7,6 +7,7 @@ clade: ["Dromaeosauridae"]
 lengthM: 1
 lifeStage: "juvenile"
 view: "Left lateral"
+scaleBar: "25 centimeters"
 reconstruction:
   src: "/images/skeletals/bambiraptor-feinbergi-amnh-fr-30556-juvenile-skeletal.png"
   alt: "Bambiraptor feinbergi skeletal reconstruction, left lateral view, reconstructed length ~1 m."

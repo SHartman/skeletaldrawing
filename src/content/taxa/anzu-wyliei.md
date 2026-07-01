@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 3
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/anzu-wyliei-skeletal.png"
   alt: "Anzu wyliei skeletal reconstruction, left lateral view, reconstructed length ~3 m."

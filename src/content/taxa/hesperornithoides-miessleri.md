@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Troodontidae"]
 lengthM: 0.95
 view: "Left lateral"
+scaleBar: "25 centimeters"
 reconstruction:
   src: "/images/skeletals/hesperornithoides-miessleri-type-wydice-dml-001-skeletal.png"
   alt: "Hesperornithoides miessleri skeletal reconstruction, left lateral view, reconstructed length ~0.95 m."

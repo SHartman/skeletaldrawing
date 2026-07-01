@@ -6,6 +6,7 @@ repository: "Wyoming Dinosaur Center"
 lengthM: 0.3
 massKg: 0.15
 view: "Left lateral"
+scaleBar: "10 centimeters"
 basis: "One of the most complete and best-preserved Archaeopteryx individuals"
 reconstruction:
   src: "/images/skeletals/archaeopteryx-lithographica-thermopolis-specimen-skeletal.png"

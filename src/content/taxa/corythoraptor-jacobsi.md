@@ -6,6 +6,7 @@ gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 2
 view: "Left lateral"
+scaleBar: "50 centimeters"
 reconstruction:
   src: "/images/skeletals/corythoraptor-jacobsi-skeletal.png"
   alt: "Corythoraptor jacobsi skeletal reconstruction, left lateral view, reconstructed length ~2 m."

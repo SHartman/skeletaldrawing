@@ -7,6 +7,7 @@ gallery: "theropods"
 clade: ["Aves"]
 lengthM: 0.09
 view: "Left lateral"
+scaleBar: "1 centimeter"
 reconstruction:
   src: "/images/skeletals/cardinalis-cardinalis-skeletal.png"
   alt: "Cardinalis cardinalis skeletal reconstruction, left lateral view, reconstructed length ~0.09 m."
