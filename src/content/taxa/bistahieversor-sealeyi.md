@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:10:00.000Z"
 taxon: "Bistahieversor sealeyi"
 author: "Carr & Williamson, 2010"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:09:00.000Z"
 taxon: "Baryonyx walkeri"
 author: "Charig & Milner, 1986"
 gallery: "theropods"

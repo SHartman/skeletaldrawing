@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:28:00.000Z"
 taxon: "Gastornis giganteus"
 author: "Cope, 1876"
 recombination: true

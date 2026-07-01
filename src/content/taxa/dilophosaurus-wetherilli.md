@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:05:00.000Z"
 taxon: "Dilophosaurus wetherilli"
 author: "Welles, 1954"
 recombination: true

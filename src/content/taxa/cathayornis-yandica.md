@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:13:00.000Z"
 taxon: "Cathayornis yandica"
 author: "Zhou et al., 1992"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:07:00.000Z"
 taxon: "Allosaurus jimmadseni"
 author: "Chure & Loewen, 2020"
 gallery: "theropods"

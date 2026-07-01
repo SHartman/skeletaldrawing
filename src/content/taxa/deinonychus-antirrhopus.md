@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:06:00.000Z"
 taxon: "Deinonychus antirrhopus"
 author: "Ostrom, 1969"
 gallery: "theropods"

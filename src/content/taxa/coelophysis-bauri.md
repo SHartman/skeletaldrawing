@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:15:00.000Z"
 taxon: "Coelophysis bauri"
 author: "Cope, 1887"
 recombination: true

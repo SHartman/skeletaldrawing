@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:03:00.000Z"
 taxon: "Cryolophosaurus ellioti"
 author: "Hammer & Hickerson, 1994"
 gallery: "theropods"

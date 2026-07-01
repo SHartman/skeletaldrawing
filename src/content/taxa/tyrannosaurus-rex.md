@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:39:00.000Z"
 taxon: "Tyrannosaurus rex"
 author: "Osborn, 1905"
 gallery: "theropods"

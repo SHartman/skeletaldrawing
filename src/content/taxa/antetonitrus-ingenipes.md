@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:02:00.000Z"
 taxon: "Antetonitrus ingenipes"
 author: "Yates & Kitching, 2003"
 gallery: "sauropods-and-kin"

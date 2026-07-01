@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:02:00.000Z"
 taxon: "Acrocanthosaurus atokensis"
 author: "Stovall & Langston, 1950"
 gallery: "theropods"

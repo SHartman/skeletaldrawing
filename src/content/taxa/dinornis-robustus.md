@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:20:00.000Z"
 taxon: "Dinornis robustus"
 author: "Owen, 1846"
 gallery: "theropods"

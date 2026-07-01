@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:04:00.000Z"
 taxon: "Confuciusornis sanctus"
 author: "Hou et al., 1995"
 gallery: "theropods"

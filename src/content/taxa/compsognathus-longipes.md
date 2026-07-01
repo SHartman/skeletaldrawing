@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:16:00.000Z"
 taxon: "Compsognathus longipes"
 author: "Wagner, 1859"
 gallery: "theropods"

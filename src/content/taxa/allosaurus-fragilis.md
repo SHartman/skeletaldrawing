@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:00:00.000Z"
 taxon: "Allosaurus fragilis"
 author: "Marsh, 1877"
 gallery: "theropods"

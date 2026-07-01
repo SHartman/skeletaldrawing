@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:29:00.000Z"
 taxon: "Herrerasaurus ischgualastensis"
 author: "Reig, 1963"
 gallery: "theropods"

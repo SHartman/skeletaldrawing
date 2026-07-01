@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:34:00.000Z"
 taxon: "Jeholornis prima"
 author: "Zhou & Zhang, 2002"
 gallery: "theropods"

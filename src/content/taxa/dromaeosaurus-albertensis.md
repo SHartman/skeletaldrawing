@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:21:00.000Z"
 taxon: "Dromaeosaurus albertensis"
 author: "Matthew & Brown, 1922"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:11:00.000Z"
 taxon: "Buitreraptor gonzolezorum"
 author: "Makovicky et al., 2005"
 gallery: "theropods"

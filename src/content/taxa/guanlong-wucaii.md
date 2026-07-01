@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:00:00.000Z"
 taxon: "Guanlong wucaii"
 author: "Xu et al., 2006"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:36:00.000Z"
 taxon: "Khaan mckennai"
 author: "Clark et al., 2001"
 gallery: "theropods"

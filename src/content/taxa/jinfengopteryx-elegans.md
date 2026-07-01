@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:35:00.000Z"
 taxon: "Jinfengopteryx elegans"
 author: "Ji et al., 2005"
 gallery: "theropods"

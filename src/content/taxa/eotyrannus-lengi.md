@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:23:00.000Z"
 taxon: "Eotyrannus lengi"
 author: "Hutt et al., 2001"
 gallery: "theropods"

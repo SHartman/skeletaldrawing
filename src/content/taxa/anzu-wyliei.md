@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:03:00.000Z"
 taxon: "Anzu wyliei"
 author: "Lamanna et al., 2014"
 gallery: "theropods"

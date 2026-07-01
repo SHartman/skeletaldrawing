@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:06:00.000Z"
 taxon: "Aurornis xui"
 author: "Godefroit et al., 2013"
 gallery: "theropods"

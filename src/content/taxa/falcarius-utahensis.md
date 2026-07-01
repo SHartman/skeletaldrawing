@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:25:00.000Z"
 taxon: "Falcarius utahensis"
 author: "Kirkland et al., 2005"
 gallery: "theropods"

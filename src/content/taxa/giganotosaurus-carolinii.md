@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:11:00.000Z"
 taxon: "Giganotosaurus carolinii"
 author: "Coria & Salgado, 1995"
 gallery: "theropods"

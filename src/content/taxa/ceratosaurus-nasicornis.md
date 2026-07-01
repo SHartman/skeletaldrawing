@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:08:00.000Z"
 taxon: "Ceratosaurus nasicornis"
 author: "Marsh, 1884"
 gallery: "theropods"

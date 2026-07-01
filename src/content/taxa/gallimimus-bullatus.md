@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:26:00.000Z"
 taxon: "Gallimimus bullatus"
 author: "Osmólska et al., 1972"
 gallery: "theropods"

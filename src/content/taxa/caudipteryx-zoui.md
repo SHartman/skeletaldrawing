@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:14:00.000Z"
 taxon: "Caudipteryx zoui"
 author: "Ji et al., 1998"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:01:00.000Z"
 taxon: "Gorgosaurus libratus"
 author: "Lambe, 1914"
 gallery: "theropods"

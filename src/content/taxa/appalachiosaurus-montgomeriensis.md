@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:04:00.000Z"
 taxon: "Appalachiosaurus montgomeriensis"
 author: "Carr et al., 2005"
 gallery: "theropods"

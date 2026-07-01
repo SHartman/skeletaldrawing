@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:33:00.000Z"
 taxon: "Huaxiagnathus orientalis"
 author: "Hwang et al., 2004"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:27:00.000Z"
 taxon: "Gallus gallus"
 author: "Linnaeus, 1758"
 recombination: true

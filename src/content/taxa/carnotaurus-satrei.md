@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:09:00.000Z"
 taxon: "Carnotaurus satrei"
 author: "Bonaparte, 1985"
 gallery: "theropods"

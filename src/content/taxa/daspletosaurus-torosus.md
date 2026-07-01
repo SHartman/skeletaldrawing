@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:18:00.000Z"
 taxon: "Daspletosaurus torosus"
 author: "Russell, 1970"
 gallery: "theropods"

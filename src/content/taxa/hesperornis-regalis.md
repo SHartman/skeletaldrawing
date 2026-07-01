@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:30:00.000Z"
 taxon: "Hesperornis regalis"
 author: "Marsh, 1872"
 gallery: "theropods"

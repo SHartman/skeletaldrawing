@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:07:00.000Z"
 taxon: "Austroraptor cabazai"
 author: "Novas et al., 2008"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:32:00.000Z"
 taxon: "Heyuannia huangi"
 author: "Lü, 2002"
 gallery: "theropods"

@@ -1,4 +1,5 @@
 ---
+added: "2026-06-30T12:10:00.000Z"
 taxon: "Archaeopteryx lithographica"
 author: "von Meyer, 1861"
 gallery: "theropods"

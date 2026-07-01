@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:19:00.000Z"
 taxon: "Deinocheirus mirificus"
 author: "Osmólska & Roniewicz, 1970"
 gallery: "theropods"

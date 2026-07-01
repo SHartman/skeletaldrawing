@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:38:00.000Z"
 taxon: "Ngwevu intloko"
 author: "Chapelle et al., 2019"
 gallery: "sauropods-and-kin"

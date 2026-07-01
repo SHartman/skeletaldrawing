@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:05:00.000Z"
 taxon: "Aucasaurus garridoi"
 author: "Coria et al., 2002"
 gallery: "theropods"

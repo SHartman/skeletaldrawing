@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:17:00.000Z"
 taxon: "Corythoraptor jacobsi"
 author: "Lü et al., 2017"
 gallery: "theropods"

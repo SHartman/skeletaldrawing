@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:08:00.000Z"
 taxon: "Bambiraptor feinbergi"
 author: "Burnham et al., 2000"
 gallery: "theropods"

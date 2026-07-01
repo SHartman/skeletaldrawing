@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:31:00.000Z"
 taxon: "Hesperornithoides miessleri"
 author: "Hartman et al., 2019"
 gallery: "theropods"

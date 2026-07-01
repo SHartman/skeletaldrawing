@@ -1,4 +1,5 @@
 ---
+added: "2026-06-28T12:01:00.000Z"
 taxon: "Anchiornis huxleyi"
 author: "Xu et al., 2009"
 gallery: "theropods"
