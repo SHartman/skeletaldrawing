@@ -53,7 +53,10 @@ const taxa = defineCollection({
       specimenId: optStr,                 // catalog number, verbatim, e.g. "GPIT/RE/7288"
       specimenName: optStr,               // nickname, e.g. "The Nation's T. rex"
       alsoKnownAs: nullableDefault(z.array(z.string()).default([])),
-      lengthM: optNum,                    // numeric meters — sorting + the scale figure
+      lengthM: optNum,                    // numeric meters — sorting + the scale figure (biology: along the spine)
+      widthM: optNum,                     // max HORIZONTAL extent in meters, for the scale overlay; falls
+                                          // back to lengthM. Corrects upright/raised-neck taxa whose spine
+                                          // length overstates their horizontal footprint (see ScaleComparison)
       lengthLabel: optStr,                // display override; else scale-aware (m / cm)
       massKg: optNum,                     // body mass; scale-aware display (kg → tonnes)
       massSource: optStr,                 // provenance, e.g. "PaleoGDI" (future credit/link)
@@ -94,7 +97,8 @@ const specimens = defineCollection({
       repositoryUrl: optStr,              // museum/collection page — renders the repository as a link
       formation: optStr,
       locality: optStr,
-      lengthM: optNum,                    // numeric meters — sorting + scale figure
+      lengthM: optNum,                    // numeric meters — sorting + scale figure (biology: along the spine)
+      widthM: optNum,                     // max horizontal extent (m) for the scale overlay; falls back to lengthM
       femurM: optNum,
       massKg: optNum,                     // scale-aware display (kg → tonnes)
       completenessPct: optNum,

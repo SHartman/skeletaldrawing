@@ -29,14 +29,21 @@ const PXM = 100; // svg units per meter
 const padL = 16;
 const padT = 16;
 
+// Scale by the silhouette's true HORIZONTAL extent in meters so pose doesn't distort size: an
+// upright taxon (raised neck, therizinosaur, bird) has widthM < lengthM and no longer inflates.
+// widthM falls back to lengthM when unmeasured, so horizontal taxa are unaffected. lengthM stays
+// the biological label (legend + ruler); only the geometry uses widthM. (See silhouette pipeline.)
 const scaled = items.map((it, idx) => {
-  const s = (PXM * it.lengthM) / it.w;
+  const s = (PXM * (it.widthM ?? it.lengthM)) / it.w;
   return { ...it, idx, s, sw: it.w * s, sh: it.h * s };
 });
 const hasData = scaled.length > 0;
 
-const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0;
-const maxSW = PXM * maxLen;
+const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0; // biological max — for the aria label
+// Horizontal layout follows the actual rendered silhouette widths (sw), not lengthM, so a raised-neck
+// largest taxon (widthM < lengthM) doesn't leave dead space or over-run the ruler. With no widthM
+// anywhere, sw === PXM·lengthM, so maxSW === PXM·maxLen and this is identical to before.
+const maxSW = hasData ? Math.max(...scaled.map((d) => d.sw)) : 0;
 const maxSH = hasData ? Math.max(...scaled.map((d) => d.sh)) : 0;
 const guideX = padL + maxSW;
 const groundY = padT + maxSH;
@@ -50,7 +57,7 @@ const humanGap = 40;
 const humanX = guideX + humanGap;
 
 // meter ruler along the ground, 0 at the tail (right), increasing toward the snout.
-const meters = Math.floor(maxLen);
+const meters = Math.floor(maxSW / PXM); // ruler ticks measure horizontal reach from the tail tip
 const rulerY = groundY + 20;
 const rightPad = humanGap + humanW + 26;
 const vbW = Math.round(guideX + rightPad);

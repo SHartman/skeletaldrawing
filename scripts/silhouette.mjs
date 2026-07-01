@@ -33,6 +33,7 @@ function readSpecimen(file) {
   const overlay = /overlay:\s*true/.test(fm);
   const taxon = get(/\btaxon:\s*([^\n]+)/);
   const lengthM = parseFloat(get(/\blengthM:\s*([\d.]+)/));
+  const widthM = parseFloat(get(/\bwidthM:\s*([\d.]+)/)); // NaN when absent → dropped downstream
   const nickname = get(/\bnickname:\s*([^\n]+)/);
   const catalog = get(/\bcatalog:\s*([^\n]+)/);
   const reconSrc = get(/reconstruction:\s*\n\s*src:\s*([^\n]+)/);
@@ -40,7 +41,7 @@ function readSpecimen(file) {
   const slug = file.split(/[\\/]/).pop().replace(/\.md$/, '');
   // Known-material image is the cleaner silhouette source; fall back to reconstruction.
   const traceSrc = rigorousSrc || reconSrc;
-  return { slug, taxon, overlay, lengthM, nickname, catalog, traceSrc };
+  return { slug, taxon, overlay, lengthM, widthM, nickname, catalog, traceSrc };
 }
 
 // ----- binary morphology: `iters` passes of a 3×3 (Chebyshev) kernel -----
@@ -378,10 +379,16 @@ const GENUS_GROUPS = {
   ],
 };
 
-const entryLength = (g) => {
+// widthM → a spreadable {widthM} only when it's a real number, so absent values stay out of the JSON.
+const wm = (v) => (Number.isFinite(v) ? { widthM: v } : {});
+const numField = (txt, key) => {
+  const m = txt.match(new RegExp(`\\b${key}:\\s*([\\d.]+)`));
+  return m ? parseFloat(m[1]) : undefined;
+};
+const entryDims = (g) => {
   const file = g.specimen ? `src/content/specimens/${g.specimen}.md` : `src/content/taxa/${g.taxon}.md`;
-  const m = readFileSync(file, 'utf8').match(/\blengthM:\s*([\d.]+)/);
-  return m ? parseFloat(m[1]) : null;
+  const txt = readFileSync(file, 'utf8');
+  return { lengthM: numField(txt, 'lengthM') ?? null, widthM: numField(txt, 'widthM') };
 };
 
 // specimen slug → owner silhouette file, so the specimen pass prefers it over raster tracing.
@@ -404,8 +411,8 @@ for (const s of specs.sort((a, b) => b.lengthM - a.lengthM)) {
   const { w, h, path, points } = useSil
     ? await traceImage(join('silhouettes', ownerSil), { alpha: true })
     : await traceImage(join('public', s.traceSrc.replace(/^\//, '')), { alpha: false });
-  (out[s.taxon] ??= []).push({ slug: s.slug, label: s.nickname || s.catalog, lengthM: s.lengthM, w, h, path });
-  console.log(`${s.taxon}/${s.slug}: ${s.lengthM} m  bbox ${w}x${h}  ${points} pts${useSil ? '  (silhouette)' : ''}`);
+  (out[s.taxon] ??= []).push({ slug: s.slug, label: s.nickname || s.catalog, lengthM: s.lengthM, ...wm(s.widthM), w, h, path });
+  console.log(`${s.taxon}/${s.slug}: ${s.lengthM} m${Number.isFinite(s.widthM) ? ` (w ${s.widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts${useSil ? '  (silhouette)' : ''}`);
 }
 
 // ----- pass 2: curated genus comparisons from owner silhouettes -----
@@ -417,10 +424,10 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
       console.log(`(skip ${key}: missing ${g.file})`);
       continue;
     }
-    const lengthM = entryLength(g);
+    const { lengthM, widthM } = entryDims(g);
     const { w, h, path, points } = await traceImage(file, { alpha: true });
-    items.push({ slug: g.specimen || g.taxon, label: g.label, lengthM, w, h, path });
-    console.log(`${key}/${g.label}: ${lengthM} m  bbox ${w}x${h}  ${points} pts`);
+    items.push({ slug: g.specimen || g.taxon, label: g.label, lengthM, ...wm(widthM), w, h, path });
+    console.log(`${key}/${g.label}: ${lengthM} m${Number.isFinite(widthM) ? ` (w ${widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
 }
@@ -464,9 +471,11 @@ for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
   if (out[slug]) continue; // already produced by the overlay-specimen pass
   const taxPath = `src/content/taxa/${slug}.md`;
   if (!existsSync(taxPath)) continue; // taxon page not built yet — wait for its .md
-  const lm = readFileSync(taxPath, 'utf8').match(/\blengthM:\s*([\d.]+)/);
+  const taxTxt = readFileSync(taxPath, 'utf8');
+  const lm = taxTxt.match(/\blengthM:\s*([\d.]+)/);
   if (!lm) continue; // no numeric length → can't scale it
   const lengthM = parseFloat(lm[1]);
+  const widthM = numField(taxTxt, 'widthM'); // optional horizontal-extent override for the overlay
   // Prefer a plain skeletal silhouette; fall back to a known-* one only when that's all there is.
   const pick =
     fs.find((f) => /-silhouette\.png$/i.test(f) && !isKnown(f)) ??
@@ -475,7 +484,7 @@ for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
     fs.find((f) => !isKnown(f)) ??
     fs[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
   const { w, h, path, points } = await traceImage(join(SIL_DIR, pick), { alpha: true });
-  out[slug] = [{ slug, label: binomial(slug), lengthM, w, h, path }];
+  out[slug] = [{ slug, label: binomial(slug), lengthM, ...wm(widthM), w, h, path }];
   catalogAdds.push(slug);
   console.log(`taxon ${slug}: ${lengthM} m  bbox ${w}x${h} (ar ${(w / h).toFixed(2)})  ${points} pts  <- ${pick}`);
 }
