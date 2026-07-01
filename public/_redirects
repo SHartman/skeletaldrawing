@@ -11,3 +11,8 @@
 /shdguide/shdg.htm      /anatomy/  301
 /shdguide/shdgmain.htm  /anatomy/  301
 /shdguide/anatomy.htm   /anatomy/  301
+
+# Stokesosaurus/Juratyrant taxonomic split: the skeletal is Juratyrant langhami; the fragmentary
+# American Stokesosaurus clevelandi gets no skeletal, so its URL points at Juratyrant.
+/theropods/stokesosaurus-clevelandi/  /theropods/juratyrant-langhami/  301
+/theropods/stokesosaurus/             /theropods/juratyrant-langhami/  301
