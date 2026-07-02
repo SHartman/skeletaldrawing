@@ -325,6 +325,10 @@ const description =
     display: block; width: 100%; height: clamp(440px, 56vw, 560px);
     object-fit: cover; object-position: 50% 36%;
   }
+  /* Narrow screens crop this landscape image into a near-portrait slot. Anchor the crop to the HEAD
+     (left of frame) so the head + neck stay in view and the long tail runs off the right, rather than
+     centering on the legs. Desktop keeps 50% so the head still sits over "Scott" in the byline. */
+  @media (max-width: 1100px) { .hero-img { object-position: 20% 36%; } }
   .hero-grad-top {
     position: absolute; top: 0; left: 0; right: 0; height: 160px;
     background: linear-gradient(to bottom, rgba(12,11,9,.5), rgba(12,11,9,0));
