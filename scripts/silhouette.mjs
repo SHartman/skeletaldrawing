@@ -395,6 +395,12 @@ const entryDims = (g) => {
 const silBySpecimen = {};
 for (const group of Object.values(GENUS_GROUPS))
   for (const g of group) if (g.specimen) silBySpecimen[g.specimen] = g.file;
+// Overlay specimens with an owner body silhouette outside the genus groups — the Archaeopteryx pair,
+// so the Archaeopteryx hub's scale comparison shows both specimens (Thermopolis + Chicago).
+Object.assign(silBySpecimen, {
+  'archaeopteryx-thermopolis': 'archaeopteryx-lithographica-thermopolis-specimen-silhouette.png',
+  'archaeopteryx-chicago': 'archaeopteryx-chicago-specimen-silhouette.png',
+});
 
 const out = {};
 

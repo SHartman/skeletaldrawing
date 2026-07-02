@@ -3,7 +3,7 @@ added: "2026-07-01T14:03:00.000Z"
 taxon: "Argentinosaurus huinculensis"
 author: "Bonaparte & Coria, 1993"
 gallery: "sauropods-and-kin"
-clade: ["Titanosauria"]
+clade: ["Lognkosauria"]
 lengthM: 31
 widthM: 27.9
 view: "Left lateral"
