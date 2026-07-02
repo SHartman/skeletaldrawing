@@ -25,9 +25,17 @@ const {
 const raw = (silData as Record<string, any[]>)[taxonId] ?? [];
 const items = [...raw].sort((a, b) => b.lengthM - a.lengthM);
 
-const PXM = 100; // svg units per meter
 const padL = 16;
 const padT = 16;
+const hasData = items.length > 0;
+
+// Normalize the drawing so the largest silhouette is always ~TARGET_W units wide, whatever the animals'
+// real size. Otherwise a 0.4 m Archaeopteryx yields a tiny viewBox that the browser scales up ~12x to fill
+// the figure — blowing up the user-unit ruler text and the figure box. A constant content width keeps text
+// and strokes rendering at a consistent size from songbird to supersaurus. (PXM = svg units per metre.)
+const TARGET_W = 900;
+const rawMaxWidthM = hasData ? Math.max(...items.map((it) => it.widthM ?? it.lengthM)) : 1;
+const PXM = TARGET_W / rawMaxWidthM;
 
 // Scale by the silhouette's true HORIZONTAL extent in meters so pose doesn't distort size: an
 // upright taxon (raised neck, therizinosaur, bird) has widthM < lengthM and no longer inflates.
@@ -37,7 +45,6 @@ const scaled = items.map((it, idx) => {
   const s = (PXM * (it.widthM ?? it.lengthM)) / it.w;
   return { ...it, idx, s, sw: it.w * s, sh: it.h * s };
 });
-const hasData = scaled.length > 0;
 
 const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0; // biological max — for the aria label
 // Horizontal layout follows the actual rendered silhouette widths (sw), not lengthM, so a raised-neck
