@@ -276,6 +276,13 @@ const description =
   });
   form.addEventListener('submit', (e) => e.preventDefault());
   clearBtn.addEventListener('click', () => { input.value = ''; close(); clearBtn.hidden = true; input.focus(); });
+
+  // Click/tap anywhere outside the search box + results clears and closes it (same as the ×), so you can
+  // start a new search without backspacing through a long name.
+  const wrap = document.querySelector('.searchbox-wrap')!;
+  document.addEventListener('click', (e) => {
+    if (input.value && !wrap.contains(e.target as Node)) { input.value = ''; close(); clearBtn.hidden = true; }
+  });
 </script>
 
 <style>
@@ -350,10 +357,14 @@ const description =
     font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--accent); text-decoration: none; white-space: nowrap;
   }
+  /* Fixed column counts (6 → 3 → 2) that all divide the six chips evenly, so it's never a lone chip
+     orphaned on a second row (auto-fit dropped to 5-across at the site's 1180px measure). */
   .clade-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px;
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
     transition: opacity .28s ease;
   }
+  @media (max-width: 1120px) { .clade-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 620px)  { .clade-grid { grid-template-columns: repeat(2, 1fr); } }
   .clade-grid.dimmed { opacity: .45; } /* soft focus pull toward the suggestions while searching */
   .clade-card {
     display: flex; flex-direction: column; gap: 9px; padding: 20px 18px; border: 1px solid var(--hair);
