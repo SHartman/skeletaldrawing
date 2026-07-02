@@ -54,13 +54,3 @@ img { max-width: 100%; height: auto; }
     to   { opacity: 1; transform: none; }
   }
 }
-
-/* Cross-document view transitions are opted in PER PAGE (BaseLayout's `viewTransition` prop, default
-   on) so only some pages cross-fade — the fade shows when moving between two opted-in pages. These
-   global rules just tune the fade when it happens and disable it under reduced-motion. */
-::view-transition-old(root),
-::view-transition-new(root) { animation-duration: .22s; }
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) { animation: none; }
-}
