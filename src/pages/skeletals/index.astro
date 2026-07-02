@@ -39,22 +39,41 @@ for (const s of specimens) {
 }
 corpus.sort((a, b) => a.taxon.localeCompare(b.taxon));
 
-// Clade doorways — one per live gallery, in a fixed order, with real taxon counts. New galleries
-// (ornithischians, synapsids, …) appear here automatically as their content lands.
-const GAL_LABEL: Record<string, string> = {
-  theropods: 'Theropoda',
-  'sauropods-and-kin': 'Sauropodomorpha',
-  ornithischians: 'Ornithischia',
-  synapsids: 'Synapsida',
-  'non-dinosaurs': 'Other archosaurs',
-};
-const GAL_ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'synapsids', 'non-dinosaurs'];
-const cladeCards = GAL_ORDER.filter((g) => taxa.some((t) => t.data.gallery === g)).map((g, i) => ({
-  idx: String(i + 1).padStart(2, '0'),
-  name: GAL_LABEL[g] ?? g,
-  count: taxa.filter((t) => t.data.gallery === g).length,
-  href: `/${g}/`,
-}));
+// Curated clade shortcuts — jump straight to a popular clade that sits several levels DOWN in a
+// gallery, so a visitor who wants (say) pterosaurs doesn't have to know they live inside the
+// "non-dinosaurs" gallery and drill for them. NOT gallery doorways (that's what "Browse galleries →"
+// is for). Each deep-links via /<gallery>/#<clade> — the gallery reads the hash and opens pre-drilled.
+// Only chips whose clade currently has taxa render, so the list can carry entries for clades that
+// don't exist yet: they light up on their own when their gallery lands. Curate label/order here.
+const CLADE_SHORTCUTS: { label: string; gallery: string; clade: string }[] = [
+  // Owner's target set — clades undercut by the gallery structure; dormant until their galleries exist:
+  { label: 'Pterosaurs', gallery: 'non-dinosaurs', clade: 'Pterosauria' },
+  { label: 'Ceratopsians', gallery: 'ornithischians', clade: 'Ceratopsia' },
+  { label: 'Hadrosaurs', gallery: 'ornithischians', clade: 'Hadrosauridae' },
+  { label: 'Ankylosaurs', gallery: 'ornithischians', clade: 'Ankylosauria' },
+  { label: 'Ichthyosaurs', gallery: 'non-dinosaurs', clade: 'Ichthyosauria' },
+  { label: 'Croc-line archosaurs', gallery: 'non-dinosaurs', clade: 'Pseudosuchia' },
+  // Live now — popular clades a few steps down in the existing galleries (interim stand-ins; retire
+  // as the target clades above come online):
+  { label: 'Tyrannosaurs', gallery: 'theropods', clade: 'Tyrannosauroidea' },
+  { label: 'Raptors', gallery: 'theropods', clade: 'Dromaeosauridae' },
+  { label: 'Early birds', gallery: 'theropods', clade: 'Avialae' },
+  { label: 'Spinosaurs', gallery: 'theropods', clade: 'Spinosauridae' },
+  { label: 'Titanosaurs', gallery: 'sauropods-and-kin', clade: 'Titanosauria' },
+  { label: 'Diplodocids', gallery: 'sauropods-and-kin', clade: 'Diplodocidae' },
+];
+const cladeCards = CLADE_SHORTCUTS.map((c) => ({
+  ...c,
+  count: taxa.filter((t) => t.data.gallery === c.gallery && expandClades(t.data.clade).includes(c.clade)).length,
+}))
+  .filter((c) => c.count > 0) // never a dead link — a clade with no taxa yet simply doesn't render
+  .slice(0, 6) // one tidy row on desktop; target clades are listed first, so they take the slots as they activate
+  .map((c, i) => ({
+    idx: String(i + 1).padStart(2, '0'),
+    label: c.label,
+    count: c.count,
+    href: `/${c.gallery}/#${encodeURIComponent(c.clade)}`,
+  }));
 
 // Idle stat line — real figures.
 const reconCount =
@@ -121,7 +140,7 @@ const description =
           {cladeCards.map((c) => (
             <a class="clade-card" href={c.href}>
               <span class="c-idx">{c.idx}</span>
-              <span class="c-name">{c.name}</span>
+              <span class="c-name">{c.label}</span>
               <span class="c-count">{c.count} skeletals</span>
             </a>
           ))}
@@ -335,7 +354,8 @@ const description =
   }
   .clade-card:hover { border-color: var(--slate); transform: translateY(-2px); }
   .c-idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
-  .c-name { font-style: italic; font-size: 19px; color: var(--ink); line-height: 1.1; }
+  /* vernacular group labels (Tyrannosaurs, Croc-line archosaurs) read cleaner roman than italic */
+  .c-name { font-size: 19px; color: var(--ink); line-height: 1.1; }
   .c-count {
     font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--slate);
