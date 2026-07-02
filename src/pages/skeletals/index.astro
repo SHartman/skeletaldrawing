@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { expandClades } from '../../lib/clades';
+import silData from '../../data/silhouettes.json';
 
 // The "Skeletals" launcher (CLAUDE.md §5 / search handoff): a typeahead that jumps straight to a
 // taxon/specimen page, plus clade "doorways" into the galleries. Deliberately NOT the home and NOT
@@ -60,9 +61,12 @@ const reconCount =
   taxa.filter((t) => t.data.reconstruction).length + specimens.filter((s) => s.data.reconstruction).length;
 const idleStat = `${reconCount} reconstructions · ${taxa.length} taxa · a scale bar on every plate`;
 
-// A single T. rex outline (viewBox 0 0 1000 307), reused faint behind the header and in the no-match state.
-const SIL =
-  'M111.1 0.0L152.5 2.2L198.3 34.9L217.9 34.9L254.9 26.1L337.7 15.3L392.2 13.1L422.7 15.3L610.0 56.6L666.7 61.0L740.7 61.0L812.6 71.9L880.2 93.7L923.7 117.6L980.4 161.2L1000.0 183.0L1000.0 189.5L991.3 187.4L947.7 152.5L921.6 137.3L884.5 122.0L814.8 106.8L740.7 106.8L620.9 130.7L540.3 132.9L501.1 148.1L483.7 159.0L496.7 180.8L531.6 207.0L549.0 241.8L562.1 246.2L559.9 254.9L566.4 259.3L566.4 294.1L557.7 307.2L522.9 307.2L522.9 302.8L529.4 305.0L531.6 298.5L544.7 291.9L544.7 283.2L525.1 241.8L498.9 215.7L479.3 207.0L435.7 200.4L413.9 185.2L368.2 198.3L359.5 213.5L359.5 244.0L337.7 268.0L320.3 281.0L320.3 287.6L296.3 300.7L281.0 305.0L272.3 302.8L270.2 307.2L265.8 307.2L263.6 302.8L252.7 298.5L244.0 300.7L244.0 296.3L250.5 289.8L257.1 291.9L259.3 287.6L278.9 283.2L291.9 268.0L300.7 265.8L318.1 252.7L333.3 228.8L335.5 213.5L322.4 183.0L287.6 180.8L254.9 172.1L252.7 178.6L257.1 193.9L252.7 193.9L246.2 185.2L244.0 191.7L239.7 191.7L239.7 165.6L202.6 148.1L187.4 124.2L148.1 106.8L137.3 106.8L113.3 128.5L108.9 128.5L115.5 117.6L111.1 115.5L113.3 100.2L119.8 100.2L122.0 106.8L126.4 95.9L126.4 85.0L117.6 82.8L115.5 74.1L104.6 80.6L93.7 93.7L80.6 139.4L56.6 163.4L71.9 165.6L85.0 154.7L100.2 130.7L104.6 130.7L100.2 141.6L91.5 148.1L91.5 152.5L76.3 169.9L52.3 169.9L47.9 167.8L47.9 159.0L50.1 152.5L78.4 122.0L87.1 100.2L87.1 95.9L78.4 87.1L43.6 111.1L19.6 117.6L8.7 117.6L4.4 113.3L0.0 104.6L0.0 98.0L4.4 95.9L0.0 93.7L0.0 89.3L4.4 82.8L10.9 80.6L19.6 67.5L39.2 56.6L63.2 32.7L74.1 28.3L91.5 10.9L108.9 2.2Z';
+// The site's own Sue (T. rex, FMNH PR 2081) body silhouette from the scale-comparison database —
+// reused faint behind the header and in the no-match state, so the launcher's mascot is a real
+// Hartman skeletal rather than the generic outline the design mockup shipped.
+const sue = ((silData as Record<string, any[]>)['tyrannosaurus-rex'] ?? []).find((s) => s.slug === 'sue');
+const SIL = sue?.path ?? '';
+const SIL_VB = `0 0 ${sue?.w ?? 1000} ${sue?.h ?? 307}`;
 
 const title = 'Search skeletals — the skeletal database | Skeletal Drawing';
 const description =
@@ -76,7 +80,7 @@ const description =
          clipped by its own inset layer -->
     <section class="search-header">
       <div class="sil-layer" aria-hidden="true">
-        <svg viewBox="0 0 1000 307"><path d={SIL} fill="var(--ink)" /></svg>
+        <svg viewBox={SIL_VB}><path d={SIL} fill="var(--ink)" /></svg>
       </div>
       <div class="inner">
         <p class="eyebrow">Skeletal database</p>
@@ -141,7 +145,9 @@ const description =
   const grid = document.getElementById('clade-grid')!;
   const form = document.getElementById('search-form')!;
   const idleStat = statline.dataset.idle ?? '';
-  const silPath = document.querySelector('.sil-layer path')!.getAttribute('d')!;
+  const silSvg = document.querySelector('.sil-layer svg')!;
+  const silPath = silSvg.querySelector('path')!.getAttribute('d')!;
+  const silVB = silSvg.getAttribute('viewBox')!;
 
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -199,7 +205,7 @@ const description =
       dropdown.innerHTML = html;
     } else {
       dropdown.innerHTML =
-        `<div class="nomatch"><svg viewBox="0 0 1000 307" aria-hidden="true"><path d="${silPath}" fill="var(--ink)"/></svg>` +
+        `<div class="nomatch"><svg viewBox="${silVB}" aria-hidden="true"><path d="${silPath}" fill="var(--ink)"/></svg>` +
         `<p>No taxa match “<span class="i">${esc(raw.trim())}</span>”.</p>` +
         `<a href="/galleries/">Browse all galleries →</a></div>`;
     }
