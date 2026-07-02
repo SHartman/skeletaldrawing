@@ -4,7 +4,8 @@ author: "Jain & Bandyopadhyay, 1997"
 recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Titanosauria"]
-lengthM: 12
+lengthM: 11.7
+widthM: 10.6
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

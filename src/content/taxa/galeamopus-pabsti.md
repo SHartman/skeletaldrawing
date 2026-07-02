@@ -4,7 +4,8 @@ author: "Tschopp & Mateus, 2017"
 gallery: "sauropods-and-kin"
 clade: ["Diplodocinae"]
 specimenId: "SMA 0011"
-lengthM: 17
+lengthM: 17.3
+widthM: 16.2
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

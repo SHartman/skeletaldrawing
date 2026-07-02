@@ -4,7 +4,8 @@ taxon: "Corythoraptor jacobsi"
 author: "Lü et al., 2017"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
-lengthM: 2
+lengthM: 2.1
+widthM: 1.93
 view: "Left lateral"
 scaleBar: "50 centimeters"
 reconstruction:

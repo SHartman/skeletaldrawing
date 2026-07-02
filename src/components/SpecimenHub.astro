@@ -22,15 +22,14 @@ const gallery: string = t.gallery;
 const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
 const { Content } = await render(taxon);
 
-// Eyebrow clades link back into the gallery (root → top; family → pre-filtered).
+// Eyebrow shows only the FAMILY (linked to the pre-filtered gallery): the breadcrumb above already
+// carries the root clade, so repeating it here just duplicated it. Fall back to root if no distinct family.
 const rootClade = tClades[0];
 const familyClade = t.family ?? tClades.at(-1);
-const eyebrowParts: { label: string; href: string }[] = [
-  { label: rootClade, href: `/${gallery}/` },
-  ...(familyClade && familyClade !== rootClade
+const eyebrowParts: { label: string; href: string }[] =
+  familyClade && familyClade !== rootClade
     ? [{ label: familyClade, href: `/${gallery}/#${encodeURIComponent(familyClade)}` }]
-    : []),
-];
+    : [{ label: rootClade, href: `/${gallery}/` }];
 
 // Largest first. Cards = featured (fall back to all if none are flagged).
 const all = [...specimens].sort((a: any, b: any) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0));
@@ -245,6 +244,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
   .display .auth {
     font-style: normal; font-weight: 400; color: var(--slate);
     font-size: clamp(16px, 2.4vw, 24px); letter-spacing: 0;
+    white-space: nowrap; /* keep the whole author citation together — wrap it as a unit, never mid-name */
   }
   .head-main { flex: 1 1 380px; }
   .intro { margin: 16px 0 0; max-width: 60ch; }

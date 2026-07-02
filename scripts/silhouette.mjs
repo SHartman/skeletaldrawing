@@ -457,9 +457,16 @@ const taxonSlugOf = (f) => {
 // Drop until a body-only version is supplied; then remove from this set and it auto-ingests.
 const SKIP_SLUGS = new Set();
 
+// Owner silhouettes that shouldn't drive a taxon's compare entry yet: a second specimen shown only as
+// a page figure (Barosaurus ROM 3670), and a juvenile whose ontogeny-comparison structure isn't settled
+// (Sinornithosaurus "Dave", NGMC 91). They stay in the folder — just not ingested as the taxon's silhouette.
+const SKIP_FILES = new Set([
+  'barosaurus-lentus-rom-3670-silhouette.png',
+  'sinornithosaurus-millenii-ngmc-91-dave-skeletal.png',
+]);
 const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
-  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && isSilFile(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
+  if (/\.png$/i.test(f) && !NON_TAXON.has(f) && !SKIP_FILES.has(f) && isSilFile(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
 
 const catalogAdds = [];
 for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {

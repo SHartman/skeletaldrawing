@@ -5,6 +5,7 @@ author: "Barsbold et al., 2000"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 1.7
+widthM: 1.65
 scaleBar: "50 centimeters"
 view: "Left lateral"
 rigorous:

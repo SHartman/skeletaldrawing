@@ -4,7 +4,8 @@ taxon: "Confuciusornis sanctus"
 author: "Hou et al., 1995"
 gallery: "theropods"
 clade: ["Avibrevicauda"]
-lengthM: 0.25
+lengthM: 0.27
+widthM: 0.218
 view: "Left lateral"
 scaleBar: "10 centimeters"
 reconstruction:

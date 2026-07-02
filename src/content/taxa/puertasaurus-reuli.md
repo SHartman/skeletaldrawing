@@ -5,6 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Lognkosauria"]
 specimenId: "MPM 10002"
 lengthM: 27
+widthM: 22.8
 view: "Left lateral"
 scaleBar: "1 meter"
 rigorous:

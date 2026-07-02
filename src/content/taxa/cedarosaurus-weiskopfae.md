@@ -4,6 +4,7 @@ author: "Tidwell, Carpenter & Brooks, 1999"
 gallery: "sauropods-and-kin"
 clade: ["Brachiosauridae"]
 lengthM: 20
+widthM: 16.5
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

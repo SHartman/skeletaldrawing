@@ -4,7 +4,8 @@ taxon: "Nothronychus graffami"
 author: "Zanno et al., 2009"
 gallery: "theropods"
 clade: ["Therizinosauria"]
-lengthM: 4.4
+lengthM: 4.5
+widthM: 3.6
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/nothronychus-graffami-umnh-vp-16420-skeletal.png"

@@ -5,6 +5,7 @@ author: "Clark et al., 2001"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 1.1
+widthM: 1.09
 lifeStage: "subadult"
 view: "Left lateral"
 scaleBar: "25 centimeters"

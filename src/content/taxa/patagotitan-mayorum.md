@@ -5,6 +5,7 @@ author: "Carballido et al., 2017"
 gallery: "sauropods-and-kin"
 clade: ["Lognkosauria"]
 lengthM: 27
+widthM: 22.4
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

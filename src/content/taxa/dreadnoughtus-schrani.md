@@ -4,7 +4,8 @@ taxon: "Dreadnoughtus schrani"
 author: "Lacovara et al., 2014"
 gallery: "sauropods-and-kin"
 clade: ["Titanosauria"]
-lengthM: 21
+lengthM: 22.5
+widthM: 20.5
 massKg: 33600
 massSource: "PaleoGDI"
 view: "Left lateral"

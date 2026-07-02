@@ -5,6 +5,7 @@ author: "Ostrom, 1969"
 gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 3.4
+widthM: 2.92
 view: "Left lateral"
 scaleBar: "50 centimeters"
 reconstruction:

@@ -5,7 +5,8 @@ author: "Cope, 1876"
 recombination: true
 gallery: "theropods"
 clade: ["Aves"]
-lengthM: 2.3
+lengthM: 2.5
+widthM: 2.13
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/gastornis-giganteus-skeletal.png"

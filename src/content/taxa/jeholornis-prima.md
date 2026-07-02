@@ -5,6 +5,7 @@ author: "Zhou & Zhang, 2002"
 gallery: "theropods"
 clade: ["Avialae"]
 lengthM: 0.8
+widthM: 0.774
 view: "Left lateral"
 scaleBar: "10 centimeters"
 reconstruction:

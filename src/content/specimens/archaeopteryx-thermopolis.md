@@ -3,7 +3,8 @@ taxon: "archaeopteryx-lithographica"
 catalog: "WDC-CSG-100"
 nickname: "Thermopolis specimen"
 repository: "Wyoming Dinosaur Center"
-lengthM: 0.3
+lengthM: 0.38
+widthM: 0.37
 massKg: 0.15
 view: "Left lateral"
 scaleBar: "10 centimeters"

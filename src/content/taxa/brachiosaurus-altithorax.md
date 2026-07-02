@@ -3,7 +3,8 @@ taxon: "Brachiosaurus altithorax"
 author: "Riggs, 1903"
 gallery: "sauropods-and-kin"
 clade: ["Brachiosauridae"]
-lengthM: 23
+lengthM: 24
+widthM: 20.1
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

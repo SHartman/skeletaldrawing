@@ -5,6 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Mamenchisauridae"]
 specimenId: "ZDM 0083"
 lengthM: 15
+widthM: 12.6
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

@@ -5,6 +5,7 @@ author: "Lü, 2002"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 1.6
+widthM: 1.45
 view: "Left lateral"
 scaleBar: "50 centimeters"
 reconstruction:

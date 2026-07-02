@@ -5,6 +5,7 @@ author: "Zhou et al., 1992"
 gallery: "theropods"
 clade: ["Enantiornithines"]
 lengthM: 0.15
+widthM: 0.134
 view: "Left lateral"
 scaleBar: "5 centimeters"
 reconstruction:

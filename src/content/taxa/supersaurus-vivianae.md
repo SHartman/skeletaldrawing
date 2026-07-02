@@ -5,6 +5,7 @@ author: "Jensen, 1985"
 gallery: "sauropods-and-kin"
 clade: ["Diplodocidae"]
 lengthM: 32
+widthM: 30
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

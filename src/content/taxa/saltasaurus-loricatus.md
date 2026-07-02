@@ -3,7 +3,8 @@ taxon: "Saltasaurus loricatus"
 author: "Bonaparte & Powell, 1980"
 gallery: "sauropods-and-kin"
 clade: ["Saltasauridae"]
-lengthM: 9
+lengthM: 8.8
+widthM: 8.3
 view: "Dorsal and left lateral"
 scaleBar: "1 meter"
 reconstruction:

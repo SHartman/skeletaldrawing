@@ -6,6 +6,7 @@ gallery: "sauropods-and-kin"
 clade: ["Diplodocinae"]
 specimenId: "CM 84"
 lengthM: 26
+widthM: 24.7
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

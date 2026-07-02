@@ -4,6 +4,7 @@ author: "Borsuk-Bialynicka, 1977"
 gallery: "sauropods-and-kin"
 clade: ["Titanosauria"]
 lengthM: 16
+widthM: 13.8
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

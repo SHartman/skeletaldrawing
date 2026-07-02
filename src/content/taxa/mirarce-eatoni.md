@@ -4,7 +4,8 @@ taxon: "Mirarce eatoni"
 author: "Atterholt et al., 2018"
 gallery: "theropods"
 clade: ["Enantiornithines"]
-lengthM: 0.49
+lengthM: 0.5
+widthM: 0.44
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:

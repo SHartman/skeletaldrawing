@@ -5,6 +5,7 @@ author: "Lamanna et al., 2014"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
 lengthM: 3
+widthM: 2.87
 view: "Left lateral"
 scaleBar: "50 centimeters"
 reconstruction:

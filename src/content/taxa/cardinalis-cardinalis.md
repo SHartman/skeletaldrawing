@@ -6,6 +6,7 @@ recombination: true
 gallery: "theropods"
 clade: ["Aves"]
 lengthM: 0.09
+widthM: 0.093
 view: "Left lateral"
 scaleBar: "1 centimeter"
 reconstruction:

@@ -5,6 +5,7 @@ author: "Wetmore, 1926"
 gallery: "theropods"
 clade: ["Aves"]
 lengthM: 0.42
+widthM: 0.338
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:

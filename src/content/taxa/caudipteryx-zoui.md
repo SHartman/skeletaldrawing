@@ -4,7 +4,8 @@ taxon: "Caudipteryx zoui"
 author: "Ji et al., 1998"
 gallery: "theropods"
 clade: ["Oviraptorosauria"]
-lengthM: 0.8
+lengthM: 0.82
+widthM: 0.78
 view: "Left lateral"
 scaleBar: "25 centimeters"
 reconstruction:

@@ -6,6 +6,7 @@ gallery: "sauropods-and-kin"
 clade: ["Camarasauridae"]
 specimenId: "BYU 9047"
 lengthM: 14
+widthM: 12.8
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

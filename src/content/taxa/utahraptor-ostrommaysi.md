@@ -4,7 +4,8 @@ taxon: "Utahraptor ostrommaysi"
 author: "Kirkland et al., 1993"
 gallery: "theropods"
 clade: ["Dromaeosauridae"]
-lengthM: 4.4
+lengthM: 4
+widthM: 3.9
 scaleBar: "50 centimeters"
 view: "Left lateral"
 reconstruction:

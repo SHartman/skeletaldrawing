@@ -5,6 +5,7 @@ gallery: "sauropods-and-kin"
 clade: ["Apatosaurinae"]
 specimenId: "CM 3018"
 lengthM: 23
+widthM: 21.8
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

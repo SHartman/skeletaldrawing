@@ -4,7 +4,8 @@ author: "Curry Rogers & Forster, 2001"
 gallery: "sauropods-and-kin"
 clade: ["Titanosauria"]
 specimenId: "FMNH PR 2209"
-lengthM: 4
+lengthM: 7.1
+widthM: 6.36
 lifeStage: "Juvenile (adult proportions differ)"
 view: "Left lateral"
 scaleBar: "1 meter"

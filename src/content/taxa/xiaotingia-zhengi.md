@@ -4,7 +4,8 @@ taxon: "Xiaotingia zhengi"
 author: "Xu et al., 2011"
 gallery: "theropods"
 clade: ["Anchiornithidae"]
-lengthM: 0.64
+lengthM: 0.65
+widthM: 0.632
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:

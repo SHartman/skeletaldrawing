@@ -47,13 +47,13 @@ const femur = formatMeters(s.femurM);
 const mass = formatMass(s.massKg);
 const tClades = expandClades(t.clade);
 const family = t.family ?? tClades.at(-1);
-// Eyebrow clades link back to the gallery (root → top; family → pre-filtered); catalog stays text.
+// Eyebrow shows family (+ catalog); the breadcrumb above already carries the root clade, so we don't
+// repeat it here. Family links to the pre-filtered gallery; catalog stays plain text.
 const rootClade = tClades[0];
 const eyebrowParts: { label: string; href: string | null }[] = [
-  { label: rootClade, href: `/${t.gallery}/` },
   ...(family && family !== rootClade
     ? [{ label: family, href: `/${t.gallery}/#${encodeURIComponent(family)}` }]
-    : []),
+    : [{ label: rootClade, href: `/${t.gallery}/` }]),
   ...(s.catalog ? [{ label: s.catalog, href: null }] : []),
 ];
 const idSub = s.nickname ? `“${s.nickname}” · ${s.catalog}` : s.catalog;

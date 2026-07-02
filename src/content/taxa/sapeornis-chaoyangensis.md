@@ -5,6 +5,7 @@ author: "Zhou & Zhang, 2002"
 gallery: "theropods"
 clade: ["Avibrevicauda"]
 lengthM: 0.4
+widthM: 0.35
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:

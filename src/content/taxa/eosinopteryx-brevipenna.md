@@ -5,6 +5,7 @@ author: "Godefroit et al., 2013"
 gallery: "theropods"
 clade: ["Anchiornithidae"]
 lengthM: 0.32
+widthM: 0.315
 view: "Left lateral"
 scaleBar: "5 centimeters"
 reconstruction:

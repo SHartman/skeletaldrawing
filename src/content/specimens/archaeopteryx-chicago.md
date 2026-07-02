@@ -3,7 +3,8 @@ taxon: "archaeopteryx-lithographica"
 catalog: "FMNH PA 830"
 nickname: "Chicago specimen"
 repository: "Field Museum of Natural History"
-lengthM: 0.26
+lengthM: 0.3
+widthM: 0.297
 massKg: 0.098
 view: "Left lateral"
 scaleBar: "10 centimeters"

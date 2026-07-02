@@ -5,7 +5,8 @@ recombination: true
 gallery: "sauropods-and-kin"
 clade: ["Titanosauria"]
 specimenId: "SAM-7405"
-lengthM: 10
+lengthM: 9
+widthM: 8.3
 view: "Left lateral"
 scaleBar: "1 meter"
 reconstruction:

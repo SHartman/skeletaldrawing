@@ -5,6 +5,7 @@ author: "Osborn, 1924"
 gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 1.8
+widthM: 1.76
 scaleBar: "25 centimeters"
 view: "Left lateral"
 reconstruction:

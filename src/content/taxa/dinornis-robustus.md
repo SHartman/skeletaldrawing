@@ -4,7 +4,8 @@ taxon: "Dinornis robustus"
 author: "Owen, 1846"
 gallery: "theropods"
 clade: ["Aves"]
-lengthM: 3.4
+lengthM: 3.5
+widthM: 3.4
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/dinornis-robustus-female-skeletal.png"

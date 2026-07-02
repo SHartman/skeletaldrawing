@@ -6,7 +6,8 @@ clade: ["Titanosauria"]
 family: ''
 specimenId: ''
 specimenName: ''
-lengthM: 26
+lengthM: 24.5
+widthM: 22
 lengthLabel: ''
 massKg: null
 massSource: ''

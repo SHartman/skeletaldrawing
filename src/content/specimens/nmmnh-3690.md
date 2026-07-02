@@ -6,6 +6,7 @@ repositoryUrl: "https://www.nmnaturalhistory.org/"
 formation: "Morrison Formation"
 locality: "New Mexico, USA"
 lengthM: 28
+widthM: 26
 view: "Left lateral"
 basis: "Known material only — holotype, too incompletely preserved to restore"
 overlay: true

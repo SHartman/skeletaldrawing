@@ -5,6 +5,7 @@ author: "Xu, Wang & Wu, 1999"
 gallery: "theropods"
 clade: ["Dromaeosauridae"]
 lengthM: 1.1
+widthM: 1.03
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:

@@ -4,7 +4,8 @@ taxon: "Microraptor gui"
 author: "Xu et al., 2003"
 gallery: "theropods"
 clade: ["Dromaeosauridae"]
-lengthM: 0.68
+lengthM: 0.7
+widthM: 0.68
 scaleBar: "10 centimeters"
 view: "Left lateral"
 reconstruction:
