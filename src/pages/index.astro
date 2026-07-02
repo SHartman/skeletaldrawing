@@ -139,6 +139,7 @@ const description =
       sizes="100vw"
       class="hero-img"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="hero-grad-top"></div>
     <div class="hero-grad-bottom"></div>
@@ -320,7 +321,9 @@ const description =
 
 <style>
   /* ---- hero ---- */
-  .hero { position: relative; background: var(--mast-bg); }
+  /* Warm-gold backing (the hero image's own sky tone) so any brief pre-decode gap on a warm navigation
+     blends with the image instead of flashing the dark charcoal through. */
+  .hero { position: relative; background: #d0a24e; }
   .hero-img {
     display: block; width: 100%; height: clamp(440px, 56vw, 560px);
     object-fit: cover; object-position: 50% 36%;
