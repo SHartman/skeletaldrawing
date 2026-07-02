@@ -212,11 +212,13 @@ const description =
     active = -1;
     currentHrefs = shown.map((d) => d.href);
 
+    const wasClosed = dropdown.hidden; // cascade the rows only on the open transition, not on every keystroke
+
     if (shown.length) {
       let html = shown
-        .map((d) => {
+        .map((d, i) => {
           const meta = d.specimen ? esc(d.specimen) + ' · ' + esc(d.clade) : esc(d.clade);
-          return `<a class="sugg" role="option" href="${esc(d.href)}"><span class="s-name">${highlight(d.taxon, q)}</span><span class="s-meta">${meta}</span></a>`;
+          return `<a class="sugg" role="option" style="--i:${i}" href="${esc(d.href)}"><span class="s-name">${highlight(d.taxon, q)}</span><span class="s-meta">${meta}</span></a>`;
         })
         .join('');
       if (overflow > 0)
@@ -230,6 +232,7 @@ const description =
     }
 
     statline.textContent = all.length === 0 ? 'No matches' : all.length + (all.length === 1 ? ' match' : ' matches');
+    dropdown.classList.toggle('just-opened', wasClosed); // arms the row cascade only when freshly opened
     open();
   }
 
@@ -245,7 +248,7 @@ const description =
 
   function close() {
     isOpen = false;
-    dropdown.classList.remove('is-open');
+    dropdown.classList.remove('is-open', 'just-opened');
     dropdown.hidden = true;
     dropdown.innerHTML = '';
     grid.classList.remove('dimmed');
@@ -306,8 +309,12 @@ const description =
     display: flex; align-items: center; background: var(--plate);
     border: 1px solid var(--hair-strong); border-radius: 8px; overflow: hidden;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+    transition: border-color .2s ease, box-shadow .2s ease;
   }
-  .search-icon { display: flex; align-items: center; padding-left: 18px; color: var(--measure); }
+  /* focus bloom — the "tool is ready" cue: border warms to gold, a soft shadow lifts, icon → accent */
+  .searchbox:focus-within { border-color: var(--accent-soft); box-shadow: 0 6px 22px rgba(20, 22, 25, .09); }
+  .searchbox:focus-within .search-icon { color: var(--accent); }
+  .search-icon { display: flex; align-items: center; padding-left: 18px; color: var(--measure); transition: color .2s ease; }
   #search-input {
     flex: 1; border: none; padding: 16px; font-family: var(--font-serif); font-size: 17px;
     background: transparent; color: var(--ink); outline: none;
@@ -325,9 +332,10 @@ const description =
     position: absolute; left: 0; right: 0; top: calc(100% + 8px);
     background: var(--plate); border: 1px solid var(--hair-strong); border-radius: 8px;
     box-shadow: 0 18px 46px rgba(20, 22, 25, .20); overflow: hidden; z-index: 50;
-    opacity: 0; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease;
+    /* panel fades in (opacity only); the rows carry the motion via the cascade in the is:global block */
+    opacity: 0; transition: opacity .14s ease;
   }
-  .dropdown.is-open { opacity: 1; transform: translateY(0); }
+  .dropdown.is-open { opacity: 1; }
 
   .statline {
     margin: 16px 0 0; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em;
@@ -353,6 +361,7 @@ const description =
     transition: border-color .16s ease, transform .16s ease;
   }
   .clade-card:hover { border-color: var(--slate); transform: translateY(-2px); }
+  .clade-card:active { transform: translateY(0) scale(.99); } /* tactile press */
   .c-idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
   /* vernacular group labels (Tyrannosaurs, Croc-line archosaurs) read cleaner roman than italic */
   .c-name { font-size: 19px; color: var(--ink); line-height: 1.1; }
@@ -395,5 +404,11 @@ const description =
   .search-page .nomatch a {
     display: inline-block; margin-top: 12px; font-family: var(--font-mono); font-size: 10.5px;
     letter-spacing: .1em; text-transform: uppercase; color: var(--accent); text-decoration: none;
+  }
+  /* results cascade — rows tick in with a small stagger, but ONLY on open (the `.just-opened` class is
+     added on the closed→open transition and removed after, so typing doesn't re-animate each keystroke) */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes suggCascade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .search-page .dropdown.just-opened .sugg { animation: suggCascade .17s ease both; animation-delay: calc(var(--i, 0) * 22ms); }
   }
 </style>
