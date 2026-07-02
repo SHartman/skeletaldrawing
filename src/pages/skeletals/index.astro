@@ -1,0 +1,373 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { expandClades } from '../../lib/clades';
+
+// The "Skeletals" launcher (CLAUDE.md §5 / search handoff): a typeahead that jumps straight to a
+// taxon/specimen page, plus clade "doorways" into the galleries. Deliberately NOT the home and NOT
+// the gallery grid — search is the focused "I know what I want" counterpart to browsing.
+const taxa = await getCollection('taxa');
+const specimens = await getCollection('specimens');
+const taxonById = new Map(taxa.map((t) => [t.id, t]));
+const familyOf = (d: any) => d.family ?? expandClades(d.clade).at(-1) ?? '';
+
+// Search corpus, wired to live records: { taxon, common, clade, specimen, href }.
+// (No common-name field on the schema yet — `common` stays empty until one is added; binomial,
+// specimen and clade search already cover most queries.)
+type Row = { taxon: string; common: string; clade: string; specimen: string; href: string };
+const corpus: Row[] = [];
+for (const t of taxa) {
+  corpus.push({
+    taxon: t.data.taxon,
+    common: '',
+    clade: familyOf(t.data),
+    specimen: t.data.specimenId ?? '',
+    href: `/${t.data.gallery}/${t.id}/`,
+  });
+}
+for (const s of specimens) {
+  const parent = taxonById.get(s.data.taxon);
+  if (!parent) continue;
+  corpus.push({
+    taxon: parent.data.taxon,
+    common: '',
+    clade: familyOf(parent.data),
+    specimen: s.data.nickname ? `${s.data.catalog} · ${s.data.nickname}` : s.data.catalog,
+    href: `/${parent.data.gallery}/${parent.id}/${s.id}/`,
+  });
+}
+corpus.sort((a, b) => a.taxon.localeCompare(b.taxon));
+
+// Clade doorways — one per live gallery, in a fixed order, with real taxon counts. New galleries
+// (ornithischians, synapsids, …) appear here automatically as their content lands.
+const GAL_LABEL: Record<string, string> = {
+  theropods: 'Theropoda',
+  'sauropods-and-kin': 'Sauropodomorpha',
+  ornithischians: 'Ornithischia',
+  synapsids: 'Synapsida',
+  'non-dinosaurs': 'Other archosaurs',
+};
+const GAL_ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'synapsids', 'non-dinosaurs'];
+const cladeCards = GAL_ORDER.filter((g) => taxa.some((t) => t.data.gallery === g)).map((g, i) => ({
+  idx: String(i + 1).padStart(2, '0'),
+  name: GAL_LABEL[g] ?? g,
+  count: taxa.filter((t) => t.data.gallery === g).length,
+  href: `/${g}/`,
+}));
+
+// Idle stat line — real figures.
+const reconCount =
+  taxa.filter((t) => t.data.reconstruction).length + specimens.filter((s) => s.data.reconstruction).length;
+const idleStat = `${reconCount} reconstructions · ${taxa.length} taxa · a scale bar on every plate`;
+
+// A single T. rex outline (viewBox 0 0 1000 307), reused faint behind the header and in the no-match state.
+const SIL =
+  'M111.1 0.0L152.5 2.2L198.3 34.9L217.9 34.9L254.9 26.1L337.7 15.3L392.2 13.1L422.7 15.3L610.0 56.6L666.7 61.0L740.7 61.0L812.6 71.9L880.2 93.7L923.7 117.6L980.4 161.2L1000.0 183.0L1000.0 189.5L991.3 187.4L947.7 152.5L921.6 137.3L884.5 122.0L814.8 106.8L740.7 106.8L620.9 130.7L540.3 132.9L501.1 148.1L483.7 159.0L496.7 180.8L531.6 207.0L549.0 241.8L562.1 246.2L559.9 254.9L566.4 259.3L566.4 294.1L557.7 307.2L522.9 307.2L522.9 302.8L529.4 305.0L531.6 298.5L544.7 291.9L544.7 283.2L525.1 241.8L498.9 215.7L479.3 207.0L435.7 200.4L413.9 185.2L368.2 198.3L359.5 213.5L359.5 244.0L337.7 268.0L320.3 281.0L320.3 287.6L296.3 300.7L281.0 305.0L272.3 302.8L270.2 307.2L265.8 307.2L263.6 302.8L252.7 298.5L244.0 300.7L244.0 296.3L250.5 289.8L257.1 291.9L259.3 287.6L278.9 283.2L291.9 268.0L300.7 265.8L318.1 252.7L333.3 228.8L335.5 213.5L322.4 183.0L287.6 180.8L254.9 172.1L252.7 178.6L257.1 193.9L252.7 193.9L246.2 185.2L244.0 191.7L239.7 191.7L239.7 165.6L202.6 148.1L187.4 124.2L148.1 106.8L137.3 106.8L113.3 128.5L108.9 128.5L115.5 117.6L111.1 115.5L113.3 100.2L119.8 100.2L122.0 106.8L126.4 95.9L126.4 85.0L117.6 82.8L115.5 74.1L104.6 80.6L93.7 93.7L80.6 139.4L56.6 163.4L71.9 165.6L85.0 154.7L100.2 130.7L104.6 130.7L100.2 141.6L91.5 148.1L91.5 152.5L76.3 169.9L52.3 169.9L47.9 167.8L47.9 159.0L50.1 152.5L78.4 122.0L87.1 100.2L87.1 95.9L78.4 87.1L43.6 111.1L19.6 117.6L8.7 117.6L4.4 113.3L0.0 104.6L0.0 98.0L4.4 95.9L0.0 93.7L0.0 89.3L4.4 82.8L10.9 80.6L19.6 67.5L39.2 56.6L63.2 32.7L74.1 28.3L91.5 10.9L108.9 2.2Z';
+
+const title = 'Search skeletals — the skeletal database | Skeletal Drawing';
+const description =
+  'Search Scott Hartman’s skeletal reconstructions by taxon, specimen number, or clade — a fast typeahead that jumps straight to any skeletal, plus clade doorways into the galleries.';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="search-page">
+    <!-- ===================== search header ===================== -->
+    <!-- no overflow:hidden here, so the dropdown can extend over Browse-by-clade; the silhouette is
+         clipped by its own inset layer -->
+    <section class="search-header">
+      <div class="sil-layer" aria-hidden="true">
+        <svg viewBox="0 0 1000 307"><path d={SIL} fill="var(--ink)" /></svg>
+      </div>
+      <div class="inner">
+        <p class="eyebrow">Skeletal database</p>
+        <h1 class="display">Find a <span class="i">skeletal.</span></h1>
+
+        <div class="searchbox-wrap">
+          <form class="searchbox" id="search-form" role="search">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path>
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search a taxon, specimen, or common name…"
+              aria-label="Search skeletals"
+              autocomplete="off"
+              aria-controls="dropdown"
+            />
+            <button type="button" id="search-clear" class="clear" aria-label="Clear search" hidden>×</button>
+          </form>
+          <div class="dropdown" id="dropdown" role="listbox" aria-label="Search results" hidden></div>
+        </div>
+
+        <p class="statline" id="statline" data-idle={idleStat}>{idleStat}</p>
+      </div>
+    </section>
+
+    <!-- ===================== browse by clade ===================== -->
+    <section class="browse">
+      <div class="inner">
+        <div class="browse-head">
+          <h2 class="h2">Browse by clade</h2>
+          <a class="browse-link" href="/galleries/">Browse galleries →</a>
+        </div>
+        <div class="clade-grid" id="clade-grid">
+          {cladeCards.map((c) => (
+            <a class="clade-card" href={c.href}>
+              <span class="c-idx">{c.idx}</span>
+              <span class="c-name">{c.name}</span>
+              <span class="c-count">{c.count} skeletals</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/json" id="search-corpus" set:html={JSON.stringify(corpus)} />
+</BaseLayout>
+
+<script>
+  type Row = { taxon: string; common: string; clade: string; specimen: string; href: string };
+  const CORPUS: Row[] = JSON.parse(document.getElementById('search-corpus')!.textContent!);
+  const MAX = 7;
+
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const clearBtn = document.getElementById('search-clear') as HTMLButtonElement;
+  const dropdown = document.getElementById('dropdown')!;
+  const statline = document.getElementById('statline')!;
+  const grid = document.getElementById('clade-grid')!;
+  const form = document.getElementById('search-form')!;
+  const idleStat = statline.dataset.idle ?? '';
+  const silPath = document.querySelector('.sil-layer path')!.getAttribute('d')!;
+
+  const esc = (s: string) =>
+    s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+  // Highlight the matched substring of the taxon name in accent gold.
+  const highlight = (text: string, q: string) => {
+    const i = text.toLowerCase().indexOf(q);
+    if (i < 0) return esc(text);
+    return esc(text.slice(0, i)) + '<span class="hl">' + esc(text.slice(i, i + q.length)) + '</span>' + esc(text.slice(i + q.length));
+  };
+
+  let isOpen = false;
+  let active = -1; // keyboard-highlighted row index
+  let currentHrefs: string[] = [];
+
+  function rank(raw: string) {
+    const q = raw.trim().toLowerCase();
+    return CORPUS.map((d) => {
+      const hay = (d.taxon + ' ' + d.common + ' ' + d.specimen + ' ' + d.clade).toLowerCase();
+      if (!hay.includes(q)) return null;
+      const t = d.taxon.toLowerCase(), c = d.common.toLowerCase();
+      let r = 3;
+      if (t.startsWith(q) || (c && c.startsWith(q))) r = 0;
+      else if (t.includes(q) || (c && c.includes(q))) r = 1;
+      else if (d.specimen.toLowerCase().includes(q)) r = 2;
+      return { d, r };
+    })
+      .filter(Boolean)
+      .sort((a, b) => a!.r - b!.r || a!.d.taxon.localeCompare(b!.d.taxon))
+      .map((x) => x!.d);
+  }
+
+  function render() {
+    const raw = input.value;
+    const q = raw.trim().toLowerCase();
+    clearBtn.hidden = raw.length === 0;
+
+    if (!q) return close();
+
+    const all = rank(raw);
+    const shown = all.slice(0, MAX);
+    const overflow = all.length - shown.length;
+    active = -1;
+    currentHrefs = shown.map((d) => d.href);
+
+    if (shown.length) {
+      let html = shown
+        .map((d) => {
+          const meta = d.specimen ? esc(d.specimen) + ' · ' + esc(d.clade) : esc(d.clade);
+          return `<a class="sugg" role="option" href="${esc(d.href)}"><span class="s-name">${highlight(d.taxon, q)}</span><span class="s-meta">${meta}</span></a>`;
+        })
+        .join('');
+      if (overflow > 0)
+        html += `<a class="overflow-row" href="/galleries/">See all ${all.length} results in the galleries →</a>`;
+      dropdown.innerHTML = html;
+    } else {
+      dropdown.innerHTML =
+        `<div class="nomatch"><svg viewBox="0 0 1000 307" aria-hidden="true"><path d="${silPath}" fill="var(--ink)"/></svg>` +
+        `<p>No taxa match “<span class="i">${esc(raw.trim())}</span>”.</p>` +
+        `<a href="/galleries/">Browse all galleries →</a></div>`;
+    }
+
+    statline.textContent = all.length === 0 ? 'No matches' : all.length + (all.length === 1 ? ' match' : ' matches');
+    open();
+  }
+
+  function open() {
+    dropdown.hidden = false;
+    grid.classList.add('dimmed');
+    if (!isOpen) {
+      // fade-in on first open (translateY(-6px)→0, opacity 0→1) — designed but not runnable in the prototype
+      requestAnimationFrame(() => dropdown.classList.add('is-open'));
+      isOpen = true;
+    }
+  }
+
+  function close() {
+    isOpen = false;
+    dropdown.classList.remove('is-open');
+    dropdown.hidden = true;
+    dropdown.innerHTML = '';
+    grid.classList.remove('dimmed');
+    statline.textContent = idleStat;
+  }
+
+  function setActive(next: number) {
+    const rows = [...dropdown.querySelectorAll<HTMLElement>('.sugg')];
+    if (!rows.length) return;
+    active = (next + rows.length) % rows.length;
+    rows.forEach((r, i) => r.classList.toggle('is-active', i === active));
+    rows[active].scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('input', render);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+    else if (e.key === 'Escape') { input.value = ''; close(); clearBtn.hidden = true; }
+    else if (e.key === 'Enter') {
+      e.preventDefault();
+      const href = active >= 0 ? currentHrefs[active] : currentHrefs[0];
+      if (href) window.location.href = href;
+    }
+  });
+  form.addEventListener('submit', (e) => e.preventDefault());
+  clearBtn.addEventListener('click', () => { input.value = ''; close(); clearBtn.hidden = true; input.focus(); });
+</script>
+
+<style>
+  .search-page { display: flex; flex-direction: column; }
+
+  /* ---- search header ---- */
+  .search-header { position: relative; border-bottom: 1px solid var(--hair); }
+  .sil-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  /* wide screens: sits right and slides left as the window narrows; then pins ~250px from the left
+     and lets the tail run off the right, keeping the heading clear on mobile (the one tunable value) */
+  .sil-layer svg {
+    position: absolute; left: max(250px, calc(100% - 780px)); top: 52%;
+    transform: translateY(-50%); width: 720px; height: auto; opacity: .08;
+  }
+  .search-header .inner {
+    position: relative; max-width: var(--measure-max); margin: 0 auto;
+    padding: 56px var(--pad-side) 50px;
+  }
+  .eyebrow {
+    margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 12px 0 0; font-weight: 500; font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.02; letter-spacing: -.02em;
+  }
+  .display .i { font-style: italic; }
+
+  .searchbox-wrap { position: relative; max-width: 620px; margin-top: 26px; z-index: 50; }
+  .searchbox {
+    display: flex; align-items: center; background: var(--plate);
+    border: 1px solid var(--hair-strong); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+  }
+  .search-icon { display: flex; align-items: center; padding-left: 18px; color: var(--measure); }
+  #search-input {
+    flex: 1; border: none; padding: 16px; font-family: var(--font-serif); font-size: 17px;
+    background: transparent; color: var(--ink); outline: none;
+  }
+  #search-input::placeholder { color: var(--measure); }
+  .clear {
+    border: none; background: transparent; color: var(--slate); padding: 0 16px;
+    font-size: 20px; line-height: 1; cursor: pointer;
+  }
+  .clear:hover { color: var(--ink); }
+
+  /* dropdown container is in the template (scoped styles reach it); its rows are built in JS →
+     their styles live in the is:global block below */
+  .dropdown {
+    position: absolute; left: 0; right: 0; top: calc(100% + 8px);
+    background: var(--plate); border: 1px solid var(--hair-strong); border-radius: 8px;
+    box-shadow: 0 18px 46px rgba(20, 22, 25, .20); overflow: hidden; z-index: 50;
+    opacity: 0; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease;
+  }
+  .dropdown.is-open { opacity: 1; transform: translateY(0); }
+
+  .statline {
+    margin: 16px 0 0; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--measure);
+  }
+
+  /* ---- browse by clade ---- */
+  .browse .inner { max-width: var(--measure-max); margin: 0 auto; padding: 52px var(--pad-side) 60px; }
+  .browse-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .h2 { margin: 0; font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; }
+  .browse-link {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+  .clade-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px;
+    transition: opacity .28s ease;
+  }
+  .clade-grid.dimmed { opacity: .45; } /* soft focus pull toward the suggestions while searching */
+  .clade-card {
+    display: flex; flex-direction: column; gap: 9px; padding: 20px 18px; border: 1px solid var(--hair);
+    background: var(--plate); text-decoration: none; border-radius: 5px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .clade-card:hover { border-color: var(--slate); transform: translateY(-2px); }
+  .c-idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+  .c-name { font-style: italic; font-size: 19px; color: var(--ink); line-height: 1.1; }
+  .c-count {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  @media (max-width: 600px) {
+    .search-header .inner { padding: 40px var(--pad-side) 36px; }
+    .browse .inner { padding: 40px var(--pad-side) 48px; }
+  }
+</style>
+
+<!-- Suggestion rows / no-match are built in the client script (createElement/innerHTML), so they never
+     get Astro's scope attribute — their styles are global, anchored under .search-page so nothing leaks. -->
+<style is:global>
+  .search-page .sugg {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    padding: 13px 18px; text-decoration: none; border-top: 1px solid var(--hair);
+  }
+  .search-page .dropdown > .sugg:first-child { border-top: none; }
+  .search-page .sugg:hover, .search-page .sugg.is-active { background: var(--paper); }
+  .search-page .s-name { font-style: italic; font-size: 17px; color: var(--ink); line-height: 1.15; }
+  .search-page .s-name .hl { color: var(--accent); font-weight: 600; }
+  .search-page .s-meta {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; color: var(--slate);
+    text-align: right; white-space: nowrap;
+  }
+  .search-page .overflow-row {
+    display: block; text-decoration: none; border-top: 1px solid var(--hair); padding: 12px 18px;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .search-page .overflow-row:hover { background: var(--paper); }
+  .search-page .nomatch { padding: 26px 22px; text-align: center; }
+  .search-page .nomatch svg { width: 120px; height: auto; opacity: .14; display: block; margin: 0 auto 14px; }
+  .search-page .nomatch p { margin: 0; font-size: 17px; color: var(--ink); }
+  .search-page .nomatch .i { font-style: italic; }
+  .search-page .nomatch a {
+    display: inline-block; margin-top: 12px; font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--accent); text-decoration: none;
+  }
+</style>
