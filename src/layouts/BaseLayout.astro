@@ -9,9 +9,11 @@ interface Props {
   ogImage?: string; // absolute URL
   ogType?: string; // 'website' | 'article' | …
   bare?: boolean; // suppress the standard masthead/footer (home provides its own chrome)
+  viewTransition?: boolean; // opt this page into the cross-document cross-fade (default on); a fade
+                            // only occurs between two opted-in pages, so home/compare pass false
 }
 
-const { title, description, ogImage, ogType = 'website', bare = false } = Astro.props;
+const { title, description, ogImage, ogType = 'website', bare = false, viewTransition = true } = Astro.props;
 
 // Canonical URL for this page (Astro.site is set in astro.config.mjs).
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -48,6 +50,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    {/* Opt into the cross-document view transition per page (see tokens.css for the fade tuning).
+        set:html keeps it a raw at-rule Astro won't scope or bundle. */}
+    {viewTransition && <style set:html="@view-transition { navigation: auto; }" />}
 
     {/* Pages inject SEO/JSON-LD/Open Graph here in Phase 1. */}
     <slot name="head" />

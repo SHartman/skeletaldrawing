@@ -55,10 +55,9 @@ img { max-width: 100%; height: auto; }
   }
 }
 
-/* Cross-document view transitions — a subtle cross-fade between pages where the browser supports it
-   (Chromium, Safari 18+); elsewhere navigation is unchanged. Pure CSS, NO client router, so every
-   page's scripts still run fresh on load. Honors reduced-motion. */
-@view-transition { navigation: auto; }
+/* Cross-document view transitions are opted in PER PAGE (BaseLayout's `viewTransition` prop, default
+   on) so only some pages cross-fade — the fade shows when moving between two opted-in pages. These
+   global rules just tune the fade when it happens and disable it under reduced-motion. */
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: .22s; }
 @media (prefers-reduced-motion: reduce) {
