@@ -107,8 +107,10 @@ const description =
       <div class="sil-layer" aria-hidden="true">
         <svg viewBox={SIL_VB}><path d={SIL} fill="var(--ink)" /></svg>
       </div>
-      <!-- hidden source for the no-match card's silhouette (a different taxon than the header's Sue) -->
-      <svg id="nomatch-sil" viewBox={NM_SIL_VB} hidden aria-hidden="true"><path d={NM_SIL} /></svg>
+      <!-- inert source for the no-match card's silhouette (a different taxon than the header's Sue).
+           A <template> is never rendered, so it can't paint behind the header the way a `hidden` SVG
+           did (the [hidden] UA rule doesn't reach an SVG-namespaced root); JS reads the path from it. -->
+      <template id="nomatch-sil"><svg viewBox={NM_SIL_VB}><path d={NM_SIL} /></svg></template>
       <div class="inner">
         <p class="eyebrow">Skeletal database</p>
         <h1 class="display">Find a <span class="i">skeletal.</span></h1>
@@ -172,7 +174,8 @@ const description =
   const grid = document.getElementById('clade-grid')!;
   const form = document.getElementById('search-form')!;
   const idleStat = statline.dataset.idle ?? '';
-  const nmSvg = document.getElementById('nomatch-sil')!;
+  const nmTpl = document.getElementById('nomatch-sil') as HTMLTemplateElement;
+  const nmSvg = nmTpl.content.querySelector('svg')!;
   const silPath = nmSvg.querySelector('path')!.getAttribute('d')!;
   const silVB = nmSvg.getAttribute('viewBox')!;
 
