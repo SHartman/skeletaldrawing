@@ -87,6 +87,12 @@ const sue = ((silData as Record<string, any[]>)['tyrannosaurus-rex'] ?? []).find
 const SIL = sue?.path ?? '';
 const SIL_VB = `0 0 ${sue?.w ?? 1000} ${sue?.h ?? 307}`;
 
+// The no-match card uses a different real skeletal — Camarasaurus (a sauropod) — so the page shows a
+// second silhouette rather than Sue twice. A famous horned/plated taxon can swap in here once traced.
+const cam = ((silData as Record<string, any[]>)['camarasaurus-lewisi'] ?? [])[0];
+const NM_SIL = cam?.path ?? SIL;
+const NM_SIL_VB = cam ? `0 0 ${cam.w} ${cam.h}` : SIL_VB;
+
 const title = 'Search skeletals — the skeletal database | Skeletal Drawing';
 const description =
   'Search Scott Hartman’s skeletal reconstructions by taxon, specimen number, or clade — a fast typeahead that jumps straight to any skeletal, plus clade doorways into the galleries.';
@@ -101,6 +107,8 @@ const description =
       <div class="sil-layer" aria-hidden="true">
         <svg viewBox={SIL_VB}><path d={SIL} fill="var(--ink)" /></svg>
       </div>
+      <!-- hidden source for the no-match card's silhouette (a different taxon than the header's Sue) -->
+      <svg id="nomatch-sil" viewBox={NM_SIL_VB} hidden aria-hidden="true"><path d={NM_SIL} /></svg>
       <div class="inner">
         <p class="eyebrow">Skeletal database</p>
         <h1 class="display">Find a <span class="i">skeletal.</span></h1>
@@ -164,9 +172,9 @@ const description =
   const grid = document.getElementById('clade-grid')!;
   const form = document.getElementById('search-form')!;
   const idleStat = statline.dataset.idle ?? '';
-  const silSvg = document.querySelector('.sil-layer svg')!;
-  const silPath = silSvg.querySelector('path')!.getAttribute('d')!;
-  const silVB = silSvg.getAttribute('viewBox')!;
+  const nmSvg = document.getElementById('nomatch-sil')!;
+  const silPath = nmSvg.querySelector('path')!.getAttribute('d')!;
+  const silVB = nmSvg.getAttribute('viewBox')!;
 
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
