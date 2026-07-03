@@ -121,7 +121,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
         <p class="eyebrow">
           {eyebrowParts.map((p, i) => (
             <Fragment>
-              {i > 0 && <span class="dot">·</span>}
+              {i > 0 && <span class="sep" aria-hidden="true">/</span>}
               {p.href ? <a href={p.href}>{p.label}</a> : <span>{p.label}</span>}
             </Fragment>
           ))}
@@ -304,7 +304,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
   }
   .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s ease, border-color .15s ease; }
   .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
-  .eyebrow .dot { margin: 0 .5em; opacity: .55; }
+  .eyebrow .sep { margin: 0 .5em; opacity: .5; }
   .binomial {
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(40px, 6.5vw, 68px); line-height: 1.0; letter-spacing: -.015em;

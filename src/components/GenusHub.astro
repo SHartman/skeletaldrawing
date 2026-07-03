@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
+import { expandClades } from '../lib/clades';
 import ScaleComparison from './ScaleComparison.astro';
 import {
   heroRef,
@@ -17,14 +18,27 @@ import {
 // Genus hub: aggregates a multi-species genus. A species that has documented specimens is
 // FLATTENED — each specimen becomes its own card/row — so the hub surfaces every skeletal in
 // the genus, not just one per species (e.g. Diplodocus: carnegii + the two hallorum specimens).
-const GALLERY_LABEL: Record<string, string> = {
-  'sauropods-and-kin': 'Sauropodomorpha',
-  theropods: 'Theropoda',
-};
-
 const { hub } = Astro.props;
 const gallery: string = hub.gallery;
-const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
+
+// Single eyebrow "root / family", both linked into the gallery — mirrors the skeletal landing page,
+// with no separate breadcrumb line and no genus echo (the big title already states the genus). The
+// "family" is the deepest clade every species in the genus shares (a genus is monophyletic).
+const speciesPaths = hub.species.map((s: any) => expandClades(s.data.clade));
+const rootClade = speciesPaths[0][0];
+let familyClade = rootClade;
+const minDepth = Math.min(...speciesPaths.map((p: string[]) => p.length));
+for (let i = 0; i < minDepth; i++) {
+  const c = speciesPaths[0][i];
+  if (speciesPaths.every((p: string[]) => p[i] === c)) familyClade = c;
+  else break;
+}
+const eyebrowParts: { label: string; href: string }[] = [
+  { label: rootClade, href: `/${gallery}/` },
+  ...(familyClade && familyClade !== rootClade
+    ? [{ label: familyClade, href: `/${gallery}/#${encodeURIComponent(familyClade)}` }]
+    : []),
+];
 
 const speciesIds = new Set(hub.species.map((s: any) => s.id));
 const specimens = (await getCollection('specimens')).filter((sp) => speciesIds.has(sp.data.taxon));
@@ -102,15 +116,16 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
 
 <BaseLayout title={title} description={description} ogType="article">
   <main class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href={`/${gallery}/`}>{galleryLabel}</a>
-      <span aria-hidden="true">/</span>
-      <em>{hub.genus}</em>
-    </nav>
-
     <header class="hub-head">
       <div class="head-main">
-        <p class="eyebrow">Genus</p>
+        <p class="eyebrow">
+          {eyebrowParts.map((p, i) => (
+            <Fragment>
+              {i > 0 && <span class="sep" aria-hidden="true">/</span>}
+              <a href={p.href}>{p.label}</a>
+            </Fragment>
+          ))}
+        </p>
         <h1 class="display"><em>{hub.genus}</em></h1>
         <p class="intro">
           {members.length} documented skeletals across {speciesCount} {speciesCount === 1 ? 'species' : 'species'}
@@ -221,23 +236,18 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
 
-  .crumbs {
-    margin-top: 34px; font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: .1em; color: var(--slate); display: flex; gap: 10px; align-items: baseline;
-  }
-  .crumbs a { color: var(--slate); text-decoration: none; }
-  .crumbs a:hover { color: var(--ink); }
-  .crumbs em { font-style: italic; color: var(--ink); }
-
   .hub-head {
     display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: flex-end;
-    justify-content: space-between; margin: 18px 0 0; padding-bottom: 26px;
+    justify-content: space-between; margin: 34px 0 0; padding-bottom: 26px;
     border-bottom: 1px solid var(--hair);
   }
   .eyebrow {
     margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
     letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
   }
+  .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s ease, border-color .15s ease; }
+  .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
+  .eyebrow .sep { margin: 0 .5em; opacity: .5; }
   .display {
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(46px, 8vw, 86px); line-height: 1.0; letter-spacing: -.015em;

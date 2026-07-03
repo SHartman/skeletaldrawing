@@ -10,26 +10,22 @@ import ScaleComparison from './ScaleComparison.astro';
 // Taxon hub for specimen-rich taxa (CLAUDE.md §5): header + compact record →
 // specimen cards (featured) → [scale-comparison overlay — deferred] → sortable
 // table (all specimens). The taxon page becomes this when it has specimen children.
-const GALLERY_LABEL: Record<string, string> = {
-  'sauropods-and-kin': 'Sauropodomorpha',
-  theropods: 'Theropoda',
-};
-
 const { taxon, specimens } = Astro.props;
 const t = taxon.data;
 const tClades = expandClades(t.clade);
 const gallery: string = t.gallery;
-const galleryLabel = GALLERY_LABEL[gallery] ?? gallery;
 const { Content } = await render(taxon);
 
-// Eyebrow shows only the FAMILY (linked to the pre-filtered gallery): the breadcrumb above already
-// carries the root clade, so repeating it here just duplicated it. Fall back to root if no distinct family.
+// Single eyebrow "root / family", both linked into the gallery — mirrors the skeletal landing page,
+// with no separate breadcrumb line and no name echo (the big title already states the taxon).
 const rootClade = tClades[0];
 const familyClade = t.family ?? tClades.at(-1);
-const eyebrowParts: { label: string; href: string }[] =
-  familyClade && familyClade !== rootClade
+const eyebrowParts: { label: string; href: string }[] = [
+  { label: rootClade, href: `/${gallery}/` },
+  ...(familyClade && familyClade !== rootClade
     ? [{ label: familyClade, href: `/${gallery}/#${encodeURIComponent(familyClade)}` }]
-    : [{ label: rootClade, href: `/${gallery}/` }];
+    : []),
+];
 
 // Largest first. Cards = featured (fall back to all if none are flagged).
 const all = [...specimens].sort((a: any, b: any) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0));
@@ -76,18 +72,12 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
 
 <BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
   <main class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href={`/${gallery}/`}>{galleryLabel}</a>
-      <span aria-hidden="true">/</span>
-      <em>{t.taxon}</em>
-    </nav>
-
     <header class="hub-head">
       <div class="head-main">
         <p class="eyebrow">
           {eyebrowParts.map((p, i) => (
             <Fragment>
-              {i > 0 && <span class="dot">·</span>}
+              {i > 0 && <span class="sep" aria-hidden="true">/</span>}
               <a href={p.href}>{p.label}</a>
             </Fragment>
           ))}
@@ -217,17 +207,9 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
 
-  .crumbs {
-    margin-top: 34px; font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: .1em; color: var(--slate); display: flex; gap: 10px; align-items: baseline;
-  }
-  .crumbs a { color: var(--slate); text-decoration: none; }
-  .crumbs a:hover { color: var(--ink); }
-  .crumbs em { font-style: italic; color: var(--ink); }
-
   .hub-head {
     display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: flex-start;
-    justify-content: space-between; margin: 18px 0 0; padding-bottom: 26px;
+    justify-content: space-between; margin: 34px 0 0; padding-bottom: 26px;
     border-bottom: 1px solid var(--hair);
   }
   .eyebrow {
@@ -236,7 +218,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
   }
   .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s ease, border-color .15s ease; }
   .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
-  .eyebrow .dot { margin: 0 .5em; opacity: .55; }
+  .eyebrow .sep { margin: 0 .5em; opacity: .5; }
   .display {
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(40px, 7vw, 76px); line-height: 1.0; letter-spacing: -.015em;
