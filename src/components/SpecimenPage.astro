@@ -47,13 +47,15 @@ const femur = formatMeters(s.femurM);
 const mass = formatMass(s.massKg);
 const tClades = expandClades(t.clade);
 const family = t.family ?? tClades.at(-1);
-// Eyebrow shows family (+ catalog); the breadcrumb above already carries the root clade, so we don't
-// repeat it here. Family links to the pre-filtered gallery; catalog stays plain text.
+// Single eyebrow "root / family / catalog" — mirrors the skeletal landing page, with no separate
+// breadcrumb line. Root + family link into the gallery; the catalog (this specimen) stays plain text.
+// The parent hub is still reached from the Taxon record cell and the "all specimens" back-link below.
 const rootClade = tClades[0];
 const eyebrowParts: { label: string; href: string | null }[] = [
+  { label: rootClade, href: `/${t.gallery}/` },
   ...(family && family !== rootClade
     ? [{ label: family, href: `/${t.gallery}/#${encodeURIComponent(family)}` }]
-    : [{ label: rootClade, href: `/${t.gallery}/` }]),
+    : []),
   ...(s.catalog ? [{ label: s.catalog, href: null }] : []),
 ];
 const idSub = s.nickname ? `“${s.nickname}” · ${s.catalog}` : s.catalog;
@@ -88,7 +90,6 @@ const related = await Promise.all(
 );
 
 const hubUrl = `/${t.gallery}/${taxon.id}/`;
-const galleryLabel = { 'sauropods-and-kin': 'Sauropodomorpha', theropods: 'Theropoda' }[t.gallery] ?? t.gallery;
 
 const kind = kmOnly ? 'known skeletal material' : 'skeletal reconstruction';
 const title = `${t.taxon} — ${s.catalog}${s.nickname ? ` (“${s.nickname}”)` : ''} ${kind} | Skeletal Drawing`;
@@ -105,14 +106,6 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
   </Fragment>
 
   <main class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href={`/${t.gallery}/`}>{galleryLabel}</a>
-      <span aria-hidden="true">/</span>
-      <a href={hubUrl}><em>{t.taxon}</em></a>
-      <span aria-hidden="true">/</span>
-      <span class="here">{s.catalog}</span>
-    </nav>
-
     <article class="card">
       <span class="reg tl"></span><span class="reg tr"></span>
       <span class="reg bl"></span><span class="reg br"></span>
@@ -270,19 +263,8 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
 
-  .crumbs {
-    margin-top: 34px; font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: .1em; color: var(--slate); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
-  }
-  .crumbs a { color: var(--slate); text-decoration: none; }
-  .crumbs a:hover { color: var(--ink); }
-  .crumbs em { font-style: italic; }
-  .crumbs a em { color: var(--slate); }
-  .crumbs a:hover em { color: var(--ink); }
-  .crumbs .here { color: var(--ink); }
-
   .card {
-    margin-top: 16px;
+    margin-top: 34px;
     border: 1px solid var(--hair-strong);
     background: var(--plate);
     position: relative;
