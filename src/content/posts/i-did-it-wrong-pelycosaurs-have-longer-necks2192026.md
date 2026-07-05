@@ -4,18 +4,19 @@ date: 2026-02-19T22:47:01Z
 excerpt: "A bunch of years ago I carefully planned out how to do more short-form content for this blog, and one of those ideas was for a series of You’re Doing it Wrong… posts highlighting common errors in documentaries, art and museum mounts. Maybe "
 image:
   src: /images/blog/21stcenturydimetrodon-2.webp
-  alt: " Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting… "
+  alt: "Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting…"
+  caption: "Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting…"
 ---
-
 A bunch of years ago I carefully planned out how to do more short-form content for this blog, and one of those ideas was for a series of *You’re Doing it Wrong…* posts highlighting common errors in documentaries, art and museum mounts. Maybe I’ll still do some of those at some point, but I think it’s more interesting to highlight my own mistakes, and today we have one that I think is a doozy.
 
 Back in 2017, I [wrote a post](https://www.skeletaldrawing.com/home/21stcenturydimetrodon) about the challenges in reconstructing the skeleton of the sail-backed [pelycosaur](https://en.wikipedia.org/wiki/Eupelycosauria) *Dimetrodon*. I noted several things, including that the curvature of the spine was strong by the pelvis, and that there was an unexpected dip further up by the shoulders.
 
-\[caption id="" align="alignnone" width="576"\] Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting… \[/caption\]
-
 I felt good about how I reconstructed the shape of the presacral column (the backbones in front of the hips) then, and I felt even better about it after talking to Matt Celesky at an SVP conference. He shared that while working on [*Gordodon*](https://en.wikipedia.org/wiki/Gordodon) he’d looked at other edaphosaurids (plant-eating pelycosaurs) and found a similar dip. Hurray!
 
-\[caption id="" align="alignnone" width="1280"\]![ gordodon fossil, From wikipedia ](/images/blog/i-did-it-wrong-pelycosaurs-have-longer-necks2192026-2.webp) gordodon fossil, From wikipedia \[/caption\]
+<figure>
+<img src="/images/blog/i-did-it-wrong-pelycosaurs-have-longer-necks2192026-2.webp" alt="gordodon fossil, From wikipedia" />
+<figcaption>gordodon fossil, From wikipedia</figcaption>
+</figure>
 
 More recently as I was working on reconstructing *Edaphosaurus* (soon, I promise), I confirmed that sure enough, there was a definite dip again up near the shoulders (though not such a strong downturn by the hips). But looking at the articulated *Gordodon* fossil and my in-progress *Edaphosaurus* vertebral column, that “weird dip” is the transition between the back and the neck. Indeed, much of the discussion on *Gordodon* is on how its neck is elongate…which it is, but not by nearly as much when you put the pectoral girdle of *Edaphosaurus* in the same, correct place.
 
@@ -23,4 +24,7 @@ I’m not the first to make this observation (the entire *Gordodon* paper!), alt
 
 So I did it wrong. Now it’s updated in the gallery, and hopefully going forward we can all give *Dimetrodon* the neck it deserves.
 
-\[caption id="" align="alignnone" width="2500"\]![ I’m torn between whether this makes Dimetrodon look more like a mammal-ancestor, or just derpy. porque no los dos? ](/images/blog/i-did-it-wrong-pelycosaurs-have-longer-necks2192026-3.webp) I’m torn between whether this makes Dimetrodon look more like a mammal-ancestor, or just derpy. porque no los dos? \[/caption\]
+<figure>
+<img src="/images/blog/i-did-it-wrong-pelycosaurs-have-longer-necks2192026-3.webp" alt="I’m torn between whether this makes Dimetrodon look more like a mammal-ancestor, or just derpy. porque no los dos?" />
+<figcaption>I’m torn between whether this makes Dimetrodon look more like a mammal-ancestor, or just derpy. porque no los dos?</figcaption>
+</figure>

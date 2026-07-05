@@ -4,11 +4,9 @@ date: 2013-06-21T15:17:35Z
 excerpt: "Today let's look at another one of our thundering giants, Alamosaurus sanjuanensis. Alamosaurus is known from quite good remains (for a titanosaur), and some fragmentary remains may be close to the largest known dinosaur. How certain is thi"
 image:
   src: /images/blog/assessing-alamosaurus-1.webp
-  alt: " Alamosaurus on parade "
+  alt: "Alamosaurus on parade"
+  caption: "Alamosaurus on parade"
 ---
-
-\[caption id="" align="alignnone" width="1500"\] Alamosaurus on parade \[/caption\]
-
 Today let's look at another one of our [thundering giants,](http://www.skeletaldrawing.com/home/2013/06/the-biggest-of-big.html) *[Alamosaurus sanjuanensis](http://en.wikipedia.org/wiki/Alamosaurus)*. *Alamosaurus* is known from quite good remains (for a titanosaur), and some fragmentary remains may be close to the largest known dinosaur. How certain is this reconstruction? Much better than *[Puertasaurus](http://www.skeletaldrawing.com/home/2013/6/20/the-problem-with-puertasaurus)*, but there are still a couple of layers of inference needed to get there.
 
 Until recently *Alamosaurus* remains were all from varying sizes of subadults and juveniles. Since no one specimen is complete, it also requires a lot of cross-scaling. How to best cross-scale *Alamosaurus* is in and of itself something of a [debate](http://browse.deviantart.com/art/Alamosaurus-skeletal-344422788). A lot of the material has only been described in graduate theses or is referred to without being figured in scientific papers, so the choice is whether to believe those numbers or pursue a scaling closer to that of *[Opisthocoelicaudia](http://en.wikipedia.org/wiki/Opisthocoelicaudia)*, a titanosaur that is often recovered as a close relative of *Alamosaurus*.

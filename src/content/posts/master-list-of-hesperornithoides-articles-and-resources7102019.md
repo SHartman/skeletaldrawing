@@ -3,12 +3,10 @@ title: "Master list of Hesperornithoides articles and resources"
 date: 2019-07-10T12:21:37Z
 image:
   src: /images/blog/master-list-of-hesperornithoides-articles-and-resources7102019-1.webp
-  alt: " Hesperornithoides by Lucas-Attwell . Used with permission. "
+  alt: "Hesperornithoides by Lucas-Attwell. Used with permission."
+  caption: "Hesperornithoides by Lucas-Attwell. Used with permission."
 draft: true
 ---
-
-\[caption id="" align="alignnone" width="1280"\] Hesperornithoides by Lucas-Attwell . Used with permission. \[/caption\]
-
 **Scientific Paper**
 
 [Hartman S, Mortimer M, Wahl WR, Lomax DR, Lippincott J, Lovelace DM. 2019. A new paravian dinosaur from the Late Jurassic of North America supports a late acquisition of avian flight. *PeerJ* 7:e7247](https://peerj.com/articles/7247/)

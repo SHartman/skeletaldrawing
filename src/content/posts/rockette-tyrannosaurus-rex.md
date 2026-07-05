@@ -4,11 +4,9 @@ date: 2018-11-23T22:21:25Z
 excerpt: "I realize that talking about Tyrannosaurus rex needs no further justification for most people (and what the heck is wrong with the rest of you, anyways?), but I just so happen to have such justification…"
 image:
   src: /images/blog/rockette-tyrannosaurus-rex-1.webp
-  alt: " The DMNS’s Rockette ‘rex, Source "
+  alt: "The DMNS’s Rockette ‘rex, Source"
+  caption: "The DMNS’s Rockette ‘rex, Source"
 ---
-
-\[caption id="" align="alignnone" width="720"\] The DMNS’s Rockette ‘rex, Source \[/caption\]
-
 I realize that talking about *Tyrannosaurus rex* needs no further justification for most people (and what the heck is wrong with the rest of you, anyway?), but I just so happen to have such justification - The *Tyrannosaurus rex* skeletal and painting I did for [Permia’s](https://www.permia.com/) latest line of shirts & sweatshirts.
 
 I should note straight away that all of these designs for Permia have a few constraints on them - they should (naturally) be posed in a way that is visually interesting while retaining scientific accuracy, and they need to fit into a t-shirt friendly aspect ratio that is frankly quite a bit taller than the average dinosaur in side view (this was a particular challenge while working on the armored dinosaur [*Euoplocephalus*](https://www.permia.com/collections/euoplocephalus)).

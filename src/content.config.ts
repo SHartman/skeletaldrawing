@@ -14,6 +14,7 @@ import { glob } from 'astro/loaders';
 const imageRef = z.object({
   src: z.string(), // public path, e.g. /images/skeletals/<descriptive-name>.png
   alt: z.string(), // descriptive alt text (taxon + view + length) — hard rule §3
+  caption: z.string().optional(), // optional visible caption (used by the blog lead image)
 });
 
 // Sveltia materializes empty fields as '' (strings) or null (numbers). Normalize

@@ -5,11 +5,9 @@ kind: "Size estimates"
 excerpt: "In my previous post on the proportions of the new Spinosaurus material I argued that the pelvis and legs are not nearly as reduced in size as the composite skeletal in Ibrahim, et al., (2014) implies. Theropod-worker-extraordinaire and all-"
 image:
   src: /images/blog/there-may-be-more-fishiness-in-spinosaurus9132014-1.webp
-  alt: " From the Theropoda Blog "
+  alt: "From the Theropoda Blog"
+  caption: "From the Theropoda Blog"
 ---
-
-\[caption id="" align="alignnone" width="1600"\] From the Theropoda Blog \[/caption\]
-
 In my [previous post](http://www.skeletaldrawing.com/home/theres-something-fishy-about-spinosaurus9112014) on the proportions of the new *Spinosaurus* material I argued that the pelvis and legs are not reduced in size to the extreme degree portrayed in the composite skeletal in Ibrahim, et al., (2014). In the comments section of that post theropod-worker extraordinaire and all-around swell guy [Thomas Holtz](http://www.geol.umd.edu/~tholtz/) mentioned a photo (seen at left) that could serve as a sort of independent visual line of evidence that the pelvis and legs of the new Spinosaurus specimen are shorter than other theropods, and potentially shorter than I calculated from the supplementary data. Checking our assumptions (including mine) is part and parcel of science, so let's take a look.
 
 Andrea Cau [wrote an excellent post on his blog](http://theropoda.blogspot.com/2014/09/spinosaurus-revolution-episodio-ii-ode.html) wherein he makes a strong case that the remains of Stromer's "*Spinosaurus* B" specimen and the newly described material by Ibrahim et al. are not themselves chimeras, instead accurately recording theropods with smaller-than-usual pelves and hind legs. This is an objection that has been raised before to try and explain away any oddities of the original Stromer material, and has been informally raised regarding the newly described neotype specimen.
@@ -18,7 +16,10 @@ I find Cau's argument, as well as the taphonomic description of Ibrahim et al. p
 
 This should not be contentious - to my knowledge no one is arguing that the legs of *Spinosaurus* are unreduced. [My own "correcting"](http://www.skeletaldrawing.com/home/theres-something-fishy-about-spinosaurus9112014) of the composite skeletal proportions still results in a theropod with a reduced pelvic girdle and hind limbs (certainly reduced compared to my original skeletal reconstruction). Given the other data from isotopes, sensory pits on the schnoz, etc., there is also a case to be made that the limb reduction correlates with increased time spent in or around the water. The question is to what degree, and that's where the numbers published by [Ibrahim et al](http://www.sciencemag.org/content/345/6202/1232)., don't seem to add up to their reconstruction of a quadrupedal, *Ambulocetus*\-grade level of aquatic behavior.
 
-\[caption id="" align="alignnone" width="844"\]![ Also from Cau's Theropoda blog . ](/images/blog/there-may-be-more-fishiness-in-spinosaurus9132014-2.webp) Also from Cau's Theropoda blog . \[/caption\]
+<figure>
+<img src="/images/blog/there-may-be-more-fishiness-in-spinosaurus9132014-2.webp" alt="Also from Cau's Theropoda blog." />
+<figcaption>Also from Cau's Theropoda blog.</figcaption>
+</figure>
 
 Cau posted another image (seen directly above) which was taken at less of an less angle than the one featuring *Homo sapiens* for scale, so let's work with that image. On first visual examination there's no getting around it, that's a small pelvis and hind limb! But that's not really in dispute, the key is to what degree is it reduced? In the paper the ilium in the skeletal is portrayed as slightly shorter than 3 dorsal vertebrae. Glancing at the photo it should be obvious that the pelvis is not that short, but what we really want is a more precise estimate. Measuring the length of the individual centra in the photo can actually be pretty tricky; between distortion and the vertebrae sitting at semi-oblique angles it's hard to ensure you aren't making them longer than they really are. In measuring the three longest centra relative to the ilium I get a scalar of between 3.6 and 4.0. I would attribute that variation to the inherent imprecision of the technique, but notably it's in the same range as I previously calculated from the authors' measurements in the supplementary table S2 (which is 3.9).
 
@@ -26,7 +27,10 @@ But wait, there's more! Stare hard at the limb proportions for a bit. Notice any
 
 If you said "neither the femur nor the tibia appear shorter than the ilium" then you get a gold star. Why does that matter? Because in the official composite skeletal both limb elements are portrayed as shorter than the ilium; in the case of the femur it's portrayed as dramatically (~17%!) shorter than the ilium.
 
-\[caption id="" align="alignnone" width="1058"\]![ Scribbled on by me, but still cribbing images from Cau. ](/images/blog/there-may-be-more-fishiness-in-spinosaurus9132014-3.webp) Scribbled on by me, but still cribbing images from Cau. \[/caption\]
+<figure>
+<img src="/images/blog/there-may-be-more-fishiness-in-spinosaurus9132014-3.webp" alt="Scribbled on by me, but still cribbing images from Cau." />
+<figcaption>Scribbled on by me, but still cribbing images from Cau.</figcaption>
+</figure>
 
 Don't take my word for it, pop the file into ImageJ or Photoshop and try it yourself. At right is the same image with my own measuring points added for reference.Given that the ilium is restored as 71 cm in length the femur certainly appears substantially longer than the published length of 61 cm.
 

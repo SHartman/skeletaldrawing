@@ -4,11 +4,9 @@ date: 2013-11-09T22:43:22Z
 excerpt: "This was an exciting week for tyrannosaur fans, as a new tyrannosaurine was named (Lythronax) and new fossils of Teratophoneus were revealed. Eagle-eyed visitors to the Skeletal Drawing theropod gallery probably realize that they've seen tw"
 image:
   src: /images/blog/lythronax-tyrannosaur-troubles1192013-1.webp
-  alt: " From left to right: Teratophoneus, Lythronax, & Bistahieversor "
+  alt: "From left to right: Teratophoneus, Lythronax, & Bistahieversor"
+  caption: "From left to right: Teratophoneus, Lythronax, & Bistahieversor"
 ---
-
-\[caption id="" align="alignnone" width="2500"\] From left to right: Teratophoneus, Lythronax, & Bistahieversor \[/caption\]
-
 This was an exciting week for tyrannosaur fans, as a new tyrannosaurine was named (*Lythronax*) and new fossils of *Teratophoneus* were revealed. Eagle-eyed visitors to the Skeletal Drawing theropod gallery probably realize that they've seen two of these skeletals before, but it may not be the two you would expect. Read on for a good lesson in always labeling your files clearly.
 
 *Teratophoneus* was done as part of the revamp of the [UMNH dinosaur halls](http://nhmu.utah.edu/museum/exhibits/past-worlds). It incorporated the data published this week, but since *Teratophoneus* had already been described I was able to show off the skeletal while remaining mum on which parts were new and which were inference. The*Lythronax* skeletal was also produced a couple of years ago, but I was a bit less lucky on *Lythronax,* and it is here that the story takes an entertaining turn.

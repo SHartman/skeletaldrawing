@@ -4,18 +4,19 @@ date: 2020-11-24T05:48:29Z
 excerpt: "A few years back I wrote a couple of essays about Spinosaurus, on what could be said about the proportions and habitat of Spinosaurus. Ultimately I decided I would have to work from the ground up to create a new skeletal. Today I want to st"
 image:
   src: /images/blog/the-road-to-spinosaurus-i-megalosaur-skulls-1.webp
-  alt: " The restored skulls of Eustreptospondylus, “SAH” is mine, “GSP” is copyright Greg Paul (from his 1988 Predatory Dinosaurs of the World). "
+  alt: "The restored skulls of Eustreptospondylus, “SAH” is mine, “GSP” is copyright Greg Paul (from his 1988 Predatory Dinosaurs of the World)."
+  caption: "The restored skulls of Eustreptospondylus, “SAH” is mine, “GSP” is copyright Greg Paul (from his 1988 Predatory Dinosaurs of the World)."
 ---
-
 A few years back I wrote a couple of essays about *Spinosaurus*, looking at the most recent specimen (FSAC-KK 11888) and what could be said about the proportions and habitat of *Spinosaurus*. Ultimately I wasn’t able to come to a firm conclusion, and decided I would work from the ground up to create a new skeletal.
-
-\[caption id="" align="alignnone" width="352"\] The restored skulls of Eustreptospondylus, “SAH” is mine, “GSP” is copyright Greg Paul (from his 1988 Predatory Dinosaurs of the World). \[/caption\]
 
 It has been slow going since then, as I was preoccupied with finishing my PhD, publishing papers on other topics, and teaching courses at the University of Wisconsin-Madison. But I’ve kept whittling away at it, and today I want to start laying out my thoughts on this challenging topic. Starting phylogenetically broadly and working towards El Spino, here is a quick look at the proportions of megalosaur skulls.
 
 Historically megalosaurs have been known from less than ideal remains, including a lack of articulated skulls. With fairly scrappy remains to rely one, they have traditionally been restored with tall, blocky, vaguely allosaurish skulls. Greg Paul’s take back in his venerable 1988 Predatory Dinosaurs of the World (first figure) was not nearly as short or blocky snouted as most contemporary examples - it was common to restore *Eustreptospondylus* with an almost ridiculously short (front to back) and tall skull, an interpretation no doubt inspired by the original attempt at a physical reconstruction (a photo of which can be seen on David Hone’s blog [here](https://archosaurmusings.wordpress.com/2011/03/25/eustreptospondylus/)). The influence was pervasive for decades, and similar variants can still be seen in a [Google Image Search](https://www.google.com/search?bih=1000&biw=1362&q=eustreptospondylus%20skull&sa=X&source=lnms&sxsrf=ALeKk01HFyk7RdUDHyriMabr9fTSICIJ7g%3A1606177500086&tbm=isch&ved=2ahUKEwjT0dq69ZntAhWxTDABHQUqAhYQ_AUoAXoECAcQAw) today. Somewhat more recently megalosaur skulls have been restored with longer snouts, but ones that are tall and blocky (and sometimes quite wide), including the *Eustreptospondylus* model used in the Walking With Dinosaurs BBC special. I have been guilty of this myself, restoring the skulls in my *Megalosaurus* and *Marshosaurus* skeletals in the tall and blocky tradition.
 
-\[caption id="" align="alignnone" width="2048"\]![ The more elongate skull of Torvosaurus, as seen in the new Cincinnati mount. Photo Copyright Larry Witmer Lab. ](/images/blog/the-road-to-spinosaurus-i-megalosaur-skulls-2.webp) The more elongate skull of Torvosaurus, as seen in the new Cincinnati mount. Photo Copyright Larry Witmer Lab. \[/caption\]
+<figure>
+<img src="/images/blog/the-road-to-spinosaurus-i-megalosaur-skulls-2.webp" alt="The more elongate skull of Torvosaurus, as seen in the new Cincinnati mount. Photo Copyright Larry Witmer Lab." />
+<figcaption>The more elongate skull of Torvosaurus, as seen in the new Cincinnati mount. Photo Copyright Larry Witmer Lab.</figcaption>
+</figure>
 
 This view of megalosaur skulls made nesting spinosaurs (and their long, narrow skulls) within megalosaurs seem strange\*. Of course there’s nothing wrong with groupings that feel superficially counter-intuitive - sometimes subgroups are quite different in proportions from their relatives. Giraffes and whales, for example, are just as much [artiodactyls](https://en.wikipedia.org/wiki/Even-toed_ungulate) as deer are despite having very different proportions.
 

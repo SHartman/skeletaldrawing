@@ -4,14 +4,15 @@ date: 2015-07-01T18:46:41Z
 excerpt: "Mosasaurs have become all the rage lately with the release (and immense popularity) of Jurassic World. Purely by coincidence I had a commission for a mosasaur, Tylosaurus pembinensis. I hadn't done a mosasaur before (or any lizards), but I'"
 image:
   src: /images/blog/mosasaurs-teaching-the-controversy-1.webp
-  alt: " The Jurassic World Mosasaurus making short work of a shark "
+  alt: "The Jurassic World Mosasaurus making short work of a shark"
+  caption: "The Jurassic World Mosasaurus making short work of a shark"
 ---
-
-\[caption id="" align="alignnone" width="970"\] The Jurassic World Mosasaurus making short work of a shark \[/caption\]
-
 Mosasaurs have become all the rage lately with the release (and immense popularity) of Jurassic World. Purely by coincidence I was commisioned to do a skeletal of a mosasaur, *Tylosaurus pembinensis*, for a museum display. I hadn't done a mosasaur before (or any other lizards), but I'm reasonably familiar with squamate osteology so I figured it wouldn't be nearly as challenging as doing a skeletal of say... an [actinopterygian fish](http://www.skeletaldrawing.com/non-dinosaurs/ichthyodectes).
 
-\[caption id="" align="alignnone" width="600"\]![ A ](/images/blog/mosasaurs-teaching-the-controversy-2.webp) A "traditional" serpentine mosasaur, copyright Dan Varner \[/caption\]
+<figure>
+<img src="/images/blog/mosasaurs-teaching-the-controversy-2.webp" alt="A &quot;traditional&quot; serpentine mosasaur, copyright Dan Varner" />
+<figcaption>A &quot;traditional&quot; serpentine mosasaur, copyright Dan Varner</figcaption>
+</figure>
 
 The bones weren't overly challenging, but the soft tissue proved to be a bit more exciting. Recent workers, especially publications by Lindgren and colleagues, have looked at vertebral mobility and specialization, caudal articulation, and a couple of impressive specimens with skin impressions and have significantly revised the traditional view of mosasaurs as serpentine sea-snake analogs.
 
@@ -19,7 +20,10 @@ It's clear that at least a couple of mosasaurs had a hypocercal tail fin (a bi-l
 
 Alas, *Tylosaurus* is not one of the the genera that has skin impressions from the tail fin region, though there are scale impressions known from other parts of the body. So what evidence is there to go on? *Tylosaurus* does have a downturn in the caudal region, and pretty significant vertebral specialization. For these reasons as well as phylogenetic proximity to other mosasaurs with bilobed tails I tentatively endorse the hypocercal tail interpretation; though *Tylosaurus* does not appear to have been a true open-sea cruiser, it does appear to have the caudal series to supported a hypocercal tail. You can see the resulting skeletal reconstruction in the non-dinosaur skeletal gallery **[here](http://www.skeletaldrawing.com/non-dinosaurs/tylosaurus)**.
 
-\[caption id="" align="alignnone" width="500"\]![ Prognathodon tail with hypocercal tail fin impression. Credit Johan Lindgren ](/images/blog/mosasaurs-teaching-the-controversy-3.webp) Prognathodon tail with hypocercal tail fin impression. Credit Johan Lindgren \[/caption\]
+<figure>
+<img src="/images/blog/mosasaurs-teaching-the-controversy-3.webp" alt="Prognathodon tail with hypocercal tail fin impression. Credit Johan Lindgren" />
+<figcaption>Prognathodon tail with hypocercal tail fin impression. Credit Johan Lindgren</figcaption>
+</figure>
 
 But I want to make clear that this isn't a universal opinion. After posting an initial version to my [Facebook page](https://www.facebook.com/SkeletalDrawing) there was a lot of discussion on it, including useful feedback by Mr. Marine Reptile himself, Mike Everhart (who incidentally runs the very useful [Oceans of Kansas website](http://oceansofkansas.com/)). Mike made some excellent observations on tail anatomy, some of which necessitated changes to the orientation of the chevrons in the skeletal reconstruction. He also is not currently persuaded that *Tylosaurus* had a bilobed tail. He thinks the tail angle should be more shallow, closer to 30 degrees (I've restored it at ~40 degrees), and he thinks that instead of a hypocercal tail that it may have had a continuous "paddle", not unlike the lovely [Dan Varner](http://oceansofkansas.com/varner.html) illustration above.
 

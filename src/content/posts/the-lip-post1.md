@@ -4,11 +4,9 @@ date: 2019-04-02T16:01:32Z
 excerpt: "Well here we go. If you follow me on social media you’ve seen this teased, but I’m putting lips on all my non-beaked non-avian theropod skeletal reconstructions. So much for burying the lede, eh? Ah, but some of you may be wondering why I t"
 image:
   src: /images/blog/the-lip-post1-1.webp
-  alt: " Lippy Deinonychus . Still not a good kisser! "
+  alt: "Lippy Deinonychus. Still not a good kisser!"
+  caption: "Lippy Deinonychus. Still not a good kisser!"
 ---
-
-\[caption id="" align="alignnone" width="1070"\] Lippy Deinonychus . Still not a good kisser! \[/caption\]
-
 Well here we go. If you [follow me](https://twitter.com/skeletaldrawing) on [social media](https://www.facebook.com/SkeletalDrawing/) you’ve seen this teased, but I’m putting lips on all my non-beaked non-avian theropod skeletal reconstructions. So much for burying the lede, eh?
 
 Ah, but some of you may be wondering *why* I think they had lips? And what anatomical features I’m using for adding lips and other extra-oral tissues to my skeletal reconstructions? And why I’m doing it now?
@@ -27,7 +25,10 @@ So how is a person to decide? Let’s try to break this down.
 
 **The case against theropod lips**
 
-\[caption id="" align="alignnone" width="872"\]![ A lipless Daspletosaurus horneri . ](/images/blog/the-lip-post1-2.webp) A lipless Daspletosaurus horneri . \[/caption\]
+<figure>
+<img src="/images/blog/the-lip-post1-2.webp" alt="A lipless Daspletosaurus horneri." />
+<figcaption>A lipless Daspletosaurus horneri.</figcaption>
+</figure>
 
 Two main arguments have been advanced to support the idea of a more alligator-like lack of lips in theropods - one based on extant phylogenetic bracketing, and one based on nerve openings and bone texture on the bones around the mouth (the dentary, maxilla, and premaxilla). The [extant phylogenetic bracket](https://en.wikipedia.org/wiki/Phylogenetic_bracketing) argument is easy to understand - living theropods (birds) lack lips, as do their closest living relatives (crocodilians), so the default interpretation is that non-avian dinosaurs also lacked them.
 
@@ -43,7 +44,10 @@ First off, we need to discuss extant phylogenetic bracketing. The important thin
 
 A Type II inference is where only one set of living relatives shares similar anatomy with the fossil species you are looking at. Since your fossil species doesn’t have the luxury of having the same anatomy as both of it’s closest bracketed living relatives it naturally requires a higher burden of evidence to establish that the fossil species in question closely matches one or the other condition. We can safely rule out avian toothless beaks for most non-avian theropods, but we need to at least consider whether toothed theropods share enough anatomical similarity with alligators and crocodiles that is associated with liplessness to justify a Type II inference. If not (e.g. if most theropods had lips) unlike either birds or crocodiles it’s a Type III inference, and therefore requires the highest burden of anatomical evidence. In other words, the anatomical evidence has to be pretty strong to justify shifting the interpretation from a Type II to a Type III inference.
 
-\[caption id="" align="alignnone" width="800"\]![ American Crocodile credit Daderot Public Domain, T. rex maxilla photo is my own ](/images/blog/the-lip-post1-3.webp) American Crocodile credit Daderot Public Domain, T. rex maxilla photo is my own \[/caption\]
+<figure>
+<img src="/images/blog/the-lip-post1-3.webp" alt="American Crocodile credit Daderot Public Domain, T. rex maxilla photo is my own" />
+<figcaption>American Crocodile credit Daderot Public Domain, T. rex maxilla photo is my own</figcaption>
+</figure>
 
 But non-bird theropods *clearly* have very different anatomy from from living crocodiles and alligators, in almost every way you can examine their oral and facial anatomy. If you look at how the edge of the mouth is formed, crocs have upper tooth rows that are set in from a gently curving mouth edge (because that edge doesn’t support lips) and their lower teeth often interdigitate between or even protrude to the outside of their upper teeth (their lower teeth also frequently point laterally or anteriorly…because there are no lips to get in the way). That doesn’t look *anything* like most non-avian theropod tooth rows, which are set close to a sharp-rimmed outer edges of the mouth (the kinds that lips could grow from) and their lower teeth are either inline with or set to the inside of the upper tooth row (and their lower teeth are not oriented sideways or otherwise angled into the area where lips would be). I’ve highlighted some of these differences in the adjacent photos.
 
@@ -51,7 +55,10 @@ Given that basically all of the anatomy associated with liplessness in crocs is 
 
 But what of the [foramina](https://en.wikipedia.org/wiki/Foramen) and textured surface of facial bones in tyrannosaurs? This has been addressed in greater depth by another [Mark Witton blog post](http://markwitton-com.blogspot.com/2018/01/did-tyrannosaurs-smile-like-crocodiles.html) as well as by [Duane Nash](http://antediluviansalad.blogspot.com/2017/04/behind-your-bony-mask-of-face.html), but in short while [Carr and coauthors](https://www.nature.com/articles/srep44942) do a lot of good work correlating bony surface textures to different skin types on the face of *D. horneri*, I don’t believe they make a convincing case that the highly sculpted facial texture of crocodilians (which [Duane points out](http://antediluviansalad.blogspot.com/2017/04/behind-your-bony-mask-of-face.html) is seen in several other other aquatic predators) is similar to the texture seen on theropod facial bones, even in tyrannosaurs (whose facial bones tend to be more textured than most theropods). That crocodile-like texturing also fails to show up on the lower jaw of theropods (unlike crocs), where there is instead a row of foramina (holes) that seem to gently curve down where the largest upper teeth would go when the mouth closes - if this supported the bottom of the lower lips it would form a tooth pocket for the upper teeth. Needless to say this foramina pattern is not seen in crocodilians. In theropods with particularly large differences in upper tooth length (as in tyrannosaurs, which have large maxillary teeth but much smaller premaxillary teeth) the change in the depth of the tooth-pocket on the mandible can be quite striking (see photo below).
 
-\[caption id="" align="alignnone" width="1241"\]![ MOR 980 mandible - foramina highlighted in red on the bottom image ](/images/blog/the-lip-post1-4.webp) MOR 980 mandible - foramina highlighted in red on the bottom image \[/caption\]
+<figure>
+<img src="/images/blog/the-lip-post1-4.webp" alt="MOR 980 mandible - foramina highlighted in red on the bottom image" />
+<figcaption>MOR 980 mandible - foramina highlighted in red on the bottom image</figcaption>
+</figure>
 
 I find this comparative anatomy compelling on its own. But in the last decade there was also an excellent quantitative investigation of facial foramina by [Ashley Morhardt](https://twitter.com/ashleymorhardt). For her masters degree Ashley statistically analyzed foramina in living tetrapods, testing for correlations with their extra-oral soft-tissue structures, and then comparing the results to the foramina of dinosaurs.
 
@@ -69,7 +76,10 @@ As some alert readers guessed, one of the reasons I wrote my post on [the proble
 
 **OK, so what *did* theropod lips look like?**
 
-\[caption id="" align="alignnone" width="540"\]![ Its bite is definitely worse than its bark. Credit Anna Yu via Science Daily ](/images/blog/the-lip-post1-5.webp) Its bite is definitely worse than its bark. Credit Anna Yu via Science Daily \[/caption\]
+<figure>
+<img src="/images/blog/the-lip-post1-5.webp" alt="Its bite is definitely worse than its bark. Credit Anna Yu via Science Daily" />
+<figcaption>Its bite is definitely worse than its bark. Credit Anna Yu via Science Daily</figcaption>
+</figure>
 
 Even if you now agree that lips are by far the most likely condition for theropods there is still the problem of how to go about restoring them. How large were the lips? How visible would the teeth have been in life? Obviously we can rule out muscular, mammal-like lips but after that there’s still a decent range of variation to choose from. This will be the topic of my second lips post, but as food for thought (or something to worry about) check out this image of a Komodo dragon with its mouth wide open in a threat display. See any teeth? Neither do I, but I assure you they’re there, they’re just totally hidden behind lips and gums.
 

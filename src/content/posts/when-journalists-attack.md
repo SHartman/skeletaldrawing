@@ -5,7 +5,6 @@ image:
   src: /images/blog/when-journalists-attack-1.webp
   alt: ""
 ---
-
 As recently [reported](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) on [several](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) [apparently](http://www.ibtimes.co.uk/articles/323260/20120403/dinosaurs-lived-underwater-researchers.htm) legitimate news sources, a new interpretation of dinosaur biology has been proposed that is "*so revolutionary it stands the whole world of palaeontology on its head.*" What is this landmark new idea that has set paleontologists agog? It's being termed the "Aquatic Dinosaur" hypothesis, and as the name implies it suggests that the Charles Knight painting you see above isn't out of date, it was just ahead of its time. And not just for sauropods, but *all* large dinosaurs.
 
 If something smells fishy to you, it's not just the swamp water; something is very wrong here. First, to be clear, there is no such controversy, or even an idea that you need to take seriously. To be sure, some guy wrote an article in [Laboratory News](http://www.labnews.co.uk/digital-editions/), so I've listed the evidence below in a handy tabulated format:
@@ -18,7 +17,10 @@ Two general claims seem to permeate the article, that dinosaurs were just *reall
 
 The "they're just so big" meme is also painfully wrong; there's an entire literature of biomechanics that shows that dinosaur limbs are strong enough to support terrestrial locomotion. And of course dinosaurs lack the aquatic features seen in animals such as hippos or crocodiles, which actually spend most of their time in water. Running your mouth off (err, running your text editor off?) without even bothering to read the literature is one of those "the stupid, it hurts!" sorts of moments.
 
-\[caption id="" align="alignnone" width="364"\][![ From xkcd ](/images/blog/when-journalists-attack-2.webp)](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd \[/caption\]
+<figure>
+<img src="/images/blog/when-journalists-attack-2.webp" alt="[ ](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd" />
+<figcaption>[ ](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd</figcaption>
+</figure>
 
 Ok, enough ragging on "professor" [Ford](http://www.labnews.co.uk/news/prehistoric-revolution/); he's either a crank or a practical joker (perhaps those aren't mutually exclusive?), but he's not the first person to have a loony idea and not support it with any evidence. Heck, the internet is littered with such people.
 

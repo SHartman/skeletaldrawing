@@ -5,7 +5,6 @@ image:
   src: /images/blog/yup-ok-apatosaurus-is-freakin-huge-1.webp
   alt: ""
 ---
-
 How big did Apatosaurus get? Well, that gray silhouette that is being dwarfed in terms of bulk there is *Supersaurus vivianae*. So yeah, that's one big honk'in sauropod...
 
 The genesis of this post comes courtesy of a [Matt Wedel post](http://svpow.com/2012/04/25/the-giant-oklahoma-apatosaurus-omnh-1670/) over at the excellent SV-POW! blog, where he was taking a look at the size of the partial Apatosaurus specimen preserved in Oklahoma, specimen OMNH 1670. Matt took a measuring tape to the OMNH specimen himself, and it measures up at a whopping 135 cm (for those of you who don't know the metric system, 135 centimeters is equal to one really big vertebra...).
@@ -14,7 +13,10 @@ But Matt really caught my attention when he stated:
 
 > *...so the big Oklahoma Apatosaurus was probably in Supersaurus territory, mass-wise, and may have rivaled some of the big titanosaurs.*
 
-\[caption id="" align="alignnone" width="464"\]![ A younger me carving a pedal ungal. Look at that hair - what a hippy! ](/images/blog/yup-ok-apatosaurus-is-freakin-huge-2.webp) A younger me carving a pedal ungal. Look at that hair - what a hippy! \[/caption\]
+<figure>
+<img src="/images/blog/yup-ok-apatosaurus-is-freakin-huge-2.webp" alt="A younger me carving a pedal ungal. Look at that hair - what a hippy!" />
+<figcaption>A younger me carving a pedal ungal. Look at that hair - what a hippy!</figcaption>
+</figure>
 
 *Supersaurus* is an animal near and dear to my heart - it's an animal I've literally shed blood over. Yes really. In addition to working with my coauthors on a [description of the second specimen of](http://skeletaldrawing.com/supersaur_project/CLPV_II_Supersaurus.pdf) *[Supersaurus](http://skeletaldrawing.com/supersaur_project/CLPV_II_Supersaurus.pdf)j* and a reassessment of diplodocid phylogeny, we also had to produce a full mount of the animal under exceedingly tight time constraints. As with many small museums this meant we all had to pitch in, and that included learning how to sculpt missing bones. Near the very end of the project, while getting by on little more than 2 hours of sleep and coffee doses that would kill a small horse, I had a very small boo-boo with a carving knife (see photographic evidence at right). No stitches were necessary, and thankfully no sauropods where injured in the process.  
 

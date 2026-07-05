@@ -4,12 +4,10 @@ date: 2013-06-19T20:24:17Z
 excerpt: "If this isn't your first time to my website, you're probably noticing that things look quite a bit different around here. That's because after numerous fits and false starts, I finally got around to redesigning the site. I think the site is"
 image:
   src: /images/blog/welcome-to-the-redesigned-skeletaldrawingcom-1.webp
-  alt: " Majungasaurus "
+  alt: "Majungasaurus"
+  caption: "[](/theropods) Majungasaurus"
 ---
-
 If this isn't your first time to my website, you're probably noticing that things look quite a bit different around here. That's because after numerous fits and false starts, I finally got around to redesigning the site. I think the site is now quite a bit more attractive, but more importantly it is using modern web technology.
-
-\[caption id="" align="alignnone" width="2500"\][](/theropods) Majungasaurus \[/caption\]
 
 What does this mean for you? For starters, it means I have finally brought my skeletals together (and updated) in one location. The underlying CMS is incredibly easy to update too, so those the galleries will be staying current.
 
@@ -21,7 +19,10 @@ Finally, for those of you who are amused by how much the web changes, I saved so
 
 ### Skeletal Drawing 1.0
 
-\[caption id="" align="alignnone" width="864"\]![ That's not a nav bar , it's an image file! ](/images/blog/welcome-to-the-redesigned-skeletaldrawingcom-2.webp) That's not a nav bar , it's an image file! \[/caption\]
+<figure>
+<img src="/images/blog/welcome-to-the-redesigned-skeletaldrawingcom-2.webp" alt="That's not a nav bar, it's an image file!" />
+<figcaption>That's not a nav bar, it's an image file!</figcaption>
+</figure>
 
 Back in 2002 (that's right, this website is over a decade old, which is positively Paleozoic in terms of web history) I decided that I'd use a copy of [Microsoft's FrontPage](http://en.wikipedia.org/wiki/Microsoft_frontpage) and try my hand at that fancy HTML stuff I'd read about, so I could put a few of my skeletal reconstructions on the interwebz. The result? A whole series of incredibly simple hand-coded pages that looked like this.
 

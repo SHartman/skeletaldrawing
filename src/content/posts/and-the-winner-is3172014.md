@@ -4,11 +4,9 @@ date: 2014-03-17T20:08:31Z
 excerpt: "First off, I want to thank everyone who participated, we ended up with over 1000 votes (though not necessarily 1000 voters, as we'll see below). There were several lead changes, but in the end a suspiciously strong showing for one dinosaur "
 image:
   src: /images/blog/and-the-winner-is3172014-1.webp
-  alt: " Guanlong wucaii specimen. Photo from academic.ru . "
+  alt: "Guanlong wucaii specimen. Photo from academic.ru."
+  caption: "Guanlong wucaii specimen. Photo from academic.ru."
 ---
-
-\[caption id="" align="alignnone" width="1200"\] Guanlong wucaii specimen. Photo from academic.ru . \[/caption\]
-
 First off, I want to thank everyone who participated, we ended up with over 1000 votes (though not necessarily 1000 voters, as we'll see below). There were several lead changes, but in the end a suspiciously strong showing for one dinosaur lost out to an even more suspicious last minute route by another dinosaur.
 
 So without further ado, that (winning) dinosaur is...

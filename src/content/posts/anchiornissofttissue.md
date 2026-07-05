@@ -6,12 +6,14 @@ image:
   src: /images/blog/anchiornissofttissue-1.webp
   alt: ""
 ---
-
 For paleoartists (and the scientists who work with them), properly restoring the skeleton is merely the beginning of figuring out how a dinosaur looked in life, since muscles, tendons, and other soft tissues that make up the final shape of an animal can be quite different than the skeleton alone. This requires an extensive knowledge of comparative anatomy from living organisms, a technique which has become more formalized in recent years with the application of [Extant Phylogenetic Bracketing](https://en.wikipedia.org/wiki/Phylogenetic_bracketing#Extant_phylogenetic_bracketing_.28EPB.29) (EPB), which leverages the work of [phylogenetics](https://en.wikipedia.org/wiki/Phylogenetic_tree) (the science of who is related to whom) to test inferences about muscle origins and insertions, and other soft-tissue hypotheses.
 
 When we are really lucky these hypotheses can be tested directly, such as when we find extensive soft-tissue preservations of a fossil like the "mummified" hadrosaurs. For stem birds we have had an embarrassment of riches when it comes to their epidermal coverings (fur, feathers and other fluff), but their fuzziness has generally covered up any information that might have been preserved about the shape of the underlying soft-tissues, or about the non-feathered skin structures.
 
-\[caption id="" align="alignnone" width="1280"\][![ Leonardo the ](/images/blog/anchiornissofttissue-2.webp)](https://en.wikipedia.org/wiki/Brachylophosaurus#/media/File:Leonardo_mummified_brachylophosaurus.jpg) Leonardo the "mummified" Brachylophosaurus \[/caption\]
+<figure>
+<img src="/images/blog/anchiornissofttissue-2.webp" alt="[ ](https://en.wikipedia.org/wiki/Brachylophosaurus#/media/File:Leonardo_mummified_brachylophosaurus.jpg) Leonardo the &quot;mummified&quot; Brachylophosaurus" />
+<figcaption>[ ](https://en.wikipedia.org/wiki/Brachylophosaurus#/media/File:Leonardo_mummified_brachylophosaurus.jpg) Leonardo the &quot;mummified&quot; Brachylophosaurus</figcaption>
+</figure>
 
 That's all about to change. [In a paper published today](http://www.nature.com/articles/ncomms14576) by my colleagues and I, dozens of *Anchiornis* specimens were studied using laser-stimulated fluorescence (LSF), a technique that can reveal preserved soft-tissue details that are not clearly evident in normal lighting conditions. Although no one specimen revealed an entire outline, by cobbling together the best of the dozen or so specimens with LSF-revealed skin tissues we now have a much better idea of what *Anchiornis* looked like, as well as a good test of how well EPB works. For paleoartists, and those who simply want to know *exactly* what a dinosaur looked like when alive, this clarifies many important details of the skin and muscular anatomy.
 
@@ -19,13 +21,19 @@ Much will be (rightfully!) written around the web on how laser-fluorescence work
 
 **About [*Anchiornis*](https://en.wikipedia.org/wiki/Anchiornis):** If *Anchiornis* is not a familiar dinosaur to you, you should know that it's a small paravian theropod dinosaur - that is, it's closely related to troodontids, dromaeosaurs, and the lineage that lead to birds. I can't be more precise than this, because exactly which of those three branches it's on has been the subject of some debate and does not yet have a consensus view. But given it's location we would have already known that it was a feathered and winged theropod.
 
-\[caption id="" align="alignnone" width="1200"\]![ A lovely specimen of Anchiornis, taken by David Hone . ](/images/blog/anchiornissofttissue-3.webp) A lovely specimen of Anchiornis, taken by David Hone . \[/caption\]
+<figure>
+<img src="/images/blog/anchiornissofttissue-3.webp" alt="A lovely specimen of Anchiornis, taken by David Hone." />
+<figcaption>A lovely specimen of Anchiornis, taken by David Hone.</figcaption>
+</figure>
 
 We don't have to assume this, however, as early specimens of *Anchiornis* were found with feather impressions, including branching feathers on the hind legs. This sometime leads people to refer to *Anchiornis* as a four-winged theropod, sort of like *Microraptor*, but it should be noted that the feathers on the hind legs of *Anchiornis* are not nearly as large or "wing-like" as what we see in *Microraptor*. The feathers were exquisitely preserved, however, right down to the distribution of melanosomes, the cellular organelles that determine the color of a feather. As a result, *Anchiornis* has the designation of being the first non-avian dinosaur to have its color scheme scientifically reconstructed.
 
 **OK, so *what's new already*?** With so much awesomeness already known for one dinosaur, you might be wondering what could be left to find? As it turns out quite a lot! Using the laser-fluorescence technique developed by Tom Kaye, dozens of specimens were scanned at the Shandong Tianyu Museum of Nature, and many of them revealed details of skin and scales that otherwise would have been missed. Take this image for instance:
 
-\[caption id="" align="alignnone" width="960"\]![ The foot of Anchiornis . Laser-FLUORESCENCE images on the bottom. ](/images/blog/anchiornissofttissue-4.webp) The foot of Anchiornis . Laser-FLUORESCENCE images on the bottom. \[/caption\]
+<figure>
+<img src="/images/blog/anchiornissofttissue-4.webp" alt="The foot of Anchiornis. Laser-FLUORESCENCE images on the bottom." />
+<figcaption>The foot of Anchiornis. Laser-FLUORESCENCE images on the bottom.</figcaption>
+</figure>
 
 First of all, let me take a moment to point out how ludicrously awesome that bottom image is. You can see the scales on all of the foot pads! Notice on top of metatarsals on the upper left you can see what *appear* to be enlarged scales like you see in many living birds. Unfortunately they are minimally exposed in this specimen, so it's sadly equivocal as to what is going on. There are also some scales found up on the tibia in other specimens, suggesting an interesting interplay of scales and feathers on the hind limbs.
 
@@ -55,7 +63,10 @@ There are many topics worth covering, but as this is already a giant wall O'text
 
 **We're actually not too bad at this anatomical reconstructing thing:** There have been [many cautionary warnings](http://irregularbooks.co/) about what we know and don't know about restoring extinct animals. They are still quite valid, and you'll notice that there are several important takeaways from this study that suggest I'll have to spend time revising some of my skeletals (especially the elbows and ankles) that I'd done before I started working on this project. At the same time, when it comes to the nuts and bolts of muscles and tendons I think we should be rather pleased with ourselves - despite the inferential nature of the work we're clearly on the right track. And further discoveries of this kind can only help us further test our phylogenetically bracketed hypotheses.
 
-\[caption id="" align="alignnone" width="461"\]![ Check out that non-scaly skin under the feathers! ](/images/blog/anchiornissofttissue-7.webp) Check out that non-scaly skin under the feathers! \[/caption\]
+<figure>
+<img src="/images/blog/anchiornissofttissue-7.webp" alt="Check out that non-scaly skin under the feathers!" />
+<figcaption>Check out that non-scaly skin under the feathers!</figcaption>
+</figure>
 
 I know I for one cannot wait!
 

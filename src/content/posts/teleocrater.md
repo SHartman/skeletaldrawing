@@ -4,15 +4,16 @@ date: 2017-04-17T16:23:15Z
 excerpt: "Last week saw the publication of Teleocrater. A new species (and a new group) of Triassic archosaurs is always destined to be exciting, but this also shed some much-needed light on the split between dinosaurs and crocodilians. But in this c"
 image:
   src: /images/blog/teleocrater-1.webp
-  alt: " The not-very-dinosaur-looking stem dinosaur, Teleocrater. "
+  alt: "The not-very-dinosaur-looking stem dinosaur, Teleocrater."
+  caption: "The not-very-dinosaur-looking stem dinosaur, Teleocrater."
 draft: true
 ---
-
-\[caption id="" align="alignnone" width="1600"\] The not-very-dinosaur-looking stem dinosaur, Teleocrater. \[/caption\]
-
 Last week saw the publication of *Teleocrater.* A new species (and a new group) of Triassic archosaurs is always exciting, but this shed some much-needed light on the split between dinosaurs and crocodilians. But the science isn't the only story - the paper is also the heartwarming conclusion of a 70 year journey for the fossils post-collection, and for the man who first described them.
 
-\[caption id="" align="alignnone" width="250"\]![ Alan Charig with Udanoceratops skull. Photo from here . ](/images/blog/teleocrater-2.webp) Alan Charig with Udanoceratops skull. Photo from here . \[/caption\]
+<figure>
+<img src="/images/blog/teleocrater-2.webp" alt="Alan Charig with Udanoceratops skull. Photo from here." />
+<figcaption>Alan Charig with Udanoceratops skull. Photo from here.</figcaption>
+</figure>
 
 In 1956, British paleontologist [Alan Charig](https://en.wikipedia.org/wiki/Alan_J._Charig) finished his doctoral dissertation on Triassic fossils from what is now Tanzania. In it he informally named some of the new animals, including *Teleocrater*. *Teleocrater* means "complete basin", and is in reference to the hip socket\* being solid (like yours, or crocodiles) instead of open at the back like dinosaurs. This feature was presumably something of a surprise to Charig, as the rest of the skeleton looked like something you would see in an early dinosaur (or close dinosaur relative).
 

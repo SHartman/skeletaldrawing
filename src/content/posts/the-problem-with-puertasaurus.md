@@ -3,11 +3,9 @@ title: "The problem with Puertasaurus"
 date: 2013-06-20T17:51:55Z
 image:
   src: /images/blog/the-problem-with-puertasaurus-1.webp
-  alt: " Puertasaurus reuili "
+  alt: "Puertasaurus reuili"
+  caption: "Puertasaurus reuili"
 ---
-
-\[caption id="" align="alignnone" width="1500"\] Puertasaurus reuili \[/caption\]
-
 When I released my [Thunder Lizards](http://www.skeletaldrawing.com/home/2013/06/the-biggest-of-big.html) size comparison I was asked why a few of the largest animals were rendered in gray, and when I would be making the actual skeletal available. Using gray silhouettes solved an aesthetic concern (the image was threatening to get too busy), but it turns out that those critters have another problem: they are not known from very incomplete remains.
 
 So here is the skeletal of *Puertasaurus* in all its "glory". I have a fully restored version as well, but it's not going to be making a public appearance, as frankly I don't want it to be separated from the rigorous version, as that could give off the impression that the animal is better known. In fact even this version is somewhat misleading, as the two tail vertebrae were reported but not figured or described - I don't actually know how big they were!

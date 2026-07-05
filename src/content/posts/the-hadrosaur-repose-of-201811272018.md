@@ -4,12 +4,10 @@ date: 2018-11-30T16:19:39Z
 excerpt: "Long-time dinosaur skeletal fans may recall that I undertook a long-term project of reposing all of my skeletals back in 2011. That year I managed to update all of my bipedal skeletals (theropods, “prosauropods” and some of the runtier orni"
 image:
   src: /images/blog/the-hadrosaur-repose-of-201811272018-1.webp
-  alt: " The shoulder bone (scapula) of Leonardo the ‘mummified’ hadrosaur is clearly about halfway up the rib cage, not up near the top. Image courtesy of Red Rocket Photography/The Children’s Museum of Indianapolis/Wikimedia Commons. "
+  alt: "The shoulder bone (scapula) of Leonardo the ‘mummified’ hadrosaur is clearly about halfway up the rib cage, not up near the top. Image courtesy of Red Rocket Photography/The Children’s Museum of Indianapolis/Wikimedia Commons."
+  caption: "The shoulder bone (scapula) of Leonardo the ‘mummified’ hadrosaur is clearly about halfway up the rib cage, not up near the top. Image courtesy of Red Rocket Photography/The Children’s Museum of Indianapolis/Wikimedia Commons."
 ---
-
 Long-time dinosaur skeletal fans may recall that I undertook a long-term project of [reposing all of my skeletals](http://www.skeletaldrawing.com/home/2012/01/great-skeletal-repose-of-2011_20.html?rq=great%20skeletal%20repose) back in 2011. That year I managed to update all of my bipedal skeletals (theropods, “prosauropods” and some of the runtier ornithischians). In 2014 I followed that up by [reposing and updating all of my sauropod skeletals](http://www.skeletaldrawing.com/home/2012/01/great-skeletal-repose-of-2011_20.html?rq=great%20skeletal%20repose). My armored dinosaur skeletals have gotten pose updates in a piecemeal fashion, but today I’m unveiling another major overhaul: Hadrosaurs.
-
-\[caption id="" align="alignnone" width="624"\] The shoulder bone (scapula) of Leonardo the ‘mummified’ hadrosaur is clearly about halfway up the rib cage, not up near the top. Image courtesy of Red Rocket Photography/The Children’s Museum of Indianapolis/Wikimedia Commons. \[/caption\]
 
 I don’t have as many hadrosaurs skeletals as some other groups of dinosaurs, but there was quite a bit to do for each skeletal. In addition to modifying the gait to more of a sedate walk pose (from the more hustling one I’d adopted from [Greg Paul](http://gspauldino.com/) decades ago), there were major anatomical and stance changes that needed to be made. For starters, I’d been illustrating the forelimbs with too much pronation. Both articulated specimens and hadrosaur trackways show that the ‘palms’ faced more inward (somewhere around 45 degrees) rather than facing backwards, as in most quadrupedal mammals. This meant redrawing the hands, wrists, and lower arm bones (ulna and radius) for each specimen.
 

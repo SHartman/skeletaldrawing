@@ -6,7 +6,6 @@ image:
   src: /images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-1.webp
   alt: ""
 ---
-
 Without further ado, here is my updated *Spinosaurus* skeletal. It does not look much like the popularized *Spinosaurus* from Jurassic Park 3, nor does it much resemble my prior version from 2012. While I am not following the proportions of FSAC-KK 11888, the result of investigations by Ibrahim and coauthors, Evers and coauthors, Andrea Cau, and others have indeed changed the face of *Spinosaurus*.
 
 Given what was discussed in parts [II](https://www.skeletaldrawing.com/home/the-road-to-spinosaurus-ii-known-unknowns11252020) and [III](https://www.skeletaldrawing.com/home/the-road-to-spinosaurus-iii-of-chimeras-and-leg-proportions11262020), I don’t expect this will be the final word on the issue, but until more data (preferably in the form of more specimens) is available I am satisfied with it for now. Here are some brief points of discussion:
@@ -21,7 +20,10 @@ Given what was discussed in parts [II](https://www.skeletaldrawing.com/home/the-
 
 5) While I think the data is clear in supporting lips in most non-avian theropods, I am less sure about what is going on with extra-oral tissue in spinosaurs. So I wussed out and used my older convention here.
 
-\[caption id="" align="alignnone" width="1713"\]![ Why not? ](/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-2.webp) Why not? \[/caption\]
+<figure>
+<img src="/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-2.webp" alt="Why not?" />
+<figcaption>Why not?</figcaption>
+</figure>
 
 6) As discussed in [part II](https://www.skeletaldrawing.com/home/the-road-to-spinosaurus-ii-known-unknowns11252020), there is a lot of uncertainty about the shape of the sail (for that matter, there is uncertainty about how much it might have varied between individuals). If you don’t like my interpretation feel free to do a life reconstruction with some other shape, just try to keep the first few neural spines and the last dorsal spine as-is if you are trying to match the type. Here are two more examples that also match the known fossils. Heck, if you love the M-shaped sail you can draw it too, just understand that you are doing that for aesthetic reasons, not because the data favors it.
 

@@ -4,12 +4,10 @@ date: 2014-01-25T21:42:57Z
 excerpt: "Late last year Europe got a brand-spankin' new ankylosaur, Europelta carbonensis. It's the most complete ankylosaur yet known from Europe (unless you consider Scelidosaurus to be a basal ankylosaur rather than a basal armored dinosaur). Let"
 image:
   src: /images/blog/europelta-1.webp
-  alt: " A rigorous Europelta sans armor - brrrrr, he must be cold! "
+  alt: "A rigorous Europelta sans armor - brrrrr, he must be cold!"
+  caption: "A rigorous Europelta sans armor - brrrrr, he must be cold!"
 ---
-
 Late last year Europe got a brand-spankin' new ankylosaur, [*Europelta carbonensis*](http://www.skeletaldrawing.com/ornithiscians/europelta). It's the most complete ankylosaur yet known from Europe (unless you consider [*Scelidosaurus*](http://www.skeletaldrawing.com/ornithiscians/scelidosaurus-harrisonii) to be a basal ankylosaur rather than a basal armored dinosaur). It also is going to help clear up some questions about the family tree of ankylosaurs (and especially basal nodosaurs) but that research has only been presented at SVP so far, so you'll have to wait for the paper to learn more.
-
-\[caption id="" align="alignnone" width="1600"\] A rigorous Europelta sans armor - brrrrr, he must be cold! \[/caption\]
 
 Speaking of papers, if you look at the scientific description of *Europelta* in [PLOS ONE](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0080405) you will notice that the proportions of my skeletal reconstruction and the one in the paper are very similar. This is not in fact a coincidence, or even an example of two people independently coming to the same conclusion. Instead it results from the simple fact that I worked up a skeletal reconstruction with senior author [Jim Kirkland](http://ugs.academia.edu/JamesKirkland) about a year ago. You may wonder why my skeletal didn't end up in the paper - it turned out there was more work to be done on it (some new interpretations of the armor, a desire to have a top view skeletal, etc.). So [Mark Loewen](http://newsdesk.nhmu.utah.edu/newsdesk/experts/mark-loewen) worked up his own skeletals utilizing some of the cross-scaling I'd done between the type and referred specimens.
 
@@ -23,7 +21,10 @@ In this case there are quite a few differences between the armor I've restored h
 
 Despite those updates, there are still some differences in how I've reconstructed the armor. First and foremost I've simply reconstructed Europelta as being more flat-topped (and possibly somewhat wider) than Mark has. This has the effect of moving more of the scutes "upwards" on the body, onto the top of the back (rather than curving down the sides). This is more inline with articulated skeletons of other ankylosaurs, but of course basal ankylosaurs and nodosaurs are generally not known from fully-articulated skeletons, so this isn't a cut-and-dried assumption (I favor it, but clearly it's not universal).
 
-\[caption id="" align="alignnone" width="1200"\]![ Desperate measures were taken when reconstructing the armor of Scelidosaurus . ](/images/blog/europelta-3.webp) Desperate measures were taken when reconstructing the armor of Scelidosaurus . \[/caption\]
+<figure>
+<img src="/images/blog/europelta-3.webp" alt="Desperate measures were taken when reconstructing the armor of Scelidosaurus." />
+<figcaption>Desperate measures were taken when reconstructing the armor of Scelidosaurus.</figcaption>
+</figure>
 
 Second, Mark's version shows the small armor scales going further down the body, especially in the shoulder region. This may be totally correct. When restoring [*Edmontonia*](http://www.skeletaldrawing.com/ornithiscians/edmontonia) I and others generally stop illustrating the armor scales at the level of the lowest armor scutes. This appears to make sense since the [famous articulated AMNH Edmontonia specimen](http://en.wikipedia.org/wiki/Edmontonia) shows exactly this. BUT! It still may not be correct, as there simply isn't preserved skin below that area (i.e. the specimen was excavated down to the skeleton below the scutes). Thus it's certainly possible that the small armor scales could have continued further down the body or limbs, and I know at least a couple of ankylosaur workers who feel that the taphonomy of some sites supports this very thing.
 

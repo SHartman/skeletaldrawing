@@ -4,16 +4,17 @@ date: 2014-09-12T05:38:54Z
 excerpt: "Today, after weeks of rampant internet speculation the new-look Spinosaurus was revealed. And it certainly didn't disappoint: the paper by Ibrahim et al. musters a range of evidence from bone density, bone isotope data, facial innervation, "
 image:
   src: /images/blog/theres-something-fishy-about-spinosaurus9112014-1.webp
-  alt: " A swimming, quadrupedal Spinosaurus, as shown in Fig. 2 of Ibrahim et al., 2014 . "
+  alt: "A swimming, quadrupedal Spinosaurus, as shown in Fig. 2 of Ibrahim et al., 2014."
+  caption: "A swimming, quadrupedal Spinosaurus, as shown in Fig. 2 of Ibrahim et al., 2014."
 ---
-
-\[caption id="" align="alignnone" width="2500"\] A swimming, quadrupedal Spinosaurus, as shown in Fig. 2 of Ibrahim et al., 2014 . \[/caption\]
-
 Today, after weeks of rampant internet speculation the new-look *Spinosaurus* was revealed. It certainly didn't disappoint: the paper by Ibrahim et al. musters a wide range of evidence from bone density, isotope data, facial innervation, osteology, etc., to suggest that *Spinosaurus* not only was a fish-eater (i.e. piscivorous) but was adaptive to that lifestyle to a greater degree than other known spinosaurids. Not only do they claim that *Spinosaurus* spent most of its life swimming in the water with adaptations that would rival early whales, but Ibrahim et al. specifically claim that the altered limb proportions would require *Spinosaurus* to have been an obligate quadruped on land, a first for a theropod.
 
 I'm afraid I am not here to surprise you with an updated skeletal reconstruction. But I do have some preliminary observations, and after checking the scaling of the composite skeleton I'm afraid there appears to be something fishy with the proportions (see what I did there?).
 
-\[caption id="" align="alignnone" width="1374"\]![ Supplemental figure S3 from Ibrahim et al., 2015 . ](/images/blog/theres-something-fishy-about-spinosaurus9112014-2.webp) Supplemental figure S3 from Ibrahim et al., 2015 . \[/caption\]
+<figure>
+<img src="/images/blog/theres-something-fishy-about-spinosaurus9112014-2.webp" alt="Supplemental figure S3 from Ibrahim et al., 2015." />
+<figcaption>Supplemental figure S3 from Ibrahim et al., 2015.</figcaption>
+</figure>
 
 First off, note that when looking at Figure 2 from the paper (shown at top) they color in a lot of "*Spinosaurus*" material, which might give you confidence in the proportions they use to reconstruct the skeleton. However, if you read [the supplemental data](http://www.sciencemag.org/content/suppl/2014/09/10/science.1258750.DC1/Ibrahim.SM.pdf) (and as with any paper I highly recommend you do) you will find the Supplemental Figure S3, which has a whole lot of additional colors. In order to interpret this you need to know that the red and rust-orange represent the newly designated neotype and the older (now destroyed) Stromer specimens, but about all of those other bones? Yellow is referred isolated remains (i.e. they aren't informative in terms of proportional scaling), the green elements are based on other spinosaurids (e.g. they are not from *Spinosaurus*) and the blue are "inferred" (e.g. restored, not based on actual fossils).
 
@@ -29,7 +30,10 @@ As it happens you can use [ImageJ](http://imagej.nih.gov/ij/) or Photoshop to ch
 
 I've "corrected" the size of the pelvis and hind limb so that they match their published size relative to the dorsal vertebrae, and it makes a pretty big difference. Not only do the hindlimbs look more in line with other theropods, but the deeper pelvis would also impact the center of gravity calculations (by shifting them back). I haven't had a chance to look at the scaling of the cervical or caudal series in depth, but assuming that Table S2 is correct then the appendicular skeletal proportions published in the paper cannot be right. At the very it least it calls into question the idea that *Spinosaurus* was an obligate quadruped on land.
 
-\[caption id="" align="alignnone" width="1461"\]![ Original at the top, corrected at the bottom. ](/images/blog/theres-something-fishy-about-spinosaurus9112014-4.webp) Original at the top, corrected at the bottom. \[/caption\]
+<figure>
+<img src="/images/blog/theres-something-fishy-about-spinosaurus9112014-4.webp" alt="Original at the top, corrected at the bottom." />
+<figcaption>Original at the top, corrected at the bottom.</figcaption>
+</figure>
 
 Now I want to say a few words of caution. Given the heightened popularity of *Spinosaurus* (especially on the interwebz) I fear this will lead to exuberant and irrational skepticism of the Ibrahim et al., paper. I am not advocating the wholesale rejection of their data - the new specimen certainly helps fill in some osteological gaps, and the taxonomic revision they undertook was desperately needed. Likewise, the bone density data (and previously published isotope work) make a strong case for *Spinosaurus* eating fish and spending most of its time in and around the water. In other words, it's an important contribution to science. And I am certainly not trying to impugn the integrity of anyone - I am only saying that there appears to be a significant error in the scaling, something I've certainly done myself. But given the facts available it appears that the proportions of the skeletal in the paper cannot be correct, and so the locomotive and ecological interpretations that depended on the proportions must be questioned.
 

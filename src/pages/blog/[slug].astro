@@ -55,6 +55,7 @@ const title = `${d.title} | Skeletal Drawing`;
       {d.image && (
         <figure class="hero">
           <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+          {d.image.caption && <figcaption class="hero-cap">{d.image.caption}</figcaption>}
         </figure>
       )}
 
@@ -96,9 +97,13 @@ const title = `${d.title} | Skeletal Drawing`;
 
   .hero {
     margin: 30px 0 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 5px;
-    padding: 22px; display: flex; justify-content: center;
+    padding: 22px; display: flex; flex-direction: column; align-items: center;
   }
   .hero-img { max-width: 100%; height: auto; display: block; }
+  .hero-cap {
+    margin: 14px 0 0; font-size: 14px; color: var(--slate); font-style: italic;
+    line-height: 1.5; text-align: center; max-width: 60ch;
+  }
 
   .prose { padding: 30px 0 6px; }
   .prose :global(p) { font-size: 19px; line-height: 1.7; margin: 0 0 1.2em; }
@@ -116,6 +121,11 @@ const title = `${d.title} | Skeletal Drawing`;
     color: var(--slate); font-style: italic;
   }
   .prose :global(img) { max-width: 100%; height: auto; border: 1px solid var(--hair); border-radius: 4px; }
+  .prose :global(figure) { margin: 32px 0; text-align: center; }
+  .prose :global(figure img) { display: inline-block; }
+  .prose :global(figcaption) {
+    margin-top: 11px; font-size: 14.5px; line-height: 1.5; color: var(--slate); font-style: italic;
+  }
 
   .back { margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--hair); font-size: 14.5px; }
   .back a { color: var(--accent); text-decoration: none; }

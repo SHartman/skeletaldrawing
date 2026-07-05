@@ -4,11 +4,9 @@ date: 2014-09-19T00:03:53Z
 excerpt: "As most of you reading this will know, I've written two posts on Spinosaurus - the first one questioned the proportions of the composite skeleton that recently gained fame through a paper in Science, the second one discussing a photo that h"
 image:
   src: /images/blog/aquatic-spinosaurus-the-authors-responsd9182014-1.webp
-  alt: " The skeleton in question, from Ibrahim et al., 2014. "
+  alt: "The skeleton in question, from Ibrahim et al., 2014."
+  caption: "The skeleton in question, from Ibrahim et al., 2014."
 ---
-
-\[caption id="" align="alignnone" width="1319"\] The skeleton in question, from Ibrahim et al., 2014. \[/caption\]
-
 *As most of you reading this will know, I've written two posts on Spinosaurus - the [first one](http://www.skeletaldrawing.com/home/theres-something-fishy-about-spinosaurus9112014) questioned the proportions of the composite skeleton that recently gained fame through a paper in [Science](http://www.sciencemag.org/content/early/2014/09/10/science.1258750.abstract?sid=b8be68a8-816d-4b34-bcb2-d9b78fc3e430), the [second one](http://www.skeletaldrawing.com/home/there-may-be-more-fishiness-in-spinosaurus9132014) discussing a photo that has been used for and against those proportions. In the comments section on the second post Nizar Ibrahim wrote a length response, which (with his kind permission) I would like to elevate to a full post. As is often true in these debates there are parts I agree with and others I disagree with, but I will address those at a future date. For now I think it's only fair to give their comments the floor:*
 
 Hi Scott,
@@ -28,7 +26,10 @@ Let’s look at the methods you used in your reconstruction. Measurements are su
 One other word of caution: too much is being made of photographs of the specimen in Italy, which were taken before the specimens were fully prepared in Chicago (preparation made them smaller by removing matrix at the articular ends), and also before identifications were made to place the bones on the skeleton in different locations than the Italian photo  
 depicts. Also, some camera angles create distortions. It was a rough draft, but people now seem to be attempting to get data from it...
 
-\[caption id="" align="alignnone" width="1600"\]![ Copyright Marco Auditore ](/images/blog/aquatic-spinosaurus-the-authors-responsd9182014-2.webp) Copyright Marco Auditore \[/caption\]
+<figure>
+<img src="/images/blog/aquatic-spinosaurus-the-authors-responsd9182014-2.webp" alt="Copyright Marco Auditore" />
+<figcaption>Copyright Marco Auditore</figcaption>
+</figure>
 
 For an independent reconstruction effort, also see the skeletal reconstruction by Marco Auditore (on the [Theropoda blog](http://theropoda.blogspot.com/2014/09/spinosaurus-revolution-prologo-epico.html));  
 Marco is part of our team and, using the same data set, independently obtained a reconstruction that matches the proportions of the digital skeleton.

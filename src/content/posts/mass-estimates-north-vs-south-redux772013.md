@@ -6,7 +6,6 @@ image:
   src: /images/blog/mass-estimates-north-vs-south-redux772013-1.webp
   alt: ""
 ---
-
 I have good news and bad news today - the bad news is this is not the post where you get an estimate of the mass of *Spinosaurus*. I know, I know. And I'm sorry. Here's the good news: in preparation for a deeper look at the challenges of estimating the mass of *Spinosaurus*, I've produced far more rigorous mass estimates of *Tyrannosaurus* and *Giganotosaurus* from GDI, and I got some surprising results to share.
 
 First, a word on that [*Spinosaurus* post](http://www.skeletaldrawing.com/home/super-spinosaurus6282013) - I've heard from several of you that there is a degree of anticipation for it, and I apologize for the delay. That said, you're going to get a much better post in exchange for your patience. My original intention had been to do a more generic look at scaling up different types of theropods to the length of *Spinsosaurus*, which would not have been very precise. Even worse, since it would have relied on other people's mass estimates it would have been comparing mass estimates derived from different methodologies, which threatened to make the whole process an act of futility.
@@ -37,7 +36,10 @@ I'm sure many of you will want at least a few more details, so here is another q
 
 5) Although *Tyrannosaurus* seems likely to have had stronger calves I used the exact same muscle reconstruction to try and make the comparison more of an apples to apples affair
 
-\[caption id="" align="alignnone" width="1500"\]![ Courtesy of Wikimedia Commons . ](/images/blog/mass-estimates-north-vs-south-redux772013-3.webp) Courtesy of Wikimedia Commons . \[/caption\]
+<figure>
+<img src="/images/blog/mass-estimates-north-vs-south-redux772013-3.webp" alt="Courtesy of Wikimedia Commons." />
+<figcaption>Courtesy of Wikimedia Commons.</figcaption>
+</figure>
 
 6) I'm sure that some will claim that *Giganotosaurus* should have a wider torso or head, but the skull is already substantially wider than in *Acrocanthosaurus* and matches up with more recent reconstructions of the skull, like the one you see here. Also note that if anything the torso should be smaller up front due to the diminutive pectoral girdle.
 

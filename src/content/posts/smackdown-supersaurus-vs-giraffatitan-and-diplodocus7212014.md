@@ -7,7 +7,6 @@ image:
   src: /images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-1.webp
   alt: ""
 ---
-
 This entry is inspired by a similarly themed post at the always-excellent [SV-POW](http://svpow.com/2014/07/13/sv-pow-showdown-supersaurus-vs-brachiosaurus-and-diplodocus/). They compared the size (and neck length) of *Supersaurus*, *Brachiosaurus* and *Diplodocus*. In a stroke of serendipity I read their post as I was reworking my skeletal of the largest specimen of *Diplodocus*, NMMNH 3690.
 
 NMMNH 3690 is the dinosaur previously known as *Seismosaurus hallorum*. Most workers have since agreed that it's just a large specimen of *Diplodocus*, though many still insist upon giving it a distinct species name, [*D. hallorum*](http://en.wikipedia.org/wiki/Diplodocus). As my coauthors and I [noted in 2007](http://www.academia.edu/2411751/MORPHOLOGY_OF_A_SPECIMEN_OF_SUPERSAURUS_DINOSAURIA_SAUROPODA_FROM_THE_MORRISON_FORMATION_OF_WYOMING_AND_A_RE-EVALUATION_OF_DIPLODOCID_PHYLOGENY), there aren't actually any characters that justify that separation. Even the infamous ischial "hook" was shown to be nothing more than incomplete preparation by [Lucas and colleagues](http://libres.uncg.edu/ir/asu/f/Heckert_A_2006_36_Taxonomic_status.pdf) a year before our paper. While final word will have to wait until someone does a specimen-level phylogenetic analysis of diplodocines, I will continue to refer the specimen to *D. longus* for the time being.
@@ -18,7 +17,10 @@ Now that I've rescaled missing elements, I get a full length of just under 32 me
 
 That is in the same ballpark as Matt's estimate for *Brachiosaurus*, but of course the eponymous North American brachiosaurid isn't known from many more published cervicals than NMMNH 3690 is. So instead of *Brachiosaurus* I decided to use the better known *Giraffatitan*. There are some reasonably complete cervical series for Giraffatitan and much better scaling constraints all around. For everyone's favorite specimen on display in Berlin (HMN SII) I get a neck length of almost 9.5 meters. Another specimen of *Giraffatitan* (HMN XV2) has a tibia that is reported to be 13% longer, so assuming isometric scaling we would be talking about a neck length of 10.8 meters, which is pretty darn long!
 
-\[caption id="" align="alignnone" width="450"\][![ HMN SII, © Berlin Museum of Natural History, via WikiCommons. ](/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-2.webp)](http://commons.wikimedia.org/wiki/File:Naturkundemuseum_Brachiosaurus_brancai.jpg) HMN SII, © Berlin Museum of Natural History, via WikiCommons. \[/caption\]
+<figure>
+<img src="/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-2.webp" alt="[ ](http://commons.wikimedia.org/wiki/File:Naturkundemuseum_Brachiosaurus_brancai.jpg) HMN SII, © Berlin Museum of Natural History, via WikiCommons." />
+<figcaption>[ ](http://commons.wikimedia.org/wiki/File:Naturkundemuseum_Brachiosaurus_brancai.jpg) HMN SII, © Berlin Museum of Natural History, via WikiCommons.</figcaption>
+</figure>
 
 How long you ask? It's about the same length as you would get [scaling up *Alamosaurus*](http://www.skeletaldrawing.com/home/2013/6/21/assessing-alamosaurus) to the largest tibia that has been referred to it (which puts it [up in the range of giants](http://www.skeletaldrawing.com/home/2013/06/the-biggest-of-big.html) like *Puertasaurus* and *Argentinosaurus*), so about as long as the neck of any titanosaur. Up till now it would appear macronarians may lay claim to the longest neck (and potentially total length) of any dinosaur.
 
@@ -30,7 +32,10 @@ Why the difference? Since Matt is working from a single neckbone he was understa
 
 If you made it this far you deserve to see what all this looks like. So here are most of the specimens we've been talking about, with my 6 year old daughter and myself for scale:
 
-\[caption id="" align="alignnone" width="2000"\]![ Dinos from left to right: Giant Alamosaurus tibia, Giraffatitan (HMN SII), Supersaurus (WDC) and Diplodocus (NMMNH). ](/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-3.webp) Dinos from left to right: Giant Alamosaurus tibia, Giraffatitan (HMN SII), Supersaurus (WDC) and Diplodocus (NMMNH). \[/caption\]
+<figure>
+<img src="/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-3.webp" alt="Dinos from left to right: Giant Alamosaurus tibia, Giraffatitan (HMN SII), Supersaurus (WDC) and Diplodocus (NMMNH)." />
+<figcaption>Dinos from left to right: Giant Alamosaurus tibia, Giraffatitan (HMN SII), Supersaurus (WDC) and Diplodocus (NMMNH).</figcaption>
+</figure>
 
 We've looked at some pretty large dinosaurs today; some of them are among the biggest creatures to ever walk the Earth. But to keep things in perspective, that's a blue whale at the top of the image. It's scaled to be a large well-fed specimen of 30 meters and around ~170 tonnes, far from [the largest individual ever reported](http://svpow.com/2008/05/20/sv-pow-showdown-sauropods-vs-whales/). And while several of the biggest sauropods may have been a bit longer than the biggest whales, notice that you could fold up all four of these sauropods and shove them inside the same amount of space. That's HUGE.
 
