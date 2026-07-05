@@ -1,11 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// About → Licensing & commissions. Absorbs the old LICENSING page and the commercial half of "My Art"
-// (which was really a credits list, not a gallery — see the "where my work appears" section below;
-// its detailed list is owner-supplied). Values note per the owner: license widely, but decline uses
-// that misrepresent evolutionary science. CTAs route to /contact/ (Regarding: Licensing & Commissions)
+// About → Licensing & commissions. Absorbs the old LICENSING page (Scott's reference-vs-commercial
+// licensing philosophy, condensed and in his voice) and the commercial half of "My Art" — which was
+// really a credits list: institutions and books that feature his work (seeded from the Squarespace
+// export; owner may update). Values note per the owner: license widely, decline uses that
+// misrepresent evolutionary science. CTAs route to /contact/ (Regarding: Licensing & Commissions)
 // and, for a specific quote, the Square payment-link flow the owner already uses.
+
+// Institutions that have featured Scott's reconstructions (names only — the point is the roster;
+// links were stale in the old export). Owner can add/prune in this list.
+const institutions = [
+  'American Museum of Natural History, New York',
+  'Smithsonian Institution, Washington, D.C.',
+  'Royal Ontario Museum, Toronto',
+  'Perot Museum of Nature and Science, Dallas',
+  'Oregon Museum of Science and Industry, Portland',
+  'Museum of the Rockies, Bozeman, Montana',
+  'Philip J. Currie Dinosaur Museum, Alberta',
+  'Natural History Museum of Utah, Salt Lake City',
+  'Rocky Mountain Dinosaur Resource Center, Colorado',
+  'Wyoming Dinosaur Center, Thermopolis',
+  'Tate Geological Museum, Casper, Wyoming',
+  'University of Wyoming Geological Museum, Laramie',
+];
+
+// Popular-science books that feature Scott's artwork (titles only — old affiliate links dropped).
+const books = [
+  { title: 'ABC Dinosaurs', by: 'American Museum of Natural History' },
+  { title: 'All Yesterdays', by: 'Conway, Kosemen & Naish' },
+  { title: 'Dinosaur Paleobiology', by: 'Stephen L. Brusatte' },
+  { title: 'The Complete Dinosaur', by: 'Indiana University Press' },
+  { title: 'Dinosaurs: How to Draw Thunder Lizards', by: 'Steve Miller' },
+];
 
 const title = 'Licensing & commissions — Scott Hartman | Skeletal Drawing';
 const description =
@@ -23,6 +50,14 @@ const description =
         measured, specimen-based method — the reason they hold up in exhibits and peer review.
       </p>
     </header>
+
+    <figure class="quote">
+      <blockquote>
+        “Scott Hartman's detailed and rigorous skeletal reconstructions set the standard for sauropods:
+        he's now become the first port of call when looking for precise, anatomically correct work.”
+      </blockquote>
+      <figcaption>— Dr. Mike Taylor, sauropod palaeontologist</figcaption>
+    </figure>
 
     <section class="paths">
       <div class="path">
@@ -43,14 +78,41 @@ const description =
       </div>
     </section>
 
-    <section class="appears block">
+    <section class="block using">
+      <h2 class="sec-h">Using them as references</h2>
+      <p>
+        Skeletal reconstructions combine hard anatomical data with careful inference, so the science in
+        them — the proportions, the pose, the shape and position of every bone — isn't mine to own, and I
+        want it used. If you're drawing your own skeletal, please adopt the pose (and cite me). What's
+        copyrighted is the specific image itself: you can't reproduce the actual drawing — in a book, an
+        exhibit, a product — without a licence. Non-commercial reference use is free; commercial
+        reproduction needs permission. Either way I'd always rather you get in touch first — I genuinely
+        enjoy hearing how the work gets used.
+      </p>
+    </section>
+
+    <section class="block appears">
       <h2 class="sec-h">Where my work appears</h2>
       <p class="appears-lede">
         For two decades my reconstructions have appeared in museum exhibits, textbooks and popular-science
-        books, documentaries, and peer-reviewed research around the world.
+        books, documentaries, and the peer-reviewed literature. A selection:
       </p>
-      {/* TODO(owner content): the detailed "selected institutions / books / publications that use my
-          work" list from the old My Art page goes here — supply it and it becomes a credits list. */}
+      <div class="cols">
+        <div class="col">
+          <h3 class="col-h">Institutions</h3>
+          <ul class="tidy">
+            {institutions.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="col-h">Books</h3>
+          <ul class="tidy">
+            {books.map((b) => (
+              <li><span class="bk-title">{b.title}</span> <span class="bk-by">— {b.by}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="values block">
@@ -85,6 +147,10 @@ const description =
   }
   .lede { margin: 20px 0 0; font-size: 18.5px; line-height: 1.62; color: var(--ink); max-width: 62ch; }
 
+  .quote { margin: 34px 0 0; padding: 0 0 0 22px; border-left: 3px solid var(--accent); max-width: 62ch; }
+  .quote blockquote { margin: 0; font-size: 20px; line-height: 1.5; font-style: italic; color: var(--ink); }
+  .quote figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--slate); }
+
   .paths { margin: 40px 0 0; display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .path { border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 6px; padding: 22px 24px; }
   .path-h { margin: 0 0 10px; font-style: italic; font-weight: 500; font-size: 22px; }
@@ -95,7 +161,17 @@ const description =
     margin: 0 0 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
   }
-  .appears-lede { margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
+  .using p { margin: 0; font-size: 17px; line-height: 1.72; color: var(--ink); max-width: 66ch; }
+
+  .appears-lede { margin: 0 0 22px; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
+  .cols { display: grid; gap: 26px 40px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .col-h { margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--measure); }
+  .tidy { list-style: none; margin: 0; padding: 0; }
+  .tidy li { padding: 7px 0; border-top: 1px solid var(--hair); font-size: 15.5px; line-height: 1.4; color: var(--ink); }
+  .tidy li:first-child { border-top: 0; }
+  .bk-title { font-style: italic; }
+  .bk-by { color: var(--slate); }
+
   .values p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--ink); max-width: 64ch; }
 
   .contact-cta {

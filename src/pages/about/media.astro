@@ -37,12 +37,17 @@ const description =
 
     <section class="credits block">
       <h2 class="sec-h">Selected credits</h2>
-      {/* TODO(owner content): a short list of selected documentary / film credits goes here, plus the
-          IMDB profile link. Supply the titles + IMDB URL and this becomes a credits list with a link. */}
       <p class="credits-lede">
-        My reconstructions and consulting have supported documentary and popular-science productions on
-        dinosaurs and other extinct animals. A selected-credits list is on the way.
+        Over the years I've consulted on and appeared in television and film productions about dinosaurs
+        and other extinct animals — including:
       </p>
+      <ul class="creds">
+        <li><span class="cr-title">Dinosaur Revolution</span> <span class="cr-role">— consulting &amp; on-screen</span></li>
+        <li><span class="cr-title">Jurassic Fight Club</span> <span class="cr-role">— consulting &amp; on-screen</span></li>
+      </ul>
+      {/* TODO(owner content): add remaining documentary/film credits, and an IMDB profile link
+          (the old site pointed productions to IMDB). Drop the URL in and I'll wire it here. */}
+      <p class="creds-more">A fuller list, with trailers, is on the way.</p>
     </section>
 
     <aside class="contact-cta">
@@ -79,7 +84,13 @@ const description =
     margin: 0 0 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
   }
-  .credits-lede { margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
+  .credits-lede { margin: 0 0 16px; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
+  .creds { list-style: none; margin: 0; padding: 0; max-width: 52ch; }
+  .creds li { padding: 10px 0; border-top: 1px solid var(--hair); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+  .creds li:first-child { border-top: 0; }
+  .cr-title { font-style: italic; font-size: 18px; color: var(--ink); }
+  .cr-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--slate); }
+  .creds-more { margin: 16px 0 0; font-size: 14px; color: var(--measure); }
 
   .contact-cta {
     margin: 40px 0 0; padding: 22px 26px; border-top: 1px solid var(--hair);
