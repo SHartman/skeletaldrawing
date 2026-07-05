@@ -45,9 +45,9 @@ const description =
         <li><span class="cr-title">Dinosaur Revolution</span> <span class="cr-role">— consulting &amp; on-screen</span></li>
         <li><span class="cr-title">Jurassic Fight Club</span> <span class="cr-role">— consulting &amp; on-screen</span></li>
       </ul>
-      {/* TODO(owner content): add remaining documentary/film credits, and an IMDB profile link
-          (the old site pointed productions to IMDB). Drop the URL in and I'll wire it here. */}
-      <p class="creds-more">A fuller list, with trailers, is on the way.</p>
+      <p class="creds-more">
+        Full filmography on <a href="https://www.imdb.com/name/nm9027128/" target="_blank" rel="noopener">IMDb</a>.
+      </p>
     </section>
 
     <aside class="contact-cta">
@@ -91,6 +91,7 @@ const description =
   .cr-title { font-style: italic; font-size: 18px; color: var(--ink); }
   .cr-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--slate); }
   .creds-more { margin: 16px 0 0; font-size: 14px; color: var(--measure); }
+  .creds-more a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
 
   .contact-cta {
     margin: 40px 0 0; padding: 22px 26px; border-top: 1px solid var(--hair);

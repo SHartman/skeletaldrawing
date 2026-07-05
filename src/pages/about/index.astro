@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import portrait from '../../assets/about/scott-hartman.jpg';
 
 // About hub (CLAUDE.md §5) — the bio + the "expertise stamp", then three doors to the ways Scott's
 // work is used: licensing/commissions, media & film, and his academic research & teaching. Replaces
@@ -40,13 +42,23 @@ const description =
 <BaseLayout title={title} description={description} ogType="profile">
   <main class="wrap about">
     <header class="head">
-      <p class="eyebrow">About</p>
-      <h1 class="display">Scott Hartman</h1>
-      <p class="lede">
-        Vertebrate paleontologist, paleoartist, and educator at the University of Wisconsin–Madison —
-        two decades of measured, specimen-based skeletal reconstructions, used in peer-reviewed
-        research, museum exhibits, documentaries, and print.
-      </p>
+      <div class="head-text">
+        <p class="eyebrow">About</p>
+        <h1 class="display">Scott Hartman</h1>
+        <p class="lede">
+          Vertebrate paleontologist, paleoartist, and instructional faculty at the University of
+          Wisconsin–Madison — two decades of measured, specimen-based skeletal reconstructions, used in
+          peer-reviewed research, museum exhibits, documentaries, and print.
+        </p>
+      </div>
+      <Image
+        src={portrait}
+        alt="Scott Hartman, vertebrate paleontologist and paleoartist"
+        class="portrait"
+        widths={[200, 400]}
+        sizes="200px"
+        loading="eager"
+      />
     </header>
 
     <section class="bio">
@@ -89,7 +101,9 @@ const description =
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
 
-  .head { max-width: 62ch; margin: 48px 0 0; }
+  .head { margin: 48px 0 0; display: grid; grid-template-columns: 1fr auto; gap: 24px 44px; align-items: start; }
+  .head-text { max-width: 62ch; }
+  .portrait { width: 200px; height: auto; border-radius: 8px; border: 1px solid var(--hair-strong); display: block; }
   .eyebrow {
     margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
     text-transform: uppercase; color: var(--slate);
@@ -132,7 +146,10 @@ const description =
   }
   .cc-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .wrap { padding: 0 18px; }
+    /* single column: the face sits above the intro so it greets the reader */
+    .head { grid-template-columns: 1fr; }
+    .portrait { width: 132px; order: -1; }
   }
 </style>
