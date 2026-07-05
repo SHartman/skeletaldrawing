@@ -11,8 +11,8 @@ For paleoartists (and the scientists who work with them), properly restoring the
 When we are really lucky these hypotheses can be tested directly, such as when we find extensive soft-tissue preservations of a fossil like the "mummified" hadrosaurs. For stem birds we have had an embarrassment of riches when it comes to their epidermal coverings (fur, feathers and other fluff), but their fuzziness has generally covered up any information that might have been preserved about the shape of the underlying soft-tissues, or about the non-feathered skin structures.
 
 <figure>
-<img src="/images/blog/anchiornissofttissue-2.webp" alt="[ ](https://en.wikipedia.org/wiki/Brachylophosaurus#/media/File:Leonardo_mummified_brachylophosaurus.jpg) Leonardo the &quot;mummified&quot; Brachylophosaurus" />
-<figcaption>[ ](https://en.wikipedia.org/wiki/Brachylophosaurus#/media/File:Leonardo_mummified_brachylophosaurus.jpg) Leonardo the &quot;mummified&quot; Brachylophosaurus</figcaption>
+<img src="/images/blog/anchiornissofttissue-2.webp" alt="Leonardo the &quot;mummified&quot; Brachylophosaurus" />
+<figcaption>Leonardo the &quot;mummified&quot; Brachylophosaurus</figcaption>
 </figure>
 
 That's all about to change. [In a paper published today](http://www.nature.com/articles/ncomms14576) by my colleagues and I, dozens of *Anchiornis* specimens were studied using laser-stimulated fluorescence (LSF), a technique that can reveal preserved soft-tissue details that are not clearly evident in normal lighting conditions. Although no one specimen revealed an entire outline, by cobbling together the best of the dozen or so specimens with LSF-revealed skin tissues we now have a much better idea of what *Anchiornis* looked like, as well as a good test of how well EPB works. For paleoartists, and those who simply want to know *exactly* what a dinosaur looked like when alive, this clarifies many important details of the skin and muscular anatomy.

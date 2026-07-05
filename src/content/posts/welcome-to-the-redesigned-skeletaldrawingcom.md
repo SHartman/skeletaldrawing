@@ -5,7 +5,7 @@ excerpt: "If this isn't your first time to my website, you're probably noticing 
 image:
   src: /images/blog/welcome-to-the-redesigned-skeletaldrawingcom-1.webp
   alt: "Majungasaurus"
-  caption: "[](/theropods) Majungasaurus"
+  caption: "Majungasaurus"
 ---
 If this isn't your first time to my website, you're probably noticing that things look quite a bit different around here. That's because after numerous fits and false starts, I finally got around to redesigning the site. I think the site is now quite a bit more attractive, but more importantly it is using modern web technology.
 

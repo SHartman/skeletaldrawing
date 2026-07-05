@@ -18,8 +18,8 @@ Two general claims seem to permeate the article, that dinosaurs were just *reall
 The "they're just so big" meme is also painfully wrong; there's an entire literature of biomechanics that shows that dinosaur limbs are strong enough to support terrestrial locomotion. And of course dinosaurs lack the aquatic features seen in animals such as hippos or crocodiles, which actually spend most of their time in water. Running your mouth off (err, running your text editor off?) without even bothering to read the literature is one of those "the stupid, it hurts!" sorts of moments.
 
 <figure>
-<img src="/images/blog/when-journalists-attack-2.webp" alt="[ ](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd" />
-<figcaption>[ ](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd</figcaption>
+<img src="/images/blog/when-journalists-attack-2.webp" alt="From xkcd" />
+<figcaption>From xkcd</figcaption>
 </figure>
 
 Ok, enough ragging on "professor" [Ford](http://www.labnews.co.uk/news/prehistoric-revolution/); he's either a crank or a practical joker (perhaps those aren't mutually exclusive?), but he's not the first person to have a loony idea and not support it with any evidence. Heck, the internet is littered with such people.
@@ -44,7 +44,7 @@ Regular readers have already seen that sources like Scientific American can get 
 
 This stuff really matters. We live in a world where [huge swaths of people](http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.0040167) don't understand basic scientific concepts, and this sort of nonsense just makes it harder to teach. Worse, listeners that were sympathetic to the reporting will become disillusioned when they find out the reality of the situation, possibly making them view all science more cynically (or simply avoiding science altogether).
 
-[](http://www.blogger.com/blogger.g?blogID=4172796532462375810)[](http://www.blogger.com/blogger.g?blogID=4172796532462375810)
+
 
 We deserve better science reporting than this. The BBC and everyone else who carried this story should be ashamed. Perhaps the best way to sum this up is in grand internet fashion:
 

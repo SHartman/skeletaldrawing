@@ -18,8 +18,8 @@ Now that I've rescaled missing elements, I get a full length of just under 32 me
 That is in the same ballpark as Matt's estimate for *Brachiosaurus*, but of course the eponymous North American brachiosaurid isn't known from many more published cervicals than NMMNH 3690 is. So instead of *Brachiosaurus* I decided to use the better known *Giraffatitan*. There are some reasonably complete cervical series for Giraffatitan and much better scaling constraints all around. For everyone's favorite specimen on display in Berlin (HMN SII) I get a neck length of almost 9.5 meters. Another specimen of *Giraffatitan* (HMN XV2) has a tibia that is reported to be 13% longer, so assuming isometric scaling we would be talking about a neck length of 10.8 meters, which is pretty darn long!
 
 <figure>
-<img src="/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-2.webp" alt="[ ](http://commons.wikimedia.org/wiki/File:Naturkundemuseum_Brachiosaurus_brancai.jpg) HMN SII, © Berlin Museum of Natural History, via WikiCommons." />
-<figcaption>[ ](http://commons.wikimedia.org/wiki/File:Naturkundemuseum_Brachiosaurus_brancai.jpg) HMN SII, © Berlin Museum of Natural History, via WikiCommons.</figcaption>
+<img src="/images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-2.webp" alt="HMN SII, © Berlin Museum of Natural History, via WikiCommons." />
+<figcaption>HMN SII, © Berlin Museum of Natural History, via WikiCommons.</figcaption>
 </figure>
 
 How long you ask? It's about the same length as you would get [scaling up *Alamosaurus*](http://www.skeletaldrawing.com/home/2013/6/21/assessing-alamosaurus) to the largest tibia that has been referred to it (which puts it [up in the range of giants](http://www.skeletaldrawing.com/home/2013/06/the-biggest-of-big.html) like *Puertasaurus* and *Argentinosaurus*), so about as long as the neck of any titanosaur. Up till now it would appear macronarians may lay claim to the longest neck (and potentially total length) of any dinosaur.

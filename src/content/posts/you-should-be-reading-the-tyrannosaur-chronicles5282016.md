@@ -9,7 +9,7 @@ image:
 
 I wanted to make sure you know about Dave Hone’s excellent new book, *The Tyrannosaur Chronicles*. I’d hoped to blog about it several weeks ago for the UK launch, but I had a slew of end-of-semester grading and sundry other deadlines. The upshot of that decision is I’ve now had a chance to read the entire book, and can say without hesitation that you are in for a treat.
 
-[](https://www.amazon.com/gp/product/1472911261/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1472911261&linkCode=as2&tag=skeletaldrawi-20&linkId=6bd4561bfe595ceae2214f3e31b5057a)
+
 
 Now I know what you’re thinking: “Who would write a book *about tyrannosaurs*? They’re so *utterly boring*!”. Despite the millstone\* of writing about Earth’s most famous predators and their kin, Dave does a great job of making the topic fascinating. He covers all aspects of tyrannosaur anatomy, biology, and the relationships of the entire group. He also has a knack for conveying the science to non-specialists in a manner that is approachable, but doesn’t water down the story or cut down on the wonder of scientific discovery. The text isn’t heavy on technical terms, and the ones he does use are introduced to the reader.
 

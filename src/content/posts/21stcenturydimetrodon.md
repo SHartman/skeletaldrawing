@@ -30,8 +30,8 @@ A couple of things have made me comfortable with this solution - first was that 
 The odds seem small that this bevelling of the vertebrae could be diagenetic (that is, deformation caused after burial) since the neural spines would have to also be bent to compensate. The fact that it appears in many other specimens also makes it more likely that this is a real phenomena, and not an artifact from a single specimen. As a final bit of positive reinforcement, I chatted with several Permian synapsid researchers at SVP in October and received only positive feedback. Phew!
 
 <figure>
-<img src="/images/blog/21stcenturydimetrodon-3.webp" alt="[ ](https://commons.wikimedia.org/wiki/File:Crocodile_high_walk.jpg) Photo by Vicky baldwin, From Wikimedia Commons" />
-<figcaption>[ ](https://commons.wikimedia.org/wiki/File:Crocodile_high_walk.jpg) Photo by Vicky baldwin, From Wikimedia Commons</figcaption>
+<img src="/images/blog/21stcenturydimetrodon-3.webp" alt="Photo by Vicky baldwin, From Wikimedia Commons" />
+<figcaption>Photo by Vicky baldwin, From Wikimedia Commons</figcaption>
 </figure>
 
 **The high walk pose:** OK, I admit it, it’s a “high run” pose. By “high walk” I was referring to the semi-sprawled gait we see at times in extant crocodilians. Traditionally *Dimetrodon* has been portrayed using a lizard-like sprawl, but in the last couple of decades researchers have discovered trackways given the name *Dimetropus*. These trackways, which appear to have been made by *Dimetrodon* or a synapsid closely related to *Dimetrodon*, show an animal moving with a more upright posture, holding its belly and tail well clear of the ground.
@@ -41,8 +41,8 @@ It seems clear that *Dimetrodon* could sprawl when it wanted to (perhaps while a
 **False consensus & other thoughts:** When I began this skeletal reconstruction I thought this would be an easy project, since *Dimetrodon* skeletals up until now have looked more or less the same. Now that I’ve spent a serious chunk of time working on them, it turns out that this similarity wasn’t due to informed consensus, but rather that everyone appears to have more or less recycling Romer’s 1927 skeletal, right down to the limb pose! I don’t want to name names, but you can see Romer’s skeletal below, and if you Google “dimetrodon skeletal” you can see for yourself just how pervasive the habit of “taking direct inspiration” from Romer’s skeletal has been.
 
 <figure>
-<img src="/images/blog/21stcenturydimetrodon-4.webp" alt="[ ](https://www.jstor.org/stable/30060393?seq=1#page_scan_tab_contents) The Iconic Dimetrodon, from Romer's 1927 monograph" />
-<figcaption>[ ](https://www.jstor.org/stable/30060393?seq=1#page_scan_tab_contents) The Iconic Dimetrodon, from Romer's 1927 monograph</figcaption>
+<img src="/images/blog/21stcenturydimetrodon-4.webp" alt="The Iconic Dimetrodon, from Romer's 1927 monograph" />
+<figcaption>The Iconic Dimetrodon, from Romer's 1927 monograph</figcaption>
 </figure>
 
 I expect people will want to know if this should be the new base-look for all *Dimetrodon* species, but unfortunately it’s hard to say at this point. *Dimetrodon* is a genus with [a dozen or so valid species](https://en.wikipedia.org/wiki/List_of_Dimetrodon_species) (depending on who you ask) spread over 20+ million years. Those species range in length from under a meter to giants more than five meters long! In short, *Dimetrodon* species could have had a lot of diversity in their backs, sails, etc., and it will take more to find out. But I do feel comfortable saying that at the least *Dimetrodon grandis* looked quite different from the Romer-cloned version we’ve been using for most of the last century.
