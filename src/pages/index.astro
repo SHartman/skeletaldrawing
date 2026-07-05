@@ -20,21 +20,7 @@ const NAV = [
   { label: 'Store', href: '/store/' },
 ];
 
-const GALLERY_LABEL: Record<string, string> = {
-  'sauropods-and-kin': 'Sauropodomorpha',
-  theropods: 'Theropoda',
-  ornithischians: 'Ornithischia',
-  'non-dinosaurs': 'Non-dinosaurs',
-};
-
-// Browse by clade — one card per gallery that has content, with real taxon counts.
-const taxa = await getCollection('taxa');
-const counts = new Map<string, number>();
-for (const t of taxa) counts.set(t.data.gallery, (counts.get(t.data.gallery) ?? 0) + 1);
-const clades = [...counts.entries()]
-  .map(([slug, count]) => ({ slug, name: GALLERY_LABEL[slug] ?? slug, count, href: `/${slug}/` }))
-  .sort((a, b) => b.count - a.count)
-  .map((c, i) => ({ ...c, idx: String(i + 1).padStart(2, '0') }));
+const taxa = await getCollection('taxa'); // used by the featured-reconstruction rotation below
 
 // Scale-comparison sampler — rotates per visit among the hubs that have a comparison figure.
 // TOOL enables a "Create your own comparison →" CTA above each hub link. It's null while the
@@ -268,26 +254,7 @@ const description =
     </script>
   </section>
 
-  <!-- ============ BROWSE BY CLADE ============ -->
-  <section class="band bordered">
-    <div class="band-inner">
-      <div class="sec-head">
-        <h2 class="sec-title">Browse by clade</h2>
-        <a class="sec-link" href="/galleries/">All galleries →</a>
-      </div>
-      <div class="clade-grid">
-        {clades.map((c) => (
-          <a class="clade-card" href={c.href}>
-            <span class="clade-idx">{c.idx}</span>
-            <span class="clade-name">{c.name}</span>
-            <span class="clade-count">{c.count} {c.count === 1 ? 'skeletal' : 'skeletals'}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FROM THE BLOG (placeholder until the post collection lands) ============ -->
+  <!-- ============ FROM THE BLOG ============ -->
   <section class="band bordered">
     <div class="band-inner">
       <div class="sec-head">
@@ -455,17 +422,6 @@ const description =
     color: var(--accent); text-decoration: none; white-space: nowrap;
   }
 
-  /* ---- browse by clade ---- */
-  .clade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px; }
-  .clade-card {
-    display: flex; flex-direction: column; gap: 9px; padding: 18px; border: 1px solid var(--hair);
-    background: var(--plate); text-decoration: none; border-radius: 5px;
-    transition: border-color .16s ease, transform .16s ease;
-  }
-  .clade-card:hover { border-color: var(--slate); transform: translateY(-2px); }
-  .clade-idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
-  .clade-name { font-style: italic; font-size: 18px; color: var(--ink); line-height: 1.1; }
-  .clade-count { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
 
   /* ---- blog ---- */
   .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start; }
