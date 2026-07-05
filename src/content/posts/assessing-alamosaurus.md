@@ -2,9 +2,12 @@
 title: "Assessing Alamosaurus"
 date: 2013-06-21T15:17:35Z
 excerpt: "Today let's look at another one of our thundering giants, Alamosaurus sanjuanensis. Alamosaurus is known from quite good remains (for a titanosaur), and some fragmentary remains may be close to the largest known dinosaur. How certain is thi"
+image:
+  src: /images/blog/assessing-alamosaurus-1.webp
+  alt: " Alamosaurus on parade "
 ---
 
-\[caption id="" align="alignnone" width="1500"\]![ Alamosaurus on parade ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371826081051-S6DM3QOOW3GPW3CZN6F5/Assessing+Alamosaurus.jpg?format=original) Alamosaurus on parade \[/caption\]
+\[caption id="" align="alignnone" width="1500"\] Alamosaurus on parade \[/caption\]
 
 Today let's look at another one of our [thundering giants,](http://www.skeletaldrawing.com/home/2013/06/the-biggest-of-big.html) *[Alamosaurus sanjuanensis](http://en.wikipedia.org/wiki/Alamosaurus)*. *Alamosaurus* is known from quite good remains (for a titanosaur), and some fragmentary remains may be close to the largest known dinosaur. How certain is this reconstruction? Much better than *[Puertasaurus](http://www.skeletaldrawing.com/home/2013/6/20/the-problem-with-puertasaurus)*, but there are still a couple of layers of inference needed to get there.
 

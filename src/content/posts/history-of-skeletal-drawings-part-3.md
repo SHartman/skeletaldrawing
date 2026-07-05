@@ -1,6 +1,7 @@
 ---
 title: "A History of Skeletal Drawings: Part 3 - Dino Renaissance to the present"
 date: 2011-03-26T22:00:00Z
+kind: "Skeletal drawing topics"
 ---
 
 We saw in [Part 2](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22b17/1321298529000/) that the modern convention of skeletal illustration had largely been invented by the 1950s. Alas, it didn’t immediately catch on like wildfire, and in other ways the 1950s represents a nadir in terms of published skeletals. Yet starting in the 1960s would see steady progress up to the modern era. How did it all happen? Let’s take a look!

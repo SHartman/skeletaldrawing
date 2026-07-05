@@ -1,9 +1,10 @@
 ---
 title: "Yup, the OK Apatosaurus is freakin' huge!"
 date: 2012-04-28T04:24:00Z
+image:
+  src: /images/blog/yup-ok-apatosaurus-is-freakin-huge-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485566422-KMTXP7C1ADXTEQ5XXW8V/image-asset.png?format=original)
 
 How big did Apatosaurus get? Well, that gray silhouette that is being dwarfed in terms of bulk there is *Supersaurus vivianae*. So yeah, that's one big honk'in sauropod...
 
@@ -13,7 +14,7 @@ But Matt really caught my attention when he stated:
 
 > *...so the big Oklahoma Apatosaurus was probably in Supersaurus territory, mass-wise, and may have rivaled some of the big titanosaurs.*
 
-\[caption id="" align="alignnone" width="464"\]![ A younger me carving a pedal ungal. Look at that hair - what a hippy! ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371656923777-MP1IUEESZBUU5II3AWA2/me_carving_small.png?format=original) A younger me carving a pedal ungal. Look at that hair - what a hippy! \[/caption\]
+\[caption id="" align="alignnone" width="464"\]![ A younger me carving a pedal ungal. Look at that hair - what a hippy! ](/images/blog/yup-ok-apatosaurus-is-freakin-huge-2.webp) A younger me carving a pedal ungal. Look at that hair - what a hippy! \[/caption\]
 
 *Supersaurus* is an animal near and dear to my heart - it's an animal I've literally shed blood over. Yes really. In addition to working with my coauthors on a [description of the second specimen of](http://skeletaldrawing.com/supersaur_project/CLPV_II_Supersaurus.pdf) *[Supersaurus](http://skeletaldrawing.com/supersaur_project/CLPV_II_Supersaurus.pdf)j* and a reassessment of diplodocid phylogeny, we also had to produce a full mount of the animal under exceedingly tight time constraints. As with many small museums this meant we all had to pitch in, and that included learning how to sculpt missing bones. Near the very end of the project, while getting by on little more than 2 hours of sleep and coffee doses that would kill a small horse, I had a very small boo-boo with a carving knife (see photographic evidence at right). No stitches were necessary, and thankfully no sauropods where injured in the process.  
 

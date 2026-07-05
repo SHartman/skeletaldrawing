@@ -2,9 +2,12 @@
 title: "Scaling issues - a minor irritation?"
 date: 2013-07-01T19:28:50Z
 excerpt: "The Super Spinosaurus? post produced some interesting conversation; in particular Marco asked a good question about whether using the skull of the South American spinosaurid Irritator would have a material impact on the size of the animal. "
+image:
+  src: /images/blog/scaling-issues-a-minor-irritation712013-1.webp
+  alt: " Irritator challengeri, copyright Scott Hartman, 2013. "
 ---
 
-\[caption id="" align="alignnone" width="322"\]![ Irritator challengeri, copyright Scott Hartman, 2013. ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1372705641136-6INT03BVNKB58LF3DL2Q/Irritator+skull.jpg?format=original) Irritator challengeri, copyright Scott Hartman, 2013. \[/caption\]
+\[caption id="" align="alignnone" width="322"\] Irritator challengeri, copyright Scott Hartman, 2013. \[/caption\]
 
 The [Super *Spinosaurus*?](http://www.skeletaldrawing.com/home/super-spinosaurus6282013) post produced some interesting conversation; in particular [Marco](http://www.skeletaldrawing.com/home/super-spinosaurus6282013#comment-946128418) asked a good question about whether using the skull of the South American spinosaurid *Irritator* would have a material impact on the size of the animal.
 
@@ -14,7 +17,7 @@ If you haven't heard of Irritator, now would be the time to [go read up on it](h
 
 Above you can find my rigorous reconstruction of *Irritator* *'s* skull (the dark gray area roughly represents the *Angaturama* snout that has been referred). Of note is that it's actually quite similar to how I've restored the skull of *Spinosaurus* (which was based in part on photos of unpublished specimens).
 
-\[caption id="" align="alignnone" width="906"\]![ Skull reconstructions of Spinosaurus (top) and Irritator compared. ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1372708196434-HPFJS6WGXG8514CWYJZW/Irritation.jpg?format=original) Skull reconstructions of Spinosaurus (top) and Irritator compared. \[/caption\]
+\[caption id="" align="alignnone" width="906"\]![ Skull reconstructions of Spinosaurus (top) and Irritator compared. ](/images/blog/scaling-issues-a-minor-irritation712013-2.webp) Skull reconstructions of Spinosaurus (top) and Irritator compared. \[/caption\]
 
 Comparing the skulls as the same snout depth, you can see that the back of *Irritator's* skull is relatively shorter compared to the reconstructed *Spinosaurus* skull. A close inspection of the snout, however shows that strictly-speaking they aren't 100% comparable. *Irritator* seems to have proportionately more space between the nose and the antorbital fenestra (the hole in front of the eyes). It's not clear whether this effects the overall length of the snout, but it certainly impacts which parts of the face are lengthened (i.e. *Spinosaurus* appears to have a more retracted nose). So you can't simply take the big MSMN V4047 *Spinosaurus* snout and scale it based on *Irritator's* skull, as there isn't a perfect fit with which to scale it.
 

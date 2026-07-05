@@ -2,6 +2,9 @@
 title: "Hesperornithoides: Frequently Asked Questions"
 date: 2019-07-10T15:04:06Z
 excerpt: "I’ve seen many questions raised about our recent publication of the Lori specimen, so here are some responses to the most common queries:What is this about?It is my pleasure to introduce Hesperornithoides miessleri, a small paravian theropo"
+image:
+  src: /images/blog/hesperornithoides-faq7102019-1.webp
+  alt: ""
 ---
 
 I’ve seen many questions raised about our recent publication of the Lori specimen, so here are some responses to the most common queries:
@@ -33,8 +36,6 @@ It was named after a volunteer on the dig when the specimen was discovered.
 **Did you do a skeletal drawing of it?**
 
 Like you had to ask! Here it is:
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1562766809721-TQY36XILQQULYO8Q5R16/hesperornithoides+skeletal.jpg?format=original)
 
 **What sort of environment did *Hesperornithoides* live in?**
 

@@ -2,6 +2,9 @@
 title: "Catching up: Books, plushies, and a welcome to Gizmodo readers"
 date: 2015-03-08T20:13:19Z
 excerpt: "It's been a very busy year, and as a result it's awhile since I updated the blog, There are several smaller items I want to cover before I get to meatier topics, including a book I contributed to, an adorable Velociraptor plushie, and the #"
+image:
+  src: /images/blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015-1.webp
+  alt: ""
 ---
 
 It's been a very busy year, and as a result it's awhile since I updated the blog, There are several smaller items I want to cover before I get to meatier topics, including a book I contributed to, an adorable *Velociraptor* plushie, and the [#SciArt Twitter Storm](http://blogs.scientificamerican.com/symbiartic/2015/03/01/sciart-tweet-storm/).
@@ -15,5 +18,6 @@ Continuing the theme of "free stuff people sent me", I also wanted to mention *D
 That largely clears my backlog of items I meant to cover last year. Hopefully I can find time to get into some issues regarding spinosaurids (both *Spinosaurus* and *Baryonyx*), dinosaur motion, and other goodies I've had planned but not enough time to write up yet.
 
 See you soon!  
+ 
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1425844910053-RNDEM1TQ5EPR6K44V9XI/VelociraptorPlushie?format=original) ![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1425845145529-KFNZ3FDOZS5XAQ61CW4V/image-asset.jpeg?format=original)
+ ![](/images/blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015-2.webp)

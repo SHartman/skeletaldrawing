@@ -1,9 +1,12 @@
 ---
 title: "Reign of the Dinosaur Revolution"
 date: 2011-09-08T21:46:00Z
+image:
+  src: /images/blog/reign-of-dinosaur-revolution-1.webp
+  alt: " Copyright the Discovery Channel "
 ---
 
-\[caption id="" align="alignnone" width="600"\]![ Copyright the Discovery Channel ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371664216400-1NL8R8MWA6R7JQG79IY5/dinosaur-revolution-logo.jpg?format=original) Copyright the Discovery Channel \[/caption\]
+\[caption id="" align="alignnone" width="600"\] Copyright the Discovery Channel \[/caption\]
 
 One of the projects I've worked on the last two years was [Dinosaur Revolution](http://dsc.discovery.com/videos/dinosaur-revolution-new-series-premiere.html) - although for most of that time it had the working name "[Reign of the Dinosaurs](http://corporate.discovery.com/blog/2010/07/27/discovery-channel-science-channel-take-comic-con-by-storm/21351_181/)" - which is still how I think of it in my head. I'm sure I'll get over it.
 

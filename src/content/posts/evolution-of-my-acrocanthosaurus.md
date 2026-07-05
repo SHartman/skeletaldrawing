@@ -1,9 +1,10 @@
 ---
 title: "The evolution of (my) Acrocanthosaurus"
 date: 2012-01-29T03:10:00Z
+image:
+  src: /images/blog/evolution-of-my-acrocanthosaurus-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485567276-NJ4JBEFVB6QHABYBE79T/image-asset.png?format=original)
 
 With*[Spinosaurus](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf3578e4b0f16202a229ef/1326689804000/)* temporarily out of the way, we're going to take a closer look at *Acrocanthosaurus*. This series is going to include a post on what we know and don't know about Acrocanthosaurus, how to restore the skeletal in multiple views, and how to restore the muscles. At the end of that series I'll also comment on some areas of soft-tissue variation that artists should keep in mind when they envision "their" *Acrocanthosaurus*.
 
@@ -33,7 +34,7 @@ What happened? For one thing I really didn't have enough data on hand. But more 
 
 **The Acro strikes back**
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485565706-EU8KQXO6QGVY4GYHKI6E/image-asset.png?format=original)
+![](/images/blog/evolution-of-my-acrocanthosaurus-2.webp)
 
 With a bit of work, I quickly produced the skeletal above, which addressed some of the basics. It wasn't a horrible attempt - it accurately captures almost all of the proportions, and many of the changes since have been either due to newer research getting published, or on changing interpretations in soft tissue reconstruction.
 
@@ -43,7 +44,7 @@ Two important papers were published on *Acrocanthosaurus* after that early skele
 
 **Back to the future**
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485566142-O4VFLHPS318KOO95R4AX/image-asset.png?format=original)
+![](/images/blog/evolution-of-my-acrocanthosaurus-3.webp)
 
 Which brings us back to my current skeletal. In addition to the new skull and arm data, the newfangled Acrocanthosaur naturally sports my [new skeletal pose](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf3578e4b0f16202a229d8/1327176446000/). So how crazy different is it? In some ways it's pretty similar - the overall dimensions really didn't change, and that's a good thing. A bunch of more subtle soft-tissue changes took place (at least some of which will get to star in their own post in the future), but a couple of obvious ones involve the tail and the neck.
 

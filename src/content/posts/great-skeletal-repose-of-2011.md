@@ -1,9 +1,11 @@
 ---
 title: "The Great Skeletal Repose of 2011"
 date: 2011-07-17T00:07:00Z
+kind: "Skeletal drawing topics"
+image:
+  src: /images/blog/great-skeletal-repose-of-2011-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485567632-1PAZO7VVZ6UZ6PC3O0WU/image-asset.jpeg?format=original)
 
 As many of you are no doubt aware, earlier this year paleontologist and scientific illustrator [Greg Paul](http://gspauldino.com/) made a fairly [public](http://www.scientificamerican.com/blog/post.cfm?id=art-in-the-service-of-science-you-g-2011-03-16) hubbub when (among [other](http://gspauldino.com/products.html) demands) he requested that all other illustrators stop using the skeletal poses he popularized the last several decades. There was [quite](http://thefastertimes.com/dinosaurs/2011/03/14/gregory-s-paul-and-the-future-of-paleoart/) a [bit](http://chasmosaurs.blogspot.com/2011/03/great-debate-in-paleoart.html) of [consternation](http://paleoking.blogspot.com/2011/03/greg-paul-threatens-legal-smackdown.html) over the issues he raised, filled with both sympathy (it's *hard* to make a living from paleoart) and skepticism (most people don't believe Greg has any legal basis to try and lay claim to an anatomical pose - I suspect those people are correct).
 
@@ -25,7 +27,7 @@ Given this larger perspective, I feel that we'd be better served to find a new p
 
 One obvious example: the "Greg Paul" pose for theropods, though iconic, is held back by its theoretical baggage. The pushing off the left foot while dashing around at a full sprint pose is not something that all researchers agree is possible in all theropods. Several times while providing a skeletal for another researchers publication I've been asked to alter the pose for this reason. I've done this a couple of times due to my own incredulity; for example I illustrated *Majungasaurus* in a walking pose, since I'm skeptical that it could sprint:
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371664879940-2IK3NUL9SSY0MJEEZLJ1/majungasaurus_updated.jpg?format=original)
+![](/images/blog/great-skeletal-repose-of-2011-2.webp)
 
 So by undertaking this project we can take advantage of hindsight to create a standard that is both open and potentially solves some of the largest criticisms of Greg Paul's poses.
 

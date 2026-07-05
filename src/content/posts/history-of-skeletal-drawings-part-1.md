@@ -1,6 +1,7 @@
 ---
 title: "A History of Skeletal Drawings: Part 1 (pre-20th century)"
 date: 2011-03-16T19:32:00Z
+kind: "Skeletal drawing topics"
 ---
 
 The ponderous creature you see above is *Plateosaurus*. The skeletal reconstruction could probably be several posts [in itself](http://www.app.pan.pl/archive/published/app55/app20090075.pdf), but first I’d like to spend some time pondering how we got here. No, no, I don’t mean what link you clicked on to reach my blog, but rather the larger journey taken by scientists and the scientific illustrators that collaborate with them. We're going to spend lots of time dissecting modern skeletal reconstructions and laying out the do’s and don’ts of restoring extinct animals, but first it’s worth reviewing how we arrived at this juncture...

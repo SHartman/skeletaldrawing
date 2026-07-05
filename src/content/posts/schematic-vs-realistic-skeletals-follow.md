@@ -1,6 +1,7 @@
 ---
 title: "Schematic vs realistic skeletals: Follow up"
 date: 2011-07-15T16:59:00Z
+kind: "Skeletal drawing topics"
 ---
 
 I'm happy to say I've received some excellent feedback on the previous blog post on [schematic skeletal diagrams](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22ae2/1321298529000/). Several comments in particular share a similar feeling, which I'll repost here:  

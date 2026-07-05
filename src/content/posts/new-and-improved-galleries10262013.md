@@ -2,11 +2,12 @@
 title: "New and improved galleries!"
 date: 2013-10-26T18:58:32Z
 excerpt: "For those of you wondering why the pace of content has slowed down, it's because I entered a PhD program in paleontology at the University of Wisconsin-Madison this fall, and I lost what was left of my free time. But that's not to say that "
+image:
+  src: /images/blog/new-and-improved-galleries10262013-1.webp
+  alt: ""
 ---
 
 For those of you wondering why the pace of content has slowed down, it's because I entered a PhD program in paleontology at the [University of Wisconsin-Madison](http://geoscience.wisc.edu/geoscience/people/student/?id=1043) this fall, and I lost what was left of my free time. But that's not to say that there hasn't been substantial work going on behind the scenes of SkeletalDrawing.com!
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1382812558060-8LJLS9JS75VZVXR5AP42/Pteranodon?format=original)
 
 First and foremost, there is a [new skeletal gallery](http://www.skeletaldrawing.com/non-dinosaurs/) featuring some of my non-dinosaur reconstructions. "Non-dinosaurs" is admittedly a pretty broad category, and indeed it features everything from the proto-dinosaur *[Silesaurus](http://www.skeletaldrawing.com/non-dinosaurs/silesaurus)* to [crocodylomorphs](http://www.skeletaldrawing.com/non-dinosaurs/deinosuchus), [turtles](http://www.skeletaldrawing.com/non-dinosaurs/basilemys), [mammals](http://www.skeletaldrawing.com/non-dinosaurs/ovis), and even the basal tetrapod *[Ichthyostega](http://www.skeletaldrawing.com/non-dinosaurs/ichthyostega)*.
 

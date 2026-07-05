@@ -2,9 +2,12 @@
 title: "Permia sponsorship, removal of ads, and other goodies"
 date: 2019-03-30T19:21:33Z
 excerpt: "This isn’t my upcoming theropod lip post(s), but it is good news for those of you who have asked for more content on the Skeletal Drawing Blog. It’s also good news for general usability of the website, and I’m taking a stand against ads tha"
+image:
+  src: /images/blog/permia-sponsorship-removal-of-ads-and-other-goodies3292019-1.webp
+  alt: " Permi’s Demitri logo "
 ---
 
-\[caption id="" align="alignnone" width="2500"\]![ Permi’s Demitri logo ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1553971394958-D03CDY8HN2MRG6MY8KK6/Permia+Logo-Only+Transparent+PNG.png?format=original) Permi’s Demitri logo \[/caption\]
+\[caption id="" align="alignnone" width="2500"\] Permi’s Demitri logo \[/caption\]
 
 This *isn’t* my upcoming theropod lip post(s), but it *is* good news for those of you who have asked for more content on the Skeletal Drawing Blog. It’s also good news for general usability of the website, and I’m taking a stand against ads that track you.
 
@@ -26,4 +29,4 @@ I am also on [Patreon](https://www.patreon.com/skeletaldrawing). That support is
 
 That’s all I have for today, but look for theropod lips coming very soon!
 
-\[caption id="" align="alignnone" width="2048"\]![ The stages in reconstructing and stylizing Diplocaulus for Permia ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1553972664788-T99JUUA70CTD1H2XO5LA/Diplocaulus-website.jpg?format=original) The stages in reconstructing and stylizing Diplocaulus for Permia \[/caption\]
+\[caption id="" align="alignnone" width="2048"\]![ The stages in reconstructing and stylizing Diplocaulus for Permia ](/images/blog/permia-sponsorship-removal-of-ads-and-other-goodies3292019-2.webp) The stages in reconstructing and stylizing Diplocaulus for Permia \[/caption\]

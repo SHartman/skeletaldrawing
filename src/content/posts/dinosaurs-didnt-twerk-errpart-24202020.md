@@ -2,13 +2,16 @@
 title: "Dinosaurs didn't twerk, err....Part 2?"
 date: 2020-04-20T21:50:57Z
 excerpt: "No, you didn’t miss Part 1 of this series. Nor did you miss a follow-up to The Lip Post (it’s coming eventually!). Going back to the end of 2018 I had intended to do a two-part post about tails, limb-retractor muscle function, and posture. "
+image:
+  src: /images/blog/dinosaurs-didnt-twerk-errpart-24202020-1.webp
+  alt: " Apatosaurus louisae thinks things are “looking up” "
 ---
 
-\[caption id="" align="alignnone" width="2500"\]![ Apatosaurus louisae thinks things are “looking up” ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1587415312437-9EO8IOHSFWMXYKPLVLRN/Apatosaurus+louisae+skeletal+2020.jpg?format=original) Apatosaurus louisae thinks things are “looking up” \[/caption\]
+\[caption id="" align="alignnone" width="2500"\] Apatosaurus louisae thinks things are “looking up” \[/caption\]
 
 No, you didn’t miss Part 1 of this series (nor did you miss a follow-up to [The Lip Post](https://www.skeletaldrawing.com/home/the-lip-post1), it’s coming eventually!). Going back to the end of 2018 I had intended to do a two-part post about tails, limb-retractor muscle function, and posture. Part 1 was supposed to be about hadrosaurs (as a follow up to [The Hadrosaur Repose](https://www.skeletaldrawing.com/home/the-hadrosaur-repose-of-201811272018) from the same time period), and part 2 was going to be about sauropods. Obviously I never quite got there!
 
-\[caption id="" align="alignnone" width="1500"\]![ Edmontosaurus wasn’t shaking it’s tail up in the air either. Well, most of the time anyway. ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1587417350107-WDF4O7YSJWDTBFVMB2X9/Edmontosaurus+regalis.jpg?format=original) Edmontosaurus wasn’t shaking it’s tail up in the air either. Well, most of the time anyway. \[/caption\]
+\[caption id="" align="alignnone" width="1500"\]![ Edmontosaurus wasn’t shaking it’s tail up in the air either. Well, most of the time anyway. ](/images/blog/dinosaurs-didnt-twerk-errpart-24202020-2.webp) Edmontosaurus wasn’t shaking it’s tail up in the air either. Well, most of the time anyway. \[/caption\]
 
 The [tl;dr](https://www.dictionary.com/e/acronyms/tldr/) of the series was there is good reason to think no dinosaurs held their tails substantially above horizontal, and that past skeletals of hadrosaurs, sauropods, and/or stegosaurs that showed this (including my own) needed to be updated. Hence, no raised dino-butts. I had already updated my hadrosaurs to reflect this, and have steadily updated my non-[diplodocoid](https://en.wikipedia.org/wiki/Diplodocoidea) sauropod skeletals. The impact of these changes, as I discussed in an [SVP poster presentation back in 2012](https://drive.google.com/open?id=0BxtacAPOhqKaTmcyZl9XYnRyeXc) is for the back to slope upwards, making the neck more vertical even without strong inflection in the vertebrate at the neck/back juncture.
 
@@ -24,4 +27,4 @@ More problematic are my diplodocoid skeletals. I had previously reposed an *Apat
 
 So get used to sauropods with more elevated back posture and (therefore) more upright necks. I’m looking at you, horizontal-necked titanosaur illustrations!
 
-\[caption id="" align="alignnone" width="1535"\]![ Fig. 1 from Vidal, et al (2020) showing the high-browsing adaptations of Spinophorosaurus. ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1587418353829-P420M3C1PUSOSP0W0W7W/Fig1.jpg?format=original) Fig. 1 from Vidal, et al (2020) showing the high-browsing adaptations of Spinophorosaurus. \[/caption\]
+\[caption id="" align="alignnone" width="1535"\]![ Fig. 1 from Vidal, et al (2020) showing the high-browsing adaptations of Spinophorosaurus. ](/images/blog/dinosaurs-didnt-twerk-errpart-24202020-3.webp) Fig. 1 from Vidal, et al (2020) showing the high-browsing adaptations of Spinophorosaurus. \[/caption\]

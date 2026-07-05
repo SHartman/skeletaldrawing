@@ -2,9 +2,10 @@
 title: "Road to Spinosaurus IV: Not your father's JP3-osaurus"
 date: 2020-11-28T23:24:19Z
 excerpt: "Without further ado, here is my updated Spinosaurus skeletal. It does not look much like the popularized Spinosaurus from Jurassic Park 3, nor does it much resemble my prior version from 2012. While I am not following the proportions of FSA"
+image:
+  src: /images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1606601556261-0SL0Y57AOEK2Z0PCBAPB/Spinosaurus+skeletal+2020+web+rez+for+article.jpg?format=original)
 
 Without further ado, here is my updated *Spinosaurus* skeletal. It does not look much like the popularized *Spinosaurus* from Jurassic Park 3, nor does it much resemble my prior version from 2012. While I am not following the proportions of FSAC-KK 11888, the result of investigations by Ibrahim and coauthors, Evers and coauthors, Andrea Cau, and others have indeed changed the face of *Spinosaurus*.
 
@@ -20,7 +21,7 @@ Given what was discussed in parts [II](https://www.skeletaldrawing.com/home/the-
 
 5) While I think the data is clear in supporting lips in most non-avian theropods, I am less sure about what is going on with extra-oral tissue in spinosaurs. So I wussed out and used my older convention here.
 
-\[caption id="" align="alignnone" width="1713"\]![ Why not? ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1606603731276-CZV9WMINASEBIR0RJM1B/Spinosaurus+skeletal+2020+-+2+variations+web+rez.jpg?format=original) Why not? \[/caption\]
+\[caption id="" align="alignnone" width="1713"\]![ Why not? ](/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-2.webp) Why not? \[/caption\]
 
 6) As discussed in [part II](https://www.skeletaldrawing.com/home/the-road-to-spinosaurus-ii-known-unknowns11252020), there is a lot of uncertainty about the shape of the sail (for that matter, there is uncertainty about how much it might have varied between individuals). If you don’t like my interpretation feel free to do a life reconstruction with some other shape, just try to keep the first few neural spines and the last dorsal spine as-is if you are trying to match the type. Here are two more examples that also match the known fossils. Heck, if you love the M-shaped sail you can draw it too, just understand that you are doing that for aesthetic reasons, not because the data favors it.
 
@@ -30,7 +31,7 @@ Given what was discussed in parts [II](https://www.skeletaldrawing.com/home/the-
 
 **This post is VERY sponsored by Permia**
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1606604527556-G756B7IZKFARR8G45IFJ/Spinosaurus+permia+skeletal.jpg?format=original)
+![](/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-3.webp)
 
 While working with the fine people [at Permia](https://www.permia.com/) on adding new prehistoric species to their collection this summer, they inquired about whether it was possible to do *Spinosaurus* yet. I had been slowly working on this for a couple of years, but their request gave me the impetus to finish it. It’s always a pleasure to work with them, because there is never any pressure to do anything but produce the most accurate skeletals I can manage.
 

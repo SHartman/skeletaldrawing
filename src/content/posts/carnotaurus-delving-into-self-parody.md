@@ -1,9 +1,10 @@
 ---
 title: "Carnotaurus - delving into self-parody?"
 date: 2012-03-29T16:03:00Z
+image:
+  src: /images/blog/carnotaurus-delving-into-self-parody-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485567701-EU2LJZLF0IYU4BX35PE9/image-asset.png?format=original)
 
 This is *[Carnotaurus sastrei](http://en.wikipedia.org/wiki/Carnotaurus)*, a theropod that seems to be little more than a mouth with a set of legs to carry it around. *Carnotaurus* belongs to an aberrant group of theropods called [abelisaurs](http://en.wikipedia.org/wiki/Abelisaur), which dominated much of the southern hemisphere during the Cretaceous. While all abelisaurs appear odd to our [tetanuran](http://en.wikipedia.org/wiki/Tetanurae)\-biased eyes, it seems like *Carnotaurus* is striving for weirdness as a means to its own end; as if it were making some sort of meta-commentary on abelisaur diversity.
 

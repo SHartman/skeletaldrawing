@@ -1,9 +1,10 @@
 ---
 title: "Fishing at Dawn"
 date: 2012-04-09T04:40:00Z
+image:
+  src: /images/blog/fishing-at-dawn-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485566467-1EJSUPNZT55Q5JD172ZR/image-asset.jpeg?format=original)
 
 *Unenlagia comahuensis* looking for fish at dawn.
 

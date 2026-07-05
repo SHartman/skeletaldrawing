@@ -2,9 +2,10 @@
 title: "Mass estimates: North vs South redux"
 date: 2013-07-07T20:04:04Z
 excerpt: "I have good news and bad news - the bad news is today is not the day you get a general estimate of the mass of Spinosaurus. I know, I know, and I'm sorry. Here's the good news - in preparation for a deeper look at the challenges of estimati"
+image:
+  src: /images/blog/mass-estimates-north-vs-south-redux772013-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1373219579436-2Z5L8CU4ZVZ5UPQJPDXW/giga+sue+scales.jpg?format=original)
 
 I have good news and bad news today - the bad news is this is not the post where you get an estimate of the mass of *Spinosaurus*. I know, I know. And I'm sorry. Here's the good news: in preparation for a deeper look at the challenges of estimating the mass of *Spinosaurus*, I've produced far more rigorous mass estimates of *Tyrannosaurus* and *Giganotosaurus* from GDI, and I got some surprising results to share.
 
@@ -14,7 +15,7 @@ Instead you will be getting mass estimates I've generated directly from my own s
 
 First: the reveal:
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1373223134666-FBHHQLICTCMFWYSVPY6P/north+vs+south+redux.jpg?format=original)
+![](/images/blog/mass-estimates-north-vs-south-redux772013-2.webp)
 
 Back when I posted the original [North vs South](http://www.skeletaldrawing.com/home/giant-theropods-north-vs-south772013) comparison I wrote up some general thoughts on the skeletals including:
 
@@ -36,7 +37,7 @@ I'm sure many of you will want at least a few more details, so here is another q
 
 5) Although *Tyrannosaurus* seems likely to have had stronger calves I used the exact same muscle reconstruction to try and make the comparison more of an apples to apples affair
 
-\[caption id="" align="alignnone" width="1500"\]![ Courtesy of Wikimedia Commons . ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1373226857640-63Q3PE05GC28U4NN3TLI/Giganotosaurus_carolinii_DSC_2949.jpg?format=original) Courtesy of Wikimedia Commons . \[/caption\]
+\[caption id="" align="alignnone" width="1500"\]![ Courtesy of Wikimedia Commons . ](/images/blog/mass-estimates-north-vs-south-redux772013-3.webp) Courtesy of Wikimedia Commons . \[/caption\]
 
 6) I'm sure that some will claim that *Giganotosaurus* should have a wider torso or head, but the skull is already substantially wider than in *Acrocanthosaurus* and matches up with more recent reconstructions of the skull, like the one you see here. Also note that if anything the torso should be smaller up front due to the diminutive pectoral girdle.
 

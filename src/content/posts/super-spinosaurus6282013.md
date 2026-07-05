@@ -1,9 +1,10 @@
 ---
 title: "Super Spinosaurus?"
 date: 2013-06-28T22:39:25Z
+image:
+  src: /images/blog/super-spinosaurus6282013-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1372466020282-08XQ8BGSZD415UKOJSBD/spinosaurus+size+comparison.jpg?format=original)
 
 In the past I have been skeptical of claims of 50+ foot *Spinosaurus* specimens - and with how little we know about the tail length in Spinosaurus there is still reason for caution.
 

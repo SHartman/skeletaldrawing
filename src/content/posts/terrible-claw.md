@@ -1,9 +1,10 @@
 ---
 title: "Terrible Claw!"
 date: 2012-06-25T15:06:00Z
+image:
+  src: /images/blog/terrible-claw-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485568097-Z501X1CZ1ARZJJBA613T/image-asset.png?format=original)
 
 I haven't been posting much lately, so I thought I'd at least put up this skeletal I finished over the weekend...
 

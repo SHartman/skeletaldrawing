@@ -1,9 +1,10 @@
 ---
 title: "Giant theropods: North vs South"
 date: 2013-03-26T18:56:00Z
+image:
+  src: /images/blog/giant-theropods-north-vs-south772013-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1373223555349-A05TJT2TQXU6AK26B91G/Sue+vs+Giganotosaurus4web.jpg?format=original)
 
 Ok, wading into the always contentious issue of who was the biggest (which on 'teh internetz' seems to loosely translate into "who was more awesome?") I'm presenting my analysis of the always popular Tyrannosaurus vs Giganotosaurus issue.
 

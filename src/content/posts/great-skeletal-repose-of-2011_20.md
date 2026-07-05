@@ -1,9 +1,11 @@
 ---
 title: "The Great Skeletal Repose of 2011: A Retrospective"
 date: 2012-01-21T06:27:00Z
+kind: "Skeletal drawing topics"
+image:
+  src: /images/blog/great-skeletal-repose-of-2011_20-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485566834-YOIU0KK3RWFK1KIA7BTA/image-asset.png?format=original)
 
 Well, it's 2012, so the Great Skeletal Repose of 2011 must officially come to an end. Most of the bipedal skeletals in my collection have been reposed much like this *Velociraptor*. I had plenty of things to say, and we saw some great discussion by guest writers, but when it comes right down to it, the issue feels incomplete without some sort of summary as to how I got here, and what's left to do. So let's take a quick look at where things stand now...
 
@@ -39,4 +41,4 @@ If you have a strong opinion on the subject, don't hesitate to email me (or use 
 
 Stick around, won't you? 2012 should be an interesting year.
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485566205-NVC096YNZJV1XAK2WOTX/image-asset.png?format=original)
+![](/images/blog/great-skeletal-repose-of-2011_20-2.webp)

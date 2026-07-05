@@ -1,9 +1,10 @@
 ---
 title: "I'm teaching an online course on anatomy"
 date: 2012-06-18T13:41:00Z
+image:
+  src: /images/blog/im-teaching-online-course-on-anatomy-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485565950-L4B6MC2IBQC6TEJ2G60E/image-asset.jpeg?format=original)
 
 So it turns out I haven't vanished (and actually have a lot of new content to share) but I've been swamped working on several projects of late. One of them I'd like to share, for those of you who really like dinosaurs but actually have different job aspirations:
 

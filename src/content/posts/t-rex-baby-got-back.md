@@ -1,6 +1,10 @@
 ---
 title: "T. rex: \"Baby got back\""
 date: 2011-03-10T07:15:00Z
+kind: "Theropods"
+image:
+  src: /images/blog/t-rex-baby-got-back-1.webp
+  alt: ""
 ---
 
 A few months ago Scott Persons and Phil Currie published a paper that clarified the shape of the tail of *T. rex*. It's a paper I'm fond of, in part because I did a reconstruction for it. No, I'm not going to post it here; it's already staring at you from the banner of this blog.
@@ -12,8 +16,6 @@ Their paper demonstrated that many scientists and paleoartists have been underes
 In that yahoo's defense, the image is almost 15 years old. But you can still see many examples of this sort of tail reconstruction in paleo-art published today.
 
 So how are we to fix it? The P&C paper came with a lovely diagram showing the cross-sectional anatomy of an alligator tail:
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485567303-13IFCUXCFUKWF6VON73A/image-asset.jpeg?format=original)
 
 (From [Persons & Currie, 2010](http://onlinelibrary.wiley.com/doi/10.1002/ar.21290/abstract))
 

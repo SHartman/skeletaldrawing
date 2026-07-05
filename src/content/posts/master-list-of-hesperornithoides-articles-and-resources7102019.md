@@ -1,10 +1,13 @@
 ---
 title: "Master list of Hesperornithoides articles and resources"
 date: 2019-07-10T12:21:37Z
+image:
+  src: /images/blog/master-list-of-hesperornithoides-articles-and-resources7102019-1.webp
+  alt: " Hesperornithoides by Lucas-Attwell . Used with permission. "
 draft: true
 ---
 
-\[caption id="" align="alignnone" width="1280"\]![ Hesperornithoides by Lucas-Attwell . Used with permission. ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1562795263761-06UV8L60K475ZPDUTLII/lori_by_lucas_attwell.jpg?format=original) Hesperornithoides by Lucas-Attwell . Used with permission. \[/caption\]
+\[caption id="" align="alignnone" width="1280"\] Hesperornithoides by Lucas-Attwell . Used with permission. \[/caption\]
 
 **Scientific Paper**
 

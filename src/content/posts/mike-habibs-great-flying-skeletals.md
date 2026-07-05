@@ -1,6 +1,10 @@
 ---
 title: "Mike Habib's Great Flying Skeletals: Perspectives from Pterosaurs"
 date: 2011-08-12T01:09:00Z
+kind: "Skeletal drawing topics"
+image:
+  src: /images/blog/mike-habibs-great-flying-skeletals-1.webp
+  alt: " From here . Copyright Gregory S. Paul . "
 ---
 
 Today we get the second guest post on pterosaurs. In addition to his extensive background in [biomechanics](http://www.chatham.edu/academics/programs/undergraduate/biology/faculty_get.cfm?FacultyID=196), Mike has started a [blog](http://h2vp.blogspot.com/) with [Justin Hall](http://www.blogger.com/profile/12082358440337262912) on biomechanics - you should check it out. Now, one with the main programming...
@@ -13,7 +17,7 @@ Scott has graciously invited me to do a little guest post from the perspective o
 
 Many of you have probably seen pterosaurs reconstructed in the popular standard pose (particularly preferred by Greg Paul) where they are in mid-sprint, like so:
 
-\[caption id="" align="alignnone" width="398"\]![ From here . Copyright Gregory S. Paul . ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485564224-SWIEVIS78CRMAKL7XAOG/image-asset.jpeg?format=original) From here . Copyright Gregory S. Paul . \[/caption\]
+\[caption id="" align="alignnone" width="398"\] From here . Copyright Gregory S. Paul . \[/caption\]
 
 It's an impressive pose for a flying animal. A lot of people really like the look, and it lines up nicely with the same pose in birds, to which pterosaurs are often compared. There's just one (big) problem with it: pterosaurs probably never sprinted around on their hindlimbs like the reconstructions show.  
 

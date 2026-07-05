@@ -1,9 +1,10 @@
 ---
 title: "When journalists attack!"
 date: 2012-04-03T18:16:00Z
+image:
+  src: /images/blog/when-journalists-attack-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485568607-KYG250UF9NDKO71KB39F/image-asset.jpeg?format=original)
 
 As recently [reported](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) on [several](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) [apparently](http://www.ibtimes.co.uk/articles/323260/20120403/dinosaurs-lived-underwater-researchers.htm) legitimate news sources, a new interpretation of dinosaur biology has been proposed that is "*so revolutionary it stands the whole world of palaeontology on its head.*" What is this landmark new idea that has set paleontologists agog? It's being termed the "Aquatic Dinosaur" hypothesis, and as the name implies it suggests that the Charles Knight painting you see above isn't out of date, it was just ahead of its time. And not just for sauropods, but *all* large dinosaurs.
 
@@ -17,7 +18,7 @@ Two general claims seem to permeate the article, that dinosaurs were just *reall
 
 The "they're just so big" meme is also painfully wrong; there's an entire literature of biomechanics that shows that dinosaur limbs are strong enough to support terrestrial locomotion. And of course dinosaurs lack the aquatic features seen in animals such as hippos or crocodiles, which actually spend most of their time in water. Running your mouth off (err, running your text editor off?) without even bothering to read the literature is one of those "the stupid, it hurts!" sorts of moments.
 
-\[caption id="" align="alignnone" width="364"\][![ From xkcd ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371657438454-BVS1HZUOVJASHZBOTBPR/SIWOTI.jpg?format=original)](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd \[/caption\]
+\[caption id="" align="alignnone" width="364"\][![ From xkcd ](/images/blog/when-journalists-attack-2.webp)](http://www.skepticfriends.org/forum/uploaded/1897/SIWOTI.jpg) From xkcd \[/caption\]
 
 Ok, enough ragging on "professor" [Ford](http://www.labnews.co.uk/news/prehistoric-revolution/); he's either a crank or a practical joker (perhaps those aren't mutually exclusive?), but he's not the first person to have a loony idea and not support it with any evidence. Heck, the internet is littered with such people.
 
@@ -31,7 +32,7 @@ More importantly, why on Earth was this story picked up and repeated by serious 
 
 [Galileo](http://en.wikipedia.org/wiki/Galileo_Galilei), you may recall, did actual science and was being silenced by non-scientists due to the (presumed) theological implications of his findings. Mr. Ford (who the BBC charitably refers to as a "cell biologist" despite being more of a media gadfly and author of popular books and articles, not a publishing scientist) is not doing science - he in fact seems intent on ignoring science at all costs - and was simply being refuted by an actual, you know, paleontologist. Yet they whipped out the Galileo reference!
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485564573-1RAQ2DX96EU5H4ZLZCQX/image-asset.jpeg?format=original)
+![](/images/blog/when-journalists-attack-3.webp)
 
 Which honestly begs the question of whether anyone should bother listening to BBC Radio 4. To be fair, [actual paleontology](http://news.bbc.co.uk/today/hi/today/newsid_9405000/9405448.stm) has been covered on Radio 4 and it seems to otherwise have solid programming, but the BBC should move swiftly to clear this up if they don't want a permanent stain on their credibility.
 
@@ -45,4 +46,4 @@ This stuff really matters. We live in a world where [huge swaths of people](http
 
 We deserve better science reporting than this. The BBC and everyone else who carried this story should be ashamed. Perhaps the best way to sum this up is in grand internet fashion:
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485565472-GN4Q2MEQU3MNHKTQOUXE/image-asset.jpeg?format=original)
+![](/images/blog/when-journalists-attack-4.webp)

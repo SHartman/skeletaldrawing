@@ -1,9 +1,11 @@
 ---
 title: "Running around like an Ornitholestes with it's head cut off!"
 date: 2011-09-15T19:52:00Z
+kind: "Theropods"
+image:
+  src: /images/blog/running-around-like-ornitholestes-with-1.webp
+  alt: ""
 ---
-
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485565163-V4F4TLJPPR40SM4RRUT7/image-asset.jpeg?format=original)
 
 If you watched Episode II of [Dinosaur Revolution](http://dsc.discovery.com/tv/dinosaur-revolution/), you may have laughed at this Ornitholetes, who I'll refer to as [Ichabod](http://en.wikipedia.org/wiki/Ichabod_Crane). This may seem like an odd scene to pick for a scientific discussion, but I think it actually has something useful to teach. Also, I'm partially responsible. I should be clear, the story idea was not mine (that's above my pay grade), but it's something that was run by me, and I did not try to shoot it down (and still wouldn't).
 
@@ -17,4 +19,4 @@ This degree of centralization is the derived condition, not the primitive one. S
 
 Given those parameters it seems reasonable enough to me.
 
-![](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1371485564426-YFWVS6YVDVUEM1E1ZWEG/image-asset.jpeg?format=original)
+![](/images/blog/running-around-like-ornitholestes-with-2.webp)

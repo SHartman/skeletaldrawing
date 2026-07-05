@@ -2,9 +2,12 @@
 title: "Lythronax: Tyrannosaur troubles"
 date: 2013-11-09T22:43:22Z
 excerpt: "This was an exciting week for tyrannosaur fans, as a new tyrannosaurine was named (Lythronax) and new fossils of Teratophoneus were revealed. Eagle-eyed visitors to the Skeletal Drawing theropod gallery probably realize that they've seen tw"
+image:
+  src: /images/blog/lythronax-tyrannosaur-troubles1192013-1.webp
+  alt: " From left to right: Teratophoneus, Lythronax, & Bistahieversor "
 ---
 
-\[caption id="" align="alignnone" width="2500"\]![ From left to right: Teratophoneus, Lythronax, & Bistahieversor ](https://images.squarespace-cdn.com/content/v1/51bf1cd3e4b0a897bf54112b/1384036168481-Y3ZJEHZ6CE9B83RHKQOA/tyrannosaur+troubles.jpg?format=original) From left to right: Teratophoneus, Lythronax, & Bistahieversor \[/caption\]
+\[caption id="" align="alignnone" width="2500"\] From left to right: Teratophoneus, Lythronax, & Bistahieversor \[/caption\]
 
 This was an exciting week for tyrannosaur fans, as a new tyrannosaurine was named (*Lythronax*) and new fossils of *Teratophoneus* were revealed. Eagle-eyed visitors to the Skeletal Drawing theropod gallery probably realize that they've seen two of these skeletals before, but it may not be the two you would expect. Read on for a good lesson in always labeling your files clearly.
 
