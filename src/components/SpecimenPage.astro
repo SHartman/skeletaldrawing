@@ -358,7 +358,9 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
     letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
   }
   .related-h { font-style: normal; }
-  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  /* auto-FILL (not auto-fit): keeps empty columns so a lone sibling card stays ~thumbnail-sized and
+     reads as a link, instead of stretching to full width and blurring (matches the hub cards). */
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
   .related-card { text-decoration: none; color: var(--ink); }
   .related-thumb {
     aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
@@ -402,6 +404,6 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
     .rig-plate { padding: 18px; }
     .cell { padding: 14px 16px; }
     /* Two-up related cards (matches the gallery grid). */
-    .related-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+    .related-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
   }
 </style>
