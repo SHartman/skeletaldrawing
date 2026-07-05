@@ -4,7 +4,7 @@ date: 2011-11-18T23:40:00Z
 kind: "Theropods"
 image:
   src: /images/blog/falcarius-bizarre-sickle-cutter-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of the therizinosaur Falcarius in left lateral view, long-necked and long-tailed, with a 1m scale bar"
 ---
 
 The truly strange looking animal above is *[Falcarius utahensis](http://en.wikipedia.org/wiki/Falcarius)*. It's an early, omnivorous member of the theropod clade known as [therizinosaurs](http://en.wikipedia.org/wiki/Therizinosaur). Not only does it look weird, it's also a bit different from other skeletals you may have seen on the web. Join me after the break for a bit of a discussion about *Falcarius*, and the challenges I faced with this reconstruction.
@@ -35,7 +35,7 @@ The large hand claws (from which the authors derived the name "sickle-cutter") m
 
 So with *Falcarius* we have an animal that at first glance appears inexplicably strange, but when viewed through the lens of where it was coming from (long-bodied small-headed meat eaters) and where it ends up (the upright, pot-bellied therizinosaurs) the combination of traits start to make a lot of sense.
 
-![](/images/blog/falcarius-bizarre-sickle-cutter-2.webp)
+![Size comparison of three therizinosaur skeletals increasing in size beside a tree trunk, from small long-tailed Falcarius to a large upright pot-bellied form](/images/blog/falcarius-bizarre-sickle-cutter-2.webp)
 
 Isn't science grand?
 

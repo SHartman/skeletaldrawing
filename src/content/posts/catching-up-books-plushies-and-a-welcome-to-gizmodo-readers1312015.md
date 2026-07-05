@@ -4,7 +4,7 @@ date: 2015-03-08T20:13:19Z
 excerpt: "It's been a very busy year, and as a result it's awhile since I updated the blog, There are several smaller items I want to cover before I get to meatier topics, including a book I contributed to, an adorable Velociraptor plushie, and the #"
 image:
   src: /images/blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015-1.webp
-  alt: ""
+  alt: "Feathered poseable Velociraptor plush toy by Rebecca Groom, standing on a wood floor with a red-and-black crest and wing feathers"
 ---
 
 It's been a very busy year, and as a result it's awhile since I updated the blog, There are several smaller items I want to cover before I get to meatier topics, including a book I contributed to, an adorable *Velociraptor* plushie, and the [#SciArt Twitter Storm](http://blogs.scientificamerican.com/symbiartic/2015/03/01/sciart-tweet-storm/).
@@ -20,4 +20,4 @@ That largely clears my backlog of items I meant to cover last year. Hopefully I 
 See you soon!  
  
 
- ![](/images/blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015-2.webp)
+ ![Cover of the book Dinosaurs of the British Isles by Dean R. Lomax and Nobumichi Tamura, with a theropod life reconstruction on a beach and fossil photos below](/images/blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015-2.webp)

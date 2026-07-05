@@ -7,7 +7,7 @@ As many of you know, I spend a lot of my time doing skeletal drawings. Not every
 
   
 
-[![](/images/blog/please-label-your-scale-bars-exhibit-1.webp)](/images/blog/please-label-your-scale-bars-exhibit-2.webp)
+[![Published figure of a Malawisaurus cervical vertebra in three views, with a scale bar erroneously captioned "Scale bar = 0 mm"](/images/blog/please-label-your-scale-bars-exhibit-1.webp)](/images/blog/please-label-your-scale-bars-exhibit-2.webp)
 
   
 

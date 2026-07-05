@@ -4,7 +4,7 @@ date: 2016-11-19T23:30:17Z
 excerpt: "Today I have something I’m excited to share with you: my skeletal reconstruction of Dimetrodon grandis. It looks quite a bit different from existing skeletal reconstructions, so I’m also going to take a more in-depth look at the underlying "
 image:
   src: /images/blog/21stcenturydimetrodon-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Dimetrodon grandis in left lateral view, showing the tall spined sail and high-walk pose"
 ---
 Today I have something I’m excited to share with you: my skeletal reconstruction of *Dimetrodon grandis*. It looks quite a bit different from existing skeletal reconstructions, so I’m also going to take a more in-depth look at the underlying data. But first, let’s take a look:
 

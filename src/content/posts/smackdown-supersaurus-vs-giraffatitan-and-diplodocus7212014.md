@@ -5,7 +5,7 @@ kind: "Size estimates"
 excerpt: "This entry was inspired by a post at the always-excellent SV-POW. They compared the size (and neck length) of Supersaurus, Brachiosaurus and Diplodocus. In a stroke of serendipity I read their post as I was reworking my skeletal of the larg"
 image:
   src: /images/blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Diplodocus (formerly Seismosaurus) NMMNH 3690 in left lateral view, known bones white on a black silhouette"
 ---
 This entry is inspired by a similarly themed post at the always-excellent [SV-POW](http://svpow.com/2014/07/13/sv-pow-showdown-supersaurus-vs-brachiosaurus-and-diplodocus/). They compared the size (and neck length) of *Supersaurus*, *Brachiosaurus* and *Diplodocus*. In a stroke of serendipity I read their post as I was reworking my skeletal of the largest specimen of *Diplodocus*, NMMNH 3690.
 

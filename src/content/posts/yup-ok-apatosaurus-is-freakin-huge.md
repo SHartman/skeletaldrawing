@@ -3,7 +3,7 @@ title: "Yup, the OK Apatosaurus is freakin' huge!"
 date: 2012-04-28T04:24:00Z
 image:
   src: /images/blog/yup-ok-apatosaurus-is-freakin-huge-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Apatosaurus in left lateral view overlaid on a gray Supersaurus silhouette for size comparison"
 ---
 How big did Apatosaurus get? Well, that gray silhouette that is being dwarfed in terms of bulk there is *Supersaurus vivianae*. So yeah, that's one big honk'in sauropod...
 

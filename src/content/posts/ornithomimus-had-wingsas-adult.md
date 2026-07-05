@@ -3,7 +3,7 @@ title: "Ornithomimus had wings...as an adult"
 date: 2012-10-25T19:22:00Z
 image:
   src: /images/blog/ornithomimus-had-wingsas-adult-1.webp
-  alt: ""
+  alt: "Cladogram of coelurosaur theropods mapping feather types onto the family tree, with Ornithomimosauria highlighted"
 ---
 
 Just a quick note, because today we got one of the cooler new papers on dinosaurs to have been published in quite a while, describing not one but three specimens of *Ornithomimus* with feathers.
@@ -24,6 +24,6 @@ There will also be questions about what those feathers were doing in such animal
 
 If you have any thoughts or questions be sure to leave them below. And for the paleoartists out there, go forth and illustrate winged adult ornithomimids. Here is a skeletal to get you started:
 
-![](/images/blog/ornithomimus-had-wingsas-adult-2.webp)
+![Skeletal reconstruction of Ornithomimus in left lateral view, in a running pose](/images/blog/ornithomimus-had-wingsas-adult-2.webp)
 
 Zelenitsky, D., Therrien, F., Erickson, G., DeBuhr, C., Kobayashi, Y., Eberth, D., Hadfield, F. 2012. Feathered non-avian dinosaurs from North American provide insight into wing origins. *[Science](http://www.sciencemag.org/content/338/6106/510)*[. 338, 510-514](http://www.sciencemag.org/content/338/6106/510)

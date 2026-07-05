@@ -15,6 +15,6 @@ But the changes didn’t stop there! Many of my older skeletals (prior to 2014) 
 
 Here’s an example of how that looks with *Parasaurolophus cyrtocristatus*:
 
-![](/images/blog/the-hadrosaur-repose-of-201811272018-2.webp)
+![Two skeletal reconstructions of Parasaurolophus cyrtocristatus in left lateral view, the 2004 version above and the reposed 2018 version below](/images/blog/the-hadrosaur-repose-of-201811272018-2.webp)
 
 Depending on the age of the skeletal several other smaller updates were also done - keratinous upper beaks have been extended to match recent discoveries, tendon thickness was increased, and tails have become more heavily muscled. The updated hadrosaur skeletals are now live in the [Ornithischian Skeletal Gallery](http://www.skeletaldrawing.com/ornithiscians/), if you want to take a look.

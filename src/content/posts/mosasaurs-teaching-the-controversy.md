@@ -33,7 +33,7 @@ But I also want to emphasize that science is constantly in a state of revision. 
 
 So in the interest of "teaching the controversy" on a subject where one actually exists, I decided to make the following image:
 
-![](/images/blog/mosasaurs-teaching-the-controversy-4.webp)
+![Four stacked Tylosaurus skeletals in lateral view showing a range of tail interpretations, from a shallow tapering paddle at top to a progressively more pronounced bilobed hypocercal tail fin at bottom](/images/blog/mosasaurs-teaching-the-controversy-4.webp)
 
 The top image has the tail angle and fin modified to match the more traditional view articulated by Mike Everhart. The bottom version restores *Tylosaurus* with a fin closer to that interpreted for *Platecarpus* by Lindgren et al. (2010), though with a less extreme tail flexure. The middle versions are where I bound my own "best-guess" interpretation from the evidence at hand. The second from the bottom is the version you will find in the skeletal gallery, but anything between the middle two would be utterly plausible in my estimation..
 

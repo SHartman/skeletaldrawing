@@ -15,7 +15,7 @@ So without further ado, that (winning) dinosaur is...
 
 It should be noted that after [lamenting the lack of interest](https://twitter.com/skeletaldrawing/status/444917331995533312) *Sauroposeidon* was garnering Saturday (when it could only muster [7th place on 44 votes](http://www.skeletaldrawing.com/home/update-on-skeletal-drawing-votes3152014)) it had a ridiculously good last 24 hours, nearly tripling its vote total to 127 votes. I'm not sure where the last minute contingent of *Sauroposeidon* supporters came from, but they were no match for the cabal of voter(s?) that stuffed the ballot in favor of *Guanlong*.
 
-![](/images/blog/and-the-winner-is3172014-2.webp)
+![Horizontal bar chart of the final vote tally, with Guanlong far in the lead at about 347 votes, ahead of Sauroposeidon, Argentinosaurus, Yutyrannus and others](/images/blog/and-the-winner-is3172014-2.webp)
 
 To the right you can see the final vote tally - *Guanlong*, which after two and a half days of voting was holding down a respectable second place with 82 votes ended with an improbable 347 votes, quadrupling its vote total in the last 24 hours.
 

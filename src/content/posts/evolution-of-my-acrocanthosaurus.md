@@ -3,7 +3,7 @@ title: "The evolution of (my) Acrocanthosaurus"
 date: 2012-01-29T03:10:00Z
 image:
   src: /images/blog/evolution-of-my-acrocanthosaurus-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Acrocanthosaurus in left lateral view, showing the tall neural spines along the back"
 ---
 
 With*[Spinosaurus](/images/blog/evolution-of-my-acrocanthosaurus-4.png)* temporarily out of the way, we're going to take a closer look at *Acrocanthosaurus*. This series is going to include a post on what we know and don't know about Acrocanthosaurus, how to restore the skeletal in multiple views, and how to restore the muscles. At the end of that series I'll also comment on some areas of soft-tissue variation that artists should keep in mind when they envision "their" *Acrocanthosaurus*.
@@ -34,7 +34,7 @@ What happened? For one thing I really didn't have enough data on hand. But more 
 
 **The Acro strikes back**
 
-![](/images/blog/evolution-of-my-acrocanthosaurus-2.webp)
+![Earlier Acrocanthosaurus skeletal reconstruction in right lateral view, with a raised tail and taller neural spines](/images/blog/evolution-of-my-acrocanthosaurus-2.webp)
 
 With a bit of work, I quickly produced the skeletal above, which addressed some of the basics. It wasn't a horrible attempt - it accurately captures almost all of the proportions, and many of the changes since have been either due to newer research getting published, or on changing interpretations in soft tissue reconstruction.
 
@@ -44,7 +44,7 @@ Two important papers were published on *Acrocanthosaurus* after that early skele
 
 **Back to the future**
 
-![](/images/blog/evolution-of-my-acrocanthosaurus-3.webp)
+![Current Acrocanthosaurus skeletal reconstruction in right lateral view, in a walking pose with a heavier tail base](/images/blog/evolution-of-my-acrocanthosaurus-3.webp)
 
 Which brings us back to my current skeletal. In addition to the new skull and arm data, the newfangled Acrocanthosaur naturally sports my [new skeletal pose](/images/blog/evolution-of-my-acrocanthosaurus-5.png). So how crazy different is it? In some ways it's pretty similar - the overall dimensions really didn't change, and that's a good thing. A bunch of more subtle soft-tissue changes took place (at least some of which will get to star in their own post in the future), but a couple of obvious ones involve the tail and the neck.
 

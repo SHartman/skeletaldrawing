@@ -3,7 +3,7 @@ title: "I.O.Yutyrannus"
 date: 2012-04-06T03:24:00Z
 image:
   src: /images/blog/ioyutyrannus-1.webp
-  alt: ""
+  alt: "Skull reconstruction of the tyrannosauroid Yutyrannus in left lateral view, jaws open"
 ---
 
 Hey, it's not every day that a completely fuzzy, nearly 30-foot long meat-eating dinosaur is described, now is it? I'm afraid my current schedule won't allow for a full skeletal of this critter for several more weeks, so consider the skull a down payment.
@@ -18,7 +18,7 @@ What I will cover are some of the difficulties I've already observed in restorin
 
 If you check out the [beautiful photograph](http://archosaurmusings.files.wordpress.com/2012/04/yutyrannus_skull.jpg) of the head of juvenile specimen ELDM V1001 in David Hone's blog (the same one I've restored above), you can probably see what I'm getting at.
 
-![](/images/blog/ioyutyrannus-2.webp)
+![Two Yutyrannus skull reconstructions stacked for comparison: the restored 3D-corrected version above, the literal squashed outline below](/images/blog/ioyutyrannus-2.webp)
 
 The skull restoration at the beginning of this article takes those things into account, attempting to return a 3-dimensional shape to the steam-rolled remains of the skull (by the way, the mandible is largely a place holder for now, the surangular is actually a fairly different shape). Below I've included a comparison of the skull with and without those "corrections". Because there are three skulls, and because they have likely been subject to distortion from somewhat different angles, I should be able to double check this with greater precision once I get around to doing the full skeletal.
 

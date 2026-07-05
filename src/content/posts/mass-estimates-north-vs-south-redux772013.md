@@ -4,7 +4,7 @@ date: 2013-07-07T20:04:04Z
 excerpt: "I have good news and bad news - the bad news is today is not the day you get a general estimate of the mass of Spinosaurus. I know, I know, and I'm sorry. Here's the good news - in preparation for a deeper look at the challenges of estimati"
 image:
   src: /images/blog/mass-estimates-north-vs-south-redux772013-1.webp
-  alt: ""
+  alt: "A balance scale weighing a Giganotosaurus skeletal against a Tyrannosaurus rex skeletal, the two pans roughly level"
 ---
 I have good news and bad news today - the bad news is this is not the post where you get an estimate of the mass of *Spinosaurus*. I know, I know. And I'm sorry. Here's the good news: in preparation for a deeper look at the challenges of estimating the mass of *Spinosaurus*, I've produced far more rigorous mass estimates of *Tyrannosaurus* and *Giganotosaurus* from GDI, and I got some surprising results to share.
 
@@ -14,7 +14,7 @@ Instead you will be getting mass estimates I've generated directly from my own s
 
 First: the reveal:
 
-![](/images/blog/mass-estimates-north-vs-south-redux772013-2.webp)
+![Skeletals of Tyrannosaurus rex (Sue) and Giganotosaurus carolinii in lateral view with top-view body silhouettes, labeled with GDI volume and mass estimates](/images/blog/mass-estimates-north-vs-south-redux772013-2.webp)
 
 Back when I posted the original [North vs South](http://www.skeletaldrawing.com/home/giant-theropods-north-vs-south772013) comparison I wrote up some general thoughts on the skeletals including:
 

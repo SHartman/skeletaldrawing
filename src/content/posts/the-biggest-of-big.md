@@ -3,7 +3,7 @@ title: "The biggest of the big"
 date: 2013-06-14T18:55:00Z
 image:
   src: /images/blog/the-biggest-of-big-1.webp
-  alt: ""
+  alt: "'Thunder Lizards!' plate comparing eleven giant sauropod skeletals at common scale in left lateral view, humans for scale, fragmentary taxa in gray"
 ---
 
 I don't know if that grabs your attention, but sorting out the size of giant sauropods sure grabs mine. Let's take a more detailed look at some of the critters in this image:

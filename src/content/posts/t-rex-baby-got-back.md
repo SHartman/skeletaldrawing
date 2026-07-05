@@ -4,7 +4,7 @@ date: 2011-03-10T07:15:00Z
 kind: "Theropods"
 image:
   src: /images/blog/t-rex-baby-got-back-1.webp
-  alt: ""
+  alt: "Labeled cross-section diagram of a dinosaur tail vertebra showing the tail muscles, including the caudofemoralis, around the centrum"
 ---
 
 A few months ago Scott Persons and Phil Currie published a paper that clarified the shape of the tail of *T. rex*. It's a paper I'm fond of, in part because I did a reconstruction for it. No, I'm not going to post it here; it's already staring at you from the banner of this blog.

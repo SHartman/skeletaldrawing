@@ -4,7 +4,7 @@ date: 2011-06-16T15:48:00Z
 kind: "Skeletal drawing topics"
 image:
   src: /images/blog/skeletal-reconstructions-schematic-vs-1.webp
-  alt: ""
+  alt: "Two skeletal reconstructions of the sauropodomorph Panphagia in left lateral view, stacked for comparison"
 ---
 
 Above you see two skeletal reconstructions of the basal sauropodomorph *Panphagia*. The one on the bottom was published with the [original description](http://www.plosone.org/article/info:doi%2F10.1371%2Fjournal.pone.0004397), while the one on top I just finished a couple days ago. What is worth noting is how extremely different they are.
@@ -41,7 +41,7 @@ Does that mean that paleo artists need to throw their arms up in the air and qui
 
 As an example I offer up my experience when describing *[Supersaurus](http://skeletaldrawing.com/supersaur_project/CLPV_II_Supersaurus.pdf)* with my colleagues; not surprisingly I was working on a skeletal reconstruction of the critter as part of my contribution. As with all of my skeletal reconstructions, I wanted the supersaur skeletal to be an accurate and realistic representation of the animal, not a purely schematic one. Alas, *Supersaurus* is only known from two specimens, and both of them leave a lot to be desired in the category of completeness. This made the process a lot more difficult than it is when restoring an animal known from more complete remains. But all was not lost. We spent a lot of time evaluating which species were best suited to pattern missing parts after, and did lots (and lots) of cross-scaling; not just of individual bones, but also in proportional relationships. That is to say I was able to constrain the unknown portions of the animal from comparative and phylogenetic data. The upshot? Have a look at this:
 
-![](/images/blog/skeletal-reconstructions-schematic-vs-2.webp)
+![Skeletal reconstruction of the sauropod Supersaurus in left lateral view, tail extended, showing preserved bones in white on a black silhouette](/images/blog/skeletal-reconstructions-schematic-vs-2.webp)
 
 What is particularly noteworthy is that the two distal vertebrae were not known when I first made this diagram. We only had ~10% of the tail, but with careful scaling and proper selection of taxa to model the bones on, I didn't have to make any changes to the skeletal after the additional bones were excavated and prepared.
 

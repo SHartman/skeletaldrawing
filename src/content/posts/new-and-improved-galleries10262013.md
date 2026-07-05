@@ -4,7 +4,7 @@ date: 2013-10-26T18:58:32Z
 excerpt: "For those of you wondering why the pace of content has slowed down, it's because I entered a PhD program in paleontology at the University of Wisconsin-Madison this fall, and I lost what was left of my free time. But that's not to say that "
 image:
   src: /images/blog/new-and-improved-galleries10262013-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of the crested pterosaur Pteranodon in flight, wings spread, in lateral view with a 1m scale bar"
 ---
 
 For those of you wondering why the pace of content has slowed down, it's because I entered a PhD program in paleontology at the [University of Wisconsin-Madison](http://geoscience.wisc.edu/geoscience/people/student/?id=1043) this fall, and I lost what was left of my free time. But that's not to say that there hasn't been substantial work going on behind the scenes of SkeletalDrawing.com!

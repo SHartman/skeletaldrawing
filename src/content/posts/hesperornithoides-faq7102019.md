@@ -4,7 +4,7 @@ date: 2019-07-10T15:04:06Z
 excerpt: "I’ve seen many questions raised about our recent publication of the Lori specimen, so here are some responses to the most common queries:What is this about?It is my pleasure to introduce Hesperornithoides miessleri, a small paravian theropo"
 image:
   src: /images/blog/hesperornithoides-faq7102019-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Hesperornithoides in left lateral view with a 25 cm scale bar"
 ---
 
 I’ve seen many questions raised about our recent publication of the Lori specimen, so here are some responses to the most common queries:

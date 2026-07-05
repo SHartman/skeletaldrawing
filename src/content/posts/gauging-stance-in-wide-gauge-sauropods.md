@@ -4,7 +4,7 @@ date: 2011-11-11T20:08:00Z
 kind: "Sauropods"
 image:
   src: /images/blog/gauging-stance-in-wide-gauge-sauropods-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of a long-necked sauropod in left lateral view, with a 1m scale bar"
 ---
 
 In 1999 Jeff Wilson and Matt Carrano published an excellent paper addressing the phenomena of "wide-gauge" sauropod trackways. For years researchers had been working to explain why sauropod trackways seemed to come in two very different flavors - some of them were very closely spaced...so much so that they would actually overlap on the midline of the track. Other sauropod tracks seemed to show animals walking with their feet spread much further apart.
@@ -17,13 +17,13 @@ Wilson & Carrano proposed that instead the trackways were made by sauropods with
 
 But I did want to take issue with one figure of the paper - one that pops up repeatedly at SVP. It is figure 5, demonstrating their interpretation of hind leg stance:
 
-![](/images/blog/gauging-stance-in-wide-gauge-sauropods-2.webp)
+![Line-drawing rear view of two sauropod hindquarters labeled A and B, both with hind legs splayed widely apart](/images/blog/gauging-stance-in-wide-gauge-sauropods-2.webp)
 
 That's Camarasaurus on the left and Opisthocoelicaudia on the right. The clever reader may have already surmised from the title of this post that I think the animal on the right has its legs spread too far apart. But I have a larger issue: *both* animals have their legs spread *much* too far apart.
 
 Remember that narrow-gauged trackways actually have their feet fall so close together that they frequently overlap along the midline. There's no way even sauropod "A" could make those tracks in the stance as figured. And this is why I'm bringing this up, because animals generally don't walk around with their legs acting as perfectly vertical beams. If you spend time watching large animals walk away from you, you'd see something like this:
 
-![](/images/blog/gauging-stance-in-wide-gauge-sauropods-3.webp)
+![Photos of an elephant and a rhinoceros seen from behind while walking, their limbs angling inward toward the midline](/images/blog/gauging-stance-in-wide-gauge-sauropods-3.webp)
 
 (Elephant image from [here](http://tommyimages.com/Stock_Photos/Africa/Tanzania/Ngorongoro/slides/Tanzania_4329-Elephant_Walking-orig.html), rhino image from [here](http://www.wildlife-pictures-online.com/rhino_knp-0364.html).)
 
@@ -31,7 +31,7 @@ People also move like this, with our vertical limbs generally sloping in toward 
 
 And the trackways also demonstrate this. If you place sauropods over the actual trackways in question, you end up with a stance more like this:
 
-![](/images/blog/gauging-stance-in-wide-gauge-sauropods-4.webp)
+![Rear view of two sauropod hindquarters with legs held nearly vertical and sloping inward, shown above their narrower footprint trackways](/images/blog/gauging-stance-in-wide-gauge-sauropods-4.webp)
 
 In this case I've put a diplodocid (*Supersaurus*) on the left, while the animal on the right is scaled to the pelvic dimensions of *Opisthocoelicaudia* as seen in the original paper. Both animals have the hind legs mostly vertical but gently sloping inward.
 

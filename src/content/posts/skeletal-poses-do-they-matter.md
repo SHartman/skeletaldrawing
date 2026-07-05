@@ -4,7 +4,7 @@ date: 2011-07-20T00:46:00Z
 kind: "Skeletal drawing topics"
 image:
   src: /images/blog/skeletal-poses-do-they-matter-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Allosaurus balanced in an implausible handstand pose, tail arced upward"
 ---
 
 Ok, first stop chortling. Then take a good look at the handstand allosaur up there. In several respects it's scientifically accurate - the bone outlines reflect the actual morphology of the fossils, and the proportions are correct, so it's a "realistic" skeletal reconstruction. The pose is certainly unusual, but none of the joints are disarticulated. In these respects it's better than many of the skeletals that appear in peer-reviewed journals. Yet I think it's safe to say that most researchers would consider that allosaur to be in a biologically implausible position.
@@ -23,7 +23,7 @@ In addition to distraction, poses that are not feasible (or even just unlikely) 
 
 If we only dealt with ludicrous poses, this may seem like a straw man argument. So let's consider a less overt example:
 
-![](/images/blog/skeletal-poses-do-they-matter-2.webp)
+![Line-drawing skeletal reconstruction of Silesaurus in left lateral standing pose from its original description](/images/blog/skeletal-poses-do-they-matter-2.webp)
 
 That's *Silesaurus*, from the original description in JVP. The shapes of the bones generally reflect the individual elements described in the manuscript, and the proportions are quite good; clearly it's intended as a realistic skeletal reconstruction. The pose is certainly not wrong in some over-the-top manner, yet there are several problems with it. Some differences are due to different interpretations of rib orientation and pectoral girdle positioning (but that's another post...), while others are not so easily categorized.
 
@@ -37,7 +37,7 @@ To some degree this is where we get to the crux of disagreements - people are of
 
 If people really want to present just the bones, and not make any statement about functional anatomy at all, perhaps researchers should consider [exploded diagrams](http://en.wikipedia.org/wiki/Exploded_view_drawing):
 
-![](/images/blog/skeletal-poses-do-they-matter-3.webp)
+![Exploded diagram of a Styracosaurus skeleton with skull, vertebral series, and limb bones separated out](/images/blog/skeletal-poses-do-they-matter-3.webp)
 
 Exploded diagrams have a proud tradition in technical illustration, and can be done without making any statement what so ever on functional morphology. I should note that the above diagram is a butchered version of my *Styracosaurus* skeletal; in a diagram prepared from the start to be an exploded diagram I would expect the limb bones and possibly even the vertebrae to not be connected as in life. Providing all of the bones scaled (and revealing only the preserved portions) would accomplish the purely descriptive goals of a traditional skeletal (perhaps even be superior, since nothing is hidden by the limbs) and completely relieves authors/illustrators from making explicit claims about how the animal went together.
 

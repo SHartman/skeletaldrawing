@@ -3,7 +3,7 @@ title: "Fishing at Dawn"
 date: 2012-04-09T04:40:00Z
 image:
   src: /images/blog/fishing-at-dawn-1.webp
-  alt: ""
+  alt: "Life reconstruction painting of Unenlagia in silhouette, lowering its head to the water at golden dawn with its reflection below"
 ---
 
 *Unenlagia comahuensis* looking for fish at dawn.

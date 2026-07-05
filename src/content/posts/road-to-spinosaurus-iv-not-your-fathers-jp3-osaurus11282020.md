@@ -4,7 +4,7 @@ date: 2020-11-28T23:24:19Z
 excerpt: "Without further ado, here is my updated Spinosaurus skeletal. It does not look much like the popularized Spinosaurus from Jurassic Park 3, nor does it much resemble my prior version from 2012. While I am not following the proportions of FSA"
 image:
   src: /images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-1.webp
-  alt: ""
+  alt: "Updated 2020 skeletal reconstruction of Spinosaurus in left lateral view, short-legged with a tall dorsal sail and long tail"
 ---
 Without further ado, here is my updated *Spinosaurus* skeletal. It does not look much like the popularized *Spinosaurus* from Jurassic Park 3, nor does it much resemble my prior version from 2012. While I am not following the proportions of FSAC-KK 11888, the result of investigations by Ibrahim and coauthors, Evers and coauthors, Andrea Cau, and others have indeed changed the face of *Spinosaurus*.
 
@@ -33,7 +33,7 @@ Given what was discussed in parts [II](https://www.skeletaldrawing.com/home/the-
 
 **This post is VERY sponsored by Permia**
 
-![](/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-3.webp)
+![Skeletal reconstruction of Spinosaurus in a rearing, upright pose with the tail sweeping upward, done for Permia merchandise](/images/blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020-3.webp)
 
 While working with the fine people [at Permia](https://www.permia.com/) on adding new prehistoric species to their collection this summer, they inquired about whether it was possible to do *Spinosaurus* yet. I had been slowly working on this for a couple of years, but their request gave me the impetus to finish it. It’s always a pleasure to work with them, because there is never any pressure to do anything but produce the most accurate skeletals I can manage.
 

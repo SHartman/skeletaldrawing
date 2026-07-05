@@ -3,7 +3,7 @@ title: "Super Spinosaurus?"
 date: 2013-06-28T22:39:25Z
 image:
   src: /images/blog/super-spinosaurus6282013-1.webp
-  alt: ""
+  alt: "Size comparison of Tyrannosaurus, Giganotosaurus, and Spinosaurus skeletals in left lateral view with human silhouettes for scale"
 ---
 
 In the past I have been skeptical of claims of 50+ foot *Spinosaurus* specimens - and with how little we know about the tail length in Spinosaurus there is still reason for caution.

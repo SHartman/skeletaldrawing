@@ -4,7 +4,7 @@ date: 2015-07-10T06:56:36Z
 excerpt: "When the skull and body of Deinocheirus were revealed there was a lot of talk about how much it looked like a hadrosaur. I did not really agree with this analogy, as the upright posture and large, clawed hands seemed to indicate that it was"
 image:
   src: /images/blog/deinocheirus-therizinosaur-or-hadrosaur-mimic7102015-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Deinocheirus in left lateral view, showing the tall-spined humped back and long-clawed arms, with 1m scale bar"
 ---
 When the skull and body of [*Deinocheirus*](https://en.wikipedia.org/wiki/Deinocheirus) were revealed there was a lot of talk about how much it looked like a hadrosaur. I did not really agree with this analogy, as the upright posture and large, clawed hands seemed to indicate that it was an ornithomimid trying its best to be a therizinosaur rather than a hadrosaur. Now I'm not so sure.
 
@@ -25,7 +25,7 @@ Tl;dr for paleoartists: there would be more of a hump than a sail, but probably 
 
 So there you have it. Sometimes my own initial impression following a quick read of a publication changes when I'm forced to do a detailed skeletal reconstruction. I still think *Deinocheirus* is a wonderfully weird critter, but in a lot of ways the initial "hadrosaur-mimic" moniker ended up being more accurate than "therizinosaur-mimic".
 
-![](/images/blog/deinocheirus-therizinosaur-or-hadrosaur-mimic7102015-3.webp)
+![Close-up of the Deinocheirus skeletal head and neck, showing the long toothless skull and duck-like beak on a curved neck](/images/blog/deinocheirus-therizinosaur-or-hadrosaur-mimic7102015-3.webp)
 
 Edit: For another interesting analogy, go check out [this post](http://theropoda.blogspot.be/2014/10/deinocheirus-revolution-episodio-5.html) by Andrea Cau comparing *Deinocheirus* to *Spinosaurus*. Though I'm not convinced of the overall proportions of *Spinosaurus* yet, he raises interesting parallels between them in having enlarged neural spines, long heads at the end of long necks, and fish eating.
 

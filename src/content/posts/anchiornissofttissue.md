@@ -4,7 +4,7 @@ date: 2017-03-01T05:31:02Z
 excerpt: "For paleoartists (and the scientists who work with them), properly restoring the skeleton is merely the beginning of the process, since the various muscles, tendons, and other soft tissues can make the final shape of an animal quite differe"
 image:
   src: /images/blog/anchiornissofttissue-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Anchiornis in left lateral view, incorporating soft-tissue skin depth"
 ---
 For paleoartists (and the scientists who work with them), properly restoring the skeleton is merely the beginning of figuring out how a dinosaur looked in life, since muscles, tendons, and other soft tissues that make up the final shape of an animal can be quite different than the skeleton alone. This requires an extensive knowledge of comparative anatomy from living organisms, a technique which has become more formalized in recent years with the application of [Extant Phylogenetic Bracketing](https://en.wikipedia.org/wiki/Phylogenetic_bracketing#Extant_phylogenetic_bracketing_.28EPB.29) (EPB), which leverages the work of [phylogenetics](https://en.wikipedia.org/wiki/Phylogenetic_tree) (the science of who is related to whom) to test inferences about muscle origins and insertions, and other soft-tissue hypotheses.
 
@@ -41,13 +41,13 @@ Some other specimens also showed the full extent of the keratinous sheaths on th
 
 Another image making the media rounds shows off some skin details from the arm:
 
-![](/images/blog/anchiornissofttissue-5.webp)
+![Laser-fluorescence image of the Anchiornis arm and thumb claw, glowing orange and blue, revealing soft-tissue detail](/images/blog/anchiornissofttissue-5.webp)
 
 Here you can see the claw sheath on the thumb claw. You can also see how thick the soft-tissue is on the front (palmar) side of the thumb. In retrospect this makes sense given how large the tendon insertion is on the thumb claw, but it's something that is almost always underemphasized in skeletal and life reconstructions. Another surprise is the extent of the patagium (skin flap) in front of the elbow. This feature is seen in living birds (you buffalo wing fans have eaten your fair share of it), but it had usually been assumed to have evolved in dinosaurs closer to birds - those that were capable fliers. Now we will have to reassess the role of the patagium on the arm (since there is a tendon involved it plays a role in increased leverage) pre-flight. And artists will need to consider expanding the animals they restore with a patagium, potentially including at least all paravians, and (more speculatively) perhaps all winged theropods.
 
 Here is the take-home figure from the paper:
 
-![](/images/blog/anchiornissofttissue-6.webp)
+![Anchiornis skeletal with body outline, color-coded to laser-fluorescence photos of the specimens (STM-114, 118, 127, 132, 133, 144, 147) that revealed each soft-tissue region](/images/blog/anchiornissofttissue-6.webp)
 
 When looking at this figure, the colored portions of the skeletal correlate with the color at the top of the photos - indicating the specimen that best showed off the shape of the skin underneath. The first thing I should note is that strictly-speaking, this figure (and the skeletal at the top of the page) are not showing the same sort of information as the other skeletal drawings on the site. Normally my skeletal reconstructions are done without skin or scale depth added - they are basically [flayed](https://en.wikipedia.org/wiki/Flaying). The *Anchiornis* skeletals here do incorporate skin depth wherever possible.
 

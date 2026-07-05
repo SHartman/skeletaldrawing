@@ -34,7 +34,7 @@ There was eventually a "1.5" version a couple years later, as I picked up a copy
 
 Around 2007, despite having shelled out money for Dreamweaver, I became aware that my website looked like it had been made in the previous century. I started reading up on spiffy concepts like [Cascading Style Sheets](http://en.wikipedia.org/wiki/Cascading_Style_Sheets), and realized that if I wanted the website to not suck I'd have learn to do more coding myself. That work eventually turned into the website that you would have seen until this one went live, and it was a slightly more primitive version of the image on the right.
 
-![](/images/blog/welcome-to-the-redesigned-skeletaldrawingcom-3.webp)
+![Screenshot of the tan-and-brown Skeletal Drawing 2.0 website, with a painted Tyrannosaurus banner and a black-and-white theropod skeletal](/images/blog/welcome-to-the-redesigned-skeletaldrawingcom-3.webp)
 
 That made most of the website contemporary (by 2008ish standards) , but it was still painfully slow to add content, and the old image galleries made it so awful to update individual images that mostly I just didn't bother. Of course blogging had long since become a "thing", and websites were expected to generate content at a much faster rate.
 

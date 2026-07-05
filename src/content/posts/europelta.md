@@ -13,7 +13,7 @@ Speaking of papers, if you look at the scientific description of *Europelta* in 
 
 That's ok by me though - I got a nice [acknowledgement in the paper](http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0080405#ack) for my efforts, and I got to retain control of the copyright for my version of the skeletal. PLOS ONE requires all images they publish be made available under a [CC BY license](http://www.plosone.org/static/figureGuidelines#ccal), which is very good for Open Access but not always so good for the illustrators that donate their work to such publications (not that it's ever stopped). It also gave me a chance to make some much needed tweaks to the armor of my skeletal before I released it.
 
-![](/images/blog/europelta-2.webp)
+![Skeletal reconstruction of the ankylosaur Europelta in left lateral view with body armor scutes restored, and a 1m scale bar](/images/blog/europelta-2.webp)
 
 A lot of times differences between reconstructions are swept under the rug or ignored, but those issues impact paleo artists, and those who simply want to know more about dinosaurs but don't have time to read each and every scientific paper that comes out, so I wanted to make sure to examine a few of them.
 

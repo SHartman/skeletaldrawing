@@ -3,7 +3,7 @@ title: "Giant theropods: North vs South"
 date: 2013-03-26T18:56:00Z
 image:
   src: /images/blog/giant-theropods-north-vs-south772013-1.webp
-  alt: ""
+  alt: "Comparison chart titled \"Giant theropod comparison: T. rex vs Giganotosaurus\" with skeletals of two Giganotosaurus specimens above a Tyrannosaurus (Sue), listing femur and total lengths"
 ---
 
 Ok, wading into the always contentious issue of who was the biggest (which on 'teh internetz' seems to loosely translate into "who was more awesome?") I'm presenting my analysis of the always popular Tyrannosaurus vs Giganotosaurus issue.

@@ -4,7 +4,7 @@ date: 2011-07-22T17:01:00Z
 kind: "Skeletal drawing topics"
 image:
   src: /images/blog/neutral-poses-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of the ceratopsian Archaeoceratops in left lateral view standing in a neutral pose"
 ---
 
 Here's a quick look at another kind of pose: the neutral pose, which is more or less the equivalent of the standard anatomical poses used for extant animals. I'm actually quite fond of the unassuming aesthetic of this type of pose, but alas I suspect it isn't a good candidate for a pose to standardize on. To see why let's take a quick look at the strengths and weaknesses of the approach:
@@ -19,17 +19,17 @@ Some people might find this pose dull, although scientifically speaking that's n
 
 The biggest drawback to a pose like this is it shows off less of the anatomy, since the limbs from the far side are obscured. It's easy-enough to fix that, by arbitrarily moving the limbs like this:
 
-![](/images/blog/neutral-poses-2.webp)
+![The same Archaeoceratops skeletal with its far-side limbs moved outward to reveal more anatomy](/images/blog/neutral-poses-2.webp)
 
 You can even show off some other pose (in this case the fingers are lightly flexed), perhaps the other wrist could also demonstrate the degree of [pronation](http://en.wikipedia.org/wiki/Pronation) that is possible (in the case of *Archaeoceratops* it more or less already is), which would then pack in a bit more information. Of course if you move the other hind leg then you are pretty much back to putting the animal in a walk.
 
 Of course you don't have to put the feet on the ground - if we're looking for poses that are more neutral about locomotion we could instead illustrate as if the animal were lying on a virtual dissection table:
 
-![](/images/blog/neutral-poses-3.webp)
+![The Archaeoceratops skeletal reposed as if lying on its side on a dissection table, limbs splayed](/images/blog/neutral-poses-3.webp)
 
 Unfortunately, even if this were explicitly labeled, I suspect someone somewhere would take it as intending to show off biomechanical behavior. Jumping. Or dancing. Or maybe sneaking along, saying "Be vewy vewy quiet, I'm hunting wabbits.":
 
-![](/images/blog/neutral-poses-4.webp)
+![The Archaeoceratops skeletal in a sneaking pose, one hand holding a hunting rifle, a nod to Elmer Fudd](/images/blog/neutral-poses-4.webp)
 
 So it seems to me that you probably can't have it both ways - to get the benefits of the neutral pose we'd have to sacrifice showing off as much morphological data.
 

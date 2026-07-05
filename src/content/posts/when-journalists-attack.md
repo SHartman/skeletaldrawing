@@ -3,7 +3,7 @@ title: "When journalists attack!"
 date: 2012-04-03T18:16:00Z
 image:
   src: /images/blog/when-journalists-attack-1.webp
-  alt: ""
+  alt: "Charles Knight painting of a Brontosaurus half-submerged in a swamp with its long neck raised, another sauropod grazing on shore behind"
 ---
 As recently [reported](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) on [several](http://www.dailymail.co.uk/sciencetech/article-2124420/Dinosaurs-DIDNT-rule-earth-The-huge-creatures-actually-lived-water--tails-swimming-aids.html) [apparently](http://www.ibtimes.co.uk/articles/323260/20120403/dinosaurs-lived-underwater-researchers.htm) legitimate news sources, a new interpretation of dinosaur biology has been proposed that is "*so revolutionary it stands the whole world of palaeontology on its head.*" What is this landmark new idea that has set paleontologists agog? It's being termed the "Aquatic Dinosaur" hypothesis, and as the name implies it suggests that the Charles Knight painting you see above isn't out of date, it was just ahead of its time. And not just for sauropods, but *all* large dinosaurs.
 
@@ -34,7 +34,7 @@ More importantly, why on Earth was this story picked up and repeated by serious 
 
 [Galileo](http://en.wikipedia.org/wiki/Galileo_Galilei), you may recall, did actual science and was being silenced by non-scientists due to the (presumed) theological implications of his findings. Mr. Ford (who the BBC charitably refers to as a "cell biologist" despite being more of a media gadfly and author of popular books and articles, not a publishing scientist) is not doing science - he in fact seems intent on ignoring science at all costs - and was simply being refuted by an actual, you know, paleontologist. Yet they whipped out the Galileo reference!
 
-![](/images/blog/when-journalists-attack-3.webp)
+![Portrait of Galileo with a thought bubble reading "WTF?!!"](/images/blog/when-journalists-attack-3.webp)
 
 Which honestly begs the question of whether anyone should bother listening to BBC Radio 4. To be fair, [actual paleontology](http://news.bbc.co.uk/today/hi/today/newsid_9405000/9405448.stm) has been covered on Radio 4 and it seems to otherwise have solid programming, but the BBC should move swiftly to clear this up if they don't want a permanent stain on their credibility.
 
@@ -48,4 +48,4 @@ This stuff really matters. We live in a world where [huge swaths of people](http
 
 We deserve better science reporting than this. The BBC and everyone else who carried this story should be ashamed. Perhaps the best way to sum this up is in grand internet fashion:
 
-![](/images/blog/when-journalists-attack-4.webp)
+![Sad-eyed kitten meme captioned "BBC: I can haz science reportz?"](/images/blog/when-journalists-attack-4.webp)

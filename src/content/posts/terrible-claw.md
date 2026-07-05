@@ -3,7 +3,7 @@ title: "Terrible Claw!"
 date: 2012-06-25T15:06:00Z
 image:
   src: /images/blog/terrible-claw-1.webp
-  alt: ""
+  alt: "Skeletal reconstruction of Deinonychus antirrhopus in left lateral striding pose, sickle claw on the raised second toe"
 ---
 
 I haven't been posting much lately, so I thought I'd at least put up this skeletal I finished over the weekend...

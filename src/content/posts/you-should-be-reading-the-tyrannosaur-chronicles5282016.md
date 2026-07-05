@@ -4,7 +4,7 @@ date: 2016-06-03T19:09:47Z
 excerpt: "I wanted to make sure you are know about Dave Hone’s excellent new book, The Tyrannosaur Chronicles. I’d hoped to blog about it several weeks ago, but I had a slew of end-of-semester grading and sundry other deadlines. The upshot of that de"
 image:
   src: /images/blog/you-should-be-reading-the-tyrannosaur-chronicles5282016-1.webp
-  alt: ""
+  alt: "Cover of The Tyrannosaur Chronicles by David Hone, purple with yellow tyrannosaur skeletons"
 ---
 
 I wanted to make sure you know about Dave Hone’s excellent new book, *The Tyrannosaur Chronicles*. I’d hoped to blog about it several weeks ago for the UK launch, but I had a slew of end-of-semester grading and sundry other deadlines. The upshot of that decision is I’ve now had a chance to read the entire book, and can say without hesitation that you are in for a treat.
@@ -25,4 +25,4 @@ If you or someone you know enjoys a good popular account of science (and dinosau
 
 \*I am totally trolling Tom Holtz at this point.
 
-![](/images/blog/you-should-be-reading-the-tyrannosaur-chronicles5282016-2.webp)
+![Comparison of four Tyrannosaurus rex specimens (Stan, AMNH 5027, CM 9380, Sue) as skeletals in left lateral view with femur and total length labeled](/images/blog/you-should-be-reading-the-tyrannosaur-chronicles5282016-2.webp)

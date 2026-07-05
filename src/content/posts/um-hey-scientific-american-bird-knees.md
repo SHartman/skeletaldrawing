@@ -4,13 +4,13 @@ date: 2011-10-01T04:08:00Z
 kind: "Theropods"
 image:
   src: /images/blog/um-hey-scientific-american-bird-knees-1.webp
-  alt: ""
+  alt: "Side-by-side bird and human skeletons with leg segments color-coded: femur red, shin blue, foot bones green, toes yellow."
 ---
 Ok, time for a quick anatomy lesson: Despite what you may have heard, bird knees do *not* bend backward. Nor, in fact, do the knees of any [tetrapod](http://en.wikipedia.org/wiki/Tetrapod) perform this trick. Given the role of the knee in locomotion, it's not even clear how such a reversal could evolve after the initial "knee bend" direction was settled upon several hundred million years ago.
 
 Why bring the anatomical equivalent of a fairy tale? Well, it's a fairly common misconception. So common, in fact, that it was recently enshrined by none other than [Scientific American](https://www.scientificamerican.com/blog/observations/turkey-legs-tell-the-tale-of-our-unsung-tendons/). So let's see if we can clear this up with some simple diagrams:
 
-![](/images/blog/um-hey-scientific-american-bird-knees-2.webp)
+![Cartoon of a bird's hind legs with a red arrow pointing at the ankle joint and the caption "NOT THE KNEE!!!"](/images/blog/um-hey-scientific-american-bird-knees-2.webp)
 
 Really, it's not.
 

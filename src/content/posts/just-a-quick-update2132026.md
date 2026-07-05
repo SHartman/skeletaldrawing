@@ -4,7 +4,7 @@ date: 2026-02-13T17:42:20Z
 excerpt: "Hello world!I will be resuscitating the Skeletal Drawing blog again in the coming days (and hopefully weeks and months). Part of that will be trying to post short-form content more often, like small anatomical details that get overlooked…"
 image:
   src: /images/blog/just-a-quick-update2132026-1.webp
-  alt: ""
+  alt: "Black silhouette of a frilled, beaked ceratopsian dinosaur head in profile"
 ---
 
 Hello world!

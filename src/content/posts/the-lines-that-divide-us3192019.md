@@ -4,7 +4,7 @@ date: 2019-03-21T17:14:26Z
 excerpt: "No, this isn’t about the ethics of skeletal reconstructions. Instead it’s a look at the hazards of drawing lines in scientific illustration, and something of a justification for the silhouette-bound skeletal drawing. There are some snippets"
 image:
   src: /images/blog/the-lines-that-divide-us3192019-1.webp
-  alt: ""
+  alt: "Outline line-drawing of a theropod femur above a 1 metre scale bar, no fill."
 ---
 
 No, this isn’t about the ethics of skeletal reconstructions. Instead it’s a look at the hazards of drawing lines in scientific illustration, and something of a justification for the silhouette-bound skeletal drawing. There are some snippets on how to make better skeletal drawings yourself if that’s your thing. And perhaps of greater interest to many readers, it’s background for a major change coming soon to a large chunk of my skeletal drawings.
@@ -21,7 +21,7 @@ In my experience most people pick a point *somewhere* within the line (which is 
 
 You might think that 5-6% isn’t so bad - and depending on what you are using it for, maybe it isn’t too terrible. But I think that most people (and certainly most scientists) would be less-than-thrilled with the idea that the act of sharing their measurements automatically makes them 5%+ off even before more run of the mill human error is taken into account. Of course you can get around that by publishing measurements rather than relying on scale bars (a subject the good folks over at SVPOW [have already discussed in detail](https://svpow.com/2009/04/23/mydd/)). But this is a blog about skeletal drawings, so I want to bring it back to this:
 
-![](/images/blog/the-lines-that-divide-us3192019-2.webp)
+![Black theropod silhouette in left lateral view with a single femur shown in white, plus a 1 metre scale bar](/images/blog/the-lines-that-divide-us3192019-2.webp)
 
 If we reran the experiment with *this* femur (which, to be sure, is the same femur just surrounded by a silhouette) there should be a smaller range of reported values (discarding errors in scaling. That’s because there is less ambiguity about where to measure from - for both the femur and the scale bar it’s the transition between solid black and solid white pixels. The low resolution of these images means there's a bit of [anti-aliasing](https://en.wikipedia.org/wiki/Spatial_anti-aliasing) that makes this transition take up a pixel or more, but with the resolution you’d find in print or a decent pdf that wouldn’t exist, which immediately clears up the 5%+ error that stemmed from using outlines. I would argue *that* is the primary advantage of skeletal drawings. Even Greg Paul in his seminal 1988 book Predatory Dinosaurs of the World wrote about this, saying:
 
