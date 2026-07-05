@@ -128,7 +128,7 @@ const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}`
 
       {showForm ? (
         <div class="c-form-wrap">
-          <h3 class="c-form-h">{hasComments ? 'Join the discussion' : 'Start the discussion'}</h3>
+          <h3 class="c-form-h" id="c-form-h">{hasComments ? 'Join the discussion' : 'Start the discussion'}</h3>
           <form class="c-form" id="c-form" method="POST" action="/api/comments">
             <input type="hidden" name="post" value={post} />
             <input type="hidden" name="postTitle" value={postTitle} />
@@ -168,10 +168,18 @@ const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}`
               <p class="c-status" id="c-status" role="status" aria-live="polite" />
             </div>
             <p class="c-fine">
-              Comments are reviewed before they appear. Use your real name; your email is only so I can
-              reply — it's never shown.
+              Use your real name. Your email is only so I can reply — it's never published. Comments are
+              reviewed before they post, so they don't appear instantly: give it about 5–10 minutes, then
+              refresh the page to see yours.
             </p>
           </form>
+          <div class="c-done" id="c-done" hidden>
+            <p class="c-done-h">Thanks — your comment is in the queue!</p>
+            <p class="c-done-p">
+              It'll appear here in about <strong>5–10 minutes</strong>, once I've approved it — you'll need
+              to <strong>refresh the page</strong> to see it. (Comments don't post instantly anymore.)
+            </p>
+          </div>
           <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
           <script is:inline>
             document.addEventListener('DOMContentLoaded', () => {
@@ -188,14 +196,18 @@ const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}`
                 try {
                   const res = await fetch('/api/comments', { method: 'POST', body: new FormData(form) });
                   if (!res.ok) throw new Error(String(res.status));
-                  form.reset();
-                  if (window.turnstile) window.turnstile.reset();
-                  status.textContent = 'Thanks — your comment will appear once it’s reviewed.';
-                  status.classList.add('ok');
+                  // Swap the form for a prominent confirmation so the "wait + refresh" is unmissable.
+                  const heading = document.getElementById('c-form-h');
+                  const done = document.getElementById('c-done');
+                  if (heading) heading.hidden = true;
+                  form.hidden = true;
+                  if (done) {
+                    done.hidden = false;
+                    done.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                  }
                 } catch (err) {
                   status.textContent = 'Something went wrong — please try again, or email me.';
                   status.classList.add('err');
-                } finally {
                   btn.disabled = false;
                 }
               });
@@ -246,6 +258,7 @@ const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}`
   .comments .c-form-wrap { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--hair); }
   .comments .c-form-h { margin: 0 0 18px; font-style: italic; font-weight: 500; font-size: clamp(22px, 3.4vw, 30px); }
   .comments .c-form { display: grid; gap: 16px; }
+  .comments .c-form[hidden] { display: none; } /* [hidden] alone loses to display:grid above */
   .comments .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .comments .c-field { display: grid; gap: 6px; }
   .comments .c-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
@@ -270,6 +283,11 @@ const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}`
   .comments .c-status.ok { color: var(--accent); }
   .comments .c-status.err { color: #b3402e; }
   .comments .c-fine { margin: 0; font-size: 13px; line-height: 1.5; color: var(--measure); }
+
+  .comments .c-done { padding: 22px 24px; border: 1px solid var(--accent-soft); border-radius: 6px; background: var(--accent-weak); }
+  .comments .c-done-h { margin: 0 0 8px; font-style: italic; font-weight: 500; font-size: 20px; color: var(--ink); }
+  .comments .c-done-p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--ink); }
+  .comments .c-done-p strong { font-weight: 600; }
 
   .comments .c-closed { margin: 30px 0 0; font-size: 15px; color: var(--slate); }
   .comments .c-closed a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
