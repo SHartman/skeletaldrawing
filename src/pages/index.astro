@@ -36,6 +36,23 @@ const clades = [...counts.entries()]
   .sort((a, b) => b.count - a.count)
   .map((c, i) => ({ ...c, idx: String(i + 1).padStart(2, '0') }));
 
+// Scale-comparison sampler — rotates per visit among the hubs that have a comparison figure.
+// TOOL enables a "Create your own comparison →" CTA above each hub link. It's null while the
+// interactive /compare/ tool is still a prototype (unlinked anywhere); flip it on the day the tool
+// launches (alongside the intro blog post) — that's the only change needed here.
+const TOOL: { href: string; label: string } | null = null;
+// const TOOL = { href: '/compare/', label: 'Create your own comparison →' };
+const COMPARISONS = [
+  { taxonId: 'diplodocus', total: 3, href: '/sauropods-and-kin/diplodocus/', label: 'Open the Diplodocus hub →',
+    note: 'Every reconstruction is measured, so a genus like Diplodocus can be compared specimen against specimen — here its two species and their specimens, with a 1.8 m human for scale.' },
+  { taxonId: 'tyrannosaurus-rex', total: 6, href: '/theropods/tyrannosaurus-rex/', label: 'Open the Tyrannosaurus hub →',
+    note: 'The best-known Tyrannosaurus rex specimens — Sue, Stan, Scotty and more — drawn to one scale with a 1.8 m human. They differ by only a few percent, but every difference is real.' },
+  { taxonId: 'allosaurus-jimmadseni', total: 2, href: '/theropods/allosaurus-jimmadseni/', label: 'Open the Allosaurus jimmadseni hub →',
+    note: 'One species at two life stages: subadult “Big Al” (MOR 693) beside juvenile “Little Al”, drawn to a common scale with a 1.8 m human.' },
+  { taxonId: 'archaeopteryx-lithographica', total: 2, href: '/theropods/archaeopteryx-lithographica/', label: 'Open the Archaeopteryx hub →',
+    note: 'Two specimens of the crow-sized “first bird” Archaeopteryx — the Thermopolis and Chicago individuals — at a common scale, measured in centimetres.' },
+];
+
 // Featured reconstruction — rotates (weighted toward newest) among the most-recently-added
 // reconstructions. "Recent" = entries carrying an `added` date (CMS-stamped on create),
 // sorted newest-first, top N. The server renders the newest; the client may rotate to another.
@@ -222,18 +239,33 @@ const description =
     )}
   </section>
 
-  <!-- ============ DRAWN TO SCALE (sampler from a genus hub) ============ -->
+  <!-- ============ DRAWN TO SCALE (rotating sampler from the hubs with a comparison) ============ -->
   <section class="band bordered">
     <div class="band-inner">
-      <ScaleComparison
-        taxonId="diplodocus"
-        total={3}
-        heading="Drawn to scale"
-        href="/sauropods-and-kin/diplodocus/"
-        linkLabel="Open the Diplodocus hub →"
-        note="Every reconstruction is measured, so a genus like Diplodocus can be compared specimen against specimen — here its two species and their specimens, with a 1.8 m human for scale."
-      />
+      {COMPARISONS.map((c, i) => (
+        <div class="comp-slide" data-comp hidden={i !== 0}>
+          <ScaleComparison
+            taxonId={c.taxonId}
+            total={c.total}
+            heading="Drawn to scale"
+            href={c.href}
+            linkLabel={c.label}
+            note={c.note}
+            toolHref={TOOL?.href}
+            toolLabel={TOOL?.label}
+          />
+        </div>
+      ))}
     </div>
+    <script is:inline>
+      // Rotate the sampler per visit: the server renders the first slide; this shows a random one.
+      (() => {
+        const slides = Array.from(document.querySelectorAll('[data-comp]'));
+        if (slides.length < 2) return;
+        const pick = Math.floor(Math.random() * slides.length);
+        slides.forEach((s, i) => { s.hidden = i !== pick; });
+      })();
+    </script>
   </section>
 
   <!-- ============ BROWSE BY CLADE ============ -->

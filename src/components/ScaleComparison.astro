@@ -14,6 +14,8 @@ const {
   href,
   linkLabel = 'See the hub →',
   note,
+  toolHref,
+  toolLabel = 'Create your own comparison →',
 } = Astro.props as {
   taxonId: string;
   total: number;
@@ -21,6 +23,8 @@ const {
   href?: string;
   linkLabel?: string;
   note?: string;
+  toolHref?: string; // optional CTA to the interactive comparison tool, shown above the hub link
+  toolLabel?: string;
 };
 const raw = (silData as Record<string, any[]>)[taxonId] ?? [];
 const items = [...raw].sort((a, b) => b.lengthM - a.lengthM);
@@ -90,7 +94,12 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
       {heading ? (
         <div class="sc-head">
           <h2 class="sc-title">{heading}</h2>
-          {href && <a class="sc-link" href={href}>{linkLabel}</a>}
+          {(toolHref || href) && (
+            <div class="sc-links">
+              {toolHref && <a class="sc-link sc-tool" href={toolHref}>{toolLabel}</a>}
+              {href && <a class="sc-link sc-hub" href={href}>{linkLabel}</a>}
+            </div>
+          )}
         </div>
       ) : (
         <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common scale</span></h2>
@@ -162,12 +171,16 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
   }
   .sec-sub { letter-spacing: 0; text-transform: none; }
 
-  .sc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 18px; }
+  .sc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; margin: 0 0 18px; }
   .sc-title { font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; margin: 0; }
+  .sc-links { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; text-align: right; padding-top: 4px; }
   .sc-link {
     font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--accent); text-decoration: none; white-space: nowrap;
   }
+  .sc-tool { font-weight: 600; border-bottom: 1px solid var(--accent-soft); padding-bottom: 2px; } /* the CTA */
+  .sc-tool + .sc-hub { color: var(--slate); } /* hub goes secondary ONLY when the tool CTA is above it */
+  .sc-tool + .sc-hub:hover { color: var(--accent); }
 
   .fig {
     margin: 0; border: 1px solid var(--hair-strong); background: var(--plate);
