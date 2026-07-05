@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Standalone contact page (CLAUDE.md §5 About-spokes land in Phase 2; this is the interim home for
+// the form the comment section already links to). The form posts to /api/contact, which emails the
+// owner directly — same Turnstile + honeypot + rate-limit protection as the comment form, no queue.
+//
+// Turnstile SITE key is public (it ships in the HTML), so it's safe in-repo. Local dev uses
+// Cloudflare's always-passes test key; the real key is bound to the site's hostnames and would fail
+// on localhost. PUBLIC_TURNSTILE_SITE_KEY overrides if ever set.
+const TURNSTILE_KEY =
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ??
+  (import.meta.env.DEV ? '1x00000000000000000000AA' : '0x4AAAAAADvzd0UXX5I98aaW');
+
+const REASONS = ['Licensing & Commissions', 'Education & Outreach', 'General & Other'];
+
+const title = 'Contact — Scott Hartman | Skeletal Drawing';
+const description =
+  'Get in touch with Dr. Scott Hartman about skeletal-reconstruction licensing and commissions, education and outreach, or a question or correction.';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap contact">
+    <header class="head">
+      <p class="eyebrow">Contact</p>
+      <h1 class="display">Get in touch</h1>
+      <p class="intro">
+        Licensing a skeletal for a museum or publication, a commission, a teaching or outreach question, a
+        correction to one of the reconstructions — it all reaches me here. I read every message myself and
+        reply as I'm able. Your email is only so I can write back; it's never published or shared.
+      </p>
+    </header>
+
+    <form class="c-form" id="contact-form" method="POST" action="/api/contact">
+      <p class="c-hp" aria-hidden="true">
+        <label>
+          Leave this field empty
+          <input type="text" name="url" tabindex="-1" autocomplete="off" />
+        </label>
+      </p>
+
+      <div class="c-grid">
+        <label class="c-field">
+          <span class="c-label">Name</span>
+          <input type="text" name="name" required maxlength="80" autocomplete="name" />
+        </label>
+        <label class="c-field">
+          <span class="c-label">Email <span class="c-hint">— never published</span></span>
+          <input type="email" name="email" required maxlength="120" autocomplete="email" />
+        </label>
+      </div>
+
+      <label class="c-field">
+        <span class="c-label">Regarding</span>
+        <select name="reason" class="c-select" required>
+          {REASONS.map((r) => (
+            <option value={r} selected={r === 'General & Other'}>{r}</option>
+          ))}
+        </select>
+      </label>
+
+      <label class="c-field">
+        <span class="c-label">Message</span>
+        <textarea name="message" required rows="8" maxlength="8000" />
+      </label>
+
+      <div class="cf-turnstile" data-sitekey={TURNSTILE_KEY}></div>
+
+      <div class="c-actions">
+        <button type="submit" class="c-submit">Send message</button>
+        <p class="c-status" id="c-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <p class="c-fine">
+        Protected by a lightweight spam check. Messages go straight to my inbox — expect a reply within a
+        few days (longer during fieldwork or the teaching term).
+      </p>
+    </form>
+
+    <div class="c-done" id="c-done" hidden>
+      <p class="c-done-h">Thanks — your message is on its way.</p>
+      <p class="c-done-p">
+        It's landed in my inbox and I'll reply to the email you gave as soon as I can. No need to send it
+        again.
+      </p>
+    </div>
+  </main>
+
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const status = document.getElementById('c-status');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.querySelector('input[name="url"]').value) return; // honeypot tripped
+        const btn = form.querySelector('.c-submit');
+        btn.disabled = true;
+        status.className = 'c-status';
+        status.textContent = 'Sending…';
+        try {
+          const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form) });
+          if (!res.ok) throw new Error(String(res.status));
+          const done = document.getElementById('c-done');
+          form.hidden = true;
+          if (done) {
+            done.hidden = false;
+            done.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong — please try again in a moment.';
+          status.classList.add('err');
+          btn.disabled = false;
+        }
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .head { margin: 48px 0 34px; }
+  .eyebrow {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(38px, 6vw, 60px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.62; color: var(--ink); max-width: 60ch; }
+
+  .c-form { display: grid; gap: 18px; }
+  .c-form[hidden] { display: none; }
+  .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .c-field { display: grid; gap: 6px; }
+  .c-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+  .c-hint { text-transform: none; letter-spacing: 0; color: var(--measure); }
+
+  .c-form input, .c-form textarea, .c-select {
+    font-family: var(--font-serif); font-size: 16px; color: var(--ink);
+    background: var(--plate); border: 1px solid var(--hair-strong); border-radius: 4px; padding: 10px 12px;
+  }
+  .c-form textarea { resize: vertical; line-height: 1.55; }
+  .c-select { appearance: none; cursor: pointer; }
+  .c-form input:focus, .c-form textarea:focus, .c-select:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak);
+  }
+  .c-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .c-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .c-submit {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--mast-fg); background: var(--ink); border: none; border-radius: 4px;
+    padding: 12px 24px; cursor: pointer; transition: opacity .15s ease;
+  }
+  .c-submit:hover { opacity: .88; }
+  .c-submit:disabled { opacity: .5; cursor: default; }
+  .c-status { margin: 0; font-size: 14px; color: var(--slate); }
+  .c-status.err { color: #b3402e; }
+  .c-fine { margin: 0; font-size: 13px; line-height: 1.5; color: var(--measure); }
+
+  .c-done {
+    margin-top: 8px; padding: 24px 26px; border: 1px solid var(--accent-soft);
+    border-radius: 6px; background: var(--accent-weak);
+  }
+  .c-done-h { margin: 0 0 8px; font-style: italic; font-weight: 500; font-size: 22px; color: var(--ink); }
+  .c-done-p { margin: 0; font-size: 16px; line-height: 1.62; color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .c-grid { grid-template-columns: 1fr; }
+  }
+</style>
