@@ -101,9 +101,11 @@ const description =
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
 
-  .head { margin: 48px 0 0; display: grid; grid-template-columns: 1fr auto; gap: 24px 44px; align-items: start; }
-  .head-text { max-width: 62ch; }
-  .portrait { width: 200px; height: auto; border-radius: 8px; border: 1px solid var(--hair-strong); display: block; }
+  /* Cap the whole header so the text column and portrait fill it side by side — a 1fr text track on
+     the full page width would strand the portrait at the far right with a void beside the (capped) text. */
+  .head { margin: 48px 0 0; max-width: 920px; display: grid; grid-template-columns: 1fr auto; gap: 36px 48px; align-items: center; }
+  .head-text { min-width: 0; } /* fills the text column; the lede governs its own measure */
+  .portrait { width: 250px; height: auto; border-radius: 8px; border: 1px solid var(--hair-strong); display: block; }
   .eyebrow {
     margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
     text-transform: uppercase; color: var(--slate);
@@ -112,7 +114,9 @@ const description =
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(44px, 7vw, 76px); line-height: 1.0; letter-spacing: -.015em;
   }
-  .lede { margin: 20px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink); max-width: 56ch; }
+  /* no tight cap: the lede fills the header text column (which the .head max-width already bounds to a
+     readable width) so there's no gap between it and the portrait */
+  .lede { margin: 20px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink); }
 
   .bio { margin: 34px 0 0; max-width: 64ch; }
   .bio p { margin: 0 0 1.05em; font-size: 17px; line-height: 1.7; color: var(--ink); }
@@ -146,7 +150,7 @@ const description =
   }
   .cc-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .wrap { padding: 0 18px; }
     /* single column: the face sits above the intro so it greets the reader */
     .head { grid-template-columns: 1fr; }
