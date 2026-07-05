@@ -5,10 +5,12 @@ import Glyph from './Glyph.astro';
 // guides/articles AND curated external resources (the /learn/ hub) — it reads as an
 // invitation where a bare "Resources" gets skipped. Remaining hrefs are placeholders
 // until each section exists; reshuffling IA later is a one-line edit.
-// "Skeletals" opens the search launcher (/skeletals/), which itself links out to "Browse galleries".
-// Search is the primary door to the skeletal database; the gallery grid is one step in from there.
+// Browse vs. search are split by affordance: the "Skeletals" WORD opens the image-forward
+// gallery grid (/galleries/) — what a menu label implies — while the trailing search ICON opens
+// the typeahead launcher (/skeletals/), the universal "jump to a specific thing" affordance. No
+// dropdown; the two doors cross-link, so neither is a dead end. (Label may become "Galleries" later.)
 const nav = [
-  { label: 'Skeletals', href: '/skeletals/' },
+  { label: 'Skeletals', href: '/galleries/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Learn', href: '/learn/' },
   { label: 'About', href: '/about/' },
@@ -24,6 +26,11 @@ const nav = [
     </a>
     <nav aria-label="Primary">
       {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a class="search-link" href="/skeletals/" aria-label="Search skeletals" title="Search skeletals">
+        <svg class="search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path>
+        </svg>
+      </a>
     </nav>
   </div>
 </header>
@@ -66,6 +73,10 @@ const nav = [
   }
   nav a { color: var(--mast-link); text-decoration: none; }
   nav a:hover { color: var(--mast-fg); }
+
+  /* search affordance: an icon, not a word — sits at the end of the nav, aligned to the mono caps */
+  nav a.search-link { display: inline-flex; align-items: center; }
+  .search-ic { width: 15px; height: 15px; display: block; }
 
   /* Mobile: stack the logo and nav so nothing forces horizontal scroll. */
   @media (max-width: 600px) {

@@ -12,8 +12,11 @@ import heroImg from '../assets/home-golden-hero.png';
 // Real data where it exists; clearly-flagged placeholders where a section's source
 // collection isn't built yet (blog) or an asset hasn't been supplied (hero image).
 
+// Mirrors Masthead.astro's IA: the "Skeletals" word opens the gallery grid; the trailing search
+// icon (added to .topnav below) opens the /skeletals/ launcher. Kept in sync by hand — the home
+// hero has its own light-on-dark masthead rather than the shared component.
 const NAV = [
-  { label: 'Skeletals', href: '/skeletals/' },
+  { label: 'Skeletals', href: '/galleries/' },
   { label: 'Learn', href: '/learn/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'About', href: '/about/' },
@@ -157,6 +160,11 @@ const description =
           {NAV.map((item, i) => (
             <a href={item.href} class:list={{ dim: i !== 0 }}>{item.label}</a>
           ))}
+          <a class="search-link" href="/skeletals/" aria-label="Search skeletals" title="Search skeletals">
+            <svg class="search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path>
+            </svg>
+          </a>
         </nav>
       </div>
     </header>
@@ -356,6 +364,9 @@ const description =
   .topnav a { color: #fff; text-decoration: none; }
   .topnav a.dim { color: rgba(255,255,255,.82); }
   .topnav a:hover { color: #fff; }
+  /* search affordance: an icon at the end of the nav, held at the dim weight so it sits quietly */
+  .topnav a.search-link { display: inline-flex; align-items: center; color: rgba(255,255,255,.82); }
+  .topnav .search-ic { width: 15px; height: 15px; display: block; }
 
   .hero-foot { position: absolute; left: 0; right: 0; bottom: 0; }
   .hero-foot-inner { max-width: 1280px; margin: 0 auto; padding: 0 56px 52px; }
