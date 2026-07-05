@@ -235,7 +235,7 @@ collections:
     create: false
     delete: true
     extension: md
-    format: frontmatter-body   # the comment text is the file body, rendered as escaped plain text
+    format: frontmatter        # YAML frontmatter + a body; the `body` field below maps to the comment text
     identifier_field: author
     sortable_fields: [date, post, approved]
     summary: "{{#if fields.approved}}✓{{else}}⏳ PENDING{{/if}} — {{author}} on {{fields.post}}"
