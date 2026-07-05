@@ -7,7 +7,7 @@ image:
   alt: ""
 ---
 
-Welcome back! This will be a shorter article that continues the concern for tails that we established in the inaugural *[T. rex](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357be4b0f16202a22b29/1321298578000/)* [tail post](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357be4b0f16202a22b29/1321298578000/) a couple weeks ago. There is an all too common error that artists make when they attempt to impart a sense of dynamic motion to their dinosaurs - and in particular to the dromaeosaurs. They flex the tail up at the base so sharply that it would break the tail...if not break the pelvis!
+Welcome back! This will be a shorter article that continues the concern for tails that we established in the inaugural *[T. rex](/images/blog/tails-of-woe-6.png)* [tail post](/images/blog/tails-of-woe-6.png) a couple weeks ago. There is an all too common error that artists make when they attempt to impart a sense of dynamic motion to their dinosaurs - and in particular to the dromaeosaurs. They flex the tail up at the base so sharply that it would break the tail...if not break the pelvis!
 
 **Tail Tales: Break Dancing**
 

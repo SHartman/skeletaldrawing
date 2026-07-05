@@ -4,7 +4,7 @@ date: 2011-07-15T16:59:00Z
 kind: "Skeletal drawing topics"
 ---
 
-I'm happy to say I've received some excellent feedback on the previous blog post on [schematic skeletal diagrams](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22ae2/1321298529000/). Several comments in particular share a similar feeling, which I'll repost here:  
+I'm happy to say I've received some excellent feedback on the previous blog post on [schematic skeletal diagrams](/images/blog/schematic-vs-realistic-skeletals-follow-1.png). Several comments in particular share a similar feeling, which I'll repost here:  
   
 
 > I don't see any reason someone would make a reconstruction more schematic than necessary (due to perspective, converting bones to lines, incompleteness or deformation, lack of available material, etc. that you mention). In the strat column and cell examples, there are obvious reasons not to make them realistic, but what about skeletons? Surely the only reason to not draw bones correctly is to save time, but in that case I'd argue it's better to not to include a reconstruction than to make a half-assed one. -[Mickey Mortimer](http://theropoddatabase.blogspot.com/)
@@ -28,7 +28,7 @@ As you can see, they all raise a similar question - why would anyone want to pub
 
   
 
-As I showed in the earlier [3](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22b1f/1321298529000/) [part](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22b17/1321298529000/) [series](http://www.blogger.com/) on dinosaur skeletals, the reality is in the history of paleontology it simply has never been a standard requirement to invest the time and effort that goes into producing realistic skeletal reconstructions for publication. Yes, for a period of time realistic skeletals were used by *some* paleontologists in Europe in the middle of the 19th century, but hardly all. Concerns with improving the anatomical posture of mounts saw a brief return to publications in the U.S. in the 1920s and '30s, but neither of these periods saw anything close to a universal adoption of realistic skeletal reconstructions, nor did either period produce published guidelines on how to produce such skeletals - and don't forget that they make good examples by virtue of how unusual they are in the history of paleontology.
+As I showed in the earlier [3](/images/blog/schematic-vs-realistic-skeletals-follow-2.png) [part](/images/blog/schematic-vs-realistic-skeletals-follow-3.png) [series](http://www.blogger.com/) on dinosaur skeletals, the reality is in the history of paleontology it simply has never been a standard requirement to invest the time and effort that goes into producing realistic skeletal reconstructions for publication. Yes, for a period of time realistic skeletals were used by *some* paleontologists in Europe in the middle of the 19th century, but hardly all. Concerns with improving the anatomical posture of mounts saw a brief return to publications in the U.S. in the 1920s and '30s, but neither of these periods saw anything close to a universal adoption of realistic skeletal reconstructions, nor did either period produce published guidelines on how to produce such skeletals - and don't forget that they make good examples by virtue of how unusual they are in the history of paleontology.
 
   
 

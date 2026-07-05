@@ -4,7 +4,7 @@ date: 2011-03-21T02:12:00Z
 kind: "Skeletal drawing topics"
 ---
 
-As we saw in [Part 1](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf357ae4b0f16202a22b1f/1321298529000/), the 19th century saw the rise of many of the modern conventions we see in skeletal reconstructions. Yet the last two decades of the century closed without any innovations, and at times a retreat from proportional accuracy. In short, skeletal reconstructions became more schematic in nature. Yet the creation of the modern silhouette skeletal reconstruction evolved in the first half of the 20th century. Why did skeletal drawings see an initial fall? And when did the modern form get invented? Let’s take a look...
+As we saw in [Part 1](/images/blog/history-of-skeletal-drawings-from-bone-1.png), the 19th century saw the rise of many of the modern conventions we see in skeletal reconstructions. Yet the last two decades of the century closed without any innovations, and at times a retreat from proportional accuracy. In short, skeletal reconstructions became more schematic in nature. Yet the creation of the modern silhouette skeletal reconstruction evolved in the first half of the 20th century. Why did skeletal drawings see an initial fall? And when did the modern form get invented? Let’s take a look...
 
 **The Fall and Rise of Skeletal Restorations**
 

@@ -30,6 +30,6 @@ Here are some other quick hits:
 
 7) On the other hand, the significantly less robust *Giraffatitan* probably can be ruled out despite being quite tall.
 
-8) While titanosaurs are generally heavier than diplodocids, very large *[Apatosaurus](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf3577e4b0f16202a2295f/1335591252000/)* [specimens](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54112b/51bf3576e4b0f16202a228fe/51bf3577e4b0f16202a2295f/1335591252000/)appear to fit comfortably in the same size class. In addition to the [Oklahoma specimen](http://svpow.com/2012/04/30/the-giant-oklahoma-apatosaurus-omnh-1670-redux/) I have seen a few other (unpublished) apatosaur specimens that at least rival it in size.
+8) While titanosaurs are generally heavier than diplodocids, very large *[Apatosaurus](/images/blog/the-biggest-of-big-2.png)* [specimens](/images/blog/the-biggest-of-big-2.png)appear to fit comfortably in the same size class. In addition to the [Oklahoma specimen](http://svpow.com/2012/04/30/the-giant-oklahoma-apatosaurus-omnh-1670-redux/) I have seen a few other (unpublished) apatosaur specimens that at least rival it in size.
 
 So there you have it. If you have any other questions hit me up in the comments section below.
