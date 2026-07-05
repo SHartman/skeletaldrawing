@@ -37,6 +37,41 @@ for (const s of specimens) {
     href: `/${parent.data.gallery}/${parent.id}/${s.id}/`,
   });
 }
+
+// Synthetic genus-hub rows — a multi-species genus is a first-class destination (its hub at
+// /<gallery>/<genus>/), so it's searchable in its own right ALONGSIDE the individual species, which
+// stay indexed above (search is the technical, drill-anywhere counterpart to the collapsed gallery).
+// The ≥2-species threshold + free-slug guard mirror the router and the gallery collapse, so a row
+// never points at a hub that isn't generated.
+const taxonIdSet = new Set(taxa.map((t) => t.id));
+const genusBuckets = new Map<string, { genus: string; slug: string; gallery: string; species: typeof taxa }>();
+for (const t of taxa) {
+  const genus = t.data.taxon.split(' ')[0];
+  const slug = genus.toLowerCase();
+  const key = `${t.data.gallery}::${slug}`;
+  const b = genusBuckets.get(key) ?? { genus, slug, gallery: t.data.gallery, species: [] as typeof taxa };
+  b.species.push(t);
+  genusBuckets.set(key, b);
+}
+for (const b of genusBuckets.values()) {
+  if (b.species.length < 2 || taxonIdSet.has(b.slug)) continue;
+  // The genus's family line: the deepest clade every species in it shares (a genus is monophyletic).
+  const paths = b.species.map((s) => expandClades(s.data.clade));
+  const minDepth = Math.min(...paths.map((p) => p.length));
+  let family = paths[0][0] ?? '';
+  for (let i = 0; i < minDepth; i++) {
+    const c = paths[0][i];
+    if (paths.every((p) => p[i] === c)) family = c;
+    else break;
+  }
+  corpus.push({
+    taxon: b.genus,
+    common: '',
+    clade: family,
+    specimen: `${b.species.length} species`,
+    href: `/${b.gallery}/${b.slug}/`,
+  });
+}
 corpus.sort((a, b) => a.taxon.localeCompare(b.taxon));
 
 // Curated clade shortcuts — jump straight to a popular clade that sits several levels DOWN in a

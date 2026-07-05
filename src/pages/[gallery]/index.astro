@@ -31,30 +31,113 @@ const meta = GALLERY_META[gallery] ?? { label: gallery, intro: '' };
 const all = (await getCollection('taxa')).filter((t) => t.data.gallery === gallery);
 all.sort((a, b) => a.data.taxon.localeCompare(b.data.taxon));
 
-const cards = await Promise.all(
-  all.map(async (t) => {
-    const h = heroRef(t.data);
-    return {
-      id: t.id,
-      data: t.data,
+// Global taxon-id set — matches the router's guard: a genus only collapses into a hub when no real
+// taxon already occupies that slug (see [taxon].astro getStaticPaths). Keeps a card from pointing
+// at a synthetic hub the router didn't actually generate.
+const allTaxonIds = new Set((await getCollection('taxa')).map((t) => t.id));
+
+// Genus hubs are first-class (CLAUDE.md §5): a multi-species genus collapses into ONE card that
+// links to /<gallery>/<genus>/, replacing its per-species cards; discovery of the individual
+// species continues from the hub (or from search). The ≥2-species threshold + free-slug guard
+// mirror the router so the gallery and the routes agree on which genera become hubs.
+const genusGroups = new Map<string, { genus: string; slug: string; species: typeof all }>();
+for (const t of all) {
+  const slug = t.data.taxon.split(' ')[0].toLowerCase();
+  const g = genusGroups.get(slug) ?? { genus: t.data.taxon.split(' ')[0], slug, species: [] as typeof all };
+  g.species.push(t);
+  genusGroups.set(slug, g);
+}
+
+// The deepest clade every species in a genus shares (a genus is monophyletic) — its "family" line
+// and the lineage the collapsed card filters under. Mirrors GenusHub's family computation.
+function sharedClade(species: typeof all): string[] {
+  const paths = species.map((s) => expandClades(s.data.clade)); // each root-first, inclusive
+  const minDepth = Math.min(...paths.map((p) => p.length));
+  const shared: string[] = [];
+  for (let i = 0; i < minDepth; i++) {
+    const c = paths[0][i];
+    if (paths.every((p) => p[i] === c)) shared.push(c);
+    else break;
+  }
+  return shared;
+}
+
+interface Unit {
+  isGenus: boolean;
+  id: string;
+  href: string;
+  name: string;         // genus or binomial — rendered italic either way
+  fam: string;          // family / most-specific-clade line under the name
+  cladePath: string[];  // full lineage (species) or shared lineage (genus) → data-clade + nav counts
+  length: string;       // length-badge label (species only)
+  speciesCount: number; // >1 marks a genus hub card
+  lengthM: number;      // sort key
+  massKg: number;       // sort key
+  underRevision: boolean;
+  img: Awaited<ReturnType<typeof loadSkeletal>>;
+  alt: string;
+  imgSrc: string;       // raw public path — fallback when the optimizer has no match
+}
+
+const units: Unit[] = [];
+for (const g of genusGroups.values()) {
+  const collapse = g.species.length >= 2 && !allTaxonIds.has(g.slug);
+  if (collapse) {
+    // Representative plate: the featured species if one is flagged, else the largest.
+    const rep =
+      g.species.find((s) => s.data.featured) ??
+      [...g.species].sort((a, b) => (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0))[0];
+    const h = heroRef(rep.data);
+    const shared = sharedClade(g.species);
+    units.push({
+      isGenus: true,
+      id: g.slug,
+      href: `/${gallery}/${g.slug}/`,
+      name: g.genus,
+      fam: shared.at(-1) ?? rep.data.family ?? rep.data.clade.at(-1) ?? '',
+      cladePath: shared.length ? shared : expandClades(rep.data.clade),
+      length: '',
+      speciesCount: g.species.length,
+      lengthM: Math.max(...g.species.map((s) => s.data.lengthM ?? 0)),
+      massKg: Math.max(...g.species.map((s) => s.data.massKg ?? 0)),
+      underRevision: false, // a genus card is never withheld; its species carry that flag individually
       img: await loadSkeletal(h.src),
       alt: h.alt,
-      family: t.data.family ?? t.data.clade.at(-1) ?? '',
-      length: formatLength(t.data),
-    };
-  }),
-);
+      imgSrc: h.src,
+    });
+  } else {
+    for (const t of g.species) {
+      const h = heroRef(t.data);
+      units.push({
+        isGenus: false,
+        id: t.id,
+        href: `/${gallery}/${t.id}/`,
+        name: t.data.taxon,
+        fam: t.data.family ?? t.data.clade.at(-1) ?? '',
+        cladePath: expandClades(t.data.clade),
+        length: formatLength(t.data),
+        speciesCount: 1,
+        lengthM: t.data.lengthM ?? 0,
+        massKg: t.data.massKg ?? 0,
+        underRevision: t.data.underRevision,
+        img: await loadSkeletal(h.src),
+        alt: h.alt,
+        imgSrc: h.src,
+      });
+    }
+  }
+}
+units.sort((a, b) => a.name.localeCompare(b.name));
 
 // ── Clade drill-down nav data (CLAUDE.md §5 faceting; lib/clades LANDMARKS = the curated chip
-// pool). Precompute the subtree taxon-counts and the parent map for the clades actually present in
-// THIS gallery, then hand it all to the client, which recomputes chips as you drill in/out. ──
+// pool). Counts are per-CARD (units), not per-taxon, so the drill-down totals always match what the
+// grid shows — a collapsed genus counts once, at the shared clade it filters under. ──
 const count: Record<string, number> = {};
 const parent: Record<string, string> = {};
-for (const t of all) {
-  const lineage = expandClades(t.data.clade); // root-first, inclusive
-  lineage.forEach((c, i) => {
-    count[c] = (count[c] ?? 0) + 1; // subtree count (taxa nested at/under c)
-    if (i > 0) parent[c] = lineage[i - 1];
+for (const u of units) {
+  u.cladePath.forEach((c, i) => {
+    count[c] = (count[c] ?? 0) + 1; // subtree count (cards nested at/under c)
+    if (i > 0) parent[c] = u.cladePath[i - 1];
   });
 }
 const present = Object.keys(count);
@@ -78,7 +161,7 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
         <h1 class="display"><a href={`/${gallery}/`} id="gallery-home" title={`Back to all ${meta.label}`}>{meta.label}</a></h1>
         <p class="intro">{meta.intro}</p>
       </div>
-      <p class="count"><span id="count">{all.length}</span> reconstructions</p>
+      <p class="count"><span id="count">{units.length}</span> reconstructions</p>
     </header>
 
     <!-- Clade drill-down nav (populated by the script from #navdata) -->
@@ -111,33 +194,37 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     </div>
 
     <ul class="grid" id="grid">
-      {cards.map((c) => (
+      {units.map((u) => (
         <li
           class="card"
-          data-name={c.data.taxon}
-          data-length={c.data.lengthM ?? 0}
-          data-mass={c.data.massKg ?? 0}
-          data-clade={expandClades(c.data.clade).join('|')}
+          data-name={u.name}
+          data-length={u.lengthM}
+          data-mass={u.massKg}
+          data-clade={u.cladePath.join('|')}
         >
-          <a href={`/${gallery}/${c.id}/`}>
+          <a href={u.href}>
             <div class="thumb">
-              {c.data.underRevision ? (
+              {u.underRevision ? (
                 <span class="revising">Under revision</span>
               ) : (
                 <>
-                  {c.length && <span class="badge">{c.length}</span>}
-                  {c.img ? (
-                    <Image src={c.img} alt={c.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
+                  {u.isGenus ? (
+                    <span class="badge badge-count">{u.speciesCount} species</span>
                   ) : (
-                    <img src={heroRef(c.data).src} alt={c.alt} class="thumb-img" />
+                    u.length && <span class="badge">{u.length}</span>
+                  )}
+                  {u.img ? (
+                    <Image src={u.img} alt={u.alt} widths={[320, 640]} sizes="(max-width: 700px) 46vw, 300px" class="thumb-img" loading="lazy" />
+                  ) : (
+                    <img src={u.imgSrc} alt={u.alt} class="thumb-img" />
                   )}
                 </>
               )}
             </div>
             <div class="body">
               <span class="text">
-                <span class="name">{c.data.taxon}</span>
-                <span class="fam">{c.family}</span>
+                <span class="name">{u.name}</span>
+                <span class="fam">{u.fam}</span>
               </span>
               <span class="arrow">→</span>
             </div>
@@ -332,7 +419,9 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
      them are built in the client script (createElement) → they get no scope attribute → their
      styles must be global; see the is:global block after this one. */
   .clade-nav { margin: 30px 0 4px; padding-top: 20px; border-top: 1px solid var(--hair); }
-  .here-row { display: flex; align-items: center; gap: 12px; margin: 10px 0 26px; }
+  /* wrap so a long trail — or the full-width mobile label — drops the crumbs to the next line
+     instead of forcing a horizontal scroll (CLAUDE.md: no horizontal scroll on mobile, anywhere) */
+  .here-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 10px 0 26px; }
   .descend, .jump { display: flex; align-items: baseline; gap: 12px; margin: 10px 0; }
   .grp-label {
     flex-shrink: 0; width: 96px; white-space: nowrap; font-family: var(--font-mono); font-size: 10px;
@@ -371,6 +460,9 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px;
     letter-spacing: .08em; text-transform: uppercase; color: var(--measure); background: #ffffffcc; padding: 2px 6px; border-radius: 3px;
   }
+  /* genus-hub tell: the length badge is replaced by a species count, tinted gold so a hub card
+     reads at a glance as "several skeletals inside" rather than a single reconstruction */
+  .badge-count { color: var(--accent); border: 1px solid var(--accent-soft); }
   .revising {
     font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
     color: var(--accent); border: 1px solid var(--accent-soft); border-radius: 4px;
