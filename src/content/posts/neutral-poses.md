@@ -1,5 +1,5 @@
 ---
-title: "Neutral Poses &amp; Elmerfuddasaurus"
+title: "Neutral Poses & Elmerfuddasaurus"
 date: 2011-07-22T17:01:00Z
 kind: "Skeletal drawing topics"
 image:

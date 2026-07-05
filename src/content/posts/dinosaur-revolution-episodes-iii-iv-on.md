@@ -1,5 +1,5 @@
 ---
-title: "Dinosaur Revolution Episodes III &amp; IV on tonight on Discovery Science"
+title: "Dinosaur Revolution Episodes III & IV on tonight on Discovery Science"
 date: 2011-09-13T18:54:00Z
 image:
   src: /images/blog/dinosaur-revolution-episodes-iii-iv-on-1.webp
