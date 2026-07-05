@@ -9,7 +9,7 @@ image:
 ---
 The [Super *Spinosaurus*?](http://www.skeletaldrawing.com/home/super-spinosaurus6282013) post produced some interesting conversation; in particular [Marco](http://www.skeletaldrawing.com/home/super-spinosaurus6282013#comment-946128418) asked a good question about whether using the skull of the South American spinosaurid *Irritator* would have a material impact on the size of the animal.
 
-In addition to that question, and in anticipation of my promised look at mass estimates in the biggest theropods, I wanted to take this opportunity to briefly look at how how these scaling issues can lead to mass estimate bloat.
+In addition to that question, and in anticipation of my promised look at mass estimates in the biggest theropods, I wanted to take this opportunity to briefly look at how these scaling issues can lead to mass estimate bloat.
 
 If you haven't heard of Irritator, now would be the time to [go read up on it](http://en.wikipedia.org/wiki/Irritator). The name refers to what it sounds like - being downright annoyed at having to fix a previous attempt at preparing the skull (and discovering that some of the features were not actually real). But now that the skull is fully prepared and described, it provides the most complete articulated spinosaurid skull available. And as an added bonus it's also more closely related to *Spinosaurus* than to cousins *Baryonyx* and *Suchomimus*.
 
@@ -32,10 +32,10 @@ Which brings me to my last point: mass estimate bloat. Whether looking at giant 
 
 Remember the difference between varying proportions and scaling an entire animal up!
 
-Because of the non-linear relationship between linear dimensions and volume, scaling up an entire animal leads to exponential growth in the mass estimate. So a *T. rex* that is three feet longer than Sue may weigh several tons more. But that's only true if you are truly scaling up the hole animal, not just making a skull or a tail longer.
+Because of the non-linear relationship between linear dimensions and volume, scaling up an entire animal leads to exponential growth in the mass estimate. So a *T. rex* that is three feet longer than Sue may weigh several tons more. But that's only true if you are truly scaling up the whole animal, not just making a skull or a tail longer.
 
 My reconstruction of MSMN V4047, for example, is shorter than 16 meters in length. I try to be as careful as possible about not hiding the uncertainty in these estimates, so given how little of the tail is known I happily pointed out that the specimen could be anywhere from 15-17 meters (or even more) in length. But! I don't mean that you can take a mass estimate of the type specimen and scale it up to a 17 meter long animal - what I mean is that it's hypothetically possible that you can add an extra meter or two of tail to *Spinosaurus*. That means the mass estimate is still basically for a <16m long spinosaur that just has a couple dozen kilograms added in tail length, which is radically different from the 15-20 ton estimates you get the other way.
 
 Likewise, it's pointless to try and scale up isolated toe bones (like UCMP 137538, a single T. rex toe bone) because we don't know the proportions of the toe bone's owner. Not only is there normal variation in a population, but with pathology the amount can vary even in the same specimen (check out both hands of [Big Al](http://www.oucom.ohiou.edu/dbms-witmer/images/Allosaurus_BigAl_mount_R1-06741-0005.jpg), metacarpal one varies in length by almost 50%).
 
-I'm not trying to poo poo people who are interested in maximum size. But we need a bit more rigeur when trying to establish how big they were. And exactly how big do I think they are? It's coming, I promise.
+I'm not trying to poo poo people who are interested in maximum size. But we need a bit more rigor when trying to establish how big they were. And exactly how big do I think they are? It's coming, I promise.

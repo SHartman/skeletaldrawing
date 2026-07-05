@@ -26,7 +26,7 @@ Ok, enough ragging on "professor" [Ford](http://www.labnews.co.uk/news/prehistor
 
 The real problem here is that his personal speculation somehow got reported as news by the mainstream press. First, if this isn't an April Fools prank, it calls the editorial judgement of Laboratory News into serious question (and if it IS somehow a prank, why was it allowed to be spread pre- and post-April 1st to other media outlets?). Amusingly, on page 17 of the same issue of Laboratory News there is an article lamenting the state of science reporting in the news (seriously, I couldn't make this stuff up if I tried).
 
-If you or your lab has a subscriptions to Lab News, I'd seriously consider making inquiries, or simply dropping it. If they allow this sort of thing to happen, how can you trust the rest of their articles?
+If you or your lab has a subscription to Lab News, I'd seriously consider making inquiries, or simply dropping it. If they allow this sort of thing to happen, how can you trust the rest of their articles?
 
 More importantly, why on Earth was this story picked up and repeated by serious news outlets? Does [BBC Radio 4](http://news.bbc.co.uk/today/hi/today/newsid_9710000/9710630.stm) do any sort of review at all before they put someone on the air? Have journalistic standards sunk that low at the British Broadcasting Company? A quick listen to [the audio](http://news.bbc.co.uk/today/hi/today/newsid_9710000/9710630.stm) shows the show starting out as mildly skeptical, but concluding by comparing Ford to Galileo freakin' Galilei!
 

@@ -10,4 +10,4 @@ We're about halfway through the vote to determine what my next skeletal reconstr
 
 Looking over the data (closing in on 600 votes already) it's clear that different venues favored different dinosaurs. For example *Argentinosaurus* and *Protoceratops* are the current winners on Facebook, but they can't keep up with theropod mania on the other two polls. It'll be interesting to see if there are any lead changes before tomorrow night.
 
-I'll announce the winner on Monday, and do the skeletal drawing in the coming week, along with one or two other surprised (as time allows).
+I'll announce the winner on Monday, and do the skeletal drawing in the coming week, along with one or two other surprises (as time allows).

@@ -5,7 +5,7 @@ date: 2013-05-01T16:54:00Z
 
 I know, it's not exactly an earth-shaking post on anatomy or reconstructing prehistoric life, but as I mop up some of the duties that have taken me away from blogging the last few months I thought I'd share this trailer, which shows off some of what took time away from blogging last year at this time:
 
-I know that some will object to the anthropomorphization of the dinosaurs' actions, but actually a *ton of time* was spent on trying to develop less mammalian behaviors and expressions that would still read to an audience. In the end not all of them worked out, but the realities of such a project are that no movies with this sort of budget will get made if they people fronting the cash think audiences won't be able to relate to it.
+I know that some will object to the anthropomorphization of the dinosaurs' actions, but actually a *ton of time* was spent on trying to develop less mammalian behaviors and expressions that would still read to an audience. In the end not all of them worked out, but the realities of such a project are that no movies with this sort of budget will get made if the people fronting the cash think audiences won't be able to relate to it.
 
 I think the anatomy will be some of the best ever seen on the silver screen. The compositing and color in one or two of the shots don't look as good as say the Jurassic Park movies, but with a final release not coming until holidays in 2013 I seriously doubt the entire film has been through final color grading, so I wouldn't let that bother you.
 

@@ -16,13 +16,13 @@ So for those of you who illustrate the fleet-footed ornithomimids, you may need 
 
 There will also be questions about what those feathers were doing in such animals, which clearly did not fly or live in trees (and equally clearly did not evolve from flying or tree-dwelling ancestors); alas that will have to be another post. In the mean time, there are a couple other fun implications to consider from this paper:
 
-1) The *Ornithomimus* specimens are from fluvial deposits; for those non-geologists out there all you need to know is that most dinosaur deposits around the world are fluvial, so this discover means we will have a lot more museums taking a closer look at their specimens, rather than assuming that feathers can't be preserve outside of a few special depositional settings. In other words, there are going to be a lot more discoveries in the coming years now that more people know what to look for.
+1) The *Ornithomimus* specimens are from fluvial deposits; for those non-geologists out there all you need to know is that most dinosaur deposits around the world are fluvial, so this discovery means we will have a lot more museums taking a closer look at their specimens, rather than assuming that feathers can't be preserved outside of a few special depositional settings. In other words, there are going to be a lot more discoveries in the coming years now that more people know what to look for.
 
 2) Along those lines, not all of the feathered dinosaurs are from China anymore. Having been to China and seen many of the specimens personally this never was a big deal to me, but for the couple of stragglers that simply didn't want to believe in feathered dinosaurs, this should end any sort of conspiracy theory.
 
 3) Looking at the already-decided debate about whether birds are dinosaurs, I can't really say that this is the final nail in the coffin - realistically all of the nails were pounded into that coffin years ago. But this discovery makes sure there is a large concrete memorial placed on top of the coffin preventing it from ever being dug up again, and for those of you who lived through the original birds are dinosaurs wars that has to be comforting.
 
-If you have any thoughts or questions be sure to leave them below. And for the paleoartists out there, go forth and illustrated winged adult ornithomimids. Here is a skeletal to get you started:
+If you have any thoughts or questions be sure to leave them below. And for the paleoartists out there, go forth and illustrate winged adult ornithomimids. Here is a skeletal to get you started:
 
 ![](/images/blog/ornithomimus-had-wingsas-adult-2.webp)
 

@@ -49,7 +49,7 @@ Obviously things don't always work out this well - sometimes it's less clear whi
 
 While the degree to which a skeletal drawing is schematic or realistic isn't always black and white, the impact they have on paleo art is. When an artist bases a life reconstruction on a skeletal they need to have the real proportions and shape of the animal, which are just not available in schematic skeletal diagrams. And it's not just art - for better or worse researchers sometimes cull data such as relative limb proportions from published skeletal drawings. If, for example, a researcher was interested in comparing relative tail lengths in basal dinosaurs, it would matter very much which skeletal of *Panphagia* was evaluated.
 
-For some dinosaurs only a single skeletal reconstruction exists. Sometimes when when there are two or more they are quite different. So how is one to know which (if any) of the skeletals are meant to be more literal, and which are schematic? This brings me to the main issue of the day:
+For some dinosaurs only a single skeletal reconstruction exists. Sometimes when there are two or more they are quite different. So how is one to know which (if any) of the skeletals are meant to be more literal, and which are schematic? This brings me to the main issue of the day:
 
 **We need more transparency in skeletal drawing labels!**
 

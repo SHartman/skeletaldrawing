@@ -29,7 +29,7 @@ Since I was working with the UMNH, I got valuable input from several of the rese
 
 Resulting skeletal in hand, you can compare it to the most recent studies of the therizinosaur family tree, as well as the excellent research being done by Lindsay Zanno and Peter Makovicky on the origin of plant-eating in theropod dinosaurs, and *Falcarius* starts to tell an interesting tail about the order in which therizinosaur traits appeared.
 
-*Falcarius* appears to already be specialized for browsing for high forage. Given the lack of an enlarged gut for fermentation it probably preferred to seek out higher-quality plant matter, like fruiting bodies or seeds. The partially upright stance appears concurrently with a widening of the passage through the pelvis (not visible in side view) allowing move guts into that area, causing the center of gravity to sit further back despite the elongation of the neck.
+*Falcarius* appears to already be specialized for browsing for high forage. Given the lack of an enlarged gut for fermentation it probably preferred to seek out higher-quality plant matter, like fruiting bodies or seeds. The partially upright stance appears concurrently with a widening of the passage through the pelvis (not visible in side view) allowing more guts into that area, causing the center of gravity to sit further back despite the elongation of the neck.
 
 The large hand claws (from which the authors derived the name "sickle-cutter") may have allowed *Falcarius* to pick up small prey, but they also may have served as defense for a fairly slow animal with small teeth. The first toe is low and long enough to start interacting with the ground, perhaps to provide balance and stability when browsing high. All of these features would be carried to extremes in advanced therizinosaurs, but they seem to already be playing the same (albeit incipient) functional roles in *Falcarius*.
 
@@ -43,7 +43,7 @@ References:
 
 Kirkland, J. I., Zanno, L. E., Sampson, S. D., Clark, J. M. & DeBlieux, D. D., 2005. A primitive therizinosauroid dinosaur from the Early Cretaceous of Utah. Nature, v435, pp 84-87.
 
-Zanno, L. E. 2006. The pectoral girdle and forelimb of the primitive therizinosauroid *Falcarius utahensis* (Theropoda, Maniraptora): Analyzing evolutionary trends withing Therizinosauroidea. Journal of Vertebrate Paleontology, v26 n3, pp 636-650.
+Zanno, L. E. 2006. The pectoral girdle and forelimb of the primitive therizinosauroid *Falcarius utahensis* (Theropoda, Maniraptora): Analyzing evolutionary trends within Therizinosauroidea. Journal of Vertebrate Paleontology, v26 n3, pp 636-650.
 
 Zanno, L. E. 2010. [Osteology of](http://uwp.academia.edu/LindsayZanno/Papers/159107/Osteology_of_Falcarius_utahensis_Dinosauria_Theropoda_characterizing_the_anatomy_of_basal_therizinosaurs) *[Falcarius utahensis](http://uwp.academia.edu/LindsayZanno/Papers/159107/Osteology_of_Falcarius_utahensis_Dinosauria_Theropoda_characterizing_the_anatomy_of_basal_therizinosaurs)* [(Dinosauria: Theropoda): characterizing the anatomy of basal therizinosaurs](http://uwp.academia.edu/LindsayZanno/Papers/159107/Osteology_of_Falcarius_utahensis_Dinosauria_Theropoda_characterizing_the_anatomy_of_basal_therizinosaurs). Zoological Journal of the Linnean Society. v158, pp 196-230.
 

@@ -4,8 +4,8 @@ date: 2026-02-19T22:47:01Z
 excerpt: "A bunch of years ago I carefully planned out how to do more short-form content for this blog, and one of those ideas was for a series of You’re Doing it Wrong… posts highlighting common errors in documentaries, art and museum mounts. Maybe "
 image:
   src: /images/blog/21stcenturydimetrodon-2.webp
-  alt: "Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting…"
-  caption: "Just reposting my in-progress work on the backcone of Dimetrdon here. THat dip sure is interesting…"
+  alt: "Just reposting my in-progress work on the backbone of Dimetrodon here. That dip sure is interesting…"
+  caption: "Just reposting my in-progress work on the backbone of Dimetrodon here. That dip sure is interesting…"
 ---
 A bunch of years ago I carefully planned out how to do more short-form content for this blog, and one of those ideas was for a series of *You’re Doing it Wrong…* posts highlighting common errors in documentaries, art and museum mounts. Maybe I’ll still do some of those at some point, but I think it’s more interesting to highlight my own mistakes, and today we have one that I think is a doozy.
 

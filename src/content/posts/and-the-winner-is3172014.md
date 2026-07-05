@@ -19,7 +19,7 @@ It should be noted that after [lamenting the lack of interest](https://twitter.c
 
 To the right you can see the final vote tally - *Guanlong*, which after two and a half days of voting was holding down a respectable second place with 82 votes ended with an improbable 347 votes, quadrupling its vote total in the last 24 hours.
 
-The fact that both *Sauroposeidon* and *Guanlong* showed **much** stronger gains on the website poll (which was anonymous) than on [Facebook](https://www.facebook.com/SkeletalDrawing) or [DeviantArt](http://scotthartman.deviantart.com/) (both require logins) suggests that a small number of voters were following the "Vote early, vote often!" matra for their favorite dinosaurs (well, at least the "vote often" part).
+The fact that both *Sauroposeidon* and *Guanlong* showed **much** stronger gains on the website poll (which was anonymous) than on [Facebook](https://www.facebook.com/SkeletalDrawing) or [DeviantArt](http://scotthartman.deviantart.com/) (both require logins) suggests that a small number of voters were following the "Vote early, vote often!" mantra for their favorite dinosaurs (well, at least the "vote often" part).
 
 I have to say I'm really rather surprised that there was this degree of interest in the outcome. I didn't lay down any ground rules on how to vote, so *Guanlong* will be the next skeletal reconstruction I finish (though not the next skeletal I post...). I had no strong personal preference, my only concern is that everyone feel like their votes matter; as a result next time I'll take steps to prevent ballot box stuffing to quite this extent.
 

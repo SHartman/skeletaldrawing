@@ -15,7 +15,7 @@ One explanation was that the trackways were made by the same type of sauropods t
 
 Wilson & Carrano proposed that instead the trackways were made by sauropods with different skeletal adaptations. They mustered quite a few lines of evidence, but perhaps the best was that there was a group of sauropods - titanosaurs - that in fact had a much wider pelvis than other sauropods. The paper created a framework for later workers to use when attempting to correlate track makers with fossilized trackways, and is generally a towering success.
 
-But I did want to take issue with one figure of the paper - one that pops up repeatedly at SVP. It is figure 5, demonstrating their interpretation of hing leg stance:
+But I did want to take issue with one figure of the paper - one that pops up repeatedly at SVP. It is figure 5, demonstrating their interpretation of hind leg stance:
 
 ![](/images/blog/gauging-stance-in-wide-gauge-sauropods-2.webp)
 
@@ -27,9 +27,9 @@ Remember that narrow-gauged trackways actually have their feet fall so close tog
 
 (Elephant image from [here](http://tommyimages.com/Stock_Photos/Africa/Tanzania/Ngorongoro/slides/Tanzania_4329-Elephant_Walking-orig.html), rhino image from [here](http://www.wildlife-pictures-online.com/rhino_knp-0364.html).)
 
-People also move like this, with our vertical limbs generally sloping in toward the midline when we walk or run. There are probably several reasons for this (including mechanical efficiency) but for our purposes here let's just setting on the fact that it happens. Large, straight-limbed graviportal animals tend to walk with the limbs angled inward, not down (and certainly not angled out).
+People also move like this, with our vertical limbs generally sloping in toward the midline when we walk or run. There are probably several reasons for this (including mechanical efficiency) but for our purposes here let's just settle on the fact that it happens. Large, straight-limbed graviportal animals tend to walk with the limbs angled inward, not down (and certainly not angled out).
 
-And the trackways also demonstrate this. If you place place sauropods over the actual trackways in question, you end up with a stance more like this:
+And the trackways also demonstrate this. If you place sauropods over the actual trackways in question, you end up with a stance more like this:
 
 ![](/images/blog/gauging-stance-in-wide-gauge-sauropods-4.webp)
 

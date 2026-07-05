@@ -19,11 +19,11 @@ That lead to a lot of questions. I will be examining in greater detail skeletal 
 
 This is the main question I get. While it's been phrased several different ways, the crux of it is some people are concerned whether the (substantial) time investment in changing the pose in all of my skeletals is worth it. Of which the most substantive question is:
 
-**Will they will be less useful in another pose?**
+**Will they be less useful in another pose?**
 
 Several workers wrote to me with this concern - that by altering the pose it would make my skeletals less useful, since they would be more difficult to compare directly with Greg's. I am a strong supporter of standards in science, so I'm sympathetic to this claim. That said, due to the aforementioned hubbub the utility of those poses as a standard is rapidly eroding as several artists are now [altering](http://archosaurian.deviantart.com/gallery/#/d1838cx) their poses, or actively [advocating](http://qilong.wordpress.com/2011/03/09/skeletal-posture/) for everyone to use their own unique pose. Since artists are frequently somewhat conflict-averse, I expect this exodus to continue, regardless of legal standing.
 
-Given this larger perspective, I feel that we'd be better served to find a new pose to standardize on, perhaps one that can still be compared effectively with Greg's body of work. An open standard by design, so that other researchers/illustrators can feel free to adopt it without fear upsetting someone else who uses it. And by starting again we have an opportunity to "reboot" the standard skeletal pose, perhaps producing something even more useful then the original.
+Given this larger perspective, I feel that we'd be better served to find a new pose to standardize on, perhaps one that can still be compared effectively with Greg's body of work. An open standard by design, so that other researchers/illustrators can feel free to adopt it without fear upsetting someone else who uses it. And by starting again we have an opportunity to "reboot" the standard skeletal pose, perhaps producing something even more useful than the original.
 
 One obvious example: the "Greg Paul" pose for theropods, though iconic, is held back by its theoretical baggage. The pushing off the left foot while dashing around at a full sprint pose is not something that all researchers agree is possible in all theropods. Several times while providing a skeletal for another researchers publication I've been asked to alter the pose for this reason. I've done this a couple of times due to my own incredulity; for example I illustrated *Majungasaurus* in a walking pose, since I'm skeptical that it could sprint:
 

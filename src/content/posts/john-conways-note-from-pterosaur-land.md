@@ -17,13 +17,13 @@ When I first started to draw skeletals, I still very much wanted to be [Greg Pau
 
 ![](/images/blog/john-conways-note-from-pterosaur-land-2.webp)
 
-I tried walking poses and static poses, but never really settled on a standard. But its wasn’t until I started my first serious skeletals of pterosaurs that I really gave the matter of posing serious consideration. I gave it serious consideration because I had to: the running launch pose that Greg Paul was using is biologically inaccurate, and most walking poses for pterosaurs seriously obscure their anatomy.
+I tried walking poses and static poses, but never really settled on a standard. But it wasn’t until I started my first serious skeletals of pterosaurs that I really gave the matter of posing serious consideration. I gave it serious consideration because I had to: the running launch pose that Greg Paul was using is biologically inaccurate, and most walking poses for pterosaurs seriously obscure their anatomy.
 
 Greg Paul notes that he ignores the slight foreshortening that would be apparent because of the bow in dinosaur legs. And that’s fine for dinosaurs, because the effect is tiny. Not so for pterosaurs, as their semi-erect stance would foreshorten the humerus (possibly) and the femur significantly, meaning lateral-view skeletals give misleading information about pterosaur proportions. I was still interested in a standards pose for all the animals I was interested in, but I just couldn’t think of one. So I gave up, and just went with something that would best elucidate pterosaur anatomy: a three-view skeletal with the limbs arranged in the only biologically plausible, non-foreshortened way I could think of.
 
 ![](/images/blog/john-conways-note-from-pterosaur-land-3.webp)
 
-As time goes by, I’ve come thing think I made a good decision. Every single time a sit down to do a skeletal, I find that the doing three or more views requires me to correct errors that I would have missed if I were just doing lateral or dorsal views. It works for just about any vertebrate (be it a sprawler, a strider, a hopper, or what ever)
+As time goes by, I’ve come to think I made a good decision. Every single time I sit down to do a skeletal, I find that the doing three or more views requires me to correct errors that I would have missed if I were just doing lateral or dorsal views. It works for just about any vertebrate (be it a sprawler, a strider, a hopper, or what ever)
 
 However, I will admit that these skeletals aren’t exactly the most space efficient things in the world, and they may be a little dry for some contexts. However:
 

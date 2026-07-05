@@ -3,7 +3,7 @@ title: "Welcome to the official Skeletal Drawing.com Blog!"
 date: 2011-03-08T18:50:00Z
 ---
 
-For the first installment, let's get the the five W's out of the way:
+For the first installment, let's get the five W's out of the way:
 
 **Who:**
 

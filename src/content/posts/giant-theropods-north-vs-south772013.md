@@ -16,7 +16,7 @@ A few things worth noting:
 
 3) Sue almost certainly had a higher mass than the Giganotosaurus type specimen, as tyrannosaurs seem to have broader torsos for their size.
 
-4) So...that large isolated Giganotosaurus jaw? It's not really clear how much bigger that individual is, because there isn't perfect linear scaling between it and the type specimen (the isolated jaw is proportionately a bit deeper). My "best fit" version appears above, and indicates an animal about 6.5% longer than the type. THat would result in an animal over 13 meters in length, and also one that would be heavier than Sue.
+4) So...that large isolated Giganotosaurus jaw? It's not really clear how much bigger that individual is, because there isn't perfect linear scaling between it and the type specimen (the isolated jaw is proportionately a bit deeper). My "best fit" version appears above, and indicates an animal about 6.5% longer than the type. That would result in an animal over 13 meters in length, and also one that would be heavier than Sue.
 
 5) Yes, I know there are also fragments of even larger T. rex specimens. Unfortunately things like toe bones are even harder to try and scale up reliably, so I haven't attempted it (also I really would want to see the things first hand before I tried it).
 

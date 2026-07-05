@@ -7,7 +7,7 @@ image:
   alt: "The Jurassic World Mosasaurus making short work of a shark"
   caption: "The Jurassic World Mosasaurus making short work of a shark"
 ---
-Mosasaurs have become all the rage lately with the release (and immense popularity) of Jurassic World. Purely by coincidence I was commisioned to do a skeletal of a mosasaur, *Tylosaurus pembinensis*, for a museum display. I hadn't done a mosasaur before (or any other lizards), but I'm reasonably familiar with squamate osteology so I figured it wouldn't be nearly as challenging as doing a skeletal of say... an [actinopterygian fish](http://www.skeletaldrawing.com/non-dinosaurs/ichthyodectes).
+Mosasaurs have become all the rage lately with the release (and immense popularity) of Jurassic World. Purely by coincidence I was commissioned to do a skeletal of a mosasaur, *Tylosaurus pembinensis*, for a museum display. I hadn't done a mosasaur before (or any other lizards), but I'm reasonably familiar with squamate osteology so I figured it wouldn't be nearly as challenging as doing a skeletal of say... an [actinopterygian fish](http://www.skeletaldrawing.com/non-dinosaurs/ichthyodectes).
 
 <figure>
 <img src="/images/blog/mosasaurs-teaching-the-controversy-2.webp" alt="A &quot;traditional&quot; serpentine mosasaur, copyright Dan Varner" />
@@ -18,7 +18,7 @@ The bones weren't overly challenging, but the soft tissue proved to be a bit mor
 
 It's clear that at least a couple of mosasaurs had a hypocercal tail fin (a bi-lobed tail where the bottom part is larger), and it's been hypothesized based on phylogenetic positioning that many more mosasaurs had them to one degree or another as well. If so then many (if not most) taxa adopted a [semi-carangiform](https://en.wikipedia.org/wiki/Fish_locomotion) or full carangiform swimming style, where the body is quite stiff and the tail provides all of the propulsion.
 
-Alas, *Tylosaurus* is not one of the the genera that has skin impressions from the tail fin region, though there are scale impressions known from other parts of the body. So what evidence is there to go on? *Tylosaurus* does have a downturn in the caudal region, and pretty significant vertebral specialization. For these reasons as well as phylogenetic proximity to other mosasaurs with bilobed tails I tentatively endorse the hypocercal tail interpretation; though *Tylosaurus* does not appear to have been a true open-sea cruiser, it does appear to have the caudal series to supported a hypocercal tail. You can see the resulting skeletal reconstruction in the non-dinosaur skeletal gallery **[here](http://www.skeletaldrawing.com/non-dinosaurs/tylosaurus)**.
+Alas, *Tylosaurus* is not one of the genera that has skin impressions from the tail fin region, though there are scale impressions known from other parts of the body. So what evidence is there to go on? *Tylosaurus* does have a downturn in the caudal region, and pretty significant vertebral specialization. For these reasons as well as phylogenetic proximity to other mosasaurs with bilobed tails I tentatively endorse the hypocercal tail interpretation; though *Tylosaurus* does not appear to have been a true open-sea cruiser, it does appear to have the caudal series to support a hypocercal tail. You can see the resulting skeletal reconstruction in the non-dinosaur skeletal gallery **[here](http://www.skeletaldrawing.com/non-dinosaurs/tylosaurus)**.
 
 <figure>
 <img src="/images/blog/mosasaurs-teaching-the-controversy-3.webp" alt="Prognathodon tail with hypocercal tail fin impression. Credit Johan Lindgren" />

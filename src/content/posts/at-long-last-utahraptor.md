@@ -18,7 +18,7 @@ Since summer 2012, the question I have been asked more than any other was, "When
 <figcaption>Here is Utahraptor, in all of its crazy, robust goodness!</figcaption>
 </figure>
 
-Them there are some crazy proportions, right? *Utahraptor* turns out to be incredibly robust and stocky. It's tail was reduced in length, but also more mobile than other dromaeosaurs. Its torso was really short front-to-back, but had tall neural spines that must have supported powerful back muscles. The legs are clearly not those of a swift long-distance runner, but they are also remarkable robust, and must have been able to withstand (or dish out?) a tremendous amount of force.
+Them there are some crazy proportions, right? *Utahraptor* turns out to be incredibly robust and stocky. It's tail was reduced in length, but also more mobile than other dromaeosaurs. Its torso was really short front-to-back, but had tall neural spines that must have supported powerful back muscles. The legs are clearly not those of a swift long-distance runner, but they are also remarkably robust, and must have been able to withstand (or dish out?) a tremendous amount of force.
 
 Please check out the excellent website for the [*Utahraptor* Project](http://utahraptors.utahpaleo.org/), whose work makes this possible (and is hard at work collecting, preparing, and publishing new data!). If you are able to, I highly recommend supporting them on their [GoFundMe page](https://www.gofundme.com/utahraptor) as well.
 

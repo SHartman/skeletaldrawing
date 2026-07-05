@@ -8,7 +8,7 @@ As we saw in [Part 1](https://static.squarespace.com/static/51bf1cd3e4b0a897bf54
 
 **The Fall and Rise of Skeletal Restorations**
 
-Before we begin with the doom and gloom, I want to take care not to give off the wrong impression about the Bone Wars. It was a fascinating and productive time in the history of paleontology, and the results were a treasure trove of fossils that still delight artists and scientists more than a century later. Yet the time period had a chilling effect on the field of producing skeletal reconstructions. Nobody outlines were put on skeletal reconstructions for decades, and the skeletals that were published often were erroneous in their general proportions.
+Before we begin with the doom and gloom, I want to take care not to give off the wrong impression about the Bone Wars. It was a fascinating and productive time in the history of paleontology, and the results were a treasure trove of fossils that still delight artists and scientists more than a century later. Yet the time period had a chilling effect on the field of producing skeletal reconstructions. No body outlines were put on skeletal reconstructions for decades, and the skeletals that were published often were erroneous in their general proportions.
 
 (Marsh's *Stegosaurus*, sporting a bodacious mohawk)
 
@@ -62,7 +62,7 @@ Von Huene continued to publish, but at a reduced rate. Gilmore put out a landmar
 
 World War II further depressed the rate of paleontological publications, yet what was published shows that things had started to perk up. In China C. C. Young showed he was influenced by Huene's skeletal reconstructions, although anatomically-speaking the outlines sometimes appeared to be afterthoughts.
 
-(Well, at least he's trying - frome Young, 1942)
+(Well, at least he's trying - from Young, 1942)
 
 When Lull and Wright put out their monograph on hadrosaurs in 1942 it was in stark contrast to Lull’s ceratopsian monograph of the previous decade; it was chock full of skeletal reconstructions, including several illustrations by Nelda Wright that hearkened back to Huene's 1921 crouching *Procompsognathus*. She polished the idea, and the images were to directly influence the dinosaur renaissance in the 1970s.
 

@@ -45,6 +45,6 @@ So in conclusion, the point I want to make is this:
 
 People do not have to put realistic skeletal poses in their papers. They can use schematic diagrams (which partially relieves the burden) or use exploded diagrams (which completely removes it). The exploded diagram in particular conveys more morphological evidence then a traditional skeletal drawing, while being 100% agnostic about biomechanics.
 
-If authors/illustrators do choose to do a realistic skeletal reconstruction, then they should accept the need to place them in biomechanically sound poses. Inaccurate poses can distract from the other purposes of a skeletal diagram, and may mislead paleoartists. Down the line if such diagrams get incorporated into educational diagrams they also play a role in confusing students and consumers of popular scientific media...but that, two, is another post.
+If authors/illustrators do choose to do a realistic skeletal reconstruction, then they should accept the need to place them in biomechanically sound poses. Inaccurate poses can distract from the other purposes of a skeletal diagram, and may mislead paleoartists. Down the line if such diagrams get incorporated into educational diagrams they also play a role in confusing students and consumers of popular scientific media...but that, too, is another post.
 
 In the mean time, remember: Poses are important!

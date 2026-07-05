@@ -42,7 +42,7 @@ When pterosaurs were first discovered paleontologists weren't quite sure what to
 
 (Almost an outline!)
 
-In 1812 Samuel von Sömmerring did just this, providing a skeletal reconstruction that included his view of how the wings should be restored. While this isn't a full outline, the fact that pterosaurs had such extensive wing coverage means the it's largely just the head and neck that don't have an outline around them.
+In 1812 Samuel von Sömmerring did just this, providing a skeletal reconstruction that included his view of how the wings should be restored. While this isn't a full outline, the fact that pterosaurs had such extensive wing coverage means it's largely just the head and neck that don't have an outline around them.
 
 This debate was to rage on until the 1830s, and included several rounds of debate as to the proper way to restore the behavior and habitat of pterosaurs...but the important point for our story is that some of those scientists published the first complete outlines with their skeletal reconstructions, like Wagler's swimming *Pterodactylus* in 1830 (below).
 

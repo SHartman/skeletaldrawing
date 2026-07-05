@@ -13,9 +13,9 @@ To some degree, the walking pose shown above was selected by acclimation. When I
 
 **The Good**
 
-1) Utility - Greg Paul of course will continue to use his pose, and a number of previously published skeletals by other authors (including all of mine up until last year) had adopted the same pose. By selecting the walking pose the retracted left leg remains unchanged, allowing for a easy comparison of the proportions. This was probably the biggest factor.
+1) Utility - Greg Paul of course will continue to use his pose, and a number of previously published skeletals by other authors (including all of mine up until last year) had adopted the same pose. By selecting the walking pose the retracted left leg remains unchanged, allowing for an easy comparison of the proportions. This was probably the biggest factor.
 
-2) Functional Aesthetics - The old pose of animals sprinting along at a lively clip tended to impose a specific hypothesis of activity on the animals. While in some cases dashing along may have been quite likely, it still required that a research who wanted to use the skeletals to swallow that hypothesis, whether they agreed with it or not. With Velociraptor that wasn't unlikely, but with larger theropods it became needlessly controversial, and with graviportal taxa like therizinosaurs the results could be laughable.
+2) Functional Aesthetics - The old pose of animals sprinting along at a lively clip tended to impose a specific hypothesis of activity on the animals. While in some cases dashing along may have been quite likely, it still required that a researcher who wanted to use the skeletals to swallow that hypothesis, whether they agreed with it or not. With Velociraptor that wasn't unlikely, but with larger theropods it became needlessly controversial, and with graviportal taxa like therizinosaurs the results could be laughable.
 
 3) Laziness - I prefer "efficient" over "lazy", but no matter what label you place on it, this pose required a minimal amount of alteration to my existing skeletals. And the stark reality is that when you have to repose hundreds of technical illustrations that time adds up. Quickly. Of course this reason would not have been sufficient if it weren't for the more important points 1 & 2, but it sure was a nice bonus.
 

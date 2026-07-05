@@ -21,7 +21,7 @@ The biggest drawback to a pose like this is it shows off less of the anatomy, si
 
 ![](/images/blog/neutral-poses-2.webp)
 
-You can even show off some other pose (in this case the finders are lightly flexed), perhaps the other wrist could also demonstrate the degree of [pronation](http://en.wikipedia.org/wiki/Pronation) that is possible (in the case of *Archaeoceratops* it more or less already is), which would then pack in a bit more information. Of course if you move the other hind leg then you are pretty much back to putting the animal in a walk.
+You can even show off some other pose (in this case the fingers are lightly flexed), perhaps the other wrist could also demonstrate the degree of [pronation](http://en.wikipedia.org/wiki/Pronation) that is possible (in the case of *Archaeoceratops* it more or less already is), which would then pack in a bit more information. Of course if you move the other hind leg then you are pretty much back to putting the animal in a walk.
 
 Of course you don't have to put the feet on the ground - if we're looking for poses that are more neutral about locomotion we could instead illustrate as if the animal were lying on a virtual dissection table:
 
