@@ -211,8 +211,29 @@ const comments = defineCollection({
   }),
 });
 
-// Reserved for later phases (defined when their first entry/template lands):
-//   page        — standalone pages (About spokes, licensing, …)
-//   publication — phase 2 (folding in scotthartman.info)
+// Academic publications — the scholarly record folded in from scotthartman.info (CLAUDE.md §9), as
+// a collection so adding a paper is a one-field CMS entry, not a code edit. Powers the list on the
+// About → Research page; sorts newest-first by `year` unless `order` overrides. One file per paper.
+// (These are Hartman's OWN authored works — distinct from the "where my work appears" credits list,
+// which is others' books/papers that reproduce his art.)
+const publications = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '!README.md'], base: './src/content/publications' }),
+  schema: z.object({
+    authors: z.string(),        // full author string as it should read, e.g. "Lovelace, D. M., Hartman, S. A., …"
+    year: z.number(),
+    title: z.string(),
+    venue: optStr,              // journal or book, e.g. "PLOS ONE", "Nature Communications"
+    doi: optStr,                // bare DOI (e.g. "10.1371/journal.pone.0223872") — rendered as a doi.org link
+    url: optStr,                // explicit link when there's no DOI
+    kind: defStr('paper'),      // 'paper' | 'book' | 'chapter' — small type tag
+    note: optStr,               // e.g. "Skeletal diagrams by S. Hartman" for a contributed volume
+    featured: nullableDefault(z.boolean().default(false)),
+    order: optNum,              // manual sort override (lower = earlier); else by year, newest first
+    draft: nullableDefault(z.boolean().default(false)),
+  }),
+});
 
-export const collections = { taxa, specimens, posts, articles, resources, comments };
+// Reserved for later phases (defined when their first entry/template lands):
+//   page — standalone pages (About spokes if made CMS-editable, licensing, …)
+
+export const collections = { taxa, specimens, posts, articles, resources, comments, publications };

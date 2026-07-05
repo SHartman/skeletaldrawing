@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// About hub (CLAUDE.md §5) — the bio + the "expertise stamp", then three doors to the ways Scott's
+// work is used: licensing/commissions, media & film, and his academic research & teaching. Replaces
+// the old Squarespace dropdown (ME / MY ART / LICENSING / CONTACTING ME / PUBLICATIONS): the bio is
+// this page, contact is the site-wide /contact/, "my art" (a credits list) folds into Licensing, and
+// publications live under Research. Prose here is authored in-page for now (low edit frequency); the
+// publications LIST is a CMS collection so it can grow without code.
+
+const doors = [
+  {
+    href: '/about/licensing/',
+    kicker: 'For museums, publishers & educators',
+    title: 'Licensing & commissions',
+    blurb:
+      'Skeletal reconstructions and life restorations to license for exhibits, books, film, and the classroom — or commissioned new for your specimen.',
+  },
+  {
+    href: '/about/media/',
+    kicker: 'For documentary & film',
+    title: 'Media & film',
+    blurb:
+      'Scientific consulting and original artwork for documentaries and productions that want the anatomy to be right.',
+  },
+  {
+    href: '/about/research/',
+    kicker: 'At UW–Madison',
+    title: 'Research & teaching',
+    blurb:
+      'Paleobiology research, peer-reviewed publications, and the teaching that keeps the reconstructions grounded in current science.',
+  },
+];
+
+const title = 'About Scott Hartman — paleontologist & paleoartist | Skeletal Drawing';
+const description =
+  'Dr. Scott Hartman is a vertebrate paleontologist, paleoartist, and educator at the University of Wisconsin–Madison. Licensing and commissions, media and film consulting, and research and teaching.';
+---
+
+<BaseLayout title={title} description={description} ogType="profile">
+  <main class="wrap about">
+    <header class="head">
+      <p class="eyebrow">About</p>
+      <h1 class="display">Scott Hartman</h1>
+      <p class="lede">
+        Vertebrate paleontologist, paleoartist, and educator at the University of Wisconsin–Madison —
+        two decades of measured, specimen-based skeletal reconstructions, used in peer-reviewed
+        research, museum exhibits, documentaries, and print.
+      </p>
+    </header>
+
+    <section class="bio">
+      <p>
+        I grew up with a passion for dinosaurs and everything science. Growing up in Wisconsin and
+        California I had access to great museums but not many rock exposures, so for my undergraduate
+        education I attended the University of Wyoming, where I'm forever grateful for the field and
+        museum experience I gained. Before graduate school I moved to Thermopolis, Wyoming, where I
+        managed research, collections, and display development at the Wyoming Dinosaur Center. Around
+        this time I also started producing what has become a large catalog of skeletal anatomy diagrams —
+        the ones you'll find across this site.
+      </p>
+      <p>
+        My work at the WDC rekindled my drive to become a professional research scientist, so I
+        relocated to Wisconsin to pursue a paleobiology Ph.D. My dissertation research emphasized
+        mechanistic physiological modeling, mass-extinction survivorship, and functional anatomy. These
+        days I'm still in Wisconsin, teaching those same subjects to undergraduates in the Department of
+        Integrative Biology — and still drawing.
+      </p>
+    </section>
+
+    <nav class="doors" aria-label="About sections">
+      {doors.map((d) => (
+        <a class="door" href={d.href}>
+          <span class="door-kicker">{d.kicker}</span>
+          <span class="door-title">{d.title}</span>
+          <span class="door-blurb">{d.blurb}</span>
+          <span class="door-go">Read more <span class="arrow">→</span></span>
+        </a>
+      ))}
+    </nav>
+
+    <aside class="contact-cta">
+      <p class="cc-text">Have a question, a correction, or a project in mind?</p>
+      <a class="cc-btn" href="/contact/">Get in touch →</a>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .head { max-width: 62ch; margin: 48px 0 0; }
+  .eyebrow {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(44px, 7vw, 76px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .lede { margin: 20px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink); max-width: 56ch; }
+
+  .bio { margin: 34px 0 0; max-width: 64ch; }
+  .bio p { margin: 0 0 1.05em; font-size: 17px; line-height: 1.7; color: var(--ink); }
+  .bio p:last-child { margin-bottom: 0; }
+
+  .doors {
+    margin: 46px 0 0; display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .door {
+    display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--ink);
+    border: 1px solid var(--hair-strong); background: var(--plate); border-radius: 6px; padding: 22px 24px;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .door:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,24,21,.10); }
+  .door-kicker { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); }
+  .door-title { font-style: italic; font-weight: 500; font-size: clamp(22px, 2.6vw, 27px); line-height: 1.1; }
+  .door-blurb { font-size: 15px; line-height: 1.55; color: var(--slate); margin-top: 2px; }
+  .door-go { margin-top: auto; padding-top: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .door-go .arrow { transition: margin-left .15s ease; }
+  .door:hover .arrow { margin-left: 4px; }
+
+  .contact-cta {
+    margin: 40px 0 0; padding: 22px 26px; border-top: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  }
+  .cc-text { margin: 0; font-size: 17px; color: var(--ink); }
+  .cc-btn {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+  .cc-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+  }
+</style>

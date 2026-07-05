@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// About → Media & film. The consulting / production side (documentaries, film). Historically the
+// website + an IMDB page are how productions find Scott. Selected credits + the IMDB link are
+// owner-supplied (marked below) — nothing fabricated here.
+
+const title = 'Media & film consulting — Scott Hartman | Skeletal Drawing';
+const description =
+  'Scientific consulting and original paleoart for documentaries and film — Scott Hartman helps productions get the anatomy and the science of extinct animals right.';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="wrap media">
+    <header class="head">
+      <p class="eyebrow"><a href="/about/">About</a> <span aria-hidden="true">/</span> Media &amp; film</p>
+      <h1 class="display">Media &amp; film</h1>
+      <p class="lede">
+        I consult for documentaries and film productions that want their extinct animals to be more than
+        plausible — to match what the fossils actually show. That ranges from a quick anatomy review to
+        original reference art the animation team can build from.
+      </p>
+    </header>
+
+    <section class="what">
+      <ul class="what-list">
+        <li>
+          <h2 class="w-h">Scientific consulting</h2>
+          <p>Anatomy, posture, movement, and up-to-date science — reviewing designs and scripts so the reconstructions on screen hold up.</p>
+        </li>
+        <li>
+          <h2 class="w-h">Reference & original art</h2>
+          <p>Skeletal reconstructions and life restorations produced for a production's specific animals, views, and shots.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="credits block">
+      <h2 class="sec-h">Selected credits</h2>
+      {/* TODO(owner content): a short list of selected documentary / film credits goes here, plus the
+          IMDB profile link. Supply the titles + IMDB URL and this becomes a credits list with a link. */}
+      <p class="credits-lede">
+        My reconstructions and consulting have supported documentary and popular-science productions on
+        dinosaurs and other extinct animals. A selected-credits list is on the way.
+      </p>
+    </section>
+
+    <aside class="contact-cta">
+      <p class="cc-text">Working on a production? Let's make the science right.</p>
+      <a class="cc-btn" href="/contact/">Discuss a project →</a>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .head { max-width: 64ch; margin: 48px 0 0; }
+  .eyebrow {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+  .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(38px, 6vw, 62px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .lede { margin: 20px 0 0; font-size: 18.5px; line-height: 1.62; color: var(--ink); max-width: 62ch; }
+
+  .what { margin: 40px 0 0; }
+  .what-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .what-list li { border-top: 2px solid var(--ink); padding-top: 14px; }
+  .w-h { margin: 0 0 8px; font-style: italic; font-weight: 500; font-size: 22px; }
+  .what-list p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--slate); }
+
+  .block { margin: 44px 0 0; }
+  .sec-h {
+    margin: 0 0 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
+  }
+  .credits-lede { margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
+
+  .contact-cta {
+    margin: 40px 0 0; padding: 22px 26px; border-top: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  }
+  .cc-text { margin: 0; font-size: 17px; color: var(--ink); }
+  .cc-btn {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+  .cc-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+  }
+</style>

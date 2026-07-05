@@ -248,3 +248,29 @@ collections:
       - { name: website, label: "Link", widget: string, required: false }
       - { name: source, label: "Source", widget: select, options: ["site", "disqus"], default: "site" }
       - { name: body, label: "Comment text", widget: text }
+
+  - name: publications
+    label: "Publications — your papers"
+    label_singular: "Publication"
+    folder: "src/content/publications"
+    # Your OWN authored works, shown on About → Research. (The 'where my work appears' credits list —
+    # others' books/papers that reproduce your art — is separate.)
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: "{{year}}-{{slug}}"
+    summary: "{{year}} — {{title}}"
+    sortable_fields: [year, title]
+    fields:
+      - { name: authors, label: "Authors", widget: string, hint: "Full author list as it should read, e.g. Lovelace, D. M., Hartman, S. A., & Porter, W. P." }
+      - { name: year, label: "Year", widget: number, value_type: int }
+      - { name: title, label: "Title", widget: string }
+      - { name: venue, label: "Journal / venue", widget: string, required: false, hint: "e.g. PLOS ONE, Nature Communications, or the book/publisher" }
+      - { name: doi, label: "DOI", widget: string, required: false, hint: "Bare DOI only, e.g. 10.1371/journal.pone.0223872 — rendered as a doi.org link." }
+      - { name: url, label: "Link (if no DOI)", widget: string, required: false }
+      - { name: kind, label: "Kind", widget: select, options: ["paper", "book", "chapter"], default: "paper", required: false }
+      - { name: note, label: "Note", widget: string, required: false, hint: "e.g. Skeletal diagrams by S. Hartman (for a contributed volume)." }
+      - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
+      - { name: order, label: "Sort order override", widget: number, required: false, value_type: int, hint: "Lower sorts first. Leave blank to sort by year, newest first." }
+      - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }

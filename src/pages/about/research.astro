@@ -1,0 +1,170 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// About → Research & teaching. The academic identity + the scholarly record folded in from
+// scotthartman.info (CLAUDE.md §9). Projects are authored here; the publication list is the
+// `publications` CMS collection, so adding a paper never touches code.
+const projects = [
+  {
+    title: 'Functional anatomy',
+    tagline: 'Putting extinct animals back together',
+    blurb:
+      'Reconstructing how the skeletons of extinct animals fit together and moved — the anatomical groundwork every skeletal on this site is built on.',
+  },
+  {
+    title: 'Physiological modeling',
+    tagline: 'Investigating the physiologies of extinct vertebrates',
+    blurb:
+      'Using mechanistic microclimate and physiological models to test what early dinosaurs and their relatives could actually do — and where their bodies constrained them.',
+  },
+  {
+    title: 'Origin of avian flight',
+    tagline: 'Breaking the false ground-up / trees-down dichotomy',
+    blurb:
+      'Working out how flight arose along the bird stem, using detailed functional anatomy of the earliest paravians rather than a forced either/or.',
+  },
+];
+
+const pubs = (await getCollection('publications')).filter((p) => !p.data.draft);
+pubs.sort(
+  (a, b) =>
+    (a.data.order ?? Infinity) - (b.data.order ?? Infinity) ||
+    b.data.year - a.data.year ||
+    a.data.title.localeCompare(b.data.title),
+);
+
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+// Bold the author's own surname wherever it appears — the standard way a scholar's CV highlights their
+// papers. Content is first-party, but we escape first so the only markup is our own <strong>.
+const boldHartman = (authors: string) => esc(authors).replace(/Hartman/g, '<strong>Hartman</strong>');
+const linkFor = (d: (typeof pubs)[number]['data']) =>
+  d.doi ? `https://doi.org/${d.doi}` : d.url || null;
+
+const CV_HREF = '/downloads/scott-hartman-cv.pdf';
+
+const title = 'Research & teaching — Scott Hartman | Skeletal Drawing';
+const description =
+  'Dr. Scott Hartman’s paleobiology research and teaching at UW–Madison: functional anatomy, physiological modeling, the origin of avian flight, and a full list of peer-reviewed publications.';
+---
+
+<BaseLayout title={title} description={description} ogType="profile">
+  <main class="wrap research">
+    <header class="head">
+      <p class="eyebrow"><a href="/about/">About</a> <span aria-hidden="true">/</span> Research &amp; teaching</p>
+      <h1 class="display">Research &amp; teaching</h1>
+      <p class="lede">
+        Alongside the reconstructions, I'm a paleobiologist at the University of Wisconsin–Madison,
+        teaching anatomy, evolution, and biomechanics to undergraduates in the Department of Integrative
+        Biology. The research keeps the drawings honest: every skeletal here rests on the same functional
+        anatomy I study and publish on.
+      </p>
+    </header>
+
+    <section class="block">
+      <h2 class="sec-h">Current research</h2>
+      <ul class="projects">
+        {projects.map((p) => (
+          <li class="project">
+            <h3 class="proj-title">{p.title}</h3>
+            <p class="proj-tag">“{p.tagline}”</p>
+            <p class="proj-blurb">{p.blurb}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2 class="sec-h">Publications</h2>
+      <ol class="pubs">
+        {pubs.map((p) => {
+          const href = linkFor(p.data);
+          return (
+            <li class="pub">
+              <span class="pub-line">
+                <span set:html={boldHartman(p.data.authors)} />{' '}
+                <span class="pub-year">({p.data.year}).</span>{' '}
+                <span class="pub-title">{p.data.title}.</span>{' '}
+                {p.data.venue && (<span class="pub-venue"><em>{p.data.venue}</em>.</span>)}
+                {p.data.note && (<span class="pub-note"> {p.data.note}.</span>)}
+              </span>
+              {href && (
+                <a class="pub-link" href={href} target="_blank" rel="noopener">
+                  {p.data.doi ? `doi:${p.data.doi}` : 'Read →'}
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+      <p class="pubs-note">A current CV, with talks and the complete list, is available on request.</p>
+    </section>
+
+    <aside class="rail">
+      <a class="rail-btn" href={CV_HREF} target="_blank" rel="noopener">Download CV (PDF)</a>
+      <a class="rail-btn ghost" href="/contact/">Academic &amp; teaching enquiries →</a>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .head { max-width: 64ch; margin: 48px 0 0; }
+  .eyebrow {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+  .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(38px, 6vw, 62px); line-height: 1.0; letter-spacing: -.015em;
+  }
+  .lede { margin: 20px 0 0; font-size: 18.5px; line-height: 1.62; color: var(--ink); max-width: 62ch; }
+
+  .block { margin: 46px 0 0; }
+  .sec-h {
+    margin: 0 0 20px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
+  }
+
+  .projects { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .project { border-top: 2px solid var(--ink); padding-top: 14px; }
+  .proj-title { margin: 0; font-style: italic; font-weight: 500; font-size: 21px; }
+  .proj-tag { margin: 6px 0 0; font-size: 15px; color: var(--accent); }
+  .proj-blurb { margin: 10px 0 0; font-size: 15px; line-height: 1.58; color: var(--slate); }
+
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pub {
+    padding: 16px 0; border-top: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 20px;
+  }
+  .pub:first-child { border-top: 0; }
+  .pub-line { font-size: 16px; line-height: 1.55; color: var(--ink); max-width: 74ch; }
+  .pub-line :global(strong) { font-weight: 600; }
+  .pub-year { color: var(--slate); }
+  .pub-title { }
+  .pub-venue { color: var(--slate); }
+  .pub-note { color: var(--measure); font-style: italic; }
+  .pub-link {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--accent);
+    text-decoration: none; white-space: nowrap; border-bottom: 1px solid var(--accent-soft);
+  }
+  .pub-link:hover { color: var(--ink); }
+  .pubs-note { margin: 20px 0 0; font-size: 14px; color: var(--measure); }
+
+  .rail { margin: 40px 0 0; padding-top: 24px; border-top: 1px solid var(--hair); display: flex; flex-wrap: wrap; gap: 14px; }
+  .rail-btn {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    text-decoration: none; padding: 12px 20px; border-radius: 4px;
+    color: var(--mast-fg); background: var(--ink); transition: opacity .15s ease;
+  }
+  .rail-btn:hover { opacity: .88; }
+  .rail-btn.ghost { color: var(--accent); background: transparent; border: 1px solid var(--accent-soft); }
+  .rail-btn.ghost:hover { opacity: 1; border-color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 18px; }
+  }
+</style>
