@@ -107,7 +107,9 @@ const title = `${d.title} | Skeletal Drawing`;
 
   .prose { padding: 30px 0 6px; }
   .prose :global(p) { font-size: 19px; line-height: 1.7; margin: 0 0 1.2em; }
-  .prose :global(p:first-of-type::first-letter) {
+  /* Drop cap on the OPENING paragraph only — must be a direct child of .prose, or `:first-of-type`
+     (which is scoped per parent) also drop-caps the first paragraph inside every list item. */
+  .prose > :global(p:first-of-type::first-letter) {
     font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
     font-weight: 500; color: var(--accent);
   }
