@@ -1,0 +1,274 @@
+---
+import { getCollection } from 'astro:content';
+
+// Reader comments for one post. Display is pure static HTML (zero JS to READ); the posting
+// form is the only JS, and only renders when a Turnstile site key is configured (in dev we
+// fall back to Cloudflare's official always-passes test key so the form is previewable).
+//
+// Comment text is the file body, rendered escaped + linkified — never via the Markdown
+// pipeline — so untrusted input can't inject markup even before moderation.
+interface Props {
+  post: string;
+  postTitle: string;
+}
+const { post, postTitle } = Astro.props;
+
+const all = (await getCollection('comments')).filter((c) => c.data.post === post && c.data.approved);
+all.sort((a, b) => a.data.date.getTime() - b.data.date.getTime()); // oldest first — reads as a conversation
+
+const byId = new Map(all.map((c) => [c.id, c]));
+const hasParent = (c: (typeof all)[number]) => !!(c.data.parent && byId.has(c.data.parent));
+// A comment's thread root: walk parents up (guarding against cycles) to the top-level ancestor.
+function rootId(c: (typeof all)[number]): string {
+  let cur = c;
+  const seen = new Set<string>();
+  while (hasParent(cur) && !seen.has(cur.id)) {
+    seen.add(cur.id);
+    cur = byId.get(cur.data.parent!)!;
+  }
+  return cur.id;
+}
+// A reply whose DIRECT parent isn't its thread root loses context when flattened to one tier —
+// surface a small "replying to <name>" so a deep archived thread still reads correctly.
+const replyToName = (c: (typeof all)[number]): string | null => {
+  if (!hasParent(c)) return null;
+  const parent = byId.get(c.data.parent!)!;
+  return parent.id === rootId(c) ? null : parent.data.author;
+};
+
+const roots = all.filter((c) => !hasParent(c));
+const repliesByRoot = new Map<string, typeof all>();
+for (const c of all) {
+  if (!hasParent(c)) continue;
+  const r = rootId(c);
+  const list = repliesByRoot.get(r) ?? [];
+  list.push(c); // deep Disqus nesting flattens to a single reply tier
+  repliesByRoot.set(r, list);
+}
+const fmtDate = (dt: Date) =>
+  dt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+const esc = (s: string) =>
+  s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+// Escape FIRST, then turn bare URLs into links — so the only markup in the output is our own anchors.
+const renderBody = (raw: string) =>
+  esc(raw.trim())
+    .split(/\n{2,}/)
+    .map(
+      (para) =>
+        `<p>${para
+          .replace(/\n/g, '<br>')
+          .replace(/https?:\/\/[^\s<]+/g, (u) => `<a href="${u}" rel="nofollow ugc noopener" target="_blank">${u}</a>`)}</p>`,
+    )
+    .join('');
+
+// Resolve everything into a plain view model here, so the template stays trivial (no function
+// calls, destructuring, or template literals inside JSX — those desync Astro's expression scanner).
+const node = (c: (typeof all)[number]) => ({
+  anchor: 'comment-' + c.id,
+  author: c.data.author,
+  website: c.data.website ?? null,
+  dateISO: c.data.date.toISOString(),
+  dateLabel: fmtDate(c.data.date),
+  archived: c.data.source === 'disqus',
+  bodyHtml: renderBody(c.body ?? ''),
+});
+type Node = ReturnType<typeof node> & { replyTo?: string | null };
+const authorHtml = (n: Node) =>
+  n.website
+    ? `<a href="${esc(n.website)}" rel="nofollow ugc noopener" target="_blank">${esc(n.author)}</a>`
+    : esc(n.author);
+const metaHtml = (n: Node) =>
+  `<span class="c-meta">${n.replyTo ? `<span class="c-rt">replying to ${esc(n.replyTo)}</span>` : ''}${
+    n.archived ? '<span class="c-arch">from the archive</span>' : ''
+  }<time datetime="${n.dateISO}">${esc(n.dateLabel)}</time></span>`;
+const commentHtml = (n: Node, repliesHtml = '') =>
+  `<li class="c${n.replyTo !== undefined ? ' c-reply' : ''}" id="${esc(n.anchor)}">` +
+  `<div class="c-head"><span class="c-author">${authorHtml(n)}</span>${metaHtml(n)}</div>` +
+  `<div class="c-body">${n.bodyHtml}</div>${repliesHtml}</li>`;
+// Assemble the whole thread as a pre-escaped HTML string in the frontmatter, then inject it once —
+// Astro's template compiler can't handle a nested .map()-returning-JSX inside a ternary inside a .map().
+const threadHtml =
+  '<ol class="thread">' +
+  roots
+    .map((c) => {
+      const replies = repliesByRoot.get(c.id) ?? [];
+      const repliesHtml = replies.length
+        ? `<ol class="replies">${replies
+            .map((r) => commentHtml({ ...node(r), replyTo: replyToName(r) }))
+            .join('')}</ol>`
+        : '';
+      return commentHtml(node(c), repliesHtml);
+    })
+    .join('') +
+  '</ol>';
+
+// Posting form gates on a real Turnstile key in production; dev uses Cloudflare's public test key.
+const TURNSTILE_KEY =
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (import.meta.env.DEV ? '1x00000000000000000000AA' : null);
+const showForm = !!TURNSTILE_KEY;
+const count = all.length;
+const hasComments = count > 0;
+const showSection = showForm || hasComments;
+const heading = hasComments ? `${count} ${count === 1 ? 'comment' : 'comments'}` : 'Comments';
+---
+
+{
+  showSection && (
+    <section class="comments" aria-labelledby="comments-h">
+      <h2 class="comments-h" id="comments-h">{heading}</h2>
+
+      {hasComments ? <Fragment set:html={threadHtml} /> : null}
+
+      {showForm ? (
+        <div class="c-form-wrap">
+          <h3 class="c-form-h">{hasComments ? 'Join the discussion' : 'Start the discussion'}</h3>
+          <form class="c-form" id="c-form" method="POST" action="/api/comments">
+            <input type="hidden" name="post" value={post} />
+            <input type="hidden" name="postTitle" value={postTitle} />
+            <p class="c-hp" aria-hidden="true">
+              <label>
+                Leave this field empty
+                <input type="text" name="url" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+            <div class="c-grid">
+              <label class="c-field">
+                <span class="c-label">Name</span>
+                <input type="text" name="author" required maxlength="80" autocomplete="name" />
+              </label>
+              <label class="c-field">
+                <span class="c-label">
+                  Email <span class="c-hint">— never published</span>
+                </span>
+                <input type="email" name="email" required maxlength="120" autocomplete="email" />
+              </label>
+            </div>
+            <label class="c-field">
+              <span class="c-label">
+                Affiliation or link <span class="c-hint">— optional</span>
+              </span>
+              <input type="url" name="link" maxlength="200" placeholder="https://" />
+            </label>
+            <label class="c-field">
+              <span class="c-label">Comment</span>
+              <textarea name="text" required rows="5" maxlength="5000" />
+            </label>
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_KEY} />
+            <div class="c-actions">
+              <button type="submit" class="c-submit">
+                Post comment
+              </button>
+              <p class="c-status" id="c-status" role="status" aria-live="polite" />
+            </div>
+            <p class="c-fine">
+              Comments are reviewed before they appear. Use your real name; your email is only so I can
+              reply — it's never shown.
+            </p>
+          </form>
+          <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+          <script is:inline>
+            document.addEventListener('DOMContentLoaded', () => {
+              const form = document.getElementById('c-form');
+              if (!form) return;
+              const status = document.getElementById('c-status');
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (form.querySelector('input[name="url"]').value) return; // honeypot tripped
+                const btn = form.querySelector('.c-submit');
+                btn.disabled = true;
+                status.className = 'c-status';
+                status.textContent = 'Sending…';
+                try {
+                  const res = await fetch('/api/comments', { method: 'POST', body: new FormData(form) });
+                  if (!res.ok) throw new Error(String(res.status));
+                  form.reset();
+                  if (window.turnstile) window.turnstile.reset();
+                  status.textContent = 'Thanks — your comment will appear once it’s reviewed.';
+                  status.classList.add('ok');
+                } catch (err) {
+                  status.textContent = 'Something went wrong — please try again, or email me.';
+                  status.classList.add('err');
+                } finally {
+                  btn.disabled = false;
+                }
+              });
+            });
+          </script>
+        </div>
+      ) : (
+        <p class="c-closed">
+          Have a question or correction? <a href="/contact/">Get in touch</a> — threaded commenting is
+          being set up.
+        </p>
+      )}
+    </section>
+  )
+}
+
+<!-- The thread is injected via set:html, which Astro's SCOPED styles can't reach; so these are
+     GLOBAL, with every selector anchored under `.comments` to keep them from leaking off this section. -->
+<style is:global>
+  .comments { max-width: 720px; margin: 46px auto 0; padding-top: 28px; border-top: 1px solid var(--hair); }
+  .comments .comments-h {
+    margin: 0 0 24px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
+  }
+
+  .comments .thread, .comments .replies { list-style: none; margin: 0; padding: 0; }
+  .comments .c { margin: 0 0 26px; }
+  .comments .c-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; }
+  .comments .c-author { font-size: 17px; font-weight: 600; color: var(--ink); }
+  .comments .c-author a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .comments .c-meta { display: inline-flex; align-items: baseline; gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--measure); }
+  .comments .c-arch {
+    text-transform: uppercase; letter-spacing: .12em; color: var(--slate);
+    border: 1px solid var(--hair-strong); border-radius: 3px; padding: 1px 6px;
+  }
+  .comments .c-rt { font-style: normal; color: var(--slate); }
+  .comments .c-body { margin: 8px 0 0; }
+  .comments .c-body p { margin: 0 0 .7em; font-size: 16.5px; line-height: 1.62; color: var(--ink); }
+  .comments .c-body p:last-child { margin-bottom: 0; }
+  .comments .c-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); word-break: break-word; }
+
+  .comments .replies { margin: 20px 0 0; padding-left: 22px; border-left: 2px solid var(--hair); }
+  .comments .c-reply { margin-bottom: 20px; }
+  .comments .c-reply:last-child { margin-bottom: 0; }
+  .comments .c-reply .c-author { font-size: 16px; }
+
+  /* ---- form ---- */
+  .comments .c-form-wrap { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--hair); }
+  .comments .c-form-h { margin: 0 0 18px; font-style: italic; font-weight: 500; font-size: clamp(22px, 3.4vw, 30px); }
+  .comments .c-form { display: grid; gap: 16px; }
+  .comments .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .comments .c-field { display: grid; gap: 6px; }
+  .comments .c-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+  .comments .c-hint { text-transform: none; letter-spacing: 0; color: var(--measure); }
+  .comments .c-form input, .comments .c-form textarea {
+    font-family: var(--font-serif); font-size: 16px; color: var(--ink);
+    background: var(--plate); border: 1px solid var(--hair-strong); border-radius: 4px; padding: 10px 12px;
+  }
+  .comments .c-form textarea { resize: vertical; line-height: 1.55; }
+  .comments .c-form input:focus, .comments .c-form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
+  .comments .c-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .comments .c-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .comments .c-submit {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--mast-fg); background: var(--ink); border: none; border-radius: 4px;
+    padding: 12px 22px; cursor: pointer; transition: opacity .15s ease;
+  }
+  .comments .c-submit:hover { opacity: .88; }
+  .comments .c-submit:disabled { opacity: .5; cursor: default; }
+  .comments .c-status { margin: 0; font-size: 14px; color: var(--slate); }
+  .comments .c-status.ok { color: var(--accent); }
+  .comments .c-status.err { color: #b3402e; }
+  .comments .c-fine { margin: 0; font-size: 13px; line-height: 1.5; color: var(--measure); }
+
+  .comments .c-closed { margin: 30px 0 0; font-size: 15px; color: var(--slate); }
+  .comments .c-closed a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+  @media (max-width: 560px) {
+    .comments .c-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -187,8 +187,31 @@ const resources = defineCollection({
   }),
 });
 
+// Reader comments — moderated, git-owned, static-rendered. ONE FILE PER COMMENT: a pure
+// create for the serverless endpoint (no read-modify-write races), and moderation is just
+// flipping `approved` or deleting the file. Archived Disqus threads import into this same
+// shape, so old and new comments render through one template.
+//
+// The comment TEXT is the file body (not a field) — rendered escaped + linkified, never
+// through the Markdown/HTML pipeline, so untrusted input can't inject markup. EMAIL IS NEVER
+// STORED HERE: the repo is public; a commenter's email only ever reaches the owner's inbox
+// via the notification email, never git.
+const comments = defineCollection({
+  // Exclude README.md — it documents the folder for GitHub browsers and is not a comment.
+  loader: glob({ pattern: ['**/*.md', '!README.md'], base: './src/content/comments' }),
+  schema: z.object({
+    post: z.string(),        // slug of the post this belongs to (matches a `posts` entry id)
+    author: z.string(),      // display name — public (commenters use real names)
+    date: z.preprocess(blank, z.coerce.date()),
+    approved: nullableDefault(z.boolean().default(false)), // the render gate + the moderation switch
+    parent: optStr,          // id of the comment this replies to (rendered as one reply tier)
+    website: optStr,         // optional commenter link, rendered rel="nofollow ugc"
+    source: defStr('site'),  // 'site' | 'disqus' — provenance; tags imported archive threads
+  }),
+});
+
 // Reserved for later phases (defined when their first entry/template lands):
 //   page        — standalone pages (About spokes, licensing, …)
 //   publication — phase 2 (folding in scotthartman.info)
 
-export const collections = { taxa, specimens, posts, articles, resources };
+export const collections = { taxa, specimens, posts, articles, resources, comments };

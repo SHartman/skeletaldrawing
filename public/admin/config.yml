@@ -225,3 +225,26 @@ collections:
       - { name: order, label: "Sort order", widget: number, required: false, value_type: int, hint: "Lower sorts first within its group." }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
       - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
+
+  - name: comments
+    label: "Comments — moderation"
+    label_singular: "Comment"
+    folder: "src/content/comments"
+    # Readers submit comments through the site; the archive importer seeds the old ones.
+    # You don't author here — you MODERATE: flip Approved on, or delete a bad one.
+    create: false
+    delete: true
+    extension: md
+    format: frontmatter-body   # the comment text is the file body, rendered as escaped plain text
+    identifier_field: author
+    sortable_fields: [date, post, approved]
+    summary: "{{#if fields.approved}}✓{{else}}⏳ PENDING{{/if}} — {{author}} on {{fields.post}}"
+    fields:
+      - { name: post, label: "Post slug", widget: string }
+      - { name: author, label: "Name", widget: string }
+      - { name: date, label: "Date", widget: datetime }
+      - { name: approved, label: "Approved — visible on the site", widget: boolean, default: false, hint: "Flip on to publish (a build then renders it). This is the moderation gate." }
+      - { name: parent, label: "In reply to (comment id)", widget: string, required: false }
+      - { name: website, label: "Link", widget: string, required: false }
+      - { name: source, label: "Source", widget: select, options: ["site", "disqus"], default: "site" }
+      - { name: body, label: "Comment text", widget: text }
