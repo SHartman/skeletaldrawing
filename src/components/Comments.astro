@@ -106,9 +106,12 @@ const threadHtml =
     .join('') +
   '</ol>';
 
-// Posting form gates on a real Turnstile key in production; dev uses Cloudflare's public test key.
+// Turnstile SITE key is public (it ships in the page HTML), so it's safe in-repo. Local dev uses
+// Cloudflare's always-passes test key, because the real key is bound to the site's hostnames and
+// would fail on localhost. A PUBLIC_TURNSTILE_SITE_KEY env var overrides if ever set.
 const TURNSTILE_KEY =
-  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (import.meta.env.DEV ? '1x00000000000000000000AA' : null);
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ??
+  (import.meta.env.DEV ? '1x00000000000000000000AA' : '0x4AAAAAADvzd0UXX5I98aaW');
 const showForm = !!TURNSTILE_KEY;
 const count = all.length;
 const hasComments = count > 0;
