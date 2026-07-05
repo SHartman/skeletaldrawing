@@ -1,0 +1,9 @@
+---
+post: theres-something-fishy-about-spinosaurus9112014
+author: "Henry Richards"
+date: 2014-09-14T11:10:56Z
+approved: true
+parent: theres-something-fishy-about-spinosaurus9112014--1588167281
+source: disqus
+---
+<p>Hello, So Spinosaurus B AKA Sigilmassasaurus is spinosaurus? In Stromers (1934) plates concerning Spinosaurus B, there is a dorsal which looks like the neural spine is broken off at the point before the base would constricts and elongate in a Spinosaurus vertebra. Such a vertebra (just before the ilium) is present in the neotype photograph. In Russells (1996) paper on isolated dinosaur remains from Tafilalt, he considers this a sigilmassasaurus dorsal. However, in Russels paper on the isolated remains of both these taxa the posterior neck of Sigilmassasaurus really climbs up into a vertical position, like a modern bird! Furthermore, Russell reconstructs a sequence of vertebrae based on isolated vertebrae that contains 4 cervicals, 2 pectorals (including 1 interpolated vertebra) and 2 anterior dorsals (including 1 interpolated vertebra). He also identifies 3 post-axial anterior cervicals of Spinosaurus which are obviously from different positions in the column. Because each vertebra is an isolated find, it is possible that at least in Sigilmassasaurus, one or more cervicals may be duplicated in the reconstruction. This is not so in the Spinosaurus cervicals because each has a different development of epipophyses, neural spines, and length to height ratio. Given ten neck vertebra, there is no room for a transition between the two types of cervicals. Unless, as Russel speculates (and Ibrahim et al. 2014 show in their reconstruction) Spinosaurus/Sigilmassasaurus had more numerous neck vertebrae and perhaps fewer dorsals. Could the shorter ilium of the neotype imply that Spinosaurus had fewer sacrals as well? The neotype seems to contain caudals reminiscent of Sigilmassasaurus (second from the ilium).</p><p>Thank you Guest!!!!</p>

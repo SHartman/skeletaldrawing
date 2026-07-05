@@ -1,0 +1,9 @@
+---
+post: smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014
+author: "Scott Hartman"
+date: 2014-07-23T03:13:36Z
+approved: true
+parent: smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014--1498918640
+source: disqus
+---
+<p>So I went back and double checked everything, and I did have the Giraffatitan a bit too large in the image (which I foolishly measured rather than using the individual file), but I still end up with a neck length of ~9.5 meters (which I've updated in the post). I double checked it against Janensch's figures of the actual fossil as well as the individual measurements in the tables and I suspect that it's the 8.5 meters that is wrong. Or rather, it may be an accurate measurement of something that itself is incorrect.</p><p>According to my translation of the 1950 vertebral monograph (done by Gerhard Maier in 2007) regarding the length of the individual sections of the vertebral column:</p><p>"The lengths of the various sections of the vertebral column can be given with the totals produced from the skeletal reconstruction; during the mounting of the presacral and sacral vertebrae, modeled with great accuracy by Senior Preparator E. SIEGERT..."</p><p>Of course we have reason to suspect that the casts were NOT done with great accuracy. The dorsals were notorious for being too bulky and anteroposteriorly long, etc. Given the aforementioned double-checking of the skeletal with Janensch's individual measurements and plates of the actual cervical series it's really a question of whether to believe the tables and plates of Janensch, or the measurement taken of the sculpted vertebral column. I'm going to go with the former unless someone has more/better data.</p><p>I don't suppose anyone in Berlin would be willing to put up some scaffolding to check?</p>

@@ -1,0 +1,9 @@
+---
+post: hesperornithoides-faq7102019
+author: "Scott Hartman"
+date: 2019-07-12T14:45:57Z
+approved: true
+parent: hesperornithoides-faq7102019--4536387978
+source: disqus
+---
+<p>Of course I agree with you, but I have two thoughts on this:</p><p>1) We don't know that <em>powered</em> flight evolved more than once - it's not clear that either <em>Archaeopteryx</em> or <em>Microraptor</em> were powered fliers (as opposed to WAIR specialists, gliding death-from-above specialists, or short duration ground-launch specialists). And at this point we are at a very early stage of understanding what (some?) scansoriopterygids were doing. For that reason we were careful to only claim "aerial behavior" evolved multiple times. Of course I have some ideas, but what those aerial behaviors were will undoubtedly be debated for years to come.</p><p>2) I've seen the "paleognath model" for neoflightless argument. One major problem with it is we <em>know</em> paleognaths had ancestors that were volant at one time or another (same with anserimorphs) - the entire point for pennaraptorans (and paravians...and avialans) is we don't know that, so it has to be tested. We just produced a major test of that hypothesis and it very clearly does not side with neoflightlessness. Moreover, we supplied an answer for why people have gotten variable results about the neoflightless hypothesis previously (reduced and potentially biased taxonomic sampling). The idea of pennaraptorans being neoflightless isn't unreasonable, but to my mind neoflightless claims can't be taken more seriously at this point in time than "it seems possible" until someone produces a phylogenetic study with similar taxonomic sampling that supports it. Wishing the data away doesn't work just because people have an analogous model they aesthetically prefer.</p>

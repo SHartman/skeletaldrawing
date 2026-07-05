@@ -1,0 +1,8 @@
+---
+post: the-road-to-spinosaurus-iii-of-chimeras-and-leg-proportions11262020
+author: "Nazza"
+date: 2021-12-27T11:41:44Z
+approved: true
+source: disqus
+---
+<p>The recent discovery in England of two large, but physiologically distinct spinosaurs living amongst each other at the same time may imply that not one, but a few types of different spinosaurs inhabited the same areas, both taking advantage of a niche that provided surplus food. It may be the case that we are getting confused by two large spinosaurs inhabiting the same area of north Africa, just as with the two recently found England spinosaurs. It is also interesting that spinosaurus fossil oxygen isotopes have a large variance, some implying a hugely aquatic life and others imply a life slightly more aquatic than usual therapod dinosaurs . One of the north African 'spinosaurus' may have had the longer limbs, and maybe was less aquatic. The other may be much more water orientated and a full time water wader. This more aquatic spinosaurus species possibly could be the sole owner of the recent tail fins discovery. There is a fair amount of evidence that spinosaurs as a family, may have inhabited the same areas at the same time with very similar but slightly different niches. This could explain why we have many off-branch spinosaurs like sigilmassasaurus and oxalia.</p><p>I think of this as possibly being like confusing an impalas bones, with a gazelles bones. Both live in the same area (Africa) , both occupy similar niches, but combining their bones and thinking of them as one animal would cause a lot of confusion similar to this spinosaurus confusion.</p>

@@ -1,0 +1,8 @@
+---
+post: reign-of-dinosaur-revolution
+author: "Evan Boucher"
+date: 2011-09-09T09:37:57Z
+approved: true
+source: disqus
+---
+<p>Cut and Pasted, with some additions:<br><br> I thought the modeling and particularly the texture painting was pretty fantastic. The compositing was also well done, and leagues better than these shows tend to be.<br><br> I unfortunately can't say the same for the animation. (By animation I mean MOTION, not the overall look. Too many people tend to say "The Animation was great" about something when they really mean the RENDERING. Sorry...a pet-peeve of mine). The first episode in particular was really hard to watch due to the locomotion in some of those chase scenes. And I'm not talking about the anthropomorphism, but in the sense of smoothing animation curves and things like preventing foot sliding.<br><br> The second episode with the Allosaurus, I liked much better. There was still some questionable motion at times but as a whole I enjoyed it. There were a lot of really great little moments in there. I especially liked seeing theropods laying down in a that semi-roosting posture. I thought that was really cool, and their subtle motions felt really natural.<br><br> In general, the animation seemed to fall apart most in full body mechanics shots, and where there was lots of running. It was also clear that some animators were more experienced than others. The quality just wasn't consistent. The closeups, which tended to have much more subtle acting worked a lot better.<br><br>Despite my problems with the series thus far, episode two convinced me enough to check out the others next week. Looking forward to it.</p>

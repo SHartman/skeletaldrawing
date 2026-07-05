@@ -1,0 +1,8 @@
+---
+post: the-lines-that-divide-us3192019
+author: "Nick Fonseca"
+date: 2019-04-21T21:17:49Z
+approved: true
+source: disqus
+---
+<p>Has anyone considered switching to a vector based application like illustrator or a CAD application for drawing and measuring skeletals? Photo editing software isn't really the best tool to create accurate scale drawings as they aren't designed for that purpose. I am an exhibit designer as well as an artist and I work in an <br>application called Vectoroworks which is used in architecture <br>and it allows for accurate drawing and scaling of objects which is essential for craftsmen to be able to build from our drawings. Even a<br>"light" CAD application would provide more accurate drawings than <br>would ever be achieved working in say photoshop or gimp. Vector applications also have the advantage of working in real dimensions so there are no pixel conversions, thus eliminating another step in the math which is an additional area for discrepancies to be made. A DWG, EPS or a pdf file exported directly form the app and placed in a PDF can also be measured accurately using the tools in Adobe acrobat. When I measured the femur I got a length of 511 mm when I popped the femur alone into vectorworks and 506 mm when I placed the silhouette. The problem was that even with the black sil and black scale bar, there was still a grey pixelated zone between the white and the black. If I fuss around in the grey area I can get the dimensions to match between the two. In a vector based application the line weights are arbitrary and are used to indicate specific elements the designer wishes to be apparent in the image.</p>

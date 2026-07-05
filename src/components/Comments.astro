@@ -71,7 +71,10 @@ const node = (c: (typeof all)[number]) => ({
   dateISO: c.data.date.toISOString(),
   dateLabel: fmtDate(c.data.date),
   archived: c.data.source === 'disqus',
-  bodyHtml: renderBody(c.body ?? ''),
+  // Archived (Disqus) bodies are HTML that the importer already sanitized to a strict whitelist
+  // (em/strong/u/a/p/br/blockquote) — inject as-is so italicized taxa survive. Everything else
+  // (endpoint-written `site` comments) is untrusted → escape + linkify.
+  bodyHtml: c.data.source === 'disqus' ? (c.body ?? '') : renderBody(c.body ?? ''),
 });
 type Node = ReturnType<typeof node> & { replyTo?: string | null };
 const authorHtml = (n: Node) =>

@@ -1,0 +1,9 @@
+---
+post: hesperornithoides-faq7102019
+author: "Scott Hartman"
+date: 2019-07-15T17:24:26Z
+approved: true
+parent: hesperornithoides-faq7102019--4539755624
+source: disqus
+---
+<p>Thanks Tim! Interestingly, I was basing my own comments in part on Decesschi et al. (2016). They are almost certainly right that WAIR played no part in driving the origin of, or most of the expansion of wings in non-avialan theropods, but Microraptor consistently grouped in the Stage 2 WAIR range so it's not clear to me why their paper would rule this out as a specialized adaptation found within some microraptorines. Of course that doesn't mean Microraptor had to be utilizing WAIR, but their data doesn't preclude it as near as I can tell. I don't know what to make of Rahonavis because I'm not 100% convinced the forearms go to it (as opposed to one of the more derived avialans in the bonebed). But assuming they do, I agree that ground launch seems the most likely explanation.</p><p>Once you get into early bird-line flight (e.g. confuciusornithids) I think it's less clear that ground launch is better than WAIR to get into trees. Not impossible mind you, but ground launch requires landing in trees at a fairly high rate of speed, which is itself a difficult thing to do as a biped with a COG fairly far from the landing substrate. Without well-developed breaking (e.g. alulas) and well-muscled "perching" feet (i.e. those with a reversed and well-muscled digit 1) to arrest forward momentum then landing in trees is also potentially problematic. The large wings (low wing loading) and hypertrophied shoulder muscles of confuciusornithids could also be suggestive of specialized WAIR behavior, right at the place where avialans finally show incipient (rather than derived) levels of arboreality. I'm not wedded to this mind you, but I think given our current level of understanding it's as reasonable as a ground launch mode of getting into trees.</p>
