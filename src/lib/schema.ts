@@ -38,6 +38,17 @@ export function formatAuthor(author: string, recombination = false): string {
   return recombination ? `(${bare})` : bare;
 }
 
+/**
+ * A taxon name as HTML: the binomial italicised, but an open-nomenclature qualifier
+ * ("sp.", "spp.", "indet.") kept roman, per zoological convention (e.g. *Triceratops* sp.).
+ * Use with `set:html`; the containing element must NOT itself force italics.
+ */
+export function taxonNameHtml(name: string): string {
+  const esc = (s: string) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
+  const m = name.trim().match(/^(.+?)\s+(spp?\.|indet\.)$/);
+  return m ? `<i>${esc(m[1])}</i> ${esc(m[2])}` : `<i>${esc(name)}</i>`;
+}
+
 /** A few taxa are known only from fragments and carry no restored reconstruction. */
 export function isKnownMaterialOnly(d: TaxonData): boolean {
   return !d.reconstruction && !!d.rigorous;

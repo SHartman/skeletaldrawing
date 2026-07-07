@@ -13,6 +13,7 @@ import {
   isKnownMaterialOnly,
   specimenHero,
   specimenIsKnownMaterialOnly,
+  taxonNameHtml,
 } from '../lib/schema';
 
 // Genus hub: aggregates a multi-species genus. A species that has documented specimens is
@@ -157,7 +158,7 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
               </div>
               <div class="cbody">
                 <span class="cnames">
-                  <span class="cname">{m.taxon}</span>
+                  <span class="cname" set:html={taxonNameHtml(m.taxon)} />
                   <span class="csub">{m.sub}</span>
                 </span>
                 <span class="arrow">→</span>
@@ -191,7 +192,7 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
                 data-length={m.lengthM ?? 0}
                 data-specimen={m.specimen}
               >
-                <td><a href={m.href}><em>{m.taxon}</em></a></td>
+                <td><a href={m.href}><span set:html={taxonNameHtml(m.taxon)} /></a></td>
                 <td class="muted">{formatAuthor(m.author, m.recombination)}</td>
                 <td class="num">{m.lengthLabel || '—'}</td>
                 <td class="muted">{m.specimen || '—'}</td>
@@ -289,7 +290,7 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
   .badge-km { right: auto; left: 10px; color: var(--slate); }
   .cbody { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 13px 16px; border-top: 1px solid var(--hair); }
   .cnames { display: flex; flex-direction: column; gap: 2px; }
-  .cname { font-style: italic; font-size: 18px; }
+  .cname { font-size: 18px; } /* italic from the inner <i> (taxonNameHtml) so "sp." stays roman */
   .csub { font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: var(--slate); }
   .arrow { color: var(--accent); }
 
