@@ -78,7 +78,10 @@ const description = `Browse Scott Hartman's skeletal reconstructions by group: $
 <BaseLayout title={title} description={description}>
   <main class="wrap">
     <header class="head">
-      <p class="eyebrow">Galleries</p>
+      <div class="head-row">
+        <p class="eyebrow">Galleries</p>
+        <a class="to-search" href="/skeletals/">Search the database →</a>
+      </div>
       <h1 class="display">Browse by group</h1>
       <p class="intro">
         Every reconstruction here is drawn to a common method and measured to a common scale. Start with
@@ -121,6 +124,13 @@ const description = `Browse Scott Hartman's skeletal reconstructions by group: $
     margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
     text-transform: uppercase; color: var(--slate);
   }
+  /* reverse of the search page's "Browse galleries →" — a quiet swap back to search */
+  .head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .to-search {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+  .to-search:hover { text-decoration: underline; text-underline-offset: 3px; }
   .display {
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(40px, 7vw, 72px); line-height: 1.0; letter-spacing: -.015em;

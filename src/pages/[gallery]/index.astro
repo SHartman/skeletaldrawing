@@ -166,7 +166,10 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
         <h1 class="display"><a href={`/${gallery}/`} id="gallery-home" title={`Back to all ${meta.label}`}>{meta.label}</a></h1>
         <p class="intro">{meta.intro}</p>
       </div>
-      <p class="count"><span id="count">{units.length}</span> reconstructions</p>
+      <div class="head-aside">
+        <p class="count"><span id="count">{units.length}</span> reconstructions</p>
+        <a class="to-search" href="/skeletals/">Search the database →</a>
+      </div>
     </header>
 
     <!-- Clade drill-down nav (populated by the script from #navdata) -->
@@ -418,6 +421,13 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   .display a:hover { color: var(--accent); }
   .intro { margin: 14px 0 0; font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 60ch; }
   .count { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); white-space: nowrap; }
+  /* reverse of the search page's "Browse galleries →" — a quiet swap to search while browsing */
+  .head-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+  .to-search {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+  }
+  .to-search:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   /* ── clade drill-down nav ── */
   /* Layout containers are in the template, so scoped styles reach them. The chips/crumbs INSIDE
