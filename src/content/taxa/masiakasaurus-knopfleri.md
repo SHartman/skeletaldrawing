@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/masiakasaurus-knopfleri-skeletal-with-insert-of-alternative-head.png"
   alt: "Masiakasaurus knopfleri skeletal reconstruction, left lateral view, reconstructed length ~2.2 m."
 ---
+
+A small noasaurid theropod from the Late Cretaceous of Madagascar, notable for its unusual forward-projecting front teeth, which suggest a diet of fish or other small prey. Its species name honours the musician Mark Knopfler.

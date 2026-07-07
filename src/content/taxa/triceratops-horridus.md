@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/triceratops-horridus-skeletal.png"
   alt: "Triceratops horridus skeletal reconstruction, left lateral view, reconstructed length ~8.2 m."
 ---
+
+A large horned dinosaur from the latest Cretaceous of western North America, about 68–66 million years ago. _Triceratops horridus_ carried two long brow horns, a shorter nasal horn, and a solid bony frill, and was among the last non-avian dinosaurs before the end-Cretaceous extinction.

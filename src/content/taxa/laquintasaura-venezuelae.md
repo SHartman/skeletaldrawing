@@ -17,3 +17,5 @@ additionalFigures:
     label: "As published in Barrett et al. (2014)"
     credit: "Figure from Barrett et al. (2014)"
 ---
+
+A small, early ornithischian dinosaur from the Early Jurassic of Venezuela, roughly a metre long. _Laquintasaura_ is notable as one of the few dinosaurs known from northern South America and appears to have lived in groups.

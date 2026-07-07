@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/ankylosaurus-magniventris-amnh-5214-skeletal.png"
   alt: "Ankylosaurus magniventris skeletal reconstruction, left lateral view, reconstructed length ~6.5 m."
 ---
+
+The largest known ankylosaurid, an armoured dinosaur of the latest Cretaceous of western North America, covered in bony plates and wielding a massive bony tail club. It reached about 6.5 metres long.

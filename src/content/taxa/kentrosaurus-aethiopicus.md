@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Kentrosaurus aethiopicus skeletal reconstruction — alternative hip-based spine placement."
     label: "Alternative hip-based spine placement"
 ---
+
+A stegosaurid dinosaur from the Late Jurassic of Tanzania, known from the Tendaguru beds. _Kentrosaurus_ carried plates over its neck and shoulders that gave way to paired spikes running down its back and tail.

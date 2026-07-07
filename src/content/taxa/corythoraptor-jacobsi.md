@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/corythoraptor-jacobsi-skeletal.png"
   alt: "Corythoraptor jacobsi skeletal reconstruction, left lateral view, reconstructed length ~2 m."
 ---
+
+An oviraptorosaurian theropod from the Late Cretaceous of southern China, notable for a tall, cassowary-like head crest. The bony crest likely served in display or species recognition rather than in feeding.

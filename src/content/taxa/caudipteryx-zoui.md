@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/caudipteryx-zoui-type-specimen-ngmc-97-4-a-skeletal.png"
   alt: "Caudipteryx zoui skeletal reconstruction, left lateral view, reconstructed length ~0.8 m."
 ---
+
+A small oviraptorosaurian theropod from the Early Cretaceous of Liaoning, China. Preserved with clear feather impressions, including a fan of tail feathers, it was a key early find showing that vaned feathers occurred in non-avian dinosaurs.

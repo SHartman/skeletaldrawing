@@ -15,3 +15,5 @@ additionalFigures:
     alt: "Dinornis robustus — The same female South Island giant moa in a foraging posture, with feathers restored."
     caption: "The same female South Island giant moa in a foraging posture, with feathers restored."
 ---
+
+The South Island giant moa, a huge flightless bird endemic to New Zealand. Females of _Dinornis_ stood among the tallest birds ever known, and the genus survived until human hunting drove it to extinction around 1400 AD.

@@ -16,3 +16,5 @@ rigorous:
   src: "/images/skeletals/pisanosaurus-mertii-type-pvl-2577-known-elements.png"
   alt: "Pisanosaurus mertii — known skeletal material (PVL 2577), left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A very small, early ornithischian dinosaur from the Late Triassic of Argentina, among the oldest known members of the group. _Pisanosaurus_ is known only from fragmentary remains and its exact relationships remain debated.

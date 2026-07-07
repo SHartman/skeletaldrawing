@@ -14,3 +14,5 @@ rigorous:
   src: "/images/skeletals/huaxiagnathus-orientalis-type-cags-ig02-301-known-elements.png"
   alt: "Known skeletal material of Huaxiagnathus orientalis: preserved elements shown in white against a black body silhouette."
 ---
+
+A comparatively large compsognathid theropod from the Early Cretaceous of northeastern China. _Huaxiagnathus_ had long grasping hands and was among the biggest members of this otherwise small-bodied group.

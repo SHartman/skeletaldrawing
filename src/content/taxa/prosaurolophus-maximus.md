@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Prosaurolophus maximus skeletal reconstruction — alternative bipedal gait."
     label: "Alternative bipedal gait"
 ---
+
+A hadrosaurid (duck-billed) dinosaur from the Late Cretaceous of Alberta and Montana, roughly 75 million years ago. _Prosaurolophus_ bore a short, solid crest that rose as a low bony ridge in front of the eyes, along with the broad grinding tooth batteries typical of hadrosaurs.

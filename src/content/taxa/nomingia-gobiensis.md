@@ -12,3 +12,5 @@ rigorous:
   src: "/images/skeletals/nomingia-gobiensis-type-gin-100-119-known-elements-with-pygostyle-inset.png"
   alt: "Known skeletal material of Nomingia gobiensis, estimated length ~1.7 m: preserved elements shown in white against a black body silhouette."
 ---
+
+An oviraptorosaur, a bird-like feathered theropod, from the Late Cretaceous of Mongolia. _Nomingia_ was among the first non-avian dinosaurs found to possess a pygostyle — a fused tail-tip that in birds anchors the tail feathers.

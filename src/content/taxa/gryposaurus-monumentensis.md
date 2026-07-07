@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/gryposaurus-monumentensis-skeletal.png"
   alt: "Gryposaurus monumentensis skeletal reconstruction, left lateral view, reconstructed length ~8.5 m."
 ---
+
+A robust hadrosaurid (duck-billed dinosaur) of the Late Cretaceous of Utah, distinguished by an arched, humped nasal ridge on the snout and an especially deep, powerful jaw.

@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/heyuannia-huangi-skeletal.png"
   alt: "Heyuannia huangi skeletal reconstruction, left lateral view, reconstructed length ~1.6 m."
 ---
+
+An oviraptorosaur from the Late Cretaceous of southern China, a short-snouted, toothless, feathered theropod. _Heyuannia_ is known from numerous specimens and, notably, from fossil eggs preserving original blue-green pigment.

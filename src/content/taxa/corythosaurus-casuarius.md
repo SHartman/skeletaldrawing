@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/corythosaurus-casuarius-type-amnh-5240-skeletal.png"
   alt: "Corythosaurus casuarius skeletal reconstruction, left lateral view, reconstructed length ~7.9 m."
 ---
+
+A lambeosaurine hadrosaurid (crested duck-billed dinosaur) of the Late Cretaceous of Alberta, Canada, famous for its tall, rounded, helmet-like hollow crest that likely amplified vocal calls.

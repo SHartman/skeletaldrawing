@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/ouranosaurus-nigeriensis-skeletal.png"
   alt: "Ouranosaurus nigeriensis skeletal reconstruction, left lateral view, reconstructed length ~7.1 m."
 ---
+
+A large iguanodontian ornithopod (basal hadrosauroid) from the Early Cretaceous of Niger. _Ouranosaurus_ bore tall neural spines forming a ridge or sail along its back, and had a broad, flattened snout.

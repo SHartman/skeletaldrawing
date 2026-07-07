@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/ornithomimus-edmontonicus-tmp-1995-110-1-skeletal.png"
   alt: "Ornithomimus edmontonicus skeletal reconstruction, left lateral view, reconstructed length ~3.4 m."
 ---
+
+An ornithomimosaur — an ostrich-like, toothless theropod — from the Late Cretaceous of western North America. Fossils preserve impressions showing _Ornithomimus_ bore feathers, including wing-like structures on its arms.

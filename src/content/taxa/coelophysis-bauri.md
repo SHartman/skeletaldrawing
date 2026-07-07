@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/coelophysis-bauri-amnh-7224-lectotype-skeletal.png"
   alt: "Coelophysis bauri skeletal reconstruction, left lateral view, reconstructed length ~2.4 m."
 ---
+
+A slender, early-diverging theropod from the Late Triassic of the American Southwest, known from hundreds of individuals at Ghost Ranch, New Mexico. Lightly built and long-necked, it is among the best-understood of the earliest dinosaurs.

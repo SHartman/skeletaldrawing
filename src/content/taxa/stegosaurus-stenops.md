@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/stegosaurus-stenops-nhmuk-pv-r36730-skeletal.png"
   alt: "Stegosaurus stenops skeletal reconstruction, left lateral view, reconstructed length ~6 m."
 ---
+
+A large plated dinosaur from the Late Jurassic of western North America, roughly 150 million years ago. _Stegosaurus_ is instantly recognizable for the double row of tall bony plates along its back and the four spikes on its tail, known as the thagomizer.

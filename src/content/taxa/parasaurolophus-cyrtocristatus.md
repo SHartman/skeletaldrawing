@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/parasaurolophus-cyrtocristatus-fmnh-p27393-skeletal.png"
   alt: "Parasaurolophus cyrtocristatus skeletal reconstruction, left lateral view, reconstructed length ~7.6 m."
 ---
+
+A lambeosaurine hadrosaurid (hollow-crested duck-billed dinosaur) from the Late Cretaceous of the western United States. This species of _Parasaurolophus_ bore a shorter, more strongly curved version of the genus's long backswept tubular head crest.

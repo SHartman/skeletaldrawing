@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/nanosaurus-agilis-skeletal.png"
   alt: "Nanosaurus agilis skeletal reconstruction, left lateral view, reconstructed length ~2 m."
 ---
+
+A small neornithischian dinosaur from the Late Jurassic Morrison Formation of the western United States. _Nanosaurus_ was a lightly built, fast-moving plant-eater and represents the small-bodied ornithischians of that fauna.

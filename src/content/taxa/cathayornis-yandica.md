@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/cathayornis-yandica-skeletal.png"
   alt: "Cathayornis yandica skeletal reconstruction, left lateral view, reconstructed length ~0.15 m."
 ---
+
+A small enantiornithine, one of the extinct "opposite birds," from the Early Cretaceous of Liaoning, China. Sparrow-sized and capable of powered flight, it retained clawed fingers and toothed jaws unlike modern birds.

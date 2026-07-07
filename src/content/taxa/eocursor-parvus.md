@@ -16,3 +16,5 @@ rigorous:
   src: "/images/skeletals/eocursor-parvus-type-sam-pk-k8025-known-elements.png"
   alt: "Eocursor parvus — known skeletal material (SAM-PK-K8025), left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A small, early ornithischian dinosaur from the Late Triassic of South Africa, about a metre long. A lightly built, bipedal plant-eater with grasping hands, it is one of the more complete early members of the ornithischian lineage.

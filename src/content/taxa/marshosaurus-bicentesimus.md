@@ -13,3 +13,5 @@ rigorous:
   src: "/images/skeletals/marshosaurus-bicentesimus-known-elements.png"
   alt: "Known skeletal material of Marshosaurus bicentesimus: preserved elements shown in white against a black body silhouette."
 ---
+
+A megalosauroid theropod from the Late Jurassic Morrison Formation of the western United States. A relatively modest-sized predator, _Marshosaurus_ shared its Morrison habitat with far larger carnivores such as _Allosaurus_.

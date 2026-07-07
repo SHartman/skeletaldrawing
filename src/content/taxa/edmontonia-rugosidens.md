@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/edmontonia-rugosidens-skeletal.png"
   alt: "Edmontonia rugosidens skeletal reconstruction, left lateral view, reconstructed length ~6.6 m."
 ---
+
+A nodosaurid, an armoured dinosaur of the Late Cretaceous of North America. It lacked a tail club but was protected by rows of bony plates and large forward-pointing shoulder spikes.

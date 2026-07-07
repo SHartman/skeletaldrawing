@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/teratophoneus-curriei-skeletal.png"
   alt: "Teratophoneus curriei skeletal reconstruction, left lateral view, reconstructed length ~5.2 m."
 ---
+
+A tyrannosaurid from the Late Cretaceous of Utah, around 5 metres long. _Teratophoneus_ had a relatively short, deep skull and was a mid-sized apex predator of the ancient landmass of Laramidia in western North America.

@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/tawa-hallae-skeletal.png"
   alt: "Tawa hallae skeletal reconstruction, left lateral view, reconstructed length ~2.4 m."
 ---
+
+An early theropod from the Late Triassic of New Mexico, about 2.4 metres long. _Tawa_ preserves a mix of primitive and derived features that has helped clarify the branching pattern near the base of the dinosaur family tree.

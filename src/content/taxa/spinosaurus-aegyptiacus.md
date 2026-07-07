@@ -14,3 +14,5 @@ additionalFigures:
     alt: "Spinosaurus aegyptiacus — Competing published interpretations of the animal’s build, drawn to a common scale."
     caption: "Competing published interpretations of the animal’s build, drawn to a common scale."
 ---
+
+A giant spinosaurid from the mid-Cretaceous of North Africa, and among the longest predatory dinosaurs known at around 13 metres. _Spinosaurus_ had a crocodile-like snout, conical teeth, and a tall dorsal sail, and its unusual skeleton points to a semiaquatic, fish-eating lifestyle.

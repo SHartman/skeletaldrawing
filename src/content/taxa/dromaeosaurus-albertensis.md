@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/dromaeosaurus-albertensis-skeletal.png"
   alt: "Dromaeosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~2 m."
 ---
+
+A dromaeosaurid, one of the sickle-clawed 'raptor' theropods, from the Late Cretaceous of Alberta, Canada. _Dromaeosaurus_ had an unusually robust, heavily built skull and strong bite compared with its relatives.

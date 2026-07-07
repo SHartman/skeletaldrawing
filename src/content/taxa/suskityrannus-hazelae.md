@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/suskityrannus-hazelae-skeletal.png"
   alt: "Suskityrannus hazelae skeletal reconstruction, left lateral view, reconstructed length ~1.3 m."
 ---
+
+A small tyrannosauroid from the Late Cretaceous of New Mexico, only about 1.3 metres long. _Suskityrannus_ documents an early stage in tyrannosaur evolution, before the lineage produced the giant apex predators of the latest Cretaceous.

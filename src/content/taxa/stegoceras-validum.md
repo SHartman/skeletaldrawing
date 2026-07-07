@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/stegoceras-validum-skeletal.png"
   alt: "Stegoceras validum skeletal reconstruction, left lateral view, reconstructed length ~2.4 m."
 ---
+
+A pachycephalosaur, or dome-headed dinosaur, from the Late Cretaceous of Alberta, about 75 million years ago. _Stegoceras_ was a small bipedal plant-eater notable for the thickened dome of bone crowning its skull, likely used in display or head-to-head contests.

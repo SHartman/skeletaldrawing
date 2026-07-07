@@ -17,3 +17,5 @@ additionalFigures:
     alt: "Gallus gallus — The same domestic hen skeletal in a flight pose."
     caption: "The same domestic hen skeletal in a flight pose."
 ---
+
+The living red junglefowl of Southeast Asia, the wild ancestor of the domestic chicken. _Gallus_ is a ground-foraging bird noted for the male's bright plumage, fleshy comb, and loud crowing call.

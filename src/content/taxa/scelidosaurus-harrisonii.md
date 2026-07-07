@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/scelidosaurus-harrisonii-brsmg-legl-00004-skeletal.png"
   alt: "Scelidosaurus harrisonii skeletal reconstruction, left lateral view, reconstructed length ~4 m."
 ---
+
+One of the earliest armoured dinosaurs, from the Early Jurassic of England, about 190 million years ago. _Scelidosaurus_ was a quadrupedal thyreophoran whose body was studded with rows of bony scutes, representing an early stage in the lineage leading to stegosaurs and ankylosaurs.

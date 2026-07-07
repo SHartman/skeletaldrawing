@@ -18,3 +18,5 @@ additionalFigures:
     credit: "Lamanna et al. 2014, PLOS ONE — CC BY 4.0"
     source: "https://doi.org/10.1371/journal.pone.0092022"
 ---
+
+A large oviraptorosaur, or bird-like feathered dinosaur, from the latest Cretaceous of the Dakotas, about 66 million years ago. _Anzu_ had a tall crest atop its toothless beaked skull, long arms with big claws, and long legs, earning the nickname 'chicken from hell'.

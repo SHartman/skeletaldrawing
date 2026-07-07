@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/falcarius-utahensis-skeletal.png"
   alt: "Falcarius utahensis skeletal reconstruction, left lateral view, reconstructed length ~4 m."
 ---
+
+A primitive therizinosaur from the Early Cretaceous of Utah, capturing an early stage in the shift of these theropods from meat-eating toward plant-eating. _Falcarius_ combined a long neck and leaf-shaped teeth with still-sharp raptorial claws.

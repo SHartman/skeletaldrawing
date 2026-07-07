@@ -24,3 +24,5 @@ additionalFigures:
     credit: "Pittman, Kaye, Wang, Zheng, Dececchi & Hartman 2022, PNAS — CC BY-NC-ND 4.0"
     source: "https://www.pnas.org/doi/full/10.1073/pnas.2205476119"
 ---
+
+An early bird from the Early Cretaceous of Liaoning, China, and one of the first known to have a toothless, horny beak. Many specimens preserve a pair of long ribbon-like tail feathers, apparently a display feature.

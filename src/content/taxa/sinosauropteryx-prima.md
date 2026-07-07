@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/sinosauropteryx-prima-skeletal.png"
   alt: "Sinosauropteryx prima skeletal reconstruction, left lateral view, reconstructed length ~1 m."
 ---
+
+A small compsognathid theropod from the Early Cretaceous of Liaoning, China, and the first non-avian dinosaur found with simple filamentous feathers. Preserved melanosomes indicate _Sinosauropteryx_ had a banded, reddish tail, making it the first dinosaur with a scientifically reconstructed color pattern.

@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/chasmosaurus-belli-skeletal.png"
   alt: "Chasmosaurus belli skeletal reconstruction, left lateral view, reconstructed length ~4.9 m."
 ---
+
+A chasmosaurine (long-frilled ceratopsid) from the Late Cretaceous of Alberta, Canada, recognisable for its very large frill pierced by two enormous openings, with only short brow horns.

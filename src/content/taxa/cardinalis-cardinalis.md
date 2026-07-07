@@ -17,3 +17,5 @@ additionalFigures:
     alt: "Cardinalis cardinalis — The same skeletal with the feathers restored — a living dinosaur for scale against its extinct relatives."
     caption: "The same skeletal with the feathers restored — a living dinosaur for scale against its extinct relatives."
 ---
+
+The Northern Cardinal, a living North American songbird. The male's brilliant red plumage and prominent crest make it one of the most recognizable backyard birds of eastern and central North America.

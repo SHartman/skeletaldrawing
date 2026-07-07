@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/saurornitholestes-langstoni-skeletal.png"
   alt: "Saurornitholestes langstoni skeletal reconstruction, left lateral view, reconstructed length ~1.75 m."
 ---
+
+A dromaeosaurid — a small, sickle-clawed predatory theropod — from the Late Cretaceous of western North America. _Saurornitholestes_ was a lightly built, agile hunter and is among the most common small theropods of the region.

@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/jeholornis-prima-skeletal.png"
   alt: "Jeholornis prima skeletal reconstruction, left lateral view, reconstructed length ~0.8 m."
 ---
+
+An early bird from the Early Cretaceous of China, retaining a long bony tail unlike modern birds. _Jeholornis_ preserves fossilized seeds in its gut, indicating a partly seed-eating diet.

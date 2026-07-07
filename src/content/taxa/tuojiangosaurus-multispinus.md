@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/tuojiangosaurus-multispinus-type-cv-209-skeletal.png"
   alt: "Tuojiangosaurus multispinus skeletal reconstruction, left lateral view, reconstructed length ~7 m."
 ---
+
+A plated dinosaur from the Late Jurassic of China, about 160 million years ago. _Tuojiangosaurus_ was one of the best-known Asian stegosaurs, carrying a double row of tall pointed plates along its back and two pairs of spikes on its tail.

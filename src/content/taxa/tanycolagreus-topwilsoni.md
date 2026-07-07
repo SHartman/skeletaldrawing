@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/tanycolagreus-topwilsoni-type-tpii-2000-09-29-skeletal.png"
   alt: "Tanycolagreus topwilsoni skeletal reconstruction, left lateral view, reconstructed length ~3.8 m."
 ---
+
+A coelurosaurian theropod from the Late Jurassic Morrison Formation of the western United States. Around 3.8 metres long, _Tanycolagreus_ was a lightly built predator, though it is known from fairly incomplete material.

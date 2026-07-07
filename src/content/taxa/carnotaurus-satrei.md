@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/carnotaurus-satrei-macn-ch-894-skeletal-top-and-bottom-views.png"
   alt: "Carnotaurus satrei skeletal reconstruction, left lateral view, reconstructed length ~8.4 m."
 ---
+
+An abelisaurid theropod from the Late Cretaceous of Patagonian Argentina, famous for the pair of thick horns above its eyes and its extremely reduced, almost vestigial forelimbs. Skin impressions show a hide studded with rows of bony scutes.

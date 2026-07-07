@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/albertaceratops-nesmoi-skeletal.png"
   alt: "Albertaceratops nesmoi skeletal reconstruction, left lateral view, reconstructed length ~5.5 m."
 ---
+
+A centrosaurine (short-frilled ceratopsid) from the Late Cretaceous of Alberta, Canada, notable for its long paired brow horns over the eyes combined with a low nasal boss, a mix unusual among its short-horned relatives.

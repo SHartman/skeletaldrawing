@@ -15,3 +15,5 @@ rigorous:
   src: "/images/skeletals/europelta-carbonensis-known-elements-without-armor.png"
   alt: "Europelta carbonensis — known skeletal material, left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A nodosaurid, an armoured dinosaur of the Early Cretaceous of Spain. It is among the most complete ankylosaurs known from Europe and, like other nodosaurids, bore body armour but no tail club.

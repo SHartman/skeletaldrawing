@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/leptoceratops-gracilis-skeletal.png"
   alt: "Leptoceratops gracilis skeletal reconstruction, left lateral view, reconstructed length ~2.3 m."
 ---
+
+A small leptoceratopsid, one of the primitive horned dinosaurs, from the latest Cretaceous of Alberta and Montana. _Leptoceratops_ lacked the large frill and horns of its ceratopsid relatives and could likely walk on either two or four legs.

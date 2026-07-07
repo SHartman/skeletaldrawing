@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/nanotyrannus-lethaeus-type-bmrp-2002-4-1-jane-2025-skeletal.png"
   alt: "Nanotyrannus lethaeus skeletal reconstruction, left lateral view, reconstructed length ~6.2 m."
 ---
+
+A tyrannosauroid from the Late Cretaceous of North America, based on gracile, long-limbed material. Whether _Nanotyrannus_ is a valid genus or represents juvenile _Tyrannosaurus_ has been debated for decades.

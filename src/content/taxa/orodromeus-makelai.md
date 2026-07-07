@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/orodromeus-makelai-skeletal.png"
   alt: "Orodromeus makelai skeletal reconstruction, left lateral view, reconstructed length ~1.6 m."
 ---
+
+A small thescelosaurid ornithopod from the Late Cretaceous of Montana. _Orodromeus_ was a swift, bipedal plant-eater known from the same region as the nesting dinosaur _Maiasaura_.

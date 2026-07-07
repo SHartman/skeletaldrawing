@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/parksosaurus-warreni-type-rom-804-skeletal.png"
   alt: "Parksosaurus warreni skeletal reconstruction, left lateral view, reconstructed length ~3 m."
 ---
+
+A small thescelosaurid ornithopod from the latest Cretaceous of Alberta, Canada. _Parksosaurus_ was a lightly built, bipedal plant-eater, one of the last of the small ornithischians in North America.

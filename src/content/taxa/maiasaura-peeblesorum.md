@@ -29,3 +29,5 @@ additionalFigures:
     alt: "Maiasaura peeblesorum skeletal reconstruction — subadult (two years)."
     label: "Subadult (two years)"
 ---
+
+A saurolophine hadrosaurid (duck-billed dinosaur) from the Late Cretaceous of Montana. _Maiasaura_ is famous from vast bonebeds and nesting colonies that provided the first strong evidence of parental care in dinosaurs, inspiring its name, "good mother lizard."

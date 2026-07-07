@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/gallimimus-bullatus-skeletal.png"
   alt: "Gallimimus bullatus skeletal reconstruction, left lateral view, reconstructed length ~6 m."
 ---
+
+A large ornithomimid, or 'ostrich-mimic' dinosaur, from the Late Cretaceous of Mongolia. Toothless and long-legged, _Gallimimus_ was built for fast running and is among the best-known dinosaurs of its kind.

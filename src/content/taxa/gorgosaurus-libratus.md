@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Gorgosaurus libratus — Potential growth stages: this juvenile (~5.3 m), a larger subadult (~6.7 m), and full-grown adults approaching ~9 m."
     caption: "Potential growth stages: this juvenile (~5.3 m), a larger subadult (~6.7 m), and full-grown adults approaching ~9 m."
 ---
+
+A tyrannosaurid from the Late Cretaceous of Alberta and Montana, a close relative of _Albertosaurus_. This skeletal depicts a juvenile, more lightly built and long-legged than the bulky adult form.

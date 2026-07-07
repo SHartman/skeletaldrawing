@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/hesperornis-regalis-skeletal.png"
   alt: "Hesperornis regalis skeletal reconstruction, left lateral view, reconstructed length ~1.8 m."
 ---
+
+A large, flightless diving bird from the Late Cretaceous seas of North America. _Hesperornis_ had powerful hind limbs for foot-propelled swimming, vestigial wings, and jaws still lined with teeth.

@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/montanoceratops-cerorhynchus-type-amnh-5464-skeletal.png"
   alt: "Montanoceratops cerorhynchus skeletal reconstruction, left lateral view, reconstructed length ~2.4 m."
 ---
+
+A small leptoceratopsid, one of the primitive horned dinosaurs, from the Late Cretaceous of Montana. _Montanoceratops_ retained a modest frill and a narrow beaked skull but lacked the elaborate horns of the larger ceratopsids.

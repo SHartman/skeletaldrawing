@@ -16,3 +16,5 @@ rigorous:
   src: "/images/skeletals/furcatoceratops-elucidans-type-nsm-pv-24660-known-elements.png"
   alt: "Furcatoceratops elucidans — known skeletal material (NSM PV 24660), left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A centrosaurine (short-frilled ceratopsid) from the Late Cretaceous of Montana, a horned, frilled plant-eater roughly 3.6 metres long and closely related to Avaceratops.

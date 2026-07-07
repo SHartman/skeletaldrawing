@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/camptosaurus-dispar-skeletal.png"
   alt: "Camptosaurus dispar skeletal reconstruction, left lateral view, reconstructed length ~5.8 m."
 ---
+
+A stocky iguanodontian ornithopod from the Late Jurassic Morrison Formation of western North America. A plant-eater able to walk on two or four legs, it had a horny beak and broad chewing teeth.

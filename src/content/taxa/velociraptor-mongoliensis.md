@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/velociraptor-mongoliensis-skeletal.png"
   alt: "Velociraptor mongoliensis skeletal reconstruction, left lateral view, reconstructed length ~1.8 m."
 ---
+
+A small dromaeosaurid from the Late Cretaceous of Mongolia, about 1.8 metres long including its stiffened tail. _Velociraptor_ had a sickle-shaped killing claw on each foot and, as quill knobs on a specimen's forearm show, bore feathers in life.

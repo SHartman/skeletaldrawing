@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/edmontosaurus-regalis-skeletal.png"
   alt: "Edmontosaurus regalis skeletal reconstruction, left lateral view, reconstructed length ~13 m."
 ---
+
+A large, flat-headed hadrosaurid (duck-billed dinosaur) of the Late Cretaceous of western North America, reaching around 13 metres. One specimen preserves a fleshy, comb-like crest atop the skull that would not otherwise be evident from bone.

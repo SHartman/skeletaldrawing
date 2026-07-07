@@ -10,3 +10,5 @@ rigorous:
   src: "/images/skeletals/eotyrannus-lengi-type-miwg1997-550-known-remains.png"
   alt: "Known skeletal material of Eotyrannus lengi, estimated length ~5 m: preserved elements shown in white against a black body silhouette."
 ---
+
+An early, small-bodied member of the tyrannosaur lineage from the Early Cretaceous of the Isle of Wight, England. Unlike its later giant relatives, _Eotyrannus_ retained long arms with well-developed grasping hands.

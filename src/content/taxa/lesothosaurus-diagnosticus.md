@@ -17,3 +17,5 @@ rigorous:
   src: "/images/skeletals/lesothosaurus-diagnosticus-adult-specimen-sam-pk-k1105-known-elements.png"
   alt: "Lesothosaurus diagnosticus — known skeletal material (SAM-PK-K1105), left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A small, lightly built early ornithischian dinosaur from the Early Jurassic of southern Africa (Lesotho and South Africa). _Lesothosaurus_ was an agile, bipedal plant-eater and is an important reference for the ancestral ornithischian body plan.

@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/protoceratops-andrewsi-skeletal.png"
   alt: "Protoceratops andrewsi skeletal reconstruction, left lateral view, reconstructed length ~1.8 m."
 ---
+
+A small ceratopsian from the Late Cretaceous of Mongolia, about 75 million years ago. _Protoceratops_ was a sheep-sized, hornless relative of the horned dinosaurs, distinguished by a large bony neck frill, and is famously known from abundant specimens including nests and eggs.

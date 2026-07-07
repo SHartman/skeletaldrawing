@@ -17,3 +17,5 @@ additionalFigures:
     credit: "Wang, Pittman et al. 2017, Nature Communications — CC BY 4.0"
     source: "https://www.nature.com/articles/ncomms14576"
 ---
+
+A small feathered dinosaur from the Late Jurassic of China, about 160 million years ago. Only about 60 centimetres long, _Anchiornis_ had long feathers on all four limbs, and preserved melanosomes have allowed reconstruction of its plumage as grey with a reddish crest and white-banded wings.

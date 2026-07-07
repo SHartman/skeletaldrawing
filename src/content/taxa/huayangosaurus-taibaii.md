@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/huayangosaurus-taibaii-skeletal.png"
   alt: "Huayangosaurus taibaii skeletal reconstruction, left lateral view, reconstructed length ~4.7 m."
 ---
+
+An early stegosaur from the Middle Jurassic of Sichuan, China, about 4.7 metres long. More primitive than later stegosaurs, it retained teeth at the front of its beak and bore paired plates and spikes along its back.

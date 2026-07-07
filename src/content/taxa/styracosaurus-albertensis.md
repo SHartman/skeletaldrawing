@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/styracosaurus-albertensis-cmn-344-skeletal.png"
   alt: "Styracosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~4.8 m."
 ---
+
+A horned dinosaur from the Late Cretaceous of Alberta, about 75 million years ago. _Styracosaurus_ was a centrosaurine ceratopsian bearing a single long nasal horn and a striking neck frill fringed with several long, outward-radiating spikes.

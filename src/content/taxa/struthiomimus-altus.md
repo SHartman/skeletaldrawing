@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/struthiomimus-altus-amnh-5339-skeletal.png"
   alt: "Struthiomimus altus skeletal reconstruction, left lateral view, reconstructed length ~4.4 m."
 ---
+
+An ornithomimosaur, or "ostrich-mimic" dinosaur, from the Late Cretaceous of Alberta, Canada. About 4.4 metres long, _Struthiomimus_ had a toothless beak, long slender legs built for running, and was likely an omnivore.

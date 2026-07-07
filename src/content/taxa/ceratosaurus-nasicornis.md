@@ -18,3 +18,5 @@ additionalFigures:
     alt: "Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m)."
     caption: "A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m)."
 ---
+
+A ceratosaurian theropod from the Late Jurassic of western North America, distinguished by a prominent horn on its snout, smaller horns over the eyes, and a row of bony plates along its back. It coexisted with larger predators such as _Allosaurus_.

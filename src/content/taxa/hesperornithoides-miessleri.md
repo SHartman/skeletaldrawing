@@ -14,3 +14,5 @@ rigorous:
   src: "/images/skeletals/hesperornithoides-miessleri-type-wydice-dml-001-known-elements.png"
   alt: "Known skeletal material of Hesperornithoides miessleri: preserved elements shown in white against a black body silhouette."
 ---
+
+A small troodontid theropod from the Late Jurassic of Wyoming, close to the bird-like maniraptorans. _Hesperornithoides_ is one of the few well-preserved small predatory dinosaurs from the Morrison Formation.

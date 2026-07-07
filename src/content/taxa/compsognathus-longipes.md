@@ -19,3 +19,5 @@ additionalFigures:
     alt: "Compsognathus longipes — The larger French specimen (the former \"Compsognathus corallestris\"), ~1.25 m, shown for comparison with the German type."
     caption: "The larger French specimen (the former \"Compsognathus corallestris\"), ~1.25 m, shown for comparison with the German type."
 ---
+
+A small compsognathid theropod from the Late Jurassic of Germany and France, historically famous as one of the smallest known dinosaurs. A lizard skeleton preserved in its gut records its diet of small prey.

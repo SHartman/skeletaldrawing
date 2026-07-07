@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/heterodontosaurus-tucki-sam-pk-k1332-skeletal.png"
   alt: "Heterodontosaurus tucki skeletal reconstruction, left lateral view, reconstructed length ~1.25 m."
 ---
+
+A small early ornithischian from the Early Jurassic of South Africa, only about 1.25 metres long. It is famous for its differentiated teeth, including prominent canine-like tusks unusual for a plant-eating dinosaur.

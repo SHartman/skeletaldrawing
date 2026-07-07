@@ -19,3 +19,5 @@ additionalFigures:
     alt: "Deinonychus antirrhopus — An alternative, more horizontal running posture."
     caption: "An alternative, more horizontal running posture."
 ---
+
+A dromaeosaurid theropod from the Early Cretaceous of the western United States, bearing the enlarged sickle-shaped claw on each foot that typifies the group. Study of _Deinonychus_ helped spark the modern view of dinosaurs as active, bird-related animals.

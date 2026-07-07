@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Microraptor gui — Soft-tissue reconstruction based on the preserved integument, by specimen."
     caption: "Soft-tissue reconstruction based on the preserved integument, by specimen."
 ---
+
+A small four-winged dromaeosaurid from the Early Cretaceous of China, bearing long flight feathers on both its arms and legs. Fossilised melanosomes indicate _Microraptor_ had glossy black, iridescent plumage.

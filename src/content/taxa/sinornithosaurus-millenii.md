@@ -19,3 +19,5 @@ additionalFigures:
     alt: "Sinornithosaurus millenii — Growth series to common scale — the ~1.1 m adult type and the ~0.6 m juvenile “Dave.”"
     caption: "Growth series to common scale — the ~1.1 m adult type and the ~0.6 m juvenile “Dave.”"
 ---
+
+A small dromaeosaurid from the Early Cretaceous Yixian Formation of Liaoning, China, preserved with extensive feather impressions. About a metre long, _Sinornithosaurus_ was among the first dromaeosaurs to show unambiguously that these "raptor" dinosaurs bore feathers.

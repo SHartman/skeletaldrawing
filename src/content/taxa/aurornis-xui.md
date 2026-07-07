@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/aurornis-xui-yfgp-t5198-skeletal.png"
   alt: "Aurornis xui skeletal reconstruction, left lateral view, reconstructed length ~0.5 m."
 ---
+
+A small, feathered paravian theropod from the Late Jurassic of Liaoning, China, close to the origin of birds. Roughly crow-sized, _Aurornis_ has figured prominently in debates over the earliest stages of avian evolution.

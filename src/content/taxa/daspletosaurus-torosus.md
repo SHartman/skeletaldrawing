@@ -10,3 +10,5 @@ reconstruction:
   src: "/images/skeletals/daspletosaurus-torosus-skeletal.png"
   alt: "Daspletosaurus torosus skeletal reconstruction, left lateral view, reconstructed length ~8.8 m."
 ---
+
+A tyrannosaurid theropod from the Late Cretaceous of Alberta, Canada, a close, robustly built relative of _Tyrannosaurus_. Its deep skull and powerful jaws mark it as a top predator of its ecosystem.

@@ -14,3 +14,5 @@ rigorous:
   src: "/images/skeletals/majungasaurus-crenatissimus-known-elements.png"
   alt: "Known skeletal material of Majungasaurus crenatissimus: preserved elements shown in white against a black body silhouette."
 ---
+
+An abelisaurid, a short-armed predatory theropod, from the Late Cretaceous of Madagascar. _Majungasaurus_ had a deep, blunt skull bearing a single small horn on its forehead, and bite marks on its own bones provide rare direct evidence of cannibalism.

@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/triceratops-sp-yoshi-skeletal.png"
   alt: "Triceratops sp. skeletal reconstruction, left lateral view, reconstructed length ~6.75 m."
 ---
+
+An indeterminate species of _Triceratops_, a large chasmosaurine horned dinosaur from the latest Cretaceous of western North America, about 68–66 million years ago. Like all Triceratops it bore two long brow horns, a nasal horn, and a broad solid neck frill.

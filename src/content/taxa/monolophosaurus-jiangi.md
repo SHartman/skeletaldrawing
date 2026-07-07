@@ -13,3 +13,5 @@ rigorous:
   src: "/images/skeletals/monolophosaurus-jiangi-type-specimen-ivpp-84019-known-elements.png"
   alt: "Known skeletal material of Monolophosaurus jiangi: preserved elements shown in white against a black body silhouette."
 ---
+
+A tetanuran theropod from the Middle to Late Jurassic of China, distinguished by a single tall bony crest running along the midline of its skull. The crest was hollow, likely serving a display function.

@@ -16,3 +16,5 @@ rigorous:
   src: "/images/skeletals/khaan-mckennai-type-igm-100-1002-known-elements.png"
   alt: "Known skeletal material of Khaan mckennai: preserved elements shown in white against a black body silhouette."
 ---
+
+An oviraptorosaur, a bird-like feathered theropod, from the Late Cretaceous of Mongolia. This skeletal is based on a subadult individual. _Khaan_ had a toothless, short skull and would have carried a horny beak.

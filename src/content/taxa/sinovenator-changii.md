@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/sinovenator-changii-skeletal.png"
   alt: "Sinovenator changii skeletal reconstruction, left lateral view, reconstructed length ~0.91 m."
 ---
+
+A small troodontid from the Early Cretaceous Yixian Formation of Liaoning, China. About a metre long, _Sinovenator_ is one of the most basal known troodontids and helped link this lineage of slender, large-brained theropods to early birds and dromaeosaurs.

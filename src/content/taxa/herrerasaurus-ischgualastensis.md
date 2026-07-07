@@ -11,3 +11,5 @@ reconstruction:
   src: "/images/skeletals/herrerasaurus-ischgualastensis-skeletal.png"
   alt: "Herrerasaurus ischgualastensis skeletal reconstruction, left lateral view, reconstructed length ~5.7 m."
 ---
+
+One of the earliest dinosaurs, from the Late Triassic of Argentina, near the base of the theropod or dinosaur lineage. _Herrerasaurus_ was an agile predator with a flexible jaw joint and grasping hands.

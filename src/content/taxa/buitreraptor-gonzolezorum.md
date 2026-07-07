@@ -14,3 +14,5 @@ rigorous:
   src: "/images/skeletals/buitreraptor-gonzolezorum-composite-of-mpca-238-and-245-known-elements.png"
   alt: "Known skeletal material of Buitreraptor gonzolezorum: preserved elements shown in white against a black body silhouette."
 ---
+
+A small dromaeosaurid theropod from the Late Cretaceous of Patagonian Argentina. Slender and long-snouted with many small teeth, it belongs to the unenlagiine raptors and illustrates the group's distinctive Southern Hemisphere radiation.

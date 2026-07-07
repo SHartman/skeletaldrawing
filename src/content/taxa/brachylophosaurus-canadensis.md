@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/brachylophosaurus-canadensis-mor-794-elvis-skeletal.png"
   alt: "Brachylophosaurus canadensis skeletal reconstruction, left lateral view, reconstructed length ~9 m."
 ---
+
+A hadrosaurid (duck-billed dinosaur) of the Late Cretaceous of North America, distinguished by a flat, solid, paddle-shaped bony crest over the top of the skull. It is known from remarkably well-preserved specimens, including skin impressions.

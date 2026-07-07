@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/scutellosaurus-lawleri-type-mna-v-175-skeletal.png"
   alt: "Scutellosaurus lawleri skeletal reconstruction, left lateral view, reconstructed length ~1.3 m."
 ---
+
+A very early armoured dinosaur from the Early Jurassic of Arizona, roughly 196 million years ago. _Scutellosaurus_ was small and lightly built, and unusual among thyreophorans in being primarily bipedal, its back and flanks covered by hundreds of small bony scutes.

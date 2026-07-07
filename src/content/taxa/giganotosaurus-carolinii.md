@@ -18,3 +18,5 @@ additionalFigures:
     alt: "Giganotosaurus carolinii — Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation."
     caption: "Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation."
 ---
+
+A giant carcharodontosaurid theropod from the Late Cretaceous of Argentina, among the largest known meat-eating dinosaurs. Reaching nearly 12 metres, _Giganotosaurus_ rivalled or exceeded _Tyrannosaurus_ in length.

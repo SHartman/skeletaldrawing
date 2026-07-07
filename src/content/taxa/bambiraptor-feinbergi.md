@@ -15,3 +15,5 @@ rigorous:
   src: "/images/skeletals/bambiraptor-feinbergi-amnh-fr-30556-juvenile-known-material.png"
   alt: "Known skeletal material of Bambiraptor feinbergi: preserved elements shown in white against a black body silhouette."
 ---
+
+A small dromaeosaurid theropod from the Late Cretaceous of Montana, USA, known from a well-preserved juvenile skeleton. Its bird-like proportions and large brain relative to body size have made it important for studies of dinosaur-bird links.

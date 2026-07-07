@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/prenoceratops-pieganensis-skeletal.png"
   alt: "Prenoceratops pieganensis skeletal reconstruction, left lateral view, reconstructed length ~1.3 m."
 ---
+
+A small leptoceratopsid, one of the primitive horned dinosaurs, from the Late Cretaceous of Montana. _Prenoceratops_ had a low, beaked skull and a short frill, lacking the large horns of the ceratopsids.
