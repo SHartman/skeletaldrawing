@@ -1,16 +1,26 @@
 ---
-added: "2026-07-06T12:00:00.000Z"
-taxon: "Albertaceratops nesmoi"
-author: "Ryan, 2007"
-gallery: "ornithischians"
-clade: ["Centrosaurinae"]
+taxon: Albertaceratops nesmoi
+author: Ryan, 2007
+gallery: ornithischians
+clade:
+  - Centrosaurinae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 5.5
-widthM: 5.37
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/albertaceratops-nesmoi-skeletal.png"
-  alt: "Albertaceratops nesmoi skeletal reconstruction, left lateral view, reconstructed length ~5.5 m."
+  src: /images/skeletals/albertaceratops-nesmoi-skeletal.png
+  alt: Albertaceratops nesmoi skeletal reconstruction, left lateral view, reconstructed length ~5.5 m.
+added: 2026-07-06T12:00:00.000Z
+widthM: 5.37
 ---
 
-A centrosaurine (short-frilled ceratopsid) from the Late Cretaceous of Alberta, Canada, notable for its long paired brow horns over the eyes combined with a low nasal boss, a mix unusual among its short-horned relatives.
+A basal centrosaurine (the short-frilled horned dinosaurs) from the Late Cretaceous of Alberta, Canada. While advanced centrosaurines often have reduced brow horns and enlarged nose horns, species like _ALbertaceratops_ show that early members had horn configurations more reminiscient of _Triceratops_ and it's rbethren. The shorter, more ornamental bony shield of the skull is more typical of centrosaurines.
