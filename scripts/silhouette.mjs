@@ -398,6 +398,19 @@ const GENUS_GROUPS = {
   ],
 };
 
+// Ontogenetic (growth-series) comparisons: several growth stages of ONE taxon, drawn to a common
+// scale on that taxon's own page (flagged by `growthSeries` in the .md; keyed <taxon-slug>-growth).
+// Maiasaura is bonebed-derived, so each stage is composited to size rather than a single specimen —
+// lengths are given here (widthM ≈ lengthM per the owner) instead of read from per-stage entries.
+const GROWTH_GROUPS = {
+  'maiasaura-peeblesorum-growth': [
+    { file: 'maiasaura-peeblesorum-hatchling-skeletal.png', lengthM: 0.5, label: 'Hatchling' },
+    { file: 'maiasaura-peeblesorum-yearling-skeletal.png', lengthM: 2.75, label: 'Yearling' },
+    { file: 'maiasaura-peeblesorum-subadult-two-years-skeletal.png', lengthM: 5, label: 'Subadult · 2 yr' },
+    { file: 'maiasaura-peeblesorum-adult-skeletal.png', lengthM: 7, label: 'Adult' },
+  ],
+};
+
 // widthM → a spreadable {widthM} only when it's a real number, so absent values stay out of the JSON.
 const wm = (v) => (Number.isFinite(v) ? { widthM: v } : {});
 const numField = (txt, key) => {
@@ -453,6 +466,19 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
     const { w, h, path, points } = await traceImage(file, { alpha: true });
     items.push({ slug: g.specimen || g.taxon, label: g.label, lengthM, ...wm(widthM), w, h, path });
     console.log(`${key}/${g.label}: ${lengthM} m${Number.isFinite(widthM) ? ` (w ${widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts`);
+  }
+  if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
+}
+
+// ----- pass 2b: ontogenetic growth series (owner silhouettes, per-stage lengths) -----
+for (const [key, group] of Object.entries(GROWTH_GROUPS)) {
+  const items = [];
+  for (const g of group) {
+    const file = join('silhouettes', g.file);
+    if (!existsSync(file)) { console.log(`(skip ${key}: missing ${g.file})`); continue; }
+    const { w, h, path, points } = await traceImage(file, { alpha: true });
+    items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.lengthM, w, h, path });
+    console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
 }
