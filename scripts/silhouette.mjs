@@ -377,6 +377,25 @@ const GENUS_GROUPS = {
     { file: 'diplodocus-hallorum-nmmnh-3690-silhouette.png', taxon: 'diplodocus-hallorum', specimen: 'nmmnh-3690', label: 'D. hallorum · NMMNH 3690' },
     { file: 'diplodocus-hallorum-amnh-223-silhouette.png', taxon: 'diplodocus-hallorum', specimen: 'amnh-223', label: 'D. hallorum · AMNH 223' },
   ],
+  // Ornithischian genus hubs — juveniles/subadults labelled so the legend reads honestly.
+  edmontosaurus: [
+    { file: 'edmontosaurus-regalis-skeletal.png', taxon: 'edmontosaurus-regalis', label: 'E. regalis' },
+    { file: 'edmontosaurus-annectens-skeletal.png', taxon: 'edmontosaurus-annectens', label: 'E. annectens' },
+  ],
+  hypacrosaurus: [
+    { file: 'hypacrosaurus-stebingeri-adult-skeletal.png', taxon: 'hypacrosaurus-stebingeri', label: 'H. stebingeri' },
+    { file: 'hypacrosaurus-altispinus-juvenile-skeletal.png', taxon: 'hypacrosaurus-altispinus', label: 'H. altispinus · juvenile' },
+  ],
+  parasaurolophus: [
+    { file: 'parasaurolophus-walkeri-type-specimen-rom-768-skeletal.png', taxon: 'parasaurolophus-walkeri', label: 'P. walkeri' },
+    { file: 'parasaurolophus-cyrtocristatus-fmnh-p27393-skeletal.png', taxon: 'parasaurolophus-cyrtocristatus', label: 'P. cyrtocristatus' },
+    { file: 'parasaurolophus-sp-juvenile-ram-14000-skeletal.png', taxon: 'parasaurolophus-sp', label: 'P. sp. · juvenile' },
+  ],
+  triceratops: [
+    { file: 'triceratops-horridus-skeletal.png', taxon: 'triceratops-horridus', label: 'T. horridus' },
+    { file: 'triceratops-sp-yoshi-skeletal.png', taxon: 'triceratops-sp', label: 'T. sp. · MOR 3027' },
+    { file: 'triceratops-prorsus-skeletal-subadult.png', taxon: 'triceratops-prorsus', label: 'T. prorsus · subadult' },
+  ],
 };
 
 // widthM → a spreadable {widthM} only when it's a real number, so absent values stay out of the JSON.
@@ -469,6 +488,15 @@ const SKIP_SLUGS = new Set();
 const SKIP_FILES = new Set([
   'barosaurus-lentus-rom-3670-silhouette.png',
   'sinornithosaurus-millenii-ngmc-91-dave-skeletal.png',
+  // Maiasaura growth stages — labelled figures on the taxon page, not the taxon's overlay silhouette
+  // (the adult is). They stay for a future growth-series comparison.
+  'maiasaura-peeblesorum-hatchling-skeletal.png',
+  'maiasaura-peeblesorum-yearling-skeletal.png',
+  'maiasaura-peeblesorum-subadult-two-years-skeletal.png',
+  // Kentrosaurus alternate hip-based spine placement — a hypothesis figure, not the body silhouette.
+  'kentrosaurus-aethiopicus-skeletal-with-alternaive-hip-based-spine-placement.png',
+  // Hypacrosaurus combined adult+juvenile plate — the genus group uses the separate adult/juvenile files.
+  'hypacrosaurus-stebingeri-adult-and-juvenile-skeletals.png',
 ]);
 const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
