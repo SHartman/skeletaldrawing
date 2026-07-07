@@ -387,8 +387,10 @@ const GENUS_GROUPS = {
     { file: 'torvosaurus-gurneyi-known-elements.png', taxon: 'torvosaurus-gurneyi', label: 'T. gurneyi' },
     { file: 'torvosaurus-tanneri-skeletal.png', taxon: 'torvosaurus-tanneri', label: 'T. tanneri' },
   ],
-  // apatosaurus: awaiting an A. louisae silhouette — only A. ajax is traced, so the comparison is
-  // held back rather than shown with a single species. Add louisae's silhouette + a row here to enable.
+  apatosaurus: [
+    { file: 'apatosaurus-louisae-silhouette.png', taxon: 'apatosaurus-louisae', label: 'A. louisae' },
+    { file: 'apatosaurus-ajax-silhouette.png', taxon: 'apatosaurus-ajax', label: 'A. ajax' },
+  ],
   // Ornithischian genus hubs — juveniles/subadults labelled so the legend reads honestly.
   edmontosaurus: [
     { file: 'edmontosaurus-regalis-skeletal.png', taxon: 'edmontosaurus-regalis', label: 'E. regalis' },
