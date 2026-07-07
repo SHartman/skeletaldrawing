@@ -377,6 +377,18 @@ const GENUS_GROUPS = {
     { file: 'diplodocus-hallorum-nmmnh-3690-silhouette.png', taxon: 'diplodocus-hallorum', specimen: 'nmmnh-3690', label: 'D. hallorum · NMMNH 3690' },
     { file: 'diplodocus-hallorum-amnh-223-silhouette.png', taxon: 'diplodocus-hallorum', specimen: 'amnh-223', label: 'D. hallorum · AMNH 223' },
   ],
+  // A. jimmadseni is specimen-rich, so it's shown per specimen (Big Al + Little Al), matching the hub.
+  allosaurus: [
+    { file: 'allosaurus-fragilis-skeletal.png', taxon: 'allosaurus-fragilis', label: 'A. fragilis' },
+    { file: 'allosaurus-jimmadseni-big-al-mor-693-skeletal.png', taxon: 'allosaurus-jimmadseni', specimen: 'big-al', label: 'A. jimmadseni · Big Al' },
+    { file: 'allosaurus-jimmadseni-little-al-juvenile-skeletal.png', taxon: 'allosaurus-jimmadseni', specimen: 'little-al', label: 'A. jimmadseni · Little Al (juv.)' },
+  ],
+  torvosaurus: [
+    { file: 'torvosaurus-gurneyi-known-elements.png', taxon: 'torvosaurus-gurneyi', label: 'T. gurneyi' },
+    { file: 'torvosaurus-tanneri-skeletal.png', taxon: 'torvosaurus-tanneri', label: 'T. tanneri' },
+  ],
+  // apatosaurus: awaiting an A. louisae silhouette — only A. ajax is traced, so the comparison is
+  // held back rather than shown with a single species. Add louisae's silhouette + a row here to enable.
   // Ornithischian genus hubs — juveniles/subadults labelled so the legend reads honestly.
   edmontosaurus: [
     { file: 'edmontosaurus-regalis-skeletal.png', taxon: 'edmontosaurus-regalis', label: 'E. regalis' },
