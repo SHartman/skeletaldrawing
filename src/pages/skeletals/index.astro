@@ -22,7 +22,13 @@ for (const t of taxa) {
     taxon: t.data.taxon,
     common: '',
     clade: familyOf(t.data),
-    specimen: t.data.specimenId ?? '',
+    // include the nickname (specimenName) so a named skeletal — Triceratops sp. "Yoshi",
+    // Brachylophosaurus "Elvis" — is findable by its nickname, mirroring how specimens index theirs.
+    specimen: t.data.specimenName
+      ? t.data.specimenId
+        ? `${t.data.specimenId} · ${t.data.specimenName}`
+        : t.data.specimenName
+      : t.data.specimenId ?? '',
     href: `/${t.data.gallery}/${t.id}/`,
   });
 }
