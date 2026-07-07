@@ -121,8 +121,19 @@ const cladeCards = CLADE_SHORTCUTS.map((c) => ({
   }));
 
 // Idle stat line — real figures.
+// "Reconstructions" counts every distinct skeletal reconstruction image — not just the one primary per
+// entry, but also the growth-series, alternate-pose, extra-specimen and armour-variant skeletals held as
+// additional figures. It EXCLUDES additional figures that aren't skeletal reconstructions: muscle and
+// soft-tissue studies, mass-estimate (GDI) diagrams, known-material diagrams, and a skeletal reproduced
+// from a published paper (which duplicates the primary). Known-material (rigorous) diagrams never count —
+// they show preserved bone, not a reconstruction. (Filename-keyword filter; keep names descriptive.)
+const NON_RECON_FIG = /soft.?tissue|muscle|mass.?estimate|\bgdi\b|et-al|dissertation|known-(elements|material)/i;
+const reconFigs = (arr: { src: string }[] | undefined) => (arr ?? []).filter((f) => !NON_RECON_FIG.test(f.src)).length;
 const reconCount =
-  taxa.filter((t) => t.data.reconstruction).length + specimens.filter((s) => s.data.reconstruction).length;
+  taxa.filter((t) => t.data.reconstruction).length +
+  specimens.filter((s) => s.data.reconstruction).length +
+  taxa.reduce((n, t) => n + reconFigs(t.data.additionalFigures), 0) +
+  specimens.reduce((n, s) => n + reconFigs(s.data.additionalFigures), 0);
 const idleStat = `${reconCount} reconstructions · ${taxa.length} taxa · a scale bar on every plate`;
 
 // The site's own Sue (T. rex, FMNH PR 2081) body silhouette from the scale-comparison database —
