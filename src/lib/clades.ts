@@ -89,6 +89,39 @@ const PARENT: Record<string, string> = {
   Euornithes: 'Ornithothoraces',
   Ornithuromorpha: 'Euornithes',
   Aves: 'Ornithuromorpha',
+
+  // ── Ornithischia (bird-hipped dinosaurs) — backbone for the ornithischians gallery ──
+  // Basal taxa whose position is unstable (Pisanosaurus, Lesothosaurus, Laquintasaura, Eocursor)
+  // are authored as bare `Ornithischia` and simply sit at the root.
+  Heterodontosauridae: 'Ornithischia',
+  Thyreophora: 'Ornithischia',
+  Stegosauria: 'Thyreophora',
+  Huayangosauridae: 'Stegosauria',
+  Stegosauridae: 'Stegosauria',
+  Ankylosauria: 'Thyreophora',
+  Polacanthidae: 'Ankylosauria',
+  Nodosauridae: 'Ankylosauria',
+  Ankylosauridae: 'Ankylosauria',
+  Neornithischia: 'Ornithischia',
+  Thescelosauridae: 'Neornithischia',
+  Ornithopoda: 'Neornithischia',
+  Iguanodontia: 'Ornithopoda',
+  Rhabdodontidae: 'Iguanodontia',
+  Hadrosauroidea: 'Iguanodontia',
+  Hadrosauridae: 'Hadrosauroidea',
+  Saurolophinae: 'Hadrosauridae',
+  Lambeosaurinae: 'Hadrosauridae',
+  Marginocephalia: 'Neornithischia',
+  Pachycephalosauria: 'Marginocephalia',
+  Pachycephalosauridae: 'Pachycephalosauria',
+  Ceratopsia: 'Marginocephalia',
+  Psittacosauridae: 'Ceratopsia',
+  Neoceratopsia: 'Ceratopsia',
+  Protoceratopsidae: 'Neoceratopsia',
+  Leptoceratopsidae: 'Neoceratopsia',
+  Ceratopsidae: 'Neoceratopsia',
+  Centrosaurinae: 'Ceratopsidae',
+  Chasmosaurinae: 'Ceratopsidae',
 };
 
 /** Full ancestry of a single clade, root-first and inclusive of the clade itself. */
@@ -137,6 +170,11 @@ export const LANDMARKS: ReadonlySet<string> = new Set([
   // ── Sauropodomorpha ──
   'Sauropodomorpha', 'Massospondylidae', 'Sauropoda', 'Neosauropoda', 'Diplodocoidea',
   'Diplodocidae', 'Macronaria', 'Brachiosauridae', 'Titanosauria', 'Lognkosauria',
+  // ── Ornithischia ──
+  'Ornithischia', 'Heterodontosauridae', 'Thyreophora', 'Stegosauria', 'Ankylosauria',
+  'Neornithischia', 'Thescelosauridae', 'Ornithopoda', 'Iguanodontia', 'Hadrosauridae',
+  'Saurolophinae', 'Lambeosaurinae', 'Marginocephalia', 'Pachycephalosauria', 'Ceratopsia',
+  'Neoceratopsia', 'Leptoceratopsidae', 'Ceratopsidae', 'Centrosaurinae', 'Chasmosaurinae',
 ]);
 
 /**
