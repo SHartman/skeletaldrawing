@@ -47,6 +47,8 @@ const taxa = defineCollection({
     .object({
       taxon: z.string(),                  // binomial, rendered italic
       author: z.string(),                 // bare author citation, e.g. "Osborn, 1905" (no parens)
+      commonName: optStr,                 // popular/vernacular name (esp. extant taxa), e.g. "Northern
+                                          // Cardinal", "Platypus" — shown under the binomial + searchable
       recombination: nullableDefault(z.boolean().default(false)), // ICZN: parenthesizes the author
       gallery: z.string(),                // section bucket / URL parent, e.g. "sauropods-and-kin"
       clade: z.array(z.string()),         // most-specific clade(s); full lineage derived in lib/clades
@@ -62,6 +64,8 @@ const taxa = defineCollection({
       massKg: optNum,                     // body mass; scale-aware display (kg → tonnes)
       massSource: optStr,                 // provenance, e.g. "PaleoGDI" (future credit/link)
       lifeStage: optStr,                  // e.g. "Juvenile" — renders a record cell
+      sex: optStr,                        // e.g. "Male" / "Female" — for sexually dimorphic taxa (mammals,
+                                          // pterosaurs). Optional: renders a record cell only when set.
       view: defStr('Left lateral'),
       basis: optStr,
       scaleBar: defStr('1 meter'),        // caption value, spelled out, e.g. "1 meter", "50 centimeters"
@@ -97,6 +101,7 @@ const specimens = defineCollection({
       taxon: z.string(),                  // parent taxon slug (matches a taxa entry id)
       catalog: z.string(),                // e.g. "FMNH PR 2081"
       nickname: optStr,                   // e.g. "Sue"
+      sex: optStr,                        // e.g. "Male" / "Female" — sexually dimorphic taxa; renders when set
       repository: optStr,                 // holding institution, e.g. "Field Museum, Chicago"
       repositoryUrl: optStr,              // museum/collection page — renders the repository as a link
       formation: optStr,

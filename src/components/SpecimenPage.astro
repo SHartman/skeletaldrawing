@@ -71,6 +71,7 @@ const restFields: { k: string; v: string; href?: string }[] = [
   { k: 'Femur length', v: femur },
   { k: 'Body mass', v: mass },
   { k: 'Completeness', v: s.completenessPct != null ? `~${s.completenessPct}%` : '' },
+  { k: 'Sex', v: s.sex ?? '' },
   { k: 'Collected', v: s.collectedYear != null ? String(s.collectedYear) : '' },
   { k: 'View', v: s.view },
   { k: 'Basis', v: s.basis ?? '' },
@@ -122,6 +123,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
           ))}
         </p>
         <h1 class="binomial">{t.taxon}</h1>
+        {t.commonName && <p class="commonname">{t.commonName}</p>}
         <p class="specsub">{idSub}</p>
       </header>
 
@@ -295,6 +297,7 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
     margin: 0; font-style: italic; font-weight: 500;
     font-size: clamp(40px, 6.5vw, 68px); line-height: 1.0; letter-spacing: -.015em;
   }
+  .commonname { margin: 10px 0 0; font-size: 19px; color: var(--slate); } /* parent taxon's popular name */
   .specsub {
     margin: 12px 0 0; font-family: var(--font-mono); font-size: 14px;
     letter-spacing: .06em; color: var(--ink);

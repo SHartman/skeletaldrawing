@@ -1,6 +1,7 @@
 ---
 added: "2026-06-28T12:12:00.000Z"
 taxon: "Cardinalis cardinalis"
+commonName: "Northern Cardinal"
 author: "Linnaeus, 1758"
 recombination: true
 gallery: "theropods"

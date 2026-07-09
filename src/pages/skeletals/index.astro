@@ -20,7 +20,7 @@ const corpus: Row[] = [];
 for (const t of taxa) {
   corpus.push({
     taxon: t.data.taxon,
-    common: '',
+    common: t.data.commonName ?? '', // popular name (e.g. "Northern Cardinal") → searchable
     clade: familyOf(t.data),
     // include the nickname (specimenName) so a named skeletal — Triceratops sp. "Yoshi",
     // Brachylophosaurus "Elvis" — is findable by its nickname, mirroring how specimens index theirs.
@@ -37,7 +37,7 @@ for (const s of specimens) {
   if (!parent) continue;
   corpus.push({
     taxon: parent.data.taxon,
-    common: '',
+    common: parent.data.commonName ?? '', // inherit the parent taxon's popular name
     clade: familyOf(parent.data),
     specimen: s.data.nickname ? `${s.data.catalog} · ${s.data.nickname}` : s.data.catalog,
     href: `/${parent.data.gallery}/${parent.id}/${s.id}/`,
@@ -286,7 +286,7 @@ const description =
     if (shown.length) {
       let html = shown
         .map((d, i) => {
-          const meta = d.specimen ? esc(d.specimen) + ' · ' + esc(d.clade) : esc(d.clade);
+          const meta = [d.common, d.specimen, d.clade].filter(Boolean).map(esc).join(' · ');
           return `<a class="sugg" role="option" style="--i:${i}" href="${esc(d.href)}"><span class="s-name">${highlight(d.taxon, q)}</span><span class="s-meta">${meta}</span></a>`;
         })
         .join('');
