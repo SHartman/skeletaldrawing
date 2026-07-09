@@ -10,13 +10,17 @@
 //           --margin <pct>     white margin to leave around content (default 1.5)
 //           --max-width <px>   cap output width; oversized exports scale down (default 3000)
 //           --no-max           don't cap width
+//           --pos <corner>     credit corner: br (default) | tr | bl | tl. Use --pos tr (top-right)
+//                              for short-bodied animals (many synapsids) whose silhouette fills the
+//                              lower-right and would otherwise collide with the bottom-right credit.
+//                              --top-right / --upper-right are shorthands for --pos tr.
 //
 // Auto-crop finds the bounding box of all non-white content (skeleton + scale
 // bar), then re-frames it with a uniform white margin — so however you export,
 // every drawing ends up tightly and identically framed. The credit is then
-// scaled to 25% width and placed bottom-right at 2% padding. Non-destructive:
-// originals are never touched. If the cropped drawing intrudes into the credit
-// zone, the run WARNS so you can check that image.
+// scaled to 25% width and placed in the chosen corner (bottom-right by default)
+// at 2% padding. Non-destructive: originals are never touched. If the cropped
+// drawing intrudes into the credit zone, the run WARNS so you can check that image.
 
 import sharp from 'sharp';
 import { readFile, readdir, mkdir, stat } from 'node:fs/promises';
@@ -31,6 +35,21 @@ const PAD_FRAC = 0.02; // credit padding from right & bottom (fraction of width)
 const DEFAULT_MARGIN_PCT = 1.5; // white margin left around content when trimming
 const DEFAULT_MAX_WIDTH = 3000; // cap output width in px; oversized exports scale down (0 = off)
 const EXTS = new Set(['.png', '.jpg', '.jpeg', '.webp']);
+
+// Which corner the credit sits in. Default bottom-right; a batch of short-bodied animals can use
+// top-right so the credit clears the drawing.
+const CORNERS = {
+  br: { right: true, bottom: true }, tr: { right: true, bottom: false },
+  bl: { right: false, bottom: true }, tl: { right: false, bottom: false },
+};
+const normPos = (s) => {
+  const k = (s || 'br').toLowerCase().replace(/[^a-z]/g, '');
+  const map = {
+    br: 'br', bottomright: 'br', tr: 'tr', topright: 'tr', upperright: 'tr',
+    bl: 'bl', bottomleft: 'bl', tl: 'tl', topleft: 'tl', upperleft: 'tl',
+  };
+  return map[k] ?? null;
+};
 
 // Bounding box of non-white, non-transparent pixels.
 function contentBBox(data, w, h, ch) {
@@ -67,7 +86,7 @@ function darkFraction(data, w, h, ch, rect) {
   return total ? dark / total : 0;
 }
 
-async function processOne(inputPath, outputPath, { trim, marginPct, maxWidth }) {
+async function processOne(inputPath, outputPath, { trim, marginPct, maxWidth, pos }) {
   let base = await sharp(inputPath).png().toBuffer();
 
   if (trim) {
@@ -98,8 +117,9 @@ async function processOne(inputPath, outputPath, { trim, marginPct, maxWidth }) 
   const pad = Math.round(W * PAD_FRAC);
   const credit = await sharp(await readFile(CREDIT_SVG)).resize({ width: creditW }).png().toBuffer();
   const creditH = (await sharp(credit).metadata()).height ?? 0;
-  const left = Math.max(0, W - creditW - pad);
-  const top = Math.max(0, H - creditH - pad);
+  const corner = CORNERS[pos] ?? CORNERS.br;
+  const left = corner.right ? Math.max(0, W - creditW - pad) : pad;
+  const top = corner.bottom ? Math.max(0, H - creditH - pad) : pad;
 
   // credit-zone collision guard
   const { data, info } = await sharp(base).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -112,14 +132,14 @@ async function processOne(inputPath, outputPath, { trim, marginPct, maxWidth }) 
 }
 
 function usage() {
-  console.error('Usage: npm run credit -- <input.png | folder> [output] [--no-trim] [--margin <pct>] [--max-width <px>]');
+  console.error('Usage: npm run credit -- <input.png | folder> [output] [--no-trim] [--margin <pct>] [--max-width <px>] [--pos br|tr|bl|tl]');
   process.exit(1);
 }
 
 // ---- args ----
 const argv = process.argv.slice(2);
-let trim = true, marginPct = DEFAULT_MARGIN_PCT, maxWidth = DEFAULT_MAX_WIDTH;
-const pos = [];
+let trim = true, marginPct = DEFAULT_MARGIN_PCT, maxWidth = DEFAULT_MAX_WIDTH, posArg = 'br';
+const positional = [];
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i];
   if (a === '--no-trim') trim = false;
@@ -128,9 +148,17 @@ for (let i = 0; i < argv.length; i++) {
   else if (a.startsWith('--margin=')) marginPct = parseFloat(a.slice(9));
   else if (a === '--max-width') maxWidth = parseInt(argv[++i], 10);
   else if (a.startsWith('--max-width=')) maxWidth = parseInt(a.slice(12), 10);
-  else pos.push(a);
+  else if (a === '--pos') posArg = argv[++i];
+  else if (a.startsWith('--pos=')) posArg = a.slice(6);
+  else if (a === '--top-right' || a === '--upper-right') posArg = 'tr';
+  else positional.push(a);
 }
-const [inputArg, outputArg] = pos;
+const pos = normPos(posArg);
+if (!pos) {
+  console.error(`Invalid --pos "${posArg}". Use one of: br, tr, bl, tl.`);
+  process.exit(1);
+}
+const [inputArg, outputArg] = positional;
 if (!inputArg) usage();
 if (!Number.isFinite(marginPct) || marginPct < 0) {
   console.error('Invalid --margin value');
@@ -144,7 +172,7 @@ if (!info) {
 }
 
 if (!Number.isFinite(maxWidth) || maxWidth < 0) maxWidth = 0;
-const opts = { trim, marginPct, maxWidth };
+const opts = { trim, marginPct, maxWidth, pos };
 const warn = (r, name) => (r.collision ? `   ⚠ drawing intrudes into the credit zone — check ${name}` : '');
 
 if (info.isDirectory()) {
