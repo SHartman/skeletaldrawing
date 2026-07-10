@@ -1,18 +1,219 @@
 # 301 redirect map — Cloudflare Pages format:  <from>  <to>  <status>
-# Highest-priority migration artifact (CLAUDE.md §8). Expand from the legacy
-# URL inventory before cutover.
+# GENERATED from the legacy URL inventory (GSC indexed URLs + the original->Squarespace 301 map +
+# the Squarespace WXR blog links). Every target below was verified to exist in the build.
+# Rules are matched top-to-bottom, first match wins — the /home/* catch-alls MUST stay last.
+#
+# NOT redirected (the new site serves them at the same path): /, /theropods, /sauropods-and-kin,
+# /anatomy, /non-dinosaurs (pending the final gallery), /store (pending).
 
-# Corrected clade slug (was misspelled "ornithiscians" on the live Squarespace site).
-/ornithiscians  /ornithischians  301
+# Corrected clade slug (was misspelled "ornithiscians" on the live site)
+/ornithiscians                                                             /ornithischians/                            301
 
-# Anatomy guide stays at /anatomy/ (a top-ranking, heavily-linked page — NOT moved, so it
-# needs no redirect of its own). These three are the original pre-Squarespace deep links,
-# carried forward so those decades-old inbound links keep landing on the guide.
-/shdguide/shdg.htm      /anatomy/  301
-/shdguide/shdgmain.htm  /anatomy/  301
-/shdguide/anatomy.htm   /anatomy/  301
+# Taxonomic split: the skeletal is Juratyrant langhami
+/theropods/stokesosaurus-clevelandi/                                       /theropods/juratyrant-langhami/             301
+/theropods/stokesosaurus/                                                  /theropods/juratyrant-langhami/             301
 
-# Stokesosaurus/Juratyrant taxonomic split: the skeletal is Juratyrant langhami; the fragmentary
-# American Stokesosaurus clevelandi gets no skeletal, so its URL points at Juratyrant.
-/theropods/stokesosaurus-clevelandi/  /theropods/juratyrant-langhami/  301
-/theropods/stokesosaurus/             /theropods/juratyrant-langhami/  301
+# Squarespace-era pages → their new homes
+/skeletal-index                                                            /galleries/                                 301
+/bio                                                                       /about/                                     301
+/art-design                                                                /about/licensing/                           301
+/licensing                                                                 /about/licensing/                           301
+/publications                                                              /about/research/                            301
+/curriculum-vitae                                                          /about/research/                            301
+/contact-us                                                                /contact/                                   301
+/tv-movies                                                                 /about/media/                               301
+/books                                                                     /about/licensing/                           301
+/links                                                                     /learn/                                     301
+/art                                                                       /galleries/                                 301
+/dinosaurs                                                                 /learn/                                     301
+/what-is-a-dinosaur                                                        /learn/                                     301
+/allosaurus-muscle-reconstruction                                          /theropods/allosaurus/                      301
+/patreon-images                                                            /                                           301
+/test-gallery                                                              /galleries/                                 301
+/new-page                                                                  /galleries/                                 301
+/store/tumbler-ridge-display-license                                       /about/licensing/                           301
+
+# Original pre-Squarespace deep links (.htm/.html), flattened straight to the new target
+/psgallery/gallery.htm                                                     /theropods/                                 301
+/artgallery/artgallery.html                                                /about/licensing/                           301
+/links.htm                                                                 /learn/                                     301
+/bio/bio.html                                                              /about/                                     301
+/bio/research.htm                                                          /about/research/                            301
+/bio/art.htm                                                               /about/licensing/                           301
+/bio/psresume.htm                                                          /about/licensing/                           301
+/sauropods/A_ajax.htm                                                      /sauropods-and-kin/apatosaurus/             301
+/sauropods/apatosaurus_louisae.png                                         /sauropods-and-kin/apatosaurus/             301
+/sauropods/barosaurus.htm                                                  /sauropods-and-kin/barosaurus-lentus/       301
+/sauropods/dcarnegii.htm                                                   /sauropods-and-kin/diplodocus/              301
+/diplodocus_comparison.htm                                                 /sauropods-and-kin/diplodocus/              301
+/psgallery/pages/acrocanthosaurus.html                                     /theropods/acrocanthosaurus-atokensis/      301
+/psgallery/pages/allosaurus.html                                           /theropods/allosaurus/                      301
+/psgallery/pages/amnhdave.html                                             /theropods/sinornithosaurus-millenii/       301
+/psgallery/pages/archaeopteryx.html                                        /theropods/archaeopteryx-lithographica/     301
+/psgallery/pages/aucosaurus.html                                           /theropods/aucasaurus-garridoi/             301
+/psgallery/pages/bambiraptor.html                                          /theropods/bambiraptor-feinbergi/           301
+/psgallery/pages/baryonyx.html                                             /theropods/baryonyx-walkeri/                301
+/psgallery/pages/chirostenotes.html                                        /theropods/                                 301
+/psgallery/pages/compsognathuscorallestris.html                            /theropods/compsognathus-longipes/          301
+/psgallery/pages/compsognathuslong.html                                    /theropods/compsognathus-longipes/          301
+/psgallery/pages/eotyrannus.html                                           /theropods/eotyrannus-lengi/                301
+/psgallery/pages/gorgosaurus.html                                          /theropods/gorgosaurus-libratus/            301
+/psgallery/pages/heyuannia.html                                            /theropods/heyuannia-huangi/                301
+/psgallery/pages/huaxiagnathus.html                                        /theropods/huaxiagnathus-orientalis/        301
+/psgallery/pages/jeholornis.html                                           /theropods/jeholornis-prima/                301
+/psgallery/pages/jinfengopteryx.html                                       /theropods/jinfengopteryx-elegans/          301
+/psgallery/pages/khaan.html                                                /theropods/khaan-mckennai/                  301
+/psgallery/pages/nomingia.html                                             /theropods/nomingia-gobiensis/              301
+/psgallery/pages/nothronychus.html                                         /theropods/nothronychus-graffami/           301
+/psgallery/pages/sapeornis.html                                            /theropods/sapeornis-chaoyangensis/         301
+/psgallery/pages/scansoriopteryx.html                                      /theropods/scansoriopteryx-heilmanni/       301
+/psgallery/pages/sinovenator.html                                          /theropods/sinovenator-changii/             301
+/psgallery/pages/suchomimus.html                                           /theropods/suchomimus-tenerensis/           301
+/psgallery/pages/tyrannosaurs.html                                         /theropods/tyrannosaurus-rex/               301
+/psgallery/pages/tyrannosaurus5027.html                                    /theropods/tyrannosaurus-rex/amnh-5027/     301
+/psgallery/pages/tyrannosaurusstan.html                                    /theropods/tyrannosaurus-rex/stan/          301
+/psgallery/pages/velociraptor.html                                         /theropods/velociraptor-mongoliensis/       301
+/psgallery/pages/supersaurus.html                                          /sauropods-and-kin/supersaurus-vivianae/    301
+/psgallery/pages/avaceratops.html                                          /ornithischians/                            301
+/psgallery/pages/brachylophosaurus.html                                    /ornithischians/brachylophosaurus-canadensis/ 301
+/psgallery/pages/maiasaura.html                                            /ornithischians/maiasaura-peeblesorum/      301
+/psgallery/pages/othnielia.html                                            /ornithischians/nanosaurus-agilis/          301
+/psgallery/pages/parasaurolophus.html                                      /ornithischians/parasaurolophus-walkeri/    301
+/psgallery/pages/pcyrtocristatus.html                                      /ornithischians/parasaurolophus-cyrtocristatus/ 301
+/psgallery/pages/psittacosaurus.html                                       /ornithischians/psittacosaurus-sinensis/    301
+/psgallery/pages/zalmoxes.html                                             /ornithischians/zalmoxes-robustus/          301
+/psgallery/pages/zalmoxescomp.html                                         /ornithischians/zalmoxes-robustus/          301
+/shdguide/shdg.htm                                                         /anatomy/                                   301
+/shdguide/shdgmain.htm                                                     /anatomy/                                   301
+/shdguide/anatomy.htm                                                      /anatomy/                                   301
+
+# Blog: legacy /home/… posts → /blog/<slug> (123 rules, all three URL generations)
+/home/2011/03/history-of-skeletal-drawings-from-bone.html                  /blog/history-of-skeletal-drawings-from-bone/ 301
+/home/2011/03/history-of-skeletal-drawings-part-1.html                     /blog/history-of-skeletal-drawings-part-1/  301
+/home/2011/03/history-of-skeletal-drawings-part-3.html                     /blog/history-of-skeletal-drawings-part-3/  301
+/home/2011/03/t-rex-baby-got-back.html                                     /blog/t-rex-baby-got-back/                  301
+/home/2011/03/tails-of-woe.html                                            /blog/tails-of-woe/                         301
+/home/2011/03/welcome-to-official-skeletal-drawingcom.html                 /blog/welcome-to-official-skeletal-drawingcom/ 301
+/home/2011/06/back-to-our-regularly-scheduled-blog.html                    /blog/back-to-our-regularly-scheduled-blog/ 301
+/home/2011/06/skeletal-reconstructions-schematic-vs.html                   /blog/skeletal-reconstructions-schematic-vs/ 301
+/home/2011/07/great-skeletal-repose-of-2011.html                           /blog/great-skeletal-repose-of-2011/        301
+/home/2011/07/neutral-poses.html                                           /blog/neutral-poses/                        301
+/home/2011/07/schematic-vs-realistic-skeletals-follow.html                 /blog/schematic-vs-realistic-skeletals-follow/ 301
+/home/2011/07/skeletal-poses-do-they-matter.html                           /blog/skeletal-poses-do-they-matter/        301
+/home/2011/08/john-conways-note-from-pterosaur-land.html                   /blog/john-conways-note-from-pterosaur-land/ 301
+/home/2011/08/mike-habibs-great-flying-skeletals.html                      /blog/mike-habibs-great-flying-skeletals/   301
+/home/2011/09/dinosaur-revolution-episodes-iii-iv-on.html                  /blog/dinosaur-revolution-episodes-iii-iv-on/ 301
+/home/2011/09/reign-of-dinosaur-revolution.html                            /blog/reign-of-dinosaur-revolution/         301
+/home/2011/09/running-around-like-ornitholestes-with.html                  /blog/running-around-like-ornitholestes-with/ 301
+/home/2011/09/talos-sampsoni-cool-new-troodontid.html                      /blog/talos-sampsoni-cool-new-troodontid/   301
+/home/2011/09/um-hey-scientific-american-bird-knees.html                   /blog/um-hey-scientific-american-bird-knees/ 301
+/home/2011/11/falcarius-bizarre-sickle-cutter.html                         /blog/falcarius-bizarre-sickle-cutter/      301
+/home/2011/11/gauging-stance-in-wide-gauge-sauropods.html                  /blog/gauging-stance-in-wide-gauge-sauropods/ 301
+/home/2011/12/happy-holidays.html                                          /blog/happy-holidays/                       301
+/home/2011/12/please-label-your-scale-bars-exhibit.html                    /blog/please-label-your-scale-bars-exhibit/ 301
+/home/2012/01/dawn-thief.html                                              /blog/dawn-thief/                           301
+/home/2012/01/evolution-of-my-acrocanthosaurus.html                        /blog/evolution-of-my-acrocanthosaurus/     301
+/home/2012/01/great-skeletal-repose-of-2011_20.html                        /blog/great-skeletal-repose-of-2011_20/     301
+/home/2012/01/revisiting-fisher-king.html                                  /blog/revisiting-fisher-king/               301
+/home/2012/03/carnotaurus-delving-into-self-parody.html                    /blog/carnotaurus-delving-into-self-parody/ 301
+/home/2012/04/fishing-at-dawn.html                                         /blog/fishing-at-dawn/                      301
+/home/2012/04/ioyutyrannus.html                                            /blog/ioyutyrannus/                         301
+/home/2012/04/when-journalists-attack.html                                 /blog/when-journalists-attack/              301
+/home/2012/04/yup-ok-apatosaurus-is-freakin-huge.html                      /blog/yup-ok-apatosaurus-is-freakin-huge/   301
+/home/2012/06/im-teaching-online-course-on-anatomy.html                    /blog/im-teaching-online-course-on-anatomy/ 301
+/home/2012/06/terrible-claw.html                                           /blog/terrible-claw/                        301
+/home/2012/10/ornithomimus-had-wingsas-adult.html                          /blog/ornithomimus-had-wingsas-adult/       301
+/home/2013/04/massive-changes-incoming-to-diplodocid.html                  /blog/massive-changes-incoming-to-diplodocid/ 301
+/home/2013/05/hey-trailer-with-my-dinosaurs.html                           /blog/hey-trailer-with-my-dinosaurs/        301
+/home/2013/06/the-biggest-of-big.html                                      /blog/the-biggest-of-big/                   301
+/home/2013/6/19/welcome-to-the-redesigned-skeletaldrawingcom               /blog/welcome-to-the-redesigned-skeletaldrawingcom/ 301
+/home/2013/6/20/the-problem-with-puertasaurus                              /blog/the-problem-with-puertasaurus/        301
+/home/2013/6/21/assessing-alamosaurus                                      /blog/assessing-alamosaurus/                301
+/home/21stcenturydimetrodon                                                /blog/21stcenturydimetrodon/                301
+/home/an-open-access-baby-parasaurolophus10262013                          /blog/                                      301
+/home/anchiornissofttissue                                                 /blog/anchiornissofttissue/                 301
+/home/and-the-winner-is3172014                                             /blog/and-the-winner-is3172014/             301
+/home/aquatic-spinosaurus-the-authors-responsd9182014                      /blog/aquatic-spinosaurus-the-authors-responsd9182014/ 301
+/home/assessing-alamosaurus                                                /blog/assessing-alamosaurus/                301
+/home/at-long-last-utahraptor                                              /blog/at-long-last-utahraptor/              301
+/home/back-to-our-regularly-scheduled-blog                                 /blog/back-to-our-regularly-scheduled-blog/ 301
+/home/carnotaurus-delving-into-self-parody                                 /blog/carnotaurus-delving-into-self-parody/ 301
+/home/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015   /blog/catching-up-books-plushies-and-a-welcome-to-gizmodo-readers1312015/ 301
+/home/choose-my-next-skeletal-drawing                                      /blog/choose-my-next-skeletal-drawing/      301
+/home/dawn-thief                                                           /blog/dawn-thief/                           301
+/home/deinocheirus-therizinosaur-or-hadrosaur-mimic7102015                 /blog/deinocheirus-therizinosaur-or-hadrosaur-mimic7102015/ 301
+/home/dinosaur-revolution-episodes-iii-iv-on                               /blog/dinosaur-revolution-episodes-iii-iv-on/ 301
+/home/dinosaurs-didnt-twerk-errpart-24202020                               /blog/dinosaurs-didnt-twerk-errpart-24202020/ 301
+/home/europelta                                                            /blog/europelta/                            301
+/home/evolution-of-my-acrocanthosaurus                                     /blog/evolution-of-my-acrocanthosaurus/     301
+/home/falcarius-bizarre-sickle-cutter                                      /blog/falcarius-bizarre-sickle-cutter/      301
+/home/fishing-at-dawn                                                      /blog/fishing-at-dawn/                      301
+/home/gauging-stance-in-wide-gauge-sauropods                               /blog/gauging-stance-in-wide-gauge-sauropods/ 301
+/home/giant-theropods-north-vs-south772013                                 /blog/giant-theropods-north-vs-south772013/ 301
+/home/great-skeletal-repose-of-2011                                        /blog/great-skeletal-repose-of-2011/        301
+/home/great-skeletal-repose-of-2011_20                                     /blog/great-skeletal-repose-of-2011_20/     301
+/home/guanlong-at-last962014                                               /blog/guanlong-at-last962014/               301
+/home/happy-holidays                                                       /blog/happy-holidays/                       301
+/home/hesperornithoides-faq7102019                                         /blog/hesperornithoides-faq7102019/         301
+/home/hey-trailer-with-my-dinosaurs                                        /blog/hey-trailer-with-my-dinosaurs/        301
+/home/history-of-skeletal-drawings-from-bone                               /blog/history-of-skeletal-drawings-from-bone/ 301
+/home/history-of-skeletal-drawings-part-1                                  /blog/history-of-skeletal-drawings-part-1/  301
+/home/history-of-skeletal-drawings-part-3                                  /blog/history-of-skeletal-drawings-part-3/  301
+/home/i-did-it-wrong-pelycosaurs-have-longer-necks2192026                  /blog/i-did-it-wrong-pelycosaurs-have-longer-necks2192026/ 301
+/home/im-teaching-online-course-on-anatomy                                 /blog/im-teaching-online-course-on-anatomy/ 301
+/home/introducinghesperornithoides                                         /blog/introducinghesperornithoides/         301
+/home/ioyutyrannus                                                         /blog/ioyutyrannus/                         301
+/home/john-conways-note-from-pterosaur-land                                /blog/john-conways-note-from-pterosaur-land/ 301
+/home/just-a-quick-update2132026                                           /blog/just-a-quick-update2132026/           301
+/home/lythronax-tyrannosaur-troubles1192013                                /blog/lythronax-tyrannosaur-troubles1192013/ 301
+/home/mass-estimates-north-vs-south-redux772013                            /blog/mass-estimates-north-vs-south-redux772013/ 301
+/home/massive-changes-incoming-to-diplodocid                               /blog/massive-changes-incoming-to-diplodocid/ 301
+/home/master-list-of-hesperornithoides-articles-and-resources7102019       /blog/                                      301
+/home/mike-habibs-great-flying-skeletals                                   /blog/mike-habibs-great-flying-skeletals/   301
+/home/mosasaurs-teaching-the-controversy                                   /blog/mosasaurs-teaching-the-controversy/   301
+/home/neutral-poses                                                        /blog/neutral-poses/                        301
+/home/new-and-improved-galleries10262013                                   /blog/new-and-improved-galleries10262013/   301
+/home/ornithomimus-had-wingsas-adult                                       /blog/ornithomimus-had-wingsas-adult/       301
+/home/permia-sponsorship-removal-of-ads-and-other-goodies3292019           /blog/permia-sponsorship-removal-of-ads-and-other-goodies3292019/ 301
+/home/please-label-your-scale-bars-exhibit                                 /blog/please-label-your-scale-bars-exhibit/ 301
+/home/reign-of-dinosaur-revolution                                         /blog/reign-of-dinosaur-revolution/         301
+/home/revisiting-fisher-king                                               /blog/revisiting-fisher-king/               301
+/home/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020          /blog/road-to-spinosaurus-iv-not-your-fathers-jp3-osaurus11282020/ 301
+/home/rockette-tyrannosaurus-rex                                           /blog/rockette-tyrannosaurus-rex/           301
+/home/running-around-like-ornitholestes-with                               /blog/running-around-like-ornitholestes-with/ 301
+/home/sauropod-gallery-overhauled                                          /blog/sauropod-gallery-overhauled/          301
+/home/scaling-issues-a-minor-irritation712013                              /blog/scaling-issues-a-minor-irritation712013/ 301
+/home/schematic-vs-realistic-skeletals-follow                              /blog/schematic-vs-realistic-skeletals-follow/ 301
+/home/skeletal-poses-do-they-matter                                        /blog/skeletal-poses-do-they-matter/        301
+/home/skeletal-reconstructions-schematic-vs                                /blog/skeletal-reconstructions-schematic-vs/ 301
+/home/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014          /blog/smackdown-supersaurus-vs-giraffatitan-and-diplodocus7212014/ 301
+/home/super-spinosaurus6282013                                             /blog/super-spinosaurus6282013/             301
+/home/t-rex-baby-got-back                                                  /blog/t-rex-baby-got-back/                  301
+/home/tails-of-woe                                                         /blog/tails-of-woe/                         301
+/home/talos-sampsoni-cool-new-troodontid                                   /blog/talos-sampsoni-cool-new-troodontid/   301
+/home/teleocrater                                                          /blog/                                      301
+/home/terrible-claw                                                        /blog/terrible-claw/                        301
+/home/the-biggest-of-big                                                   /blog/the-biggest-of-big/                   301
+/home/the-hadrosaur-repose-of-201811272018                                 /blog/the-hadrosaur-repose-of-201811272018/ 301
+/home/the-lines-that-divide-us3192019                                      /blog/the-lines-that-divide-us3192019/      301
+/home/the-lip-post1                                                        /blog/the-lip-post1/                        301
+/home/the-problem-with-puertasaurus                                        /blog/the-problem-with-puertasaurus/        301
+/home/the-road-to-spinosaurus-i-megalosaur-skulls                          /blog/the-road-to-spinosaurus-i-megalosaur-skulls/ 301
+/home/the-road-to-spinosaurus-ii-known-unknowns11252020                    /blog/the-road-to-spinosaurus-ii-known-unknowns11252020/ 301
+/home/the-road-to-spinosaurus-iii-of-chimeras-and-leg-proportions11262020  /blog/the-road-to-spinosaurus-iii-of-chimeras-and-leg-proportions11262020/ 301
+/home/there-may-be-more-fishiness-in-spinosaurus9132014                    /blog/there-may-be-more-fishiness-in-spinosaurus9132014/ 301
+/home/theres-something-fishy-about-spinosaurus9112014                      /blog/theres-something-fishy-about-spinosaurus9112014/ 301
+/home/transitional-series6262013                                           /blog/transitional-series6262013/           301
+/home/um-hey-scientific-american-bird-knees                                /blog/um-hey-scientific-american-bird-knees/ 301
+/home/update-on-skeletal-drawing-votes3152014                              /blog/update-on-skeletal-drawing-votes3152014/ 301
+/home/welcome-to-official-skeletal-drawingcom                              /blog/welcome-to-official-skeletal-drawingcom/ 301
+/home/welcome-to-the-redesigned-skeletaldrawingcom                         /blog/welcome-to-the-redesigned-skeletaldrawingcom/ 301
+/home/when-journalists-attack                                              /blog/when-journalists-attack/              301
+/home/you-should-be-reading-the-tyrannosaur-chronicles5282016              /blog/you-should-be-reading-the-tyrannosaur-chronicles5282016/ 301
+/home/yup-ok-apatosaurus-is-freakin-huge                                   /blog/yup-ok-apatosaurus-is-freakin-huge/   301
+
+# Catch-alls — MUST be last. Tag/category/date archives and any deleted post land on the blog index.
+/home/tag/*        /blog/  301
+/home/category/*   /blog/  301
+/home/*            /blog/  301
+/home              /blog/  301
