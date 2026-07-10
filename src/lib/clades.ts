@@ -122,6 +122,39 @@ const PARENT: Record<string, string> = {
   Ceratopsidae: 'Neoceratopsia',
   Centrosaurinae: 'Ceratopsidae',
   Chasmosaurinae: 'Ceratopsidae',
+
+  // ── Synapsida (mammals and their forerunners) — backbone for the synapsids gallery ──
+  // Cetacea is nested inside Artiodactyla (whales are artiodactyls — the Cetartiodactyla result).
+  // Fruitafossor is authored as bare `Mammalia`; its position among early mammals is unsettled.
+  Eupelycosauria: 'Synapsida',
+  Edaphosauridae: 'Eupelycosauria',
+  Sphenacodontia: 'Eupelycosauria',
+  Sphenacodontidae: 'Sphenacodontia',
+  Therapsida: 'Synapsida',
+  Cynodontia: 'Therapsida',
+  Mammaliaformes: 'Cynodontia',
+  Mammalia: 'Mammaliaformes',
+  Monotremata: 'Mammalia',
+  Theria: 'Mammalia',
+  Metatheria: 'Theria',
+  Eutheria: 'Theria',
+  Placentalia: 'Eutheria',
+  Afrotheria: 'Placentalia',
+  Macroscelidea: 'Afrotheria',
+  Proboscidea: 'Afrotheria',
+  Xenarthra: 'Placentalia',
+  Cingulata: 'Xenarthra',
+  Boreoeutheria: 'Placentalia',
+  Laurasiatheria: 'Boreoeutheria',
+  Carnivora: 'Laurasiatheria',
+  Felidae: 'Carnivora',
+  Perissodactyla: 'Laurasiatheria',
+  Equidae: 'Perissodactyla',
+  Artiodactyla: 'Laurasiatheria',
+  Camelidae: 'Artiodactyla',
+  Tayassuidae: 'Artiodactyla',
+  Bovidae: 'Artiodactyla',
+  Cetacea: 'Artiodactyla',
 };
 
 /** Full ancestry of a single clade, root-first and inclusive of the clade itself. */
@@ -175,6 +208,11 @@ export const LANDMARKS: ReadonlySet<string> = new Set([
   'Neornithischia', 'Thescelosauridae', 'Ornithopoda', 'Iguanodontia', 'Hadrosauridae',
   'Saurolophinae', 'Lambeosaurinae', 'Marginocephalia', 'Pachycephalosauria', 'Ceratopsia',
   'Neoceratopsia', 'Leptoceratopsidae', 'Ceratopsidae', 'Centrosaurinae', 'Chasmosaurinae',
+  // ── Synapsida ── (backbone waypoints like Theria/Eutheria/Boreoeutheria stay off the chip pool)
+  'Synapsida', 'Eupelycosauria', 'Edaphosauridae', 'Sphenacodontidae', 'Therapsida', 'Mammalia',
+  'Monotremata', 'Metatheria', 'Placentalia', 'Afrotheria', 'Macroscelidea', 'Proboscidea',
+  'Xenarthra', 'Cingulata', 'Laurasiatheria', 'Carnivora', 'Felidae', 'Perissodactyla', 'Equidae',
+  'Artiodactyla', 'Camelidae', 'Tayassuidae', 'Bovidae', 'Cetacea',
 ]);
 
 /**

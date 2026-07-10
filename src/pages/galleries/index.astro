@@ -28,13 +28,18 @@ const GALLERY: Record<string, { sci: string; friendly: string; blurb: string }> 
     friendly: 'Beaked dinosaurs',
     blurb: 'The beaked, bird-hipped plant-eaters — horned, armoured, and duck-billed.',
   },
+  synapsids: {
+    sci: 'Synapsida',
+    friendly: 'Mammals and kin',
+    blurb: 'Mammals and their forerunners — sail-backed pelycosaurs, Ice-Age giants, and living species.',
+  },
   'non-dinosaurs': {
     sci: 'Non-dinosaurs',
     friendly: 'Other prehistoric animals',
-    blurb: 'Pterosaurs, synapsids, and other extinct animals beyond the dinosaurs.',
+    blurb: 'Pterosaurs, marine reptiles, and other extinct animals beyond the dinosaurs.',
   },
 };
-const ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'non-dinosaurs'];
+const ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'synapsids', 'non-dinosaurs'];
 
 const taxa = await getCollection('taxa');
 const byGallery = new Map<string, typeof taxa>();
