@@ -537,6 +537,11 @@ const SKIP_FILES = new Set([
   'kentrosaurus-aethiopicus-skeletal-with-alternaive-hip-based-spine-placement.png',
   // Hypacrosaurus combined adult+juvenile plate — the genus group uses the separate adult/juvenile files.
   'hypacrosaurus-stebingeri-adult-and-juvenile-skeletals.png',
+  // Balaenoptera feeding-behavior pose (ballooned throat pleats) — a page figure, not the body
+  // envelope; the plain -skeletal.png is the silhouette the overlay/compare catalog should scale.
+  'balaenoptera-musculus-skeletal-feeding-behavior.png',
+  // Platypus credited copy — duplicate of -skeletal-male.png; use the plain one for tracing.
+  'ornithorhynchus-anatinus-skeletal-male-credited.png',
 ]);
 const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
