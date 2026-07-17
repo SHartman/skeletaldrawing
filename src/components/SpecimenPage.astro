@@ -135,9 +135,10 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
             sizes="(min-width: 1180px) 1120px, 92vw"
             class="plate-img"
             loading="eager"
+            fetchpriority="high"
           />
         ) : (
-          <img src={hero.src} alt={hero.alt} class="plate-img" />
+          <img src={hero.src} alt={hero.alt} class="plate-img" fetchpriority="high" />
         )}
         <figcaption class="caption">{caption}</figcaption>
       </figure>
