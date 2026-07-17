@@ -399,7 +399,9 @@ const description =
     padding: 14px 24px; border-radius: 6px; text-decoration: none; white-space: nowrap;
   }
   .btn.sm { font-size: 11px; padding: 11px 16px; border-radius: 5px; }
-  .btn-gold { color: #fff; background: var(--accent); }
+  /* Gold buttons: bright gold with DARK text. Dark-on-bright-gold clears AA (~4.8:1); white-on-bright-gold
+     would fail (3.2:1), so both gold buttons use dark text and keep the brighter, warmer gold. */
+  .btn-gold { color: var(--mast-bg); background: var(--accent-bright); }
   .btn-plain { color: var(--ink); background: var(--plate); border: 1px solid var(--hair-strong); }
   .btn-dark { color: #E7E3DA; border: 1px solid #3A3D40; }
   .btn:hover { opacity: .9; }
@@ -476,9 +478,7 @@ const description =
   .bio-text { margin: 0; max-width: 720px; font-size: 16.5px; line-height: 1.5; color: #D7DADD; }
   .bio-text strong { color: #fff; font-weight: 600; }
   .bio-cta { display: flex; flex-wrap: wrap; gap: 10px; flex: none; }
-  /* Bio-panel gold button uses DARK text, so it can keep the brighter gold and still clear AA
-     (~5.7:1) — restores the lighter pop on the dark panel without a contrast cost. */
-  .bio-cta .btn-gold { color: var(--mast-bg); background: var(--accent-bright); }
+  /* (bio-panel gold button now inherits the shared bright-gold + dark-text .btn-gold rule) */
 
   /* ---- footer ---- */
   .home-footer { background: var(--paper); }
