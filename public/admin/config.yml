@@ -72,6 +72,15 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+      - name: lifeReconstruction
+        label: "Life reconstruction (colour art)"
+        widget: object
+        required: false
+        hint: "Optional colour paleoart of the animal in life. Shows on the skeletal page below the reconstruction; the skeletal stays the primary image. Leave empty for taxa without one."
+        fields:
+          - { name: src, label: "Image", widget: image }
+          - { name: alt, label: "Alt text", widget: string }
+          - { name: caption, label: "Caption", widget: string, required: false }
       - name: additionalFigures
         label: "Additional figures (bonus)"
         widget: list

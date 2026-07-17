@@ -77,6 +77,10 @@ const taxa = defineCollection({
       drawingCredit: defStr('© Scott Hartman'), // shown in the plate caption
       reconstruction: nullableDefault(imageRef.optional()), // the hero — present for most taxa
       rigorous: nullableDefault(imageRef.optional()),       // known-material diagram
+      // Optional colour life restoration (paleoart). Species-level; shown on the taxon page below the
+      // skeletal (skeletal stays the primary/og image). Field scaffolded now for CMS upload; the page
+      // section + its ImageObject JSON-LD land in a small post-launch pass. Graceful when absent.
+      lifeReconstruction: nullableDefault(imageRef.optional()),
       additionalFigures: nullableDefault(z.array(figureRef).default([])), // bonus figures
       featured: nullableDefault(z.boolean().default(false)),
       // Render an ontogenetic growth-series scale overlay on this taxon's page (reads the
