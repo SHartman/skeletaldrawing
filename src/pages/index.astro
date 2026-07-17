@@ -476,7 +476,9 @@ const description =
   .bio-text { margin: 0; max-width: 720px; font-size: 16.5px; line-height: 1.5; color: #D7DADD; }
   .bio-text strong { color: #fff; font-weight: 600; }
   .bio-cta { display: flex; flex-wrap: wrap; gap: 10px; flex: none; }
-  .bio-cta .btn-gold { color: var(--mast-bg); }
+  /* Bio-panel gold button uses DARK text, so it can keep the brighter gold and still clear AA
+     (~5.7:1) — restores the lighter pop on the dark panel without a contrast cost. */
+  .bio-cta .btn-gold { color: var(--mast-bg); background: var(--accent-bright); }
 
   /* ---- footer ---- */
   .home-footer { background: var(--paper); }
