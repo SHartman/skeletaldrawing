@@ -49,6 +49,12 @@ const description =
         project needs a skeletal or life restoration that doesn't exist yet. Both are drawn to the same
         measured, specimen-based method — the reason they hold up in exhibits and peer review.
       </p>
+      <!-- Catches visitors redirected from the old /store URL: prints/merchandise aren't live yet, but
+           they land somewhere real and get the coming-soon context (CLAUDE.md §6; owner decision). -->
+      <p class="shop-soon">
+        Looking for prints or merchandise? A shop is on the way — I expect to open it in <strong>fall 2026</strong>.
+        For now, image licensing and commissions are handled right here.
+      </p>
     </header>
 
     <figure class="quote">
@@ -146,6 +152,13 @@ const description =
     font-size: clamp(38px, 6vw, 62px); line-height: 1.0; letter-spacing: -.015em;
   }
   .lede { margin: 20px 0 0; font-size: 18.5px; line-height: 1.62; color: var(--ink); max-width: 62ch; }
+  /* Coming-soon aside for visitors redirected from /store — quieter than the lede, gold accent. */
+  .shop-soon {
+    margin: 18px 0 0; padding: 12px 16px; max-width: 62ch;
+    background: var(--plate); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0;
+    font-size: 15px; line-height: 1.55; color: var(--slate);
+  }
+  .shop-soon strong { color: var(--ink); font-weight: 600; }
 
   .quote { margin: 34px 0 0; padding: 0 0 0 22px; border-left: 3px solid var(--accent); max-width: 62ch; }
   .quote blockquote { margin: 0; font-size: 20px; line-height: 1.5; font-style: italic; color: var(--ink); }

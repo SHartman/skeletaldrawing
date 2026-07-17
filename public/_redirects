@@ -4,7 +4,7 @@
 # Rules are matched top-to-bottom, first match wins — the /home/* catch-alls MUST stay last.
 #
 # NOT redirected (the new site serves them at the same path): /, /theropods, /sauropods-and-kin,
-# /anatomy, /non-dinosaurs (pending the final gallery), /store (pending).
+# /anatomy, /non-dinosaurs. (/store IS redirected → /about/licensing/ until the storefront ships.)
 
 # Corrected clade slug (was misspelled "ornithiscians" on the live site)
 /ornithiscians                                                             /ornithischians/                            301
@@ -32,6 +32,9 @@
 /test-gallery                                                              /galleries/                                 301
 /new-page                                                                  /galleries/                                 301
 /store/tumbler-ridge-display-license                                       /about/licensing/                           301
+# /store landing → licensing (its only indexed product was a display licence; the real storefront
+# reclaims this URL when it ships ~fall 2026, at which point drop this line + un-hide the nav item).
+/store                                                                      /about/licensing/                           301
 
 # Original pre-Squarespace deep links (.htm/.html), flattened straight to the new target
 /psgallery/gallery.htm                                                     /theropods/                                 301
