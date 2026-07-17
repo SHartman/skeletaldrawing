@@ -5,7 +5,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
 import {
   specimenImageGraph,
-  specimenPrimaryNode,
   specimenHero,
   specimenIsKnownMaterialOnly,
   formatMeters,
@@ -100,7 +99,6 @@ const description = kmOnly
   ? `Known skeletal material of ${t.taxon} specimen ${s.catalog}${s.nickname ? ` (“${s.nickname}”)` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
   : `Skeletal reconstruction of ${t.taxon} specimen ${s.catalog}${s.nickname ? ` (“${s.nickname}”)` : ''}, ${s.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
 const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author, recombination: t.recombination, pageUrl, imageUrl, rigorousUrl, figures });
-const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.author, recombination: t.recombination, pageUrl, imageUrl, rigorousUrl });
 ---
 
 <BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
@@ -246,21 +244,6 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
       </section>
     )}
 
-    <details class="seo">
-      <summary>
-        <span class="seo-title">What search engines &amp; AI see
-          <span class="seo-sub">— the metadata this page emits</span>
-        </span>
-        <span class="seo-plus">+</span>
-      </summary>
-      <div class="seo-body">
-        <p class="seo-note">
-          Generated from the record above when the page builds — you never touch it. Each specimen
-          gets its own ImageObject, so individual skeletals surface and get cited on their own terms.
-        </p>
-        <pre class="seo-pre">{JSON.stringify(ldSample, null, 2)}</pre>
-      </div>
-    </details>
   </main>
 </BaseLayout>
 
@@ -377,29 +360,6 @@ const ldSample = specimenPrimaryNode(entry, { taxonName: t.taxon, author: t.auth
   .back { margin: 22px 0 0; font-size: 14.5px; }
   .back a { color: var(--accent); text-decoration: none; }
   .back em { font-style: italic; }
-
-  .seo { margin-top: 44px; border: 1px solid var(--hair); background: var(--plate); border-radius: 4px; }
-  .seo summary {
-    cursor: pointer; list-style: none; padding: 18px 22px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  }
-  .seo summary::-webkit-details-marker { display: none; }
-  .seo-title {
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--ink);
-  }
-  .seo-sub {
-    color: var(--slate); letter-spacing: 0; text-transform: none;
-    font-family: var(--font-serif); font-size: 14px;
-  }
-  .seo-plus { font-family: var(--font-mono); color: var(--accent); }
-  .seo-body { padding: 0 22px 22px; }
-  .seo-note { font-size: 14.5px; color: var(--slate); margin: 0 0 14px; max-width: 70ch; }
-  .seo-pre {
-    margin: 0; background: #1A1F26; color: #D8E0E8; border-radius: 4px;
-    padding: 18px 20px; overflow: auto; font-family: var(--font-mono);
-    font-size: 12.5px; line-height: 1.65;
-  }
 
   @media (max-width: 600px) {
     .wrap { padding: 0 18px; }

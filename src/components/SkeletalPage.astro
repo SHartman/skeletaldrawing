@@ -6,7 +6,6 @@ import ScaleComparison from './ScaleComparison.astro';
 import { loadSkeletal } from '../lib/images';
 import {
   taxonImageGraph,
-  primaryNode,
   formatLength,
   formatMass,
   isKnownMaterialOnly,
@@ -127,7 +126,6 @@ const jsonLd = underRevision
       about: { '@type': 'Thing', name: d.taxon, alternateName: `${d.taxon} ${formatAuthor(d.author, d.recombination)}` },
     }
   : taxonImageGraph(entry, { pageUrl, imageUrl, rigorousUrl });
-const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl, rigorousUrl });
 ---
 
 <BaseLayout title={title} description={description} ogImage={underRevision ? undefined : imageUrl} ogType="article">
@@ -310,23 +308,6 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
       </section>
     )}
 
-    <!-- ===================== SEO disclosure ===================== -->
-    <details class="seo">
-      <summary>
-        <span class="seo-title">What search engines &amp; AI see
-          <span class="seo-sub">— the metadata this page emits</span>
-        </span>
-        <span class="seo-plus">+</span>
-      </summary>
-      <div class="seo-body">
-        <p class="seo-note">
-          Generated from the record above when the page builds — you never touch it. It's the piece a
-          Squarespace gallery can't really do, and most of why individual skeletals will start surfacing
-          on their own.
-        </p>
-        <pre class="seo-pre">{JSON.stringify(ldSample, null, 2)}</pre>
-      </div>
-    </details>
   </main>
 </BaseLayout>
 
@@ -450,30 +431,6 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
   .related-fam {
     font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em;
     text-transform: uppercase; color: var(--slate); margin-top: 3px;
-  }
-
-  /* ---- SEO disclosure ---- */
-  .seo { margin-top: 44px; border: 1px solid var(--hair); background: var(--plate); border-radius: 4px; }
-  .seo summary {
-    cursor: pointer; list-style: none; padding: 18px 22px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  }
-  .seo summary::-webkit-details-marker { display: none; }
-  .seo-title {
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--ink);
-  }
-  .seo-sub {
-    color: var(--slate); letter-spacing: 0; text-transform: none;
-    font-family: var(--font-serif); font-size: 14px;
-  }
-  .seo-plus { font-family: var(--font-mono); color: var(--accent); }
-  .seo-body { padding: 0 22px 22px; }
-  .seo-note { font-size: 14.5px; color: var(--slate); margin: 0 0 14px; max-width: 70ch; }
-  .seo-pre {
-    margin: 0; background: #1A1F26; color: #D8E0E8; border-radius: 4px;
-    padding: 18px 20px; overflow: auto; font-family: var(--font-mono);
-    font-size: 12.5px; line-height: 1.65;
   }
 
   /* ---- under revision: an outdated skeletal withheld behind an honest placeholder ---- */
