@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/adocus-lineolatus-ccm-60-15-skeletal.png"
   alt: "Adocus lineolatus skeletal reconstruction, left lateral view, length 96 cm."
 ---
+
+A freshwater adocid turtle from the Cretaceous of North America. _Adocus_ is recognized by its low, streamlined shell covered in fine sculpturing — a pattern of pits and vermiculate grooves — reflecting a river-dwelling, aquatic life.

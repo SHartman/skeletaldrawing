@@ -13,3 +13,5 @@ rigorous:
   src: "/images/skeletals/montanazhdarcho-minor-type-mor-691-known-elements.png"
   alt: "Montanazhdarcho minor — known skeletal material (MOR 691), left lateral view; preserved elements in white against a black body silhouette."
 ---
+
+A Late Cretaceous azhdarchoid pterosaur — a flying reptile of the archosaur line that includes dinosaurs, though not itself a dinosaur — from the Two Medicine Formation of Montana. Modest for the group at roughly a 2.5-metre wingspan, _Montanazhdarcho_ is known only from partial remains.

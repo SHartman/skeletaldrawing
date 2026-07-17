@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/miadanasuchus-oblita-skeletal.png"
   alt: "Miadanasuchus oblita skeletal reconstruction, left lateral view, length ~3 m."
 ---
+
+A broad-snouted peirosaurid notosuchian from the Late Cretaceous of Madagascar, originally named "_Trematochampsa_" oblita before being recognized as its own genus. _Miadanasuchus_ was a robustly built, relatively large-bodied member of this Gondwanan croc-line radiation.

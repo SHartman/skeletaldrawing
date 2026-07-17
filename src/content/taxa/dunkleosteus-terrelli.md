@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/dunkleosteus-terrelli-skeletal.png"
   alt: "Dunkleosteus terrelli skeletal reconstruction, left lateral view, length ~5 m."
 ---
+
+A Late Devonian arthrodire — one of the armored placoderms, an early-diverging branch of jawed fishes. _Dunkleosteus_ bore no true teeth, instead shearing prey with self-sharpening bony jaw plates that met like guillotine blades.

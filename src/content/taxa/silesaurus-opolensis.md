@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/silesaurus-opolensis-skeletal.png"
   alt: "Silesaurus opolensis skeletal reconstruction, left lateral view, length ~2.1 m."
 ---
+
+A Late Triassic silesaurid from Poland, a slender quadrupedal dinosauriform sitting close to the origin of dinosaurs but outside the group. _Silesaurus_ bore a beak at the tip of its lower jaw, hinting at a plant-rich or omnivorous diet.

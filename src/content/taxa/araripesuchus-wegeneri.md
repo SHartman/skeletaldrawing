@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Araripesuchus wegeneri — Without armor."
     label: "Without armor"
 ---
+
+A small, terrestrial notosuchian from the mid-Cretaceous of Niger, one of several croc-line relatives that walked upright on land rather than lurking in water. Nicknamed "DogCroc," _Araripesuchus_ bore forward-pointing, buck-toothed front teeth set in a short, doglike snout.

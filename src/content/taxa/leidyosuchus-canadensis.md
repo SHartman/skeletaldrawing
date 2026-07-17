@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/leidyosuchus-canadensis-skeletal.png"
   alt: "Leidyosuchus canadensis skeletal reconstruction, left lateral view, length ~2.85 m."
 ---
+
+A crocodylian from the Late Cretaceous of North America, long treated as an early alligatoroid. Exactly where _Leidyosuchus_ falls remains uncertain: the same recent work that unsettled _Deinosuchus_ pulls it out of Alligatoroidea toward the crocodylian stem, so its position among early alligatoroids and crocodylians is disputed.

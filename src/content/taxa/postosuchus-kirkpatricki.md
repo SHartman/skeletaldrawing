@@ -20,3 +20,5 @@ additionalFigures:
     alt: "Postosuchus kirkpatricki — Subadult (TTUP 9002)."
     label: "Subadult (TTUP 9002)"
 ---
+
+A Late Triassic rauisuchid — a large pseudosuchian on the crocodile line of archosaurs, not a dinosaur. _Postosuchus_ was an apex predator of North America, with a deep skull and semi-erect, pillar-like limbs held beneath the body.

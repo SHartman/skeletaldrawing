@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/ixalerpeton-polesinensis-skeletal.png"
   alt: "Ixalerpeton polesinensis skeletal reconstruction, left lateral view, length 75 cm."
 ---
+
+A Late Triassic lagerpetid from southern Brazil, among the early-diverging bird-line archosaurs (avemetatarsalian) clustered near the shared origin of dinosaurs and pterosaurs. _Ixalerpeton_ was small and lightly built, and unusually for a lagerpetid it preserves skull and forelimb material, not just hindlimbs.

@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/melanosuchus-niger-skeletal.png"
   alt: "Melanosuchus niger skeletal reconstruction, left lateral view, length ~6 m."
 ---
+
+The living black caiman of the Amazon basin, the largest member of the caiman group and one of the apex predators of its wetlands. _Melanosuchus_ grows to five metres or more, with dark, near-black armored hide and large eyes suited to hunting after dark.

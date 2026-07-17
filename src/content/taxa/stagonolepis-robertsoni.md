@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Stagonolepis robertsoni — Without armor."
     label: "Without armor"
 ---
+
+A Late Triassic aetosaur — an armored, plant-eating pseudosuchian on the crocodile line of archosaurs. _Stagonolepis_ was the first aetosaur ever described, from bony scales Louis Agassiz mistook for a fish, and bears a blunt, upturned pig-like snout.

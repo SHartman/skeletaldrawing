@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/deinosuchus-hatcheri-skeletal.png"
   alt: "Deinosuchus hatcheri skeletal reconstruction, left lateral view, length ~9.1 m."
 ---
+
+An enormous crocodylian of Late Cretaceous North America, the "terror crocodile," large enough to prey on dinosaurs. The placement of _Deinosuchus_ is debated: traditionally an alligatoroid, but recent analyses recover it outside Alligatoroidea, on the stem lineage leading to crown Crocodylia rather than within it.

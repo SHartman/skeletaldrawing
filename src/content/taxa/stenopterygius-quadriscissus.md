@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/stenopterygius-quadriscissus-skeletal.png"
   alt: "Stenopterygius quadriscissus skeletal reconstruction, left lateral view, length ~3.6 m."
 ---
+
+An Early Jurassic (Toarcian) ichthyosaur from the Posidonia Shale of Holzmaden, Germany, a fossil site renowned for exquisite preservation. Some _Stenopterygius_ skeletons retain a soft-tissue body outline — showing the dorsal fin and crescent tail fluke — and even preserved unborn young.

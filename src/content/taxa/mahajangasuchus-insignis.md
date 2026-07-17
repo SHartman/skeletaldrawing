@@ -16,3 +16,5 @@ additionalFigures:
     alt: "Mahajangasuchus insignis — Without armor."
     label: "Without armor"
 ---
+
+A robust, semiaquatic notosuchian from the Late Cretaceous of Madagascar. _Mahajangasuchus_ combined a broad, deep skull and stout conical teeth with a heavy shield of interlocking dorsal armor running down its back.

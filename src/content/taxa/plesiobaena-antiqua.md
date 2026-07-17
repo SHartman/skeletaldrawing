@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/plesiobaena-antiqua-skeletal.png"
   alt: "Plesiobaena antiqua skeletal reconstruction, left lateral view, length ~1 m."
 ---
+
+A freshwater baenid turtle from the Late Cretaceous of North America. _Plesiobaena_ had a low, oval shell and belonged to the Baenidae, a diverse family of river turtles endemic to Cretaceous and early Cenozoic North America.

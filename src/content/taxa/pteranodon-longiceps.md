@@ -19,3 +19,5 @@ additionalFigures:
     alt: "Pteranodon longiceps — In flight (alternate pose)."
     label: "In flight (alternate pose)"
 ---
+
+A Late Cretaceous pteranodontid — a pterosaur, a flying reptile of the bird-line archosaur branch, not a dinosaur. Toothless and marine, _Pteranodon_ soared over the Western Interior Seaway on wings spanning six metres or more, the males bearing a long backswept head crest.

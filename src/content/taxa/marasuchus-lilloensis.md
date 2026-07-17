@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/marasuchus-lilloensis-skeletal.png"
   alt: "Marasuchus lilloensis skeletal reconstruction, left lateral view, length 60 cm."
 ---
+
+A Middle-to-Late Triassic dinosauriform from Argentina, a small, slender biped standing very close to the origin of dinosaurs without being one itself. _Marasuchus lilloensis_ is sometimes sunk into _Lagosuchus talampayensis_ as a junior synonym, a dispute that remains unsettled.

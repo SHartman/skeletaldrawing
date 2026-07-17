@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/xiphactinus-audax-skeletal.png"
   alt: "Xiphactinus audax skeletal reconstruction, left lateral view, length ~6 m."
 ---
+
+A large predatory bony fish (teleost) of the Late Cretaceous Western Interior Seaway, in the ichthyodectid family. _Xiphactinus_ had a fanged, upturned jaw and is famous for "fish-within-a-fish" fossils that preserve swallowed prey.

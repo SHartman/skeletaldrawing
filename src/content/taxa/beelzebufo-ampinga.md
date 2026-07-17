@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/beelzebufo-ampinga-skeletal.png"
   alt: "Beelzebufo ampinga skeletal reconstruction, left lateral view, length 20 cm."
 ---
+
+A giant frog from the Late Cretaceous (Maastrichtian) of Madagascar, nicknamed the "devil frog" and related to South American horned frogs. _Beelzebufo_ had a broad, heavily ossified skull — its species name means "shield" — and a wide gape suited to an ambush predator.

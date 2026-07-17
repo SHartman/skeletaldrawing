@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/tapejara-wellnhoferi-skeletal.png"
   alt: "Tapejara wellnhoferi skeletal reconstruction, left lateral view, length 45 cm, wingspan ~1.2 m."
 ---
+
+An Early Cretaceous tapejarid from the Santana Formation of Brazil — a pterosaur, one of the flying reptiles that are dinosaurs' close archosaur cousins rather than dinosaurs themselves. Small, with a wingspan near 1.3 metres, _Tapejara_ was toothless and carried a bony crest over its snout.

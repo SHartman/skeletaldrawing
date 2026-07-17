@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/stangerochampsa-mccabei-skeletal.png"
   alt: "Stangerochampsa mccabei skeletal reconstruction, left lateral view, length ~1.65 m."
 ---
+
+A small alligatorid from the Late Cretaceous of Alberta, Canada, part of the early diversification of the alligator lineage in North America. _Stangerochampsa_ had a moderately broad snout and a mix of pointed and blunter teeth, suggesting a generalized, opportunistic diet.

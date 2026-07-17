@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/teleocrater-rhadinus-skeletal.png"
   alt: "Teleocrater rhadinus skeletal reconstruction, left lateral view, length ~1.81 m."
 ---
+
+A Middle Triassic aphanosaur and one of the earliest-diverging bird-line archosaurs (an avemetatarsalian, close to dinosaur origins but not itself a dinosaur). _Teleocrater_ was a lightly built quadruped with a crocodylian-like ankle, showing that early dinosaur relatives weren't all small bipeds.

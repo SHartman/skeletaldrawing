@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/quetzalcoatlus-lawsoni-skeletal.png"
   alt: "Quetzalcoatlus lawsoni skeletal reconstruction, left lateral view, length ~3 m, wingspan ~4.3 m."
 ---
+
+A Late Cretaceous azhdarchid pterosaur — a flying reptile allied to dinosaurs but not one of them — from Big Bend, Texas. The smaller of the two _Quetzalcoatlus_ species (the giant is _Q. northropi_), it had a roughly five-metre wingspan and likely stalked prey on the ground on long legs and neck.

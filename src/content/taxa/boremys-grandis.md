@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/boremys-grandis-skeletal.png"
   alt: "Boremys grandis skeletal reconstruction, left lateral view, length 73 cm."
 ---
+
+A freshwater baenid turtle of Late Cretaceous North America, part of a family found only on that continent. _Boremys_ is distinguished by its richly sculptured shell bones and extra rows of small scutes ringing the edge of the carapace.

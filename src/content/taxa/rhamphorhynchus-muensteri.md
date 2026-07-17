@@ -14,3 +14,5 @@ reconstruction:
   src: "/images/skeletals/rhamphorhynchus-muensteri-skeletal.png"
   alt: "Rhamphorhynchus muensteri skeletal reconstruction, left lateral view, length 95 cm, wingspan ~1.7 m."
 ---
+
+A Late Jurassic pterosaur — a flying reptile, not a dinosaur — from the Solnhofen limestones of Germany. A long-tailed non-pterodactyloid, _Rhamphorhynchus_ snatched fish with forward-splayed needle teeth, its stiffened tail ending in a diamond-shaped vane.

@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/axestemys-infernalis-skeletal.png"
   alt: "Axestemys infernalis skeletal reconstruction, left lateral view, length ~1.4 m."
 ---
+
+A large softshell turtle from the latest Cretaceous of the northern Great Plains, among the last turtles of the Hell Creek world. _Axestemys_ carried a broad, flattened leathery shell and could exceed half a metre in length.

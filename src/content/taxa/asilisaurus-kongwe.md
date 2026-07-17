@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/asilisaurus-kongwe-skeletal.png"
   alt: "Asilisaurus kongwe skeletal reconstruction, left lateral view, length ~2.5 m."
 ---
+
+A Middle Triassic silesaurid from Tanzania and one of the oldest known dinosaur relatives (a dinosauriform, not a dinosaur). _Asilisaurus_ carried a beak at the front of tooth-bearing jaws, suiting a herbivorous or omnivorous diet.

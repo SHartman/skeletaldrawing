@@ -12,3 +12,5 @@ reconstruction:
   src: "/images/skeletals/ichthyodectes-ctenodon-skeletal.png"
   alt: "Ichthyodectes ctenodon skeletal reconstruction, left lateral view, length ~3 m."
 ---
+
+A Late Cretaceous ichthyodectid teleost of the North American inland sea, a smaller relative of the giant _Xiphactinus_. Its jaws carried a single row of even, closely spaced teeth rather than the outsized fangs of its cousin.

@@ -13,3 +13,5 @@ reconstruction:
   src: "/images/skeletals/macrospondylus-bollensis-skeletal.png"
   alt: "Macrospondylus bollensis skeletal reconstruction, left lateral view, length ~5.6 m."
 ---
+
+An Early Jurassic marine crocodylomorph — a teleosaurid thalattosuchian from the Toarcian seas of Europe. Long known as "Steneosaurus" bollensis, _Macrospondylus_ had a slender, elongate gharial-like snout lined with sharp teeth for seizing fish, and reached about 5 metres.
