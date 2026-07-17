@@ -32,9 +32,7 @@
 /test-gallery                                                              /galleries/                                 301
 /new-page                                                                  /galleries/                                 301
 /store/tumbler-ridge-display-license                                       /about/licensing/                           301
-# /store landing → licensing (its only indexed product was a display licence; the real storefront
-# reclaims this URL when it ships ~fall 2026, at which point drop this line + un-hide the nav item).
-/store                                                                      /about/licensing/                           301
+/store                                                                     /about/licensing/                           301
 
 # Original pre-Squarespace deep links (.htm/.html), flattened straight to the new target
 /psgallery/gallery.htm                                                     /theropods/                                 301
@@ -90,7 +88,7 @@
 /shdguide/shdgmain.htm                                                     /anatomy/                                   301
 /shdguide/anatomy.htm                                                      /anatomy/                                   301
 
-# Blog: legacy /home/… posts → /blog/<slug> (123 rules, all three URL generations)
+# Blog: legacy /home/… posts → /blog/<slug> (120 rules, all three URL generations)
 /home/2011/03/history-of-skeletal-drawings-from-bone.html                  /blog/history-of-skeletal-drawings-from-bone/ 301
 /home/2011/03/history-of-skeletal-drawings-part-1.html                     /blog/history-of-skeletal-drawings-part-1/  301
 /home/2011/03/history-of-skeletal-drawings-part-3.html                     /blog/history-of-skeletal-drawings-part-3/  301
@@ -133,7 +131,6 @@
 /home/2013/6/20/the-problem-with-puertasaurus                              /blog/the-problem-with-puertasaurus/        301
 /home/2013/6/21/assessing-alamosaurus                                      /blog/assessing-alamosaurus/                301
 /home/21stcenturydimetrodon                                                /blog/21stcenturydimetrodon/                301
-/home/an-open-access-baby-parasaurolophus10262013                          /blog/                                      301
 /home/anchiornissofttissue                                                 /blog/anchiornissofttissue/                 301
 /home/and-the-winner-is3172014                                             /blog/and-the-winner-is3172014/             301
 /home/aquatic-spinosaurus-the-authors-responsd9182014                      /blog/aquatic-spinosaurus-the-authors-responsd9182014/ 301
@@ -171,7 +168,6 @@
 /home/lythronax-tyrannosaur-troubles1192013                                /blog/lythronax-tyrannosaur-troubles1192013/ 301
 /home/mass-estimates-north-vs-south-redux772013                            /blog/mass-estimates-north-vs-south-redux772013/ 301
 /home/massive-changes-incoming-to-diplodocid                               /blog/massive-changes-incoming-to-diplodocid/ 301
-/home/master-list-of-hesperornithoides-articles-and-resources7102019       /blog/                                      301
 /home/mike-habibs-great-flying-skeletals                                   /blog/mike-habibs-great-flying-skeletals/   301
 /home/mosasaurs-teaching-the-controversy                                   /blog/mosasaurs-teaching-the-controversy/   301
 /home/neutral-poses                                                        /blog/neutral-poses/                        301
@@ -194,7 +190,6 @@
 /home/t-rex-baby-got-back                                                  /blog/t-rex-baby-got-back/                  301
 /home/tails-of-woe                                                         /blog/tails-of-woe/                         301
 /home/talos-sampsoni-cool-new-troodontid                                   /blog/talos-sampsoni-cool-new-troodontid/   301
-/home/teleocrater                                                          /blog/                                      301
 /home/terrible-claw                                                        /blog/terrible-claw/                        301
 /home/the-biggest-of-big                                                   /blog/the-biggest-of-big/                   301
 /home/the-hadrosaur-repose-of-201811272018                                 /blog/the-hadrosaur-repose-of-201811272018/ 301
