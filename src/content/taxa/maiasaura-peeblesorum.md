@@ -12,6 +12,7 @@ specimenId: "ROM 44770"
 lifeStage: "Adult"
 featured: true
 growthSeries: true
+growthNote: "From hatchling to adult, drawn to a common scale. Maiasaura is known mostly from bonebeds, so each stage is composited from remains of the appropriate size rather than a single specimen."
 reconstruction:
   src: "/images/skeletals/maiasaura-peeblesorum-adult-skeletal.png"
   alt: "Maiasaura peeblesorum skeletal reconstruction, left lateral view, reconstructed length ~7 m."

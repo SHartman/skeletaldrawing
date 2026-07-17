@@ -15,12 +15,15 @@ const familyOf = (d: any) => d.family ?? expandClades(d.clade).at(-1) ?? '';
 // Search corpus, wired to live records: { taxon, common, clade, specimen, href }.
 // (No common-name field on the schema yet — `common` stays empty until one is added; binomial,
 // specimen and clade search already cover most queries.)
-type Row = { taxon: string; common: string; clade: string; specimen: string; href: string };
+// `aka` = alsoKnownAs synonyms (former combinations), searchable but not shown in the result meta —
+// so a search for "Lagosuchus" surfaces the Marasuchus skeletal where the debate is written up.
+type Row = { taxon: string; common: string; clade: string; specimen: string; href: string; aka: string };
 const corpus: Row[] = [];
 for (const t of taxa) {
   corpus.push({
     taxon: t.data.taxon,
     common: t.data.commonName ?? '', // popular name (e.g. "Northern Cardinal") → searchable
+    aka: t.data.alsoKnownAs.join(' '), // former genus combinations → searchable (Lagosuchus → Marasuchus)
     clade: familyOf(t.data),
     // include the nickname (specimenName) so a named skeletal — Triceratops sp. "Yoshi",
     // Brachylophosaurus "Elvis" — is findable by its nickname, mirroring how specimens index theirs.
@@ -38,6 +41,7 @@ for (const s of specimens) {
   corpus.push({
     taxon: parent.data.taxon,
     common: parent.data.commonName ?? '', // inherit the parent taxon's popular name
+    aka: parent.data.alsoKnownAs.join(' '),
     clade: familyOf(parent.data),
     specimen: s.data.nickname ? `${s.data.catalog} · ${s.data.nickname}` : s.data.catalog,
     href: `/${parent.data.gallery}/${parent.id}/${s.id}/`,
@@ -73,6 +77,7 @@ for (const b of genusBuckets.values()) {
   corpus.push({
     taxon: b.genus,
     common: '',
+    aka: '',
     clade: family,
     specimen: `${b.species.length} species`,
     href: `/${b.gallery}/${b.slug}/`,
@@ -221,7 +226,7 @@ const description =
 </BaseLayout>
 
 <script>
-  type Row = { taxon: string; common: string; clade: string; specimen: string; href: string };
+  type Row = { taxon: string; common: string; clade: string; specimen: string; href: string; aka: string };
   const CORPUS: Row[] = JSON.parse(document.getElementById('search-corpus')!.textContent!);
   const MAX = 7;
 
@@ -254,7 +259,7 @@ const description =
   function rank(raw: string) {
     const q = raw.trim().toLowerCase();
     return CORPUS.map((d) => {
-      const hay = (d.taxon + ' ' + d.common + ' ' + d.specimen + ' ' + d.clade).toLowerCase();
+      const hay = (d.taxon + ' ' + d.common + ' ' + d.specimen + ' ' + d.clade + ' ' + d.aka).toLowerCase();
       if (!hay.includes(q)) return null;
       const t = d.taxon.toLowerCase(), c = d.common.toLowerCase();
       let r = 3;

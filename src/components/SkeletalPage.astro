@@ -75,6 +75,7 @@ const restFields = [
   { k: 'Specimen', v: d.specimenId ?? '' }, // nickname (if any) is shown in the subtitle under the title
   { k: 'Also known as', v: d.alsoKnownAs.join(' · ') },
   { k: kmOnly ? 'Estimated length' : 'Reconstructed length', v: lt },
+  { k: 'Wingspan', v: d.wingspanM != null ? `~${d.wingspanM} m` : '' },
   { k: 'Body mass', v: mass },
   { k: 'Life stage', v: d.lifeStage ?? '' },
   { k: 'Sex', v: d.sex ?? '' },
@@ -281,9 +282,9 @@ const ldSample = underRevision ? jsonLd : primaryNode(entry, { pageUrl, imageUrl
     {d.growthSeries && (
       <ScaleComparison
         taxonId={`${entry.id}-growth`}
-        total={4}
+        total={0}
         heading="Growth series"
-        note="From hatchling to adult, drawn to a common scale. Maiasaura is known mostly from bonebeds, so each stage is composited from remains of the appropriate size rather than a single specimen."
+        note={d.growthNote ?? 'The growth stages above, drawn to a common scale.'}
       />
     )}
 

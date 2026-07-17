@@ -155,6 +155,77 @@ const PARENT: Record<string, string> = {
   Tayassuidae: 'Artiodactyla',
   Bovidae: 'Artiodactyla',
   Cetacea: 'Artiodactyla',
+
+  // ── Non-dinosaurs ── the "weirdo gallery": jawed vertebrates entire, rooted at Gnathostomata (the
+  // only clade all its members share). It is a GRADE, not a group — defined by exclusion — so the
+  // backbone is deliberately long. Basal grades that are paraphyletic (e.g. "Placodermi") are skipped:
+  // Arthrodira attaches straight to Gnathostomata rather than assert a non-clade parent.
+  Arthrodira: 'Gnathostomata',                 // stem gnathostome (placoderm grade); Dunkleosteus
+  Actinopterygii: 'Gnathostomata',
+  Teleostei: 'Actinopterygii',
+  Ichthyodectiformes: 'Teleostei',
+  Ichthyodectidae: 'Ichthyodectiformes',
+  Tetrapoda: 'Gnathostomata',                  // broad; skips Sarcopterygii/Tetrapodomorpha for now
+  Ichthyostegidae: 'Tetrapoda',                // stem tetrapod (broad placement at nav level)
+  Lissamphibia: 'Tetrapoda',
+  Anura: 'Lissamphibia',
+  Amniota: 'Tetrapoda',
+  Sauropsida: 'Amniota',                       // reptile line (Synapsida is its own gallery)
+  // turtles — Pan-Testudines; internal turtle topology kept coarse
+  Testudinata: 'Sauropsida',
+  Paracryptodira: 'Testudinata',
+  Baenidae: 'Paracryptodira',
+  Pleurosternidae: 'Paracryptodira',
+  Cryptodira: 'Testudinata',
+  Trionychidae: 'Cryptodira',
+  Adocidae: 'Cryptodira',
+  Nanhsiungchelyidae: 'Cryptodira',
+  Protostegidae: 'Cryptodira',                 // sea turtles; exact placement debated
+  // lepidosaurs
+  Lepidosauria: 'Sauropsida',
+  Squamata: 'Lepidosauria',
+  Dolichosauridae: 'Squamata',                 // marine squamates near mosasaurs
+  // ichthyosaurs — position within Sauropsida uncertain; attached broadly
+  Ichthyosauria: 'Sauropsida',
+  Ichthyosauridae: 'Ichthyosauria',
+  Stenopterygiidae: 'Ichthyosauria',
+  Ophthalmosauridae: 'Ichthyosauria',
+  // archosauromorphs → the archosaur radiation
+  Archosauromorpha: 'Sauropsida',
+  Archosauria: 'Archosauromorpha',
+  // ── croc line ──
+  Pseudosuchia: 'Archosauria',
+  Parasuchidae: 'Pseudosuchia',                // phytosaurs as basal pseudosuchians (owner's tentative call)
+  Stagonolepididae: 'Pseudosuchia',            // aetosaurs
+  Poposauroidea: 'Pseudosuchia',
+  Rauisuchidae: 'Pseudosuchia',
+  Crocodylomorpha: 'Pseudosuchia',
+  Thalattosuchia: 'Crocodylomorpha',
+  Teleosauridae: 'Thalattosuchia',
+  Notosuchia: 'Crocodylomorpha',
+  Mahajangasuchidae: 'Notosuchia',
+  Neosuchia: 'Crocodylomorpha',
+  Goniopholididae: 'Neosuchia',
+  Crocodylia: 'Neosuchia',
+  Alligatoroidea: 'Crocodylia',
+  Alligatoridae: 'Alligatoroidea',
+  Caimaninae: 'Alligatoridae',
+  // ── bird line (non-dinosaurian avemetatarsalians) ──
+  Avemetatarsalia: 'Archosauria',
+  Aphanosauria: 'Avemetatarsalia',
+  Ornithodira: 'Avemetatarsalia',
+  Pterosauromorpha: 'Ornithodira',
+  Pterosauria: 'Pterosauromorpha',
+  Rhamphorhynchidae: 'Pterosauria',
+  Pterodactyloidea: 'Pterosauria',
+  Pteranodontidae: 'Pterodactyloidea',
+  Azhdarchoidea: 'Pterodactyloidea',
+  Tapejaridae: 'Azhdarchoidea',
+  Azhdarchidae: 'Azhdarchoidea',
+  Dinosauromorpha: 'Ornithodira',
+  Lagerpetidae: 'Dinosauromorpha',
+  Dinosauriformes: 'Dinosauromorpha',          // Marasuchus sits here; Dinosauria (other galleries) would too
+  Silesauridae: 'Dinosauriformes',
 };
 
 /** Full ancestry of a single clade, root-first and inclusive of the clade itself. */
@@ -213,6 +284,13 @@ export const LANDMARKS: ReadonlySet<string> = new Set([
   'Monotremata', 'Metatheria', 'Placentalia', 'Afrotheria', 'Macroscelidea', 'Proboscidea',
   'Xenarthra', 'Cingulata', 'Laurasiatheria', 'Carnivora', 'Felidae', 'Perissodactyla', 'Equidae',
   'Artiodactyla', 'Camelidae', 'Tayassuidae', 'Bovidae', 'Cetacea',
+  // ── Non-dinosaurs ── (broad recognizable nodes + the clades with ≥2 taxa; singletons stay off the
+  // chip pool but still render as a taxon's own terminal and in its lineage)
+  'Gnathostomata', 'Actinopterygii', 'Ichthyodectidae', 'Tetrapoda', 'Amniota', 'Sauropsida',
+  'Testudinata', 'Cryptodira', 'Baenidae', 'Trionychidae', 'Ichthyosauria', 'Squamata',
+  'Archosauromorpha', 'Archosauria', 'Pseudosuchia', 'Crocodylomorpha', 'Notosuchia', 'Neosuchia',
+  'Crocodylia', 'Alligatoroidea', 'Alligatoridae', 'Avemetatarsalia', 'Pterosauria', 'Pterodactyloidea',
+  'Azhdarchoidea', 'Azhdarchidae', 'Silesauridae',
 ]);
 
 /**

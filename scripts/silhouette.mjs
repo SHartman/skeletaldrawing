@@ -423,6 +423,12 @@ const GROWTH_GROUPS = {
     { file: 'maiasaura-peeblesorum-subadult-two-years-skeletal.png', lengthM: 5, label: 'Subadult · 2 yr' },
     { file: 'maiasaura-peeblesorum-adult-skeletal.png', lengthM: 7, label: 'Adult' },
   ],
+  // Postosuchus: two real specimens (adult + subadult), not bonebed composites — so widthM is given
+  // per stage (horizontal extent differs from length in this semi-erect posture).
+  'postosuchus-kirkpatricki-growth': [
+    { file: 'postosuchus-kirkpatricki-ttup-9002-skeletal-juvenile.png', lengthM: 3.8, widthM: 3.73, label: 'Subadult · TTUP 9002' },
+    { file: 'postosuchus-kirkpatricki-ttup-9000-skeletal.png', lengthM: 5, widthM: 4.89, label: 'Adult · TTUP 9000' },
+  ],
 };
 
 // widthM → a spreadable {widthM} only when it's a real number, so absent values stay out of the JSON.
@@ -491,7 +497,7 @@ for (const [key, group] of Object.entries(GROWTH_GROUPS)) {
     const file = join('silhouettes', g.file);
     if (!existsSync(file)) { console.log(`(skip ${key}: missing ${g.file})`); continue; }
     const { w, h, path, points } = await traceImage(file, { alpha: true });
-    items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.lengthM, w, h, path });
+    items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.widthM ?? g.lengthM, w, h, path });
     console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);

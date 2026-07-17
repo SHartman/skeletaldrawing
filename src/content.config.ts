@@ -57,6 +57,9 @@ const taxa = defineCollection({
       specimenName: optStr,               // nickname, e.g. "The Nation's T. rex"
       alsoKnownAs: nullableDefault(z.array(z.string()).default([])),
       lengthM: optNum,                    // numeric meters — sorting + the scale figure (biology: along the spine)
+      wingspanM: optNum,                  // pterosaurs (and future fliers): the headline number is the wingspan,
+                                          // not body length — renders a "Wingspan" record cell when set. Optional,
+                                          // graceful everywhere else.
       widthM: optNum,                     // max HORIZONTAL extent in meters, for the scale overlay; falls
                                           // back to lengthM. Corrects upright/raised-neck taxa whose spine
                                           // length overstates their horizontal footprint (see ScaleComparison)
@@ -79,6 +82,8 @@ const taxa = defineCollection({
       // Render an ontogenetic growth-series scale overlay on this taxon's page (reads the
       // <slug>-growth silhouette group; the growth stages are its additionalFigures). See lib/schema.
       growthSeries: nullableDefault(z.boolean().default(false)),
+      growthNote: optStr,                 // the caption under the growth-series overlay (per-taxon, since a
+                                          // bonebed composite and a two-specimen ontogeny read differently)
       // Withhold an outdated/superseded skeletal without losing the page: render an "under
       // revision" notice + the supplied placeholder (a black silhouette), keep all live metadata
       // and the URL/301s/links, and don't assert the placeholder as the reconstruction in SEO.

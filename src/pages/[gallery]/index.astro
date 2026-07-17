@@ -33,6 +33,13 @@ const GALLERY_META: Record<string, { label: string; intro: string }> = {
     intro:
       'Mammals and their forerunners — from the sail-backed pelycosaurs of the Permian, through the first small mammals, to Ice-Age giants and living species.',
   },
+  'non-dinosaurs': {
+    // A grade, not a clade — the honest label for a group defined by exclusion. Its members share only
+    // Gnathostomata (jawed vertebrates); as each lineage fills out it may earn a gallery of its own.
+    label: 'Non-dinosaurs',
+    intro:
+      'A deliberately broad group defined by exclusion rather than ancestry — fishes, amphibians, turtles, marine reptiles, crocodile-line archosaurs, pterosaurs, and the other close relatives of dinosaurs. As each lineage grows, it may earn a gallery of its own.',
+  },
 };
 
 const { gallery } = Astro.props;
