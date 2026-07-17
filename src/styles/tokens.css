@@ -12,9 +12,10 @@
   --slate:        #5C636B; /* secondary text / labels */
   --hair:         #DDDFE1; /* hairlines / cell borders */
   --hair-strong:  #CDD0D3; /* card & sheet borders */
-  --measure:      #94A0AB; /* measurement gray (scale bars, captions, axes) */
-  --accent:       #B07A2E; /* warm gold — links, active states */
-  --accent-soft:  #B07A2E55;
+  --measure:      #69737D; /* measurement gray (scale bars, captions, axes) — darkened to clear WCAG AA */
+  --accent:       #855C16; /* warm gold for TEXT/links — darkened to clear AA on white AND the gray page bg */
+  --accent-bright:#B07A2E; /* the original brighter gold — LARGE/decorative only (drop caps, big hovers) */
+  --accent-soft:  #B07A2E55; /* translucent underline/border tint — stays bright (no contrast requirement) */
   --accent-weak:  #B07A2E22;
   --mast-bg:      #17191B; /* masthead background (dark charcoal) */
   --mast-fg:      #F4F2EC; /* masthead logo / active text */

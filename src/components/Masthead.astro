@@ -76,8 +76,10 @@ const nav = [
   nav a { color: var(--mast-link); text-decoration: none; }
   nav a:hover { color: var(--mast-fg); }
 
-  /* search affordance: an icon, not a word — sits at the end of the nav, aligned to the mono caps */
-  nav a.search-link { display: inline-flex; align-items: center; }
+  /* search affordance: an icon, not a word — sits at the end of the nav, aligned to the mono caps.
+     Padding (cancelled by the negative margin) enlarges the tap target to ~35px without shifting layout
+     or growing the icon — the 15px glyph would otherwise be an under-size touch target on mobile. */
+  nav a.search-link { display: inline-flex; align-items: center; padding: 10px; margin: -10px; }
   .search-ic { width: 15px; height: 15px; display: block; }
 
   /* Mobile: stack the logo and nav so nothing forces horizontal scroll. */
