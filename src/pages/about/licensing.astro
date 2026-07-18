@@ -42,12 +42,11 @@ const description =
 <BaseLayout title={title} description={description}>
   <main class="wrap licensing">
     <header class="head">
-      <p class="eyebrow"><a href="/about/">About</a> <span aria-hidden="true">/</span> Licensing &amp; commissions</p>
+      <p class="eyebrow"><a href="/about/">← About</a></p>
       <h1 class="display">Licensing &amp; commissions</h1>
       <p class="lede">
         The reconstructions on this site are available to license, and I take on new commissions when a
-        project needs a skeletal or life restoration that doesn't exist yet. Both are drawn to the same
-        measured, specimen-based method — the reason they hold up in exhibits and peer review.
+        project needs a skeletal, muscle or life reconstruction that doesn't yet exist.
       </p>
       <!-- Catches visitors redirected from the old /store URL: prints/merchandise aren't live yet, but
            they land somewhere real and get the coming-soon context (CLAUDE.md §6; owner decision). -->
@@ -56,14 +55,6 @@ const description =
         For now, image licensing and commissions are handled right here.
       </p>
     </header>
-
-    <figure class="quote">
-      <blockquote>
-        “Scott Hartman's detailed and rigorous skeletal reconstructions set the standard for sauropods:
-        he's now become the first port of call when looking for precise, anatomically correct work.”
-      </blockquote>
-      <figcaption>— Dr. Mike Taylor, sauropod palaeontologist</figcaption>
-    </figure>
 
     <section class="paths">
       <div class="path">
@@ -84,16 +75,36 @@ const description =
       </div>
     </section>
 
+    <aside class="contact-cta">
+      <p class="cc-text">Tell me the taxon and use, and I'll send you a quote.</p>
+      <a class="cc-btn" href="/contact/">Start a licensing inquiry →</a>
+    </aside>
+
     <section class="block using">
-      <h2 class="sec-h">Using them as references</h2>
+      <h2 class="sec-h">Use as reference</h2>
       <p>
-        Skeletal reconstructions combine hard anatomical data with careful inference, so the science in
-        them — the proportions, the pose, the shape and position of every bone — isn't mine to own, and I
-        want it used. If you're drawing your own skeletal, please adopt the pose (and cite me). What's
-        copyrighted is the specific image itself: you can't reproduce the actual drawing — in a book, an
-        exhibit, a product — without a licence. Non-commercial reference use is free; commercial
-        reproduction needs permission. Either way I'd always rather you get in touch first — I genuinely
-        enjoy hearing how the work gets used.
+        Skeletal reconstructions combine hard anatomical data with careful inference and artistic
+        rendering, so they fall into something of a gray area. The science in them, the pose, the position
+        of bones are not mine to own, and I want it used. If you want to adopt a similar pose for your own
+        artwork or skeletal, that's fine (but kindly credit me). What's copyrighted is the image itself:
+        You can't reproduce the actual drawing — in a book, an exhibit, a product — without a licence. I
+        never charge when they are used as non-commercial references, but commercial reproduction needs
+        permission. Either way I'd always rather you <a href="/contact/">get in touch first</a> — I
+        genuinely enjoy hearing how the work gets used.
+      </p>
+    </section>
+
+    <section class="block fair-use">
+      <h2 class="sec-h">Fair Use</h2>
+      <p>
+        Many countries (including the United States) observe Fair Use copyright permissions for
+        educational non-profit use. So if you are writing a review of my website, or are an instructor
+        teaching a course at a public school or university, you may make incidental use of my images (with
+        credit). But if you are using them in a YouTube post that allows monetization, or engaging in an
+        activity that you could reasonably be paid for (e.g. designing a display for a museum) that usually
+        falls outside of fair use. Which doesn't mean you can't use my images, just that you need
+        permission. I'm usually pretty reasonable, especially with academic or outreach applications, so
+        if you are in doubt at all please <a href="/contact/">drop me a line first</a>.
       </p>
     </section>
 
@@ -122,17 +133,17 @@ const description =
     </section>
 
     <section class="values block">
-      <h2 class="sec-h">A note on use</h2>
+      <h2 class="sec-h">A note on scientific use</h2>
       <p>
         I license my work widely for research, education, museums, and media. I don't license it to
-        organisations that misrepresent or campaign against evolutionary science — the work exists to make
-        the real science clearer, and that comes first.
+        organisations that misrepresent or campaign against science. The work exists to make real science
+        clearer, and that comes first.
       </p>
     </section>
 
     <aside class="contact-cta">
-      <p class="cc-text">Tell me the taxon and the use, and I'll send a quote.</p>
-      <a class="cc-btn" href="/contact/">Start a licensing enquiry →</a>
+      <p class="cc-text">Not sure whether your use needs a licence? Ask me first.</p>
+      <a class="cc-btn" href="/contact/">Contact me →</a>
     </aside>
   </main>
 </BaseLayout>
@@ -174,7 +185,10 @@ const description =
     margin: 0 0 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
   }
-  .using p { margin: 0; font-size: 17px; line-height: 1.72; color: var(--ink); max-width: 66ch; }
+  .using p, .fair-use p { margin: 0; font-size: 17px; line-height: 1.72; color: var(--ink); max-width: 66ch; }
+  /* Inline contact links in the reference / fair-use copy, right where it invites getting in touch. */
+  .using p a, .fair-use p a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .using p a:hover, .fair-use p a:hover { border-bottom-color: var(--accent); }
 
   .appears-lede { margin: 0 0 22px; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 64ch; }
   .cols { display: grid; gap: 26px 40px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }

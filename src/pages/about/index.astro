@@ -3,12 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import portrait from '../../assets/about/scott-hartman.jpg';
 
-// About hub (CLAUDE.md §5) — the bio + the "expertise stamp", then three doors to the ways Scott's
-// work is used: licensing/commissions, media & film, and his academic research & teaching. Replaces
-// the old Squarespace dropdown (ME / MY ART / LICENSING / CONTACTING ME / PUBLICATIONS): the bio is
-// this page, contact is the site-wide /contact/, "my art" (a credits list) folds into Licensing, and
-// publications live under Research. Prose here is authored in-page for now (low edit frequency); the
-// publications LIST is a CMS collection so it can grow without code.
+// About hub (CLAUDE.md §5) — the lede + peer testimonials (the "expertise stamp"), then three doors to
+// the ways Scott's work is used: licensing/commissions, media & film, and his academic research &
+// teaching. Replaces the old Squarespace dropdown (ME / MY ART / LICENSING / CONTACTING ME /
+// PUBLICATIONS): contact is the site-wide /contact/, "my art" (a credits list) folds into Licensing, and
+// publications live under Research. The personal biography lives on Scott's separate academic (Hugo) site
+// for now — dropped here to avoid duplication; may fold in later. Prose authored in-page (low edit
+// frequency); the publications LIST is a CMS collection so it can grow without code.
 
 const doors = [
   {
@@ -23,14 +24,14 @@ const doors = [
     kicker: 'For documentary & film',
     title: 'Media & film',
     blurb:
-      'Scientific consulting and original artwork for documentaries and productions that want the anatomy to be right.',
+      'Scientific consulting, character design and original artwork for productions that want to get the anatomy right.',
   },
   {
     href: '/about/research/',
     kicker: 'At UW–Madison',
     title: 'Research & teaching',
     blurb:
-      'Paleobiology research, peer-reviewed publications, and the teaching that keeps the reconstructions grounded in current science.',
+      'Learn more about my publications, teaching and the research that keeps the reconstructions grounded in current science.',
   },
 ];
 
@@ -47,8 +48,8 @@ const description =
         <h1 class="display">Scott Hartman</h1>
         <p class="lede">
           Vertebrate paleontologist, paleoartist, and instructional faculty at the University of
-          Wisconsin–Madison — two decades of measured, specimen-based skeletal reconstructions, used in
-          peer-reviewed research, museum exhibits, documentaries, and print.
+          Wisconsin–Madison. Three decades of experience producing rigorous skeletal reconstructions, used
+          in peer-reviewed research, museum exhibits, documentaries, and print.
         </p>
       </div>
       <Image
@@ -62,23 +63,15 @@ const description =
       />
     </header>
 
-    <section class="bio">
-      <p>
-        I grew up with a passion for dinosaurs and everything science. Growing up in Wisconsin and
-        California I had access to great museums but not many rock exposures, so for my undergraduate
-        education I attended the University of Wyoming, where I'm forever grateful for the field and
-        museum experience I gained. Before graduate school I moved to Thermopolis, Wyoming, where I
-        managed research, collections, and display development at the Wyoming Dinosaur Center. Around
-        this time I also started producing what has become a large catalog of skeletal anatomy diagrams —
-        the ones you'll find across this site.
-      </p>
-      <p>
-        My work at the WDC rekindled my drive to become a professional research scientist, so I
-        relocated to Wisconsin to pursue a paleobiology Ph.D. My dissertation research emphasized
-        mechanistic physiological modeling, mass-extinction survivorship, and functional anatomy. These
-        days I'm still in Wisconsin, teaching those same subjects to undergraduates in the Department of
-        Integrative Biology — and still drawing.
-      </p>
+    <section class="testimonials">
+      <figure class="quote">
+        <blockquote>“Scott Hartman's detailed and rigorous skeletal reconstructions set the standard for sauropods: he's now become the first port of call when looking for precise, anatomically correct work.”</blockquote>
+        <figcaption>— <a href="https://www.miketaylor.org.uk/" target="_blank" rel="noopener">Dr. Mike Taylor</a>, sauropod palaeontologist</figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>“The Master and ‘go-to’ guy for skeletal reconstructions.”</blockquote>
+        <figcaption>— <a href="https://scholar.google.com/citations?user=d46ItscAAAAJ" target="_blank" rel="noopener">Dr. Heinrich Mallison</a></figcaption>
+      </figure>
     </section>
 
     <nav class="doors" aria-label="About sections">
@@ -93,7 +86,7 @@ const description =
     </nav>
 
     <aside class="contact-cta">
-      <p class="cc-text">Have a question, a correction, or a project in mind?</p>
+      <p class="cc-text">Have a question, correction or project in mind?</p>
       <a class="cc-btn" href="/contact/">Get in touch →</a>
     </aside>
   </main>
@@ -119,9 +112,24 @@ const description =
      readable width) so there's no gap between it and the portrait */
   .lede { margin: 20px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink); }
 
-  .bio { margin: 34px 0 0; max-width: 64ch; }
-  .bio p { margin: 0 0 1.05em; font-size: 17px; line-height: 1.7; color: var(--ink); }
-  .bio p:last-child { margin-bottom: 0; }
+  /* Peer testimonials stand in for the old bio (which duplicated the Hugo academic site) — a stronger
+     expertise stamp. Two gold-bordered pull-quotes, matching the site's quote treatment; side by side on
+     desktop, stacked on mobile. */
+  .testimonials {
+    margin: 34px 0 0; display: grid; gap: 24px 40px;
+    /* min(100%, 300px) so the track can never exceed the container — no h-scroll on the narrowest phones */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+  .testimonials .quote { margin: 0; padding: 3px 0 3px 20px; border-left: 3px solid var(--accent); }
+  .testimonials blockquote {
+    margin: 0; font-style: italic; font-size: 18.5px; line-height: 1.5; color: var(--ink);
+  }
+  .testimonials figcaption {
+    margin: 12px 0 0; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--slate);
+  }
+  .testimonials figcaption a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .testimonials figcaption a:hover { border-bottom-color: var(--accent); }
 
   .doors {
     margin: 46px 0 0; display: grid; gap: 20px;
