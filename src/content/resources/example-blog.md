@@ -5,5 +5,5 @@ category: blog
 blurb: "Placeholder — swap in a real link. One line on what the blog covers and why you recommend it."
 order: 1
 featured: false
-draft: false
+draft: true
 ---
