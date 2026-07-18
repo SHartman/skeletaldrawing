@@ -5,8 +5,10 @@ import human from '../data/human.json';
 // Tail-tip-aligned scale comparison (CLAUDE.md §5). Silhouettes are traced offline
 // (scripts/silhouette.mjs) to vector paths in src/data/silhouettes.json; here they're
 // scaled to a common meter, grounded on a shared baseline, and aligned at the tail —
-// so size reads as how far each snout reaches. Largest = soft-filled envelope; the
-// rest are outlines (the smallest dashed). Renders nothing if no silhouettes exist.
+// so size reads as how far each snout reaches. Rendered as solid, semi-transparent fills on an
+// ordered gold-tint lightness ramp (largest = lightest & painted at back → smallest = darkest at
+// front), each with a thin same-hue outline so overlaps and the outer edge stay crisp. Renders
+// nothing if no silhouettes exist.
 const {
   taxonId,
   total,
@@ -48,6 +50,15 @@ const PXM = TARGET_W / rawMaxWidthM;
 const scaled = items.map((it, idx) => {
   const s = (PXM * (it.widthM ?? it.lengthM)) / it.w;
   return { ...it, idx, s, sw: it.w * s, sh: it.h * s };
+});
+
+// Gold-tint lightness ramp: idx 0 (largest) lightest → last (smallest) darkest. Semi-transparent
+// fills blend on overlap; a same-hue darker outline keeps every edge crisp (incl. near-equal sizes).
+const RAMP_HUE = 34, RAMP_SAT = 58;
+const ramp = scaled.map((d) => {
+  const t = scaled.length > 1 ? d.idx / (scaled.length - 1) : 0.4;
+  const L = Math.round(68 - t * 38); // 68% → 30%
+  return { ...d, fill: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}%)`, stroke: `hsl(${RAMP_HUE} ${RAMP_SAT + 8}% ${Math.max(L - 18, 16)}%)` };
 });
 
 const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0; // biological max — for the aria label
@@ -122,17 +133,15 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
           })}
           <text x={guideX - nTicks * tickPx} y={rulerY + 6} class="tick-unit" text-anchor="start" dx="-2" dy="14">{rulerUnit}</text>
 
-          {/* silhouettes: largest filled, others outlined (smallest dashed) */}
-          {scaled
-            .slice()
-            .reverse()
-            .map((d) => (
-              <path
-                d={d.path}
-                transform={tx(d)}
-                class={d.idx === 0 ? 'sil envelope' : d.idx === scaled.length - 1 ? 'sil outline dashed' : 'sil outline'}
-              />
-            ))}
+          {/* silhouettes: solid gold-tint ramp; largest lightest & painted first (back) → smallest darkest (front) */}
+          {ramp.map((d) => (
+            <path
+              d={d.path}
+              transform={tx(d)}
+              class="sil"
+              style={`fill:${d.fill};fill-opacity:.65;stroke:${d.stroke};stroke-width:1.2;stroke-opacity:.9`}
+            />
+          ))}
 
           {/* tail-tip guide */}
           <line x1={guideX} y1={padT} x2={guideX} y2={groundY} class="guide" />
@@ -149,9 +158,9 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
         </svg>
 
         <figcaption class="legend">
-          {scaled.map((d) => (
+          {ramp.map((d) => (
             <span class="leg-item">
-              <span class={d.idx === 0 ? 'sw sw-fill' : d.idx === scaled.length - 1 ? 'sw sw-dash' : 'sw sw-line'} />
+              <span class="sw" style={`background:${d.fill};border:1px solid ${d.stroke}`} />
               <span class="leg-name">{d.label}</span>
               <span class="leg-len">{d.lengthM} m</span>
             </span>
@@ -196,9 +205,6 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
   .tick-unit { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
 
   .sil { vector-effect: non-scaling-stroke; }
-  .envelope { fill: var(--accent); fill-opacity: .16; stroke: var(--accent); stroke-width: 1.6; }
-  .outline { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-opacity: .85; }
-  .outline.dashed { stroke: var(--slate); stroke-dasharray: 6 4; }
 
   .human { fill: var(--slate); stroke: none; }
   .human-label { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
@@ -209,9 +215,6 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
   }
   .leg-item { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
   .sw { width: 22px; height: 12px; flex: 0 0 auto; border-radius: 2px; }
-  .sw-fill { background: var(--accent); opacity: .55; border: 1px solid var(--accent); }
-  .sw-line { height: 0; border-top: 2px solid var(--ink); }
-  .sw-dash { height: 0; border-top: 2px dashed var(--slate); }
   .leg-name { font-style: italic; }
   .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
 
