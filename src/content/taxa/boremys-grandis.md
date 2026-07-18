@@ -25,4 +25,4 @@ added: 2026-07-16T12:00:00.000Z
 widthM: 0.73
 ---
 
-A freshwater baenid turtle of Late Cretaceous North America. Baenids have only been found (so far) in North America, living from the Late Cretaceous through the K/Pg extinction into the Eocene. _Boremys_ can be distinguished by uniquely sculptured shell bones and extra rows of small scutes around the edge of the carapace.
+A freshwater baenid turtle of Late Cretaceous North America. Baenids have only been found (so far) in North America, existing from the Early Cretaceous through the K/Pg extinction into the Eocene. _Boremys_ can be distinguished by uniquely sculptured shell bones and extra rows of small scutes around the edge of the carapace.
