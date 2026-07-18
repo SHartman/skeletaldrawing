@@ -1,21 +1,33 @@
 ---
-added: "2026-05-01T12:00:00.000Z"
-taxon: "Dreadnoughtus schrani"
-author: "Lacovara et al., 2014"
-gallery: "sauropods-and-kin"
-clade: ["Titanosauria"]
+taxon: Dreadnoughtus schrani
+author: Lacovara et al., 2014
+commonName: ''
+gallery: sauropods-and-kin
+clade:
+  - Titanosauria
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 22.5
-widthM: 20.5
+lengthLabel: ''
 massKg: 33600
-massSource: "PaleoGDI"
-view: "Left lateral"
-scaleBar: "1 meter"
+massSource: PaleoGDI
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/dreadnoughtus-schrani-skeletal.png"
-  alt: "Dreadnoughtus schrani skeletal reconstruction, left lateral view, reconstructed length ~21 m."
+  src: /images/skeletals/dreadnoughtus-schrani-skeletal.png
+  alt: Dreadnoughtus schrani skeletal reconstruction, left lateral view, reconstructed length ~21 m.
 rigorous:
-  src: "/images/skeletals/dreadnoughtus-schrani-known-material.png"
-  alt: "Known skeletal material of Dreadnoughtus schrani — elements preserved in the specimen drawn in white against a black body silhouette."
+  src: /images/skeletals/dreadnoughtus-schrani-known-material.png
+  alt: Known skeletal material of Dreadnoughtus schrani — elements preserved in the specimen drawn in white against a black body silhouette.
+added: 2026-05-01T12:00:00.000Z
+widthM: 20.5
 ---
 
-A colossal titanosaur from the Late Cretaceous of Argentina, known from an unusually complete skeleton that makes it one of the best-documented of the giant sauropods.
+_Dreadnoughtus_ was a large titanosaur from the Late Cretaceous of Argentina. Like most titanosaurs it had a long, upright-sloping neck and a medium-length (for a sauropod) tail. At the time it was found, _Dreadnoughtus_ was the most complete large titanosaurs known. Highly-detailed 3d scans of the specimen have published, providing excellent documentation of what the skeleton looks like. 
+
+At around 21 meters (70 feet) and 34 tonnes, _Dreadnoughtus_ was a huge animal (roughly 5 large bull African elephants in size!), but it was neither as long as most diplodocids, nor as heavy as the largest titanosaurs, like _Argentinosaurus_ or _Patagotitan_.
