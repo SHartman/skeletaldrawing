@@ -1,22 +1,36 @@
 ---
-added: "2026-06-30T12:08:00.000Z"
-taxon: "Ceratosaurus nasicornis"
-author: "Marsh, 1884"
-gallery: "theropods"
-clade: ["Ceratosauria"]
-specimenId: "USNM 4735"
+taxon: Ceratosaurus nasicornis
+author: Marsh, 1884
+commonName: ''
+gallery: theropods
+clade:
+  - Ceratosauria
+family: ''
+specimenId: USNM 4735
+specimenName: ''
 lengthM: 6
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: ''
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/ceratosaurus-nasicornis-type-usnm-4735-skeletal.png"
-  alt: "Ceratosaurus nasicornis skeletal reconstruction, left lateral view, reconstructed length ~6 m."
+  src: /images/skeletals/ceratosaurus-nasicornis-type-usnm-4735-skeletal.png
+  alt: Ceratosaurus nasicornis skeletal reconstruction, left lateral view, reconstructed length ~6 m.
 rigorous:
-  src: "/images/skeletals/ceratosaurus-nasicornis-umnh-vp-5278-known-elements.png"
-  alt: "Known skeletal material of Ceratosaurus nasicornis: preserved elements shown in white against a black body silhouette."
+  src: /images/skeletals/ceratosaurus-nasicornis-umnh-vp-5278-known-elements.png
+  alt: 'Known skeletal material of Ceratosaurus nasicornis: preserved elements shown in white against a black body silhouette.'
 additionalFigures:
-  - src: "/images/skeletals/ceratosaurus-nasicornis-potential-growth-series-skeletals.png"
-    alt: "Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m)."
-    caption: "A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m)."
+  - src: /images/skeletals/ceratosaurus-nasicornis-potential-growth-series-skeletals.png
+    alt: Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
+    caption: A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
+added: 2026-06-30T12:08:00.000Z
 ---
 
-A ceratosaurian theropod from the Late Jurassic of western North America, distinguished by a prominent horn on its snout, smaller horns over the eyes, and a row of bony plates along its back. It coexisted with larger predators such as _Allosaurus_.
+_Ceratosaurus_ was (not surprisingly) a ceratosaurian theropod, which lived during the Late Jurassic of western North America. Living alongside the larger _Allosaurus_ and _Torvosaurus_, _Ceratosaurus_ could easily be distinguished by a prominent horn on its snout, smaller horns over the eyes, and a row of bony plates along its back. 
+
+While _Ceratosaurus_ skeletons are less common than _Allosaurus_, we do have something of a growth series, with juvenile, subadult and larger, more robust adult specimens known.
