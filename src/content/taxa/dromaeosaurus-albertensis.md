@@ -1,15 +1,27 @@
 ---
-added: "2026-06-28T12:21:00.000Z"
-taxon: "Dromaeosaurus albertensis"
-author: "Matthew & Brown, 1922"
-gallery: "theropods"
-clade: ["Dromaeosauridae"]
+taxon: Dromaeosaurus albertensis
+author: Matthew & Brown, 1922
+commonName: ''
+gallery: theropods
+clade:
+  - Dromaeosauridae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 2
-view: "Left lateral"
-scaleBar: "50 centimeters"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 50 centimeters
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/dromaeosaurus-albertensis-skeletal.png"
-  alt: "Dromaeosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~2 m."
+  src: /images/skeletals/dromaeosaurus-albertensis-skeletal.png
+  alt: Dromaeosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~2 m.
+added: 2026-06-28T12:21:00.000Z
 ---
 
-A dromaeosaurid, one of the sickle-clawed 'raptor' theropods, from the Late Cretaceous of Alberta, Canada. _Dromaeosaurus_ had an unusually robust, heavily built skull and strong bite compared with its relatives.
+_Dromaeosaurus_ bequeathed its name to dromaeosaurids, the group of winged, sickle-clawed 'raptor' theropods from the Cretaceous. _Dromaeosaurus_ itself lived in the Late Cretaceous of Alberta, Canada. Compared to other dromaeosaurs it had an unusually robust, heavily built skull and strong bite, although it's other ways fairly typical compared to other Late Cretaceous  dromaeosaurs.
