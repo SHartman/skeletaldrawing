@@ -1,16 +1,28 @@
 ---
-added: "2026-07-07T12:00:00.000Z"
-taxon: "Edaphosaurus pogonias"
-author: "Cope, 1882"
-gallery: "synapsids"
-clade: ["Edaphosauridae"]
+taxon: Edaphosaurus pogonias
+author: Cope, 1882
+commonName: ''
+gallery: synapsids
+clade:
+  - Edaphosauridae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 3.5
-widthM: 3.47
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/edaphosaurus-pogonias-skeletal.png"
-  alt: "Edaphosaurus pogonias skeletal reconstruction, left lateral view, length ~3.5 m."
+  src: /images/skeletals/edaphosaurus-pogonias-skeletal.png
+  alt: Edaphosaurus pogonias skeletal reconstruction, left lateral view, length ~3.5 m.
+added: 2026-07-07T12:00:00.000Z
+widthM: 3.47
 ---
 
-An Early Permian edaphosaurid synapsid whose tall neural-spine sail bore distinctive crossbars. Unlike its sail-backed relative _Dimetrodon_, _Edaphosaurus_ was a plant-eater with a small head and dense tooth plates.
+_Edaphosaurus_ was a plant-eating, Early Permian synapsid. Living in the same time and swampy environments as it's carnivorous relative _Dimetrodon_, _Edaphosaurus_ had an every stranger sail, which had little projections sticking sideways out of every elongated neural spine. Wind-tunnel tests suggest this would produce eddies of air in a breeze, causing convection currents that would aid in cooling down its body temperature.
