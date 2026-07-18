@@ -1,14 +1,27 @@
 ---
-added: "2026-06-28T12:10:00.000Z"
-taxon: "Bistahieversor sealeyi"
-author: "Carr & Williamson, 2010"
-gallery: "theropods"
-clade: ["Tyrannosauroidea"]
+taxon: Bistahieversor sealeyi
+author: Carr & Williamson, 2010
+commonName: ''
+gallery: theropods
+clade:
+  - Tyrannosauroidea
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 8.7
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: ''
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/bistahieversor-sealeyi-skeletal.png"
-  alt: "Bistahieversor sealeyi skeletal reconstruction, left lateral view, reconstructed length ~8.7 m."
+  src: /images/skeletals/bistahieversor-sealeyi-skeletal.png
+  alt: Bistahieversor sealeyi skeletal reconstruction, left lateral view, reconstructed length ~8.7 m.
+added: 2026-06-28T12:10:00.000Z
 ---
 
-A tyrannosauroid theropod from the Late Cretaceous of New Mexico, USA. A deep-snouted large predator, it sat just outside the true tyrannosaurids and shows that big-bodied, bone-crushing forms had evolved in southern North America.
+A tyrannosauroid theropod from the Late Cretaceous of New Mexico, USA. A large (almost 9 meters or 35 feet) deep-snouted predator, phylogenetic studies usually find it sitting among basal tyrannosaurids. Regardless of its exact position in the tyrannosaur family tree, it shows big-bodied, bone-crushing tyrannosauroids evolved southern North America alongside those evolving in Asia and northwestern North America.
