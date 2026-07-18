@@ -26,4 +26,4 @@ wingspanM: 10
 widthM: 7.76
 ---
 
-A Late Cretaceous azhdarchid pterosaur from the phosphate beds of Jordan. _Arambourgiania_ is known chiefly from an enormously elongated neck vertebra some 78 centimetres long, yet even that is enough to tell us it was among the largest animal ever to fly, with a wingspan of up to ten meters (30+ feet).
+A Late Cretaceous azhdarchid from the phosphate beds of Jordan. _Arambourgiania_ is known chiefly from an enormously elongated neck vertebra some 78 centimetres long, yet even that is enough to tell us it was among the largest animal ever to fly, with a wingspan of up to ten meters (30+ feet).
