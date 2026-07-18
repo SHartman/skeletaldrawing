@@ -1,7 +1,7 @@
 ---
 title: A visual glossary of skeletal anatomy
 kind: Anatomy guide
-summary: The bones and landmarks named across these reconstructions — what each one is, where it sits, and why it matters for reading a skeletal.
+summary: Just starting your journey learning dinosaur anatomy? Intimidated by all of the new words to learn? Start here for an easy primer.
 path: /anatomy/
 updated: 2026-06-28
 order: 1

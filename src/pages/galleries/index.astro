@@ -16,7 +16,7 @@ const GALLERY: Record<string, { sci: string; friendly: string; blurb: string }> 
   theropods: {
     sci: 'Theropoda',
     friendly: 'Predatory dinosaurs',
-    blurb: 'The bird-line carnivores — from Tyrannosaurus to the small, feathered hunters.',
+    blurb: 'The bird-line carnivores — from <em>Tyrannosaurus</em> to small, feathery hunters.',
   },
   'sauropods-and-kin': {
     sci: 'Sauropodomorpha',
@@ -89,8 +89,8 @@ const description = `Browse Scott Hartman's skeletal reconstructions by group: $
       </div>
       <h1 class="display">Browse by group</h1>
       <p class="intro">
-        Every reconstruction here is drawn to a common method and measured to a common scale. Start with
-        a major group, then filter down by clade, size, or specimen.
+        Every reconstruction is rigorously drawn to scale. Start with a major group, then filter by clade
+        or even size.
       </p>
     </header>
 
@@ -108,7 +108,7 @@ const description = `Browse Scott Hartman's skeletal reconstructions by group: $
             <div class="body">
               <span class="friendly">{g.friendly}</span>
               <span class="sci"><em>{g.sci}</em></span>
-              <p class="blurb">{g.blurb}</p>
+              <p class="blurb" set:html={g.blurb}></p>
               <span class="count">
                 {g.count} {g.count === 1 ? 'skeletal' : 'skeletals'}
                 <span class="arrow">→</span>

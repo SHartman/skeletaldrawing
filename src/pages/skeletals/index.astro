@@ -139,7 +139,7 @@ const reconCount =
   specimens.filter((s) => s.data.reconstruction).length +
   taxa.reduce((n, t) => n + reconFigs(t.data.additionalFigures), 0) +
   specimens.reduce((n, s) => n + reconFigs(s.data.additionalFigures), 0);
-const idleStat = `${reconCount} reconstructions · ${taxa.length} taxa · a scale bar on every plate`;
+const idleStat = `${reconCount} reconstructions · ${taxa.length} taxa · a scale bar for every species`;
 
 // The site's own Sue (T. rex, FMNH PR 2081) body silhouette from the scale-comparison database —
 // reused faint behind the header and in the no-match state, so the launcher's mascot is a real
