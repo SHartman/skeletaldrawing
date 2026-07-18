@@ -1,17 +1,29 @@
 ---
-added: "2026-07-06T12:00:00.000Z"
-taxon: "Chasmosaurus belli"
-author: "Lambe, 1902"
+taxon: Chasmosaurus belli
+author: Lambe, 1902
+commonName: ''
 recombination: true
-gallery: "ornithischians"
-clade: ["Chasmosaurinae"]
+gallery: ornithischians
+clade:
+  - Chasmosaurinae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 4.9
-widthM: 4.72
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/chasmosaurus-belli-skeletal.png"
-  alt: "Chasmosaurus belli skeletal reconstruction, left lateral view, reconstructed length ~4.9 m."
+  src: /images/skeletals/chasmosaurus-belli-skeletal.png
+  alt: Chasmosaurus belli skeletal reconstruction, left lateral view, reconstructed length ~4.9 m.
+added: 2026-07-06T12:00:00.000Z
+widthM: 4.72
 ---
 
-A chasmosaurine (long-frilled ceratopsid) from the Late Cretaceous of Alberta, Canada, recognisable for its very large frill pierced by two enormous openings, with only short brow horns.
+_Chasmosaurus_ is the eponymous member of the chasmosaurine (long-frilled) ceratopsids, which included it's famous bigger cousin, _Triceratops_. Living during the Late Cretaceous in Alberta, Canada, _Chasmosaurus_ is recognisable for its very large frill pierced by two enormous openings. It also has fairly reduced brow horns, demonstrating that brow horn length is not a good proxy for which group of ceratopsids a horned dinosaur comes from.
