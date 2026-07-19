@@ -30,4 +30,4 @@ widthM: 20.5
 
 _Dreadnoughtus_ was a large titanosaur from the Late Cretaceous of Argentina. Like most titanosaurs it had a long, upright-sloping neck and a medium-length (for a sauropod) tail. At the time it was found, _Dreadnoughtus_ was the most complete large titanosaurs known. Highly-detailed 3d scans of the specimen have published, providing excellent documentation of what the skeleton looks like. 
 
-At around 21 meters (70 feet) and 34 tonnes, _Dreadnoughtus_ was a huge animal (roughly 5 large bull African elephants in size!), but it was neither as long as most diplodocids, nor as heavy as the largest titanosaurs, like _Argentinosaurus_ or _Patagotitan_.
+At around 22.5 meters (70 feet) and 34 tonnes, _Dreadnoughtus_ was a huge animal (roughly 5 large bull African elephants in size!), but it was neither as long as most diplodocids, nor as heavy as the largest titanosaurs, like _Argentinosaurus_ or _Patagotitan_.
