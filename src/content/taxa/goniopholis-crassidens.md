@@ -1,16 +1,28 @@
 ---
-added: "2026-07-16T12:00:00.000Z"
-taxon: "Goniopholis crassidens"
-author: "Owen, 1841"
-gallery: "non-dinosaurs"
-clade: ["Goniopholididae"]
+taxon: Goniopholis crassidens
+author: Owen, 1841
+commonName: ''
+gallery: non-dinosaurs
+clade:
+  - Goniopholididae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 2.85
-widthM: 2.82
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/goniopholis-crassidens-skeletal.png"
-  alt: "Goniopholis crassidens skeletal reconstruction, left lateral view, length ~2.85 m."
+  src: /images/skeletals/goniopholis-crassidens-skeletal.png
+  alt: Goniopholis crassidens skeletal reconstruction, left lateral view, length ~2.85 m.
+added: 2026-07-16T12:00:00.000Z
+widthM: 2.82
 ---
 
-A semiaquatic neosuchian of Late Jurassic to Early Cretaceous Europe, close to the ancestry of modern crocodiles. _Goniopholis_ closely resembled a living crocodile in body plan, with a long flat snout and paired rows of bony back armor, and likely occupied similar riverine ambush niches.
+_Goniopholis_  would have looked superficially quite similar to modern crocodilians, but it was actually quite a ways down the crocodile family tree. As a semiaquatic neosuchian living from the Late Jurassic to Early Cretaceous, it seems to have played a similar ambush-predator ecological role; again presaging what we see in modern crocodilians. One other important similarity, there is clear evidence that _Goniopholis_ had reverted to being cold-blooded, again like living relatives but very different from Triassic croc-line archosaurs, which seem to have had elevated metabolisms.
