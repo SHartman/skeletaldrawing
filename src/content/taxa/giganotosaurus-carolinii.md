@@ -1,22 +1,34 @@
 ---
-added: "2026-06-30T12:11:00.000Z"
-taxon: "Giganotosaurus carolinii"
-author: "Coria & Salgado, 1995"
-gallery: "theropods"
-clade: ["Carcharodontosauridae"]
-specimenId: "MUCPv-Ch1"
+taxon: Giganotosaurus carolinii
+author: Coria & Salgado, 1995
+commonName: ''
+gallery: theropods
+clade:
+  - Carcharodontosauridae
+family: ''
+specimenId: MUCPv-Ch1
+specimenName: ''
 lengthM: 11.8
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: ''
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-skeletal.png"
-  alt: "Giganotosaurus carolinii skeletal reconstruction, left lateral view, reconstructed length ~11.8 m."
+  src: /images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-skeletal.png
+  alt: Giganotosaurus carolinii skeletal reconstruction, left lateral view, reconstructed length ~11.8 m.
 rigorous:
-  src: "/images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-known-elements.png"
-  alt: "Known skeletal material of Giganotosaurus carolinii: preserved elements shown in white against a black body silhouette."
+  src: /images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-known-elements.png
+  alt: 'Known skeletal material of Giganotosaurus carolinii: preserved elements shown in white against a black body silhouette.'
 additionalFigures:
-  - src: "/images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-gdi-mass-estimate-hartman-dissertation.png"
-    alt: "Giganotosaurus carolinii — Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation."
-    caption: "Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation."
+  - src: /images/skeletals/giganotosaurus-carolinii-type-mucpv-ch1-gdi-mass-estimate-hartman-dissertation.png
+    alt: Giganotosaurus carolinii — Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation.
+    caption: Graphic double-integration (GDI) body-mass estimate for the type, from Hartman’s dissertation.
+added: 2026-06-30T12:11:00.000Z
 ---
 
-A giant carcharodontosaurid theropod from the Late Cretaceous of Argentina, among the largest known meat-eating dinosaurs. Reaching nearly 12 metres, _Giganotosaurus_ rivalled or exceeded _Tyrannosaurus_ in length.
+_Gignotosaurus_ is probably the best known of the giant carcharodontosaurid theropods that have been discovered in the southern hemisphere the last few decades.  _Giganotosaurus_ lived during the Late Cretaceous in Argentina (and presumably surrounding areas), where it may have hunted the sauropods that dominated its enviroment. They type specimen reached nearly 12 m (38 feet), although there are fragmentary remains of somewaht larger individuals. At least in length _Giganotosaurus_ rivalled or perhaps exceeded _Tyrannosaurus_, although its torso does not appear as wide as that of advanced tyrannosaurs, so it may have fallen a bit short on weight. That said, 8 tonnes is a huge animal - you certainly wouldn't want it to step on your toes!
