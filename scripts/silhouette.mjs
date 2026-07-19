@@ -396,10 +396,6 @@ const GENUS_GROUPS = {
     { file: 'edmontosaurus-regalis-skeletal.png', taxon: 'edmontosaurus-regalis', label: 'E. regalis' },
     { file: 'edmontosaurus-annectens-skeletal.png', taxon: 'edmontosaurus-annectens', label: 'E. annectens' },
   ],
-  hypacrosaurus: [
-    { file: 'hypacrosaurus-stebingeri-adult-skeletal.png', taxon: 'hypacrosaurus-stebingeri', label: 'H. stebingeri' },
-    { file: 'hypacrosaurus-altispinus-juvenile-skeletal.png', taxon: 'hypacrosaurus-altispinus', label: 'H. altispinus · juvenile' },
-  ],
   parasaurolophus: [
     { file: 'parasaurolophus-walkeri-type-specimen-rom-768-skeletal.png', taxon: 'parasaurolophus-walkeri', label: 'P. walkeri' },
     { file: 'parasaurolophus-cyrtocristatus-fmnh-p27393-skeletal.png', taxon: 'parasaurolophus-cyrtocristatus', label: 'P. cyrtocristatus' },
@@ -428,6 +424,13 @@ const GROWTH_GROUPS = {
   'postosuchus-kirkpatricki-growth': [
     { file: 'postosuchus-kirkpatricki-ttup-9002-skeletal-juvenile.png', lengthM: 3.8, widthM: 3.73, label: 'Subadult · TTUP 9002' },
     { file: 'postosuchus-kirkpatricki-ttup-9000-skeletal.png', lengthM: 5, widthM: 4.89, label: 'Adult · TTUP 9000' },
+  ],
+  // Hypacrosaurus stebingeri: adult + juvenile of ONE species (the juvenile was formerly mislabelled
+  // H. altispinus, which collapsed a would-be genus hub into this growth series). Juvenile silhouette
+  // is the owner's hand-corrected trace (the auto-trace bridged the overlapping fore/hind limbs).
+  'hypacrosaurus-stebingeri-growth': [
+    { file: 'hypacrosaurus-stebingeri-juvenile-silhouette.png', lengthM: 1, label: 'Juvenile' },
+    { file: 'hypacrosaurus-stebingeri-adult-skeletal.png', lengthM: 5, widthM: 4.92, label: 'Adult' },
   ],
 };
 
@@ -541,8 +544,10 @@ const SKIP_FILES = new Set([
   'maiasaura-peeblesorum-subadult-two-years-skeletal.png',
   // Kentrosaurus alternate hip-based spine placement — a hypothesis figure, not the body silhouette.
   'kentrosaurus-aethiopicus-skeletal-with-alternaive-hip-based-spine-placement.png',
-  // Hypacrosaurus combined adult+juvenile plate — the genus group uses the separate adult/juvenile files.
+  // Hypacrosaurus stebingeri: the ADULT -skeletal is the taxon's overlay/gallery silhouette; the combined
+  // plate and the juvenile silhouette are the growth-series figures/stages, not the taxon silhouette.
   'hypacrosaurus-stebingeri-adult-and-juvenile-skeletals.png',
+  'hypacrosaurus-stebingeri-juvenile-silhouette.png',
   // Balaenoptera feeding-behavior pose (ballooned throat pleats) — a page figure, not the body
   // envelope; the plain -skeletal.png is the silhouette the overlay/compare catalog should scale.
   'balaenoptera-musculus-skeletal-feeding-behavior.png',
