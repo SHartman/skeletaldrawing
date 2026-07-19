@@ -1,16 +1,28 @@
 ---
-added: "2026-07-06T12:00:00.000Z"
-taxon: "Gryposaurus monumentensis"
-author: "Gates & Sampson, 2007"
-gallery: "ornithischians"
-clade: ["Saurolophinae"]
+taxon: Gryposaurus monumentensis
+author: Gates & Sampson, 2007
+commonName: ''
+gallery: ornithischians
+clade:
+  - Saurolophinae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 8.5
-widthM: 8.38
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/gryposaurus-monumentensis-skeletal.png"
-  alt: "Gryposaurus monumentensis skeletal reconstruction, left lateral view, reconstructed length ~8.5 m."
+  src: /images/skeletals/gryposaurus-monumentensis-skeletal.png
+  alt: Gryposaurus monumentensis skeletal reconstruction, left lateral view, reconstructed length ~8.5 m.
+added: 2026-07-06T12:00:00.000Z
+widthM: 8.38
 ---
 
-A robust hadrosaurid (duck-billed dinosaur) of the Late Cretaceous of Utah, distinguished by an arched, humped nasal ridge on the snout and an especially deep, powerful jaw.
+_Gryposaurus_ was a saurolophine hadrosaur from the Late Cretaceous of the western North America. The species _Gryposaurus monumentensis_ was found in Utah, and distinguished by its robust build, which featured an arched, humped nasal ridge on the snout and an especially deep, powerful jaw for an herbivore.
