@@ -24,6 +24,7 @@ const TRACE_WIDTH = 1000; // downscale target — plenty for a simplified outlin
 const BLACK = 128; // luminance threshold (0–255) below which a pixel is "flesh"
 const CLOSE = 6; // morphological-close radius (px) — seals mouth/rib gaps before fill
 const RDP_EPS = 1.4; // simplify tolerance in downscaled px
+const HOLE_MIN_FRAC = 0.0025; // owner-silhouette interior pockets below this share of the canvas are ignored (specks)
 
 // ----- minimal frontmatter read (flat fields + one nested image src) -----
 function readSpecimen(file) {
@@ -296,14 +297,43 @@ async function traceImage(file, { alpha = false } = {}) {
   }
 
   const big = largestComponent(mask, W, H);
-  let contour = traceBoundary(big, W, H);
-  contour = rdp(contour, RDP_EPS);
+  const outer = rdp(traceBoundary(big, W, H), RDP_EPS);
+
+  // Interior holes — owner (alpha) silhouettes only. An enclosed transparent pocket is intentional
+  // negative space (e.g. the gap framed by overlapping limbs) that the outer-only trace would fill.
+  // We flood the background inward from the border; whatever's neither body nor reachable is a hole,
+  // traced as an extra subpath. Rendered with fill-rule:evenodd, those subpaths cut back out. A size
+  // floor drops tracing specks. The raster path is left alone — there, enclosed voids are bones it
+  // deliberately fills shut.
+  const holes = [];
+  if (alpha) {
+    const outside = new Uint8Array(W * H);
+    const stack = [];
+    const mark = (x, y) => { const i = y * W + x; if (!big[i] && !outside[i]) { outside[i] = 1; stack.push(i); } };
+    for (let x = 0; x < W; x++) { mark(x, 0); mark(x, H - 1); }
+    for (let y = 0; y < H; y++) { mark(0, y); mark(W - 1, y); }
+    while (stack.length) {
+      const p = stack.pop(), x = p % W, y = (p / W) | 0;
+      if (x > 0) mark(x - 1, y); if (x < W - 1) mark(x + 1, y); if (y > 0) mark(x, y - 1); if (y < H - 1) mark(x, y + 1);
+    }
+    const holeMask = new Uint8Array(W * H);
+    for (let i = 0; i < W * H; i++) holeMask[i] = !big[i] && !outside[i] ? 1 : 0;
+    const { label, comps } = labelComponents(holeMask, W, H);
+    const minArea = HOLE_MIN_FRAC * W * H;
+    for (const c of comps) {
+      if (c.size < minArea) continue;
+      const m = new Uint8Array(W * H);
+      for (let i = 0; i < W * H; i++) if (label[i] === c.id) m[i] = 1;
+      const hc = rdp(traceBoundary(m, W, H), RDP_EPS);
+      if (hc.length >= 3) holes.push(hc);
+    }
+  }
 
   let minX = Infinity,
     minY = Infinity,
     maxX = -Infinity,
     maxY = -Infinity;
-  for (const [x, y] of contour) {
+  for (const [x, y] of outer) {
     if (x < minX) minX = x;
     if (y < minY) minY = y;
     if (x > maxX) maxX = x;
@@ -311,11 +341,10 @@ async function traceImage(file, { alpha = false } = {}) {
   }
   const w = +(maxX - minX).toFixed(1),
     h = +(maxY - minY).toFixed(1);
-  const path =
-    contour
-      .map(([x, y], i) => `${i ? 'L' : 'M'}${+(x - minX).toFixed(1)} ${+(y - minY).toFixed(1)}`)
-      .join('') + 'Z';
-  return { w, h, path, points: contour.length };
+  const sub = (c) =>
+    c.map(([x, y], i) => `${i ? 'L' : 'M'}${+(x - minX).toFixed(1)} ${+(y - minY).toFixed(1)}`).join('') + 'Z';
+  const path = [outer, ...holes].map(sub).join('');
+  return { w, h, path, points: outer.length, holes: holes.length };
 }
 
 // Trace the human scale reference from the owner's transparent adult+child PNG. The file
@@ -499,9 +528,9 @@ for (const [key, group] of Object.entries(GROWTH_GROUPS)) {
   for (const g of group) {
     const file = join('silhouettes', g.file);
     if (!existsSync(file)) { console.log(`(skip ${key}: missing ${g.file})`); continue; }
-    const { w, h, path, points } = await traceImage(file, { alpha: true });
+    const { w, h, path, points, holes } = await traceImage(file, { alpha: true });
     items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.widthM ?? g.lengthM, w, h, path });
-    console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts`);
+    console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
 }
@@ -580,10 +609,10 @@ for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
     fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
     fs.find((f) => !isKnown(f)) ??
     fs[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
-  const { w, h, path, points } = await traceImage(join(SIL_DIR, pick), { alpha: true });
+  const { w, h, path, points, holes } = await traceImage(join(SIL_DIR, pick), { alpha: true });
   out[slug] = [{ slug, label: binomial(slug), lengthM, ...wm(widthM), w, h, path }];
   catalogAdds.push(slug);
-  console.log(`taxon ${slug}: ${lengthM} m  bbox ${w}x${h} (ar ${(w / h).toFixed(2)})  ${points} pts  <- ${pick}`);
+  console.log(`taxon ${slug}: ${lengthM} m  bbox ${w}x${h} (ar ${(w / h).toFixed(2)})  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}  <- ${pick}`);
 }
 console.log(`\npass 3 added ${catalogAdds.length} taxon silhouettes to the catalog`);
 

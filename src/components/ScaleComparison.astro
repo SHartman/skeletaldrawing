@@ -204,7 +204,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
   .tick-label { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); text-anchor: middle; }
   .tick-unit { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
 
-  .sil { vector-effect: non-scaling-stroke; }
+  .sil { vector-effect: non-scaling-stroke; fill-rule: evenodd; } /* evenodd so traced interior holes (e.g. gaps between limbs) cut out */
 
   .human { fill: var(--slate); stroke: none; }
   .human-label { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }

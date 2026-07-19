@@ -178,7 +178,7 @@ const description =
       scaled.forEach((d) => {
         const c = COLORS[d.idx % COLORS.length];
         const tx = `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
-        s += `<path d="${d.it.path}" transform="${tx}" fill="${c}" fill-opacity="0.2" stroke="${c}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`;
+        s += `<path d="${d.it.path}" transform="${tx}" fill="${c}" fill-opacity="0.2" fill-rule="evenodd" stroke="${c}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`;
       });
       s += `<line x1="${guideX}" y1="${padT}" x2="${guideX}" y2="${groundY}" class="c-guide"/>`;
       if (showHuman) {
