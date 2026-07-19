@@ -1,15 +1,27 @@
 ---
-taxon: "Lufengosaurus huenei"
-author: "Young, 1941"
-gallery: "sauropods-and-kin"
-clade: ["Massospondylidae"]
-specimenId: "IVPP V15"
+taxon: Lufengosaurus huenei
+author: Young, 1941
+commonName: ''
+gallery: sauropods-and-kin
+clade:
+  - Massospondylidae
+family: ''
+specimenId: IVPP V15
+specimenName: ''
 lengthM: 6
-view: "Left lateral"
-scaleBar: "1 meter"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/lufengosaurus-huenei-skeletal.png"
-  alt: "Lufengosaurus huenei skeletal reconstruction, left lateral view, specimen IVPP V15, reconstructed length ~6 m."
+  src: /images/skeletals/lufengosaurus-huenei-skeletal.png
+  alt: Lufengosaurus huenei skeletal reconstruction, left lateral view, specimen IVPP V15, reconstructed length ~6 m.
+added: ''
 ---
 
-An Early Jurassic early sauropodomorph from the Lufeng Formation of China — one of the most completely known of the early “prosauropods.”
+A good-sized (6 m/19 foot long ) Early Jurassic sauropodomorph from the Lufeng Formation of China, _Lufengosaurus_ was one of the most completely known of the early, two-legged “prosauropod-grade” sauropodomorphs.
