@@ -21,9 +21,9 @@ drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gastonia-burgei-skeletal.png
   alt: Gastonia burgei skeletal reconstruction, left lateral view, reconstructed length ~6.2 m.
-underRevision: true
+underRevision: false
 added: 2026-07-06T12:00:00.000Z
 widthM: 6.07
 ---
 
-A heavily armoured dinosaur from the Early Cretaceous of Utah, often placed among the polacanthids. It bore rows of bony plates and large, blade-like spikes along its flanks and back.
+A heavily armored dinosaur from the Early Cretaceous of Utah, often placed among the polacanthids. It bore rows of bony plates and large, blade-like spikes along its flanks and back. This skeletal is in need of revision - hopefully coming soon(TM).
