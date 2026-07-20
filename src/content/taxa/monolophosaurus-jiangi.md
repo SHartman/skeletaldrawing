@@ -6,7 +6,7 @@ gallery: theropods
 clade:
   - Tetanurae
 family: ''
-specimenId: ''
+specimenId: IVPP V84019
 specimenName: ''
 lengthM: 5
 lengthLabel: ''
