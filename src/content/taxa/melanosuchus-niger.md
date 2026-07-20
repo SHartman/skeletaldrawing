@@ -1,18 +1,29 @@
 ---
-added: "2026-07-16T12:00:00.000Z"
-taxon: "Melanosuchus niger"
-commonName: "Black caiman"
-author: "Spix, 1825"
+taxon: Melanosuchus niger
+author: Spix, 1825
+commonName: Black caiman
 recombination: true
-gallery: "non-dinosaurs"
-clade: ["Caimaninae"]
+gallery: non-dinosaurs
+clade:
+  - Caimaninae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 6
-widthM: 5.98
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/melanosuchus-niger-skeletal.png"
-  alt: "Melanosuchus niger skeletal reconstruction, left lateral view, length ~6 m."
+  src: /images/skeletals/melanosuchus-niger-skeletal.png
+  alt: Melanosuchus niger skeletal reconstruction, left lateral view, length ~6 m.
+added: 2026-07-16T12:00:00.000Z
+widthM: 5.98
 ---
 
-The living black caiman of the Amazon basin, the largest member of the caiman group and one of the apex predators of its wetlands. _Melanosuchus_ grows to five metres or more, with dark, near-black armored hide and large eyes suited to hunting after dark.
+_Melanosuchus niger_ is more commonly known as the living black caiman, found in the Amazon basin. The largest member of the caiman group and one of the apex predators of its wetlands, _Melanosuchus_ grows to five meters (16 feet) or more in length, with dark, near-black armored hide and large eyes suited to hunting after dark.
