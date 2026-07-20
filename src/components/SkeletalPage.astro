@@ -7,6 +7,7 @@ import { loadSkeletal } from '../lib/images';
 import {
   taxonImageGraph,
   formatLength,
+  formatImperial,
   formatMass,
   isKnownMaterialOnly,
   heroRef,
@@ -43,7 +44,11 @@ const rigorousUrl = showRigorousSection ? new URL(d.rigorous!.src, Astro.site).h
 const cladePath = expandClades(d.clade); // full lineage, derived from the authored terminal clade
 const ladder = cladeLadder(d.clade);     // landmark ancestors + terminal → the indented record ladder
 const family = d.family ?? cladePath.at(-1);
-const lt = formatLength(d);
+// Metric is primary (scientific standard); append a US-friendly imperial conversion in parentheses.
+// Skip the imperial when a custom lengthLabel override is set (it may be a range/non-numeric).
+const ltMetric = formatLength(d);
+const ltImperial = d.lengthLabel ? '' : formatImperial(d.lengthM);
+const lt = ltImperial ? `${ltMetric} (${ltImperial})` : ltMetric;
 const mass = formatMass(d.massKg);
 // A nicknamed specimen gets a subtitle under the title, mirroring the specimen page (Sue) — so a
 // nicknamed skeletal like Triceratops sp. “Yoshi” reads the same way and the name is prominent. The

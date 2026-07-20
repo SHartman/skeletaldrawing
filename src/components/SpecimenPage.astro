@@ -8,6 +8,7 @@ import {
   specimenHero,
   specimenIsKnownMaterialOnly,
   formatMeters,
+  formatImperial,
   formatMass,
   formatAuthor,
 } from '../lib/schema';
@@ -41,7 +42,9 @@ const figures = figs.map((f) => ({ url: new URL(f.src, Astro.site).href, label: 
 const drawingCredit = s.drawingCredit.startsWith('©') ? s.drawingCredit : `© ${s.drawingCredit}`;
 const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${s.scaleBar}`;
 
-const lt = formatMeters(s.lengthM);
+// Metric primary, US-friendly imperial in parentheses (length only — not femur).
+const ltImperial = formatImperial(s.lengthM);
+const lt = ltImperial ? `${formatMeters(s.lengthM)} (${ltImperial})` : formatMeters(s.lengthM);
 const femur = formatMeters(s.femurM);
 const mass = formatMass(s.massKg);
 const tClades = expandClades(t.clade);
