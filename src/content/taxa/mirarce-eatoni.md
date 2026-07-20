@@ -1,16 +1,28 @@
 ---
-added: "2026-06-29T13:04:00.000Z"
-taxon: "Mirarce eatoni"
-author: "Atterholt et al., 2018"
-gallery: "theropods"
-clade: ["Enantiornithines"]
+taxon: Mirarce eatoni
+author: Atterholt et al., 2018
+commonName: ''
+gallery: theropods
+clade:
+  - Enantiornithines
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 0.5
-widthM: 0.44
-scaleBar: "10 centimeters"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 10 centimeters
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/mirarce-eatoni-skeletal.png"
-  alt: "Mirarce eatoni skeletal reconstruction, left lateral view, reconstructed length ~0.49 m."
+  src: /images/skeletals/mirarce-eatoni-skeletal.png
+  alt: Mirarce eatoni skeletal reconstruction, left lateral view, reconstructed length ~0.49 m.
+added: 2026-06-29T13:04:00.000Z
+widthM: 0.44
 ---
 
-An enantiornithine — a member of the dominant group of Mesozoic toothed birds — from the Late Cretaceous of Utah. Unusually large for the group, _Mirarce_ shows advanced flight adaptations rivalling those of modern birds.
+_Mirace_ was an enantiornithine theropod from the Late Cretaceous of Utah. Enantiornithines, the so-called "backwards birds" were normally toothed, and were the dominant group of flying dinosaurs in the Mesozoic. Unusually large for for an enantiornithine, _Mirarce_ may have been engaged in raptorial hunting, and it showed advanced flight adaptations that rivalled the direct ancestors of modern birds.
