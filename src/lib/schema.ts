@@ -73,16 +73,17 @@ export function formatMeters(m?: number): string {
   return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
 }
 
-/** US-friendly imperial length for the length record box, mirroring the metric cm/m switch:
- *  ≥1 m → feet (nearest foot); <1 m → inches (nearest inch). Returns "" when no length. */
+/** US-friendly imperial length for the length record box, tiered so precision tracks the scale:
+ *  under 2 ft → inches (nearest inch); 2–6 ft → nearest half-foot (the range where half a foot still
+ *  matters); ≥6 ft → nearest whole foot. Returns "" when no length. */
 export function formatImperial(m?: number): string {
   if (m == null) return '';
-  if (m < 1) {
-    const inch = Math.round(m * 39.3701);
-    return `${inch} ${inch === 1 ? 'inch' : 'inches'}`;
-  }
-  const ft = Math.round(m * 3.28084);
-  return `${ft} ${ft === 1 ? 'foot' : 'feet'}`;
+  const inch = Math.round(m * 39.3701);
+  if (inch < 24) return `${inch} ${inch === 1 ? 'inch' : 'inches'}`; // under 2 ft
+  const ftExact = m * 3.28084;
+  const ft = ftExact < 6 ? Math.round(ftExact * 2) / 2 : Math.round(ftExact);
+  const num = ft % 1 ? ft.toFixed(1) : String(ft);
+  return `${num} ${ft === 1 ? 'foot' : 'feet'}`;
 }
 
 /** Scale-aware mass: ≥1 t → "~33.6 t"; ≥1 kg → "~450 kg"; <1 kg → "~300 g". */
