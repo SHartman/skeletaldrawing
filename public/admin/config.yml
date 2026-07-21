@@ -47,7 +47,8 @@ collections:
         required: false
         field: { name: name, widget: string }
       - { name: lengthM, label: "Length (meters)", widget: number, required: false, value_type: float, hint: "Numeric; displays as m or cm automatically." }
-      - { name: lengthLabel, label: "Length display override", widget: string, required: false }
+      - { name: widthM, label: "Horizontal extent (meters)", widget: number, required: false, value_type: float, hint: "Only for a non-horizontal pose — raised neck, rearing or upright stance, pterosaur taking off. The nose-to-tail span measured HORIZONTALLY as drawn (usually less than Length; more for a takeoff pose). NOT the animal's girth. Leave blank for a normal horizontal pose and the scale comparisons just use Length. If you change Length, change this too — a stale value renders the animal at the wrong size beside others." }
+      - { name: lengthLabel, label: "Length display override", widget: string, required: false, hint: "Replaces the displayed length TEXT only (e.g. a range); no effect on scaling." }
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float, hint: "Numeric; displays as kg or tonnes automatically." }
       - { name: massSource, label: "Mass source", widget: string, required: false, hint: "e.g. PaleoGDI" }
       - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "e.g. Juvenile (adult proportions differ)" }
@@ -115,6 +116,7 @@ collections:
       - { name: formation, label: "Formation", widget: string, required: false }
       - { name: locality, label: "Locality", widget: string, required: false }
       - { name: lengthM, label: "Length (meters)", widget: number, required: false, value_type: float }
+      - { name: widthM, label: "Horizontal extent (meters)", widget: number, required: false, value_type: float, hint: "Only for a non-horizontal pose. The nose-to-tail span measured HORIZONTALLY as drawn — not the animal's girth. Blank = use Length. Update it whenever you change Length." }
       - { name: femurM, label: "Femur length (meters)", widget: number, required: false, value_type: float }
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float }
       - { name: completenessPct, label: "Completeness (%)", widget: number, required: false, value_type: int }
