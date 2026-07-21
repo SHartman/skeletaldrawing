@@ -6,7 +6,7 @@ gallery: theropods
 clade:
   - Ornithomimosauria
 family: ''
-specimenId: ''
+specimenId: TMP 1995.110.1
 specimenName: ''
 lengthM: 3.4
 lengthLabel: ''
