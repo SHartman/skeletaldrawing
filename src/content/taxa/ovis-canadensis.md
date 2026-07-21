@@ -1,17 +1,28 @@
 ---
-added: "2026-07-07T12:00:00.000Z"
-taxon: "Ovis canadensis"
-commonName: "Bighorn sheep"
-author: "Shaw, 1804"
-gallery: "synapsids"
-clade: ["Bovidae"]
-lengthM: 2
-widthM: 2.02
-scaleBar: "1 meter"
-view: "Left lateral"
+taxon: Ovis canadensis
+author: Shaw, 1804
+commonName: Bighorn sheep
+gallery: synapsids
+clade:
+  - Bovidae
+family: ''
+specimenId: ''
+specimenName: ''
+lengthM: 1.7
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: Male
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/ovis-canadensis-skeletal.png"
-  alt: "Ovis canadensis skeletal reconstruction, left lateral view, length ~2 m."
+  src: /images/skeletals/ovis-canadensis-skeletal.png
+  alt: Ovis canadensis skeletal reconstruction, left lateral view, length ~2 m.
+added: 2026-07-07T12:00:00.000Z
+widthM: 2.02
 ---
 
-The bighorn sheep, a wild sheep of the mountains of western North America, named for the massive curling horns of the rams — used in head-clashing contests for mates. Sure-footed climbers, they favor steep, rocky terrain that keeps them out of reach of most predators.
+The bighorn sheep, a wild sheep of the mountains of western North America, named for the massive curling horns of the rams. Males use these horns in head-butting contests for mates, which recent studies show causes concussion-like symptoms, and eventually CTE-like damage to the brains of older males. As a species they are sure-footed climbers, often favoring steep, rocky terrain that keeps them out of reach of most predators.
