@@ -28,4 +28,4 @@ additionalFigures:
 added: 2026-06-30T12:01:00.000Z
 ---
 
-_Gorgosaurus libratus_ was a comparatively lightly-built tyrannosaurid from the Late Cretaceous of Alberta and Montana. A close relative of _Albertosaurus_, the two shared the same genus name for much of the 20th century. I don't yet have a full-grown specimen, so the skeletals depicted here show off two stages of subadult growth (including the famous TMP 91.36.500, which is on display at the Royal Tyrell Museum in Drumheller, Alberta). These more juvenile specimens are even more lightly built and long-legged than the adults would be.
+_Gorgosaurus libratus_ was a comparatively lightly-built tyrannosaurid from the Late Cretaceous of Alberta and Montana. A close relative of _Albertosaurus_, the two shared the same genus name for much of the 20th century. I don't yet have a full-grown specimen, so the skeletals depicted here show off two stages of subadult growth (including the famous TMP 91.36.500, which is on display at the Royal Tyrrell Museum in Drumheller, Alberta). These more juvenile specimens are even more lightly built and long-legged than the adults would be.

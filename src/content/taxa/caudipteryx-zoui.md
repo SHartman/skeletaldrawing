@@ -25,4 +25,4 @@ added: 2026-06-28T12:14:00.000Z
 widthM: 0.78
 ---
 
-A small, basal oviraptorosaurian theropod from the Early Cretaceous of eastern China, _Caudipteryx_ was one of the first dinosaurs of the modern era found clear feather impressions. Although wing feathers were present, the fan of tail feathers was particularly well preserved, leading to the name _Caudipteryx_, which translates to "tail feather". The tiny arms of this and other basal oviraptorosaurs with vaned feathers helped show that wings evolved prior to flight in non-avian dinosaurs.
+A small, basal oviraptorosaurian theropod from the Early Cretaceous of eastern China, _Caudipteryx_ was one of the first dinosaurs of the modern era found with clear feather impressions. Although wing feathers were present, the fan of tail feathers was particularly well preserved, leading to the name _Caudipteryx_, which translates to "tail feather". The tiny arms of this and other basal oviraptorosaurs with vaned feathers helped show that wings evolved prior to flight in non-avian dinosaurs.

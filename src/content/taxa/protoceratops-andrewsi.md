@@ -26,4 +26,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 1.76
 ---
 
-_Protoceratops_ was a small ceratopsian from the Late Cretaceous of Mongolia, about 75 million years ago. growing to around 2 meters (6 feet) in length and roughly sheep-sized in mass, these early relative of later horned dinosaurs had well-developed crests, but small horns that were little more than raised rugosities over the eyes, or a gently point over the nose. _Protoceratops_ is known from abundant specimens, including nests and eggs.
+_Protoceratops_ was a small ceratopsian from the Late Cretaceous of Mongolia, about 75 million years ago. Growing to around 2 meters (6 feet) in length and roughly sheep-sized in mass, these early relatives of later horned dinosaurs had well-developed crests, but small horns that were little more than raised rugosities over the eyes, or a gentle point over the nose. _Protoceratops_ is known from abundant specimens, including nests and eggs.

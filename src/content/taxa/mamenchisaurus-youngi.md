@@ -25,4 +25,4 @@ added: ''
 widthM: 12.6
 ---
 
-Fair warning - _Mamenchisaurus_ has lots of fairly different species currently put into it, so it's possible that _M. youngi_ actually belongs in its own genus. But we don't do any new nomenclatural acts on this website! So for now. _mamenchisaurus youngi_ is a member of the famously long-necked Chinese sauropod _Mamenchisaurus_, from the Late Jurassic. How long of a neck, you ask? Crazy-long, roughly equal to the torso and tail put together.
+Fair warning - _Mamenchisaurus_ has lots of fairly different species currently put into it, so it's possible that _M. youngi_ actually belongs in its own genus. But we don't do any new nomenclatural acts on this website! So for now, _Mamenchisaurus youngi_ is a member of the famously long-necked Chinese sauropod _Mamenchisaurus_, from the Late Jurassic. How long of a neck, you ask? Crazy-long, roughly equal to the torso and tail put together.

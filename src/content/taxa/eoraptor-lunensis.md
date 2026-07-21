@@ -27,4 +27,4 @@ rigorous:
 added: ''
 ---
 
-_Eoraptor_ was one of the earliest known dinosaurs, living during the Late Triassic of Argentina. Originally thought to be an early theropod, further study and the discovery of close relatives shows it's actually a basal sauropodomorph. Despite the titanic sizes of later sauropods like _Argentinosaurus_ and _Supersaurus_, the group had humble beginnings among these 1.3 meter (4 foot) bipedal omnivores that weighed about as much as a small dog.
+_Eoraptor_ was one of the earliest known dinosaurs, living during the Late Triassic of Argentina. Originally thought to be an early theropod, further study and the discovery of close relatives show it's actually a basal sauropodomorph. Despite the titanic sizes of later sauropods like _Argentinosaurus_ and _Supersaurus_, the group had humble beginnings among these 1.3 meter (4 foot) bipedal omnivores that weighed about as much as a small dog.

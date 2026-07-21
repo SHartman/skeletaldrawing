@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-29T13:18:00.000Z
 ---
 
-_Sinovenator_ is a small troodontid from the Early Cretaceous Yixian Formation of Liaoning, China. About a meter (3 feet) long, _Sinovenator_ is one of the most basal known troodontids and helped link this lineage of slender, large-brained theropods to dromaeosaurs, and cement that groups ties to avialans. Like other troodontids _Sinovenator_ would have been feathered, including wings and tail fans, despite clearly being a non-flying theropod.
+_Sinovenator_ is a small troodontid from the Early Cretaceous Yixian Formation of Liaoning, China. About a meter (3 feet) long, _Sinovenator_ is one of the most basal known troodontids and helped link this lineage of slender, large-brained theropods to dromaeosaurs, and cement that group's ties to avialans. Like other troodontids _Sinovenator_ would have been feathered, including wings and tail fans, despite clearly being a non-flying theropod.

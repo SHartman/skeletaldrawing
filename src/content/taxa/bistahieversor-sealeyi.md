@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-28T12:10:00.000Z
 ---
 
-A tyrannosauroid theropod from the Late Cretaceous of New Mexico, USA. A large (almost 9 meters or 35 feet) deep-snouted predator, phylogenetic studies usually find it sitting among basal tyrannosaurids. Regardless of its exact position in the tyrannosaur family tree, it shows big-bodied, bone-crushing tyrannosauroids evolved southern North America alongside those evolving in Asia and northwestern North America.
+A tyrannosauroid theropod from the Late Cretaceous of New Mexico, USA. A large (almost 9 meters or 35 feet) deep-snouted predator, phylogenetic studies usually find it sitting among basal tyrannosaurids. Regardless of its exact position in the tyrannosaur family tree, it shows big-bodied, bone-crushing tyrannosauroids evolved in southern North America alongside those evolving in Asia and northwestern North America.

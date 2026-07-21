@@ -25,4 +25,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 4.74
 ---
 
-_Styracosaurus_ is a horned dinosaur from the Late Cretaceous of Alberta, about 75 million years ago. A centrosaurine ceratopsian, _Styracosaurus_ is famous for its long nasal horn and a striking neck frill fringed with several long, outward-radiating spikes. Eema, an anthropomorphized _Styracosaurus_ was featured as a main character in Disney's year-2000 movie Dinosaur (an underrated classic, some would say).
+_Styracosaurus_ is a horned dinosaur from the Late Cretaceous of Alberta, about 75 million years ago. A centrosaurine ceratopsian, _Styracosaurus_ is famous for its long nasal horn and a striking neck frill fringed with several long, outward-radiating spikes. Eema, an anthropomorphized _Styracosaurus_, was featured as a main character in Disney's year-2000 movie Dinosaur (an underrated classic, some would say).

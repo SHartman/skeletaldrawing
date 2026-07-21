@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-30T12:00:00.000Z
 ---
 
-_Guanlong_ is an early tyrannosauroid from the Late Jurassic of China. Far predating the giant, Late Cretaceous tyrannosaurs, _Guanlong_ was under 4 meters (13 feet) in length, was almost certainly covered in bristling fur-like covering, and sported a thin crest running along the midline of its snout.
+_Guanlong_ is an early tyrannosauroid from the Late Jurassic of China. Far predating the giant, Late Cretaceous tyrannosaurs, _Guanlong_ was under 4 meters (13 feet) in length, was almost certainly covered in a bristling fur-like covering, and sported a thin crest running along the midline of its snout.

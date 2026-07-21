@@ -25,4 +25,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 4.23
 ---
 
-_Hippodraco_ was an iguanodontian ornithopod from the Early Cretaceous of Utah. It would hafe been a fairly bulky plant-eater that grew to 4.3 m (14 feet) long. Known mainly from somewhat spotty remains that include a partial skull and skeleton, its name ("horse-dragon") refers to the horse-like profile of its skull.
+_Hippodraco_ was an iguanodontian ornithopod from the Early Cretaceous of Utah. It would have been a fairly bulky plant-eater that grew to 4.3 m (14 feet) long. Known mainly from somewhat spotty remains that include a partial skull and skeleton, its name ("horse-dragon") refers to the horse-like profile of its skull.

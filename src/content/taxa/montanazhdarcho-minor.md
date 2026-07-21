@@ -25,4 +25,4 @@ added: 2026-07-16T12:00:00.000Z
 widthM: 1.4
 ---
 
-A Late Cretaceous azhdarchoid pterosaur from the Two Medicine Formation of Montana. While modest in size for an azhdarchid, with a roughly a 2.5-meter (8 foot) wingspan, _Montanazhdarcho_ would be a giant among flying birds today. While much of one wing is known, unfortunately the rest of the skeleton is barely known.
+A Late Cretaceous azhdarchoid pterosaur from the Two Medicine Formation of Montana. While modest in size for an azhdarchid, with a roughly 2.5-meter (8 foot) wingspan, _Montanazhdarcho_ would be a giant among flying birds today. While much of one wing is known, unfortunately the rest of the skeleton is barely known.

@@ -25,6 +25,6 @@ added: 2026-07-01T14:03:00.000Z
 widthM: 27.9
 ---
 
-_Argentinosaurus_ is, unsurprisingly, known from Argentina during the Late Cretaceous. One of the giant titanosaur sauropods, it's among the largest land animals known to science. Unfortunately those size estimates rest on relatively fragmentary material — a handful of giant vertebrae and limb bones, so it is shown here as a known-material diagram rather than a full reconstruction. It's more complete, close-relative _Patagotitan_ is known from better material, which has been used to fill in the missing proportions in this silhouette.
+_Argentinosaurus_ is, unsurprisingly, known from Argentina during the Late Cretaceous. One of the giant titanosaur sauropods, it's among the largest land animals known to science. Unfortunately those size estimates rest on relatively fragmentary material — a handful of giant vertebrae and limb bones, so it is shown here as a known-material diagram rather than a full reconstruction. Its more complete, close-relative _Patagotitan_ is known from better material, which has been used to fill in the missing proportions in this silhouette.
 
 While they are both huge (and there are other, similarly-sized giants including _Puertasaurus_ and a giant forearm bone that may belong to _Alamosaurus_), the back bones suggest _Argentinosaurus_ may still be the largest known, although we will need to find more remains to know for certain. Regardless, at around 31 meters (100 feet) and 60-70 tonnes, it weighed the same as a [right whale](https://en.wikipedia.org/wiki/Right_whale).

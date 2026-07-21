@@ -26,4 +26,4 @@ added: 2026-07-16T12:00:00.000Z
 widthM: 2.97
 ---
 
-A broad-snouted notosuchian from the Late Cretaceous of Madagascar, it was originally placed in the genus _Trematochampsa,_ before being recognized as its own genus. At 3 meters (10 feet), _Miadanasuchus_ was a robustly built, member of the Gondwanan croc-line radiation.
+A broad-snouted notosuchian from the Late Cretaceous of Madagascar, it was originally placed in the genus _Trematochampsa,_ before being recognized as its own genus. At 3 meters (10 feet), _Miadanasuchus_ was a robustly built member of the Gondwanan croc-line radiation.

@@ -23,7 +23,7 @@ added: ''
 widthM: 22
 ---
 
-_The_ Late Cretaceous titanosaur from Western North America. Found across the southwestern United States, fragmentary remains from Mexico suggested _Alamosaurus_ may have challenged as the largest land animal of all time. _Tyrannosaurus rex_ (or a close relative) lived along side, and presumably hunted _Alamosaurus_.
+_The_ Late Cretaceous titanosaur from Western North America. Found across the southwestern United States, fragmentary remains from Mexico suggested _Alamosaurus_ may have challenged as the largest land animal of all time. _Tyrannosaurus rex_ (or a close relative) lived alongside, and presumably hunted _Alamosaurus_.
 
 The reconstruction here is a composite of multiple specimens, including the complete, adult neck vertebrae from the Perot Museum of Nature and Science (BIBE 45854). As the largest substantive specimen, the length estimate is scaled to BIBE 45854.
 

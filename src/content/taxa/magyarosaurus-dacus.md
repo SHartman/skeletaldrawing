@@ -30,4 +30,4 @@ added: 2026-07-01T14:00:00.000Z
 widthM: 5.7
 ---
 
-_Magyarosaurus_ was a titanosaur that lived on a series of islands in the Late Cretaceous of what is today Romania. The isolated Hațeg Island fauna had several features that differed from mainland dinosaur faunas, including insular dwarfism. _Magyarosaurus_ reaching only 6 m (20 feet) in length, which is quite small for a titanosaur. Insular dwarfism is a process where large-bodied lineages evolve smaller size in the limited resources of an island.
+_Magyarosaurus_ was a titanosaur that lived on a series of islands in the Late Cretaceous of what is today Romania. The isolated Hațeg Island fauna had several features that differed from mainland dinosaur faunas, including insular dwarfism. _Magyarosaurus_ reached only 6 m (20 feet) in length, which is quite small for a titanosaur. Insular dwarfism is a process where large-bodied lineages evolve smaller size in the limited resources of an island.

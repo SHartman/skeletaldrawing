@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-28T12:24:00.000Z
 ---
 
-_Eustreptospondylus_ is a medium-sized megalosaurid theropod that lived during the Late Jurassic of England. It's known from a single, largely complete juvenile skeleton found in marine deposits near Oxford. _Eustreptospondylus_ was found near the Jurassic archipelago (a series of islands that covered much of Europe at the time, so it may have swam between islands, potentially eating small dinosaurs, pterosaurs, lizards, and potentially beach-combing for fish and marine invertebrates washed ashore or in tide pools.
+_Eustreptospondylus_ is a medium-sized megalosaurid theropod that lived during the Late Jurassic of England. It's known from a single, largely complete juvenile skeleton found in marine deposits near Oxford. _Eustreptospondylus_ was found near the Jurassic archipelago (a series of islands that covered much of Europe at the time), so it may have swum between islands, potentially eating small dinosaurs, pterosaurs, lizards, and potentially beach-combing for fish and marine invertebrates washed ashore or in tide pools.

@@ -30,4 +30,4 @@ additionalFigures:
 added: 2026-06-29T13:00:00.000Z
 ---
 
-_Lythronax_ was a large predatory theropod from the Late Cretaceous of Utah, where it lived on the island continent Laramidia. One of the oldest known tyrannosaurids, _Lythronax_ had small arms and skull with a short, broad snout with forward-facing eyes giving overlapping binocular vision.
+_Lythronax_ was a large predatory theropod from the Late Cretaceous of Utah, where it lived on the island continent Laramidia. One of the oldest known tyrannosaurids, _Lythronax_ had small arms and a skull with a short, broad snout with forward-facing eyes giving overlapping binocular vision.

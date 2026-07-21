@@ -26,4 +26,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 12
 ---
 
-_Edmontosaurus_ was a large hadrosaurid of the latest Cretaceous of western North America, reaching about 12 meters (39 feet) long. Although it lacked a bony crest, it may have had a soft-tissue crest on top of its head, similar to that found in _Edmontosaurus regalis_. With several "mummified" specimens covered in skin impressions, _Edmontosaurus_ annectens is scientifically among the best-known dinosaurs, with some specimens even preserving the keratinous beak tissue.
+_Edmontosaurus_ was a large hadrosaurid of the latest Cretaceous of western North America, reaching about 12 meters (39 feet) long. Although it lacked a bony crest, it may have had a soft-tissue crest on top of its head, similar to that found in _Edmontosaurus regalis_. With several "mummified" specimens covered in skin impressions, _Edmontosaurus annectens_ is scientifically among the best-known dinosaurs, with some specimens even preserving the keratinous beak tissue.

@@ -25,4 +25,4 @@ added: ''
 widthM: 6.36
 ---
 
-_Rapetosaurus_ is a titanosaur sauropod from the Late Cretaceous of Madagascar. It's known from multiple individuals, but by far the best-preserved specimen is a juvenile specimen that was one of the first fairly complete titanosaur specimens when described, and as also played a pivotal roll for understanding how titanosaurs grew. Note: this drawing restores the juvenile specimen — adults were proportioned more like typical giant titanosaurs.
+_Rapetosaurus_ is a titanosaur sauropod from the Late Cretaceous of Madagascar. It's known from multiple individuals, but by far the best-preserved specimen is a juvenile that was one of the first fairly complete titanosaur specimens when described, and also played a pivotal role for understanding how titanosaurs grew. Note: this drawing restores the juvenile specimen — adults were proportioned more like typical giant titanosaurs.

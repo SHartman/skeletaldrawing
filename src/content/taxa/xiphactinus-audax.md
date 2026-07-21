@@ -25,4 +25,4 @@ reconstruction:
 added: 2026-07-16T12:00:00.000Z
 ---
 
-A large predatory ray-finned fish of the Cretaceous Western Interior Seaway, _Xiphactinus_ would have terrorized other fish it ran into. Unlike its smaller relative _Ichthyodectes,_ which had rows of small, even teeth, _Xiphactinus_ had a fanged teeth that were clearly utilized for macropredation (eating larger fish). Several _Xiphactinus_ are preserved with their last meals still inside them, producing "fish-within-a-fish" fossils of prey that was swallowed whole.
+A large predatory ray-finned fish of the Cretaceous Western Interior Seaway, _Xiphactinus_ would have terrorized other fish it ran into. Unlike its smaller relative _Ichthyodectes_, which had rows of small, even teeth, _Xiphactinus_ had fanged teeth that were clearly utilized for macropredation (eating larger fish). Several _Xiphactinus_ are preserved with their last meals still inside them, producing "fish-within-a-fish" fossils of prey that was swallowed whole.

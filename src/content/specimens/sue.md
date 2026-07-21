@@ -33,6 +33,6 @@ featured: true
 added: 2026-06-02T12:00:00.000Z
 ---
 
-Discovered near Faith, South Dakota in 1990 and named for its finder, Susan Hendrickson, FMNH PR 2081 is the most complete _Tyrannosaurus rex_ yet described. It preserves the great majority of the skeleton, including an almost intact skull. After a protracted ownership dispute it was acquired by [the Field Museum](https://www.fieldmuseum.org/) in 1997, where preparation of the specimen was finished and a major monograph was published. It many ways Sue has become the reference specimen against which other individuals are measured.
+Discovered near Faith, South Dakota in 1990 and named for its finder, Susan Hendrickson, FMNH PR 2081 is the most complete _Tyrannosaurus rex_ yet described. It preserves the great majority of the skeleton, including an almost intact skull. After a protracted ownership dispute it was acquired by [the Field Museum](https://www.fieldmuseum.org/) in 1997, where preparation of the specimen was finished and a major monograph was published. In many ways Sue has become the reference specimen against which other individuals are measured.
 
 The reconstruction is shown here in two views, with the known material below it and a muscle reconstruction further down — the same individual, from the bones preserved, to the restored skeleton, to the musculature draped over it.

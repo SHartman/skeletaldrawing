@@ -32,6 +32,6 @@ wingspanM: 6.3
 widthM: 2.2
 ---
 
-_Pteranodon_ is the iconic, crested pterosaur from the Late Cretaceous of North America, where soared over the Western Interior Seaway on wings spanning six meters (20 feet) or more. With a toothless beak, _Pteranodon_ may have caught fish on the wing as it soared over the seaway. Pterosaurs were not dinosaurs, but they were quite close relatives.
+_Pteranodon_ is the iconic, crested pterosaur from the Late Cretaceous of North America, where it soared over the Western Interior Seaway on wings spanning six meters (20 feet) or more. With a toothless beak, _Pteranodon_ may have caught fish on the wing as it soared over the seaway. Pterosaurs were not dinosaurs, but they were quite close relatives.
 
 _Pteranodon_ was featured in Jurassic Park III, and an animated family of them were the stars of the popular kids show Dinosaur Train.

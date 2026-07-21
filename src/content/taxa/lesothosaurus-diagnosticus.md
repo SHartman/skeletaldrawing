@@ -30,4 +30,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 1.86
 ---
 
-A small, lightly built early ornithischian dinosaur from the Early Jurassic of southern Africa (Lesotho and South Africa). _Lesothosaurus_ was a bipedal plant-eater and is an important reference for the ancestral ornithischian body plan. For decades _Lesothosaurus_ was known from many fragmentary and often sub-adult remains. The specimen restored here, SAM-PK-K1105 is the most complete, and was originally described as a different genus (_Stormbergia_), but was later recognized as an adult _Lesothosaurus_.
+A small, lightly built early ornithischian dinosaur from the Early Jurassic of southern Africa (Lesotho and South Africa). _Lesothosaurus_ was a bipedal plant-eater and is an important reference for the ancestral ornithischian body plan. For decades _Lesothosaurus_ was known from many fragmentary and often sub-adult remains. The specimen restored here, SAM-PK-K1105, is the most complete, and was originally described as a different genus (_Stormbergia_), but was later recognized as an adult _Lesothosaurus_.

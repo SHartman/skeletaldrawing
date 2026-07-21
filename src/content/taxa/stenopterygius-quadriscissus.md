@@ -28,4 +28,4 @@ widthM: 3.52
 
 An Early Jurassic ichthyosaur from Europe, _Stenopterygius_ was a fast, open-water marine reptile that had more than a passing resemblance to dolphins, although with tails that beat side-to-side rather than up and down.
 
-Many specimens of Stenopterygius were found in the Posidonia Shale of Holzmaden, Germany, a fossil site renowned for its exquisitely preserved fossils. Some _Stenopterygius_ skeletons retain a soft-tissue body outline, including the dorsal fin and crescent-shaped tail fluke, while others preserve unborn young (demonstrating conclusively that ichthyosaurs gave live birth).
+Many specimens of _Stenopterygius_ were found in the Posidonia Shale of Holzmaden, Germany, a fossil site renowned for its exquisitely preserved fossils. Some _Stenopterygius_ skeletons retain a soft-tissue body outline, including the dorsal fin and crescent-shaped tail fluke, while others preserve unborn young (demonstrating conclusively that ichthyosaurs gave live birth).

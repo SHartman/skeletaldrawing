@@ -25,4 +25,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 8.38
 ---
 
-_Gryposaurus_ was a saurolophine hadrosaur from the Late Cretaceous of the western North America. The species _Gryposaurus monumentensis_ was found in Utah, and distinguished by its robust build, which featured an arched, humped nasal ridge on the snout and an especially deep, powerful jaw for an herbivore.
+_Gryposaurus_ was a saurolophine hadrosaur from the Late Cretaceous of western North America. The species _Gryposaurus monumentensis_ was found in Utah, and distinguished by its robust build, which featured an arched, humped nasal ridge on the snout and an especially deep, powerful jaw for an herbivore.

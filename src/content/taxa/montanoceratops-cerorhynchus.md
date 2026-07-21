@@ -26,4 +26,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 2.39
 ---
 
-A small leptoceratopsid, Montanoceratops lived during the Late Cretaceous of Montana. _Montanoceratops_ retained a modest frill and a narrow beaked skull, but lacked the elaborate horns of the larger ceratopsids like _Styracosaurus_ or _Triceratops_.
+A small leptoceratopsid, _Montanoceratops_ lived during the Late Cretaceous of Montana. _Montanoceratops_ retained a modest frill and a narrow beaked skull, but lacked the elaborate horns of the larger ceratopsids like _Styracosaurus_ or _Triceratops_.

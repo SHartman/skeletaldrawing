@@ -24,4 +24,4 @@ reconstruction:
 added: ''
 ---
 
-A good-sized (6 m/19 foot long ) Early Jurassic sauropodomorph from the Lufeng Formation of China, _Lufengosaurus_ was one of the most completely known of the early, two-legged “prosauropod-grade” sauropodomorphs.
+A good-sized (6 m/19 foot long) Early Jurassic sauropodomorph from the Lufeng Formation of China, _Lufengosaurus_ was one of the most completely known of the early, two-legged “prosauropod-grade” sauropodomorphs.

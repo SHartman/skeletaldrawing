@@ -24,6 +24,6 @@ reconstruction:
 added: 2026-06-30T12:07:00.000Z
 ---
 
-While _Allosaurus jimmadseni_ was named much more recently than _Allosaurus fragilis_, it lived a bit further ago in time_,_ in the lower Morrison Formation of the American West. It's possible that _A. jimmadseni_ evolved into _A. fragilis_, although direct ancestor-descendant relationships are difficult to test. 
+While _Allosaurus jimmadseni_ was named much more recently than _Allosaurus fragilis_, it lived a bit further ago in time, in the lower Morrison Formation of the American West. It's possible that _A. jimmadseni_ evolved into _A. fragilis_, although direct ancestor-descendant relationships are difficult to test. 
 
 Here we have two individuals at very different growth stages, so this page gathers them as a small hub — a subadult and a juvenile drawn to scale. Check out the size comparison, or pick a specimen below to see its own reconstruction and record; an adult specimen is in progress, and will eventually join the others here.

@@ -25,4 +25,4 @@ added: ''
 widthM: 22.8
 ---
 
-_Puertasaurus_ was a titanic, err, titanosaur from the Late Cretaceous of Argentina. While we know in general how the body must have been shaped thanks to other titanosaur species, _Puertasaurus_ is only known from four vertebrae. The size of the neck and back vertebrae are enough know it ranks among the largest sauropods, but far too little to restore a full skeleton.
+_Puertasaurus_ was a titanic, err, titanosaur from the Late Cretaceous of Argentina. While we know in general how the body must have been shaped thanks to other titanosaur species, _Puertasaurus_ is only known from four vertebrae. The size of the neck and back vertebrae is enough to know it ranks among the largest sauropods, but far too little to restore a full skeleton.
