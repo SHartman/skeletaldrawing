@@ -22,13 +22,6 @@ featured: true
 draft: false
 ---
 
-\*(Placeholder body — this is the migration target for the existing anatomy terms guide.
-Replace this text with the real glossary.)\*
-
-Every skeletal on this site uses the same vocabulary. This guide collects the terms in one
-place: the major bones, the landmarks they carry, and the handful of measurements that make a
-reconstruction comparable to its neighbours.
-
 ## How to read a skeletal
 
 Anatomy involves a lot of directional words to convey what part of an animal we are talking about (or which way a specific bone or muscle is pointed). Many of us may intuitively understand that the rear of the animal is _posterior_, but not as many know the front end is _anterior_. The belly-side of an animal is _ventral_, why the back side (towards the back...not towards its posterior) is _dorsal_. The last set of body directions refers to the side of an animal (_lateral_) or towards the midline (_medial_). 
