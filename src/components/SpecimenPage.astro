@@ -317,6 +317,9 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
 
   .prose { max-width: 64ch; padding: 36px 0 6px; }
   .prose :global(p) { font-size: 19px; line-height: 1.66; margin: 0 0 1.1em; }
+  /* Matches the article/blog prose treatment — see SkeletalPage. */
+  .prose :global(a) { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .prose :global(a:hover) { border-bottom-color: var(--accent); }
   .prose :global(p:first-of-type::first-letter) {
     font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
     font-weight: 500; color: var(--accent-bright);

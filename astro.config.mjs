@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
+import remarkTaxonLinks from './src/lib/remark-taxon-links.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,10 @@ export default defineConfig({
   // We deliberately do NOT add rel="nofollow": editorial links to museums/papers are a
   // trust/E-E-A-T signal and should be followed. Internal links (root-relative) are untouched.
   markdown: {
+    // Italicised taxon names in taxa/specimen prose become links to their own pages, resolved at
+    // build so a mention starts linking the day its target page exists. See the plugin for rules
+    // (never self-links, first mention only, genus -> hub when >=2 species).
+    remarkPlugins: [remarkTaxonLinks],
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }]],
   },
 

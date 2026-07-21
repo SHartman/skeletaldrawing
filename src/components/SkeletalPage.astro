@@ -393,6 +393,10 @@ const jsonLd = underRevision
   /* ---- methodology prose (Content is global markup) ---- */
   .prose { max-width: 64ch; padding: 36px 0 6px; }
   .prose :global(p) { font-size: 19px; line-height: 1.66; margin: 0 0 1.1em; }
+  /* Matches the article/blog prose treatment. Covers the auto-linked taxon names (which arrive as
+     <a><em>Genus</em></a>) as well as any link written into a description by hand. */
+  .prose :global(a) { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .prose :global(a:hover) { border-bottom-color: var(--accent); }
   .prose :global(p:first-of-type::first-letter) {
     font-size: 3.1em; line-height: .82; float: left; padding: 6px 10px 0 0;
     font-weight: 500; color: var(--accent-bright);
