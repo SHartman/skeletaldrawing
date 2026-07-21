@@ -27,4 +27,4 @@ wingspanM: 1.7
 widthM: 0.928
 ---
 
-_Rhamphorynchus_ is a Late Jurassic pterosaur (a flying reptile, not a dinosaur) from the Solnhofen limestones of Germany. A long-tailed, non-pterodactyloid, _Rhamphorhynchus_ snatched fish with forward-splayed needle teeth, its stiffened tail ending in a diamond-shaped vane.
+_Rhamphorhynchus_ is a Late Jurassic pterosaur (a flying reptile, not a dinosaur) from the Solnhofen limestones of Germany. A long-tailed, non-pterodactyloid, _Rhamphorhynchus_ snatched fish with forward-splayed needle teeth, its stiffened tail ending in a diamond-shaped vane.
