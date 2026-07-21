@@ -25,4 +25,4 @@ added: 2026-07-16T12:00:00.000Z
 widthM: 0.47
 ---
 
-A freshwater turtle from the Late Jurassic Morrison Formation, _Glyptops_ shared its enviroment with giant stegosaurs, diplodocids and allosaurs. _Glyptops_ had a low, oval shell with a finely sculptured surface; it belonged to an early branch of pond-dwelling turtles.
+A freshwater turtle from the Late Jurassic Morrison Formation, _Glyptops_ shared its environment with giant stegosaurs, diplodocids and allosaurs. _Glyptops_ had a low, oval shell with a finely sculptured surface; it belonged to an early branch of pond-dwelling turtles.

@@ -25,4 +25,4 @@ added: 2026-07-07T12:00:00.000Z
 widthM: 3.47
 ---
 
-_Edaphosaurus_ was a plant-eating, Early Permian synapsid. Living in the same time and swampy environments as it's carnivorous relative _Dimetrodon_, _Edaphosaurus_ had an every stranger sail, which had little projections sticking sideways out of every elongated neural spine. Wind-tunnel tests suggest this would produce eddies of air in a breeze, causing convection currents that would aid in cooling down its body temperature.
+_Edaphosaurus_ was a plant-eating, Early Permian synapsid. Living in the same time and swampy environments as its carnivorous relative _Dimetrodon_, _Edaphosaurus_ had an every stranger sail, which had little projections sticking sideways out of every elongated neural spine. Wind-tunnel tests suggest this would produce eddies of air in a breeze, causing convection currents that would aid in cooling down its body temperature.

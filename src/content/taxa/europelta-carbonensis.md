@@ -28,4 +28,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 4.83
 ---
 
-_Europelta_ was an early nodosaurid, a type of armoured dinosaur that lived during the Early Cretaceous of Spain. It is among the most complete ankylosaurs known from Europe and, like other nodosaurids, bore body armour but no tail club. _Europelta_ is currently known from two individuals, type specimen AR-1/10 and referred specimen AR-1/31. The rigorous skeletal shows what is known from both individuals combined (minus their armor, to better show off the underlying skeletal anatomy).
+_Europelta_ was an early nodosaurid, a type of armored dinosaur that lived during the Early Cretaceous of Spain. It is among the most complete ankylosaurs known from Europe and, like other nodosaurids, bore body armor but no tail club. _Europelta_ is currently known from two individuals, type specimen AR-1/10 and referred specimen AR-1/31. The rigorous skeletal shows what is known from both individuals combined (minus their armor, to better show off the underlying skeletal anatomy).

@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-29T13:10:00.000Z
 ---
 
-_Ornithomimus_ is the eponymous ornithomimosaur — a superficially ostrich-like, toothless theropod from the Late Cretaceous of western North America. Represented by many excellent specimens, including fossils that preserve impressions showing _Ornithomimus_ bore fur-like feathers on its body, including wing-like structures on the arms of adults. SInce the wings don't appear to be aerodynamic, and don't appear until adulthood, they were likely used for some combination of display and/or nesting brooding.
+_Ornithomimus_ is the eponymous ornithomimosaur — a superficially ostrich-like, toothless theropod from the Late Cretaceous of western North America. Represented by many excellent specimens, including fossils that preserve impressions showing _Ornithomimus_ bore fur-like feathers on its body, including wing-like structures on the arms of adults. Since the wings don't appear to be aerodynamic, and don't appear until adulthood, they were likely used for some combination of display and/or nesting brooding.

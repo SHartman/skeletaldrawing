@@ -28,4 +28,4 @@ added: 2026-07-01T14:01:00.000Z
 widthM: 16.8
 ---
 
-The type species of _Apatosaurus_, from the Late Jurassic Morrison Formation of the American West. While relatively heavily built  for a diplodocid, with a deep, robust neck and tail, it was still not as heavily built as its relative, _Apatosaurus louisae_.
+The type species of _Apatosaurus_, from the Late Jurassic Morrison Formation of the American West. While relatively heavily built for a diplodocid, with a deep, robust neck and tail, it was still not as heavily built as its relative, _Apatosaurus louisae_.

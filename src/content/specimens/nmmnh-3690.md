@@ -25,6 +25,6 @@ featured: true
 added: ''
 ---
 
-The holotype of _Diplodocus hallorum_, collected from the Morrison Formation of New Mexico and originally described in 1991 as a new genus, _Seismosaurus_. Only part of the skeleton was ever recovered, but it is enough to place this among the longest specimens of _Diplodocus_ ever found...though at around 28 meteres in length, it was far smaller than estimates published during its excavation and prep. 
+The holotype of _Diplodocus hallorum_, collected from the Morrison Formation of New Mexico and originally described in 1991 as a new genus, _Seismosaurus_. Only part of the skeleton was ever recovered, but it is enough to place this among the longest specimens of _Diplodocus_ ever found...though at around 28 meters in length, it was far smaller than estimates published during its excavation and prep. 
 
 Because so much is missing, the page shows the known material on its own rather than a full reconstruction.

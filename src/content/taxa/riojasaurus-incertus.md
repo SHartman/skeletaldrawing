@@ -24,4 +24,4 @@ reconstruction:
 added: ''
 ---
 
-_RIojasaurus_ is a large, heavily built early sauropodomorph from the Late Triassic of Argentina. While it could probably move slowly in a quadrupedal (four-legged) stance, it would probably have gotten around on two legs most of the time.
+_Riojasaurus_ is a large, heavily built early sauropodomorph from the Late Triassic of Argentina. While it could probably move slowly in a quadrupedal (four-legged) stance, it would probably have gotten around on two legs most of the time.

@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-28T12:38:00.000Z
 ---
 
-_Ngwevu_ is an early Jurassic massospondylid from South Africa, recognised as distinct from _Massospondylus_ in 2019. The type (and currently only known) specimen of this 3.4 m (11 foot) bipedal sauropodomorph is specimen BP/1/4779.
+_Ngwevu_ is an early Jurassic massospondylid from South Africa, recognized as distinct from _Massospondylus_ in 2019. The type (and currently only known) specimen of this 3.4 m (11 foot) bipedal sauropodomorph is specimen BP/1/4779.

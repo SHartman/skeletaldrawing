@@ -23,4 +23,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 5.37
 ---
 
-A basal centrosaurine (the short-frilled horned dinosaurs) from the Late Cretaceous of Alberta, Canada. While advanced centrosaurines often have reduced brow horns and enlarged nose horns, species like _ALbertaceratops_ show that early members had horn configurations more reminiscient of _Triceratops_ and it's rbethren. The shorter, more ornamental bony shield of the skull is more typical of centrosaurines.
+A basal centrosaurine (the short-frilled horned dinosaurs) from the Late Cretaceous of Alberta, Canada. While advanced centrosaurines often have reduced brow horns and enlarged nose horns, species like _Albertaceratops_ show that early members had horn configurations more reminiscent of _Triceratops_ and its brethren. The shorter, more ornamental bony shield of the skull is more typical of centrosaurines.

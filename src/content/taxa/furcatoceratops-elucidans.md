@@ -28,4 +28,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 3.55
 ---
 
-_Furcatoceratops_ was a horned dinosaur from the Late Cretaceous of Montana.  Although its frill and enlarged brow horns somewhat resemble a small _Triceratops_,  the roughly 3.6 meter (12 foot) long ceratopsian was actually a centrosaurine - a group of shorter-frilled horned dinosaurs that in other members are often associated with long nose horns and reduced brow horns. _Furcatosaurus_ was a close relative of _Avaceratops._
+_Furcatoceratops_ was a horned dinosaur from the Late Cretaceous of Montana. Although its frill and enlarged brow horns somewhat resemble a small _Triceratops_, the roughly 3.6 meter (12 foot) long ceratopsian was actually a centrosaurine - a group of shorter-frilled horned dinosaurs that in other members are often associated with long nose horns and reduced brow horns. _Furcatoceratops_ was a close relative of _Avaceratops._

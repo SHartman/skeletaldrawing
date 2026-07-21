@@ -27,4 +27,4 @@ rigorous:
 added: ''
 ---
 
-_Mbiresaurus_ is one of the oldest known sauropodomorphs, having lived during  the Late Triassic of Zimbabwe. It's also one of the smallest sauropodomorphs, growing to less than a meter (\~2 feet) long, and probably weighing about as much as a small dog. But from small beginnings, sometimes big things emerge!
+_Mbiresaurus_ is one of the oldest known sauropodomorphs, having lived during the Late Triassic of Zimbabwe. It's also one of the smallest sauropodomorphs, growing to less than a meter (\~2 feet) long, and probably weighing about as much as a small dog. But from small beginnings, sometimes big things emerge!

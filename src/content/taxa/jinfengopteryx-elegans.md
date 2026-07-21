@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-28T12:35:00.000Z
 ---
 
-_Jingengopteryx_ was a small troodontid theropod from the Early Cretaceous of China. The type specimen, CAGS-IG-04-0801 is beautifully complete, preserving nearly the entire skeleton, as well as impressions of body, wing and tail feathers. Like the Late Jurassic troodontid _Hesperornithoides_, the small wings of _Jinfengopteryx_ were not capable of flight, but it serves to help map out the who, when and how often of flight evolution among winged theropods.
+_Jinfengopteryx_ was a small troodontid theropod from the Early Cretaceous of China. The type specimen, CAGS-IG-04-0801 is beautifully complete, preserving nearly the entire skeleton, as well as impressions of body, wing and tail feathers. Like the Late Jurassic troodontid _Hesperornithoides_, the small wings of _Jinfengopteryx_ were not capable of flight, but it serves to help map out the who, when and how often of flight evolution among winged theropods.

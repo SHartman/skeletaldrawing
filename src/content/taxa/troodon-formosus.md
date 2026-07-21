@@ -25,6 +25,6 @@ reconstruction:
 added: 2026-06-29T13:25:00.000Z
 ---
 
-_Troodon_ is the archetypical troodontid,  living during the Late Cretaceous of North America. As in other troodontids, it was a lightly-built, long-legged omnivore noted for their large brains relative to body size. _Troodon_ had serrated, semi-leaf-shaped teeth and large forward-facing eyes suited to keen vision.
+_Troodon_ is the archetypical troodontid, living during the Late Cretaceous of North America. As in other troodontids, it was a lightly-built, long-legged omnivore noted for their large brains relative to body size. _Troodon_ had serrated, semi-leaf-shaped teeth and large forward-facing eyes suited to keen vision.
 
 Not everyone agrees that _Troodon_ is a valid genus, however. The original material is considered undiagnostic to some researchers, and in the century+ since it was named other troodontid species were lumped in that don't belong. Some would prefer that _Troodon_ be dropped and the remains put into other genera, including _Stenonychosaurus_. Others prefer preserving the name _Troodon_ - this is another case where we will have to watch how the debate plays out in the scientific literature in the years to come.

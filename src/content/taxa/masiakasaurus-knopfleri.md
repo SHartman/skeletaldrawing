@@ -24,4 +24,4 @@ reconstruction:
 added: 2026-06-29T13:02:00.000Z
 ---
 
-_Masiakasaurus knofleri_ was a small noasaurid theropod from the Late Cretaceous of Madagascar, notable for its unusual forward-projecting front teeth, which suggest a diet of fish or other small prey. Its trivial name honors British rock guitarist Mark Knopfler.
+_Masiakasaurus knopfleri_ was a small noasaurid theropod from the Late Cretaceous of Madagascar, notable for its unusual forward-projecting front teeth, which suggest a diet of fish or other small prey. Its trivial name honors British rock guitarist Mark Knopfler.

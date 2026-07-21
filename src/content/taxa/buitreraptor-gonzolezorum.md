@@ -27,4 +27,4 @@ rigorous:
 added: 2026-06-28T12:11:00.000Z
 ---
 
-A small dromaeosaurid theropod from the Late Cretaceous of Argentina. _Buitreraptor_ belongs to a group of southern-hemisphere dromaeosaurs called unenlagiines, which included _Aastroraptor_, _Unenlagia_ and potentially _Rahonavis_. The long, slender snout with dozens of small teeth, and elongate, slender hind limb bones suggest _Buitreraptor_ was adept at chasing down small prey. The surprisingly short hands suggest the flightless wings of _Buitreraptor_ may have had an unusual shape, although the purpose of that isn't currently known.
+A small dromaeosaurid theropod from the Late Cretaceous of Argentina. _Buitreraptor_ belongs to a group of southern-hemisphere dromaeosaurs called unenlagiines, which included _Austroraptor_, _Unenlagia_ and potentially _Rahonavis_. The long, slender snout with dozens of small teeth, and elongate, slender hind limb bones suggest _Buitreraptor_ was adept at chasing down small prey. The surprisingly short hands suggest the flightless wings of _Buitreraptor_ may have had an unusual shape, although the purpose of that isn't currently known.

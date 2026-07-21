@@ -32,6 +32,6 @@ added: ''
 widthM: 23.2
 ---
 
-A Late Jurassic diplodocid of the Morrison Formation of western North America. _Barosaurus_ is comparatively rare within the Morrison ecosystem, but is notable for having an extraordinarily long neck. It otherwise resembled it's close (and more common) relative _Diplodocus_.
+A Late Jurassic diplodocid of the Morrison Formation of western North America. _Barosaurus_ is comparatively rare within the Morrison ecosystem, but is notable for having an extraordinarily long neck. It otherwise resembled its close (and more common) relative _Diplodocus_.
 
-Some neck bones in Utah have been placed in both _Supersaurus_ and _Barosaurus_. If they do belong to _Barosaurus_, they suggest a titanic specimen that grew to an almost-unbelievable 45 meters (150 feet) in length, and would have challenged evern _Argentinosaurus_ at \~60 tonnes.
+Some neck bones in Utah have been placed in both _Supersaurus_ and _Barosaurus_. If they do belong to _Barosaurus_, they suggest a titanic specimen that grew to an almost-unbelievable 45 meters (150 feet) in length, and would have challenged even _Argentinosaurus_ at \~60 tonnes.

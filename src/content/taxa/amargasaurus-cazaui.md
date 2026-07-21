@@ -25,7 +25,7 @@ rigorous:
 added: ''
 ---
 
-_Amargasaurus_ is a distant relative of _Diplodocus_ and _Apatosaurus_, in a group of diplodocoid sauropods called dicraeosaurids. At 13.5 meters (42 feet), _Amargasaurus_ wasn't large by sauropod standards, although you wouldn't have wanted one to step on your feet! It's only known from a single specimen, a fully-grown individual that was excavated from Early Cretaceous rocks in Argentina. It's most distinctive trait is the extremely tall, paired neural spines running along its neck and the front of its back.
+_Amargasaurus_ is a distant relative of _Diplodocus_ and _Apatosaurus_, in a group of diplodocoid sauropods called dicraeosaurids. At 13.5 meters (42 feet), _Amargasaurus_ wasn't large by sauropod standards, although you wouldn't have wanted one to step on your feet! It's only known from a single specimen, a fully-grown individual that was excavated from Early Cretaceous rocks in Argentina. Its most distinctive trait is the extremely tall, paired neural spines running along its neck and the front of its back.
 
 For several years there were debates about whether these paired, elongate structures were more likely to support a pair of sails or whether they may have stuck out of the neck and been covered by horns, where they could potentially have served as a defensive mechanism and way to attract mates or intimidate rivals.
 

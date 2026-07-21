@@ -25,4 +25,4 @@ added: ''
 widthM: 16.2
 ---
 
-_Galeamopus_ is a more recently discovered diplodcid sauropod from the famous Late Jurassic Morrison Formation of western North America. It was a bit less gracile than _Diplodocus_ or _Barosaurus_, but much less heavily built than apatosaurine diplodocids. _Galeamopus_ contributes yet another species to an astonishing diversity of diplodocids that flourished in the Late Jurassic, and then largely vanished in the Cretaceous.
+_Galeamopus_ is a more recently discovered diplodocid sauropod from the famous Late Jurassic Morrison Formation of western North America. It was a bit less gracile than _Diplodocus_ or _Barosaurus_, but much less heavily built than apatosaurine diplodocids. _Galeamopus_ contributes yet another species to an astonishing diversity of diplodocids that flourished in the Late Jurassic, and then largely vanished in the Cretaceous.

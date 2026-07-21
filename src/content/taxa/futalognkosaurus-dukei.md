@@ -25,4 +25,4 @@ added: ''
 widthM: 19.3
 ---
 
-_Futalognkosaurus_ (that's not a typo) is a giant titanosaur from the Late Cretaceous of Argentina. Known from a fairly complete type specimen  (MUCPv-323), _Futalognkosaurus_ and its closest relatives are called lognkosaurs. As is often the case with giant titanosaur specimens, there has been some debate over the size of _Futalognkosaurus_, although at around 22 meters (70 feet) it was almost identical in length (and presumably mass) to _Dreadnaughtus_.
+_Futalognkosaurus_ (that's not a typo) is a giant titanosaur from the Late Cretaceous of Argentina. Known from a fairly complete type specimen (MUCPv-323), _Futalognkosaurus_ and its closest relatives are called lognkosaurs. As is often the case with giant titanosaur specimens, there has been some debate over the size of _Futalognkosaurus_, although at around 22 meters (70 feet) it was almost identical in length (and presumably mass) to _Dreadnoughtus_.

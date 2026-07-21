@@ -24,8 +24,8 @@ reconstruction:
   alt: Magyarosaurus dacus skeletal reconstruction, left lateral view, reconstructed length ~6 m.
 additionalFigures:
   - src: /images/skeletals/magyarosaurus-dacus-skeletal-with-armor.png
-    alt: Magyarosaurus dacus skeletal reconstruction with a speculative arrangement of dermal armour (osteoderms), left lateral view.
-    caption: The same skeletal with a speculative arrangement of dermal armour (osteoderms), known in some titanosaurs.
+    alt: Magyarosaurus dacus skeletal reconstruction with a speculative arrangement of dermal armor (osteoderms), left lateral view.
+    caption: The same skeletal with a speculative arrangement of dermal armor (osteoderms), known in some titanosaurs.
 added: 2026-07-01T14:00:00.000Z
 widthM: 5.7
 ---

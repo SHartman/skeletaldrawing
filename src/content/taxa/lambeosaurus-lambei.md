@@ -25,4 +25,4 @@ added: 2026-07-06T12:00:00.000Z
 widthM: 6.99
 ---
 
-_Lamebosaurus_ is the classic lambeosaurine hadrosaurid, living in the Late Cretaceous of Alberta, Canada. _Lambeosaurus_ can be distinguished by a hatchet-shaped hollow crest projecting above the skull. The crest only grew to its final size and shape as they reached adulthood, suggesting they played a role in display and/or making unique calls (the nasal passages pass through the crest, likely amplifying sound in a manner unique from differently-shaped crests in other lambeosaurs).
+_Lambeosaurus_ is the classic lambeosaurine hadrosaurid, living in the Late Cretaceous of Alberta, Canada. _Lambeosaurus_ can be distinguished by a hatchet-shaped hollow crest projecting above the skull. The crest only grew to its final size and shape as they reached adulthood, suggesting they played a role in display and/or making unique calls (the nasal passages pass through the crest, likely amplifying sound in a manner unique from differently-shaped crests in other lambeosaurs).

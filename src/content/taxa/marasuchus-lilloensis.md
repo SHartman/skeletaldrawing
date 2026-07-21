@@ -28,4 +28,4 @@ added: 2026-07-16T12:00:00.000Z
 widthM: 0.579
 ---
 
-A Middle-to-Late Triassic dinosauriform from Argentina, _Marosuchus_ was a small, slender animal usually found close to the origin of dinosaurs, without being a dinosaur itself itself. With their long forelimbs these basal dinosauriforms may have alternated between four-legged bounding and two-legged striding. _Marasuchus lilloensis_ is sometimes sunk into _Lagosuchus talampayensis_, a dispute that remains unsettled.
+A Middle-to-Late Triassic dinosauriform from Argentina, _Marasuchus_ was a small, slender animal usually found close to the origin of dinosaurs, without being a dinosaur itself. With their long forelimbs these basal dinosauriforms may have alternated between four-legged bounding and two-legged striding. _Marasuchus lilloensis_ is sometimes sunk into _Lagosuchus talampayensis_, a dispute that remains unsettled.

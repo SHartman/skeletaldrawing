@@ -26,4 +26,4 @@ added: ''
 widthM: 10.6
 ---
 
-_Isisaurus_, hailing from from the Late Cretaceous of India, is a distinctive looking titanosaur. With it's brachiosaur-like forelimb proportions combined with a thick, unusually short neck, it doesn't really look like any other sauropod.
+_Isisaurus_, hailing from the Late Cretaceous of India, is a distinctive looking titanosaur. With its brachiosaur-like forelimb proportions combined with a thick, unusually short neck, it doesn't really look like any other sauropod.
