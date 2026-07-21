@@ -1,15 +1,27 @@
 ---
-taxon: "Shunosaurus lii"
-author: "Dong, Zhou & Zhang, 1983"
-gallery: "sauropods-and-kin"
-clade: ["Eusauropoda"]
-specimenId: "T5401"
+taxon: Shunosaurus lii
+author: Dong, Zhou & Zhang, 1983
+commonName: ''
+gallery: sauropods-and-kin
+clade:
+  - Eusauropoda
+family: ''
+specimenId: T5401
+specimenName: ''
 lengthM: 10
-view: "Left lateral"
-scaleBar: "1 meter"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/shunosaurus-lii-skeletal.png"
-  alt: "Shunosaurus lii skeletal reconstruction, left lateral view, specimen T5401, reconstructed length ~10 m."
+  src: /images/skeletals/shunosaurus-lii-skeletal.png
+  alt: Shunosaurus lii skeletal reconstruction, left lateral view, specimen T5401, reconstructed length ~10 m.
+added: ''
 ---
 
-A Middle–Late Jurassic basal sauropod from China, unusual for the small bony club at the tip of its tail; known from abundant, complete material.
+_Shunosaurus_ was a basal sauropod from (probably) the Middle Jurassic of China. It was robustly built with a boxy head, and was unusual for possessing a small bony club at the tip of its tail. _Shunosaurus_ is known from abundant, complete material, including juveniles and adults.
