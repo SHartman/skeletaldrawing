@@ -33,3 +33,5 @@ widthM: 1.03
 ---
 
 _SInornithosaurus_ was a small dromaeosaurid from the Early Cretaceous Yixian Formation of Liaoning, China. One of the earliest dromaeosaurs preserved with extensive feather impressions, we now know that all dromaeosaurs likely had wings and tail fans. About a meter (3 feet) long as an adult, _Sinornithosaurus_ is also known from a juvenile specimen, NGMC 91, affectionately nicknamed "Dave."
+
+_Sinornithosaurus_ is a close relative of _Microraptor_, but unlike _Microraptor_ was clearly not flying. The presence of non-flying microraptorians helps demonstrate that _Microraptor_ is an independent experiment with flight, rather than an progenitor of avian flight.
