@@ -184,6 +184,11 @@ collections:
     label: "Learn — guides & articles"
     label_singular: "Article"
     folder: "src/content/articles"
+    # Article figures live apart from the skeletals: the silhouette tracer and the build's
+    # asset-sync both key off public/images/skeletals, so only actual skeletals belong there.
+    # A leading "/" makes these repo-root-relative rather than collection-relative.
+    media_folder: "/public/images/articles"
+    public_folder: "/images/articles"
     create: true
     extension: md
     format: frontmatter
