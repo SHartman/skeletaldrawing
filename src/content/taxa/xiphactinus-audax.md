@@ -1,16 +1,28 @@
 ---
-added: "2026-07-16T12:00:00.000Z"
-taxon: "Xiphactinus audax"
-author: "Leidy, 1870"
-gallery: "non-dinosaurs"
-clade: ["Ichthyodectidae"]
+taxon: Xiphactinus audax
+author: Leidy, 1870
+commonName: ''
+gallery: non-dinosaurs
+clade:
+  - Ichthyodectidae
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 6
 widthM: 6
-scaleBar: "1 meter"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 1 meter
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/xiphactinus-audax-skeletal.png"
-  alt: "Xiphactinus audax skeletal reconstruction, left lateral view, length ~6 m."
+  src: /images/skeletals/xiphactinus-audax-skeletal.png
+  alt: Xiphactinus audax skeletal reconstruction, left lateral view, length ~6 m.
+added: 2026-07-16T12:00:00.000Z
 ---
 
-A large predatory bony fish (teleost) of the Late Cretaceous Western Interior Seaway, in the ichthyodectid family. _Xiphactinus_ had a fanged, upturned jaw and is famous for "fish-within-a-fish" fossils that preserve swallowed prey.
+A large predatory ray-finned fish of the Cretaceous Western Interior Seaway, _Xiphactinus_ would have terrorized other fish it ran into. Unlike it's smaller relative _Ichthyodectes,_ which had rows of small, even teeth, _Xiphactinus_ had a fanged teeth that were clearly utilized for macropredation (eating larger fish). Several _Xiphactinus_ are preserved with their last meals still inside them, producing "fish-within-a-fish" fossils of prey that was swallowed whole.
