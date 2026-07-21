@@ -97,11 +97,24 @@ const description =
       </section>
     )}
 
+    {/* Each link list is a native <details> disclosure: the museum list alone is 18 of the 33 links,
+        so left open it buries the artists, blogs and references. The heading, the count and the
+        section blurb stay VISIBLE in the <summary> — a visitor sees all four categories at a glance
+        and opens the one they want. Native <details> needs no JS, is keyboard-operable, and Google
+        indexes collapsed content normally (these are outbound links, not what the page ranks for). */}
     {sections.map((s) => (
       <section class="block" aria-labelledby={`${s.key}-h`}>
-        <h2 id={`${s.key}-h`} class="sec-h">{s.heading}</h2>
-        <p class="sec-sub">{s.blurb}</p>
+        <details class="disc">
+          <summary class="sum">
+            <span class="sum-head">
+              <h2 id={`${s.key}-h`} class="sec-h">{s.heading}</h2>
+              <span class="count" aria-label={`${s.items.length} links`}>{s.items.length}</span>
+              <span class="chev" aria-hidden="true">▾</span>
+            </span>
+            <span class="sec-sub">{s.blurb}</span>
+          </summary>
 
+          <div class="disc-body">
         {s.key === 'museum' ? (
           groupByRegion(s.items).map(([region, items]) => (
             <div class="region">
@@ -130,6 +143,8 @@ const description =
             ))}
           </ul>
         )}
+          </div>
+        </details>
       </section>
     ))}
   </main>
@@ -154,7 +169,39 @@ const description =
     margin: 0; font-style: italic; font-weight: 500; font-size: clamp(24px, 3.4vw, 32px);
     letter-spacing: -.01em; padding-bottom: 12px; border-bottom: 1px solid var(--hair-strong);
   }
-  .sec-sub { margin: 12px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--slate); max-width: 56ch; }
+  /* sec-sub lives inside <summary>, so it must be a span rendered as a block */
+  .sec-sub { display: block; margin: 12px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--slate); max-width: 56ch; }
+
+  /* ---- collapsible link sections ---- */
+  .sum { cursor: pointer; list-style: none; display: block; }
+  .sum::-webkit-details-marker { display: none; } /* Safari's default triangle */
+  .sum::marker { content: ''; }
+  /* Heading row: title grows, count and chevron sit at the end. The .sec-h border-bottom is moved
+     here so the rule spans the whole row rather than stopping after the title. */
+  .sum-head {
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--hair-strong);
+  }
+  .sum-head .sec-h { flex: 1 1 auto; padding-bottom: 0; border-bottom: 0; min-width: 0; }
+  .count {
+    flex: 0 0 auto; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em;
+    color: var(--measure); background: var(--plate); border: 1px solid var(--hair-strong);
+    border-radius: 999px; padding: 2px 9px;
+  }
+  .chev {
+    flex: 0 0 auto; color: var(--accent); font-size: 15px; line-height: 1;
+    transition: transform .18s ease; transform-origin: center;
+  }
+  .disc[open] .chev { transform: rotate(180deg); }
+  .sum:hover .sec-h { color: var(--accent); }
+  /* Keyboard focus must be obvious — the summary is the control. */
+  .sum:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+  .disc-body { animation: disc-in .18s ease both; }
+  @keyframes disc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .chev { transition: none; }
+    .disc-body { animation: none; }
+  }
 
   /* Article cards */
   .cards {
