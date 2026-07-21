@@ -1,16 +1,28 @@
 ---
-added: "2026-06-29T13:19:00.000Z"
-taxon: "Struthiomimus altus"
-author: "Lambe, 1902"
+taxon: Struthiomimus altus
+author: Lambe, 1902
+commonName: ''
 recombination: true
-gallery: "theropods"
-clade: ["Ornithomimosauria"]
+gallery: theropods
+clade:
+  - Ornithomimosauria
+family: ''
+specimenId: ''
+specimenName: ''
 lengthM: 4.4
-scaleBar: "50 centimeters"
-view: "Left lateral"
+lengthLabel: ''
+massKg: null
+massSource: ''
+lifeStage: ''
+sex: ''
+view: Left lateral
+basis: ''
+scaleBar: 50 centimeters
+drawingCredit: ''
 reconstruction:
-  src: "/images/skeletals/struthiomimus-altus-amnh-5339-skeletal.png"
-  alt: "Struthiomimus altus skeletal reconstruction, left lateral view, reconstructed length ~4.4 m."
+  src: /images/skeletals/struthiomimus-altus-amnh-5339-skeletal.png
+  alt: Struthiomimus altus skeletal reconstruction, left lateral view, reconstructed length ~4.4 m.
+added: 2026-06-29T13:19:00.000Z
 ---
 
-An ornithomimosaur, or "ostrich-mimic" dinosaur, from the Late Cretaceous of Alberta, Canada. About 4.4 metres long, _Struthiomimus_ had a toothless beak, long slender legs built for running, and was likely an omnivore.
+_Struthiomimus_ was an ornithomimosaur, or "ostrich-mimic" dinosaur from the Late Cretaceous of Alberta, Canada. Around 4.4 meters (15 feet) long, _Struthiomimus_ had a toothless beak, long slender legs built for running, and was likely an omnivore. Like other ornithomimids, it was probably covered in bristly, fur-like feathers, with non-aerodynamic "wing" feathers growing in as adults.
