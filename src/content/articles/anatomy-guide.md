@@ -2,21 +2,19 @@
 title: A visual glossary of skeletal anatomy
 kind: Anatomy guide
 summary: Just starting your journey learning dinosaur anatomy? Intimidated by all of the new words to learn? Start here for an easy primer.
+image:
+  src: /images/articles/coversheet.jpg
+  alt: A black and white cover image featuring images of dinosaur anatomy, and the phrase "Scott's Handy-Dandy Guide to Dinosaur Anatomy."
 path: /anatomy/
 updated: 2026-06-28
 order: 1
+licenseNote: ''
 featured: true
 draft: false
-# Uncomment when the branded handout/deck exist in public/downloads/ — they render a
-# "Use this in your classroom" block (CC BY-NC-SA 4.0) automatically:
-# downloads:
-#   - { format: pdf,  src: /downloads/skeletal-anatomy-guide.pdf,  note: "PDF handout" }
-#   - { format: pptx, src: /downloads/skeletal-anatomy-guide.pptx, note: "Editable slides" }
-# licenseNote: (optional — overrides the default CC BY-NC-SA wording)
 ---
 
-*(Placeholder body — this is the migration target for the existing anatomy terms guide.
-Replace this text with the real glossary.)*
+\*(Placeholder body — this is the migration target for the existing anatomy terms guide.
+Replace this text with the real glossary.)\*
 
 Every skeletal on this site uses the same vocabulary. This guide collects the terms in one
 place: the major bones, the landmarks they carry, and the handful of measurements that make a
