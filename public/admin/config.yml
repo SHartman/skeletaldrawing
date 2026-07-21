@@ -157,6 +157,10 @@ collections:
     label: "Blog posts"
     label_singular: "Post"
     folder: "src/content/posts"
+    # Blog photos go with the other 224 blog images, NOT in the skeletals folder
+    # (that one feeds the silhouette tracer and the build's asset-sync).
+    media_folder: "/public/images/blog"
+    public_folder: "/images/blog"
     create: true
     extension: md
     format: frontmatter
