@@ -488,6 +488,37 @@ Object.assign(silBySpecimen, {
 
 const out = {};
 
+// ----- fault tolerance -----
+// This script runs in the Cloudflare build (see package.json), so a single unreadable or malformed
+// PNG must never take the deploy down. Each trace is wrapped: on failure we log it loudly, reuse the
+// geometry already committed in silhouettes.json when we have it, and otherwise skip that one entry.
+// Failures are summarised at the end so they're visible in the build log.
+const PREV_PATH = 'src/data/silhouettes.json';
+const prev = existsSync(PREV_PATH) ? JSON.parse(readFileSync(PREV_PATH, 'utf8')) : {};
+const failures = [];
+
+function prevEntry(slug) {
+  if (!slug) return null;
+  for (const arr of Object.values(prev)) {
+    if (!Array.isArray(arr)) continue;
+    const hit = arr.find((e) => e.slug === slug);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+/** traceImage that never throws: returns null when it fails and has no previous geometry to reuse. */
+async function safeTrace(file, opts, slug) {
+  try {
+    return await traceImage(file, opts);
+  } catch (err) {
+    const reuse = prevEntry(slug);
+    failures.push(`${file}: ${err.message}${reuse ? ' (kept previous geometry)' : ' (skipped)'}`);
+    console.log(`  !! trace FAILED ${file}: ${err.message}${reuse ? ' — keeping previous geometry' : ' — skipping'}`);
+    return reuse ? { w: reuse.w, h: reuse.h, path: reuse.path, points: 0, holes: 0 } : null;
+  }
+}
+
 // ----- pass 1: every overlay specimen (owner silhouette if present, else raster trace) -----
 const dir = 'src/content/specimens';
 const specs = readdirSync(dir)
@@ -498,9 +529,11 @@ const specs = readdirSync(dir)
 for (const s of specs.sort((a, b) => b.lengthM - a.lengthM)) {
   const ownerSil = silBySpecimen[s.slug];
   const useSil = ownerSil && existsSync(join('silhouettes', ownerSil));
-  const { w, h, path, points } = useSil
-    ? await traceImage(join('silhouettes', ownerSil), { alpha: true })
-    : await traceImage(join('public', s.traceSrc.replace(/^\//, '')), { alpha: false });
+  const traced = useSil
+    ? await safeTrace(join('silhouettes', ownerSil), { alpha: true }, s.slug)
+    : await safeTrace(join('public', s.traceSrc.replace(/^\//, '')), { alpha: false }, s.slug);
+  if (!traced) continue;
+  const { w, h, path, points } = traced;
   (out[s.taxon] ??= []).push({ slug: s.slug, label: s.nickname || s.catalog, lengthM: s.lengthM, ...wm(s.widthM), w, h, path });
   console.log(`${s.taxon}/${s.slug}: ${s.lengthM} m${Number.isFinite(s.widthM) ? ` (w ${s.widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts${useSil ? '  (silhouette)' : ''}`);
 }
@@ -515,7 +548,9 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
       continue;
     }
     const { lengthM, widthM } = entryDims(g);
-    const { w, h, path, points } = await traceImage(file, { alpha: true });
+    const traced = await safeTrace(file, { alpha: true }, g.specimen || g.taxon);
+    if (!traced) continue;
+    const { w, h, path, points } = traced;
     items.push({ slug: g.specimen || g.taxon, label: g.label, lengthM, ...wm(widthM), w, h, path });
     console.log(`${key}/${g.label}: ${lengthM} m${Number.isFinite(widthM) ? ` (w ${widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts`);
   }
@@ -528,7 +563,9 @@ for (const [key, group] of Object.entries(GROWTH_GROUPS)) {
   for (const g of group) {
     const file = join('silhouettes', g.file);
     if (!existsSync(file)) { console.log(`(skip ${key}: missing ${g.file})`); continue; }
-    const { w, h, path, points, holes } = await traceImage(file, { alpha: true });
+    const traced = await safeTrace(file, { alpha: true }, g.file.replace(/\.png$/, ''));
+    if (!traced) continue;
+    const { w, h, path, points, holes } = traced;
     items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.widthM ?? g.lengthM, w, h, path });
     console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}`);
   }
@@ -609,7 +646,9 @@ for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
     fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
     fs.find((f) => !isKnown(f)) ??
     fs[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
-  const { w, h, path, points, holes } = await traceImage(join(SIL_DIR, pick), { alpha: true });
+  const traced = await safeTrace(join(SIL_DIR, pick), { alpha: true }, slug);
+  if (!traced) continue;
+  const { w, h, path, points, holes } = traced;
   out[slug] = [{ slug, label: binomial(slug), lengthM, ...wm(widthM), w, h, path }];
   catalogAdds.push(slug);
   console.log(`taxon ${slug}: ${lengthM} m  bbox ${w}x${h} (ar ${(w / h).toFixed(2)})  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}  <- ${pick}`);
@@ -619,10 +658,23 @@ console.log(`\npass 3 added ${catalogAdds.length} taxon silhouettes to the catal
 // ----- human scale reference (owner's adult + child silhouette) -----
 const humanFile = join(SIL_DIR, 'Humans.png');
 if (existsSync(humanFile)) {
-  const human = await traceHuman(humanFile);
-  writeFileSync('src/data/human.json', JSON.stringify(human, null, 2));
-  console.log(`human: bbox ${human.w}x${human.h} (ar ${(human.w / human.h).toFixed(2)}), ${human.figures} figures`);
+  try {
+    const human = await traceHuman(humanFile);
+    writeFileSync('src/data/human.json', JSON.stringify(human, null, 2));
+    console.log(`human: bbox ${human.w}x${human.h} (ar ${(human.w / human.h).toFixed(2)}), ${human.figures} figures`);
+  } catch (err) {
+    // Keep the committed human.json rather than failing the build.
+    failures.push(`${humanFile}: ${err.message} (kept previous human.json)`);
+    console.log(`  !! human trace FAILED: ${err.message} — keeping previous human.json`);
+  }
 }
 
 writeFileSync('src/data/silhouettes.json', JSON.stringify(out, null, 2));
 console.log(`\nWrote src/data/silhouettes.json (${Object.values(out).flat().length} silhouettes across ${Object.keys(out).length} groups)`);
+
+// Loud, but non-fatal: the build continues so one bad PNG can't block a deploy.
+if (failures.length) {
+  console.log(`\n!! ${failures.length} silhouette${failures.length > 1 ? 's' : ''} failed to trace:`);
+  for (const f of failures) console.log(`   - ${f}`);
+  console.log('   (build continues; fix the source PNG and the next build will pick it up)');
+}

@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/sync-assets.mjs && node scripts/silhouette.mjs && astro build",
+    "build:astro": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "credit": "node scripts/watermark.mjs",
