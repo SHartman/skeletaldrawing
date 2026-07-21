@@ -38,7 +38,7 @@ const hasData = items.length > 0;
 // Normalize the drawing so the largest silhouette is always ~TARGET_W units wide, whatever the animals'
 // real size. Otherwise a 0.4 m Archaeopteryx yields a tiny viewBox that the browser scales up ~12x to fill
 // the figure — blowing up the user-unit ruler text and the figure box. A constant content width keeps text
-// and strokes rendering at a consistent size from songbird to supersaurus. (PXM = svg units per metre.)
+// and strokes rendering at a consistent size from songbird to supersaurus. (PXM = svg units per meter.)
 const TARGET_W = 900;
 const rawMaxWidthM = hasData ? Math.max(...items.map((it) => it.widthM ?? it.lengthM)) : 1;
 const PXM = TARGET_W / rawMaxWidthM;
@@ -68,7 +68,7 @@ const maxSW = hasData ? Math.max(...scaled.map((d) => d.sw)) : 0;
 const maxSH = hasData ? Math.max(...scaled.map((d) => d.sh)) : 0;
 
 // Human scale reference — the owner's traced adult (~1.8 m). Shown only while it doesn't dwarf the
-// subjects: for sub-metre animals (e.g. the Archaeopteryx specimens) a 1.8 m human towers ~10x and
+// subjects: for sub-meter animals (e.g. the Archaeopteryx specimens) a 1.8 m human towers ~10x and
 // overflows the frame, so we drop it and let the ruler carry the scale.
 const humanH = 1.8 * PXM;
 const humanScale = humanH / human.h;
@@ -80,9 +80,9 @@ const guideX = padL + maxSW;
 const groundY = padT + (showHuman ? Math.max(maxSH, humanH) : maxSH);
 const humanX = guideX + humanGap;
 
-// Ground ruler, 0 at the tail. Metres for big animals; switch to centimetres once the whole group is
-// under ~2 m, or a metre ruler shows no ticks at all for a 40 cm Archaeopteryx. Spacing + labels adapt.
-const spanM = maxSW / PXM; // horizontal span of the largest silhouette, in metres
+// Ground ruler, 0 at the tail. Meters for big animals; switch to centimeters once the whole group is
+// under ~2 m, or a meter ruler shows no ticks at all for a 40 cm Archaeopteryx. Spacing + labels adapt.
+const spanM = maxSW / PXM; // horizontal span of the largest silhouette, in meters
 const cmRuler = spanM < 2;
 const tickM = cmRuler ? 0.1 : 1; // tick every 10 cm or every 1 m
 const tickPx = tickM * PXM;

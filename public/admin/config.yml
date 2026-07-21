@@ -46,7 +46,7 @@ collections:
         widget: list
         required: false
         field: { name: name, widget: string }
-      - { name: lengthM, label: "Length (metres)", widget: number, required: false, value_type: float, hint: "Numeric; displays as m or cm automatically." }
+      - { name: lengthM, label: "Length (meters)", widget: number, required: false, value_type: float, hint: "Numeric; displays as m or cm automatically." }
       - { name: lengthLabel, label: "Length display override", widget: string, required: false }
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float, hint: "Numeric; displays as kg or tonnes automatically." }
       - { name: massSource, label: "Mass source", widget: string, required: false, hint: "e.g. PaleoGDI" }
@@ -73,10 +73,10 @@ collections:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
       - name: lifeReconstruction
-        label: "Life reconstruction (colour art)"
+        label: "Life reconstruction (color art)"
         widget: object
         required: false
-        hint: "Optional colour paleoart of the animal in life. Shows on the skeletal page below the reconstruction; the skeletal stays the primary image. Leave empty for taxa without one."
+        hint: "Optional color paleoart of the animal in life. Shows on the skeletal page below the reconstruction; the skeletal stays the primary image. Leave empty for taxa without one."
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
@@ -114,8 +114,8 @@ collections:
       - { name: repositoryUrl, label: "Repository URL", widget: string, required: false, hint: "Links the repository name to the museum/collection page (opens in a new tab)" }
       - { name: formation, label: "Formation", widget: string, required: false }
       - { name: locality, label: "Locality", widget: string, required: false }
-      - { name: lengthM, label: "Length (metres)", widget: number, required: false, value_type: float }
-      - { name: femurM, label: "Femur length (metres)", widget: number, required: false, value_type: float }
+      - { name: lengthM, label: "Length (meters)", widget: number, required: false, value_type: float }
+      - { name: femurM, label: "Femur length (meters)", widget: number, required: false, value_type: float }
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float }
       - { name: completenessPct, label: "Completeness (%)", widget: number, required: false, value_type: int }
       - { name: collectedYear, label: "Collected (year)", widget: number, required: false, value_type: int }

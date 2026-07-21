@@ -6,7 +6,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Interactive size-comparison tool (prototype). Pick 2–5 animals; a client-side renderer draws the
 // chosen silhouettes to a common scale (tail-tips aligned, feet grounded), with a 1.8 m human and a
-// metre ruler. Pure static data + client JS — the same engine as the hub ScaleComparison, but the
+// meter ruler. Pure static data + client JS — the same engine as the hub ScaleComparison, but the
 // selection lives in the browser. The catalog grows on its own as the silhouette library fills in.
 const taxa = await getCollection('taxa');
 const specimens = await getCollection('specimens');
@@ -166,7 +166,7 @@ const description =
       const vbW = Math.round(guideX + rightPad),
         vbH = Math.round(rulerY + 22);
 
-      let s = `<svg viewBox="0 0 ${vbW} ${vbH}" role="img" aria-label="Scale comparison of ${items.length} animals, largest ${maxLen} metres">`;
+      let s = `<svg viewBox="0 0 ${vbW} ${vbH}" role="img" aria-label="Scale comparison of ${items.length} animals, largest ${maxLen} meters">`;
       s += `<line x1="${padL}" y1="${groundY}" x2="${showHuman ? humanX + humanW : guideX}" y2="${groundY}" class="c-ground"/>`;
       for (let m = 0; m <= meters; m++) {
         const x = guideX - m * PXM;
@@ -174,7 +174,7 @@ const description =
         s += `<line x1="${x}" y1="${groundY}" x2="${x}" y2="${groundY + (major ? 8 : 4)}" class="c-tick${major ? ' major' : ''}"/>`;
         if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
       }
-      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">metres from tail tip</text>`;
+      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters from tail tip</text>`;
       scaled.forEach((d) => {
         const c = COLORS[d.idx % COLORS.length];
         const tx = `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
