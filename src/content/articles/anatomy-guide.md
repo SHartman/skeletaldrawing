@@ -11,11 +11,11 @@ order: 1
 downloads:
   - format: pdf
     src: G:\My Drive\Skeletal Drawing 4.0\SHDG\SHDG-handout.pdf
-    label: Anatomy Guide Download
+    label: Anatomy Handout
     note: ''
   - format: pptx
     src: G:\My Drive\Skeletal Drawing 4.0\SHDG\SHDG-slides.pptx
-    label: Anatomy Guide Slidedeck
+    label: Anatomy Slides
     note: ''
 licenseNote: ''
 featured: true
