@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import { Picture, getImage } from 'astro:assets';
+import { Picture, Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Glyph from '../components/Glyph.astro';
 import ScaleComparison from '../components/ScaleComparison.astro';
-import { loadSkeletal } from '../lib/images';
+import { loadSkeletal, loadBlogImage } from '../lib/images';
 import { inlineEmphasisHtml } from '../lib/schema';
 import heroImg from '../assets/home-golden-hero.png';
 
@@ -122,6 +122,9 @@ const leadPost = leadEntry
       date: fmtDate(leadEntry.data.date),
       href: `/blog/${leadEntry.id}/`,
       image: leadEntry.data.image,
+      // Rendered at most 202px tall here, so serving the raw upload meant the home page could pull
+      // a megabyte-plus for a thumbnail. Falls back to the public path if the mirror hasn't run.
+      img: leadEntry.data.image ? await loadBlogImage(leadEntry.data.image.src) : null,
     }
   : null;
 const morePosts = allPosts
@@ -276,7 +279,11 @@ const description =
           <a class="lead-post" href={leadPost.href}>
             <div class="lead-thumb">
               {leadPost.image ? (
-                <img src={leadPost.image.src} alt={leadPost.image.alt} class="lead-img" />
+                leadPost.img ? (
+                  <Image src={leadPost.img} alt={leadPost.image.alt} widths={[320, 640]} sizes="300px" class="lead-img" loading="lazy" />
+                ) : (
+                  <img src={leadPost.image.src} alt={leadPost.image.alt} class="lead-img" />
+                )
               ) : (
                 <span class="thumb-ph">image to come</span>
               )}

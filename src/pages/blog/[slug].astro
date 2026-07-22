@@ -1,8 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Picture } from 'astro:assets';
 import Comments from '../../components/Comments.astro';
 import { stripEmphasis } from '../../lib/schema';
+import { loadBlogImage } from '../../lib/images';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).filter((p) => !p.data.draft);
@@ -18,6 +20,9 @@ const fmtDate = (dt: Date) =>
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const imageUrl = d.image ? new URL(d.image.src, Astro.site).href : undefined;
+// og:image and JSON-LD keep pointing at the stable PUBLIC path above; only the on-page render uses
+// the mirrored asset, which is what Astro can build responsive variants from.
+const heroAsset = d.image ? await loadBlogImage(d.image.src) : null;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -57,7 +62,18 @@ const title = `${d.title} | Skeletal Drawing`;
 
       {d.image && (
         <figure class="hero">
-          <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+          {heroAsset ? (
+            <Picture
+              src={heroAsset}
+              formats={['avif', 'webp']}
+              alt={d.image.alt}
+              widths={[640, 1120, 1680]}
+              sizes="(min-width: 780px) 720px, 92vw"
+              class="hero-img"
+            />
+          ) : (
+            <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+          )}
           {d.image.caption && <figcaption class="hero-cap">{d.image.caption}</figcaption>}
         </figure>
       )}
@@ -102,7 +118,10 @@ const title = `${d.title} | Skeletal Drawing`;
     margin: 30px 0 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 5px;
     padding: 22px; display: flex; flex-direction: column; align-items: center;
   }
-  .hero-img { max-width: 100%; height: auto; display: block; }
+  /* Bounded on BOTH axes. A portrait hero straight off a phone (3072x3420 is a real example) would
+     otherwise render ~800px tall at the reading measure and push the article off the screen — the
+     same failure the home page plate had. width:auto lets the height cap actually bite. */
+  .hero-img { display: block; width: auto; height: auto; max-width: 100%; max-height: 68vh; margin: 0 auto; }
   .hero-cap {
     margin: 14px 0 0; font-size: 14px; color: var(--slate); font-style: italic;
     line-height: 1.5; text-align: center; max-width: 60ch;

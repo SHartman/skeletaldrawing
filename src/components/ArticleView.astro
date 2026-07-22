@@ -1,8 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { stripEmphasis } from '../lib/schema';
+import { loadArticleImage } from '../lib/images';
 
 // Shared renderer for an `articles` entry. Used by /learn/[slug] (default articles)
 // and by dedicated routes for legacy-ranking guides served at their own path
@@ -21,6 +23,9 @@ const fmtDate = (dt: Date) =>
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const imageUrl = d.image ? new URL(d.image.src, Astro.site).href : undefined;
+// As with blog heroes: the public path stays canonical for og:image/JSON-LD, the mirrored asset is
+// what gets rendered so Astro can build responsive variants from it.
+const heroAsset = d.image ? await loadArticleImage(d.image.src) : null;
 
 const downloads = d.downloads ?? [];
 const FMT: Record<string, string> = { pdf: 'PDF', pptx: 'PowerPoint' };
@@ -73,7 +78,18 @@ const title = `${d.title} | Skeletal Drawing`;
 
       {d.image && (
         <figure class="hero">
-          <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+          {heroAsset ? (
+            <Picture
+              src={heroAsset}
+              formats={['avif', 'webp']}
+              alt={d.image.alt}
+              widths={[640, 1120, 1680]}
+              sizes="(min-width: 780px) 720px, 92vw"
+              class="hero-img"
+            />
+          ) : (
+            <img src={d.image.src} alt={d.image.alt} class="hero-img" />
+          )}
         </figure>
       )}
 

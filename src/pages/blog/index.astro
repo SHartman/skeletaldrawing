@@ -1,12 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { inlineEmphasisHtml } from '../../lib/schema';
+import { loadBlogImage } from '../../lib/images';
 
-// Blog index (/blog/). Lists published posts, newest first. Reuses the Graphite system;
-// blog images are plain public-path <img> for now (no skeletal optimization pipeline).
-const posts = (await getCollection('posts')).filter((p) => !p.data.draft);
-posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// Blog index (/blog/). Lists published posts, newest first.
+const entries = (await getCollection('posts')).filter((p) => !p.data.draft);
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// Resolve each hero to its mirrored src/assets copy so the 220px thumbnail is a ~20kB variant
+// rather than the full upload (a phone photo can be well over a megabyte).
+const posts = await Promise.all(
+  entries.map(async (p) => ({ ...p, img: p.data.image ? await loadBlogImage(p.data.image.src) : null })),
+);
 
 const fmtDate = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
@@ -32,7 +38,11 @@ const description =
           <a href={`/blog/${p.id}/`}>
             {p.data.image && (
               <div class="thumb">
-                <img src={p.data.image.src} alt={p.data.image.alt} class="thumb-img" loading="lazy" />
+                {p.img ? (
+                  <Image src={p.img} alt={p.data.image.alt} widths={[220, 440]} sizes="220px" class="thumb-img" loading="lazy" />
+                ) : (
+                  <img src={p.data.image.src} alt={p.data.image.alt} class="thumb-img" loading="lazy" />
+                )}
               </div>
             )}
             <div class="body">
