@@ -157,6 +157,41 @@ for (const u of units) {
     if (i > 0) parent[c] = u.cladePath[i - 1];
   });
 }
+// ── Cross-gallery continuations ──────────────────────────────────────────────────────────────
+// The galleries are siloed, so descending the spine can dead-end: in non-dinosaurs the deepest
+// dinosaur-line node present is Dinosauriformes, and its child Dinosauria lives in three OTHER
+// galleries (see the note beside Dinosauriformes in lib/clades). A visitor who walks down the
+// stem hits a branch that simply stops. These entries offer the missing step as a real link, so
+// the phylogeny stays traversable across galleries — in both directions.
+// NB: attach to AVEMETATARSALIA, not Dinosauriformes. Dinosauriformes is where Dinosauria would sit
+// phylogenetically, but it isn't in LANDMARKS so it never renders as a chip — the descent runs
+// Avemetatarsalia → Silesauridae and stops. Avemetatarsalia is both the node visitors actually reach
+// and the honest fork: pterosaurs one way, the dinosaur line the other.
+const CROSS: Record<string, { label: string; gallery: string }[]> = {
+  Avemetatarsalia: [
+    { label: 'Theropoda', gallery: 'theropods' },
+    { label: 'Sauropodomorpha', gallery: 'sauropods-and-kin' },
+    { label: 'Ornithischia', gallery: 'ornithischians' },
+  ],
+  Amniota: [{ label: 'Synapsida', gallery: 'synapsids' }],
+  // Return paths, so a visitor who crosses over can get back to the rest of the tree.
+  Synapsida: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
+  Theropoda: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
+  Sauropodomorpha: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
+  Ornithischia: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
+};
+const everyTaxon = await getCollection('taxa');
+const galleryCount = (g: string) => everyTaxon.filter((t) => t.data.gallery === g && !t.data.underRevision).length;
+// Never offer a link to the gallery we're already in, and only keep targets that have content.
+const cross: Record<string, { label: string; href: string; n: number }[]> = {};
+for (const [clade, targets] of Object.entries(CROSS)) {
+  const usable = targets
+    .filter((x) => x.gallery !== gallery)
+    .map((x) => ({ label: x.label, href: `/${x.gallery}/`, n: galleryCount(x.gallery) }))
+    .filter((x) => x.n > 0);
+  if (usable.length) cross[clade] = usable;
+}
+
 const present = Object.keys(count);
 const navData = {
   parent,
@@ -164,6 +199,7 @@ const navData = {
   landmarks: present.filter((c) => LANDMARKS.has(c)),
   root: present.find((c) => !(c in parent)) ?? meta.label, // the gallery's universal ancestor
   popularMin: POPULAR_MIN,
+  cross,
 };
 
 const title = `${meta.label} — skeletal reconstructions | Skeletal Drawing`;
@@ -264,10 +300,11 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     landmarks: string[];
     root: string;
     popularMin: number;
+    cross: Record<string, { label: string; href: string; n: number }[]>;
   };
   const nav: Nav = JSON.parse(document.getElementById('navdata')!.textContent!);
   const LM = new Set(nav.landmarks);
-  const { parent, count, root, popularMin } = nav;
+  const { parent, count, root, popularMin, cross } = nav;
 
   // ── clade helpers (mirror lib/clades, over the injected parent map) ──
   const ancestry = (c: string): string[] => {
@@ -328,6 +365,18 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     return b;
   };
 
+  // A continuation into another gallery. Deliberately an <a>, not a button: it is real navigation,
+  // so it works with middle-click / new tab, the back button returns you up the spine, and the
+  // link is crawlable — which de-silos the galleries for search as well as for readers.
+  const crossLink = (x: { label: string; href: string; n: number }) => {
+    const a = document.createElement('a');
+    a.className = 'chip chip-cross';
+    a.href = x.href;
+    a.innerHTML = `<span class="cname">${x.label}</span><span class="cn">(${x.n})</span><span class="cgo" aria-hidden="true">→</span>`;
+    a.title = `${x.label} lives in its own gallery — open it`;
+    return a;
+  };
+
   function renderNav() {
     // breadcrumb: landmark ancestry of the current node, each a step back up
     crumbs.innerHTML = '';
@@ -356,7 +405,11 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
 
     descendRow.innerHTML = '';
     descend.forEach((c) => descendRow.appendChild(chipBtn(c, 'descend')));
-    descendLabel.parentElement!.style.display = descend.length ? '' : 'none';
+    // Continuations sit with "Go deeper" because that is what they are — the next node down just
+    // happens to live in another gallery. The distinct styling marks that you're leaving this one.
+    const conts = cross[node] ?? [];
+    conts.forEach((x) => descendRow.appendChild(crossLink(x)));
+    descendLabel.parentElement!.style.display = descend.length || conts.length ? '' : 'none';
 
     jumpRow.innerHTML = '';
     jumps.forEach((c) => jumpRow.appendChild(chipBtn(c, 'jump')));
@@ -542,4 +595,16 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   .clade-nav .chip-jump { background: transparent; border-style: dashed; border-color: var(--accent); color: var(--accent); }
   .clade-nav .chip-jump .cn { color: var(--accent); opacity: .7; }
   .clade-nav .chip-jump:hover { background: var(--accent-weak); border-color: var(--accent); color: var(--accent); }
+  /* cross-gallery continuations: solid gold and text-decoration-free, so they read as "leaves this
+     gallery" rather than as another filter. The arrow nudges on hover. */
+  .clade-nav .chip-cross {
+    background: var(--accent-weak); border-color: var(--accent); color: var(--accent);
+    text-decoration: none;
+  }
+  .clade-nav .chip-cross .cn { color: var(--accent); opacity: .7; }
+  .clade-nav .chip-cross .cgo { margin-left: 7px; transition: transform .15s ease; display: inline-block; }
+  .clade-nav .chip-cross:hover { background: var(--accent); color: var(--mast-fg); border-color: var(--accent); }
+  .clade-nav .chip-cross:hover .cn { color: var(--mast-fg); opacity: .8; }
+  .clade-nav .chip-cross:hover .cgo { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) { .clade-nav .chip-cross .cgo { transition: none; } }
 </style>
