@@ -218,10 +218,14 @@ collections:
         label: "Downloads (classroom handout / deck)"
         widget: list
         required: false
-        hint: "Upload a branded PDF and/or PowerPoint to public/downloads/. They show up as a 'Want to use this in your classroom?' block."
+        hint: "Upload a branded PDF and/or PowerPoint. They show up as a 'Want to use this in your classroom?' block at the foot of the article."
         fields:
           - { name: format, label: "Format", widget: select, options: ["pdf", "pptx"] }
-          - { name: src, label: "File path", widget: string, hint: "e.g. /downloads/skeletal-anatomy-guide.pdf" }
+          # `file`, NOT `string`: as a plain text box there was no way to UPLOAD anything — you could
+          # only type a path, so the first real use recorded a local `G:\My Drive\...` path and the
+          # buttons rendered as dead links. The media_folder override sends these to public/downloads/
+          # rather than the collection default (public/images/articles), which is for figures.
+          - { name: src, label: "File", widget: file, media_folder: "/public/downloads", public_folder: "/downloads", hint: "Upload the PDF or PowerPoint itself — don't type a path." }
           - { name: label, label: "Button label", widget: string, required: false }
           - { name: note, label: "Note", widget: string, required: false, hint: "e.g. 12 MB · 18 slides" }
       - { name: licenseNote, label: "Use grant (shown with downloads)", widget: text, required: false, hint: "The terms under which classrooms may use the download. Leave blank for the default educational-use line." }

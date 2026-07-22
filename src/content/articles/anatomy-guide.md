@@ -10,13 +10,13 @@ updated: 2026-06-28
 order: 1
 downloads:
   - format: pdf
-    src: G:\My Drive\Skeletal Drawing 4.0\SHDG\SHDG-handout.pdf
+    src: /downloads/scott-hartman-dinosaur-anatomy-handout.pdf
     label: Anatomy Handout
-    note: ''
+    note: 2.7 MB
   - format: pptx
-    src: G:\My Drive\Skeletal Drawing 4.0\SHDG\SHDG-slides.pptx
+    src: /downloads/scott-hartman-dinosaur-anatomy-slides.pptx
     label: Anatomy Slides
-    note: ''
+    note: 1.3 MB
 licenseNote: ''
 featured: true
 draft: false
