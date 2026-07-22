@@ -12,7 +12,10 @@ import { heroRef } from '../../lib/schema';
 //
 // The friendly labels + blurbs are a first pass — easy to refine; eventually they could live in a
 // `gallery` content collection rather than here.
-const GALLERY: Record<string, { sci: string; friendly: string; blurb: string }> = {
+// `rep` optionally names the taxon slug to show on the card. Without it the card falls back to the
+// first `featured` taxon, which is really "whichever sorts first" — fine when one taxon is flagged,
+// arbitrary when several are. Set it when the automatic pick isn't the one you'd choose.
+const GALLERY: Record<string, { sci: string; friendly: string; blurb: string; rep?: string }> = {
   theropods: {
     sci: 'Theropoda',
     friendly: 'Predatory dinosaurs',
@@ -37,6 +40,10 @@ const GALLERY: Record<string, { sci: string; friendly: string; blurb: string }> 
     sci: 'Non-dinosaurs',
     friendly: 'Other prehistoric animals',
     blurb: 'Pterosaurs, marine reptiles, and other extinct animals beyond the dinosaurs.',
+    // Six non-dino taxa carry `featured`, so the card was falling to whichever sorted first —
+    // Archelon, whose plate is PORTRAIT (3000x4528, ar 0.66) and can never fill a 2:1 card.
+    // Pteranodon is the closest fit to the thumb (ar 1.89) and pterosaurs lead the blurb above.
+    rep: 'pteranodon-longiceps',
   },
 };
 const ORDER = ['theropods', 'sauropods-and-kin', 'ornithischians', 'synapsids', 'non-dinosaurs'];
@@ -50,7 +57,8 @@ for (const t of taxa) {
 }
 
 // Representative: the featured taxon if one is flagged, else the largest, else the first.
-const pickRep = (list: typeof taxa) =>
+const pickRep = (list: typeof taxa, rep?: string) =>
+  (rep ? list.find((t) => t.id === rep && t.data.reconstruction && !t.data.underRevision) : undefined) ??
   list.find((t) => t.data.featured && t.data.reconstruction && !t.data.underRevision) ??
   [...list]
     .filter((t) => t.data.reconstruction && !t.data.underRevision)
@@ -60,7 +68,7 @@ const pickRep = (list: typeof taxa) =>
 const galleries = await Promise.all(
   ORDER.filter((slug) => byGallery.has(slug)).map(async (slug) => {
     const list = byGallery.get(slug)!;
-    const rep = pickRep(list);
+    const rep = pickRep(list, GALLERY[slug].rep);
     const hero = heroRef(rep.data);
     return {
       slug,
