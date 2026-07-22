@@ -218,7 +218,7 @@ collections:
         label: "Downloads (classroom handout / deck)"
         widget: list
         required: false
-        hint: "Upload a branded PDF and/or PowerPoint to public/downloads/. They show up as a 'Use this in your classroom' block."
+        hint: "Upload a branded PDF and/or PowerPoint to public/downloads/. They show up as a 'Want to use this in your Classroom?' block."
         fields:
           - { name: format, label: "Format", widget: select, options: ["pdf", "pptx"] }
           - { name: src, label: "File path", widget: string, hint: "e.g. /downloads/skeletal-anatomy-guide.pdf" }
