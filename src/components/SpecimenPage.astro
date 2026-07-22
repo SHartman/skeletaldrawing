@@ -239,7 +239,10 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
                 )}
               </div>
               <div class="related-name">{x.data.catalog}</div>
-              <div class="related-fam">{x.data.nickname ? `“${x.data.nickname}”` : t.family}</div>
+              {/* Nickname only — no family fallback. Every specimen in this panel shares the taxon's
+                  family, so printing it told the reader nothing while putting a taxonomic rank in a
+                  slot that otherwise holds proper names. Matches SpecimenHub's card treatment. */}
+              {x.data.nickname && <div class="related-fam">“{x.data.nickname}”</div>}
             </a>
           ))}
         </div>
