@@ -165,8 +165,13 @@ const PARENT: Record<string, string> = {
   Teleostei: 'Actinopterygii',
   Ichthyodectiformes: 'Teleostei',
   Ichthyodectidae: 'Ichthyodectiformes',
-  Tetrapoda: 'Gnathostomata',                  // broad; skips Sarcopterygii/Tetrapodomorpha for now
-  Ichthyostegidae: 'Tetrapoda',                // stem tetrapod (broad placement at nav level)
+  // Tetrapoda here is the CROWN clade (Lissamphibia + Amniota and their last common ancestor) —
+  // the owner's usage and the most common modern one. Stem taxa therefore hang off Tetrapodomorpha
+  // OUTSIDE it: Ichthyostega is a stem tetrapod, not a tetrapod. (Sarcopterygii is still skipped;
+  // Tetrapodomorpha attaches straight to Gnathostomata until there's a reason to fill the gap.)
+  Tetrapodomorpha: 'Gnathostomata',
+  Ichthyostegidae: 'Tetrapodomorpha',
+  Tetrapoda: 'Tetrapodomorpha',
   Lissamphibia: 'Tetrapoda',
   Anura: 'Lissamphibia',
   Amniota: 'Tetrapoda',
@@ -286,12 +291,31 @@ export const LANDMARKS: ReadonlySet<string> = new Set([
   'Artiodactyla', 'Camelidae', 'Tayassuidae', 'Bovidae', 'Cetacea',
   // ── Non-dinosaurs ── (broad recognizable nodes + the clades with ≥2 taxa; singletons stay off the
   // chip pool but still render as a taxon's own terminal and in its lineage)
+  // NB Tetrapodomorpha is deliberately absent: it exists in PARENT purely to hold the crown-Tetrapoda
+  // boundary honest, and its only non-tetrapod member is Ichthyostega. Making it a chip would add a
+  // step to the Gnathostomata → Tetrapoda → Amniota ladder — already the longest backbone on the
+  // site — for one taxon. Promote it here (one word) if the stem ever fattens up.
   'Gnathostomata', 'Actinopterygii', 'Ichthyodectidae', 'Tetrapoda', 'Amniota', 'Sauropsida',
   'Testudinata', 'Cryptodira', 'Baenidae', 'Trionychidae', 'Ichthyosauria', 'Squamata',
   'Archosauromorpha', 'Archosauria', 'Pseudosuchia', 'Crocodylomorpha', 'Notosuchia', 'Neosuchia',
   'Crocodylia', 'Alligatoroidea', 'Alligatoridae', 'Avemetatarsalia', 'Pterosauria', 'Pterodactyloidea',
   'Azhdarchoidea', 'Azhdarchidae', 'Silesauridae',
 ]);
+
+/**
+ * Clades that belong in a taxon's displayed LINEAGE but not in the gallery chip pool. The two
+ * lists almost always coincide, so they were one list until Tetrapodomorpha forced them apart —
+ * they answer different questions: LANDMARKS asks "is this worth a click?", this asks "would the
+ * ladder mislead without it?".
+ *
+ * Tetrapodomorpha has to exist in PARENT to keep Tetrapoda a crown clade, and Ichthyostega is its
+ * only non-tetrapod member. As a chip it would cost every visitor an extra step down the site's
+ * longest backbone — and put an unfamiliar word where "Tetrapoda" currently greets them — for one
+ * taxon. Left out entirely, though, Ichthyostega's ladder jumps from Gnathostomata straight to
+ * Ichthyostegidae, skipping the very fact its description leads with ("a Late Devonian stem
+ * tetrapod"). It earns a rung on the page without earning a chip in the gallery.
+ */
+const LADDER_EXTRA: ReadonlySet<string> = new Set(['Tetrapodomorpha']);
 
 /**
  * A landmark is "popular" — eligible to surface as a jump chip from a distant ancestor, rather
@@ -312,5 +336,14 @@ export const isLandmark = (clade: string): boolean => LANDMARKS.has(clade);
 export function cladeLadder(authored: string[]): string[] {
   const path = expandClades(authored);
   const terminal = path.at(-1);
-  return path.filter((c) => LANDMARKS.has(c) || c === terminal);
+  // A LADDER_EXTRA rung is a STAND-IN, so it earns its place only when nothing more specific
+  // already occupies it: drop it the moment a landmark appears below it in the lineage. That is
+  // what puts Tetrapodomorpha on Ichthyostega's page and keeps it off every other tetrapod's,
+  // where Tetrapoda sits one rung down and says it better.
+  return path.filter(
+    (c, i) =>
+      LANDMARKS.has(c) ||
+      c === terminal ||
+      (LADDER_EXTRA.has(c) && !path.slice(i + 1).some((below) => LANDMARKS.has(below))),
+  );
 }
