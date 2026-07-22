@@ -232,8 +232,16 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
           {related.map((x) => (
             <a class="related-card" href={`/${t.gallery}/${taxon.id}/${x.id}/`}>
               <div class="related-thumb">
+                {/* `sizes` tracks the 4→2 step; see the note on the same grid in SkeletalPage. */}
                 {x.img ? (
-                  <Image src={x.img} alt={x.alt} widths={[260, 520]} sizes="220px" class="related-img" loading="lazy" />
+                  <Image
+                    src={x.img}
+                    alt={x.alt}
+                    widths={[260, 520, 780]}
+                    sizes="(max-width: 840px) 45vw, 22vw"
+                    class="related-img"
+                    loading="lazy"
+                  />
                 ) : (
                   <img src={specimenHero(x.data).src} alt={x.alt} class="related-img" />
                 )}
@@ -353,9 +361,16 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
     letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
   }
   .related-h { font-style: normal; }
-  /* auto-FILL (not auto-fit): keeps empty columns so a lone sibling card stays ~thumbnail-sized and
-     reads as a link, instead of stretching to full width and blurring (matches the hub cards). */
-  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+  /* A FIXED four tracks, which is what auto-fill was really buying here: empty columns are kept, so
+     a lone sibling card stays ~thumbnail-sized and reads as a link instead of stretching to full
+     width and blurring (matches the hub cards). Fixing the count also stops the 4-sibling case —
+     the common one, e.g. T. rex — from landing on a 3-up row with the fourth card orphaned below. */
+  .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  /* Two-up (matches the gallery grid), stepping straight down from four so the row never goes
+     ragged. Fires well above the 600px mobile breakpoint — 4-up cards fall below ~185px here. */
+  @media (max-width: 840px) {
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   .related-card { text-decoration: none; color: var(--ink); }
   .related-thumb {
     aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
@@ -375,7 +390,6 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
     .card-header, .plate { padding-left: 18px; padding-right: 18px; }
     .rig-plate { padding: 18px; }
     .cell { padding: 14px 16px; }
-    /* Two-up related cards (matches the gallery grid). */
-    .related-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .related-grid { gap: 14px; }
   }
 </style>

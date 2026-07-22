@@ -295,12 +295,24 @@ const jsonLd = underRevision
     {related.length > 0 && (
       <section class="related">
         <h2 class="related-h">Related reconstructions</h2>
-        <div class="related-grid">
+        <div
+          class="related-grid"
+          style={`--cols:${Math.min(related.length, 4)};--cols-sm:${Math.min(related.length, 2)}`}
+        >
           {related.map((t) => (
             <a class="related-card" href={`/${d.gallery}/${t.id}/`}>
               <div class="related-thumb">
+                {/* `sizes` tracks the 4→2 step: ~22vw while four are across, ~45vw once two are.
+                    A flat "220px" under-selects badly at the 2-up stage, where cards reach ~380px. */}
                 {t.img ? (
-                  <Image src={t.img} alt={t.alt} widths={[260, 520]} sizes="220px" class="related-img" loading="lazy" />
+                  <Image
+                    src={t.img}
+                    alt={t.alt}
+                    widths={[260, 520, 780]}
+                    sizes="(max-width: 840px) 45vw, 22vw"
+                    class="related-img"
+                    loading="lazy"
+                  />
                 ) : (
                   <img src={heroRef(t.data).src} alt={t.alt} class="related-img" />
                 )}
@@ -429,7 +441,12 @@ const jsonLd = underRevision
   }
   /* auto-fit (not auto-fill) so the cards expand to fill the row and line up with the
      record row above — no phantom empty track / ragged gap on wide screens. */
-  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  /* Column count is EXPLICIT, not emergent. `auto-fit` optimises for filling the row, which with
+     exactly 4 cards means it happily lands on 3-up and orphans the fourth on its own line. Driving
+     the count from the item count instead lets the grid step 4 → 2 and skip the ragged stage.
+     `--cols` comes from the template so a section with fewer than 4 cards (specimen siblings, a
+     thinly-populated gallery) fills its row rather than leaving empty tracks. */
+  .related-grid { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); gap: 20px; }
   .related-card { text-decoration: none; color: var(--ink); }
   .related-thumb {
     aspect-ratio: 4 / 3; background: var(--plate); border: 1px solid var(--hair); margin-bottom: 10px;
@@ -455,15 +472,21 @@ const jsonLd = underRevision
   .fig-credit { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
   .fig-credit a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
 
+  /* Two-up related cards (matches the gallery grid) — reads as a clearly separate footer of
+     suggestions and cuts the scrolling to see them all. Triggered well above the 600px mobile
+     breakpoint: 4-up cards fall below ~185px around here, and the alternative on the way down is
+     a 3-up row with a lone fourth card stranded beneath it. */
+  @media (max-width: 840px) {
+    .related-grid { grid-template-columns: repeat(var(--cols-sm, 2), 1fr); }
+  }
+
   /* ---- mobile: keep everything within the viewport ---- */
   @media (max-width: 600px) {
     .wrap { padding: 0 18px; }
     .card-header, .plate { padding-left: 18px; padding-right: 18px; }
     .rig-plate { padding: 18px; }
     .cell { padding: 14px 16px; }
-    /* Two-up related cards (matches the gallery grid) — reads as a clearly separate
-       footer of suggestions and cuts the scrolling to see them all. */
-    .related-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+    .related-grid { gap: 14px; }
     .related-name { font-size: 16px; }
   }
 </style>
