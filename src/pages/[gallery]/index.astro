@@ -167,27 +167,68 @@ for (const u of units) {
 // phylogenetically, but it isn't in LANDMARKS so it never renders as a chip — the descent runs
 // Avemetatarsalia → Silesauridae and stops. Avemetatarsalia is both the node visitors actually reach
 // and the honest fork: pterosaurs one way, the dinosaur line the other.
-const CROSS: Record<string, { label: string; gallery: string }[]> = {
+//
+// Two kinds, and the distinction matters (it's what keeps one super-gallery feeling like one tree):
+//   • DOWN — a descent that happens to land in another gallery. The target gallery's root IS the
+//     clade named, so it needs no landing node, and it belongs under "Go deeper".
+//   • OUT (`out: true`) — the way back, to a BROADER clade. It is not a descent, so filing it under
+//     "Go deeper" made it read as a random gallery jump ("why is Non-dinosaurs offered here?").
+//     These are labelled by the NODE they land on, not the gallery, and get their own row. `at`
+//     names that node so the link deep-links to `/<gallery>/#<Clade>` — crossing back drops you
+//     where you left the spine rather than at the top of it.
+const CROSS: Record<string, { label: string; gallery: string; at?: string; out?: boolean }[]> = {
   Avemetatarsalia: [
     { label: 'Theropoda', gallery: 'theropods' },
     { label: 'Sauropodomorpha', gallery: 'sauropods-and-kin' },
     { label: 'Ornithischia', gallery: 'ornithischians' },
   ],
   Amniota: [{ label: 'Synapsida', gallery: 'synapsids' }],
-  // Return paths, so a visitor who crosses over can get back to the rest of the tree.
-  Synapsida: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
-  Theropoda: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
-  Sauropodomorpha: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
-  Ornithischia: [{ label: 'Non-dinosaurs', gallery: 'non-dinosaurs' }],
+  // Return paths. Avemetatarsalia is the nearest node the non-dino gallery actually holds above
+  // any dinosaur group; Amniota is the equivalent for synapsids.
+  Theropoda: [{ label: 'Avemetatarsalia', gallery: 'non-dinosaurs', at: 'Avemetatarsalia', out: true }],
+  Sauropodomorpha: [{ label: 'Avemetatarsalia', gallery: 'non-dinosaurs', at: 'Avemetatarsalia', out: true }],
+  Ornithischia: [{ label: 'Avemetatarsalia', gallery: 'non-dinosaurs', at: 'Avemetatarsalia', out: true }],
+  Synapsida: [{ label: 'Amniota', gallery: 'non-dinosaurs', at: 'Amniota', out: true }],
 };
 const everyTaxon = await getCollection('taxa');
-const galleryCount = (g: string) => everyTaxon.filter((t) => t.data.gallery === g && !t.data.underRevision).length;
+
+// Card counts for a clade in ANY gallery, genus-collapsed exactly as that gallery's own grid is —
+// so a continuation chip promises the number the target page will really show. (Counting raw taxa
+// would over-report wherever a multi-species genus collapses into one card.)
+function cardPaths(g: string): string[][] {
+  const list = everyTaxon.filter((t) => t.data.gallery === g);
+  const byGenus = new Map<string, typeof list>();
+  for (const t of list) {
+    const s = t.data.taxon.split(' ')[0].toLowerCase();
+    byGenus.set(s, [...(byGenus.get(s) ?? []), t]);
+  }
+  const out: string[][] = [];
+  for (const [slug, sp] of byGenus) {
+    if (sp.length >= 2 && !allTaxonIds.has(slug)) out.push(sharedClade(sp));
+    else for (const t of sp) out.push(expandClades(t.data.clade));
+  }
+  return out;
+}
+const countAt = (g: string, clade?: string) =>
+  cardPaths(g).filter((path) => !clade || path.includes(clade)).length;
+
 // Never offer a link to the gallery we're already in, and only keep targets that have content.
-const cross: Record<string, { label: string; href: string; n: number }[]> = {};
+const cross: Record<string, { label: string; href: string; n: number; where: string; out: boolean }[]> = {};
 for (const [clade, targets] of Object.entries(CROSS)) {
   const usable = targets
     .filter((x) => x.gallery !== gallery)
-    .map((x) => ({ label: x.label, href: `/${x.gallery}/`, n: galleryCount(x.gallery) }))
+    .map((x) => {
+      const where = GALLERY_META[x.gallery]?.label ?? x.gallery;
+      return {
+        label: x.label,
+        href: `/${x.gallery}/${x.at ? `#${encodeURIComponent(x.at)}` : ''}`,
+        n: countAt(x.gallery, x.at),
+        // Only worth showing when it adds something: a descent chip labelled "Theropoda" pointing
+        // at the Theropoda gallery would just say it twice.
+        where: where === x.label ? '' : where,
+        out: !!x.out,
+      };
+    })
     .filter((x) => x.n > 0);
   if (usable.length) cross[clade] = usable;
 }
@@ -229,6 +270,10 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
       <div class="descend">
         <span class="grp-label" id="descend-label">Go deeper</span>
         <div class="chip-row" id="descend-row"></div>
+      </div>
+      <div class="descend" id="out-wrap">
+        <span class="grp-label">Step outward</span>
+        <div class="chip-row" id="out-row"></div>
       </div>
       <div class="jump" id="jump-wrap">
         <span class="grp-label">Jump to</span>
@@ -300,7 +345,7 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     landmarks: string[];
     root: string;
     popularMin: number;
-    cross: Record<string, { label: string; href: string; n: number }[]>;
+    cross: Record<string, { label: string; href: string; n: number; where: string; out: boolean }[]>;
   };
   const nav: Nav = JSON.parse(document.getElementById('navdata')!.textContent!);
   const LM = new Set(nav.landmarks);
@@ -345,6 +390,8 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   const hereLabel = document.getElementById('here-label')!;
   const descendRow = document.getElementById('descend-row')!;
   const descendLabel = document.getElementById('descend-label')!;
+  const outRow = document.getElementById('out-row')!;
+  const outWrap = document.getElementById('out-wrap')!;
   const jumpRow = document.getElementById('jump-row')!;
   const jumpWrap = document.getElementById('jump-wrap')!;
   const hereName = document.getElementById('here-name')!;
@@ -368,12 +415,18 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
   // A continuation into another gallery. Deliberately an <a>, not a button: it is real navigation,
   // so it works with middle-click / new tab, the back button returns you up the spine, and the
   // link is crawlable — which de-silos the galleries for search as well as for readers.
-  const crossLink = (x: { label: string; href: string; n: number }) => {
+  // `out` links carry the gallery they land in, since their label names a clade, not a gallery.
+  const crossLink = (x: { label: string; href: string; n: number; where: string; out: boolean }) => {
     const a = document.createElement('a');
-    a.className = 'chip chip-cross';
+    a.className = `chip chip-cross${x.out ? ' chip-out' : ''}`;
     a.href = x.href;
-    a.innerHTML = `<span class="cname">${x.label}</span><span class="cn">(${x.n})</span><span class="cgo" aria-hidden="true">→</span>`;
-    a.title = `${x.label} lives in its own gallery — open it`;
+    a.innerHTML =
+      `<span class="cname">${x.label}</span><span class="cn">(${x.n})</span>` +
+      (x.where ? `<span class="cwhere">in ${x.where}</span>` : '') +
+      `<span class="cgo" aria-hidden="true">${x.out ? '↗' : '→'}</span>`;
+    a.title = x.where
+      ? `${x.label} continues in the ${x.where} gallery — open it there`
+      : `${x.label} lives in its own gallery — open it`;
     return a;
   };
 
@@ -403,13 +456,21 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     const exclude = new Set<string>([node, ...descend]);
     const jumps = jumpChips(node, exclude, JUMP_MODE).slice(0, Math.max(0, CAP - descend.length));
 
+    const conts = cross[node] ?? [];
+
     descendRow.innerHTML = '';
     descend.forEach((c) => descendRow.appendChild(chipBtn(c, 'descend')));
-    // Continuations sit with "Go deeper" because that is what they are — the next node down just
-    // happens to live in another gallery. The distinct styling marks that you're leaving this one.
-    const conts = cross[node] ?? [];
-    conts.forEach((x) => descendRow.appendChild(crossLink(x)));
-    descendLabel.parentElement!.style.display = descend.length || conts.length ? '' : 'none';
+    // Downward continuations sit with "Go deeper" because that is what they are — the next node
+    // down just happens to live in another gallery. The distinct styling marks that you're leaving
+    // this one. Outward ones do NOT: they go to a broader clade, so they get their own row.
+    const down = conts.filter((x) => !x.out);
+    down.forEach((x) => descendRow.appendChild(crossLink(x)));
+    descendLabel.parentElement!.style.display = descend.length || down.length ? '' : 'none';
+
+    const out = conts.filter((x) => x.out);
+    outRow.innerHTML = '';
+    out.forEach((x) => outRow.appendChild(crossLink(x)));
+    outWrap.style.display = out.length ? '' : 'none';
 
     jumpRow.innerHTML = '';
     jumps.forEach((c) => jumpRow.appendChild(chipBtn(c, 'jump')));
@@ -443,6 +504,11 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     node = c;
     renderNav();
     apply();
+    // Keep the URL in step with the drill-down (the same #<Clade> the loader reads back). replaceState,
+    // not pushState: drilling shouldn't stack a dozen history entries the Back button has to chew
+    // through. The payoff is that leaving for another gallery and pressing Back returns you to the
+    // clade you were on rather than the top of the tree — and the view is now linkable.
+    history.replaceState(null, '', c === root ? location.pathname + location.search : `#${encodeURIComponent(c)}`);
     document.querySelector('.clade-nav')?.scrollIntoView({ block: 'nearest' });
   }
 
@@ -602,9 +668,19 @@ const description = `${all.length} skeletal reconstructions of ${meta.label} by 
     text-decoration: none;
   }
   .clade-nav .chip-cross .cn { color: var(--accent); opacity: .7; }
+  /* the destination gallery, on chips whose label names a clade instead — a quiet "you'll end up
+     over there" so the jump is never a surprise */
+  .clade-nav .chip-cross .cwhere {
+    margin-left: 8px; padding-left: 8px; border-left: 1px solid var(--accent-soft);
+    font-size: 10px; letter-spacing: .06em; opacity: .8;
+  }
+  .clade-nav .chip-cross:hover .cwhere { border-left-color: var(--mast-fg); opacity: .85; }
   .clade-nav .chip-cross .cgo { margin-left: 7px; transition: transform .15s ease; display: inline-block; }
   .clade-nav .chip-cross:hover { background: var(--accent); color: var(--mast-fg); border-color: var(--accent); }
   .clade-nav .chip-cross:hover .cn { color: var(--mast-fg); opacity: .8; }
   .clade-nav .chip-cross:hover .cgo { transform: translateX(3px); }
+  /* outward continuations nudge up-and-out instead, matching their ↗ (must follow the rule above —
+     same specificity, so source order decides) */
+  .clade-nav .chip-out:hover .cgo { transform: translate(2px, -2px); }
   @media (prefers-reduced-motion: reduce) { .clade-nav .chip-cross .cgo { transition: none; } }
 </style>
