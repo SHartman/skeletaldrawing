@@ -26,8 +26,8 @@ rigorous:
 additionalFigures:
   - label: Muscle reconstruction
     src: /images/skeletals/tyrannosaurus-rex-sue-fmnh-pr-2081-muscle-reconstruction.png
-    alt: Tyrannosaurus rex muscle reconstruction — restored musculature over the skeleton of FMNH PR 2081 (Sue), left lateral view
-    caption: Reconstructed musculature of Sue (FMNH PR 2081), restored over the skeletal in left lateral view — the soft-tissue layer that the skeletal underneath is built to support.
+    alt: Tyrannosaurus rex muscle reconstruction — restored musculature over the skeleton of FMNH PR 2081 (Sue), left lateral and dorsal views
+    caption: Superficial musculature of Sue (FMNH PR 2081) in dorsal and lateral view.
 overlay: true
 featured: true
 added: 2026-06-02T12:00:00.000Z
