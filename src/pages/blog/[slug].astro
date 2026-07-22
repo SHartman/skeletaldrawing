@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Comments from '../../components/Comments.astro';
+import { stripEmphasis } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).filter((p) => !p.data.draft);
@@ -26,14 +27,16 @@ const jsonLd = {
   author: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
   publisher: { '@type': 'Person', name: 'Scott Hartman' },
   mainEntityOfPage: pageUrl,
-  ...(d.excerpt ? { description: d.excerpt } : {}),
+  // Stripped, not rendered: the excerpt may carry `_emphasis_` for the visible cards, but a
+  // description read by a machine (or shown as a search snippet) must be plain words.
+  ...(d.excerpt ? { description: stripEmphasis(d.excerpt) } : {}),
   ...(imageUrl ? { image: imageUrl } : {}),
 };
 
 const title = `${d.title} | Skeletal Drawing`;
 ---
 
-<BaseLayout title={title} description={d.excerpt} ogImage={imageUrl} ogType="article">
+<BaseLayout title={title} description={d.excerpt && stripEmphasis(d.excerpt)} ogImage={imageUrl} ogType="article">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>

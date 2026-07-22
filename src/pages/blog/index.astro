@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { inlineEmphasisHtml } from '../../lib/schema';
 
 // Blog index (/blog/). Lists published posts, newest first. Reuses the Graphite system;
 // blog images are plain public-path <img> for now (no skeletal optimization pipeline).
@@ -37,7 +38,7 @@ const description =
             <div class="body">
               {p.data.kind && <span class="kind">{p.data.kind}</span>}
               <h2 class="ptitle">{p.data.title}</h2>
-              {p.data.excerpt && <p class="excerpt">{p.data.excerpt}</p>}
+              {p.data.excerpt && <p class="excerpt" set:html={inlineEmphasisHtml(p.data.excerpt)}></p>}
               <div class="foot">
                 <span class="readmore">Read more →</span>
                 <span class="date">{fmtDate(p.data.date)}</span>

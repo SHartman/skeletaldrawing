@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { stripEmphasis } from '../lib/schema';
 
 // Shared renderer for an `articles` entry. Used by /learn/[slug] (default articles)
 // and by dedicated routes for legacy-ranking guides served at their own path
@@ -41,7 +42,9 @@ const jsonLd = {
   author: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
   publisher: { '@type': 'Person', name: 'Scott Hartman' },
   mainEntityOfPage: pageUrl,
-  ...(d.summary ? { description: d.summary } : {}),
+  // Stripped: the summary may carry `_emphasis_` for the visible Learn card, but a machine-read
+  // description must be plain words. Same split as the blog excerpt.
+  ...(d.summary ? { description: stripEmphasis(d.summary) } : {}),
   ...(imageUrl ? { image: imageUrl } : {}),
   ...(downloads.length ? { license: LICENSE_URL } : {}),
 };
@@ -49,7 +52,7 @@ const jsonLd = {
 const title = `${d.title} | Skeletal Drawing`;
 ---
 
-<BaseLayout title={title} description={d.summary} ogImage={imageUrl} ogType="article">
+<BaseLayout title={title} description={d.summary && stripEmphasis(d.summary)} ogImage={imageUrl} ogType="article">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>

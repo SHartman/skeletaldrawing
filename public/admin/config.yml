@@ -172,7 +172,7 @@ collections:
       - { name: title, label: "Title", widget: string }
       - { name: date, label: "Date", widget: datetime, hint: "Publish date — sorts the blog and the home page's 'From the blog' section." }
       - { name: kind, label: "Category", widget: string, required: false, hint: "Small eyebrow label, e.g. Reconstruction notes, In the literature, You're doing it wrong" }
-      - { name: excerpt, label: "Excerpt", widget: text, required: false, hint: "Teaser shown on the blog index and the home page." }
+      - { name: excerpt, label: "Excerpt", widget: text, required: false, hint: "Teaser shown on the blog index and the home page. Wrap scientific names in underscores — _Sphenacodon_ — to italicise them, exactly as in the body. The markers are stripped automatically from the search-engine description, so they never show up as stray characters." }
       - name: image
         label: "Lead image"
         widget: object
@@ -203,7 +203,7 @@ collections:
     fields:
       - { name: title, label: "Title", widget: string }
       - { name: kind, label: "Kind (eyebrow)", widget: string, required: false, hint: "Small label, e.g. Anatomy guide, Methodology, Tutorial" }
-      - { name: summary, label: "Summary", widget: text, required: false, hint: "Teaser shown on the Learn hub." }
+      - { name: summary, label: "Summary", widget: text, required: false, hint: "Teaser shown on the Learn hub. Underscores italicise — _Tyrannosaurus_ — and are stripped from the search-engine description automatically." }
       - name: image
         label: "Lead image"
         widget: object

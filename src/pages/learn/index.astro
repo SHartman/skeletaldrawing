@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { inlineEmphasisHtml } from '../../lib/schema';
 
 // The Learn hub (/learn/). One inviting door that unites first-party content (guides &
 // articles) with curated, ANNOTATED external links (museums to visit, peers to read).
@@ -88,7 +89,7 @@ const description =
               <a href={a.data.path ?? `/learn/${a.id}/`}>
                 {a.data.kind && <span class="card-kind">{a.data.kind}</span>}
                 <span class="card-title">{a.data.title}</span>
-                {a.data.summary && <p class="card-sum">{a.data.summary}</p>}
+                {a.data.summary && <p class="card-sum" set:html={inlineEmphasisHtml(a.data.summary)}></p>}
                 <span class="card-go">Read <span class="arrow">→</span></span>
               </a>
             </li>

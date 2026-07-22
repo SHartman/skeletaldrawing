@@ -49,6 +49,32 @@ export function taxonNameHtml(name: string): string {
   return m ? `<i>${esc(m[1])}</i> ${esc(m[2])}` : `<i>${esc(name)}</i>`;
 }
 
+/**
+ * Emphasis markers for the short single-line fields authored as plain strings in the CMS — blog
+ * excerpts and article summaries. Scientific names are italic everywhere else on the site and ought
+ * to be here too; the catch is that these same fields feed `<meta name="description">`,
+ * `og:description` and JSON-LD, where a tag would be shown to the reader as literal angle brackets.
+ *
+ * So the field is authored the way the body prose already is — `_Sphenacodon_` — and rendered two
+ * ways: as `<em>` where a person reads it, stripped to plain text where a machine does.
+ *
+ * Deliberately ONLY emphasis, not a markdown parser. Links, headings and lists have no business in
+ * a teaser, and a single-rule converter has no surprises in it. Matching delimiters are required
+ * (via the backreference), so a stray asterisk can't swallow the rest of the sentence.
+ */
+const EMPHASIS = /([*_])([^*_\n]+?)\1/g;
+
+/** Render `_x_` / `*x*` as italics. Escapes first, so CMS text can never inject markup. */
+export function inlineEmphasisHtml(s: string): string {
+  const esc = (t: string) => t.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
+  return esc(s).replace(EMPHASIS, '<em>$2</em>');
+}
+
+/** Drop the markers, keeping the words — for descriptions, OG tags and JSON-LD. */
+export function stripEmphasis(s: string): string {
+  return s.replace(EMPHASIS, '$2');
+}
+
 /** A few taxa are known only from fragments and carry no restored reconstruction. */
 export function isKnownMaterialOnly(d: TaxonData): boolean {
   return !d.reconstruction && !!d.rigorous;
