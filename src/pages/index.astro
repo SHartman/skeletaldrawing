@@ -411,7 +411,17 @@ const description =
     padding: clamp(22px, 3vw, 36px) clamp(24px, 4vw, 48px) 26px;
   }
   .plate-link { display: block; text-decoration: none; }
-  .plate-img { width: 100%; max-width: 1040px; display: block; margin: 0 auto; height: auto; }
+  /* Bounded on BOTH axes. Width alone isn't enough: a portrait plate (Archelon is 3000x4528, ar
+     0.66) would render ~1575px tall at full width and shove the rest of the page below the fold.
+     Capping the height lets any tall reconstruction scale down and centre instead — the layout is
+     immune to shape, so `added` dates stay honest rather than being curated around the bug.
+     Wide plates are unaffected: a typical 3:1 skeletal is only ~330px tall at 1040 wide. */
+  .plate-img {
+    display: block; margin: 0 auto;
+    width: auto; height: auto;
+    max-width: min(100%, 1040px);
+    max-height: 62vh;
+  }
   .plate-rule { margin-top: 16px; height: 1px; background: var(--hair); }
   .plate-credit {
     margin-top: 10px; text-align: right; font-family: var(--font-mono); font-size: 10.5px;
