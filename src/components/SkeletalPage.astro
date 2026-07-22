@@ -13,6 +13,8 @@ import {
   heroRef,
   formatAuthor,
   taxonNameHtml,
+  inlineEmphasisHtml,
+  stripEmphasis,
 } from '../lib/schema';
 import { expandClades, cladeLadder } from '../lib/clades';
 
@@ -112,8 +114,22 @@ const kind = underRevision
     ? 'known skeletal material'
     : 'skeletal reconstruction';
 const title = `${d.taxon} — ${kind}${d.specimenId ? ` · ${d.specimenId}` : ''} | Skeletal Drawing`;
+// The notice after the invariant "Under revision." label. A supplied note replaces the default
+// sentence entirely — the default asserts the old figure is SUPERSEDED and an update is under way,
+// which is simply untrue when a skeletal is withheld for other reasons. `inlineEmphasisHtml` both
+// escapes the note (it is author-supplied) and lets it italicise a genus like anywhere else.
+const revisionHtml = d.revisionNote
+  ? inlineEmphasisHtml(d.revisionNote)
+  : `The skeletal of ${taxonNameHtml(d.taxon)} is being updated; this placeholder stands in so the ` +
+    `page stays available, and the outdated version is withheld to avoid circulating it. If you have ` +
+    `an older copy, please treat it as superseded.`;
+
 const description = underRevision
-  ? `Skeletal reconstruction of ${d.taxon} — currently under revision. An updated skeletal is in progress; the previous version is withheld to avoid circulating an outdated figure. © Scott Hartman, skeletaldrawing.com.`
+  ? `Skeletal reconstruction of ${d.taxon} — currently under revision. ${
+      d.revisionNote
+        ? stripEmphasis(d.revisionNote)
+        : 'An updated skeletal is in progress; the previous version is withheld to avoid circulating an outdated figure.'
+    } © Scott Hartman, skeletaldrawing.com.`
   : kmOnly
     ? `Known skeletal material of ${d.taxon}${d.specimenId ? `, specimen ${d.specimenId}` : ''}${lt ? `, estimated length ${lt}` : ''} — preserved elements drawn in white. © Scott Hartman, skeletaldrawing.com.`
     : `Skeletal reconstruction of ${d.taxon}${d.specimenName ? ` (“${d.specimenName}”)` : ''}${d.specimenId ? `, specimen ${d.specimenId}` : ''}, ${d.view.toLowerCase()} view${lt ? `, ${lt}` : ''}. © Scott Hartman, skeletaldrawing.com.`;
@@ -161,9 +177,11 @@ const jsonLd = underRevision
       <figure class={underRevision ? 'plate is-revision' : 'plate'}>
         {underRevision && (
           <p class="revision-banner">
-            <strong>Under revision.</strong> The skeletal of <em>{d.taxon}</em> is being updated; this
-            placeholder stands in so the page stays available, and the outdated version is withheld to
-            avoid circulating it. If you have an older copy, please treat it as superseded.
+            {/* The "Under revision." label is deliberately invariant — see revisionNote in
+                content.config.ts. Only the explanation after it varies. Built as a string in the
+                frontmatter rather than a ternary over JSX: the Astro compiler silently dropped the
+                fallback branch of `{a ? b : (<Fragment>…</Fragment>)}`, rendering the label alone. */}
+            <strong>Under revision.</strong> <span set:html={revisionHtml} />
           </p>
         )}
         {heroImg ? (

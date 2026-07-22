@@ -92,6 +92,18 @@ const taxa = defineCollection({
       // revision" notice + the supplied placeholder (a black silhouette), keep all live metadata
       // and the URL/301s/links, and don't assert the placeholder as the reconstruction in SEO.
       underRevision: nullableDefault(z.boolean().default(false)),
+      // Replaces the second sentence of the "under revision" notice. Two reasons it exists:
+      //   1. The default wording asserts the old figure is SUPERSEDED and promises an update is in
+      //      progress. That's true for an outdated drawing being redone; it is false for a skeletal
+      //      pulled because of a publication NDA or a media first-use agreement, where the existing
+      //      version is fine and simply can't be shown yet.
+      //   2. Timelines differ wildly — weeks for most, a year for a taxon awaiting a full overhaul —
+      //      and a notice that quietly implies "any day now" for twelve months stops being credible.
+      // PUBLIC LABEL STAYS UNIFORM: every case reads "Under revision" regardless of the real reason,
+      // because clients don't necessarily want an embargo or an upcoming project telegraphed. This
+      // field is rendered on the page AND readable in a public repo, so it must never name the
+      // reason, the client, or the publication. Keep it to what a visitor needs: expectation setting.
+      revisionNote: optStr,
       added: optDate, // when this was added — feeds the home page's rotating "newest" plate
     })
     // A taxon needs at least one image. Most have a reconstruction; a few are
