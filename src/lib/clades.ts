@@ -190,6 +190,14 @@ const PARENT: Record<string, string> = {
   Lepidosauria: 'Sauropsida',
   Squamata: 'Lepidosauria',
   Dolichosauridae: 'Squamata',                 // marine squamates near mosasaurs
+  Mosasauridae: 'Squamata',                    // mosasaurs (Tylosaurus); owner has more in the pipeline
+  // sauropterygians — plesiosaurs. Position within Sauropsida is unsettled; attached broadly here,
+  // like the ichthyosaurs below. Rhomaleosaurids and elasmosaurids are both nested under Plesiosauria
+  // (sensu lato) — a coarse but defensible split for two taxa; refine if the branch fills out.
+  Sauropterygia: 'Sauropsida',
+  Plesiosauria: 'Sauropterygia',
+  Rhomaleosauridae: 'Plesiosauria',
+  Elasmosauridae: 'Plesiosauria',
   // ichthyosaurs — position within Sauropsida uncertain; attached broadly
   Ichthyosauria: 'Sauropsida',
   Ichthyosauridae: 'Ichthyosauria',
@@ -295,8 +303,10 @@ export const LANDMARKS: ReadonlySet<string> = new Set([
   // boundary honest, and its only non-tetrapod member is Ichthyostega. Making it a chip would add a
   // step to the Gnathostomata → Tetrapoda → Amniota ladder — already the longest backbone on the
   // site — for one taxon. Promote it here (one word) if the stem ever fattens up.
+  // Plesiosauria is a chip (2 taxa: Rhomaleosaurus + Thalassomedon). Mosasauridae stays off for now —
+  // a singleton (Tylosaurus) held under Squamata until the owner's pipeline mosasaurs land.
   'Gnathostomata', 'Actinopterygii', 'Ichthyodectidae', 'Tetrapoda', 'Amniota', 'Sauropsida',
-  'Testudinata', 'Cryptodira', 'Baenidae', 'Trionychidae', 'Ichthyosauria', 'Squamata',
+  'Testudinata', 'Cryptodira', 'Baenidae', 'Trionychidae', 'Ichthyosauria', 'Plesiosauria', 'Squamata',
   'Archosauromorpha', 'Archosauria', 'Pseudosuchia', 'Crocodylomorpha', 'Notosuchia', 'Neosuchia',
   'Crocodylia', 'Alligatoroidea', 'Alligatoridae', 'Avemetatarsalia', 'Pterosauria', 'Pterodactyloidea',
   'Azhdarchoidea', 'Azhdarchidae', 'Silesauridae',
