@@ -2,7 +2,7 @@
 title: An unexpected synapsid
 date: 2026-07-03T11:52
 kind: ''
-excerpt: This wasn’t the pelycosaur you were searching for? I know after my prior post many of you are looking forward to Edaphosaurus, and it’s coming, I swear! But first I had cause to tackle Sphenacodon, so I figured why not push it out to the world first...
+excerpt: This wasn’t the pelycosaur you were searching for? I know after my prior post many of you are looking forward to _Edaphosaurus_, and it’s coming, I swear! But first I had cause to tackle _Sphenacodon_, so I figured why not push it out to the world first...
 image:
   src: /images/blog/not-the-synapsid-youre-looking-for-1.webp
   alt: Skeletal reconstruction of Sphenacodon in left lateral view, jaws open — a long-bodied early synapsid predator whose neural spines are tall but stop well short of a Dimetrodon-style sail
