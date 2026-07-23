@@ -22,6 +22,10 @@ drawingCredit: ''
 reconstruction:
   src: /images/skeletals/simosuchus-clarki-skeletal.png
   alt: Simosuchus clarki skeletal reconstruction, left lateral view, reconstructed length ~0.75 m.
+additionalFigures:
+  - src: /images/skeletals/simosuchus-clarki-unarmored-skeletal.png
+    alt: Simosuchus clarki skeletal reconstruction with its body armor removed, left lateral view — the skeleton and body outline without the osteoderm shell.
+    caption: The same reconstruction with Simosuchus's extensive osteoderm armor removed, showing the skeleton and body outline beneath.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z
 ---
