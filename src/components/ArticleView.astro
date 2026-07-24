@@ -169,6 +169,19 @@ const title = `${d.title} | Skeletal Drawing`;
     color: var(--slate); font-style: italic;
   }
   .prose :global(img) { max-width: 100%; height: auto; border: 1px solid var(--hair); border-radius: 4px; }
+  /* Captioned/sized figures from markdown (rehypeFigures) — mirrors the blog prose. Scoped under
+     .prose so it never touches the article's own .hero figure. */
+  .prose :global(figure) { margin: 32px auto; text-align: center; }
+  .prose :global(figure img) { display: inline-block; }
+  .prose :global(figure.fig-left) { float: left; margin: 6px 26px 14px 0; max-width: 50%; }
+  .prose :global(figure.fig-right) { float: right; margin: 6px 0 14px 26px; max-width: 50%; }
+  .prose :global(figcaption) {
+    margin-top: 11px; font-size: 14.5px; line-height: 1.5; color: var(--slate); font-style: italic; text-align: center;
+  }
+  @media (max-width: 600px) {
+    .prose :global(figure.fig-left),
+    .prose :global(figure.fig-right) { float: none; max-width: 100%; margin: 24px auto; }
+  }
 
   /* "Want to use this in your classroom?" — the downloadable, openly-licensed handout/deck. */
   .use {

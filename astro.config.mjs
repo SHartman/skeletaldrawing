@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkTaxonLinks from './src/lib/remark-taxon-links.mjs';
+import rehypeFigures from './src/lib/rehype-figures.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +23,9 @@ export default defineConfig({
     // build so a mention starts linking the day its target page exists. See the plugin for rules
     // (never self-links, first mention only, genus -> hub when >=2 species).
     remarkPlugins: [remarkTaxonLinks],
-    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }]],
+    // rehypeFigures: markdown image titles -> visible captions, plus optional {width=… left|right}
+    // directives. Only touches images that opt in (a title or a {…}); see the plugin header.
+    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }], rehypeFigures],
   },
 
   integrations: [sitemap()],
