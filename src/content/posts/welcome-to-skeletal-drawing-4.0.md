@@ -24,6 +24,8 @@ But there were also several functional limitations I wasn't happy with. Flexible
 
 ![A circle chart showing the visitorship rate from desktop, tablets and mobile](/images/blog/squarespace-visitorship.png "That's not many desktop visitors for June, 2026.")
 
+{width=50% left}
+
 To be fair to SquareSpace, the template the website was based on had to also be at least 13 years old. They've overhauled their template engine several times, and the new ones at least _look_ like they allow better mobile design. But I'm not sure if the other issues could be fixed, and more importantly, when I attempted to update the site to the new 7.1 templates, it broke everything. I'd either be starting from scratch or I'd have to hire someone to port over many hundreds of images, pages and blog posts. I can't afford that! So if I was going to have to start from scratch anyhow...
 
 ### **So how does this fix it?**
@@ -35,6 +37,8 @@ But for you, the visitor, it means everything is pre-rendered and optimized for 
 There are of course new and updated skeletals in the galleries now (we're launching with 286 images of 259 species), but there's also a lot more information available. All animals have scale bars and length estimates, and for species with multiple individuals drawn, there's now a hub that gives  you comparative information and access to all of them - no more having to crowd every [_T. rex_ skeleton](https://skeletaldrawing.pages.dev/theropods/tyrannosaurus-rex/) onto a single image frame. 
 
 And finally, since I control the technology stack, I don't ever have to allow advertising, and there will never be any form of ID tracking on this website. Of course the web is a big place, and I can't promise you the site you came from or leave to won't, or that your browser or operating system aren't doing those things right now - but I'm not!
+
+![Silhouette size comparison of a juvenile and subadult Allosaurus to adult and juvenile humans](/images/blog/comparison.png "This silhouette size comparison pipeline might be useful for additional features...")
 
 ### Please leave feedback! But about that...
 
