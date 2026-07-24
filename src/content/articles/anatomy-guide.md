@@ -24,25 +24,25 @@ draft: false
 
 ## How to read a skeletal
 
-Anatomy involves a lot of directional words to convey what part of an animal we are talking about (or which way a specific bone or muscle is pointed). Many of us may intuitively understand that the rear of the animal is _posterior_, but not as many know the front end is _anterior_. The belly-side of an animal is _ventral_, why the back side (towards the back...not towards its posterior) is _dorsal_. The last set of body directions refers to the side of an animal (_lateral_) or towards the midline (_medial_). 
+Anatomy involves a lot of directional words to convey what part of an animal we are talking about (or which way a specific bone or muscle is pointed). Many of us may intuitively understand that the rear of the animal is _posterior_, but not as many know the front end is _anterior_. The belly-side of an animal is _ventral_, while the back side (towards the back...not towards its posterior) is _dorsal_. The last set of body directions refers to the side of an animal (_lateral_) or towards the midline (_medial_). 
 
-We also want to talk about whether something is further out on a limb (_distal_) or closer to the body (_proximal_). Now there are some option terms as well, and human medicine has flipped some of these terms due to our upright stance, but this is just a primer, not a full blown comparative anatomy course! To visualize the basic orientation terms, you can use the image below:
+We also want to talk about whether something is further out on a limb (_distal_) or closer to the body (_proximal_). Now there are some optional terms as well, and human medicine has flipped some of these terms due to our upright stance, but this is just a primer, not a full blown comparative anatomy course! To visualize the basic orientation terms, you can use the image below:
 
 ![A horned dinosaur with the common pairs of anatomical orientation terms](/images/articles/anatomical-orientation.jpg "Orient yourself - anatomically!")
 
 ## The skull
 
-There are actually two sets of anatomical terms that apply to the skull, starting with  the names of individual bone:.
+There are actually two sets of anatomical terms that apply to the skull, starting with the names of individual bones.
 
 ![A diagram of a T. rex skull, and the names of all of its external bones.](/images/articles/skull-bones.jpg)
 
-Of course the orientation terms still apply! The premaxilla is anterior to the maxilla, while the postobrital bone is dorsal to the jugal.  
+Of course the orientation terms still apply! The premaxilla is anterior to the maxilla, while the postorbital bone is dorsal to the jugal.  
 
-Remember that other set of anatomical terms I mentoned? Well (especially for dinosaurs) you may also want to learn the names of the holes between the skull bones:
+Remember that other set of anatomical terms I mentioned? Well (especially for dinosaurs) you may also want to learn the names of the holes between the skull bones:
 
 ![A diagram of a T. rex skull, with the names of the various fenestra and other holes of the skull](/images/articles/skull-holes.jpg)
 
-These large holes are actually called _fenestra_, and you can apply our anatomy orientation words to them as well, since e.g. the orbit is posterior to the antorbital and promaxillar fenestrae, but anterior to the inferior temporal fenestra. Now you know your fenestra from a hole in the ground!  
+These large holes are actually called _fenestra_, and you can apply our anatomy orientation words to them as well, since e.g. the orbit is posterior to the antorbital and promaxillary fenestrae, but anterior to the inferior temporal fenestra. Now you know your fenestra from a hole in the ground!  
 
 ## The rest of the skeleton
 
