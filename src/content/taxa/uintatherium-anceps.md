@@ -27,4 +27,4 @@ revisionNote: ''
 added: 2026-07-23T12:00:00.000Z
 ---
 
-_Uintatherium_ was a one of the earliest large mammals, weighing up to 4.5 tonnes. They belong to a group named Dinocerata, which was part of the initial mammal radiation into new ecological niches after the extinction of the non-avian dinosaurs at the end of the Mesozoic. _Uintatherium_ appeared in the Paleocene (the first epoch after the K/Pg extinction) and went extinct in the Middle Eocene, with more familiar herbivore groups eventually occupying mammalian large-herbivore roles.
+_Uintatherium_ was one of the earliest large mammals, weighing up to 4.5 tonnes. They belong to a group named Dinocerata, which was part of the initial mammal radiation into new ecological niches after the extinction of the non-avian dinosaurs at the end of the Mesozoic. _Uintatherium_ appeared in the Paleocene (the first epoch after the K/Pg extinction) and went extinct in the Middle Eocene, with more familiar herbivore groups eventually occupying mammalian large-herbivore roles.

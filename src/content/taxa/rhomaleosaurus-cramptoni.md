@@ -26,4 +26,4 @@ revisionNote: ''
 added: 2026-07-23T12:00:00.000Z
 ---
 
-Living in the seas of the Early Jurassic, and measuring in at 7 m (22 feet) long made _Rhomaleosaurus_ one of the first large plesiosaurs. _Rhomaleosaurus_ belonged to a subgroup of plesiosaurs called pliosaurs - short-necked big-headed predators that hunted large fish and other marine reptiles. The type specimen, NMING F8785, is an nearly complete individual, and forms the basis of this reconstruction.
+Living in the seas of the Early Jurassic, and measuring in at 7 m (22 feet) long made _Rhomaleosaurus_ one of the first large plesiosaurs. _Rhomaleosaurus_ belonged to a subgroup of plesiosaurs called pliosaurs - short-necked big-headed predators that hunted large fish and other marine reptiles. The type specimen, NMING F8785, is a nearly complete individual, and forms the basis of this reconstruction.

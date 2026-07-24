@@ -30,6 +30,6 @@ revisionNote: ''
 added: 2026-07-23T12:00:00.000Z
 ---
 
-If you've ever wondered what would happen if you crossed a crocodile with a pig, well it might end up looking something like _Simosaurchus_. Discovered in Late Cretaceous rocks in Madagascar, this 0.75 m (2.5 foot) long, more upright armored notosuchian crocodilie-relative appears to have been a plant eater, a rarity for species this far up the crocodilian family tree. 
+If you've ever wondered what would happen if you crossed a crocodile with a pig, well it might end up looking something like _Simosuchus_. Discovered in Late Cretaceous rocks in Madagascar, this 0.75 m (2.5 foot) long, more upright armored notosuchian crocodile-relative appears to have been a plant eater, a rarity for species this far up the crocodilian family tree. 
 
-_Simosuchus_ got a taste of fame in the second season of Prehistoric Planet, where it was portrayed as a burrower, able to hide out underground when when a marauding _Majungasaurus_ attempted to make a meal out of them.
+_Simosuchus_ got a taste of fame in the second season of Prehistoric Planet, where it was portrayed as a burrower, able to hide out underground when a marauding _Majungasaurus_ attempted to make a meal out of them.
