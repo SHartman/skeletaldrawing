@@ -42,7 +42,7 @@ Remember that other set of anatomical terms I mentioned? Well (especially for di
 
 ![A diagram of a T. rex skull, with the names of the various fenestra and other holes of the skull](/images/articles/skull-holes.jpg)
 
-These large holes are actually called _fenestra_, and you can apply our anatomy orientation words to them as well, since e.g. the orbit is posterior to the antorbital and promaxillary fenestrae, but anterior to the inferior temporal fenestra. Now you know your fenestra from a hole in the ground!  
+These large holes are actually called _fenestra_, and you can apply our anatomy orientation words to them as well, since e.g. the orbit is posterior to the antorbital and promaxillary fenestrae, but anterior to the inferior temporal (aka infratemporal) fenestra. Now you know your fenestra from a hole in the ground!  
 
 ## The rest of the skeleton
 

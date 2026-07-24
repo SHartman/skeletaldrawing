@@ -20,7 +20,7 @@ From a technology standpoint, this is the fourth incarnation of the site (I [det
 
 ![A view of the old sauropod gallery, as seen on a phone browser.](/images/blog/old-mobile-gallery-cropped.png "This always kinda sucked, especially on a phone."){width=45% left}
 
-I realize that isn't a reason. To be sure, I wanted to refresh the design to make it a bit more contemporary, and while the blog will continue, I wanted the site to feel less dominated by it, especially when many visitors just want to find a specifical osteograph or two. 
+I realize that isn't a reason. To be sure, I wanted to refresh the design to make it a bit more contemporary, and while the blog will continue, I wanted the site to feel less dominated by it, especially when many visitors just want to find a specific osteograph or two. 
 
 But the previous version also had several limitations I wasn't happy with. It turns out that dynamically served, Content Management System-based websites come with tradeoffs: Loading performance was slow, especially for the largest skeletal galleries. Locating specific skeletals was harder than it should be - the galleries were slow to scroll through, the site-wide search was terrible, and because individual images in the galleries didn't index well you couldn't even rely on Google to find them for you. Finally, despite templates advertised as "mobile-friendly", navigation on phones was never a good experience. This is reflected in visitation numbers. While 55-60% of all modern web traffic is mobile, 2/3 of my monthly traffic stayed on desktop browsers. 
 
