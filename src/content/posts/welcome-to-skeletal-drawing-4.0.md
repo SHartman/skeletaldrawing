@@ -18,11 +18,13 @@ For the last month and a half I've been working on a complete overhaul of the we
 
 From a technology standpoint, this is the fourth incarnation of the site (I [detailed that history](/blog/welcome-to-the-redesigned-skeletaldrawingcom/) the last time I overhauled the site). But that's something any website that is 22 years old must do to stay relevant. While prior overhauls tried to improve aesthetics, they were especially aimed at making the website easier to add content to. That culminated in the SquareSpace hosted website that launched in 2013, whose design and technology stack stayed essentially the same until I flipped the switch to launch this one.
 
+![A view of the old sauropod gallery, as seen on a phone browser.](/images/blog/old-mobile-gallery-cropped.png "This always kinda sucked, especially on a phone."){width=45% left}
+
 I realize that isn't a reason. To be sure, I wanted to refresh the design to make it a bit more contemporary, and while the blog will continue, I wanted the site to feel less dominated by it, especially when many visitors just want to find a specifical osteograph or two. 
 
 But the previous version also had several limitations I wasn't happy with. It turns out that dynamically served, Content Management System-based websites come with tradeoffs: Loading performance was slow, especially for the largest skeletal galleries. Locating specific skeletals was harder than it should be - the galleries were slow to scroll through, the site-wide search was terrible, and because individual images in the galleries didn't index well you couldn't even rely on Google to find them for you. Finally, despite templates advertised as "mobile-friendly", navigation on phones was never a good experience. This is reflected in visitation numbers. While 55-60% of all modern web traffic is mobile, 2/3 of my monthly traffic stayed on desktop browsers. 
 
-![A circle chart showing the visitorship rate from desktop, tablets and mobile](/images/blog/squarespace-visitorship.png "That's not many desktop visitors for June, 2026."){width=45% right}
+![A circle chart showing the visitorship rate from desktop, tablets and mobile](/images/blog/squarespace-visitorship.png "That's not many mobile visitors for June, 2026."){width=45% right}
 
 To be fair to SquareSpace, the template the prior website was based on was _also_ at least 13 years old. They've overhauled their template engine three times since then, and the new Fluid Engine templates at least _look_ like they work better on phones. I'm not sure if my other objections could be fixed, but more importantly, my design template is so old that when I attempted to update the site it broke _everything_. I'd either have had to start from scratch or hired someone to port over hundreds of pages, images, blog posts, and existing comments. I can't afford that! So if I was going to have to start from scratch anyhow...
 
@@ -33,6 +35,8 @@ The new site was rewritten from the ground up, with a completely new backend (wh
 ### **So what does this do for me?**
 
 For you, the visitor, the overhaul means everything is now pre-rendered and optimized for whatever device you are currently using. Everything should load lickety-split; even the largest galleries (which we all know is the [theropod gallery](https://skeletaldrawing.pages.dev/theropods/)) should load rapidly. Everything is now touchscreen friendly, the galleries can be filtered phylogenetically or by animal length (I dare say they are fun to browse now), and I've got [fully integrated, interactive search](https://skeletaldrawing.pages.dev/skeletals/) that is blazing fast and finds everything that is relevant. Give them a whirl, and let me know what you think!
+
+[![A thumbnail image showing the front half of an Edaphosaurus skeletal](/images/blog/edaphosaurus-thumbnail.png "Look ma,  _Edaphosaurus_!")](/synapsids/edaphosaurus-pogonias/){width=45% right}
 
 There are of course new and updated skeletals (including that [_Edaphosaurus_](https://skeletaldrawing.pages.dev/synapsids/edaphosaurus-pogonias/) some of you are waiting on). I dare say this has helped reinvigorate me, so while the new site is launching with 286 images of 259 species, you can expect more this summer (and fall...and winter...). There's also a lot more information available with each skeletal. All animals have scale bars and length estimates, some basic information and a brief phylogenetic breakdown. There is a new size-comparison image type, and for species where I've drawn multiple specimens, there are now hubs that give you access to all of them - no more having to crowd every [_T. rex_ skeleton](https://skeletaldrawing.pages.dev/theropods/tyrannosaurus-rex/) onto a single image. 
 
@@ -50,4 +54,4 @@ Now the bad news: Right now, that takes 8-12 minutes after approval. Which isn't
 
 If that simply isn't going to work for you, say so. If you prefer, you can also send feedback via [the contact form.](https://skeletaldrawing.pages.dev/contact/) There are other potential commenting implementations, but they all come with tradeoffs. I'm hoping a secure, ad-free posting experience will be worth it, but I'm open to other possibilities. 
 
-Either way, enjoy!
+Either way, I hope this sets up SkeletalDrawing.com for another decade of being useful. Enjoy!
