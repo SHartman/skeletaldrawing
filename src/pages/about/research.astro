@@ -5,24 +5,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // About → Research & teaching. The academic identity + the scholarly record folded in from
 // scotthartman.info (CLAUDE.md §9). Projects are authored here; the publication list is the
 // `publications` CMS collection, so adding a paper never touches code.
+// Each links to its own project page on the academic site (scotthartman.info), opened in a new tab
+// so a reader isn't taken off SD.com. NB (CLAUDE.md §9): Phase 2 folds that site into this spoke and
+// 301s the domain here — at which point these become internal and should be repointed.
 const projects = [
   {
     title: 'Functional anatomy',
     tagline: 'Putting extinct animals back together',
     blurb:
       'Reconstructing how the skeletons of extinct animals fit together and moved — the anatomical groundwork every skeletal on this site is built on.',
+    href: 'https://www.scotthartman.info/project/functional-anatomy/',
   },
   {
     title: 'Physiological modeling',
     tagline: 'Investigating the physiologies of extinct vertebrates',
     blurb:
       'Using mechanistic microclimate and physiological models to test what early dinosaurs and their relatives could actually do — and where their bodies constrained them.',
+    href: 'https://www.scotthartman.info/project/mechanistic-physiological-modeling/',
   },
   {
     title: 'Origin of avian flight',
     tagline: 'Breaking the false ground-up / trees-down dichotomy',
     blurb:
       'Working out how flight arose along the bird stem, using detailed functional anatomy of the earliest paravians rather than a forced either/or.',
+    href: 'https://www.scotthartman.info/project/origin-of-avian-flight/',
   },
 ];
 
@@ -65,9 +71,12 @@ const description =
       <ul class="projects">
         {projects.map((p) => (
           <li class="project">
-            <h3 class="proj-title">{p.title}</h3>
-            <p class="proj-tag">“{p.tagline}”</p>
-            <p class="proj-blurb">{p.blurb}</p>
+            <a class="proj-link" href={p.href} target="_blank" rel="noopener">
+              <h3 class="proj-title">{p.title}</h3>
+              <p class="proj-tag">“{p.tagline}”</p>
+              <p class="proj-blurb">{p.blurb}</p>
+              <span class="proj-more">Read more on my research site <span class="proj-arrow" aria-hidden="true">↗</span></span>
+            </a>
           </li>
         ))}
       </ul>
@@ -129,10 +138,21 @@ const description =
   }
 
   .projects { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-  .project { border-top: 2px solid var(--ink); padding-top: 14px; }
+  /* each card is a link to its academic-site project page; the top rule warms to gold on hover */
+  .project { border-top: 2px solid var(--ink); transition: border-top-color .15s ease; }
+  .project:hover { border-top-color: var(--accent); }
+  .proj-link { display: block; padding-top: 14px; text-decoration: none; color: inherit; }
   .proj-title { margin: 0; font-style: italic; font-weight: 500; font-size: 21px; }
   .proj-tag { margin: 6px 0 0; font-size: 15px; color: var(--accent); }
   .proj-blurb { margin: 10px 0 0; font-size: 15px; line-height: 1.58; color: var(--slate); }
+  .proj-more {
+    display: inline-block; margin: 14px 0 0; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+  }
+  .proj-arrow { display: inline-block; transition: transform .15s ease; }
+  .project:hover .proj-arrow { transform: translate(2px, -2px); }
+  .proj-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) { .proj-arrow { transition: none; } }
 
   .pubs { list-style: none; margin: 0; padding: 0; }
   .pub {
