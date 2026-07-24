@@ -183,7 +183,10 @@ collections:
           - { name: alt, label: "Alt text", widget: string }
       - { name: featured, label: "Featured (home lead post)", widget: boolean, default: false, required: false }
       - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
-      - { name: body, label: "Body", widget: markdown }
+      - name: body
+        label: "Body"
+        widget: markdown
+        hint: 'Images: ![alt](/images/blog/pic.png "A caption") adds a visible caption. Add {width=60%} to size it, or {width=50% left} (or right) to float it with text wrapping. The editor shows raw text for these — confirm on the built page.'
 
   - name: articles
     label: "Learn — guides & articles"
@@ -232,7 +235,10 @@ collections:
       - { name: licenseNote, label: "Use grant (shown with downloads)", widget: text, required: false, hint: "The terms under which classrooms may use the download. Leave blank for the default educational-use line." }
       - { name: featured, label: "Featured (flagship card)", widget: boolean, default: false, required: false }
       - { name: draft, label: "Draft (hide from the site)", widget: boolean, default: false, required: false }
-      - { name: body, label: "Body", widget: markdown }
+      - name: body
+        label: "Body"
+        widget: markdown
+        hint: 'Images: ![alt](/images/blog/pic.png "A caption") adds a visible caption. Add {width=60%} to size it, or {width=50% left} (or right) to float it with text wrapping. The editor shows raw text for these — confirm on the built page.'
 
   - name: resources
     label: "Learn — external resources"

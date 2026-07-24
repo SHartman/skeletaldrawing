@@ -26,4 +26,4 @@ revisionNote: ''
 added: 2026-07-23T12:00:00.000Z
 ---
 
-_Prenocephale_ was a dome-headed pachycephalosaur from the Late Cretaceous of Mongolia. Like most pachycephalosaurs, it was modest in size (2.5 m / 9 feet in length), probably weighing about as much as a large dog. Their domed heads are presumed to have been used in some combination of display, combat and defense - whether combat would mean head-to-head collisions as in big horn sheep, or aiming at the sides and legs of their opponent is more likely is still a subject of debate.
+_Prenocephale_ was a dome-headed pachycephalosaur from the Late Cretaceous of Mongolia. Like most pachycephalosaurs, it was modest in size (2.5 m / 9 feet in length), probably weighing about as much as a large dog. Their domed heads are presumed to have been used in some combination of display, combat and defense - whether combat would mean head-to-head collisions as in bighorn sheep, or aiming at the sides and legs of their opponent is more likely is still a subject of debate.
