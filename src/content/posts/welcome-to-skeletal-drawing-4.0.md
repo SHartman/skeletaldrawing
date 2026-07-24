@@ -22,9 +22,7 @@ I realize that isn't a reason. To be sure, I wanted to refresh the design to mak
 
 But the previous version also had several limitations I wasn't happy with. It turns out that dynamically served, Content Management System-based websites come with tradeoffs: Loading performance was slow, especially for the largest skeletal galleries. Locating specific skeletals was harder than it should be - the galleries were slow to scroll through, the site-wide search was terrible, and because individual images in the galleries didn't index well you couldn't even rely on Google to find them for you. Finally, despite templates advertised as "mobile-friendly", navigation on phones was never a good experience. This is reflected in visitation numbers. While 55-60% of all modern web traffic is mobile, 2/3 of my monthly traffic stayed on desktop browsers. 
 
-![A circle chart showing the visitorship rate from desktop, tablets and mobile](/images/blog/squarespace-visitorship.png "That's not many desktop visitors for June, 2026.")
-
-{width=50% left}
+![A circle chart showing the visitorship rate from desktop, tablets and mobile](/images/blog/squarespace-visitorship.png "That's not many desktop visitors for June, 2026."){width=50% left}
 
 To be fair to SquareSpace, the template the website was based on was _also_ at least 13 years old. They've overhauled their template engine three times since then, and the new Fluid Engine templates at least _look_ like they allow better mobile design. I'm not sure if my other objections could be fixed, but more importantly, my design template is so old that when I attempted to update the site it broke _everything_. I'd either have had to start from scratch or hire someone to port over hundreds of images, pages and blog posts, and existing comments. I can't afford that! So if I was going to have to start from scratch anyhow...
 
