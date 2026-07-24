@@ -33,6 +33,7 @@
 /new-page                                                                  /galleries/                                 301
 /store/tumbler-ridge-display-license                                       /about/licensing/                           301
 /store                                                                     /about/licensing/                           301
+/store/                                                                    /about/licensing/                           301
 
 # Original pre-Squarespace deep links (.htm/.html), flattened straight to the new target
 /psgallery/gallery.htm                                                     /theropods/                                 301

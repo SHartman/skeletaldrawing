@@ -3,3 +3,4 @@ Allow: /
 Disallow: /admin/
 
 Sitemap: https://www.skeletaldrawing.com/sitemap-index.xml
+Sitemap: https://www.skeletaldrawing.com/sitemap-images.xml

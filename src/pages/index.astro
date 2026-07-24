@@ -137,9 +137,42 @@ const ogImage = new URL('/images/home-golden-hero.png', Astro.site).href;
 const title = 'Skeletal Drawing — scientific reconstructions by Dr. Scott Hartman';
 const description =
   'Rigorous skeletal reconstructions and life restorations of extinct animals, drawn from the fossils themselves, by vertebrate paleontologist Dr. Scott Hartman.';
+
+// Site-identity structured data: names the site + the person behind it (a stable @id both are keyed
+// on), so Google can attach the "Scott Hartman" entity to the domain and resolve the site name. The
+// per-image ImageObject graphs live on the taxon/specimen pages; this is the site-level anchor.
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.skeletaldrawing.com/#website',
+      name: 'Skeletal Drawing',
+      alternateName: 'SkeletalDrawing.com',
+      url: 'https://www.skeletaldrawing.com/',
+      description,
+      inLanguage: 'en',
+      publisher: { '@id': 'https://www.skeletaldrawing.com/#person' },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://www.skeletaldrawing.com/#person',
+      name: 'Scott Hartman',
+      alternateName: 'Dr. Scott Hartman',
+      url: 'https://www.skeletaldrawing.com/about/',
+      jobTitle: 'Paleobiologist',
+      affiliation: { '@type': 'CollegeOrUniversity', name: 'University of Wisconsin–Madison' },
+      knowsAbout: ['Vertebrate paleontology', 'Functional anatomy', 'Dinosaurs', 'Paleoart'],
+      sameAs: ['https://www.scotthartman.info/', 'https://www.imdb.com/name/nm9027128/'],
+    },
+  ],
+};
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImage} bare>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(homeJsonLd)} />
+  </Fragment>
   <!-- ============ HERO ============ -->
   <section class="hero">
     <Picture
@@ -321,7 +354,7 @@ const description =
       <p class="bio-text">Skeletal reconstructions by <strong>Dr. Scott Hartman</strong> — vertebrate paleontologist. Three decades of specimen-based drawings used in peer-reviewed research, museum exhibits, TV and print.</p>
       <div class="bio-cta">
         <a class="btn btn-gold sm" href="/about/">About Scott</a>
-        <a class="btn btn-dark sm" href="/store/">Licensing</a>
+        <a class="btn btn-dark sm" href="/about/licensing/">Licensing</a>
         <a class="btn btn-dark sm" href="/contact/">Contact</a>
       </div>
     </div>
