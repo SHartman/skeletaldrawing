@@ -11,7 +11,7 @@ specimenId: ''
 specimenName: ''
 lengthM: 30
 widthM: 28.26
-lengthLabel: 28–30 m
+lengthLabel: 27.5–30 m
 massKg: null
 massSource: ''
 lifeStage: ''
