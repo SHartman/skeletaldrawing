@@ -7,7 +7,8 @@ clade:
 family: ''
 specimenId: ''
 specimenName: ''
-lengthM: 12.5
+lengthM: 11.5
+widthM: 11.3
 lengthLabel: ''
 massKg: null
 massSource: ''
@@ -18,7 +19,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/acrocanthosaurus-atokensis-skeletal.png
-  alt: Acrocanthosaurus atokensis skeletal reconstruction, left lateral view, reconstructed length ~12.5 m.
+  alt: Acrocanthosaurus atokensis skeletal reconstruction, left lateral view, reconstructed length ~11.5 m.
 added: 2026-06-30T12:02:00.000Z
 ---
 
