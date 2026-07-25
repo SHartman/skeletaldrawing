@@ -93,10 +93,17 @@ export function formatLength(d: TaxonData): string {
   return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
 }
 
-/** Scale-aware length from raw meters (specimens have no lengthLabel override). */
-export function formatMeters(m?: number): string {
+/** Scale-aware length from raw meters (specimens have no lengthLabel override).
+ *
+ *  `decimals` defaults to 1, which is right for body lengths — a reconstructed total length is not
+ *  known to the centimetre, so "~12.3 m" states the real precision. Pass 2 for directly measured
+ *  ELEMENTS, where the extra figure is the whole point: adult T. rex femora run 1.26–1.33 m, so one
+ *  decimal collapses five distinct bones to an identical "1.3" and the hub's sortable femur column
+ *  reports nothing. Trailing zeros are still stripped, so a femur recorded as 1.30 shows "1.3"
+ *  rather than claiming a precision the record doesn't have. */
+export function formatMeters(m?: number, decimals = 1): string {
   if (m == null) return '';
-  return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(1)} m`;
+  return m < 1 ? `${Math.round(m * 100)} cm` : `~${+m.toFixed(decimals)} m`;
 }
 
 /** US-friendly imperial length for the length record box, tiered so precision tracks the scale:

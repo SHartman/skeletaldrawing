@@ -45,7 +45,7 @@ const caption = `${kmOnly ? 'Known material · ' : ''}Scale bar = ${s.scaleBar}`
 // Metric primary, US-friendly imperial in parentheses (length only — not femur).
 const ltImperial = formatImperial(s.lengthM);
 const lt = ltImperial ? `${formatMeters(s.lengthM)} (${ltImperial})` : formatMeters(s.lengthM);
-const femur = formatMeters(s.femurM);
+const femur = formatMeters(s.femurM, 2); // measured element — match the hub table's precision
 const mass = formatMass(s.massKg);
 const tClades = expandClades(t.clade);
 const family = t.family ?? tClades.at(-1);

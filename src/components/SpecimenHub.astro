@@ -50,7 +50,7 @@ const rows = all.map((s: any) => ({
   id: s.id,
   data: s.data,
   length: formatMeters(s.data.lengthM),
-  femur: formatMeters(s.data.femurM),
+  femur: formatMeters(s.data.femurM, 2), // measured element — 1 decimal flattens 1.26–1.33 to "1.3"
   mass: formatMass(s.data.massKg),
 }));
 
