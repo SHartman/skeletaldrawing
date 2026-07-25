@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: ''
 specimenName: ''
-lengthM: 10
+lengthM: 8
+widthM: 7.69
 lengthLabel: ''
 massKg: null
 massSource: ''
@@ -20,7 +21,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/megalosaurus-bucklandi-skeletal.png
-  alt: Megalosaurus bucklandi skeletal reconstruction, left lateral view, reconstructed length ~10 m.
+  alt: Megalosaurus bucklandi skeletal reconstruction, left lateral view, reconstructed length ~8 m.
 rigorous:
   src: /images/skeletals/megalosaurus-bucklandi-known-elements.png
   alt: 'Known skeletal material of Megalosaurus bucklandi: preserved elements shown in white against a black body silhouette.'
