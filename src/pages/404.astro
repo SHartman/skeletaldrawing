@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Astro renders this to dist/404.html, which Cloudflare Pages serves — with a real 404 status —
+// for any path that matches no file and no _redirects rule.
+//
+// WHY IT MATTERS HERE: without a 404.html, Pages falls back to serving index.html with HTTP 200,
+// so EVERY unknown URL returned the homepage and looked successful. On a site with two decades of
+// inbound links (some stale or mistyped) that produces unbounded soft-404s — Google sees many URLs
+// serving identical homepage content, burns crawl budget that belongs to the 376 real pages, and
+// any hole in the legacy redirect map (CLAUDE.md §8) is masked as a 200 instead of surfacing.
+//
+// The page is deliberately useful rather than a dead end: the galleries are the site's spine, so a
+// visitor who lands on a dead legacy URL is one click from where they meant to go.
+const title = 'Page not found — Skeletal Drawing';
+const description = 'That page doesn’t exist. Browse the skeletal galleries, the blog, or search from here.';
+
+const galleries = [
+  { href: '/theropods/', label: 'Theropoda' },
+  { href: '/sauropods-and-kin/', label: 'Sauropodomorpha & kin' },
+  { href: '/ornithischians/', label: 'Ornithischia' },
+  { href: '/synapsids/', label: 'Synapsida' },
+  { href: '/non-dinosaurs/', label: 'Non-dinosaurs' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, follow" />
+  </Fragment>
+
+  <main class="wrap nf">
+    <header class="head">
+      <p class="eyebrow">404</p>
+      <h1 class="display">That page isn’t here</h1>
+      <p class="intro">
+        The link may be from an older version of this site, or the address may have a typo. Nothing is
+        lost — every skeletal reconstruction still lives in the galleries below.
+      </p>
+    </header>
+
+    <nav class="cols" aria-label="Skeletal galleries">
+      <h2 class="ttl">Browse the galleries</h2>
+      <ul class="links">
+        {galleries.map((g) => (
+          <li><a href={g.href}>{g.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="cols" aria-label="Elsewhere on the site">
+      <h2 class="ttl">Or head to</h2>
+      <ul class="links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/galleries/">All galleries</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/learn/">Learn</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+
+    <p class="report">
+      Followed a link from elsewhere that should work? <a href="/contact/">Tell me about it</a> and I’ll
+      redirect it.
+    </p>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--pad-side); }
+
+  .head { margin: 48px 0 34px; }
+
+  .eyebrow {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate);
+  }
+
+  .display {
+    margin: 0; font-style: italic; font-weight: 500;
+    font-size: clamp(38px, 6vw, 60px); line-height: 1.0; letter-spacing: -.015em;
+  }
+
+  .intro { margin: 18px 0 0; font-size: 18px; line-height: 1.62; color: var(--ink); max-width: 60ch; }
+
+  .cols { margin: 0 0 28px; }
+
+  .ttl {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--slate); font-weight: 400;
+  }
+
+  .links {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 8px 10px;
+  }
+
+  .links a {
+    display: inline-block; padding: 8px 14px;
+    background: var(--plate); border: 1px solid var(--hair-strong); border-radius: 4px;
+    font-size: 15px; color: var(--ink); text-decoration: none;
+  }
+
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  .links a:focus-visible {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak);
+  }
+
+  .report {
+    margin: 34px 0 64px; padding-top: 20px; border-top: 1px solid var(--hair);
+    font-size: 14px; line-height: 1.6; color: var(--measure);
+  }
+</style>

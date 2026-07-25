@@ -6,6 +6,11 @@
 # NOT redirected (the new site serves them at the same path): /, /theropods, /sauropods-and-kin,
 # /anatomy, /non-dinosaurs. (/store IS redirected → /about/licensing/ until the storefront ships.)
 
+# Legacy sitemap path. The Squarespace site served /sitemap.xml and that URL is still the one
+# submitted in Search Console (since 2014); Astro emits /sitemap-index.xml instead. Google follows
+# a redirected sitemap, so this keeps the historic submission — and any third-party reference — alive.
+/sitemap.xml                                                               /sitemap-index.xml                          301
+
 # Corrected clade slug (was misspelled "ornithiscians" on the live site)
 /ornithiscians                                                             /ornithischians/                            301
 
