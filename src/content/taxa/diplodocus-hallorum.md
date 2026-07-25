@@ -9,8 +9,9 @@ clade:
 family: ''
 specimenId: ''
 specimenName: ''
-lengthM: 28
-lengthLabel: 27–28 m
+lengthM: 30
+widthM: 28.26
+lengthLabel: 28–30 m
 massKg: null
 massSource: ''
 lifeStage: ''
@@ -21,7 +22,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/diplodocus-hallorum-nmmnh-3690-known-material.png
-  alt: Known skeletal material of Diplodocus hallorum NMMNH 3690 — elements preserved drawn in white against a black body silhouette, estimated length ~28 m
+  alt: Known skeletal material of Diplodocus hallorum NMMNH 3690 — elements preserved drawn in white against a black body silhouette, estimated length ~30 m
 added: ''
 ---
 
