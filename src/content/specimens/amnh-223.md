@@ -7,8 +7,8 @@ repository: American Museum of Natural History
 repositoryUrl: https://www.amnh.org/
 formation: Morrison Formation
 locality: ''
-lengthM: 28
-widthM: null
+lengthM: 27.5
+widthM: 26.2
 femurM: null
 massKg: null
 completenessPct: null
