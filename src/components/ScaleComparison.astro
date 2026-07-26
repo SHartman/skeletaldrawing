@@ -52,13 +52,49 @@ const scaled = items.map((it, idx) => {
   return { ...it, idx, s, sw: it.w * s, sh: it.h * s };
 });
 
-// Gold-tint lightness ramp: idx 0 (largest) lightest → last (smallest) darkest. Semi-transparent
-// fills blend on overlap; a same-hue darker outline keeps every edge crisp (incl. near-equal sizes).
+// Gold-tint lightness ramp: idx 0 (largest) lightest → last (smallest) darkest. A same-hue darker
+// outline keeps every edge crisp (incl. near-equal sizes).
 const RAMP_HUE = 34, RAMP_SAT = 58;
+
+// ---- Adaptive fill opacity -------------------------------------------------------------------
+// Transparency is only worth paying for when a silhouette would otherwise HIDE one behind it.
+// Painting order is largest→smallest, so each shape occludes everything already drawn; the one it
+// damages most is whichever behind it has the smallest footprint. Compare against that, and let the
+// fill go solid when the shape is clearly smaller than anything it covers.
+//
+// Footprint is the RENDERED box (sw × sh), not lengthM: everything is anchored at the same corner
+// (tail-tip on the guide, feet on the ground line), so what matters is the fraction of the shape
+// behind that gets covered — and area catches pose differences length cannot. A long low
+// plesiosaur and an upright prosauropod can share a length and occlude completely differently.
+//
+// Ramped rather than switched on a threshold: the interactive tool re-renders as animals are added
+// and removed, and a hard cutoff would make the whole plate visibly flip mid-interaction.
+const OP_BLEND = 0.75; // near-equal sizes — let the shape behind read through (the previous constant)
+const OP_SOLID = 1;    // clearly smaller — it hides almost nothing, so paint it solid
+const COVER_LO = 0.35, COVER_HI = 0.65;
+
+let smallestBehind = Infinity; // smallest footprint painted so far = the tightest constraint
 const ramp = scaled.map((d) => {
   const t = scaled.length > 1 ? d.idx / (scaled.length - 1) : 0.4;
   const L = Math.round(68 - t * 38); // 68% → 30%
-  return { ...d, fill: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}%)`, stroke: `hsl(${RAMP_HUE} ${RAMP_SAT + 8}% ${Math.max(L - 18, 16)}%)` };
+
+  const area = d.sw * d.sh;
+  // First shape has nothing behind it, so it is always solid — a small win on its own.
+  const coverage = smallestBehind === Infinity ? 0 : Math.min(area / smallestBehind, 1);
+  smallestBehind = Math.min(smallestBehind, area);
+  const k = Math.min(Math.max((coverage - COVER_LO) / (COVER_HI - COVER_LO), 0), 1);
+  const fillOpacity = +(OP_SOLID + (OP_BLEND - OP_SOLID) * k).toFixed(3);
+
+  return {
+    ...d,
+    fillOpacity,
+    fill: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}%)`,
+    stroke: `hsl(${RAMP_HUE} ${RAMP_SAT + 8}% ${Math.max(L - 18, 16)}%)`,
+    // Legend swatch carries the same alpha so it shows what the plate actually renders. It sits on
+    // the same --plate background, so compositing matches; previously it painted the fill at full
+    // opacity while the overlay drew it at .75.
+    swatch: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}% / ${fillOpacity})`,
+  };
 });
 
 const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0; // biological max — for the aria label
@@ -139,7 +175,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
               d={d.path}
               transform={tx(d)}
               class="sil"
-              style={`fill:${d.fill};fill-opacity:.75;stroke:${d.stroke};stroke-width:1.2;stroke-opacity:.9`}
+              style={`fill:${d.fill};fill-opacity:${d.fillOpacity};stroke:${d.stroke};stroke-width:1.2;stroke-opacity:.9`}
             />
           ))}
 
@@ -160,7 +196,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
         <figcaption class="legend">
           {ramp.map((d) => (
             <span class="leg-item">
-              <span class="sw" style={`background:${d.fill};border:1px solid ${d.stroke}`} />
+              <span class="sw" style={`background:${d.swatch};border:1px solid ${d.stroke}`} />
               <span class="leg-name">{d.label}</span>
               <span class="leg-len">{d.lengthM} m</span>
             </span>
