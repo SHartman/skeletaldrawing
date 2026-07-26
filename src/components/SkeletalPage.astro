@@ -266,11 +266,32 @@ const jsonLd = underRevision
       </section>
     )}
 
+    {/* Ontogenetic growth-series overlay (e.g. Maiasaura), only when flagged. Deliberately placed
+        BEFORE the individual stage plates: the overlay is the argument the page is making, and the
+        full-size plates below are the evidence it rests on. Rendering it last meant a reader had to
+        scroll past several full-width skeletals to reach the figure that explains why they are
+        there. The plates keep their full size and remain just as discoverable — they simply follow
+        the point they illustrate. (Only growth series reorder; taxa whose extras are unrelated
+        bonus figures, e.g. speculative armour, are unaffected because they set no growthSeries.) */}
+    {d.growthSeries && (
+      <ScaleComparison
+        taxonId={`${entry.id}-growth`}
+        total={0}
+        heading="Growth series"
+        note={d.growthNote ?? 'The growth stages below, drawn to a common scale.'}
+      />
+    )}
+
     <!-- ============ bonus figures (e.g. speculative armor), only when present ============ -->
     {figs.length > 0 && (
       <section class="extras">
         {figs.map((f) => (
           <figure class="rig-fig">
+            {/* Matches SpecimenPage: a bonus figure's `label` is its identity ("Hatchling",
+                "Yearling"), distinct from `caption` prose. It was being captured in content and
+                silently dropped here, which is what made a growth series read as a run of
+                unlabelled full-width plates. */}
+            {f.label && <p class="eyebrow fig-label">{f.label}</p>}
             <div class="rig-plate">
               {f.img ? (
                 <Picture
@@ -303,16 +324,6 @@ const jsonLd = underRevision
           </figure>
         ))}
       </section>
-    )}
-
-    <!-- ============ ontogenetic growth-series overlay (e.g. Maiasaura), only when flagged ============ -->
-    {d.growthSeries && (
-      <ScaleComparison
-        taxonId={`${entry.id}-growth`}
-        total={0}
-        heading="Growth series"
-        note={d.growthNote ?? 'The growth stages above, drawn to a common scale.'}
-      />
     )}
 
     <!-- ===================== related ===================== -->
@@ -452,6 +463,7 @@ const jsonLd = underRevision
   }
   .rig-fig { margin: 0; }
   .rig-plate { background: var(--plate); border: 1px solid var(--hair); padding: 30px 34px; }
+  .fig-label { margin: 0 0 14px; } /* same treatment as SpecimenPage */
   .rig-cap {
     margin-top: 16px; font-size: 15px; color: var(--slate);
     line-height: 1.55; max-width: 760px;
