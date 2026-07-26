@@ -164,8 +164,14 @@ const jsonLd = underRevision
         <p class="eyebrow">
           {eyebrowParts.map((p, i) => (
             <Fragment>
+              {/* <wbr> supplies the break opportunity: the separators are adjacent inline elements
+                  spaced by CSS margin, so there is no whitespace between crumbs for the line to
+                  break at. Without this the nowrap crumbs make the whole eyebrow unbreakable and it
+                  overflows instead of wrapping. */}
+              {i > 0 && <wbr />}
               {i > 0 && <span class={p.spec ? 'sep sep-type' : 'sep'} aria-hidden="true">{p.spec ? '|' : '/'}</span>}
-              {p.href ? <a href={p.href}>{p.label}</a> : <span>{p.label}</span>}
+              {i > 0 && <wbr />}
+              {p.href ? <a class="crumb" href={p.href}>{p.label}</a> : <span class="crumb">{p.label}</span>}
             </Fragment>
           ))}
         </p>
@@ -375,6 +381,12 @@ const jsonLd = underRevision
      tap on mobile); they inherit the eyebrow look, with a faint underline on hover as the only tell */
   .eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s ease, border-color .15s ease; }
   .eyebrow a:hover { color: var(--ink); border-bottom-color: var(--accent-soft); }
+  /* Each crumb is atomic: a clade name or a catalog number must never split across lines. Without
+     this, a long eyebrow wrapped mid-token — Amargasaurus broke "MACN-N 15" at its hyphen, stranding
+     "MACN-" at the end of the line. Breaks still happen BETWEEN crumbs, so the line still wraps; and
+     the longest id in the catalogue (NHMAD 2020.00001, ~161px at this size) clears a 320px viewport,
+     so nowrap can't force horizontal scroll (CLAUDE.md §3). */
+  .eyebrow .crumb { white-space: nowrap; }
   .eyebrow .sep { margin: 0 .5em; opacity: .5; }
   /* vertical bar at the taxonomy→specimen boundary — a subtle "data type changed" tell */
   .eyebrow .sep-type { margin: 0 .62em; opacity: .38; }
