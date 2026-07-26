@@ -69,9 +69,16 @@ const RAMP_HUE = 34, RAMP_SAT = 58;
 //
 // Ramped rather than switched on a threshold: the interactive tool re-renders as animals are added
 // and removed, and a hard cutoff would make the whole plate visibly flip mid-interaction.
+// The band is anchored to LENGTH difference, which is how the sizes actually read, via
+// coverage ≈ (length ratio)²:  5% shorter ≈ .90 · 10% ≈ .81 · 20% ≈ .64 · 29% ≈ .50 · 41% ≈ .35.
+// COVER_HI .90 = "within ~5% — genuinely near-equal, must blend or the one behind disappears";
+// COVER_LO .50 = "~29% shorter — different enough to read on its own, so paint it solid".
+// An earlier .35–.65 band was far too conservative: it withheld ALL solidity until a 19% length
+// difference, so the two Archaeopteryx (19% apart, coverage .655) landed .005 above the threshold
+// and rendered identically to the four T. rex adults that differ by 2–4%.
 const OP_BLEND = 0.75; // near-equal sizes — let the shape behind read through (the previous constant)
 const OP_SOLID = 1;    // clearly smaller — it hides almost nothing, so paint it solid
-const COVER_LO = 0.35, COVER_HI = 0.65;
+const COVER_LO = 0.50, COVER_HI = 0.90;
 
 let smallestBehind = Infinity; // smallest footprint painted so far = the tightest constraint
 const ramp = scaled.map((d) => {
