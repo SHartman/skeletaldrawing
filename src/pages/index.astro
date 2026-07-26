@@ -95,8 +95,15 @@ const pool = await Promise.all(
   recons.slice(0, POOL_SIZE).map(async (r, i) => {
     const meta = await loadSkeletal(r.src);
     const img = meta ? (await getImage({ src: meta, format: 'webp', width: 1400 })).src : r.src;
+    // Intrinsic dimensions travel with each pool entry so the plate can reserve its box BEFORE the
+    // image loads, and so the client swap resizes it in one step instead of reflowing on decode.
+    // Every skeletal has a different aspect ratio, so these must be per-entry, not a fixed box.
+    const w = meta ? 1400 : null;
+    const h = meta ? Math.round((1400 * meta.height) / meta.width) : null;
     return {
       img,
+      w,
+      h,
       alt: r.alt,
       taxon: r.taxon,
       href: r.href,
@@ -172,6 +179,13 @@ const homeJsonLd = {
 <BaseLayout title={title} description={description} ogImage={ogImage} bare>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(homeJsonLd)} />
+    {/* Newsreader italic is preloaded HERE and not in BaseLayout, because the cost is only worth
+        paying on this page. The hero headline sets "scientific life." in italic at 56px, so when the
+        italic face arrives late the headline re-metricises and the whole hero-foot moves — measured
+        at 0.132 CLS on desktop, ~95% of the page's total. Taxon pages use italic too (the binomial)
+        but measured 0.000 CLS, so they should not carry a 143 KB early fetch competing with their
+        skeletal plate for bandwidth. */}
+    <link rel="preload" href="/fonts/newsreader-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
   </Fragment>
   <!-- ============ HERO ============ -->
   <section class="hero">
@@ -234,7 +248,7 @@ const homeJsonLd = {
       <>
         <figure class="plate">
           <a href={featured.href} class="plate-link" id="feat-link">
-            <img src={featured.img} alt={featured.alt} class="plate-img" id="feat-img" loading="lazy" />
+            <img src={featured.img} alt={featured.alt} width={featured.w} height={featured.h} class="plate-img" id="feat-img" loading="lazy" />
           </a>
           <div class="plate-rule"></div>
           <div class="plate-credit" id="feat-credit">{featured.credit}</div>
@@ -263,7 +277,12 @@ const homeJsonLd = {
             if (idx === 0) return; // newest already rendered
             const p = pool[idx];
             const set = (id, fn) => { const e = document.getElementById(id); if (e) fn(e); };
-            set('feat-img', (e) => { e.src = p.img; e.alt = p.alt; });
+            // width/height go on BEFORE src: the box resizes to the new aspect ratio in the same
+            // frame as the swap, rather than reflowing again when the new image finishes decoding.
+            set('feat-img', (e) => {
+              if (p.w && p.h) { e.width = p.w; e.height = p.h; }
+              e.src = p.img; e.alt = p.alt;
+            });
             set('feat-link', (e) => (e.href = p.href));
             set('feat-taxon-link', (e) => (e.href = p.href));
             set('feat-taxon', (e) => (e.textContent = p.taxon));
