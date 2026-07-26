@@ -27,9 +27,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
 
-    {/* Favicon — the long-standing theropod-skull mark, kept for brand recognition. */}
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    {/* Favicon — the long-standing theropod-skull mark, kept for brand recognition.
+        Served at icon sizes, NOT from the 809x809 master: that file is 152 KB and was the single
+        largest own-origin download on every page (bigger than either font, 7x a skeletal plate),
+        fetched in full only to be painted at 16 px. favicon.png stays in place as the master and
+        for anything that hard-coded it, but nothing links it any more. */}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     {/* Open Graph / Twitter */}
     <meta property="og:site_name" content="Skeletal Drawing" />

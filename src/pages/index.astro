@@ -218,6 +218,11 @@ const homeJsonLd = {
     </div>
   </section>
 
+  <!-- The home page runs BaseLayout in `bare` mode and supplies its own chrome, so it also has to
+       supply its own <main> — without it the page has no main landmark and screen-reader users get
+       no skip target. Starts after the hero, which carries the site header. -->
+  <main>
+
   <!-- ============ NEWEST RECONSTRUCTION ============ -->
   <section class="band newest">
     <div class="cta-row">
@@ -347,6 +352,8 @@ const homeJsonLd = {
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ============ BIO STRIP ============ -->
   <div class="bio">
@@ -497,7 +504,9 @@ const homeJsonLd = {
     background: var(--plate); border: 1px solid var(--hair); border-radius: 6px; overflow: hidden;
     display: flex; align-items: center; justify-content: center; padding: 14px; min-height: 214px;
   }
-  .lead-img { max-width: 100%; max-height: 202px; display: block; }
+  /* width:auto + object-fit stop the flex context from stretching a portrait thumbnail into the
+     landscape box — the 3072x3420 lead image was rendering 335x202, visibly squashed. */
+  .lead-img { max-width: 100%; max-height: 202px; width: auto; object-fit: contain; display: block; }
   .thumb-ph {
     font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--measure);
   }
@@ -511,7 +520,9 @@ const homeJsonLd = {
   .lead-excerpt { font-size: 16px; line-height: 1.55; color: var(--slate); margin: 13px 0 0; }
   .lead-foot { display: flex; align-items: center; gap: 16px; margin-top: 17px; }
   .read-more { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-  .post-date { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; color: var(--measure); }
+  /* --slate, not --measure: --measure (#69737D) clears WCAG AA against white (4.83:1) but these
+     dates sit on the --plate card (#ECEDEE), where it drops to 4.11:1 and fails. --slate gives 5.19:1. */
+  .post-date { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; color: var(--slate); }
 
   .more-posts { border-left: 1px solid var(--hair); padding-left: 32px; }
   .more-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--slate); margin: 0 0 4px; }
