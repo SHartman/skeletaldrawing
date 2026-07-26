@@ -40,9 +40,9 @@ For you, the visitor, the overhaul means everything is now pre-rendered and opti
 
 There are of course new and updated skeletals (including that [_Edaphosaurus_](/synapsids/edaphosaurus-pogonias/) some of you are waiting on). I dare say this has helped reinvigorate me, so while the new site is launching with 286 images of 259 species, you can expect more this summer (and fall...and winter...). There's also a lot more information available with each skeletal. All animals have scale bars and length estimates, some basic information and a brief phylogenetic breakdown. There is a new size-comparison image type, and for species where I've drawn multiple specimens, there are now hubs that give you access to all of them - no more having to crowd every [_T. rex_ skeleton](/theropods/tyrannosaurus-rex/) onto a single image. 
 
-![Silhouette size comparison of a juvenile and subadult Allosaurus to adult and juvenile humans](/images/blog/comparison.png "This silhouette size comparison pipeline might be useful for additional features...")
-
 And finally, since I control the technology stack, I don't ever have to allow advertising, and there will never be any form of ID tracking. Of course the web is a big place, and I can't promise you the site you came from or leave to won't track you, or that your browser or operating system aren't doing that right now - but I'm not!
+
+![Silhouette size comparison of a juvenile and subadult Allosaurus to adult and juvenile humans](/images/blog/comparison.png "This silhouette size comparison pipeline might be useful for additional features...")
 
 ### Please leave feedback! But about that...
 
