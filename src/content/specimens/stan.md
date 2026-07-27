@@ -8,7 +8,7 @@ repositoryUrl: ''
 formation: Hell Creek Formation
 locality: ''
 lengthM: 11.8
-widthM: null
+widthM: 11.5
 femurM: 1.26
 massKg: null
 completenessPct: 63

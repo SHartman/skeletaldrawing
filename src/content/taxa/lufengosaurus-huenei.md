@@ -9,6 +9,7 @@ family: ''
 specimenId: IVPP V15
 specimenName: ''
 lengthM: 6
+widthM: 5.84
 lengthLabel: ''
 massKg: null
 massSource: ''

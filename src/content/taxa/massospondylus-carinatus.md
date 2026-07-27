@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: BP/1/4934
 specimenName: ''
-lengthM: 5.5
+lengthM: 5.6
+widthM: 5.45
 lengthLabel: ''
 massKg: null
 massSource: ''

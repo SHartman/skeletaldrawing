@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: T5401
 specimenName: ''
-lengthM: 10
+lengthM: 9.5
+widthM: 9.16
 lengthLabel: ''
 massKg: null
 massSource: ''

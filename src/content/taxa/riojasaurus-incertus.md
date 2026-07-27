@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: ''
 specimenName: ''
-lengthM: 7.5
+lengthM: 6
+widthM: 5.97
 lengthLabel: ''
 massKg: null
 massSource: ''

@@ -9,6 +9,7 @@ family: ''
 specimenId: PVSJ 512
 specimenName: ''
 lengthM: 1.3
+widthM: 1.25
 lengthLabel: ''
 massKg: null
 massSource: ''

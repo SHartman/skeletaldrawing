@@ -9,6 +9,7 @@ family: ''
 specimenId: GPIT/RE/7288
 specimenName: ''
 lengthM: 6
+widthM: 5.94
 lengthLabel: ''
 massKg: null
 massSource: ''

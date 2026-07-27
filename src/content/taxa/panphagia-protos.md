@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: PVSJ 874
 specimenName: ''
-lengthM: 1
+lengthM: 1.8
+widthM: 1.76
 lengthLabel: ''
 massKg: null
 massSource: ''
