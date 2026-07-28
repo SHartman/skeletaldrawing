@@ -42,5 +42,9 @@ export default defineConfig({
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }], rehypeFigures],
   },
 
-  integrations: [sitemap()],
+  // ⛔ The /compare/ exclusion is TEMPORARY — remove it when the tool ships, together with the
+  // <meta robots="noindex"> in src/pages/compare/index.astro. The page is live and unlinked, but the
+  // sitemap was submitted to Search Console, so listing it there is an explicit invitation to crawl
+  // and index an unfinished tool. Everything else on the site belongs in the sitemap.
+  integrations: [sitemap({ filter: (page) => !page.includes('/compare/') })],
 });

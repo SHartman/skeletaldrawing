@@ -132,12 +132,26 @@ if (heroItems.length) {
   heroSvg = `<svg viewBox="0 0 ${HERO_W} ${H}" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="evenodd">${parts.join('')}</g></svg>`;
 }
 
+// ⛔ UNSHIPPED — REMOVE BOTH HALVES OF THIS AT LAUNCH:
+//   1. the <meta robots> below, and
+//   2. the `/compare/` exclusion in astro.config.mjs's sitemap filter.
+// The page is live and returns 200, and being unlinked is NOT protection: it was listed in
+// sitemap-0.xml, which was submitted to Search Console, so Google had been invited to crawl it.
+// noindex (not a robots.txt Disallow) is the right tool — a Disallow would stop the crawl before
+// Google could read the directive, which is the same trap noted in functions/_middleware.js.
+const UNSHIPPED = true;
+
 const title = 'Size comparison — build your own | Skeletal Drawing';
 const description =
   'Pick any two to five extinct animals and see them drawn to a single scale, with a human for reference — measured from the same skeletal reconstructions used across the site.';
 ---
 
 <BaseLayout title={title} description={description}>
+  {UNSHIPPED && (
+    <Fragment slot="head">
+      <meta name="robots" content="noindex, follow" />
+    </Fragment>
+  )}
   <main class="wrap">
     <div class="head-band">
     {heroSvg && <div class="hero-sil" aria-hidden="true" set:html={heroSvg} />}
