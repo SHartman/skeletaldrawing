@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import silData from '../../data/silhouettes.json';
 import human from '../../data/human.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { expandClades, isLandmark } from '../../lib/clades';
 
 // Interactive size-comparison tool (prototype). Pick 2–5 animals; a client-side renderer draws the
 // chosen silhouettes to a common scale (tail-tips aligned, feet grounded), with a 1.8 m human and a
@@ -33,10 +34,58 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
         label = tx.data.taxon;
       }
     }
-    seen.set(e.slug, { id: e.slug, label, taxon, lengthM: e.lengthM, w: e.w, h: e.h, path: e.path });
+    // Facet data. A flat list of 262 chips is unusable, so each entry carries what the filters need:
+    // its gallery (a guaranteed partition of the catalogue) and its FULL clade path, so sub-clade
+    // filtering is derived from the data rather than hand-maintained (CLAUDE.md §5).
+    const owner = sp ? taxaById.get(sp.data.taxon) : taxaById.get(e.slug);
+    const gallery = owner?.data.gallery ?? '';
+    const clades = owner ? expandClades(owner.data.clade) : [];
+    seen.set(e.slug, {
+      id: e.slug, label, taxon, gallery, clades,
+      lengthM: e.lengthM, w: e.w, h: e.h, path: e.path,
+    });
   }
 }
 const catalog = [...seen.values()].sort((a, b) => a.lengthM - b.lengthM);
+
+// ---- facets -----------------------------------------------------------------------------------
+// Gallery chips use scientific display labels even where the slug is vernacular (CLAUDE.md §5).
+const GALLERY_LABEL: Record<string, string> = {
+  theropods: 'Theropoda',
+  'sauropods-and-kin': 'Sauropodomorpha',
+  ornithischians: 'Ornithischia',
+  synapsids: 'Synapsida',
+  'non-dinosaurs': 'Non-dinosaurs',
+};
+const galleryFacets = Object.keys(GALLERY_LABEL)
+  .map((g) => ({ id: g, label: GALLERY_LABEL[g], n: catalog.filter((a) => a.gallery === g).length }))
+  .filter((f) => f.n > 0);
+
+// Sub-clade chips, derived: within each gallery, the clades carrying enough members to be worth a
+// filter. Shown only once its parent gallery is active, so the second tier never crowds the first.
+const SUBCLADE_MIN = 4;
+const subFacets: Record<string, { id: string; n: number }[]> = {};
+for (const g of galleryFacets) {
+  const counts = new Map<string, number>();
+  for (const a of catalog.filter((x) => x.gallery === g.id))
+    for (const c of a.clades) if (isLandmark(c) && c !== g.label) counts.set(c, (counts.get(c) ?? 0) + 1);
+  subFacets[g.id] = [...counts.entries()]
+    .filter(([, n]) => n >= SUBCLADE_MIN)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 10)
+    .map(([id, n]) => ({ id, n }));
+}
+
+// Size brackets — a size tool should be browsable BY size, and it is how people actually look
+// ("what else was about as big as a bus?"). Bounds are inclusive-low, exclusive-high.
+const SIZE_BANDS = [
+  { id: 'xs', label: 'Under 1 m', lo: 0, hi: 1 },
+  { id: 's', label: '1–3 m', lo: 1, hi: 3 },
+  { id: 'm', label: '3–10 m', lo: 3, hi: 10 },
+  { id: 'l', label: '10–20 m', lo: 10, hi: 20 },
+  { id: 'xl', label: '20 m +', lo: 20, hi: Infinity },
+].map((b) => ({ ...b, n: catalog.filter((a) => a.lengthM >= b.lo && a.lengthM < b.hi).length }))
+  .filter((b) => b.n > 0);
 
 // Default selection: a clear small-vs-large contrast, falling back to the extremes.
 const prefer = ['scotty', 'diplodocus-carnegii'].filter((id) => seen.has(id));
@@ -63,9 +112,64 @@ const description =
     </header>
 
     <section class="picker-sec" aria-label="Choose animals">
+      {/* Selected row sits ABOVE the filters and never filters out. Without it, narrowing the list
+          would appear to discard picks that are still active — the single worst failure mode of a
+          filtered multi-select. */}
+      <div class="chosen-row" id="chosen-row" hidden>
+        <span class="chosen-lbl">Comparing</span>
+        <div class="chosen" id="chosen"></div>
+      </div>
+
+      <div class="filters">
+        <label class="search">
+          <span class="vh">Search animals</span>
+          <input type="search" id="q" placeholder="Search 262 animals…" autocomplete="off" spellcheck="false" />
+        </label>
+
+        <div class="facet-row" role="group" aria-label="Filter by group">
+          <button type="button" class="facet on" data-facet="gallery" data-val="" aria-pressed="true">All</button>
+          {galleryFacets.map((g) => (
+            <button type="button" class="facet" data-facet="gallery" data-val={g.id} aria-pressed="false">
+              {g.label}<span class="facet-n">{g.n}</span>
+            </button>
+          ))}
+        </div>
+
+        {galleryFacets.map((g) => (
+          <div class="facet-row sub" data-sub={g.id} hidden role="group" aria-label={`Filter within ${g.label}`}>
+            <button type="button" class="facet sub-all on" data-facet="clade" data-val="" aria-pressed="true">All {g.label}</button>
+            {subFacets[g.id].map((c) => (
+              <button type="button" class="facet" data-facet="clade" data-val={c.id} aria-pressed="false">
+                {c.id}<span class="facet-n">{c.n}</span>
+              </button>
+            ))}
+          </div>
+        ))}
+
+        <div class="facet-row" role="group" aria-label="Filter by size">
+          <button type="button" class="facet on" data-facet="size" data-val="" aria-pressed="true">Any size</button>
+          {SIZE_BANDS.map((b) => (
+            <button type="button" class="facet" data-facet="size" data-val={b.id} aria-pressed="false">
+              {b.label}<span class="facet-n">{b.n}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <p class="count" id="count" aria-live="polite"></p>
+
       <div class="picker" id="picker">
         {catalog.map((a) => (
-          <button type="button" class="chip" data-id={a.id} aria-pressed="false">
+          <button
+            type="button"
+            class="chip"
+            data-id={a.id}
+            data-gallery={a.gallery}
+            data-clades={a.clades.join('|')}
+            data-len={a.lengthM}
+            data-name={`${a.label} ${a.taxon}`.toLowerCase()}
+            aria-pressed="false"
+          >
             <span class="chip-name">{a.label}</span>
             <span class="chip-len">{a.lengthM} m</span>
           </button>
@@ -127,6 +231,76 @@ const description =
       else u.searchParams.delete('ids');
       history.replaceState(null, '', u);
     };
+    // ---- filtering ----------------------------------------------------------------------------
+    // 262 chips in one flat list is unusable, so the picker is filtered rather than paged: search,
+    // group, sub-clade and size all narrow the SAME list. Chips are hidden, never removed, so the
+    // selection is untouched by filtering and a cleared filter restores instantly.
+    const SIZE_BANDS = { xs: [0, 1], s: [1, 3], m: [3, 10], l: [10, 20], xl: [20, Infinity] };
+    const q = document.getElementById('q');
+    const countEl = document.getElementById('count');
+    const chosenRow = document.getElementById('chosen-row');
+    const chosenEl = document.getElementById('chosen');
+    const filter = { text: '', gallery: '', clade: '', size: '' };
+
+    const applyFilter = () => {
+      const t = filter.text.trim().toLowerCase();
+      let shown = 0;
+      for (const c of chips) {
+        const band = filter.size ? SIZE_BANDS[filter.size] : null;
+        const len = +c.dataset.len;
+        const ok =
+          (!t || c.dataset.name.includes(t)) &&
+          (!filter.gallery || c.dataset.gallery === filter.gallery) &&
+          (!filter.clade || ('|' + c.dataset.clades + '|').includes('|' + filter.clade + '|')) &&
+          (!band || (len >= band[0] && len < band[1]));
+        c.hidden = !ok;
+        if (ok) shown++;
+      }
+      // The sub-clade row only exists once its parent group is chosen — otherwise the second tier
+      // would present ~40 chips before the reader has narrowed anything.
+      for (const row of document.querySelectorAll('.facet-row.sub'))
+        row.hidden = row.dataset.sub !== filter.gallery;
+      const active = filter.text || filter.gallery || filter.clade || filter.size;
+      countEl.textContent = active
+        ? `${shown} of ${chips.length} animals` + (shown === 0 ? ' — try widening the filters' : '')
+        : `${chips.length} animals`;
+    };
+
+    const setFacet = (kind, val) => {
+      filter[kind] = val;
+      if (kind === 'gallery') filter.clade = ''; // sub-clades belong to a group; changing group clears them
+      for (const b of document.querySelectorAll('.facet')) {
+        if (b.dataset.facet !== kind) continue;
+        if (kind === 'clade' && b.closest('.facet-row.sub')?.dataset.sub !== filter.gallery) continue;
+        const on = (b.dataset.val || '') === val;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', String(on));
+      }
+      if (kind === 'gallery')
+        for (const b of document.querySelectorAll('.facet[data-facet="clade"]')) {
+          const on = !b.dataset.val;
+          b.classList.toggle('on', on);
+          b.setAttribute('aria-pressed', String(on));
+        }
+      applyFilter();
+    };
+
+    // Selected chips are mirrored above the filters, each removable, so a narrowed list never hides
+    // what is currently being compared.
+    const renderChosen = () => {
+      chosenRow.hidden = selected.length === 0;
+      chosenEl.innerHTML = selected
+        .map((id) => {
+          const a = byId[id];
+          return a
+            ? `<button type="button" class="chosen-chip" data-drop="${id}" title="Remove ${a.label}">` +
+              `${a.label}<span class="x" aria-hidden="true">×</span>` +
+              `<span class="vh">remove</span></button>`
+            : '';
+        })
+        .join('');
+    };
+
     const syncChips = () => {
       chips.forEach((c) => {
         const on = selected.includes(c.dataset.id);
@@ -138,6 +312,7 @@ const description =
 
     function render() {
       syncChips();
+      renderChosen();
       const items = selected.map((id) => byId[id]).filter(Boolean).sort((a, b) => b.lengthM - a.lengthM);
       if (!items.length) {
         stage.innerHTML = '';
@@ -208,6 +383,15 @@ const description =
 
     chips.forEach((c) => c.addEventListener('click', () => toggle(c.dataset.id)));
     humanToggle.addEventListener('change', render);
+
+    q.addEventListener('input', () => { filter.text = q.value; applyFilter(); });
+    for (const b of document.querySelectorAll('.facet'))
+      b.addEventListener('click', () => setFacet(b.dataset.facet, b.dataset.val || ''));
+    // Delegated: the chosen row is re-rendered on every change, so per-chip listeners would leak.
+    chosenEl.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-drop]');
+      if (b) toggle(b.dataset.drop);
+    });
     document.getElementById('clear').addEventListener('click', () => {
       selected = [];
       toUrl();
@@ -224,6 +408,7 @@ const description =
 
     selected = fromUrl();
     if (!selected.length) selected = (cfg.def || []).filter((id) => byId[id]).slice(0, MAX);
+    applyFilter(); // seeds the count and hides the sub-clade rows before first paint
     render();
   })();
 </script>
@@ -241,7 +426,65 @@ const description =
 
   /* picker */
   .picker-sec { border-top: 1px solid var(--hair); padding-top: 22px; }
-  .picker { display: flex; flex-wrap: wrap; gap: 10px; }
+  /* ---- selection + filters ---- */
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .chosen-row {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    margin: 0 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--hair);
+  }
+  .chosen-lbl {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--slate); flex: 0 0 auto;
+  }
+  .chosen { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chosen-chip {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: inherit;
+    font-size: 14px; color: var(--mast-fg); background: var(--ink);
+    border: 1px solid var(--ink); border-radius: 999px; padding: 6px 12px;
+  }
+  .chosen-chip .x { font-size: 15px; line-height: 1; opacity: .7; }
+  .chosen-chip:hover { opacity: .86; }
+  .chosen-chip:hover .x { opacity: 1; }
+
+  .filters { display: grid; gap: 12px; margin-bottom: 14px; }
+  .search input {
+    width: 100%; max-width: 420px; font-family: var(--font-serif); font-size: 16px;
+    color: var(--ink); background: var(--plate); border: 1px solid var(--hair-strong);
+    border-radius: 4px; padding: 9px 12px;
+  }
+  .search input:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak);
+  }
+  .facet-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  /* An author `display` beats the UA's `[hidden] { display: none }`, so hidden rows would still
+     occupy their full height — 234px of invisible sub-clade rows before this. Same trap as .chip. */
+  .facet-row[hidden], .chosen-row[hidden] { display: none; }
+  .facet-row.sub { padding-left: 14px; border-left: 2px solid var(--hair); }
+  .facet {
+    display: inline-flex; align-items: baseline; gap: 6px; cursor: pointer; font: inherit;
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em;
+    color: var(--slate); background: transparent; border: 1px solid var(--hair-strong);
+    border-radius: 999px; padding: 5px 11px;
+    transition: border-color .14s ease, color .14s ease, background .14s ease;
+  }
+  .facet:hover { border-color: var(--accent); color: var(--ink); }
+  .facet.on { background: var(--ink); border-color: var(--ink); color: var(--mast-fg); }
+  .facet-n { font-size: 10px; opacity: .6; }
+  .facet.on .facet-n { opacity: .75; }
+
+  .count {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--measure);
+  }
+
+  /* Capped so the picker can never push the stage off-screen; it scrolls instead. The whole point of
+     the page is the comparison, so the chooser must not consume the viewport ahead of it. */
+  .picker {
+    display: flex; flex-wrap: wrap; gap: 9px;
+    max-height: 186px; overflow-y: auto; padding-right: 4px;
+  }
+  .chip[hidden] { display: none; }
   .chip {
     display: inline-flex; align-items: baseline; gap: 9px; cursor: pointer;
     font: inherit; color: var(--ink); background: var(--plate);
