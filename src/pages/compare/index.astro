@@ -97,6 +97,41 @@ const defaultSel =
     ? prefer
     : [catalog[0]?.id, catalog[catalog.length - 1]?.id].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i);
 
+// ---- header silhouette group -------------------------------------------------------------------
+// The search page floats a single Sue behind its heading; here the banner should DEMONSTRATE the tool,
+// so it shows a group at true common scale — built with the same widthM maths the renderer uses, since
+// a hero advertising scale comparison must not fake its own proportions.
+//
+// Two deliberate departures from the hub convention:
+//  - the humans stand under the rex's jaw rather than off to the right. That costs no extra width, so
+//    the banner is ~11% more compact, and the far-left space under the head is the one place a 1.8 m
+//    figure reads fully clear of the silhouette. Under the neck crowds them; under the belly merges
+//    them into the body (at one flat colour, overlap is loss — unlike the tool's blended fills).
+//  - opacity .18, not the search page's .08: that value was tuned for ONE large silhouette, and a
+//    group loses the small figures at it — which are exactly the point of a scale comparison.
+const HERO_SET = ['sue', 'struthiomimus-altus', 'protoceratops-andrewsi'];
+const HERO_W = 1400;
+const heroItems = HERO_SET.map((s) => seen.get(s)).filter(Boolean).sort((a, b) => b.widthM - a.widthM);
+let heroSvg = '';
+if (heroItems.length) {
+  const pxm = HERO_W / Math.max(...heroItems.map((i) => i.widthM));
+  const drawn = heroItems.map((it) => {
+    const s = (pxm * it.widthM) / it.w;
+    return { it, s, sw: it.w * s, sh: it.h * s };
+  });
+  const hScale = (1.8 * pxm) / human.h;
+  const hH = human.h * hScale;
+  const H = Math.ceil(Math.max(...drawn.map((d) => d.sh), hH)) + 8;
+  const parts = drawn.map(
+    (d) =>
+      `<path d="${d.it.path}" transform="translate(${(HERO_W - d.sw).toFixed(1)} ${(H - 4 - d.sh).toFixed(1)}) scale(${d.s.toFixed(5)})"/>`,
+  );
+  parts.push(
+    `<g transform="translate(${(HERO_W * 0.02).toFixed(1)} ${(H - 4 - hH).toFixed(1)}) scale(${hScale.toFixed(5)})"><path d="${human.path}"/></g>`,
+  );
+  heroSvg = `<svg viewBox="0 0 ${HERO_W} ${H}" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="evenodd">${parts.join('')}</g></svg>`;
+}
+
 const title = 'Size comparison — build your own | Skeletal Drawing';
 const description =
   'Pick any two to five extinct animals and see them drawn to a single scale, with a human for reference — measured from the same skeletal reconstructions used across the site.';
@@ -104,6 +139,8 @@ const description =
 
 <BaseLayout title={title} description={description}>
   <main class="wrap">
+    <div class="head-band">
+    {heroSvg && <div class="hero-sil" aria-hidden="true" set:html={heroSvg} />}
     <header class="head">
       <p class="eyebrow">Tools</p>
       <h1 class="display">Size comparison</h1>
@@ -113,6 +150,7 @@ const description =
         reconstructions used across the site. <span class="beta">More animals are added as the library grows.</span>
       </p>
     </header>
+    </div>
 
     <section class="picker-sec" aria-label="Choose animals">
       {/* Selected row sits ABOVE the filters and never filters out. Without it, narrowing the list
@@ -123,12 +161,21 @@ const description =
         <div class="chosen" id="chosen"></div>
       </div>
 
+      {/* Mobile only: the facet rows cost ~180px at phone width, pushing the comparison to y≈1078 —
+          past a whole screen of chooser before the page does its job. Search stays out, because it is
+          how someone arrives with a specific animal in mind. Desktop shows everything (113px is cheap
+          and hiding the main affordance would hurt discovery more than it saves). */}
+      <button type="button" class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="facets">
+        Filters<span class="ft-caret" aria-hidden="true">▾</span>
+      </button>
+
       <div class="filters">
         <label class="search">
           <span class="vh">Search animals</span>
           <input type="search" id="q" placeholder="Search 262 animals…" autocomplete="off" spellcheck="false" />
         </label>
 
+        <div class="facets" id="facets">
         <div class="facet-row" role="group" aria-label="Filter by group">
           <button type="button" class="facet on" data-facet="gallery" data-val="" aria-pressed="true">All</button>
           {galleryFacets.map((g) => (
@@ -156,6 +203,7 @@ const description =
               {b.label}<span class="facet-n">{b.n}</span>
             </button>
           ))}
+        </div>
         </div>
       </div>
 
@@ -419,6 +467,21 @@ const description =
     humanToggle.addEventListener('change', render);
 
     q.addEventListener('input', () => { filter.text = q.value; applyFilter(); });
+
+    // Facets collapse on phones only. `hidden` is set from JS rather than the markup so the panel is
+    // open by default for anyone without JS, and desktop CSS ignores the attribute entirely.
+    const ftog = document.getElementById('filters-toggle');
+    const facets = document.getElementById('facets');
+    const isPhone = () => matchMedia('(max-width: 700px)').matches;
+    const syncFacets = (open) => {
+      ftog.setAttribute('aria-expanded', String(open));
+      facets.hidden = isPhone() && !open;
+    };
+    ftog.addEventListener('click', () => syncFacets(ftog.getAttribute('aria-expanded') !== 'true'));
+    // A viewport crossing the breakpoint must not strand the panel hidden on desktop.
+    matchMedia('(max-width: 700px)').addEventListener('change', () =>
+      syncFacets(ftog.getAttribute('aria-expanded') === 'true'));
+    syncFacets(false);
     for (const b of document.querySelectorAll('.facet'))
       b.addEventListener('click', () => setFacet(b.dataset.facet, b.dataset.val || ''));
     // Delegated: the chosen row is re-rendered on every change, so per-chip listeners would leak.
@@ -449,7 +512,25 @@ const description =
 
 <style>
   .wrap { max-width: var(--measure-max); margin: 0 auto; padding: 44px var(--pad-side) 0; }
-  .head { max-width: 64ch; margin-bottom: 28px; }
+  .head { max-width: 64ch; margin-bottom: 28px; position: relative; z-index: 1; }
+
+  /* Silhouette group behind the heading — a demonstration of the tool, not decoration.
+     It lives in its own FULL-WIDTH band rather than inside .head, because .head is capped at 64ch and
+     a group positioned within it has nowhere to sit but on top of the copy. The band clips, so the
+     tail can run off the right without widening the document (CLAUDE.md §3: no horizontal scroll).
+     Hidden below 1000px: narrower than that there is no room clear of the text column, and at phone
+     widths the small members — the whole point — are illegible anyway. */
+  .head-band { position: relative; overflow: hidden; }
+  .hero-sil { position: absolute; inset: 0; pointer-events: none; color: var(--ink); z-index: 0; }
+  /* Anchored to the band's right edge and SIZED TO THE CLEAR ZONE rather than clipped. The small
+     members sit at the tail end (they are tail-aligned, as the tool draws them), so clipping the
+     right-hand side would remove exactly the animals that make the point — leaving a lone rex, which
+     is the search page's banner, not this one's. `100% - 600px` reserves the 64ch copy column. */
+  .hero-sil :global(svg) {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    width: min(540px, calc(100% - 600px)); height: auto; opacity: .18;
+  }
+  @media (max-width: 1100px) { .hero-sil { display: none; } }
   .eyebrow {
     margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em;
     text-transform: uppercase; color: var(--slate);
@@ -482,6 +563,23 @@ const description =
   .chosen-chip:hover .x { opacity: 1; }
 
   .filters { display: grid; gap: 12px; margin-bottom: 14px; }
+  .facets { display: grid; gap: 12px; }
+
+  /* Desktop: no toggle, facets always shown. The rule flips at 700px. */
+  .filters-toggle { display: none; }
+  @media (max-width: 700px) {
+    .filters-toggle {
+      display: inline-flex; align-items: center; gap: 7px; margin-bottom: 12px;
+      cursor: pointer; font: inherit; font-family: var(--font-mono); font-size: 11.5px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--slate);
+      background: transparent; border: 1px solid var(--hair-strong); border-radius: 999px;
+      padding: 7px 14px;
+    }
+    .filters-toggle[aria-expanded='true'] { color: var(--ink); border-color: var(--accent); }
+    .filters-toggle[aria-expanded='true'] .ft-caret { transform: rotate(180deg); }
+    .ft-caret { font-size: 10px; transition: transform .15s ease; }
+    .facets[hidden] { display: none; }
+  }
   .search input {
     width: 100%; max-width: 420px; font-family: var(--font-serif); font-size: 16px;
     color: var(--ink); background: var(--plate); border: 1px solid var(--hair-strong);
