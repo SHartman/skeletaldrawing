@@ -42,7 +42,10 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
     const clades = owner ? expandClades(owner.data.clade) : [];
     seen.set(e.slug, {
       id: e.slug, label, taxon, gallery, clades,
-      lengthM: e.lengthM, w: e.w, h: e.h, path: e.path,
+      // widthM is the silhouette's true HORIZONTAL extent; lengthM is measured along the body and is
+      // larger wherever posture curves the animal (raised necks, upright stances). The renderer must
+      // scale by widthM or an upright taxon is drawn too wide. lengthM stays the biological label.
+      lengthM: e.lengthM, widthM: e.widthM ?? e.lengthM, w: e.w, h: e.h, path: e.path,
     });
   }
 }
@@ -208,7 +211,11 @@ const description =
     const byId = Object.fromEntries(catalog.map((a) => [a.id, a]));
     const PXM = 100,
       MAX = 5;
-    const COLORS = ['#B07A2E', '#1D9E75', '#D85A30', '#378ADD', '#7F77DD', '#5C636B'];
+    // Shared with ScaleComparison.astro — keep in step. Hue/sat drive the lightness ramp; the
+    // coverage band maps "how much of the shape behind do I cover" onto fill opacity, anchored to
+    // length difference via coverage ~= (length ratio)^2: .90 ~ 5% shorter, .50 ~ 29% shorter.
+    const RAMP_HUE = 34, RAMP_SAT = 58;
+    const OP_BLEND = 0.75, OP_SOLID = 1, COVER_LO = 0.5, COVER_HI = 0.9;
     // Human scale reference: the owner's adult + child silhouette, adult scaled to 1.8 m.
     const humanH = 180,
       humanScale = humanH / human.h,
@@ -324,18 +331,23 @@ const description =
       const showHuman = humanToggle.checked;
       const padL = 16,
         padT = 16;
+      // Scale by the silhouette's horizontal extent, not its along-body length — otherwise an
+      // upright taxon (raised neck, therizinosaur, bird) is drawn as wide as it is long. sw then
+      // equals PXM * widthM, so the metre ruler below stays exact.
       const scaled = items.map((it, idx) => {
-        const s = (PXM * it.lengthM) / it.w;
+        const s = (PXM * it.widthM) / it.w;
         return { it, idx, s, sw: it.w * s, sh: it.h * s };
       });
-      const maxLen = Math.max(...items.map((i) => i.lengthM));
-      const maxSW = PXM * maxLen;
+      const maxLen = Math.max(...items.map((i) => i.lengthM)); // biological, for the label
+      const maxSW = Math.max(...scaled.map((d) => d.sw));      // geometric, for the layout
       const maxSH = Math.max(...scaled.map((d) => d.sh), showHuman ? 180 : 0);
       const guideX = padL + maxSW,
         groundY = padT + maxSH;
       const humanGap = 40,
         humanX = guideX + humanGap;
-      const meters = Math.floor(maxLen);
+      // Ruler spans the drawn extent, not the biological length — otherwise the ticks run off the
+      // left edge whenever the widest animal is posture-shortened (widthM < lengthM).
+      const meters = Math.floor(maxSW / PXM);
       const rulerY = groundY + 20;
       const rightPad = (showHuman ? humanGap + humanW : 0) + 30;
       const vbW = Math.round(guideX + rightPad),
@@ -350,10 +362,30 @@ const description =
         if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
       }
       s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters from tail tip</text>`;
-      scaled.forEach((d) => {
-        const c = COLORS[d.idx % COLORS.length];
+      // Gold-tint ramp + adaptive opacity, matching ScaleComparison.astro (the hub treatment is
+      // canonical). Largest = lightest and painted first (back) -> smallest = darkest and in front.
+      // Opacity comes from how much of the shape BEHIND each silhouette it covers: near-equal sizes
+      // must blend or the one behind disappears; a clearly smaller animal hides almost nothing and
+      // reads better solid. See ScaleComparison for the coverage<->length-difference mapping.
+      let smallestBehind = Infinity;
+      const painted = scaled.map((d) => {
+        const t = scaled.length > 1 ? d.idx / (scaled.length - 1) : 0.4;
+        const L = Math.round(68 - t * 38);
+        const area = d.sw * d.sh;
+        const coverage = smallestBehind === Infinity ? 0 : Math.min(area / smallestBehind, 1);
+        smallestBehind = Math.min(smallestBehind, area);
+        const k = Math.min(Math.max((coverage - COVER_LO) / (COVER_HI - COVER_LO), 0), 1);
+        const fillOpacity = +(OP_SOLID + (OP_BLEND - OP_SOLID) * k).toFixed(3);
+        return {
+          ...d, fillOpacity,
+          fill: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}%)`,
+          stroke: `hsl(${RAMP_HUE} ${RAMP_SAT + 8}% ${Math.max(L - 18, 16)}%)`,
+          swatch: `hsl(${RAMP_HUE} ${RAMP_SAT}% ${L}% / ${fillOpacity})`,
+        };
+      });
+      painted.forEach((d) => {
         const tx = `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
-        s += `<path d="${d.it.path}" transform="${tx}" fill="${c}" fill-opacity="0.2" fill-rule="evenodd" stroke="${c}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`;
+        s += `<path d="${d.it.path}" transform="${tx}" fill="${d.fill}" fill-opacity="${d.fillOpacity}" fill-rule="evenodd" stroke="${d.stroke}" stroke-width="1.2" stroke-opacity="0.9" vector-effect="non-scaling-stroke"/>`;
       });
       s += `<line x1="${guideX}" y1="${padT}" x2="${guideX}" y2="${groundY}" class="c-guide"/>`;
       if (showHuman) {
@@ -362,10 +394,12 @@ const description =
       }
       s += `</svg>`;
       stage.innerHTML = s;
-      legend.innerHTML = scaled
+      // Swatches carry the same alpha the plate renders, on the same background, so the key shows
+      // what is actually drawn rather than the fill at full strength.
+      legend.innerHTML = painted
         .map(
           (d) =>
-            `<span class="leg"><span class="leg-sw" style="background:${COLORS[d.idx % COLORS.length]}"></span><span class="leg-name">${d.it.label}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
+            `<span class="leg"><span class="leg-sw" style="background:${d.swatch};border:1px solid ${d.stroke}"></span><span class="leg-name">${d.it.label}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
         )
         .join('');
     }
@@ -524,7 +558,9 @@ const description =
   .hint { margin: 14px 0 0; font-size: 14.5px; color: var(--slate); text-align: center; }
   .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--hair); }
   .leg { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; }
-  .leg-sw { width: 22px; height: 12px; border-radius: 3px; flex: 0 0 auto; opacity: .85; }
+  /* No `opacity` here: the swatch background now carries the plate's own alpha, and a CSS opacity
+     would multiply with it — showing a paler chip than the silhouette actually renders. */
+  .leg-sw { width: 22px; height: 12px; border-radius: 2px; flex: 0 0 auto; }
   .leg-name { font-style: italic; }
   .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
   .noscript { margin-top: 20px; color: var(--slate); }
