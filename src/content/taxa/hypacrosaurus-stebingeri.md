@@ -21,6 +21,21 @@ additionalFigures:
   - src: "/images/skeletals/hypacrosaurus-stebingeri-adult-and-juvenile-skeletals.png"
     alt: "Hypacrosaurus stebingeri skeletal reconstruction — adult and juvenile together, drawn to a common scale."
     label: "Adult and juvenile"
+growthStages:
+  - label: Adult
+    src: /images/skeletals/hypacrosaurus-stebingeri-adult-skeletal.png
+    lengthM: 5
+    widthM: 4.92
+    femurM: 0.68
+    skullM: 0.44
+    humerusM: 0.33
+  - label: Juvenile
+    src: /images/skeletals/hypacrosaurus-stebingeri-juvenile-skeletal.png
+    lengthM: 1
+    widthM: 1
+    femurM: 0.15
+    skullM: 0.16
+    humerusM: 0.09
 ---
 
 A lambeosaurine hadrosaurid (hollow-crested duck-billed dinosaur) from the Late Cretaceous of Montana and Alberta. _Hypacrosaurus_ is well known from nesting sites, eggs, and embryos, which reveal much about its growth and development.

@@ -88,6 +88,29 @@ const taxa = defineCollection({
       growthSeries: nullableDefault(z.boolean().default(false)),
       growthNote: optStr,                 // the caption under the growth-series overlay (per-taxon, since a
                                           // bonebed composite and a two-specimen ontogeny read differently)
+      // Ontogenetic stages, in content rather than in a build script. These numbers previously lived
+      // hardcoded in GROWTH_GROUPS inside scripts/silhouette.mjs, which meant the owner could not edit
+      // them in the CMS and the stage LABEL existed in two places that could silently disagree.
+      // They now drive three things from one source: the overlay's scale + legend, the stage figure
+      // labels, and the measurements table (which is the point — allometry as live text rather than
+      // something only visible in the pixels; CLAUDE.md §3 applied to growth).
+      // `widthM` is the horizontal extent used for scaling; it falls back to lengthM when unmeasured.
+      growthStages: nullableDefault(
+        z
+          .array(
+            z.object({
+              label: z.string(),          // "Adult", "Yearling", "Subadult · 2 yr"
+              src: z.string(),            // the stage's own plate
+              lengthM: z.number(),
+              widthM: optNum,
+              femurM: optNum,
+              skullM: optNum,
+              humerusM: optNum,
+              specimen: optStr,           // set where the stage IS a catalogued specimen (Postosuchus)
+            }),
+          )
+          .default([]),
+      ),
       // Withhold an outdated/superseded skeletal without losing the page: render an "under
       // revision" notice + the supplied placeholder (a black silhouette), keep all live metadata
       // and the URL/301s/links, and don't assert the placeholder as the reconstruction in SEO.

@@ -4,8 +4,8 @@ taxon: "Maiasaura peeblesorum"
 author: "Horner & Makela, 1979"
 gallery: "ornithischians"
 clade: ["Saurolophinae"]
-lengthM: 7
-widthM: 7
+lengthM: 7.5
+widthM: 7.5
 scaleBar: "1 meter"
 view: "Left lateral"
 specimenId: "ROM 44770"
@@ -29,6 +29,36 @@ additionalFigures:
   - src: "/images/skeletals/maiasaura-peeblesorum-subadult-two-years-skeletal.png"
     alt: "Maiasaura peeblesorum skeletal reconstruction — subadult (two years)."
     label: "Subadult (two years)"
+growthStages:
+  - label: Adult
+    src: /images/skeletals/maiasaura-peeblesorum-adult-skeletal.png
+    lengthM: 7.5
+    widthM: 7.5
+    femurM: 0.97
+    skullM: 0.75
+    humerusM: 0.51
+  - label: Subadult · 2 yr
+    src: /images/skeletals/maiasaura-peeblesorum-subadult-two-years-skeletal.png
+    lengthM: 5
+    widthM: 5
+    femurM: 0.72
+    skullM: 0.54
+    humerusM: 0.39
+    specimen: 2 yr
+  - label: Yearling
+    src: /images/skeletals/maiasaura-peeblesorum-yearling-skeletal.png
+    lengthM: 2.75
+    widthM: 2.75
+    femurM: 0.41
+    skullM: 0.28
+    humerusM: 0.2
+  - label: Hatchling
+    src: /images/skeletals/maiasaura-peeblesorum-hatchling-skeletal.png
+    lengthM: 0.5
+    widthM: 0.5
+    femurM: 0.07
+    skullM: 0.07
+    humerusM: 0.04
 ---
 
 A saurolophine hadrosaurid (duck-billed dinosaur) from the Late Cretaceous of Montana. _Maiasaura_ is famous from vast bonebeds and nesting colonies that provided the first strong evidence of parental care in dinosaurs, inspiring its name, "good mother lizard."

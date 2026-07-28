@@ -439,29 +439,40 @@ const GENUS_GROUPS = {
 
 // Ontogenetic (growth-series) comparisons: several growth stages of ONE taxon, drawn to a common
 // scale on that taxon's own page (flagged by `growthSeries` in the .md; keyed <taxon-slug>-growth).
-// Maiasaura is bonebed-derived, so each stage is composited to size rather than a single specimen —
-// lengths are given here (widthM ≈ lengthM per the owner) instead of read from per-stage entries.
-const GROWTH_GROUPS = {
-  'maiasaura-peeblesorum-growth': [
-    { file: 'maiasaura-peeblesorum-hatchling-skeletal.png', lengthM: 0.5, label: 'Hatchling' },
-    { file: 'maiasaura-peeblesorum-yearling-skeletal.png', lengthM: 2.75, label: 'Yearling' },
-    { file: 'maiasaura-peeblesorum-subadult-two-years-skeletal.png', lengthM: 5, label: 'Subadult · 2 yr' },
-    { file: 'maiasaura-peeblesorum-adult-skeletal.png', lengthM: 7, label: 'Adult' },
-  ],
-  // Postosuchus: two real specimens (adult + subadult), not bonebed composites — so widthM is given
-  // per stage (horizontal extent differs from length in this semi-erect posture).
-  'postosuchus-kirkpatricki-growth': [
-    { file: 'postosuchus-kirkpatricki-ttup-9002-skeletal-juvenile.png', lengthM: 3.8, widthM: 3.73, label: 'Subadult · TTUP 9002' },
-    { file: 'postosuchus-kirkpatricki-ttup-9000-skeletal.png', lengthM: 5, widthM: 4.89, label: 'Adult · TTUP 9000' },
-  ],
-  // Hypacrosaurus stebingeri: adult + juvenile of ONE species (the juvenile was formerly mislabelled
-  // H. altispinus, which collapsed a would-be genus hub into this growth series). Juvenile silhouette
-  // is the owner's hand-corrected trace (the auto-trace bridged the overlapping fore/hind limbs).
-  'hypacrosaurus-stebingeri-growth': [
-    { file: 'hypacrosaurus-stebingeri-juvenile-silhouette.png', lengthM: 1, label: 'Juvenile' },
-    { file: 'hypacrosaurus-stebingeri-adult-skeletal.png', lengthM: 5, widthM: 4.92, label: 'Adult' },
-  ],
+//
+// The stages USED to be hardcoded here. They now live in each taxon's `growthStages` front matter —
+// see readGrowthStages() below — so the owner can edit them in the CMS, the stage label exists in
+// exactly one place, and the same numbers feed the overlay, the figure labels and the measurements
+// table. This file only resolves each stage to its traced silhouette.
+//
+// The silhouette filename does not always match the display plate: Hypacrosaurus's juvenile plate is
+// `-juvenile-skeletal.png` while its (hand-corrected) silhouette is `-juvenile-silhouette.png`,
+// because the auto-trace bridged the overlapping fore/hind limbs. Hence the candidate list.
+const growthSilFile = (src) => {
+  const base = src.split('/').pop().replace(/\.png$/i, '');
+  const candidates = [
+    `${base}.png`,
+    `${base.replace(/-skeletal$/, '-silhouette')}.png`,
+    `${base}-silhouette.png`,
+  ];
+  return candidates.find((c) => existsSync(join('silhouettes', c)));
 };
+
+// Parse the `growthStages:` block out of a taxon .md. Deliberately a narrow reader rather than a YAML
+// dependency: the block is machine-written and this script already parses front matter by regex.
+function readGrowthStages(txt) {
+  const block = txt.match(/^growthStages:\n((?:\s+-[\s\S]*?)?)(?=^\S|^---)/m);
+  if (!block || !block[1].trim()) return [];
+  return block[1]
+    .split(/^\s+- /m)
+    .slice(1)
+    .map((chunk) => {
+      const f = (k) => (chunk.match(new RegExp(`\\b${k}:\\s*(.+)`)) || [])[1]?.trim().replace(/^['"]|['"]$/g, '');
+      const n = (k) => { const v = f(k); return v == null ? undefined : parseFloat(v); };
+      return { label: f('label'), src: f('src'), lengthM: n('lengthM'), widthM: n('widthM') };
+    })
+    .filter((s) => s.label && s.src && Number.isFinite(s.lengthM));
+}
 
 // widthM → a spreadable {widthM} only when it's a real number, so absent values stay out of the JSON.
 const wm = (v) => (Number.isFinite(v) ? { widthM: v } : {});
@@ -557,16 +568,23 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
 }
 
-// ----- pass 2b: ontogenetic growth series (owner silhouettes, per-stage lengths) -----
-for (const [key, group] of Object.entries(GROWTH_GROUPS)) {
+// ----- pass 2b: ontogenetic growth series, read from each taxon's `growthStages` front matter -----
+const taxaDir = 'src/content/taxa';
+for (const f of readdirSync(taxaDir).filter((f) => f.endsWith('.md'))) {
+  const txt = readFileSync(join(taxaDir, f), 'utf8');
+  if (!/^growthSeries:\s*true\s*$/m.test(txt)) continue;
+  const slug = f.replace(/\.md$/, '');
+  const stages = readGrowthStages(txt);
+  if (!stages.length) { console.log(`(skip ${slug}-growth: growthSeries is set but growthStages is empty)`); continue; }
+  const key = `${slug}-growth`;
   const items = [];
-  for (const g of group) {
-    const file = join('silhouettes', g.file);
-    if (!existsSync(file)) { console.log(`(skip ${key}: missing ${g.file})`); continue; }
-    const traced = await safeTrace(file, { alpha: true }, g.file.replace(/\.png$/, ''));
+  for (const g of stages) {
+    const file = growthSilFile(g.src);
+    if (!file) { console.log(`(skip ${key}/${g.label}: no silhouette for ${g.src.split('/').pop()})`); continue; }
+    const traced = await safeTrace(join('silhouettes', file), { alpha: true }, file.replace(/\.png$/, ''));
     if (!traced) continue;
     const { w, h, path, points, holes } = traced;
-    items.push({ slug: g.file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.widthM ?? g.lengthM, w, h, path });
+    items.push({ slug: file.replace(/\.png$/, ''), label: g.label, lengthM: g.lengthM, widthM: g.widthM ?? g.lengthM, w, h, path });
     console.log(`${key}/${g.label}: ${g.lengthM} m  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
