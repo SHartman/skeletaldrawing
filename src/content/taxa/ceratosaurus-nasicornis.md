@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: USNM 4735
 specimenName: ''
-lengthM: 6
+lengthM: 5.7
+widthM: 5.59
 lengthLabel: ''
 massKg: null
 massSource: ''

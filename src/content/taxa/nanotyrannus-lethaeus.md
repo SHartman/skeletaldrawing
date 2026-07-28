@@ -9,6 +9,7 @@ family: ''
 specimenId: BMRP 2002.4.1
 specimenName: ''
 lengthM: 6.2
+widthM: 6.13
 lengthLabel: ''
 massKg: null
 massSource: ''

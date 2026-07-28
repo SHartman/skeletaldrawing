@@ -9,6 +9,7 @@ family: ''
 specimenId: CAGS-IG-04-0801
 specimenName: ''
 lengthM: 0.55
+widthM: 0.55
 lengthLabel: ''
 massKg: null
 massSource: ''

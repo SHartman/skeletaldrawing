@@ -3,6 +3,7 @@ taxon: "allosaurus-jimmadseni"
 catalog: "Privately held"
 nickname: "Little Al"
 lengthM: 2.8
+widthM: 2.68
 view: "Left lateral"
 basis: "Juvenile individual; privately held, so not available for study"
 overlay: true

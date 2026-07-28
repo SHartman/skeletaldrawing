@@ -25,4 +25,4 @@ reconstruction:
 added: ''
 ---
 
-_Panphagia_ was a small (1 m / 3 foot long), bipedal sauropodomorph from the Late Triassic of Argentina. It is probably representative of the earliest members of the sauropodomorph lineage and was likely omnivorous. The omnivorous lifestyle is reflected in its name, _Panphagia_ translates to "all-eater".
+_Panphagia_ was a small (1.8 m / 6 foot long), bipedal sauropodomorph from the Late Triassic of Argentina. It is probably representative of the earliest members of the sauropodomorph lineage and was likely omnivorous. The omnivorous lifestyle is reflected in its name, _Panphagia_ translates to "all-eater".

@@ -9,6 +9,7 @@ family: ''
 specimenId: ''
 specimenName: ''
 lengthM: 5.7
+widthM: 5.58
 lengthLabel: ''
 massKg: null
 massSource: ''

@@ -10,6 +10,7 @@ family: ''
 specimenId: UA 8656
 specimenName: ''
 lengthM: 0.8
+widthM: 0.79
 lengthLabel: ''
 massKg: null
 massSource: ''

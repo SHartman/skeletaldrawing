@@ -9,6 +9,7 @@ family: ''
 specimenId: BSP AS I 563
 specimenName: ''
 lengthM: 0.85
+widthM: 0.83
 lengthLabel: ''
 massKg: null
 massSource: ''

@@ -8,7 +8,8 @@ clade:
 family: ''
 specimenId: MIWG1997.550
 specimenName: ''
-lengthM: 5
+lengthM: 5.3
+widthM: 5.2
 lengthLabel: ''
 massKg: null
 massSource: ''

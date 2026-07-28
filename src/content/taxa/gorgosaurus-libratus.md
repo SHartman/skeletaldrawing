@@ -9,6 +9,7 @@ family: ''
 specimenId: TMP 91.36.500
 specimenName: ''
 lengthM: 5.3
+widthM: 5.22
 lengthLabel: ''
 massKg: null
 massSource: ''

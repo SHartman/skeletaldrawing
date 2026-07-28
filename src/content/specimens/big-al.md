@@ -7,8 +7,8 @@ repository: Museum of the Rockies
 repositoryUrl: ''
 formation: ''
 locality: ''
-lengthM: 6.6
-widthM: null
+lengthM: 6.9
+widthM: 6.71
 femurM: null
 massKg: null
 completenessPct: 95

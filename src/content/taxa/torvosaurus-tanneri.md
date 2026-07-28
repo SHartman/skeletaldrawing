@@ -4,7 +4,8 @@ taxon: "Torvosaurus tanneri"
 author: "Galton & Jensen, 1979"
 gallery: "theropods"
 clade: ["Megalosauroidea"]
-lengthM: 8
+lengthM: 8.1
+widthM: 7.99
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/torvosaurus-tanneri-skeletal.png"

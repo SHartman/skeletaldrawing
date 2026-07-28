@@ -9,6 +9,7 @@ family: ''
 specimenId: WYDICE-DML-001
 specimenName: ''
 lengthM: 0.95
+widthM: 0.94
 lengthLabel: ''
 massKg: null
 massSource: ''

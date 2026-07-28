@@ -12,6 +12,7 @@ specimenName: ''
 alsoKnownAs:
   - Majungatholus
 lengthM: 5.4
+widthM: 5.35
 lengthLabel: ''
 massKg: null
 massSource: ''
