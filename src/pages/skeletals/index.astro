@@ -357,6 +357,18 @@ const description =
   document.addEventListener('click', (e) => {
     if (input.value && !wrap.contains(e.target as Node)) { input.value = ''; close(); clearBtn.hidden = true; }
   });
+
+  // Land ready to type. Every route to this page is a search affordance — the two magnifier icons
+  // and the three "Search the database" links — so nobody arrives here meaning to browse, and
+  // making them click the box first is a step that buys nothing.
+  //
+  // Gated on a real pointer rather than done with the `autofocus` attribute, which fires
+  // everywhere: on a phone that would throw up the on-screen keyboard unasked and bury the
+  // browse-by-clade grid under it, and there is no "just start typing" on a touch device to
+  // justify the cost. preventScroll keeps the hero exactly where it rendered.
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    input.focus({ preventScroll: true });
+  }
 </script>
 
 <style>
