@@ -40,7 +40,7 @@ additionalFigures:
     label: Subadult (two years)
 featured: true
 growthSeries: true
-growthNote: _Maiasaura_ from hatchling to adult. _Maiasaura_ is mostly known from bonebeds, so outside of the adult, the growth stages are composites skeletals rather than being based a single specimen.
+growthNote: _Maiasaura_ from hatchling to adult. _Maiasaura_ is mostly known from bonebeds, so outside of the adult, the growth stages are composed of composites skeletals, rather than skeletals based on individual specimens.
 growthStages:
   - label: Adult
     src: /images/skeletals/maiasaura-peeblesorum-adult-skeletal.png
