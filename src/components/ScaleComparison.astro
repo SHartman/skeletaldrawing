@@ -1,6 +1,7 @@
 ---
 import silData from '../data/silhouettes.json';
 import human from '../data/human.json';
+import { inlineEmphasisHtml } from '../lib/schema';
 
 // Tail-tip-aligned scale comparison (CLAUDE.md §5). Silhouettes are traced offline
 // (scripts/silhouette.mjs) to vector paths in src/data/silhouettes.json; here they're
@@ -209,7 +210,9 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
             </span>
           ))}
         </figcaption>
-        <p class="note">{note ?? `Overlay shows ${items.length} of ${total} documented skeletals — the full set is in the table below.`}</p>
+        {/* `_Maiasaura_` → italic, matching the body prose and the measurements table's lead-in.
+            Render-only, so no stripEmphasis pair is needed — this never feeds a meta tag. */}
+        <p class="note" set:html={inlineEmphasisHtml(note ?? `Overlay shows ${items.length} of ${total} documented skeletals — the full set is in the table below.`)}></p>
       </figure>
     </section>
   )

@@ -14,6 +14,8 @@
 // point apart once rounded to integers, and meaninglessly so), while a two-decimal ratio stays
 // honest and still reads on one line.
 
+import { inlineEmphasisHtml } from '../lib/schema';
+
 type Stage = {
   label: string;
   lengthM: number;
@@ -59,7 +61,9 @@ const show = stages.length > 1;
     <p class="eyebrow">The measurements</p>
     <h2 class="gt-h" id="growth-tbl-h">How the proportions change</h2>
 
-    {note && <p class="gt-note">{note}</p>}
+    {/* Authored the way the body prose is — `_Maiasaura_` — because a note about a growth series is
+        mostly scientific names, and they are italic everywhere else on the site. */}
+    {note && <p class="gt-note" set:html={inlineEmphasisHtml(note)}></p>}
 
     <div class="table-wrap">
       <table>

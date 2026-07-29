@@ -12,7 +12,7 @@ specimenId: "ROM 44770"
 lifeStage: "Adult"
 featured: true
 growthSeries: true
-growthNote: "From hatchling to adult, drawn to a common scale. Maiasaura is known mostly from bonebeds, so each stage is composited from remains of the appropriate size rather than a single specimen."
+growthNote: "From hatchling to adult, drawn to a common scale. _Maiasaura_ is known mostly from bonebeds, so each stage is composited from remains of the appropriate size rather than a single specimen."
 growthTableNote: "The hatchling's skull and femur are about the same length. By the yearling stage the femur has pulled well ahead, and the ratio changes comparatively little after that — most of the shift in head proportion is over within the first year."
 reconstruction:
   src: "/images/skeletals/maiasaura-peeblesorum-adult-skeletal.png"
