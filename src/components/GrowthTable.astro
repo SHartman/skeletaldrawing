@@ -58,7 +58,8 @@ const show = stages.length > 1;
 
 {show && (
   <section class="growth-tbl" aria-labelledby="growth-tbl-h">
-    <p class="eyebrow">The measurements</p>
+    {/* No eyebrow above this one (owner's call). The heading already says what the section is, and
+        "THE MEASUREMENTS" over a table of measurements only restated it. */}
     <h2 class="gt-h" id="growth-tbl-h">How the proportions change</h2>
 
     {/* Authored the way the body prose is — `_Maiasaura_` — because a note about a growth series is
@@ -129,10 +130,6 @@ const show = stages.length > 1;
 
 <style>
   .growth-tbl { border-top: 1px solid var(--hair); margin-top: 40px; padding-top: 30px; }
-  .eyebrow {
-    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: .24em; text-transform: uppercase; color: var(--slate);
-  }
   .gt-h {
     margin: 0 0 20px; font-style: italic; font-weight: 500;
     font-size: clamp(26px, 4vw, 38px); line-height: 1.05;
