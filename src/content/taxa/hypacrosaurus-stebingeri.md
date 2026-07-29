@@ -11,6 +11,7 @@ view: "Left lateral"
 lifeStage: "Adult"
 growthSeries: true
 growthNote: "An adult and a juvenile, drawn to a common scale. Hypacrosaurus is known from nesting sites, eggs, and embryos, which document its growth from hatchling to adult."
+growthTableNote: "Watch the skull against the femur. In the juvenile the two are about the same length; in the adult the skull is roughly two-thirds of the femur. The humerus-to-femur ratio falls over the same interval, from 0.60 to 0.49."
 reconstruction:
   src: "/images/skeletals/hypacrosaurus-stebingeri-adult-skeletal.png"
   alt: "Hypacrosaurus stebingeri skeletal reconstruction, left lateral view, reconstructed length ~5 m."

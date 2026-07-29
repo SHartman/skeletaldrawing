@@ -1,0 +1,223 @@
+---
+// Ontogenetic measurement table — the numeric companion to the growth-series overlay it sits
+// under. Rows run in the overlay's order (largest first) so a reader can map a row to a
+// silhouette without re-sorting in their head.
+//
+// The two trailing columns are the point of the table. Absolute measurements only say the animal
+// got bigger; dividing an element by the femur — the usual proxy for body size — says whether it
+// grew FASTER or SLOWER than the animal as a whole, which is where the biology is: a hatchling
+// hadrosaur whose skull is as long as its thigh bone, or a rauisuchid whose forelimb falls away
+// from its hindlimb as it matures.
+//
+// Ratios against the femur rather than "% of body length": rounding a percentage manufactures
+// signal (Postosuchus' femur is 10.40% of length as an adult and 10.53% as a subadult — a whole
+// point apart once rounded to integers, and meaninglessly so), while a two-decimal ratio stays
+// honest and still reads on one line.
+
+type Stage = {
+  label: string;
+  lengthM: number;
+  femurM?: number | null;
+  skullM?: number | null;
+  humerusM?: number | null;
+  specimen?: string | null;
+};
+
+const { stages: raw, note } = Astro.props as { stages?: Stage[] | null; note?: string | null };
+
+// Match the overlay legend's order — this table sits directly beneath it.
+const stages = [...(raw ?? [])].sort((a, b) => b.lengthM - a.lengthM);
+
+// A column is dropped outright rather than printing a run of em-dashes for a measurement nobody
+// took: an absent column reads as "not part of this record", a column of dashes reads as damage.
+const hasSkull = stages.some((s) => s.skullM != null);
+const hasFemur = stages.some((s) => s.femurM != null);
+const hasHumerus = stages.some((s) => s.humerusM != null);
+const hasSkullRatio = stages.some((s) => s.skullM != null && s.femurM != null);
+const hasHumerusRatio = stages.some((s) => s.humerusM != null && s.femurM != null);
+
+// Elements are all sub-metre here, and 2 dp is the precision they were actually measured to;
+// body length spans 0.5–7.5 m, where padding "5" to "5.00" would claim precision that isn't there.
+const el = (v?: number | null) => (v == null ? '—' : v.toFixed(2));
+const len = (v?: number | null) => (v == null ? '—' : String(+v));
+const ratio = (a?: number | null, b?: number | null) =>
+  a == null || b == null || b === 0 ? '—' : (a / b).toFixed(2);
+
+// "Adult · TTUP 9000" → "Adult" + a muted "TTUP 9000" beneath, so a catalogue number doesn't
+// stretch the column. ' · ' is the separator the content uses.
+const split = (label: string) => {
+  const [name, ...rest] = label.split(' · ');
+  return { name, qual: rest.join(' · ') };
+};
+
+// One stage is not a series — nothing to compare, so nothing to say.
+const show = stages.length > 1;
+---
+
+{show && (
+  <section class="growth-tbl" aria-labelledby="growth-tbl-h">
+    <p class="eyebrow">The measurements</p>
+    <h2 class="gt-h" id="growth-tbl-h">How the proportions change</h2>
+
+    {note && <p class="gt-note">{note}</p>}
+
+    <div class="table-wrap">
+      <table>
+        {/* First child of <table> because the spec requires it there (and a screen reader reads it
+            as the table's name before the data); `caption-side: bottom` puts it under the rows. */}
+        <caption class="gt-cap">
+          Measured from the reconstructions on this page. The final columns are dimensionless —
+          each element divided by the femur, the usual stand-in for body size — so they track
+          shifts in proportion rather than in size.
+        </caption>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th class="num">Length <span class="unit">m</span></th>
+            {hasSkull && <th class="num">Skull <span class="unit">m</span></th>}
+            {hasFemur && <th class="num">Femur <span class="unit">m</span></th>}
+            {hasHumerus && <th class="num">Humerus <span class="unit">m</span></th>}
+            {hasSkullRatio && <th class="num ratio-h">Skull ÷ femur</th>}
+            {hasHumerusRatio && <th class="num ratio-h">Humerus ÷ femur</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {stages.map((s) => {
+            const { name, qual } = split(s.label);
+            return (
+              <tr>
+                <th scope="row" class="stage">
+                  <span class="stage-name">{name}</span>
+                  {qual && <span class="stage-qual">{qual}</span>}
+                </th>
+                {/* The unit rides in the cell but is hidden while the header is visible — see .u.
+                    Suppressed on a missing value so an em-dash never reads "— m". */}
+                <td class="num" data-label="Length">{len(s.lengthM)}<span class="u">m</span></td>
+                {hasSkull && (
+                  <td class="num" data-label="Skull">
+                    {el(s.skullM)}{s.skullM != null && <span class="u">m</span>}
+                  </td>
+                )}
+                {hasFemur && (
+                  <td class="num" data-label="Femur">
+                    {el(s.femurM)}{s.femurM != null && <span class="u">m</span>}
+                  </td>
+                )}
+                {hasHumerus && (
+                  <td class="num" data-label="Humerus">
+                    {el(s.humerusM)}{s.humerusM != null && <span class="u">m</span>}
+                  </td>
+                )}
+                {hasSkullRatio && (
+                  <td class="num rat" data-label="Skull ÷ femur">{ratio(s.skullM, s.femurM)}</td>
+                )}
+                {hasHumerusRatio && (
+                  <td class="num rat" data-label="Humerus ÷ femur">{ratio(s.humerusM, s.femurM)}</td>
+                )}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}
+
+<style>
+  .growth-tbl { border-top: 1px solid var(--hair); margin-top: 40px; padding-top: 30px; }
+  .eyebrow {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--slate);
+  }
+  .gt-h {
+    margin: 0 0 20px; font-style: italic; font-weight: 500;
+    font-size: clamp(26px, 4vw, 38px); line-height: 1.05;
+  }
+  /* Owner-authored lead-in: what to watch for in this particular series. Sits above the table so
+     the reader knows what they are looking at before they look. */
+  .gt-note { margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: var(--ink); max-width: 68ch; }
+
+  .table-wrap { overflow-x: auto; }
+  /* Capped rather than full-bleed. The hub's specimen table earns 1120px because its cells hold
+     catalog numbers, repositories and bars; this one holds four characters per cell, and stretched
+     to the full measure the figures sit so far apart that comparing across a row — the entire point
+     — stops working. 860px is about its natural width, so the columns barely stretch at all. */
+  table { width: 100%; max-width: 860px; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+  thead th {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--slate); font-weight: 400; border-bottom: 2px solid var(--ink); vertical-align: bottom;
+  }
+  /* Unit lives in the header so the cells stay bare numerals and align as a column of figures —
+     "0.97 m / 0.72 m / 0.07 m" reads as prose, "0.97 / 0.72 / 0.07" reads as data. */
+  .unit { text-transform: none; letter-spacing: 0; opacity: .65; }
+  /* Per-cell unit, hidden wherever the header is carrying it. It exists for the stacked view,
+     where the whole <thead> is off-screen and a bare "0.75" beside "SKULL" states no unit at all. */
+  .u { display: none; }
+  /* A hairline before the derived columns: these are calculated, not measured. */
+  .ratio-h { border-left: 1px solid var(--hair); }
+  td.rat { border-left: 1px solid var(--hair); }
+
+  td.num, th.num { text-align: right; }
+  td.num { font-variant-numeric: tabular-nums; }
+  td.rat { color: var(--ink); }
+
+  .stage { font-weight: 400; }
+  .stage-name { display: block; }
+  .stage-qual {
+    display: block; margin-top: 2px;
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em; color: var(--slate);
+  }
+
+  .gt-cap {
+    caption-side: bottom; text-align: left; padding: 14px 0 0;
+    font-size: 14px; line-height: 1.55; color: var(--slate); max-width: 760px;
+  }
+
+  /* Collapses to one card per stage — no horizontal scroll (CLAUDE.md §3).
+     800px, not the hub's 680px: seven columns bottom out around 705px and the wrap gets
+     (viewport − 56), so the table stops fitting just under 760px and the cards have to arrive
+     before that. The extra 40px is deliberate slack — the floor moves with the widest stage label,
+     and "Adult · TTUP 9000" already costs 1px more than "Subadult · 2 yr" does. .table-wrap keeps
+     its overflow-x regardless: if a longer catalog number ever tips it, the wrap scrolls, not the
+     page. */
+  @media (max-width: 800px) {
+    .table-wrap { overflow-x: visible; }
+    /* `caption` is in this list deliberately: left as table-caption inside a display:block table it
+       shrink-wraps to the widest word (~97px of 339) and renders as a tall ribbon. */
+    tbody, tr, td, th, caption { display: block; width: 100%; }
+    /* The table is a flex column rather than a block for one reason: once the caption is no longer
+       laid out as a table-caption, `caption-side: bottom` stops applying and it jumps to the top,
+       where the spec requires it to sit in source order. `order` puts it back under the cards. */
+    table { display: flex; flex-direction: column; width: 100%; }
+    caption { order: 2; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    /* The header held the unit; with it off-screen each value has to say its own. */
+    .u { display: inline; margin-left: .32em; color: var(--slate); }
+    tbody tr {
+      border: 1px solid var(--hair-strong); border-radius: 4px;
+      margin-bottom: 14px; padding: 4px 0; background: var(--plate);
+    }
+    td, tbody th {
+      border: none; border-bottom: 1px solid var(--hair); white-space: normal;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      padding: 9px 16px; text-align: right;
+    }
+    td[data-label]::before {
+      content: attr(data-label); text-align: left; flex: 0 0 auto;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--slate);
+    }
+    /* Stage heads the card, so it keeps its own line rather than becoming a label/value pair. */
+    tbody th.stage {
+      display: block; text-align: left; font-size: 16px;
+      padding-top: 13px; padding-bottom: 13px;
+    }
+    .stage-qual { margin-top: 3px; }
+    /* The left rules separated measured from derived across a row; stacked, the cards read
+       top-to-bottom and a rule on a full-width row would just look like a stray mark. */
+    td.rat { border-left: none; }
+    tbody tr td:last-child { border-bottom: none; }
+    .gt-cap { padding-top: 4px; }
+  }
+</style>

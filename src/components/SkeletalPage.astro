@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { Picture, Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ScaleComparison from './ScaleComparison.astro';
+import GrowthTable from './GrowthTable.astro';
 import { loadSkeletal } from '../lib/images';
 import {
   taxonImageGraph,
@@ -281,6 +282,11 @@ const jsonLd = underRevision
         note={d.growthNote ?? 'The growth stages below, drawn to a common scale.'}
       />
     )}
+
+    {/* The numbers behind the overlay, immediately under it: figure then data table, the way a
+        paper sets them. It has to precede the stage plates for the same reason the overlay does —
+        it is part of the argument, and the plates are the evidence it was measured from. */}
+    {d.growthSeries && <GrowthTable stages={d.growthStages} note={d.growthTableNote} />}
 
     <!-- ============ bonus figures (e.g. speculative armor), only when present ============ -->
     {figs.length > 0 && (

@@ -91,7 +91,25 @@ collections:
           - { name: alt, label: "Alt text", widget: string }
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
-      - { name: growthSeries, label: "Growth-series overlay", widget: boolean, default: false, required: false, hint: "Tick to show an ontogenetic size overlay of the growth stages (add them as Additional figures, and supply matching silhouettes). Currently set up for Maiasaura." }
+      - { name: growthSeries, label: "Growth-series overlay + measurements table", widget: boolean, default: false, required: false, hint: "Tick to show an ontogenetic size overlay AND the measurements table beneath it. Fill in Growth stages below; also add each non-adult stage under Additional figures so its full-size plate appears, and supply a matching silhouette." }
+      - { name: growthNote, label: "Growth overlay caption", widget: text, required: false, hint: "Captions the overlay — where the stages come from. A bonebed composite and a two-specimen ontogeny need different wording." }
+      - name: growthStages
+        label: "Growth stages (measurements)"
+        widget: list
+        required: false
+        label_singular: "Stage"
+        summary: "{{fields.label}} — {{fields.lengthM}} m"
+        hint: "Drives the overlay's scale and legend, the stage figure labels, and the measurements table. Order doesn't matter — the page sorts largest first."
+        fields:
+          - { name: label, label: "Stage name", widget: string, hint: "e.g. Adult, Yearling, Hatchling. Add a catalog number after a ' · ' when the stage IS a specimen — 'Adult · TTUP 9000' — and it renders as a second line." }
+          - { name: src, label: "This stage's plate", widget: image }
+          - { name: lengthM, label: "Length (meters)", widget: number, value_type: float }
+          - { name: widthM, label: "Horizontal extent (meters)", widget: number, required: false, value_type: float, hint: "Only for a non-horizontal pose. Blank = use Length." }
+          - { name: skullM, label: "Skull length (meters)", widget: number, required: false, value_type: float }
+          - { name: femurM, label: "Femur length (meters)", widget: number, required: false, value_type: float }
+          - { name: humerusM, label: "Humerus length (meters)", widget: number, required: false, value_type: float }
+          - { name: specimen, label: "Specimen number", widget: string, required: false, hint: "Set only where the stage is a catalogued specimen rather than a composite." }
+      - { name: growthTableNote, label: "Measurements table lead-in", widget: text, required: false, hint: "Sits above the table: what to watch for in THIS series. The table shows skull÷femur and humerus÷femur, so the interesting ratio differs by animal — a forelimb in Postosuchus, a skull in the hadrosaurs. Leave blank to show the table with no commentary." }
       - { name: underRevision, label: "Under revision (withhold the skeletal)", widget: boolean, default: false, required: false, hint: "Tick to show an 'under revision' notice + your placeholder (black silhouette) instead of presenting it as the current skeletal. Keeps the page, URL, and links; the image is dropped from SEO. Untick when the updated skeletal is ready. Use it for ANY reason a skeletal must come down — the public label is always just 'Under revision'." }
       - { name: revisionNote, label: "Under-revision wording (optional)", widget: text, required: false, hint: "Leave blank for the standard notice, which says the old version is superseded and an update is in progress. Override it when that isn't true — e.g. a skeletal held back for a while, where nothing is superseded — or when the wait is long enough that 'in progress' would overpromise. ⚠️ This is shown on the page AND visible in the public repo: never name the reason, the client, or the publication. Say what a visitor needs, nothing more." }
       - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }

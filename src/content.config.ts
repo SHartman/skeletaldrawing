@@ -111,6 +111,12 @@ const taxa = defineCollection({
           )
           .default([]),
       ),
+      // Lead-in above the measurements table: what to watch for in THIS series. Kept separate from
+      // growthNote (which captions the overlay) because the two answer different questions — the
+      // overlay's note explains where the stages come from, this one says what the numbers show.
+      // Optional, and per-taxon by necessity: the interesting ratio is a forelimb in Postosuchus and
+      // a skull in the hadrosaurs, so no template sentence could cover both without being wrong.
+      growthTableNote: optStr,
       // Withhold an outdated/superseded skeletal without losing the page: render an "under
       // revision" notice + the supplied placeholder (a black silhouette), keep all live metadata
       // and the URL/301s/links, and don't assert the placeholder as the reconstruction in SEO.

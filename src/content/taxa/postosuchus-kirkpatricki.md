@@ -30,6 +30,7 @@ featured: true
 growthSeries: true
 added: 2026-07-16T12:00:00.000Z
 growthNote: The adult (TTUP 9000) and a subadult (TTUP 9002), drawn to a common scale.
+growthTableNote: "The forelimb is the column to watch. In the subadult the humerus is 0.60 of femur length; in the adult it has fallen to 0.50. The arm keeps growing, but not as fast as the leg — a shift that probably accompanies a move from more facultative quadrupedality in the young animal toward more obligate bipedality with age."
 widthM: 4.89
 growthStages:
   - label: Adult · TTUP 9000
