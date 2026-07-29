@@ -67,14 +67,11 @@ const show = stages.length > 1;
     {note && <p class="gt-note" set:html={inlineEmphasisHtml(note)}></p>}
 
     <div class="table-wrap">
-      <table>
-        {/* First child of <table> because the spec requires it there (and a screen reader reads it
-            as the table's name before the data); `caption-side: bottom` puts it under the rows. */}
-        <caption class="gt-cap">
-          Measured from the reconstructions on this page. The final columns are dimensionless —
-          each element divided by the femur, the usual stand-in for body size — so they track
-          shifts in proportion rather than in size.
-        </caption>
+      {/* No <caption>: it explained the ÷ columns, which the headers now say outright and the
+          lead-in above interprets. It was also the table's accessible NAME, so that job moves to
+          aria-labelledby on the heading — dropping the visible text shouldn't leave the table
+          announcing itself as an anonymous 7-column grid. */}
+      <table aria-labelledby="growth-tbl-h">
         <thead>
           <tr>
             <th>Stage</th>
@@ -170,11 +167,6 @@ const show = stages.length > 1;
     font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em; color: var(--slate);
   }
 
-  .gt-cap {
-    caption-side: bottom; text-align: left; padding: 14px 0 0;
-    font-size: 14px; line-height: 1.55; color: var(--slate); max-width: 760px;
-  }
-
   /* Collapses to one card per stage — no horizontal scroll (CLAUDE.md §3).
      800px, not the hub's 680px: seven columns bottom out around 705px and the wrap gets
      (viewport − 56), so the table stops fitting just under 760px and the cards have to arrive
@@ -184,14 +176,7 @@ const show = stages.length > 1;
      page. */
   @media (max-width: 800px) {
     .table-wrap { overflow-x: visible; }
-    /* `caption` is in this list deliberately: left as table-caption inside a display:block table it
-       shrink-wraps to the widest word (~97px of 339) and renders as a tall ribbon. */
-    tbody, tr, td, th, caption { display: block; width: 100%; }
-    /* The table is a flex column rather than a block for one reason: once the caption is no longer
-       laid out as a table-caption, `caption-side: bottom` stops applying and it jumps to the top,
-       where the spec requires it to sit in source order. `order` puts it back under the cards. */
-    table { display: flex; flex-direction: column; width: 100%; }
-    caption { order: 2; }
+    table, tbody, tr, td, th { display: block; width: 100%; }
     thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
     /* The header held the unit; with it off-screen each value has to say its own. */
     .u { display: inline; margin-left: .32em; color: var(--slate); }
@@ -219,6 +204,5 @@ const show = stages.length > 1;
        top-to-bottom and a rule on a full-width row would just look like a stray mark. */
     td.rat { border-left: none; }
     tbody tr td:last-child { border-bottom: none; }
-    .gt-cap { padding-top: 4px; }
   }
 </style>
