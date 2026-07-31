@@ -47,7 +47,7 @@ growthStages:
     femurM: 0.4
     humerusM: 0.24
     specimen: TTUP 9002
-growthTableNote: _Postosuchus_ isn't known from hatchlings, and in the adult and subadult the large head ("all the better to eat you with...") doesn't change much, but surprisingly the forelimb does. Comparing the humerus (upper arm bone) to the femur (thigh bone), we can see that the forelimb is getting proportionately smaller in the adult. To be sure, the arm keeps growing, but not as fast as the leg. If we assume this trend projects back to hatchling _Postosuchus_, it probably means reflects from an animal more comfortable on all fours as a juvenile, to one that is more bipedal (two-legged) with age.
+growthTableNote: _Postosuchus_ isn't known from hatchlings, and in the adult and subadult the large head ("all the better to eat you with...") doesn't change much, but surprisingly the forelimb does. Comparing the humerus (upper arm bone) to the femur (thigh bone), we can see that the forelimb is getting proportionately smaller in the adult. To be sure, the arm keeps growing, but not as fast as the leg. If we assume this trend projects back to hatchling _Postosuchus_, it probably reflects a shift from an animal more comfortable on all fours as a juvenile, to one that is more bipedal (two-legged) with age.
 revisionNote: ''
 added: 2026-07-16T12:00:00.000Z
 ---
