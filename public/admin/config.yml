@@ -101,6 +101,10 @@ collections:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
           - { name: caption, label: "Caption", widget: string, required: false }
+      # Uploads to the repo-root silhouettes/ folder rather than media_folder — same per-field
+      # override the Downloads field uses. It is a trace source, never served, so the thumbnail
+      # preview here won't load; that's expected, not a broken upload.
+      - { name: silhouette, label: "Silhouette (for scale comparisons)", widget: image, required: false, media_folder: "/silhouettes", public_folder: "/silhouettes", hint: "Transparent-background body envelope — left lateral, head left, no scale bar or credit. Powers the scale-comparison overlays and the size-comparison tool; the skeletal page renders fine without one. See silhouettes/README.md for how to make one. (The preview box below will stay blank — these are never served to the browser.)" }
       - { name: featured, label: "Featured", widget: boolean, default: false, required: false }
       - { name: growthSeries, label: "Growth-series overlay + measurements table", widget: boolean, default: false, required: false, hint: "Tick to show an ontogenetic size overlay AND the measurements table beneath it. Fill in Growth stages below; also add each non-adult stage under Additional figures so its full-size plate appears, and supply a matching silhouette." }
       - { name: growthNote, label: "Growth overlay caption", widget: text, required: false, hint: "Captions the overlay — where the stages come from. A bonebed composite and a two-specimen ontogeny need different wording. Wrap scientific names in underscores to italicise them: _Maiasaura_." }

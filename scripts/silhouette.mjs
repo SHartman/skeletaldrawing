@@ -642,8 +642,24 @@ const filesByTaxon = {};
 for (const f of readdirSync(SIL_DIR))
   if (/\.png$/i.test(f) && !NON_TAXON.has(f) && !SKIP_FILES.has(f) && isSilFile(f)) (filesByTaxon[taxonSlugOf(f)] ??= []).push(f);
 
+// An entry may NAME its silhouette in front matter (`silhouette:`, written by the CMS upload field).
+// That beats everything below it. The convention — first two hyphen tokens of the filename are the
+// slug, plus a keyword guard — is a guess about intent, and SKIP_FILES exists because it guesses
+// wrong often enough to need a manual denylist. A named file is a statement, so it skips the
+// keyword guard and the denylist entirely, and its filename can be anything.
+const declared = {};
+for (const f of readdirSync(taxaDir)) {
+  if (!f.endsWith('.md')) continue;
+  const m = readFileSync(join(taxaDir, f), 'utf8').match(/^silhouette:\s*(.+)$/m);
+  const base = m?.[1].trim().replace(/^['"]|['"]$/g, '').split('/').pop();
+  if (base) declared[f.replace(/\.md$/, '')] = base;
+}
+
 const catalogAdds = [];
-for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
+// Union, not just the folder scan: a declared silhouette whose filename doesn't happen to start
+// with its slug would otherwise never be reached.
+for (const slug of [...new Set([...Object.keys(filesByTaxon), ...Object.keys(declared)])].sort()) {
+  const cands = filesByTaxon[slug] ?? [];
   if (SKIP_SLUGS.has(slug)) {
     console.log(`(skip ${slug}: silhouette has embedded scale figures — needs a body-only version)`);
     continue;
@@ -657,13 +673,22 @@ for (const [slug, fs] of Object.entries(filesByTaxon).sort()) {
   if (!lm) continue; // no numeric length → can't scale it
   const lengthM = parseFloat(lm[1]);
   const widthM = numField(taxTxt, 'widthM'); // optional horizontal-extent override for the overlay
-  // Prefer a plain skeletal silhouette; fall back to a known-* one only when that's all there is.
+  // A named file wins outright. Warn rather than skip silently if it's missing: the owner uploaded
+  // it from the CMS and would have no way to tell the trace never happened.
+  if (declared[slug] && !existsSync(join(SIL_DIR, declared[slug]))) {
+    console.log(`  !! ${slug}: front matter names ${declared[slug]}, which is not in ${SIL_DIR}/`);
+    failures.push(`${slug}: declared silhouette ${declared[slug]} not found`);
+  }
+  // Otherwise prefer a plain skeletal silhouette; fall back to a known-* one only when that's all
+  // there is.
   const pick =
-    fs.find((f) => /-silhouette\.png$/i.test(f) && !isKnown(f)) ??
-    fs.find((f) => /without-armor/i.test(f)) ??
-    fs.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
-    fs.find((f) => !isKnown(f)) ??
-    fs[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
+    (declared[slug] && existsSync(join(SIL_DIR, declared[slug])) ? declared[slug] : null) ??
+    cands.find((f) => /-silhouette\.png$/i.test(f) && !isKnown(f)) ??
+    cands.find((f) => /without-armor/i.test(f)) ??
+    cands.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
+    cands.find((f) => !isKnown(f)) ??
+    cands[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
+  if (!pick) continue; // declared file missing and nothing in the folder matches the convention
   const traced = await safeTrace(join(SIL_DIR, pick), { alpha: true }, slug);
   if (!traced) continue;
   const { w, h, path, points, holes } = traced;

@@ -82,6 +82,17 @@ const taxa = defineCollection({
       // section + its ImageObject JSON-LD land in a small post-launch pass. Graceful when absent.
       lifeReconstruction: nullableDefault(imageRef.optional()),
       additionalFigures: nullableDefault(z.array(figureRef).default([])), // bonus figures
+      // Trace source for the scale overlays and the /compare/ catalog. NOT rendered — the tracer
+      // (scripts/silhouette.mjs) reads the PNG and writes vector paths to src/data/silhouettes.json,
+      // which is what the browser gets. So this path is a repo path, not a URL, and points outside
+      // public/ by design; nothing dereferences it at runtime.
+      //
+      // Exists so silhouettes can be uploaded from the CMS instead of committed by hand, and it
+      // doubles as the fix for the fragile part of the old arrangement: association used to be by
+      // FILENAME (first two hyphen tokens = the slug), which is why silhouette.mjs carries a
+      // SKIP_FILES list of images the convention wrongly claimed. A named file can't be mismatched.
+      // Optional and back-compatible — the filename scan still runs for the ~305 existing files.
+      silhouette: optStr,
       featured: nullableDefault(z.boolean().default(false)),
       // Render an ontogenetic growth-series scale overlay on this taxon's page (reads the
       // <slug>-growth silhouette group; the growth stages are its additionalFigures). See lib/schema.
