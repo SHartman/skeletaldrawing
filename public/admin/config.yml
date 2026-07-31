@@ -11,8 +11,19 @@ backend:
   # No OAuth app / Worker needed (Sveltia's recommended method for a solo editor).
   # Switch to PKCE login if/when GitHub ships it.
 
-# Uploaded images land here and are served as-is. For build-optimized images,
-# use the local watermark → commit flow (which also writes src/assets/skeletals/).
+# Uploads land here and ARE optimized: scripts/sync-assets.mjs runs ahead of `astro build` and
+# mirrors this folder into src/assets/skeletals/, so an upload made from the CMS on any device gets
+# responsive AVIF/WebP without local tooling. (This used to require the local commit flow. It no
+# longer does — that note was stale.)
+#
+# Two things the CMS still CANNOT do for you:
+#   1. Apply the credit mark. Run `npm run credit -- <file.png> [--pos br|tr|bl|tl]` BEFORE uploading;
+#      the baked-in credit + scale bar are a hard invariant (CLAUDE.md §3), and nothing in the build
+#      adds them.
+#   2. Add a silhouette. Those live in the repo root at silhouettes/ — outside media_folder — and
+#      need a commit (GitHub web UI or local). Without one the page renders fine; the taxon just
+#      won't appear in the scale comparisons or the /compare/ catalog. Name it so the first two
+#      hyphenated tokens are the taxon slug, and include "silhouette" or "skeletal" in the name.
 media_folder: "public/images/skeletals"
 public_folder: "/images/skeletals"
 
