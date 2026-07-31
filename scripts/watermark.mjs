@@ -151,6 +151,11 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--pos') posArg = argv[++i];
   else if (a.startsWith('--pos=')) posArg = a.slice(6);
   else if (a === '--top-right' || a === '--upper-right') posArg = 'tr';
+  // A bare `--` is npm's own argument separator, which is easy to double when copying an invocation
+  // (`npm run credit -- -- file.png`). Falling through to positional made it the OUTPUT path, so the
+  // script silently wrote a 600 KB credited PNG to a file literally named `--` in the repo root —
+  // where `git add -A` duly staged it into a public repo. It is never a filename; drop it.
+  else if (a === '--') continue;
   else positional.push(a);
 }
 const pos = normPos(posArg);
