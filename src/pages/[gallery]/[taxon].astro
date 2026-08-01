@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import SkeletalPage from '../../components/SkeletalPage.astro';
 import GenusHub from '../../components/GenusHub.astro';
 import SpecimenHub from '../../components/SpecimenHub.astro';
+import { genusHubKeys, genusSlugOf } from '../../lib/genus';
 
 // One page per taxon, which resolves to one of three templates:
 //   • SpecimenHub — a taxon with specimen children (e.g. /theropods/tyrannosaurus-rex/)
@@ -11,7 +12,6 @@ import SpecimenHub from '../../components/SpecimenHub.astro';
 export async function getStaticPaths() {
   const taxa = await getCollection('taxa');
   const specimens = await getCollection('specimens');
-  const taxonIds = new Set(taxa.map((t) => t.id));
 
   const kidsByTaxon = new Map<string, typeof specimens>();
   for (const sp of specimens) {
@@ -30,22 +30,24 @@ export async function getStaticPaths() {
     };
   });
 
-  // Synthetic genus hubs: a gallery+genus with ≥2 taxa and no taxon already on that slug.
+  // Synthetic genus hubs. The membership rule lives in lib/genus so the species page can link UP to
+  // a hub without restating it — it drifted twice before it was shared, and both failures were
+  // silent (a hub with no scale comparison; a crumb pointing at a page that was never built).
   const groups = new Map();
   for (const t of taxa) {
     const genus = t.data.taxon.split(' ')[0];
-    const slug = genus.toLowerCase();
-    const key = `${t.data.gallery}::${slug}`;
-    if (!groups.has(key)) groups.set(key, { gallery: t.data.gallery, genus, slug, species: [] });
+    const key = `${t.data.gallery}::${genusSlugOf(t.data.taxon)}`;
+    if (!groups.has(key))
+      groups.set(key, { gallery: t.data.gallery, genus, slug: genusSlugOf(t.data.taxon), species: [] });
     groups.get(key).species.push(t);
   }
-  for (const g of groups.values()) {
-    if (g.species.length >= 2 && !taxonIds.has(g.slug)) {
-      paths.push({
-        params: { gallery: g.gallery, taxon: g.slug },
-        props: { entry: null, specimens: null, hub: g },
-      });
-    }
+  const hubKeys = genusHubKeys(taxa);
+  for (const [key, g] of groups) {
+    if (!hubKeys.has(key)) continue;
+    paths.push({
+      params: { gallery: g.gallery, taxon: g.slug },
+      props: { entry: null, specimens: null, hub: g },
+    });
   }
   return paths;
 }

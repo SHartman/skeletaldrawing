@@ -4,6 +4,7 @@ import { Picture, Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ScaleComparison from './ScaleComparison.astro';
 import GrowthTable from './GrowthTable.astro';
+import { genusHubKeys, genusHubHref } from '../lib/genus';
 import { loadSkeletal } from '../lib/images';
 import {
   taxonImageGraph,
@@ -62,11 +63,19 @@ const specSub = d.specimenName ? `“${d.specimenName}”${d.specimenId ? ` · $
 const rootClade = cladePath[0];
 // `spec` marks the specimen-number part: the separator before it becomes a vertical bar instead of a
 // slash, a subtle tell that the data type changed from taxonomy to a catalog number.
-const eyebrowParts: { label: string; href: string | null; spec?: boolean }[] = [
+// A genus crumb, but only where a genus hub actually exists (>= 2 species in this gallery — see
+// lib/genus, which is also what builds the route). Without it the hub was reachable ONLY from the
+// gallery index: search drops people on a species page for a specific binomial, and from there the
+// genus page — the one carrying the shared history — was invisible. Rendered italic because it is a
+// genus name, unlike the roman clade crumbs beside it.
+const allTaxa = await getCollection('taxa');
+const genusHref = genusHubHref(d.gallery, d.taxon, genusHubKeys(allTaxa));
+const eyebrowParts: { label: string; href: string | null; spec?: boolean; italic?: boolean }[] = [
   { label: rootClade, href: `/${d.gallery}/` },
   ...(family && family !== rootClade
     ? [{ label: family, href: `/${d.gallery}/#${encodeURIComponent(family)}` }]
     : []),
+  ...(genusHref ? [{ label: d.taxon.split(' ')[0], href: genusHref, italic: true }] : []),
   ...(d.specimenId ? [{ label: d.specimenId, href: null, spec: true }] : []),
 ];
 // Ensure the credit always carries the © (the CMS can strip it on save). Shown once,
@@ -172,7 +181,11 @@ const jsonLd = underRevision
               {i > 0 && <wbr />}
               {i > 0 && <span class={p.spec ? 'sep sep-type' : 'sep'} aria-hidden="true">{p.spec ? '|' : '/'}</span>}
               {i > 0 && <wbr />}
-              {p.href ? <a class="crumb" href={p.href}>{p.label}</a> : <span class="crumb">{p.label}</span>}
+              {p.href ? (
+                <a class={p.italic ? 'crumb crumb-genus' : 'crumb'} href={p.href}>{p.label}</a>
+              ) : (
+                <span class="crumb">{p.label}</span>
+              )}
             </Fragment>
           ))}
         </p>
@@ -404,6 +417,9 @@ const jsonLd = underRevision
      the longest id in the catalogue (NHMAD 2020.00001, ~161px at this size) clears a 320px viewport,
      so nowrap can't force horizontal scroll (CLAUDE.md §3). */
   .eyebrow .crumb { white-space: nowrap; }
+  /* A genus is italic; the clades either side of it are roman. Letter-spacing is trimmed because the
+     eyebrow's .24em tracking pulls an italic apart more than it does upright caps. */
+  .eyebrow .crumb-genus { font-style: italic; letter-spacing: .16em; }
   .eyebrow .sep { margin: 0 .5em; opacity: .5; }
   /* vertical bar at the taxonomy→specimen boundary — a subtle "data type changed" tell */
   .eyebrow .sep-type { margin: 0 .62em; opacity: .38; }
