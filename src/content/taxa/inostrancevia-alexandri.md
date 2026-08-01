@@ -20,7 +20,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: Predominantly based on PIN 2005/1578 and PIN 1758
-scaleBar: 1 meter
+scaleBar: 50 centimeters
 drawingCredit: © Scott Hartman
 reconstruction:
   src: /images/skeletals/inostrancevia-alexandri-skeletal.png
