@@ -39,4 +39,4 @@ revisionNote: ''
 added: 2026-07-31T14:12
 ---
 
-_Inostrancevia_ was a grizzly bear-sized top predator from the Late Permian of what is today eastern Russia and southern Africa. Living long before the dinosaurs, this saber-toothed gorgonopsian would have terrified other Late Permian land animals. As a type of predatory therapsid, gorgonopsians belong to the same group that mammals do. Whether fur had evolved at this stage of therapsid development is currently subject to debate, but it seems that a partially elevated metabolism was likely already present.
+_Inostrancevia_ was a grizzly bear-sized top predator from the Late Permian of what is today western Russia and southern Africa. Living long before the dinosaurs, this saber-toothed gorgonopsian would have terrified other Late Permian land animals. As a type of predatory therapsid, gorgonopsians belong to the same group as mammals. Whether fur had evolved at this stage of therapsid development is currently subject to debate, but it seems that a partially elevated metabolism was likely already present.
