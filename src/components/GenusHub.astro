@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
 import { expandClades } from '../lib/clades';
@@ -14,6 +14,7 @@ import {
   specimenHero,
   specimenIsKnownMaterialOnly,
   taxonNameHtml,
+  inlineEmphasisHtml,
 } from '../lib/schema';
 
 // Genus hub: aggregates a multi-species genus. A species that has documented specimens is
@@ -112,7 +113,17 @@ const sizeRange = lengths.length
 
 const speciesCount = hub.species.length;
 const title = `${hub.genus} — skeletal reconstructions | Skeletal Drawing`;
-const description = `The genus ${hub.genus} by Scott Hartman — ${members.length} documented skeletals across ${speciesCount} species, ${sizeRange} in length, each with a full record.`;
+
+// Optional owner-written copy for this hub (src/content/genera/<genus-slug>.md). The page itself is
+// synthetic and has no file, so every field here is optional and falls back to the generated text —
+// a genus with no entry renders exactly as it did before this existed.
+const genusEntry = await getEntry('genera', hub.slug);
+const GenusBody = genusEntry ? (await render(genusEntry)).Content : null;
+const hasGenusBody = !!genusEntry?.body?.trim();
+
+const description =
+  genusEntry?.data.description ??
+  `The genus ${hub.genus} by Scott Hartman — ${members.length} documented skeletals across ${speciesCount} species, ${sizeRange} in length, each with a full record.`;
 ---
 
 <BaseLayout title={title} description={description} ogType="article">
@@ -128,11 +139,18 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
           ))}
         </p>
         <h1 class="display"><em>{hub.genus}</em></h1>
-        <p class="intro">
-          {members.length} documented skeletals across {speciesCount} {speciesCount === 1 ? 'species' : 'species'}
-          of <em>{hub.genus}</em>, each drawn to a common method in left lateral view. Pick one below,
-          or compare their records in the table.
-        </p>
+        {/* Owner copy when it exists, else the generated sentence. The generated one states counts,
+            which is why the stored version must NOT — the facts panel beside it already derives
+            those live, and a hard-coded "three species" goes stale the day a fourth lands. */}
+        {genusEntry?.data.intro ? (
+          <p class="intro" set:html={inlineEmphasisHtml(genusEntry.data.intro)}></p>
+        ) : (
+          <p class="intro">
+            {members.length} documented skeletals across {speciesCount} {speciesCount === 1 ? 'species' : 'species'}
+            of <em>{hub.genus}</em>, each drawn to a common method in left lateral view. Pick one below,
+            or compare their records in the table.
+          </p>
+        )}
       </div>
       <dl class="facts">
         <div><dt>Skeletals shown</dt><dd>{members.length}</dd></div>
@@ -170,6 +188,15 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
     </section>
 
     <ScaleComparison taxonId={hub.slug} total={members.length} />
+
+    {/* Longer prose sits BELOW the cards and the overlay, never above them: the owner's constraint
+        was that added copy must not push the images off the first screen. Only rendered when the
+        entry actually has a body, so an entry that only overrides `intro` adds no empty section. */}
+    {hasGenusBody && (
+      <section class="block">
+        <div class="genus-prose"><GenusBody /></div>
+      </section>
+    )}
 
     <section class="block">
       <h2 class="sec-h">All documented skeletals <span class="sec-sub">— tap a column to sort</span></h2>
@@ -264,6 +291,19 @@ const description = `The genus ${hub.genus} by Scott Hartman — ${members.lengt
   .facts dd { margin: 0; font-size: 19px; }
 
   .block { margin-top: 40px; }
+  /* Owner prose. `:global` because the markup comes from <Content /> and Astro's scoping can't reach
+     it. Measure is tighter than the page so a long piece stays readable; .intro above keeps its own,
+     wider setting because it sits beside the facts panel. */
+  .genus-prose { max-width: 68ch; }
+  .genus-prose :global(p) { font-size: 17px; line-height: 1.62; margin: 0 0 1em; color: var(--ink); }
+  .genus-prose :global(p:last-child) { margin-bottom: 0; }
+  .genus-prose :global(h2), .genus-prose :global(h3) {
+    font-style: italic; font-weight: 500; line-height: 1.15; margin: 1.5em 0 .5em;
+  }
+  .genus-prose :global(h2) { font-size: 26px; }
+  .genus-prose :global(h3) { font-size: 20px; }
+  .genus-prose :global(a) { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .genus-prose :global(a:hover) { border-bottom-color: var(--accent); }
   .sec-h {
     margin: 0 0 18px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);

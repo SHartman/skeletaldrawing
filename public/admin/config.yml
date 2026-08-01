@@ -130,6 +130,27 @@ collections:
       - { name: added, label: "Date added", widget: datetime, required: false, hint: "Auto-filled to now when you create the entry — drives the home page's rotating 'newest reconstruction'. Leave it unless you're backdating older work." }
       - { name: body, label: "Description", widget: markdown, required: false, hint: "The prose shown beneath the record." }
 
+  # Copy for the genus hubs (/theropods/nanotyrannus/ and friends). Those pages are SYNTHETIC —
+  # the site builds one wherever a gallery+genus has two or more taxa — so there is no page to
+  # create here, only words to supply for one that already exists. Entries for all eight current
+  # hubs are pre-seeded; the "New" button exists so a hub that appears later can be given copy
+  # without a commit, and an entry whose genus has no hub is inert (the build warns, naming it).
+  - name: genera
+    label: "Genus hubs — copy"
+    label_singular: "Genus hub"
+    folder: "src/content/genera"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: genus
+    slug: "{{slug}}"
+    summary: "{{genus}}"
+    fields:
+      - { name: genus, label: "Genus", widget: string, hint: "Display name, capitalised — e.g. Nanotyrannus. ⚠️ The FILENAME must be the lowercase genus (nanotyrannus.md); that's what the URL is built from. Renaming this field won't move the page." }
+      - { name: intro, label: "Lead paragraph", widget: text, required: false, hint: "Replaces the generated sentence beside the facts panel. ⚠️ Don't state counts — no 'three species', no 'five skeletals'. The panel next to it derives those live, and a typed number goes stale the day another species is added. Underscores italicise: _Nanotyrannus_." }
+      - { name: description, label: "Search/social description", widget: text, required: false, hint: "The meta + Open Graph description. Leave blank for the generated one, which already names the genus, the counts and the size range." }
+      - { name: body, label: "Longer prose (optional)", widget: markdown, required: false, hint: "Renders BELOW the skeletal cards and the scale comparison, so it never pushes the images off the first screen. Leave blank and no section appears at all." }
+
   - name: specimens
     label: "Specimens — specimen pages"
     label_singular: "Specimen"

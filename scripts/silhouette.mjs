@@ -743,6 +743,24 @@ for (const { genusSlug, members } of genusGroups.values()) {
 }
 console.log(`pass 4 derived ${genusAdds} genus comparison${genusAdds === 1 ? '' : 's'}`);
 
+// Orphan check for src/content/genera/. It lives here, in a silhouette script, only because pass 4
+// has just computed the authoritative "which genus hubs exist" set and nothing else in the build
+// does. An entry whose genus has no hub is harmless — it renders nowhere — but it is almost always a
+// misspelled filename, and the CMS gives no feedback either way. Warn, never fail: a genus can also
+// legitimately be waiting for its second species.
+const GENERA_DIR = 'src/content/genera';
+if (existsSync(GENERA_DIR)) {
+  const hubSlugs = new Set(
+    [...genusGroups.values()].filter((g) => g.members.length >= 2).map((g) => g.genusSlug),
+  );
+  for (const f of readdirSync(GENERA_DIR)) {
+    if (!f.endsWith('.md') || f === 'README.md') continue;
+    const slug = f.replace(/\.md$/, '');
+    if (!hubSlugs.has(slug))
+      console.log(`  !! genera/${f}: no genus hub for "${slug}" — check the filename is the lowercase genus, or wait for its second species`);
+  }
+}
+
 // ----- human scale reference (owner's adult + child silhouette) -----
 const humanFile = join(SIL_DIR, 'Humans.png');
 if (existsSync(humanFile)) {

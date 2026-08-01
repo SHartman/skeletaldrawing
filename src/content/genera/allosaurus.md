@@ -1,0 +1,5 @@
+---
+genus: Allosaurus
+intro: ''
+description: ''
+---

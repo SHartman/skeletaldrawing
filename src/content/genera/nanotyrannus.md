@@ -1,0 +1,5 @@
+---
+genus: Nanotyrannus
+intro: ''
+description: ''
+---

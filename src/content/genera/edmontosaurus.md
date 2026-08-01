@@ -1,0 +1,5 @@
+---
+genus: Edmontosaurus
+intro: ''
+description: ''
+---

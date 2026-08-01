@@ -1,0 +1,5 @@
+---
+genus: Triceratops
+intro: ''
+description: ''
+---

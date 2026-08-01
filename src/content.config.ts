@@ -257,6 +257,27 @@ const resources = defineCollection({
   }),
 });
 
+// Editorial copy for the SYNTHETIC genus hubs (/<gallery>/<genus>/). Those pages have no file of
+// their own — getStaticPaths conjures one wherever a gallery+genus has >= 2 taxa — so their prose was
+// generated, and every hub read the same stiff sentence about how many skeletals there are and how
+// they were drawn. This collection gives that copy a home without giving the PAGE a file: an entry is
+// purely optional, and each field falls back to the generated text when absent.
+//
+// The entry id must be the genus slug (lowercase genus, e.g. `nanotyrannus.md`) — that is the key
+// getStaticPaths builds the route from. An entry whose genus has no hub is inert, and the build warns
+// about it rather than failing.
+//
+// Deliberately NO count/size fields: the header's facts panel derives those live, and copy that
+// hard-codes "three species" goes stale the day a fourth is added.
+const genera = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '!README.md'], base: './src/content/genera' }),
+  schema: z.object({
+    genus: z.string(),      // display name, e.g. "Nanotyrannus" — the CMS identifier
+    intro: optStr,          // replaces the generated lead paragraph in the header
+    description: optStr,    // meta/OG description override; else generated from the members
+  }),
+});
+
 // Reader comments — moderated, git-owned, static-rendered. ONE FILE PER COMMENT: a pure
 // create for the serverless endpoint (no read-modify-write races), and moderation is just
 // flipping `approved` or deleting the file. Archived Disqus threads import into this same
@@ -305,4 +326,4 @@ const publications = defineCollection({
 // Reserved for later phases (defined when their first entry/template lands):
 //   page — standalone pages (About spokes if made CMS-editable, licensing, …)
 
-export const collections = { taxa, specimens, posts, articles, resources, comments, publications };
+export const collections = { taxa, specimens, genera, posts, articles, resources, comments, publications };
