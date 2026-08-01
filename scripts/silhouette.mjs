@@ -698,6 +698,51 @@ for (const slug of [...new Set([...Object.keys(filesByTaxon), ...Object.keys(dec
 }
 console.log(`\npass 3 added ${catalogAdds.length} taxon silhouettes to the catalog`);
 
+// ----- pass 4: genus comparisons for the SYNTHETIC genus hubs -----
+// The hub at /<gallery>/<genus>/ builds itself from content — any gallery+genus with >= 2 taxa, see
+// getStaticPaths in src/pages/[gallery]/[taxon].astro. Its <ScaleComparison> then asks for a group
+// keyed by the bare genus slug, and until now ONLY the hand-curated GENUS_GROUPS produced one. So a
+// hub could appear with a working specimen list, a working table, and a silently missing comparison,
+// with nothing anywhere to say why. That is exactly what Nanotyrannus did the hour a second species
+// was added: two good silhouettes, both traced, neither reachable.
+//
+// Derived on the same rule the hub uses (genus = first word of the binomial, lowercased) so the two
+// cannot drift apart, and assembled from geometry pass 3 already traced — nothing is re-read or
+// re-traced. Curated groups are left alone: they carry specimen-level members and hand-written
+// labels that a derivation can't reproduce.
+const abbrev = (name) => {
+  const [g, ...rest] = name.split(' ');
+  return rest.length ? `${g[0]}. ${rest.join(' ')}` : g;
+};
+const genusGroups = new Map();
+for (const f of readdirSync(taxaDir)) {
+  if (!f.endsWith('.md')) continue;
+  const slug = f.replace(/\.md$/, '');
+  const txt = readFileSync(join(taxaDir, f), 'utf8');
+  const name = (txt.match(/^taxon:\s*['"]?(.+?)['"]?\s*$/m) || [])[1];
+  const gallery = (txt.match(/^gallery:\s*['"]?([a-z0-9-]+)/m) || [])[1];
+  if (!name || !gallery) continue;
+  const genusSlug = name.split(' ')[0].toLowerCase();
+  const key = `${gallery}::${genusSlug}`;
+  if (!genusGroups.has(key)) genusGroups.set(key, { genusSlug, members: [] });
+  genusGroups.get(key).members.push({ slug, name });
+}
+let genusAdds = 0;
+for (const { genusSlug, members } of genusGroups.values()) {
+  if (members.length < 2) continue;
+  if (out[genusSlug]) continue; // a curated group, or a taxon that IS the genus slug — leave it
+  // Only members pass 3 actually traced. One silhouette is not a comparison, so require two.
+  const items = members
+    .filter((m) => out[m.slug]?.length === 1)
+    .map((m) => ({ ...out[m.slug][0], label: abbrev(m.name) }))
+    .sort((a, b) => b.lengthM - a.lengthM);
+  if (items.length < 2) continue;
+  out[genusSlug] = items;
+  genusAdds++;
+  console.log(`genus ${genusSlug}: ${items.map((i) => `${i.label} ${i.lengthM}m`).join(' · ')}`);
+}
+console.log(`pass 4 derived ${genusAdds} genus comparison${genusAdds === 1 ? '' : 's'}`);
+
 // ----- human scale reference (owner's adult + child silhouette) -----
 const humanFile = join(SIL_DIR, 'Humans.png');
 if (existsSync(humanFile)) {
