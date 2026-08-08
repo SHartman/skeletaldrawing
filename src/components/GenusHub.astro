@@ -135,12 +135,33 @@ const genusEntry = await getEntry('genera', hub.slug);
 const GenusBody = genusEntry ? (await render(genusEntry)).Content : null;
 const hasGenusBody = !!genusEntry?.body?.trim();
 
+// Social preview image. Genus hubs were the only page type shipping without one — skeletal pages,
+// specimen hubs and blog posts all pass it — so BaseLayout fell back to twitter:card="summary" and a
+// shared link rendered as a text-only card. On a page a blog post is about to point at, that is the
+// wrong first impression.
+//
+// The largest species that has an actual RECONSTRUCTION, falling back to largest-overall only if no
+// species in the genus has one. Sorting on size alone picked Torvosaurus gurneyi and Diplodocus
+// hallorum, both known-material-only — white bones on a black silhouette, which is the right hero for
+// their own pages but a poor thing to represent a genus with in a social card. Under-revision taxa
+// are skipped for the same reason SkeletalPage omits their og:image: the placeholder is not a
+// reconstruction either.
+const ogCandidates = [...hub.species]
+  .filter((s: any) => !s.data.underRevision)
+  .sort(
+    (a: any, b: any) =>
+      Number(!!b.data.reconstruction) - Number(!!a.data.reconstruction) ||
+      (b.data.lengthM ?? 0) - (a.data.lengthM ?? 0),
+  );
+const ogSpecies = ogCandidates[0];
+const imageUrl = ogSpecies ? new URL(heroRef(ogSpecies.data).src, Astro.site).href : undefined;
+
 const description =
   genusEntry?.data.description ??
   `The genus ${hub.genus} by Scott Hartman — ${members.length} documented skeletals across ${speciesCount} species, ${sizeRange} in length, each with a full record.`;
 ---
 
-<BaseLayout title={title} description={description} ogType="article">
+<BaseLayout title={title} description={description} ogImage={imageUrl} ogType="article">
   <main class="wrap">
     <header class="hub-head">
       <div class="head-main">
