@@ -146,6 +146,9 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
 {
   hasData && (
     <section class="scale">
+      {/* The mono label carries no qualifier. It used to read "— tails aligned, drawn to a common
+          scale"; the alignment is visible in the plate, and "common scale" only restates the
+          heading. The `heading` branch above is the home/growth-series variant and is unaffected. */}
       {heading ? (
         <div class="sc-head">
           <h2 class="sc-title">{heading}</h2>
@@ -157,7 +160,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
           )}
         </div>
       ) : (
-        <h2 class="sec-h">Scale comparison <span class="sec-sub">— tails aligned, drawn to a common scale</span></h2>
+        <h2 class="sec-h">Scale comparison</h2>
       )}
       <figure class="fig">
         <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest${showHuman ? ', with a 1.8-meter adult and a child for scale' : ''}`}>
@@ -224,7 +227,6 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
     margin: 0 0 18px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
   }
-  .sec-sub { letter-spacing: 0; text-transform: none; }
 
   .sc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; margin: 0 0 18px; }
   .sc-title { font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; margin: 0; }
