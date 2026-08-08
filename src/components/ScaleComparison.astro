@@ -105,6 +105,16 @@ const ramp = scaled.map((d) => {
   };
 });
 
+// The generated caption only earns its place when the overlay is a SUBSET of the table. On every hub
+// but Tyrannosaurus the overlay already holds every specimen there is, where "Overlay shows 2 of 2"
+// states what the reader can plainly count and points at a table that needs no pointing to. Callers
+// that pass their own `note` (the home page, the growth series) are unaffected.
+const noteText =
+  note ??
+  (items.length < total
+    ? `Overlay shows ${items.length} of ${total} documented skeletals — the full set is in the table below.`
+    : null);
+
 const maxLen = hasData ? Math.max(...scaled.map((d) => d.lengthM)) : 0; // biological max — for the aria label
 // Horizontal layout follows the actual rendered silhouette widths (sw), not lengthM, so a raised-neck
 // largest taxon (widthM < lengthM) doesn't leave dead space or over-run the ruler.
@@ -215,7 +225,7 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
         </figcaption>
         {/* `_Maiasaura_` → italic, matching the body prose and the measurements table's lead-in.
             Render-only, so no stripEmphasis pair is needed — this never feeds a meta tag. */}
-        <p class="note" set:html={inlineEmphasisHtml(note ?? `Overlay shows ${items.length} of ${total} documented skeletals — the full set is in the table below.`)}></p>
+        {noteText && <p class="note" set:html={inlineEmphasisHtml(noteText)}></p>}
       </figure>
     </section>
   )
