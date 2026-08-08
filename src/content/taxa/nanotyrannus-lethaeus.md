@@ -8,7 +8,7 @@ clade:
 family: ''
 specimenId: BMRP 2002.4.1
 specimenName: ''
-lengthM: 63
+lengthM: 6.3
 widthM: 6.13
 lengthLabel: ''
 massKg: null
