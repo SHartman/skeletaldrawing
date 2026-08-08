@@ -114,6 +114,20 @@ const sizeRange = lengths.length
 const speciesCount = hub.species.length;
 const title = `${hub.genus} — skeletal reconstructions | Skeletal Drawing`;
 
+// The generated intro opens with a count, and a sentence should not open with a digit. Twelve is the
+// usual style-guide cutoff for spelling out; past it, figures read more clearly anyway. Only reached
+// when the hub has no owner-written intro.
+//
+// The sentence itself lost two things it used to carry. "Pick one below, or compare their records in
+// the table" instructed navigation the cards make obvious. And "drawn to a common method" became
+// "drawn in left lateral view" alone: while every skeletal on the site is by one artist, a shared
+// standard is implied, and saying it out loud reads as padding. It earns its place back the day a
+// second artist contributes. Plurals are unconditional — a hub exists only at two or more species,
+// so neither count can ever be 1.
+const NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const numWord = (n: number) => (n >= 0 && n <= 12 ? NUM_WORDS[n] : String(n));
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 // Optional owner-written copy for this hub (src/content/genera/<genus-slug>.md). The page itself is
 // synthetic and has no file, so every field here is optional and falls back to the generated text —
 // a genus with no entry renders exactly as it did before this existed.
@@ -146,9 +160,8 @@ const description =
           <p class="intro" set:html={inlineEmphasisHtml(genusEntry.data.intro)}></p>
         ) : (
           <p class="intro">
-            {members.length} documented skeletals across {speciesCount} {speciesCount === 1 ? 'species' : 'species'}
-            of <em>{hub.genus}</em>, each drawn to a common method in left lateral view. Pick one below,
-            or compare their records in the table.
+            {capitalise(numWord(members.length))} documented skeletals across {numWord(speciesCount)} species
+            of <em>{hub.genus}</em>, each drawn in left lateral view.
           </p>
         )}
       </div>
