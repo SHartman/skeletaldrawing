@@ -18,6 +18,8 @@
 //   4. shadow         — source is a real built page, so the redirect hides it   <- the 2026-07-24 bug
 //   5. dead target    — destination is neither a built page, a static file, another rule's
 //                       source, nor external; following it would 404          (warning, not fatal)
+//   6. no slash twin  — a `/x` rule with no `/x/` rule; Cloudflare treats them as different keys,
+//                       so the slash form 404s                     <- the 2026-08-07 bug (warning)
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
@@ -99,6 +101,27 @@ if (pages.size) {
     if (pages.has(dest + '/') || files.has(dest + '/index.html')) continue;
     warn.push(`${at(r)}  DEAD TARGET   ${r.src} -> ${dest} (not a built page)`);
   }
+}
+
+// 6 — a rule with no trailing-slash twin
+//
+// Cloudflare does NOT normalise trailing slashes in _redirects: `/bio` and `/bio/` are different
+// keys, and a rule for one leaves the other returning 404. Verified live on 2026-08-07, when GSC
+// reported `/ornithiscians/` as Not Found while `/ornithiscians` redirected correctly — the single
+// URL CLAUDE.md §8 singles out as the deliberate slug correction. 103 rules were missing their twin.
+//
+// The per-taxon block had always been emitted in pairs, so the generator knew; the hand-written
+// section and page rules did not. This is the mirror of check 4: that one catches a with-slash rule
+// that shadows a real page, this catches a no-slash rule whose partner was never written.
+//
+// Skipped: sources with a file extension (`/x.htm/` is not a URL anyone requests), and any twin that
+// would equal the destination — adding those is precisely how the 2026-07-24 redirect loop happened.
+for (const r of staticRules) {
+  if (r.src.endsWith('/')) continue;
+  if (/\.[a-z0-9]+$/i.test(r.src.split('/').pop())) continue;
+  const twin = r.src + '/';
+  if (bySrc.has(twin) || twin === r.dest || pages.has(twin)) continue;
+  warn.push(`${at(r)}  NO SLASH TWIN ${twin} has no rule and will 404 (${r.src} redirects fine)`);
 }
 
 // ---------------------------------------------------------------- report
