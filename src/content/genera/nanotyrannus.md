@@ -1,6 +1,6 @@
 ---
 genus: Nanotyrannus
-intro: ''
+intro: "*Nanotyrannus* was a medium-sized eutyrannosaur from the Late Cretaceous. The name has had a rather lively historical debate, which you can read about below, or while you're at it, check out their (quite similar) size comparison, or select one of the two currently named species for more specific information."
 description: ''
 ---
 
