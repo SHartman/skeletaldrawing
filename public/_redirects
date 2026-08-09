@@ -804,7 +804,7 @@
 /index.htm                                                                 /                                                                          301
 /search                                                                    /skeletals/                                                                301
 /search/                                                                   /skeletals/                                                                301
-# Stormbergia is now widely treated as a juvenile Lesothosaurus and has no page of its own;
-# the gallery is the honest destination rather than asserting the synonymy in a redirect.
-/ornithiscians/stormbergia                                                 /ornithischians/                                                           301
-/ornithiscians/stormbergia/                                                /ornithischians/                                                           301
+# Stormbergia is now treated as a juvenile Lesothosaurus — owner considers it settled for the
+# foreseeable future, so the redirect asserts the synonymy rather than dropping visitors in the gallery.
+/ornithiscians/stormbergia                                                 /ornithischians/lesothosaurus-diagnosticus/                                301
+/ornithiscians/stormbergia/                                                /ornithischians/lesothosaurus-diagnosticus/                                301
