@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/sapeornis-chaoyangensis-skeletal.png
+  drawn: 2003
+  updated: 2026
   alt: Sapeornis chaoyangensis skeletal reconstruction, left lateral view, reconstructed length ~0.4 m.
 added: 2026-06-29T13:14:00.000Z
 widthM: 0.35

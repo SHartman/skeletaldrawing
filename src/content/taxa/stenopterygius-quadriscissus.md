@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/stenopterygius-quadriscissus-skeletal.png
+  drawn: 2018
+  updated: 2019
   alt: Stenopterygius quadriscissus skeletal reconstruction, left lateral view, length ~3.6 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 3.52

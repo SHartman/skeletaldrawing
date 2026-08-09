@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/neovenator-salerii-skeletal.png
+  drawn: 2013
+  updated: 2026
   alt: Neovenator salerii skeletal reconstruction, left lateral view, reconstructed length ~7.5 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

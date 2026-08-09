@@ -20,6 +20,8 @@ scaleBar: 5 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/beelzebufo-ampinga-skeletal.png
+  drawn: 2018
+  updated: 2026
   alt: Beelzebufo ampinga skeletal reconstruction, left lateral view, length 20 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.2

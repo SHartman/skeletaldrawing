@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/suskityrannus-hazelae-skeletal.png
+  drawn: 2011
+  updated: 2019
   alt: Suskityrannus hazelae skeletal reconstruction, left lateral view, reconstructed length ~1.3 m.
 added: 2026-06-29T13:20:00.000Z
 ---

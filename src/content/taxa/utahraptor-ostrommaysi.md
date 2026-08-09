@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/utahraptor-ostrommaysi-skeletal.png
+  drawn: 2010
+  updated: 2024
   alt: Utahraptor ostrommaysi skeletal reconstruction, left lateral view, reconstructed length ~4.4 m.
 added: 2026-07-01T12:05:00.000Z
 ---

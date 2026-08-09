@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gorgosaurus-libratus-juvenile-tmp-91-36-500-skeletal.png
+  drawn: 2004
+  updated: 2022
   alt: Gorgosaurus libratus skeletal reconstruction, left lateral view, reconstructed length ~5.3 m.
 additionalFigures:
   - src: /images/skeletals/gorgosaurus-libratus-potential-growth-stages.png
+    drawn: 2004
+    updated: 2022
     alt: 'Gorgosaurus libratus — Potential growth stages: this juvenile (~5.3 m), a larger subadult (~6.7 m), and full-grown adults approaching ~9 m.'
     caption: 'Potential growth stages: this juvenile (~5.3 m), a larger subadult (~6.7 m), and full-grown adults approaching ~9 m.'
 added: 2026-06-30T12:01:00.000Z

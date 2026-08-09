@@ -20,6 +20,8 @@ scaleBar: 5 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/cathayornis-yandica-skeletal.png
+  drawn: 2015
+  updated: 2022
   alt: Cathayornis yandica skeletal reconstruction, left lateral view, reconstructed length ~0.15 m.
 added: 2026-06-28T12:13:00.000Z
 widthM: 0.134

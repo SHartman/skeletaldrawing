@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/carnotaurus-satrei-macn-ch-894-skeletal-top-and-bottom-views.png
+  drawn: 2011
+  updated: 2021
   alt: Carnotaurus satrei skeletal reconstruction, left lateral view, reconstructed length ~8.4 m.
 added: 2026-06-30T12:09:00.000Z
 ---

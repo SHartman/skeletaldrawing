@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/edaphosaurus-pogonias-skeletal.png
+  drawn: 2024
+  updated: 2026
   alt: Edaphosaurus pogonias skeletal reconstruction, left lateral view, length ~3.5 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 3.47

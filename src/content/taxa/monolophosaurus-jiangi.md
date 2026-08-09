@@ -20,9 +20,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/monolophosaurus-jiangi-type-specimen-ivpp-84019-skeletal.png
+  drawn: 2015
+  updated: 2026
   alt: Monolophosaurus jiangi skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 rigorous:
   src: /images/skeletals/monolophosaurus-jiangi-type-specimen-ivpp-84019-known-elements.png
+  drawn: 2003
+  updated: 2026
   alt: 'Known skeletal material of Monolophosaurus jiangi: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:05:00.000Z
 ---

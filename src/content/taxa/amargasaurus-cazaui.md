@@ -18,9 +18,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/amargasaurus-cazaui-skeletal.png
+  drawn: 2013
+  updated: 2026
   alt: Amargasaurus cazaui skeletal reconstruction, left lateral view, specimen MACN-N 15, reconstructed length ~13.5 m.
 rigorous:
   src: /images/skeletals/amargasaurus-cazaui-known-material.png
+  drawn: 2013
+  updated: 2026
   alt: Known skeletal material of Amargasaurus cazaui MACN-N 15 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: ''
 ---

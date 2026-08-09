@@ -20,6 +20,7 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/parasaurolophus-sp-juvenile-ram-14000-skeletal.png
+  drawn: 2018
   alt: Parasaurolophus sp. skeletal reconstruction, left lateral view, reconstructed length ~2.2 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 2.2

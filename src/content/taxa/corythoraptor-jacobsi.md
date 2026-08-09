@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/corythoraptor-jacobsi-skeletal.png
+  drawn: 2020
+  updated: 2022
   alt: Corythoraptor jacobsi skeletal reconstruction, left lateral view, reconstructed length ~2 m.
 added: 2026-06-28T12:17:00.000Z
 widthM: 1.93

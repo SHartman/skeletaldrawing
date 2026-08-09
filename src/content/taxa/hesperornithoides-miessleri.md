@@ -21,9 +21,13 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/hesperornithoides-miessleri-type-wydice-dml-001-skeletal.png
+  drawn: 2007
+  updated: 2022
   alt: Hesperornithoides miessleri skeletal reconstruction, left lateral view, reconstructed length ~0.95 m.
 rigorous:
   src: /images/skeletals/hesperornithoides-miessleri-type-wydice-dml-001-known-elements.png
+  drawn: 2016
+  updated: 2026
   alt: 'Known skeletal material of Hesperornithoides miessleri: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:31:00.000Z
 ---

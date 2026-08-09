@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/supersaurus-vivianae-skeletal.png
+  drawn: 2006
+  updated: 2022
   alt: Supersaurus vivianae skeletal reconstruction, left lateral view, reconstructed length ~32 m.
 added: 2026-05-22T12:00:00.000Z
 widthM: 30

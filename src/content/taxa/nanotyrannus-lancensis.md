@@ -26,6 +26,7 @@ scaleBar: 1 meter
 drawingCredit: © Scott Hartman
 reconstruction:
   src: /images/skeletals/nanotyrannus-lancensis-ncsm-40000-skeletal.png
+  drawn: 2026
   alt: Skeletal reconstruction of Nanotyrannus lancensis, with scale bar and copyright mark
 rigorous: null
 lifeReconstruction: null

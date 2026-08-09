@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/galeamopus-pabsti-skeletal.png
+  drawn: 2018
+  updated: 2022
   alt: Galeamopus pabsti skeletal reconstruction, left lateral view, specimen SMA 0011, reconstructed length ~17 m.
 added: ''
 widthM: 16.2

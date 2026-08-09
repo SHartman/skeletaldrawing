@@ -21,6 +21,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/sphenacodon-ferox-skeletal.png
+  drawn: 2026
   alt: Sphenacodon ferox skeletal reconstruction, left lateral view, length ~2.1 m.
 added: 2026-07-07T12:00:00.000Z
 ---

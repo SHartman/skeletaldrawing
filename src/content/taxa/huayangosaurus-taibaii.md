@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/huayangosaurus-taibaii-skeletal.png
+  drawn: 2016
+  updated: 2026
   alt: Huayangosaurus taibaii skeletal reconstruction, left lateral view, reconstructed length ~4.7 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 4.7

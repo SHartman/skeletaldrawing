@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/bistahieversor-sealeyi-skeletal.png
+  drawn: 2013
+  updated: 2026
   alt: Bistahieversor sealeyi skeletal reconstruction, left lateral view, reconstructed length ~8.7 m.
 added: 2026-06-28T12:10:00.000Z
 ---

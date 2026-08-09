@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/styracosaurus-albertensis-cmn-344-skeletal.png
+  drawn: 2011
+  updated: 2020
   alt: Styracosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~4.8 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 4.74

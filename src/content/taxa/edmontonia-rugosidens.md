@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/edmontonia-rugosidens-skeletal.png
+  drawn: 2011
+  updated: 2024
   alt: Edmontonia rugosidens skeletal reconstruction, left lateral view, reconstructed length ~6.6 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 6.47

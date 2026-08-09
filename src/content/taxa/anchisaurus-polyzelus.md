@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/anchisaurus-polyzelus-skeletal.png
+  drawn: 2019
+  updated: 2022
   alt: Anchisaurus polyzelus skeletal reconstruction, left lateral view, reconstructed length ~1.7 m.
 added: ''
 ---

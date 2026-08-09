@@ -20,6 +20,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/falcarius-utahensis-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Falcarius utahensis skeletal reconstruction, left lateral view, reconstructed length ~4 m.
 added: 2026-06-28T12:25:00.000Z
 widthM: 3.88

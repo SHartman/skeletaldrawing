@@ -21,6 +21,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mammut-americanum-skeletal.png
+  drawn: 2017
   alt: Mammut americanum skeletal reconstruction, left lateral view, length ~5 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 5.87

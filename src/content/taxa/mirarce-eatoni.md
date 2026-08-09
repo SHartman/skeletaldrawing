@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mirarce-eatoni-skeletal.png
+  drawn: 2011
+  updated: 2018
   alt: Mirarce eatoni skeletal reconstruction, left lateral view, reconstructed length ~0.49 m.
 added: 2026-06-29T13:04:00.000Z
 widthM: 0.44

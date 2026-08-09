@@ -9,9 +9,13 @@ widthM: 7.99
 view: "Left lateral"
 reconstruction:
   src: "/images/skeletals/torvosaurus-tanneri-skeletal.png"
+  drawn: 2010
+  updated: 2019
   alt: "Torvosaurus tanneri skeletal reconstruction, left lateral view, reconstructed length ~8 m."
 rigorous:
   src: "/images/skeletals/torvosaurus-tanneri-known-elements.png"
+  drawn: 2010
+  updated: 2019
   alt: "Known skeletal material of Torvosaurus tanneri: preserved elements shown in white against a black body silhouette."
 ---
 

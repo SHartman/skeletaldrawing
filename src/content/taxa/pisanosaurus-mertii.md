@@ -20,9 +20,11 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/pisanosaurus-mertii-type-pvl-2577-skeletal.png
+  drawn: 2012
   alt: Pisanosaurus mertii skeletal reconstruction, left lateral view, reconstructed length ~0.56 m.
 rigorous:
   src: /images/skeletals/pisanosaurus-mertii-type-pvl-2577-known-elements.png
+  drawn: 2012
   alt: Pisanosaurus mertii — known skeletal material (PVL 2577), left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-06T12:00:00.000Z
 widthM: 0.56

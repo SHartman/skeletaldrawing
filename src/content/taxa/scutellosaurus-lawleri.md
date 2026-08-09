@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/scutellosaurus-lawleri-type-mna-v-175-skeletal.png
+  drawn: 2016
+  updated: 2026
   alt: Scutellosaurus lawleri skeletal reconstruction, left lateral view, reconstructed length ~1.3 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 1.29

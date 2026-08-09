@@ -20,6 +20,8 @@ scaleBar: 5 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/rhynchocyon-petersi-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Rhynchocyon petersi skeletal reconstruction, left lateral view, length 29 cm.
 added: 2026-07-07T12:00:00.000Z
 widthM: 0.27

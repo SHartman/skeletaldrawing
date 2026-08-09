@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mononykus-olecranus-skeletal.png
+  drawn: 2015
+  updated: 2026
   alt: Mononykus olecranus skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 added: 2026-06-29T13:06:00.000Z
 ---

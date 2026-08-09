@@ -21,6 +21,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-usnm-555000-skeletal.png
+  drawn: 2023
   alt: Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen USNM 555000, reconstructed length about 11.6 meters
 featured: true
 added: 2026-06-28T12:39:00.000Z

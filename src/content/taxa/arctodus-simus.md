@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/arctodus-simus-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Arctodus simus skeletal reconstruction, left lateral view, reconstructed length ~2.3 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

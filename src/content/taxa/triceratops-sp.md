@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/triceratops-sp-yoshi-skeletal.png
+  drawn: 2021
+  updated: 2026
   alt: Triceratops sp. skeletal reconstruction, left lateral view, reconstructed length ~6.75 m.
 added: 2026-07-06T12:00:00.000Z
 ---

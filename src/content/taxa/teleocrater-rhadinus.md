@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/teleocrater-rhadinus-skeletal.png
+  drawn: 2016
+  updated: 2018
   alt: Teleocrater rhadinus skeletal reconstruction, left lateral view, length ~1.81 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 1.78

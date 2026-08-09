@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/shunosaurus-lii-skeletal.png
+  drawn: 2016
+  updated: 2022
   alt: Shunosaurus lii skeletal reconstruction, left lateral view, specimen T5401, reconstructed length ~10 m.
 added: ''
 ---

@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/edmontosaurus-regalis-skeletal.png
+  drawn: 2018
   alt: Edmontosaurus regalis skeletal reconstruction, left lateral view, reconstructed length ~13 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 12.84

@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/dimetrodon-grandis-skeletal.png
+  drawn: 2016
+  updated: 2026
   alt: Dimetrodon grandis skeletal reconstruction, left lateral view, length ~3.1 m.
 featured: true
 added: 2026-07-07T12:00:00.000Z

@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/shonisaurus-popularis-skeletal.png
+  drawn: 2015
+  updated: 2017
   alt: Shonisaurus popularis skeletal reconstruction, left lateral view, reconstructed length ~15 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

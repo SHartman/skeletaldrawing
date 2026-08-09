@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/pontosaurus-kornhuberi-type-specimen-msnm-v3662-skeletal.png
+  drawn: 2019
+  updated: 2026
   alt: Pontosaurus kornhuberi skeletal reconstruction, left lateral view, length ~1 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 1

@@ -22,6 +22,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/zalmoxes-robustus-skeletal.png
+  drawn: 2004
+  updated: 2018
   alt: Zalmoxes robustus skeletal reconstruction, left lateral view, reconstructed length ~2.6 m.
 added: 2026-07-06T12:00:00.000Z
 ---

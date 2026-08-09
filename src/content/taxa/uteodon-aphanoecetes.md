@@ -22,6 +22,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/uteodon-aphanoecetes-type-cm-11337-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Uteodon aphanoecetes skeletal reconstruction, left lateral view, reconstructed length ~2.7 m.
 added: 2026-07-06T12:00:00.000Z
 ---

@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/marshosaurus-bicentesimus-skeletal.png
+  drawn: 2010
+  updated: 2020
   alt: Marshosaurus bicentesimus skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 rigorous:
   src: /images/skeletals/marshosaurus-bicentesimus-known-elements.png
+  drawn: 2010
+  updated: 2026
   alt: 'Known skeletal material of Marshosaurus bicentesimus: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:01:00.000Z
 ---

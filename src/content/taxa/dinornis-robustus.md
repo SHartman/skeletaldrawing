@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/dinornis-robustus-female-skeletal.png
+  drawn: 2017
+  updated: 2022
   alt: Dinornis robustus skeletal reconstruction, left lateral view, reconstructed length ~3.4 m.
 additionalFigures:
   - src: /images/skeletals/dinornis-robustus-female-skeletal-foraging-with-feathers.png
+    drawn: 2017
+    updated: 2019
     alt: Dinornis robustus — The same female South Island giant moa in a foraging posture, with feathers restored.
     caption: The same female South Island giant moa in a foraging posture, with feathers restored.
 added: 2026-06-28T12:20:00.000Z

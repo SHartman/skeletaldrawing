@@ -21,9 +21,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/balaenoptera-musculus-skeletal.png
+  drawn: 2015
+  updated: 2018
   alt: Balaenoptera musculus skeletal reconstruction, left lateral view, length ~30 m.
 additionalFigures:
   - src: /images/skeletals/balaenoptera-musculus-skeletal-feeding-behavior.png
+    drawn: 2014
+    updated: 2018
     alt: Balaenoptera musculus skeletal reconstruction — feeding behavior.
     caption: ''
     label: Feeding behavior

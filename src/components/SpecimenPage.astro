@@ -11,6 +11,8 @@ import {
   formatImperial,
   formatMass,
   formatAuthor,
+  formatDrawn,
+  SHOW_DRAWING_DATES,
 } from '../lib/schema';
 import { expandClades } from '../lib/clades';
 
@@ -78,6 +80,10 @@ const restFields: { k: string; v: string; href?: string }[] = [
   { k: 'View', v: s.view },
   { k: 'Basis', v: s.basis ?? '' },
   { k: 'Drawing', v: drawingCredit },
+  // Mirrors the skeletal page: the hero image's own years, gated until launch. Note this sits next to
+  // "Collected", which is the year the FOSSIL came out of the ground — a different fact entirely, and
+  // the two labels have to stay distinguishable.
+  { k: 'Drawn', v: SHOW_DRAWING_DATES ? formatDrawn(hero?.drawn, hero?.updated) : '' },
 ].filter((f) => f.v);
 
 // Related: the sibling specimens of the same taxon.

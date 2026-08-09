@@ -21,13 +21,19 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/hypacrosaurus-stebingeri-adult-skeletal.png
+  drawn: 2015
+  updated: 2018
   alt: Hypacrosaurus stebingeri skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 additionalFigures:
   - src: /images/skeletals/hypacrosaurus-stebingeri-juvenile-skeletal.png
+    drawn: 2015
+    updated: 2018
     alt: Hypacrosaurus stebingeri skeletal reconstruction — juvenile, left lateral view, reconstructed length ~1 m.
     caption: ''
     label: Juvenile
   - src: /images/skeletals/hypacrosaurus-stebingeri-adult-and-juvenile-skeletals.png
+    drawn: 2015
+    updated: 2018
     alt: Hypacrosaurus stebingeri skeletal reconstruction — adult and juvenile together, drawn to a common scale.
     caption: ''
     label: Adult and juvenile

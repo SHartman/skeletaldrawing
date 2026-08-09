@@ -21,9 +21,11 @@ scaleBar: 5 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gallus-gallus-broiler-hen-skeletal.png
+  drawn: 2018
   alt: Gallus gallus skeletal reconstruction, left lateral view, reconstructed length ~0.35 m.
 additionalFigures:
   - src: /images/skeletals/gallus-gallus-broiler-hen-skeletal-in-flight-pose.png
+    drawn: 2018
     alt: Gallus gallus — The same domestic hen skeletal in a flight pose.
     caption: The same domestic hen skeletal in a flight pose.
 added: 2026-06-28T12:27:00.000Z

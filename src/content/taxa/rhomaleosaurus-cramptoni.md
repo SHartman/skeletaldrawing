@@ -21,6 +21,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/rhomaleosaurus-cramptoni-skeletal.png
+  drawn: 2017
   alt: Rhomaleosaurus cramptoni skeletal reconstruction, left lateral view, reconstructed length ~7.1 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/eustreptospondylus-oxoniensis-type-oum-j13558-skeletal.png
+  drawn: 2019
+  updated: 2020
   alt: Eustreptospondylus oxoniensis skeletal reconstruction, left lateral view, reconstructed length ~4.5 m.
 added: 2026-06-28T12:24:00.000Z
 ---

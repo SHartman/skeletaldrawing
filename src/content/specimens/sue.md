@@ -19,13 +19,18 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-sue-fmnh-pr-2081-skeletal-two-views.png
+  drawn: 2003
+  updated: 2019
   alt: Tyrannosaurus rex skeletal reconstruction — specimen FMNH PR 2081 (Sue), shown in two views, reconstructed length about 12.3 meters
 rigorous:
   src: /images/skeletals/tyrannosaurus-rex-sue-fmnh-pr-2081-known-material.png
+  drawn: 2003
+  updated: 2026
   alt: Known-material diagram of Tyrannosaurus rex FMNH PR 2081 (Sue) — elements preserved in the specimen shown in white against a black body silhouette
 additionalFigures:
   - label: Muscle reconstruction
     src: /images/skeletals/tyrannosaurus-rex-sue-fmnh-pr-2081-muscle-reconstruction.png
+    drawn: 2022
     alt: Tyrannosaurus rex muscle reconstruction — restored musculature over the skeleton of FMNH PR 2081 (Sue), left lateral and dorsal views
     caption: Superficial musculature of Sue (FMNH PR 2081) in dorsal and lateral view.
 overlay: true

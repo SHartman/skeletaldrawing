@@ -22,6 +22,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/coelophysis-bauri-amnh-7224-lectotype-skeletal.png
+  drawn: 2015
+  updated: 2019
   alt: Coelophysis bauri skeletal reconstruction, left lateral view, reconstructed length ~2.4 m.
 added: 2026-06-28T12:15:00.000Z
 ---

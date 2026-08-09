@@ -20,6 +20,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/scansoriopteryx-heilmanni-under-renovation-silhouette.png
+  drawn: 2004
   alt: Scansoriopteryx heilmanni — skeletal reconstruction under revision (placeholder silhouette).
 underRevision: true
 added: ''

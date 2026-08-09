@@ -11,6 +11,8 @@ view: "Left lateral"
 featured: true
 reconstruction:
   src: "/images/skeletals/deinosuchus-hatcheri-skeletal.png"
+  drawn: 2010
+  updated: 2018
   alt: "Deinosuchus hatcheri skeletal reconstruction, left lateral view, length ~9.1 m."
 ---
 

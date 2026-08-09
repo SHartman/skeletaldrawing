@@ -20,9 +20,13 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/eocursor-parvus-type-sam-pk-k8025-skeletal.png
+  drawn: 2006
+  updated: 2013
   alt: Eocursor parvus skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 rigorous:
   src: /images/skeletals/eocursor-parvus-type-sam-pk-k8025-known-elements.png
+  drawn: 2006
+  updated: 2013
   alt: Eocursor parvus — known skeletal material (SAM-PK-K8025), left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-06T12:00:00.000Z
 widthM: 0.99

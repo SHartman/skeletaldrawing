@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/xiaotingia-zhengi-type-stm-27-2-skeletal.png
+  drawn: 2016
+  updated: 2024
   alt: Xiaotingia zhengi skeletal reconstruction, left lateral view, reconstructed length ~0.64 m.
 added: 2026-06-29T13:26:00.000Z
 ---

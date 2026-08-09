@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ichthyosaurus-communis-skeletal.png
+  drawn: 2017
+  updated: 2019
   alt: Ichthyosaurus communis skeletal reconstruction, left lateral view, length ~2.2 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 2.19

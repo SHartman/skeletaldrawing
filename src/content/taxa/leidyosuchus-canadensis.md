@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/leidyosuchus-canadensis-skeletal.png
+  drawn: 2017
+  updated: 2018
   alt: Leidyosuchus canadensis skeletal reconstruction, left lateral view, length ~2.85 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 2.81

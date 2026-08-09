@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/parasaurolophus-cyrtocristatus-fmnh-p27393-skeletal.png
+  drawn: 2004
+  updated: 2018
   alt: Parasaurolophus cyrtocristatus skeletal reconstruction, left lateral view, reconstructed length ~7.6 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 7.53

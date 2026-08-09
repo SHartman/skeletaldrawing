@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/anzu-wyliei-skeletal.png
+  drawn: 2004
+  updated: 2024
   alt: Anzu wyliei skeletal reconstruction, left lateral view, reconstructed length ~3 m.
 additionalFigures:
   - src: /images/skeletals/anzu-wyliei-figure-4-lamanna-et-al-2014.png

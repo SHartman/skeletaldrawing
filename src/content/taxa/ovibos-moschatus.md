@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ovibos-moschatus-skeletal.png
+  drawn: 2016
+  updated: 2026
   alt: Ovibos moschatus skeletal reconstruction, left lateral view, length ~2.4 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 2.37

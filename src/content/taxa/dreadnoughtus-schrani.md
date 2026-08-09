@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/dreadnoughtus-schrani-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Dreadnoughtus schrani skeletal reconstruction, left lateral view, reconstructed length ~21 m.
 rigorous:
   src: /images/skeletals/dreadnoughtus-schrani-known-material.png
+  drawn: 2016
+  updated: 2018
   alt: Known skeletal material of Dreadnoughtus schrani — elements preserved in the specimen drawn in white against a black body silhouette.
 added: 2026-05-01T12:00:00.000Z
 widthM: 20.5

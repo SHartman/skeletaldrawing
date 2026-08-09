@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/nanotyrannus-lethaeus-jane-type-bmrp-2002-4-1-skeletal.png
+  drawn: 2014
+  updated: 2026
   alt: Nanotyrannus lethaeus skeletal reconstruction, left lateral view, reconstructed length ~6.2 m.
 growthNote: ''
 growthTableNote: ''

@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/centrosaurus-apertus-skeletal.png
+  drawn: 2015
+  updated: 2026
   alt: Centrosaurus apertus skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

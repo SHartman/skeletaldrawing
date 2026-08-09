@@ -20,6 +20,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ornitholestes-hermanni-under-revision-silhouette.png
+  drawn: 2007
+  updated: 2016
   alt: Ornitholestes hermanni — skeletal reconstruction under revision (placeholder silhouette).
 underRevision: true
 added: ''

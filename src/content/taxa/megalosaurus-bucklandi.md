@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/megalosaurus-bucklandi-skeletal.png
+  drawn: 2013
+  updated: 2019
   alt: Megalosaurus bucklandi skeletal reconstruction, left lateral view, reconstructed length ~8 m.
 rigorous:
   src: /images/skeletals/megalosaurus-bucklandi-known-elements.png
+  drawn: 2013
+  updated: 2019
   alt: 'Known skeletal material of Megalosaurus bucklandi: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:03:00.000Z
 ---

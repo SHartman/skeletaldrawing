@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/saurornitholestes-langstoni-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Saurornitholestes langstoni skeletal reconstruction, left lateral view, reconstructed length ~1.75 m.
 added: 2026-06-29T13:15:00.000Z
 ---

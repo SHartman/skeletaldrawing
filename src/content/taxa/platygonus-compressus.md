@@ -20,6 +20,7 @@ scaleBar: 20 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/platygonus-compressus-skeletal.png
+  drawn: 2010
   alt: Platygonus compressus skeletal reconstruction, left lateral view, length ~1.1 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 0.97

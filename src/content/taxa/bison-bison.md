@@ -21,6 +21,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/bison-bison-bison-plains-bison-skeletal.png
+  drawn: 2025
   alt: Bison bison skeletal reconstruction, left lateral view, length ~3.2 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 3

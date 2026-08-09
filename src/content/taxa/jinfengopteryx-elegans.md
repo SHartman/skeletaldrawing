@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/jinfengopteryx-elegans-type-cags-ig-04-0801-skeletal.png
+  drawn: 2005
+  updated: 2024
   alt: Jinfengopteryx elegans skeletal reconstruction, left lateral view, reconstructed length ~0.55 m.
 added: 2026-06-28T12:35:00.000Z
 ---

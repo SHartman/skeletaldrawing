@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/archaeoceratops-oshimai-type-ivpp-11114-skeletal.png
+  drawn: 2005
+  updated: 2026
   alt: Archaeoceratops oshimai skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 1

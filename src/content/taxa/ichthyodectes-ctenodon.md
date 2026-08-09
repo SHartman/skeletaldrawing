@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ichthyodectes-ctenodon-skeletal.png
+  drawn: 2015
   alt: Ichthyodectes ctenodon skeletal reconstruction, left lateral view, length ~3 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 3

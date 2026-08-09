@@ -21,9 +21,13 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/postosuchus-kirkpatricki-ttup-9000-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Postosuchus kirkpatricki skeletal reconstruction, left lateral view, length ~5 m.
 additionalFigures:
   - src: /images/skeletals/postosuchus-kirkpatricki-ttup-9002-skeletal-juvenile.png
+    drawn: 2017
+    updated: 2026
     alt: Postosuchus kirkpatricki — Subadult (TTUP 9002).
     caption: ''
     label: Subadult (TTUP 9002)

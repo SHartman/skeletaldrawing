@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/brontosaurus-excelsus-skeletal.png
+  drawn: 2006
+  updated: 2022
   alt: Brontosaurus excelsus skeletal reconstruction, left lateral view, specimen CM 563, reconstructed length ~20 m.
 rigorous:
   src: /images/skeletals/brontosaurus-excelsus-known-material.png
+  drawn: 2006
+  updated: 2022
   alt: Known skeletal material of Brontosaurus excelsus CM 563 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: ''
 widthM: 18.7

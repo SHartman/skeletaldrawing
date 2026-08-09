@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/goniopholis-crassidens-skeletal.png
+  drawn: 2010
+  updated: 2018
   alt: Goniopholis crassidens skeletal reconstruction, left lateral view, length ~2.85 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 2.82

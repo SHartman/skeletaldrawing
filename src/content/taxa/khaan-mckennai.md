@@ -20,9 +20,13 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/khaan-mckennai-type-igm-100-1002-skeletal.png
+  drawn: 2003
+  updated: 2017
   alt: Khaan mckennai skeletal reconstruction, left lateral view, reconstructed length ~1.1 m.
 rigorous:
   src: /images/skeletals/khaan-mckennai-type-igm-100-1002-known-elements.png
+  drawn: 2004
+  updated: 2017
   alt: 'Known skeletal material of Khaan mckennai: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:36:00.000Z
 widthM: 1.09

@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/parksosaurus-warreni-type-rom-804-skeletal.png
+  drawn: 2011
+  updated: 2013
   alt: Parksosaurus warreni skeletal reconstruction, left lateral view, reconstructed length ~3 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 2.94

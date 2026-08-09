@@ -22,6 +22,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/pachycephalosaurus-wyomingensis-skeletal.png
+  drawn: 2019
+  updated: 2026
   alt: Pachycephalosaurus wyomingensis skeletal reconstruction, left lateral view, reconstructed length ~4.3 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

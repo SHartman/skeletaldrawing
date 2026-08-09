@@ -24,6 +24,8 @@ scaleBar: 50 centimeters
 drawingCredit: © Scott Hartman
 reconstruction:
   src: /images/skeletals/inostrancevia-alexandri-skeletal.png
+  drawn: 2025
+  updated: 2026
   alt: Full skeletal reconstruction of Inostrancevia alexandri, with scale bar and copyright imprint
 rigorous: null
 lifeReconstruction: null

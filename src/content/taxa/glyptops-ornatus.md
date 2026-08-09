@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/glyptops-ornatus-cm-4312-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Glyptops ornatus skeletal reconstruction, left lateral view, length 47 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.47

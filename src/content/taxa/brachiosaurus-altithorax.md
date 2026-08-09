@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/brachiosaurus-altithorax-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Brachiosaurus altithorax skeletal reconstruction, left lateral view, reconstructed length ~23 m.
 added: ''
 widthM: 20.1

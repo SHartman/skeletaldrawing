@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tawa-hallae-skeletal.png
+  drawn: 2012
+  updated: 2019
   alt: Tawa hallae skeletal reconstruction, left lateral view, reconstructed length ~2.4 m.
 added: 2026-06-29T13:22:00.000Z
 ---

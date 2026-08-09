@@ -21,9 +21,13 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/bambiraptor-feinbergi-amnh-fr-30556-juvenile-skeletal.png
+  drawn: 2000
+  updated: 2022
   alt: Bambiraptor feinbergi skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 rigorous:
   src: /images/skeletals/bambiraptor-feinbergi-amnh-fr-30556-juvenile-known-material.png
+  drawn: 2003
+  updated: 2026
   alt: 'Known skeletal material of Bambiraptor feinbergi: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:08:00.000Z
 ---

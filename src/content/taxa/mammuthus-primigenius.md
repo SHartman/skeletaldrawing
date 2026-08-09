@@ -21,6 +21,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mammuthus-primigenius-skeletal.png
+  drawn: 2016
   alt: Mammuthus primigenius skeletal reconstruction, left lateral view, length ~5.2 m.
 featured: true
 added: 2026-07-07T12:00:00.000Z

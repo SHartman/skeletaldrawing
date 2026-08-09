@@ -21,6 +21,7 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/rhamphorhynchus-muensteri-skeletal.png
+  drawn: 2014
   alt: Rhamphorhynchus muensteri skeletal reconstruction, left lateral view, length 95 cm, wingspan ~1.7 m.
 added: 2026-07-16T12:00:00.000Z
 wingspanM: 1.7

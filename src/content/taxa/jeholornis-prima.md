@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/jeholornis-prima-skeletal.png
+  drawn: 2004
+  updated: 2024
   alt: Jeholornis prima skeletal reconstruction, left lateral view, reconstructed length ~0.8 m.
 added: 2026-06-28T12:34:00.000Z
 widthM: 0.774

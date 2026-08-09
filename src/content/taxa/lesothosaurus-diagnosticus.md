@@ -22,9 +22,13 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/lesothosaurus-diagnosticus-adult-specimen-sam-pk-k1105-skeletal.png
+  drawn: 2009
+  updated: 2018
   alt: Lesothosaurus diagnosticus skeletal reconstruction, left lateral view, reconstructed length ~1.9 m.
 rigorous:
   src: /images/skeletals/lesothosaurus-diagnosticus-adult-specimen-sam-pk-k1105-known-elements.png
+  drawn: 2009
+  updated: 2026
   alt: Lesothosaurus diagnosticus — known skeletal material (SAM-PK-K1105), left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-06T12:00:00.000Z
 widthM: 1.86

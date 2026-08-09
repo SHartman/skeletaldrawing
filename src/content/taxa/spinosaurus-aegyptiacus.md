@@ -21,9 +21,12 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/spinosaurus-aegyptiacus-skeletal-most-recent.png
+  drawn: 2013
+  updated: 2026
   alt: Spinosaurus aegyptiacus skeletal reconstruction, left lateral view, reconstructed length ~13 m.
 additionalFigures:
   - src: /images/skeletals/spinosaurus-aegyptiacus-competing-interpretations.png
+    drawn: 2020
     alt: Spinosaurus aegyptiacus — Competing published interpretations of the animal’s build, drawn to a common scale.
     caption: Competing published interpretations of the animal’s build, drawn to a common scale.
 added: 2026-07-01T12:07:00.000Z

@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/thalassomedon-haningtoni-skeletal.png
+  drawn: 2015
+  updated: 2017
   alt: Thalassomedon haningtoni skeletal reconstruction, left lateral view, reconstructed length ~11.7 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

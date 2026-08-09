@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/melanosuchus-niger-skeletal.png
+  drawn: 2010
+  updated: 2018
   alt: Melanosuchus niger skeletal reconstruction, left lateral view, length ~6 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 5.98

@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/nigersaurus-taqueti-skeletal.png
+  drawn: 2012
+  updated: 2022
   alt: Nigersaurus taqueti skeletal reconstruction, left lateral view, reconstructed length ~13 m.
 added: ''
 ---

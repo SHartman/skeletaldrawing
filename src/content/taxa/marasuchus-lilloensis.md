@@ -23,6 +23,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/marasuchus-lilloensis-skeletal.png
+  drawn: 2015
+  updated: 2016
   alt: Marasuchus lilloensis skeletal reconstruction, left lateral view, length 60 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.579

@@ -21,9 +21,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/malawisaurus-dixeyi-skeletal.png
+  drawn: 2014
+  updated: 2022
   alt: Malawisaurus dixeyi skeletal reconstruction, left lateral view, specimen SAM-7405, reconstructed length ~10 m.
 additionalFigures:
   - src: /images/skeletals/malawisaurus-dixeyi-with-armor.png
+    drawn: 2014
+    updated: 2022
     alt: Speculative dermal armor of Malawisaurus dixeyi (SAM-7405).
     caption: Speculative arrangement of the dermal armor (osteoderms) known for Malawisaurus — a bonus reconstruction, not yet extended to other titanosaurs.
 added: ''

@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/brachychampsa-montana-skeletal.png
+  drawn: 2010
+  updated: 2018
   alt: Brachychampsa montana skeletal reconstruction, left lateral view, length ~2.8 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 2.79

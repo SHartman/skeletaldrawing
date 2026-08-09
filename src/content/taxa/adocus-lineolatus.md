@@ -20,6 +20,8 @@ scaleBar: 20 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/adocus-lineolatus-ccm-60-15-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Adocus lineolatus skeletal reconstruction, left lateral view, length 96 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.942

@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/poebrotherium-wilsoni-skeletal.png
+  drawn: 2002
+  updated: 2026
   alt: Poebrotherium wilsoni skeletal reconstruction, left lateral view, length ~1.7 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 1.69

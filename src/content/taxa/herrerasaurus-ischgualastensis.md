@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/herrerasaurus-ischgualastensis-skeletal.png
+  drawn: 2012
+  updated: 2019
   alt: Herrerasaurus ischgualastensis skeletal reconstruction, left lateral view, reconstructed length ~5.7 m.
 added: 2026-06-28T12:29:00.000Z
 ---

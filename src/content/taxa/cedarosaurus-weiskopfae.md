@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/cedarosaurus-weiskopfae-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Cedarosaurus weiskopfae skeletal reconstruction, left lateral view, reconstructed length ~20 m.
 added: ''
 widthM: 16.5

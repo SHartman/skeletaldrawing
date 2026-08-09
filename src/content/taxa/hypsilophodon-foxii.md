@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/hypsilophodon-foxii-skeletal.png
+  drawn: 2015
+  updated: 2026
   alt: Hypsilophodon foxii skeletal reconstruction, left lateral view, reconstructed length ~1.7 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 1.63

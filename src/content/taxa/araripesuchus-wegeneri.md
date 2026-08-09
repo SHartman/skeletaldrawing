@@ -20,9 +20,13 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/araripesuchus-wegeneri-skeletal.png
+  drawn: 2018
+  updated: 2026
   alt: Araripesuchus wegeneri skeletal reconstruction, left lateral view, length 82 cm.
 additionalFigures:
   - src: /images/skeletals/araripesuchus-wegeneri-skeletal-no-armor.png
+    drawn: 2018
+    updated: 2026
     alt: Araripesuchus wegeneri — Without armor.
     caption: ''
     label: Without armor

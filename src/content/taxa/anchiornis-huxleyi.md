@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/anchiornis-huxleyi-skeletal.png
+  drawn: 2009
+  updated: 2022
   alt: Anchiornis huxleyi skeletal reconstruction, left lateral view, reconstructed length ~0.6 m.
 additionalFigures:
   - src: /images/skeletals/anchiornis-huxleyi-figure-1-wang-et-al-2017.png

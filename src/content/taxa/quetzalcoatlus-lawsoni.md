@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/quetzalcoatlus-lawsoni-skeletal.png
+  drawn: 2023
   alt: Quetzalcoatlus lawsoni skeletal reconstruction, left lateral view, length ~3 m, wingspan ~4.3 m.
 featured: true
 added: 2026-07-16T12:00:00.000Z

@@ -22,6 +22,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/triceratops-horridus-skeletal.png
+  drawn: 2018
+  updated: 2026
   alt: Triceratops horridus skeletal reconstruction, left lateral view, reconstructed length ~8.2 m.
 added: 2026-07-06T12:00:00.000Z
 ---

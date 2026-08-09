@@ -21,6 +21,8 @@ scaleBar: 20 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/panphagia-protos-skeletal.png
+  drawn: 2011
+  updated: 2022
   alt: Panphagia protos skeletal reconstruction, left lateral view, specimen PVSJ 874, reconstructed length ~1 m.
 added: ''
 ---

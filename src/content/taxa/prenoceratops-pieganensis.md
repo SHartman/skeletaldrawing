@@ -20,6 +20,7 @@ scaleBar: 20 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/prenoceratops-pieganensis-skeletal.png
+  drawn: 2025
   alt: Prenoceratops pieganensis skeletal reconstruction, left lateral view, reconstructed length ~1.3 m.
 added: 2026-07-20T21:09
 widthM: 1.3

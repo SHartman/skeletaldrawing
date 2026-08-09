@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/iguanodon-bernissartensis-skeletal.png
+  drawn: 2015
+  updated: 2016
   alt: Iguanodon bernissartensis skeletal reconstruction, left lateral view, reconstructed length ~10 m.
 featured: true
 added: 2026-07-06T12:00:00.000Z

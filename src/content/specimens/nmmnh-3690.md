@@ -19,6 +19,8 @@ scaleBar: ''
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/diplodocus-hallorum-nmmnh-3690-known-material.png
+  drawn: 2006
+  updated: 2026
   alt: Known skeletal material of Diplodocus hallorum NMMNH 3690 — elements preserved drawn in white against a black body silhouette, estimated length ~30 m
 overlay: true
 featured: true

@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/camptosaurus-dispar-skeletal.png
+  drawn: 2015
+  updated: 2022
   alt: Camptosaurus dispar skeletal reconstruction, left lateral view, reconstructed length ~5.8 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 5.45

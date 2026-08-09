@@ -19,6 +19,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/acrocanthosaurus-atokensis-skeletal.png
+  drawn: 2011
+  updated: 2019
   alt: Acrocanthosaurus atokensis skeletal reconstruction, left lateral view, reconstructed length ~11.5 m.
 added: 2026-06-30T12:02:00.000Z
 ---

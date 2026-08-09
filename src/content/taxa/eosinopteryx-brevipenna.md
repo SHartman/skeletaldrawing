@@ -20,6 +20,8 @@ scaleBar: 5 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/eosinopteryx-brevipenna-skeletal.png
+  drawn: 2016
+  updated: 2024
   alt: Eosinopteryx brevipenna skeletal reconstruction, left lateral view, reconstructed length ~0.32 m.
 added: 2026-06-28T12:22:00.000Z
 widthM: 0.315

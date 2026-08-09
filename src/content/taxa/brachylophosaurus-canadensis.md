@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/brachylophosaurus-canadensis-mor-794-elvis-skeletal.png
+  drawn: 2003
+  updated: 2026
   alt: Brachylophosaurus canadensis skeletal reconstruction, left lateral view, reconstructed length ~9 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 8.98

@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/presbyornis-pervetus-skeletal.png
+  drawn: 2010
+  updated: 2024
   alt: Presbyornis pervetus skeletal reconstruction, left lateral view, reconstructed length ~0.42 m.
 added: 2026-06-29T13:11:00.000Z
 widthM: 0.338

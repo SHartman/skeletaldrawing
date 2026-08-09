@@ -20,6 +20,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/nomingia-gobiensis-type-gin-100-119-known-elements-with-pygostyle-inset.png
+  drawn: 2004
   alt: 'Known skeletal material of Nomingia gobiensis, estimated length ~1.7 m: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:08:00.000Z
 widthM: 1.65

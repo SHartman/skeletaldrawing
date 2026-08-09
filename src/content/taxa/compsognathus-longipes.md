@@ -21,12 +21,18 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/Compsognathus-longipes-type-bsp-as-i-563-skeletal.png
+  drawn: 2004
+  updated: 2022
   alt: Compsognathus longipes skeletal reconstruction, left lateral view, reconstructed length ~0.85 m.
 rigorous:
   src: /images/skeletals/compsognathus-longipes-type-bsp-as-i-563-known-elements.png
+  drawn: 2004
+  updated: 2026
   alt: 'Known skeletal material of Compsognathus longipes: preserved elements shown in white against a black body silhouette.'
 additionalFigures:
   - src: /images/skeletals/Compsognathus-longipes-ex-corallestris-y85r-m4m-skeletal.png
+    drawn: 2004
+    updated: 2026
     alt: Compsognathus longipes — The larger French specimen (the former "Compsognathus corallestris"), ~1.25 m, shown for comparison with the German type.
     caption: The larger French specimen (the former "Compsognathus corallestris"), ~1.25 m, shown for comparison with the German type.
 added: 2026-06-28T12:16:00.000Z

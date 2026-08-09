@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/saltasaurus-loricatus-skeletal.png
+  drawn: 2022
   alt: Saltasaurus loricatus skeletal reconstruction, dorsal and left lateral view, reconstructed length ~9 m.
 added: ''
 widthM: 8.3

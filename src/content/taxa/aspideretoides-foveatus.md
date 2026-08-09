@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/aspideretoides-foveatus-tmp-1985-036-0087-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Aspideretoides foveatus skeletal reconstruction, left lateral view, length ~1.4 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 1.33

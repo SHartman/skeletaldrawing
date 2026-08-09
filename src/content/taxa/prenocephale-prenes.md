@@ -21,6 +21,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/prenocephale-prenes-skeletal.png
+  drawn: 2026
   alt: Prenocephale prenes skeletal reconstruction, left lateral view, reconstructed length ~2.5 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

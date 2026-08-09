@@ -20,6 +20,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/glyptotherium-texanum-usnm-10-v-10336-skeletal-with-armor.png
+  drawn: 2018
   alt: Glyptotherium texanum skeletal reconstruction, left lateral view, length ~2 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 2

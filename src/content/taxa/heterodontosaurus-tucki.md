@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/heterodontosaurus-tucki-sam-pk-k1332-skeletal.png
+  drawn: 2013
+  updated: 2026
   alt: Heterodontosaurus tucki skeletal reconstruction, left lateral view, reconstructed length ~1.25 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 1.23

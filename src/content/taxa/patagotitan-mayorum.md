@@ -20,9 +20,11 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/patagotitan-mayorum-skeletal.png
+  drawn: 2018
   alt: Patagotitan mayorum skeletal reconstruction, left lateral view, reconstructed length ~27 m.
 rigorous:
   src: /images/skeletals/patagotitan-mayorum-known-material.png
+  drawn: 2018
   alt: Known skeletal material of Patagotitan mayorum — elements preserved in the specimen drawn in white against a black body silhouette.
 added: 2026-06-10T12:00:00.000Z
 widthM: 22.4

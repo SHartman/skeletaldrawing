@@ -20,6 +20,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/allosaurus-jimmadseni-big-al-mor-693-skeletal.png
+  drawn: 1997
+  updated: 2026
   alt: Allosaurus jimmadseni skeletal reconstruction, left lateral view — the subadult MOR 693 (Big Al).
 added: 2026-06-30T12:07:00.000Z
 ---

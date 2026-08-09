@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/daspletosaurus-torosus-skeletal.png
+  drawn: 2018
+  updated: 2022
   alt: Daspletosaurus torosus skeletal reconstruction, left lateral view, reconstructed length ~8.8 m.
 added: 2026-06-28T12:18:00.000Z
 ---

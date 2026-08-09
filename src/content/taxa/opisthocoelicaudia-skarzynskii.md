@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/opisthocoelicaudia-skarzynskii-skeletal.png
+  drawn: 2018
   alt: Opisthocoelicaudia skarzynskii skeletal reconstruction, left lateral view, reconstructed length ~16 m.
 added: 2026-07-20T19:01
 widthM: 13.8

@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ankylosaurus-magniventris-amnh-5214-skeletal.png
+  drawn: 2023
+  updated: 2026
   alt: Ankylosaurus magniventris skeletal reconstruction, left lateral view, reconstructed length ~6.5 m.
 featured: true
 added: 2026-07-06T12:00:00.000Z

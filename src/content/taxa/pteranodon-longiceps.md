@@ -20,9 +20,11 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/pteranodon-longiceps-male-skeletal.png
+  drawn: 2012
   alt: Pteranodon longiceps skeletal reconstruction, left lateral view, length ~2.2 m, wingspan ~6.3 m.
 additionalFigures:
   - src: /images/skeletals/pteranodon-longiceps-male-alternate-in-flight.png
+    drawn: 2017
     alt: Pteranodon longiceps — In flight (alternate pose).
     caption: ''
     label: In flight (alternate pose)

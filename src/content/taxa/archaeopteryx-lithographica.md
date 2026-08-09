@@ -20,6 +20,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/archaeopteryx-lithographica-thermopolis-specimen-skeletal.png
+  drawn: 2005
+  updated: 2022
   alt: Archaeopteryx lithographica skeletal reconstruction, left lateral view — the Thermopolis specimen.
 added: 2026-06-30T12:10:00.000Z
 ---

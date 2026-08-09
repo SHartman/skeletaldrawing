@@ -21,6 +21,7 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/montanoceratops-cerorhynchus-type-amnh-5464-skeletal.png
+  drawn: 2025
   alt: Montanoceratops cerorhynchus skeletal reconstruction, left lateral view, reconstructed length ~2.4 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 2.39

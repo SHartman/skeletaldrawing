@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/rapetosaurus-krausei-skeletal.png
+  drawn: 2014
+  updated: 2022
   alt: Rapetosaurus krausei skeletal reconstruction, left lateral view, specimen FMNH PR 2209, reconstructed length ~4 m.
 added: ''
 widthM: 6.36

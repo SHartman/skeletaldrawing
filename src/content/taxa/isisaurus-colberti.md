@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/isisaurus-colberti-skeletal.png
+  drawn: 2019
+  updated: 2022
   alt: Isisaurus colberti skeletal reconstruction, left lateral view, reconstructed length ~12 m.
 added: ''
 widthM: 10.6

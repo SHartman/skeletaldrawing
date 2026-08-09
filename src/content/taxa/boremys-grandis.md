@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/boremys-grandis-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Boremys grandis skeletal reconstruction, left lateral view, length 73 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.73

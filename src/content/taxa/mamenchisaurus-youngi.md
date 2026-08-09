@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mamenchisaurus-youngi-skeletal.png
+  drawn: 2011
+  updated: 2022
   alt: Mamenchisaurus youngi skeletal reconstruction, left lateral view, specimen ZDM 0083, reconstructed length ~15 m.
 added: ''
 widthM: 12.6

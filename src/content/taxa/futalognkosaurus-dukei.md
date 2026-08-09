@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/futalognkosaurus-dukei-skeletal.png
+  drawn: 2013
+  updated: 2022
   alt: Futalognkosaurus dukei skeletal reconstruction, left lateral view, specimen MUCPv-323, reconstructed length ~22 m.
 added: ''
 widthM: 19.3

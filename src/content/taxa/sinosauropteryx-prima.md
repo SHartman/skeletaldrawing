@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/sinosauropteryx-prima-skeletal.png
+  drawn: 2017
+  updated: 2020
   alt: Sinosauropteryx prima skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 added: 2026-06-29T13:17:00.000Z
 ---

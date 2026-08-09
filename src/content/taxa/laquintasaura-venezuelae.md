@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/laquintasaura-venezuelae-skeletal.png
+  drawn: 2012
+  updated: 2014
   alt: Laquintasaura venezuelae skeletal reconstruction, left lateral view, reconstructed length ~1.2 m.
 additionalFigures:
   - src: /images/skeletals/laquintasaura-figure-one-barrett-et-al-2014.png

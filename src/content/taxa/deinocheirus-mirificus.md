@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/deinocheirus-mirificus-skeletal-lateral-and-dorsal-views.png
+  drawn: 2015
+  updated: 2022
   alt: Deinocheirus mirificus skeletal reconstruction, left lateral view, reconstructed length ~11 m.
 added: 2026-06-28T12:19:00.000Z
 ---

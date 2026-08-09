@@ -21,9 +21,13 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/huaxiagnathus-orientalis-type-cags-ig02-301-skeletal.png
+  drawn: 2011
+  updated: 2018
   alt: Huaxiagnathus orientalis skeletal reconstruction, left lateral view, reconstructed length ~1.7 m.
 rigorous:
   src: /images/skeletals/huaxiagnathus-orientalis-type-cags-ig02-301-known-elements.png
+  drawn: 2011
+  updated: 2026
   alt: 'Known skeletal material of Huaxiagnathus orientalis: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:33:00.000Z
 ---

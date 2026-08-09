@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/metaxytherium-floridanum-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Metaxytherium floridanum skeletal reconstruction, left lateral view, reconstructed length ~3.2 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

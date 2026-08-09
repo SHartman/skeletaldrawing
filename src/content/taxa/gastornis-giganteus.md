@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gastornis-giganteus-skeletal.png
+  drawn: 2017
+  updated: 2019
   alt: Gastornis giganteus skeletal reconstruction, left lateral view, reconstructed length ~2.3 m.
 added: 2026-06-28T12:28:00.000Z
 widthM: 2.13

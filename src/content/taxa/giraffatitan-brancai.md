@@ -23,9 +23,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/giraffatitan-brancai-skeletal.png
+  drawn: 2009
+  updated: 2022
   alt: Giraffatitan brancai skeletal reconstruction, left lateral view, reconstructed length ~24.5 m.
 rigorous:
   src: /images/skeletals/giraffatitan-brancai-known-elements.png
+  drawn: 2009
+  updated: 2022
   alt: 'Known skeletal material of Giraffatitan brancai: preserved elements shown in white against a black body silhouette.'
 added: 2026-07-01T14:02:00.000Z
 widthM: 20.4

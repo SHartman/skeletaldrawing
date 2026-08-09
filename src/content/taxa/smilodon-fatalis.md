@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/smilodon-fatalis-skeletal.png
+  drawn: 2011
+  updated: 2020
   alt: Smilodon fatalis skeletal reconstruction, left lateral view, length ~2.1 m.
 featured: true
 added: 2026-07-07T12:00:00.000Z

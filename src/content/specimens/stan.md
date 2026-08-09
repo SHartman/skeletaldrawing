@@ -19,9 +19,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-stan-nhmad-2020-00001-skeletal.png
+  drawn: 2004
+  updated: 2023
   alt: Tyrannosaurus rex skeletal reconstruction, left lateral view — specimen NHMAD 2020.00001 (Stan), reconstructed length about 11.8 meters
 rigorous:
   src: /images/skeletals/tyrannosaurus-rex-stan-nhmad-2020-00001-known-material.png
+  drawn: 2004
+  updated: 2023
   alt: Known-material diagram of Tyrannosaurus rex NHMAD 2020.00001 (Stan) — elements preserved in the specimen shown in white against a black body silhouette
 overlay: true
 featured: true

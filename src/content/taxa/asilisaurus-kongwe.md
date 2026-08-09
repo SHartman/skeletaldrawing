@@ -20,6 +20,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/asilisaurus-kongwe-skeletal.png
+  drawn: 2018
   alt: Asilisaurus kongwe skeletal reconstruction, left lateral view, length ~2.5 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 2.47

@@ -18,6 +18,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/albertaceratops-nesmoi-skeletal.png
+  drawn: 2004
+  updated: 2015
   alt: Albertaceratops nesmoi skeletal reconstruction, left lateral view, reconstructed length ~5.5 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 5.37

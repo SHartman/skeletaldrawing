@@ -15,6 +15,8 @@ import {
   heroRef,
   formatAuthor,
   taxonNameHtml,
+  formatDrawn,
+  SHOW_DRAWING_DATES,
   inlineEmphasisHtml,
   stripEmphasis,
 } from '../lib/schema';
@@ -98,6 +100,11 @@ const restFields = [
   { k: 'View', v: d.view },
   { k: 'Basis', v: d.basis ?? (kmOnly ? 'Known material only — too incompletely known to restore' : '') },
   { k: 'Drawing', v: drawingCredit },
+  // Sits directly after the credit, since both are about the artwork rather than the animal. The
+  // date belongs to the HERO image specifically — the known-material diagram beside it often carries
+  // a different year, and that one travels in the JSON-LD rather than the record. Empty string while
+  // gated, and the row already drops empty cells, so nothing renders until SHOW_DRAWING_DATES flips.
+  { k: 'Drawn', v: SHOW_DRAWING_DATES ? formatDrawn(hero?.drawn, hero?.updated) : '' },
 ].filter((f) => f.v);
 
 // Related: same-gallery taxa, ranked by how much of the clade path they share.

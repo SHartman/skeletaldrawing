@@ -21,6 +21,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/velociraptor-mongoliensis-skeletal.png
+  drawn: 2006
+  updated: 2026
   alt: Velociraptor mongoliensis skeletal reconstruction, left lateral view, reconstructed length ~1.8 m.
 added: 2026-07-01T12:06:00.000Z
 ---

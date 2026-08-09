@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/aucasaurus-garridoi-mcf-pvph-236-skeletal.png
+  drawn: 2003
+  updated: 2026
   alt: Aucasaurus garridoi skeletal reconstruction, left lateral view, reconstructed length ~6.5 m.
 added: 2026-07-18T11:56
 ---

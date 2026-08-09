@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/appalachiosaurus-montgomeriensis-skeletal.png
+  drawn: 2019
+  updated: 2024
   alt: Appalachiosaurus montgomeriensis skeletal reconstruction, left lateral view, reconstructed length ~7 m.
 rigorous:
   src: /images/skeletals/appalachiosaurus-montgomeriensis-known-elements.png
+  drawn: 2019
+  updated: 2024
   alt: 'Known skeletal material of Appalachiosaurus montgomeriensis: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:04:00.000Z
 ---

@@ -24,9 +24,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/majungasaurus-crenatissimus-skeletal.png
+  drawn: 2008
+  updated: 2019
   alt: Majungasaurus crenatissimus skeletal reconstruction, left lateral view, reconstructed length ~5.4 m.
 rigorous:
   src: /images/skeletals/majungasaurus-crenatissimus-known-elements.png
+  drawn: 2008
+  updated: 2026
   alt: 'Known skeletal material of Majungasaurus crenatissimus: preserved elements shown in white against a black body silhouette.'
 added: 2026-07-01T12:01:00.000Z
 ---

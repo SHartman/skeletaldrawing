@@ -19,6 +19,38 @@ const AUTHOR = {
 const LICENSE_DEFAULT = 'https://www.skeletaldrawing.com/licensing';
 const CREDIT_DEFAULT = 'Skeletal reconstruction © Scott Hartman / skeletaldrawing.com';
 
+/**
+ * Launch gate for per-skeletal drawing dates. The data is complete and committed; this only decides
+ * whether it SURFACES, in the record row and in ImageObject dateCreated/dateModified.
+ *
+ * It exists because the owner ships a feature as one announceable moment rather than letting it
+ * trickle in, and this is meant to land with a blog post. Flip to true to launch — that is the whole
+ * of it, and nothing else needs touching.
+ */
+export const SHOW_DRAWING_DATES = false;
+
+/**
+ * How a drawing's age reads in the record row: "2011, revised 2024" when the artwork was reworked,
+ * a bare year when it wasn't.
+ *
+ * Both years are shown rather than just the current one because the pair is the interesting fact — it
+ * says the work is long-standing AND still maintained, which one figure cannot. `updated` is dropped
+ * when it equals `drawn`, since "2024, revised 2024" states nothing.
+ */
+export function formatDrawn(drawn?: number, updated?: number): string {
+  if (drawn == null) return updated != null ? String(updated) : '';
+  return updated != null && updated !== drawn ? `${drawn}, revised ${updated}` : String(drawn);
+}
+
+/** ISO years for ImageObject. Omitted entirely while the feature is gated. */
+function dateProps(drawn?: number, updated?: number) {
+  if (!SHOW_DRAWING_DATES) return {};
+  return {
+    ...(drawn != null ? { dateCreated: String(drawn) } : {}),
+    ...(updated != null ? { dateModified: String(updated) } : {}),
+  };
+}
+
 export interface SchemaContext {
   pageUrl: string; // absolute canonical URL of the page
   imageUrl: string; // absolute URL of the primary (hero) image
@@ -154,11 +186,19 @@ function primaryDescription(d: TaxonData): string {
 
 function imageNode(
   d: TaxonData,
-  opts: { url: string; name: string; description: string; representative: boolean },
+  opts: {
+    url: string;
+    name: string;
+    description: string;
+    representative: boolean;
+    drawn?: number;
+    updated?: number;
+  },
 ) {
   return {
     '@type': 'ImageObject', // a CreativeWork subtype — satisfies the §3 ImageObject+CreativeWork rule
     '@id': opts.url,
+    ...dateProps(opts.drawn, opts.updated),
     name: opts.name,
     description: opts.description,
     contentUrl: opts.url,
@@ -180,11 +220,14 @@ function imageNode(
 
 /** The representative ImageObject — also rendered in the "what search engines see" panel. */
 export function primaryNode(entry: CollectionEntry<'taxa'>, ctx: SchemaContext) {
+  const hero = heroRef(entry.data);
   return imageNode(entry.data, {
     url: ctx.imageUrl,
     name: primaryName(entry.data),
     description: primaryDescription(entry.data),
     representative: true,
+    drawn: hero?.drawn,
+    updated: hero?.updated,
   });
 }
 
@@ -202,6 +245,10 @@ export function taxonImageGraph(entry: CollectionEntry<'taxa'>, ctx: SchemaConte
         name: `${d.taxon} — known material${d.specimenId ? ` (${d.specimenId})` : ''}`,
         description: `Known-material diagram of ${d.taxon}${d.specimenId ? ` ${d.specimenId}` : ''}: elements preserved in the specimen are shown in white against a black body silhouette.`,
         representative: false,
+        // Its own dates: a known-material diagram is frequently a different year from the
+        // reconstruction beside it (Dreadnoughtus is 2016 against the skeletal's 2010).
+        drawn: d.rigorous?.drawn,
+        updated: d.rigorous?.updated,
       }),
     );
   }
@@ -258,7 +305,14 @@ function specimenImageNode(
   taxonName: string,
   author: string,
   recombination: boolean | undefined,
-  opts: { url: string; name: string; description: string; representative: boolean },
+  opts: {
+    url: string;
+    name: string;
+    description: string;
+    representative: boolean;
+    drawn?: number;
+    updated?: number;
+  },
 ) {
   const credit = s.creditText || CREDIT_DEFAULT;
   const license = s.license || LICENSE_DEFAULT;
@@ -276,6 +330,7 @@ function specimenImageNode(
     acquireLicensePage: license,
     encodingFormat: 'image/png',
     representativeOfPage: opts.representative,
+    ...dateProps(opts.drawn, opts.updated),
     about: { '@type': 'Thing', name: taxonName, alternateName: `${taxonName} ${formatAuthor(author, recombination)}` },
   };
 }
@@ -291,6 +346,8 @@ export function specimenPrimaryNode(
     name: specimenName(s, ctx.taxonName),
     description: specimenDescription(s, ctx.taxonName),
     representative: true,
+    drawn: specimenHero(s)?.drawn,
+    updated: specimenHero(s)?.updated,
   });
 }
 
@@ -309,6 +366,8 @@ export function specimenImageGraph(
         name: `${ctx.taxonName} — known material (${s.catalog})`,
         description: `Known-material diagram of ${ctx.taxonName} ${s.catalog}: elements preserved in the specimen are shown in white against a black body silhouette.`,
         representative: false,
+        drawn: s.rigorous?.drawn,
+        updated: s.rigorous?.updated,
       }),
     );
   }

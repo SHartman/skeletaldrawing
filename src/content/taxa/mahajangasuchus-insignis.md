@@ -20,9 +20,11 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mahajangasuchus-insignis-skeletal-with-armor.png
+  drawn: 2018
   alt: Mahajangasuchus insignis skeletal reconstruction, left lateral view, length ~4.1 m.
 additionalFigures:
   - src: /images/skeletals/mahajangasuchus-insignis-skeletal.png
+    drawn: 2018
     alt: Mahajangasuchus insignis — Without armor.
     caption: ''
     label: Without armor

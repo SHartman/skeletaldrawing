@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ophthalmosaurus-icenicus-skeletal.png
+  drawn: 2016
+  updated: 2026
   alt: Ophthalmosaurus icenicus skeletal reconstruction, left lateral view, length ~4.1 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 4.03

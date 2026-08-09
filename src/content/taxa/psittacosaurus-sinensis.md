@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/psittacosaurus-sinensis-ivpp-12-0888-2-skeletal-originally-p-neimongoliensis.png
+  drawn: 1996
+  updated: 2015
   alt: Psittacosaurus sinensis skeletal reconstruction, left lateral view, reconstructed length ~1 m.
 growthNote: ''
 growthTableNote: ''

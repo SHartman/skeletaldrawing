@@ -22,6 +22,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/dilophosaurus-wetherilli-skeletal-with-closed-mouth-inset.png
+  drawn: 2019
+  updated: 2020
   alt: Dilophosaurus wetherilli skeletal reconstruction, left lateral view, reconstructed length ~7.4 m.
 added: 2026-06-30T12:05:00.000Z
 ---

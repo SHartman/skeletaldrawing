@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/argentinosaurus-huinculensis-known-elements.png
+  drawn: 2012
+  updated: 2026
   alt: 'Known skeletal material of Argentinosaurus huinculensis: preserved elements shown in white against a black body silhouette, with a reconstructed outline at an estimated ~31 m.'
 added: 2026-07-01T14:03:00.000Z
 widthM: 27.9

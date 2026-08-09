@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/camelops-hesternus-skeletal.png
+  drawn: 2010
+  updated: 2026
   alt: Camelops hesternus skeletal reconstruction, left lateral view, length ~4 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 3.86

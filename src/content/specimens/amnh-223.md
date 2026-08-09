@@ -19,6 +19,8 @@ scaleBar: ''
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/diplodocus-hallorum-amnh-223-known-material.png
+  drawn: 2006
+  updated: 2026
   alt: Known skeletal material of Diplodocus hallorum AMNH 223 — elements preserved drawn in white against a black body silhouette, estimated length ~28 m
 overlay: true
 featured: true

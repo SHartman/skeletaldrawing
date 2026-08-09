@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/parasaurolophus-walkeri-type-specimen-rom-768-skeletal.png
+  drawn: 2004
+  updated: 2018
   alt: Parasaurolophus walkeri skeletal reconstruction, left lateral view, reconstructed length ~7.5 m.
 featured: true
 added: 2026-07-06T12:00:00.000Z

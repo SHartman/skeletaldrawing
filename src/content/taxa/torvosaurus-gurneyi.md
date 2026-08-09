@@ -21,6 +21,7 @@ scaleBar: ''
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/torvosaurus-gurneyi-known-elements.png
+  drawn: 2014
   alt: 'Known skeletal material of Torvosaurus gurneyi, estimated length ~9.4 m: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:24:00.000Z
 ---

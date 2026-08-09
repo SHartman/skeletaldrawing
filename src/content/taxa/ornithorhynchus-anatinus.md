@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ornithorhynchus-anatinus-skeletal-male.png
+  drawn: 2016
+  updated: 2026
   alt: Ornithorhynchus anatinus skeletal reconstruction, left lateral view, length 51 cm.
 added: 2026-07-07T12:00:00.000Z
 widthM: 0.49

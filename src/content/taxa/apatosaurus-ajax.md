@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/apatosaurus-ajax-nmst-pv-20375-skeletal.png
+  drawn: 2006
+  updated: 2026
   alt: Apatosaurus ajax skeletal reconstruction, left lateral view, specimen NMST-PV 20375, reconstructed length ~18 m.
 rigorous:
   src: /images/skeletals/apatosaurus-ajax-nmst-pv-20375-known-elements.png
+  drawn: 2006
+  updated: 2026
   alt: 'Known skeletal material of Apatosaurus ajax NMST-PV 20375: preserved elements shown in white against a black body silhouette.'
 added: 2026-07-01T14:01:00.000Z
 widthM: 16.8

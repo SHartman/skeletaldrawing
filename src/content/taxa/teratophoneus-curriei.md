@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/teratophoneus-curriei-skeletal.png
+  drawn: 2010
+  updated: 2019
   alt: Teratophoneus curriei skeletal reconstruction, left lateral view, reconstructed length ~5.2 m.
 added: 2026-06-29T13:23:00.000Z
 ---

@@ -20,9 +20,12 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/kentrosaurus-aethiopicus-skeletal.png
+  drawn: 2015
+  updated: 2016
   alt: Kentrosaurus aethiopicus skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 additionalFigures:
   - src: /images/skeletals/kentrosaurus-aethiopicus-skeletal-with-alternaive-hip-based-spine-placement.png
+    drawn: 2026
     alt: Kentrosaurus aethiopicus skeletal reconstruction — alternative hip-based spine placement.
     caption: ''
     label: Alternative hip-based spine placement

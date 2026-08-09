@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/hesperornis-regalis-skeletal.png
+  drawn: 2017
+  updated: 2019
   alt: Hesperornis regalis skeletal reconstruction, left lateral view, reconstructed length ~1.8 m.
 added: 2026-06-28T12:30:00.000Z
 ---

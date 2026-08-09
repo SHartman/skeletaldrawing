@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/lythronax-argestes-type-umnh-vp-20200-skeletal.png
+  drawn: 2010
+  updated: 2019
   alt: Lythronax argestes skeletal reconstruction, left lateral view, reconstructed length ~6.5 m.
 additionalFigures:
   - src: /images/skeletals/lythronax-argestes-figure-1-Loewen-et-al-2013.png

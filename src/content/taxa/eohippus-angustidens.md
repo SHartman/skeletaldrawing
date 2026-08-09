@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/eohippus-angustidens-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Eohippus angustidens skeletal reconstruction, left lateral view, length 60 cm.
 added: 2026-07-07T12:00:00.000Z
 widthM: 0.57

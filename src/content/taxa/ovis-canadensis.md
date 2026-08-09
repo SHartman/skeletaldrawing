@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ovis-canadensis-skeletal.png
+  drawn: 2011
   alt: Ovis canadensis skeletal reconstruction, left lateral view, length ~1.7 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 1.72

@@ -20,6 +20,7 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/montanazhdarcho-minor-type-mor-691-known-elements.png
+  drawn: 2015
   alt: Montanazhdarcho minor — known skeletal material (MOR 691), left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-16T12:00:00.000Z
 widthM: 1.4

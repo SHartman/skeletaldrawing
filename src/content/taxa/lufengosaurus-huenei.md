@@ -21,6 +21,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/lufengosaurus-huenei-skeletal.png
+  drawn: 2019
   alt: Lufengosaurus huenei skeletal reconstruction, left lateral view, specimen IVPP V15, reconstructed length ~6 m.
 added: ''
 ---

@@ -21,9 +21,13 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/eoraptor-lunensis-skeletal.png
+  drawn: 2012
+  updated: 2022
   alt: Eoraptor lunensis skeletal reconstruction, left lateral view, specimen PVSJ 512, reconstructed length ~1.3 m.
 rigorous:
   src: /images/skeletals/eoraptor-lunensis-known-material.png
+  drawn: 2012
+  updated: 2022
   alt: Known skeletal material of Eoraptor lunensis PVSJ 512 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: ''
 ---

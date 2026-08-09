@@ -12,6 +12,7 @@ specimenId: "NHMUK PV R36730"
 featured: true
 reconstruction:
   src: "/images/skeletals/stegosaurus-stenops-nhmuk-pv-r36730-skeletal.png"
+  drawn: 2016
   alt: "Stegosaurus stenops skeletal reconstruction, left lateral view, reconstructed length ~6 m."
 ---
 

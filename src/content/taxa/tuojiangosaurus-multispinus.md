@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tuojiangosaurus-multispinus-type-cv-209-skeletal.png
+  drawn: 2007
+  updated: 2015
   alt: Tuojiangosaurus multispinus skeletal reconstruction, left lateral view, reconstructed length ~7 m.
 added: 2026-07-06T12:00:00.000Z
 ---

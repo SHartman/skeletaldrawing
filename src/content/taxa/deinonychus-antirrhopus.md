@@ -20,12 +20,18 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/deinonychus-antirrhopus-skeleta-upright-pose.png
+  drawn: 2012
+  updated: 2020
   alt: Deinonychus antirrhopus skeletal reconstruction, left lateral view, reconstructed length ~3.4 m.
 rigorous:
   src: /images/skeletals/deinonychus-antirrhopus-upright-pose-with-feathers-known-elements.png
+  drawn: 2012
+  updated: 2019
   alt: 'Known skeletal material of Deinonychus antirrhopus: preserved elements shown in white against a black body silhouette.'
 additionalFigures:
   - src: /images/skeletals/deinonychus-antirrhopus-skeletal-horizontal-pose.png
+    drawn: 2012
+    updated: 2018
     alt: Deinonychus antirrhopus — An alternative, more horizontal running posture.
     caption: An alternative, more horizontal running posture.
 added: 2026-06-30T12:06:00.000Z

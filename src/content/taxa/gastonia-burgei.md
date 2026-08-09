@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gastonia-burgei-skeletal.png
+  drawn: 2004
   alt: Gastonia burgei skeletal reconstruction, left lateral view, reconstructed length ~6.2 m.
 underRevision: false
 added: 2026-07-06T12:00:00.000Z

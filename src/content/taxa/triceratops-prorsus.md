@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/triceratops-prorsus-skeletal-subadult.png
+  drawn: 2008
+  updated: 2012
   alt: Triceratops prorsus skeletal reconstruction, left lateral view, reconstructed length ~5.5 m.
 added: 2026-07-06T12:00:00.000Z
 ---

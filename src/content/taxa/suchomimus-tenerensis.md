@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/suchomimus-tenerensis-skeletal.png
+  drawn: 2003
+  updated: 2025
   alt: Suchomimus tenerensis skeletal reconstruction, left lateral view, reconstructed length ~11.4 m.
 added: 2026-07-01T12:02:00.000Z
 ---

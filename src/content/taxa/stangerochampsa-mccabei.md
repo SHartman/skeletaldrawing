@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/stangerochampsa-mccabei-skeletal.png
+  drawn: 2017
+  updated: 2022
   alt: Stangerochampsa mccabei skeletal reconstruction, left lateral view, length ~1.65 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 1.61

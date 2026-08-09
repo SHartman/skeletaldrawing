@@ -19,6 +19,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/archaeopteryx-lithographica-thermopolis-specimen-skeletal.png
+  drawn: 2005
+  updated: 2022
   alt: Archaeopteryx lithographica skeletal reconstruction, left lateral view — the Thermopolis specimen (WDC-CSG-100), ~0.38 m.
 overlay: true
 added: ''

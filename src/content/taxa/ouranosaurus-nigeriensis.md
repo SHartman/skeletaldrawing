@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ouranosaurus-nigeriensis-skeletal.png
+  drawn: 2012
+  updated: 2025
   alt: Ouranosaurus nigeriensis skeletal reconstruction, left lateral view, reconstructed length ~7.1 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 6.92

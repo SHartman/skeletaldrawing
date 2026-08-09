@@ -21,6 +21,7 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/bootherium-bombifrons-skeletal.png
+  drawn: 2026
   alt: Bootherium bombifrons skeletal reconstruction, left lateral view, length ~3.4 m.
 added: 2026-07-07T12:00:00.000Z
 widthM: 3.36

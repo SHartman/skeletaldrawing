@@ -21,9 +21,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/plateosaurus-trossingensis-skeletal.png
+  drawn: 2007
+  updated: 2013
   alt: Plateosaurus trossingensis skeletal reconstruction, left lateral view, specimen GPIT/RE/7288, reconstructed length ~6 m.
 rigorous:
   src: /images/skeletals/plateosaurus-trossingensis-known-material.png
+  drawn: 2007
+  updated: 2013
   alt: Known skeletal material of Plateosaurus trossingensis GPIT/RE/7288 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: ''
 ---

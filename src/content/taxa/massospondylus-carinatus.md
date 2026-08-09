@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/massospondylus-carinatus-neotype-bp-1-4934-skeletal.png
+  drawn: 2012
+  updated: 2024
   alt: Massospondylus carinatus skeletal reconstruction, left lateral view, reconstructed length ~5.5 m.
 added: 2026-06-28T12:37:00.000Z
 ---

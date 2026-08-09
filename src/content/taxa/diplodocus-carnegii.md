@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/diplodocus-carnegii-skeletal.png
+  drawn: 2006
+  updated: 2026
   alt: Diplodocus carnegii skeletal reconstruction, left lateral view, specimen CM 84, reconstructed length ~26 m.
 rigorous:
   src: /images/skeletals/diplodocus-carnegii-known-material.png
+  drawn: 2006
+  updated: 2026
   alt: Known skeletal material of Diplodocus carnegii CM 84 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: 2026-06-25T12:00:00.000Z
 widthM: 24.7

@@ -20,9 +20,12 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/nothronychus-graffami-umnh-vp-16420-skeletal.png
+  drawn: 2008
+  updated: 2013
   alt: Nothronychus graffami skeletal reconstruction, left lateral view, reconstructed length ~4.4 m.
 rigorous:
   src: /images/skeletals/nothronychus-graffami-umnh-vp-16420-known-elements.png
+  drawn: 2013
   alt: 'Known skeletal material of Nothronychus graffami: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:09:00.000Z
 widthM: 3.6

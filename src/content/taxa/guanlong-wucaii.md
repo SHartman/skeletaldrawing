@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/guanlong-wucaii-skeletal.png
+  drawn: 2014
+  updated: 2019
   alt: Guanlong wucaii skeletal reconstruction, left lateral view, reconstructed length ~3.7 m.
 added: 2026-06-30T12:00:00.000Z
 ---

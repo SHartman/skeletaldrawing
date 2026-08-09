@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/corythosaurus-casuarius-type-amnh-5240-skeletal.png
+  drawn: 2025
+  updated: 2026
   alt: Corythosaurus casuarius skeletal reconstruction, left lateral view, reconstructed length ~7.9 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 7.82

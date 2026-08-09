@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/melanorosaurus-readi-skeletal.png
+  drawn: 2008
+  updated: 2023
   alt: Melanorosaurus readi skeletal reconstruction, left lateral view, reconstructed length ~8 m.
 added: ''
 ---

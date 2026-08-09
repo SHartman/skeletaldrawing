@@ -20,6 +20,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/teratornis-merriami-under-revision-silhouette.png
+  drawn: 2010
   alt: Teratornis merriami — skeletal reconstruction under revision (placeholder silhouette).
 underRevision: true
 added: ''

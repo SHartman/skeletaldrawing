@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gryposaurus-monumentensis-skeletal.png
+  drawn: 2012
+  updated: 2018
   alt: Gryposaurus monumentensis skeletal reconstruction, left lateral view, reconstructed length ~8.5 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 8.38

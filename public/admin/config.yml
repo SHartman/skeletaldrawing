@@ -77,6 +77,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
       - name: rigorous
         label: "Known-material image"
         widget: object
@@ -84,6 +86,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
       - name: lifeReconstruction
         label: "Life reconstruction (color art)"
         widget: object
@@ -92,6 +96,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
           - { name: caption, label: "Caption", widget: string, required: false }
       - name: additionalFigures
         label: "Additional figures (bonus)"
@@ -100,6 +106,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
           - { name: caption, label: "Caption", widget: string, required: false }
       # Uploads to the repo-root silhouettes/ folder rather than media_folder — same per-field
       # override the Downloads field uses. It is a trace source, never served, so the thumbnail
@@ -187,6 +195,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
       - name: rigorous
         label: "Known-material image"
         widget: object
@@ -194,6 +204,8 @@ collections:
         fields:
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
       - name: additionalFigures
         label: "Additional figures (e.g. muscle reconstruction)"
         widget: list
@@ -202,6 +214,8 @@ collections:
           - { name: label, label: "Label (heading)", widget: string, required: false, hint: "e.g. Muscle reconstruction" }
           - { name: src, label: "Image", widget: image }
           - { name: alt, label: "Alt text", widget: string }
+          - { name: drawn, label: "Drawn (year)", widget: number, required: false, value_type: int, hint: "Year the artwork was first made. Never baked into the image — it renders as live text in the record row and in the structured data (CLAUDE.md §3)." }
+          - { name: updated, label: "Revised (year)", widget: number, required: false, value_type: int, hint: "Year of the most recent rework, if there has been one. Leave blank when the drawing has never been revised; a value equal to Drawn is ignored rather than shown as '2024, revised 2024'." }
           - { name: caption, label: "Caption", widget: string, required: false }
       - { name: overlay, label: "In scale-comparison overlay", widget: boolean, default: false, required: false, hint: "Curate ~3–6 for the scale figure" }
       - { name: featured, label: "Featured (show as a card)", widget: boolean, default: false, required: false }

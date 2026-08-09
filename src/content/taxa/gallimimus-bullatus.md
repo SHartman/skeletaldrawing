@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gallimimus-bullatus-skeletal.png
+  drawn: 2007
+  updated: 2024
   alt: Gallimimus bullatus skeletal reconstruction, left lateral view, reconstructed length ~6 m.
 added: 2026-06-28T12:26:00.000Z
 ---

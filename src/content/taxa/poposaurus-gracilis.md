@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/poposaurus-gracilis-ypm-57100-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Poposaurus gracilis skeletal reconstruction, left lateral view, length ~4.1 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 4.04

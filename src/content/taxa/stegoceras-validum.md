@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/stegoceras-validum-skeletal.png
+  drawn: 2011
+  updated: 2022
   alt: Stegoceras validum skeletal reconstruction, left lateral view, reconstructed length ~2.4 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 2.34

@@ -8,6 +8,7 @@ view: "Left lateral"
 underRevision: true
 reconstruction:
   src: "/images/skeletals/juratyrant-langhami-under-revision-silhouette.png"
+  drawn: 2010
   alt: "Juratyrant langhami — skeletal reconstruction under revision (placeholder silhouette)."
 ---
 

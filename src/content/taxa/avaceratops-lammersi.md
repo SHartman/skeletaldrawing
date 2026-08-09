@@ -21,6 +21,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/avaceratops-lammersi-under-revision-silhouette.png
+  drawn: 2003
   alt: Avaceratops lammersi — skeletal reconstruction under revision (placeholder silhouette).
 underRevision: true
 revisionNote: Both as one of the older skeletal reconstructions I have drawn (it's from the 1990s) and with some additional anatomy clarified with the publication of Furcatoceratops, it's become clear that at some point I need to redraw the specimen from the ground up.

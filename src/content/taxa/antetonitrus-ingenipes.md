@@ -21,6 +21,7 @@ scaleBar: ''
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/antetonitrus-ingenipes-type-bp-1-4952-known-elements.png
+  drawn: 2024
   alt: 'Known skeletal material of Antetonitrus ingenipes: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:02:00.000Z
 ---

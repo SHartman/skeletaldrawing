@@ -21,9 +21,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/qianzhousaurus-sinensis-type-gm-f10004-skeletal.png
+  drawn: 2019
+  updated: 2022
   alt: Qianzhousaurus sinensis skeletal reconstruction, left lateral view, reconstructed length ~6.8 m.
 rigorous:
   src: /images/skeletals/qianzhousaurus-sinensis-type-gm-f10004-known-elements.png
+  drawn: 2019
+  updated: 2022
   alt: 'Known skeletal material of Qianzhousaurus sinensis: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:12:00.000Z
 ---

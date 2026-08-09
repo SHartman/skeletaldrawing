@@ -21,9 +21,13 @@ scaleBar: 20 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/mbiresaurus-raathi-skeletal.png
+  drawn: 2021
+  updated: 2026
   alt: Mbiresaurus raathi skeletal reconstruction, left lateral view, reconstructed length 80 cm.
 rigorous:
   src: /images/skeletals/mbiresaurus-raathi-known-material.png
+  drawn: 2021
+  updated: 2026
   alt: Known skeletal material of Mbiresaurus raathi — elements preserved in the specimen drawn in white against a black body silhouette.
 added: ''
 ---

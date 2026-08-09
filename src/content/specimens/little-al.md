@@ -9,6 +9,8 @@ basis: "Juvenile individual; privately held, so not available for study"
 overlay: true
 reconstruction:
   src: "/images/skeletals/allosaurus-jimmadseni-little-al-juvenile-skeletal.png"
+  drawn: 2011
+  updated: 2026
   alt: "Allosaurus jimmadseni skeletal reconstruction, left lateral view — the juvenile 'Little Al', ~2.8 m."
 ---
 

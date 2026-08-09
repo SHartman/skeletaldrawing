@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/scelidosaurus-harrisonii-brsmg-legl-00004-skeletal.png
+  drawn: 2013
+  updated: 2026
   alt: Scelidosaurus harrisonii skeletal reconstruction, left lateral view, reconstructed length ~4 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 3.8

@@ -21,6 +21,7 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/plesiobaena-antiqua-skeletal.png
+  drawn: 2010
   alt: Plesiobaena antiqua skeletal reconstruction, left lateral view, length ~1 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.99

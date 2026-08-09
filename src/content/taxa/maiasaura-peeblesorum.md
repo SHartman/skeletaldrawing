@@ -21,20 +21,27 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/maiasaura-peeblesorum-adult-skeletal.png
+  drawn: 2004
+  updated: 2018
   alt: Maiasaura peeblesorum skeletal reconstruction, left lateral view, reconstructed length ~7 m.
 rigorous:
   src: /images/skeletals/maiasaura-peeblesorum-adult-rom-44770-known-elements.png
+  drawn: 2004
+  updated: 2013
   alt: Maiasaura peeblesorum — known skeletal material (ROM 44770), left lateral view; preserved elements in white against a black body silhouette.
 additionalFigures:
   - src: /images/skeletals/maiasaura-peeblesorum-hatchling-skeletal.png
+    drawn: 2016
     alt: Maiasaura peeblesorum skeletal reconstruction — hatchling.
     caption: ''
     label: Hatchling
   - src: /images/skeletals/maiasaura-peeblesorum-yearling-skeletal.png
+    drawn: 2025
     alt: Maiasaura peeblesorum skeletal reconstruction — yearling.
     caption: ''
     label: Yearling
   - src: /images/skeletals/maiasaura-peeblesorum-subadult-two-years-skeletal.png
+    drawn: 2025
     alt: Maiasaura peeblesorum skeletal reconstruction — subadult (two years).
     caption: ''
     label: Subadult (two years)

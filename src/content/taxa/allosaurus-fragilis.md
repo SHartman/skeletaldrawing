@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/allosaurus-fragilis-skeletal.png
+  drawn: 2011
+  updated: 2024
   alt: Allosaurus fragilis skeletal reconstruction, left lateral view, reconstructed length ~8 m.
 added: 2026-06-28T12:00:00.000Z
 ---

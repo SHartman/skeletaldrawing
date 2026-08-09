@@ -21,6 +21,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ngwevu-intloko-type-bp-1-4779-skeletal.png
+  drawn: 2024
   alt: Ngwevu intloko skeletal reconstruction, left lateral view, reconstructed length ~3.4 m.
 added: 2026-06-28T12:38:00.000Z
 ---

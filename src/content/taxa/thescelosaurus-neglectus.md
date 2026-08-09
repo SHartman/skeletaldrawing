@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/thescelosaurus-neglectus-skeletal.png
+  drawn: 2017
+  updated: 2026
   alt: Thescelosaurus neglectus skeletal reconstruction, left lateral view, reconstructed length ~4 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 3.89

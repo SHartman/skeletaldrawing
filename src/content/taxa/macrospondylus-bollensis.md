@@ -21,6 +21,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/macrospondylus-bollensis-skeletal.png
+  drawn: 2017
   alt: Macrospondylus bollensis skeletal reconstruction, left lateral view, length ~5.6 m.
 added: 2026-07-16T12:00:00.000Z
 widthM: 5.54

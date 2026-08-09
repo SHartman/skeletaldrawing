@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/adalatherium-hui-skeletal.png
+  drawn: 2018
+  updated: 2020
   alt: Adalatherium hui skeletal reconstruction, left lateral view, reconstructed length ~0.52 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

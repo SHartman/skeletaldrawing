@@ -20,6 +20,7 @@ scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/arambourgiania-philadelphiae-known-elements.png
+  drawn: 2019
   alt: Arambourgiania philadelphiae — known skeletal material, left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-16T12:00:00.000Z
 wingspanM: 10

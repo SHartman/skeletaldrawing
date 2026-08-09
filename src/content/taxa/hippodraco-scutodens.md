@@ -20,6 +20,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/hippodraco-scutodens-type-umnh-vp-20208-skeletal.png
+  drawn: 2014
+  updated: 2017
   alt: Hippodraco scutodens skeletal reconstruction, left lateral view, reconstructed length ~4.3 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 4.23

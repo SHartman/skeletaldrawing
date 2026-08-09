@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/chasmosaurus-belli-skeletal.png
+  drawn: 2018
+  updated: 2022
   alt: Chasmosaurus belli skeletal reconstruction, left lateral view, reconstructed length ~4.9 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 4.72

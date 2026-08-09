@@ -22,6 +22,7 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tarbosaurus-bataar-skeletal.png
+  drawn: 2022
   alt: Tarbosaurus bataar skeletal reconstruction, left lateral view, reconstructed length ~9.9 m.
 added: 2026-07-01T12:03:00.000Z
 ---

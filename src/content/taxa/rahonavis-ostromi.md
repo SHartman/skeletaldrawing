@@ -22,9 +22,13 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/rahonavis-ostromi-type-ua-8656-skeletal.png
+  drawn: 2018
+  updated: 2024
   alt: Rahonavis ostromi skeletal reconstruction, left lateral view, reconstructed length ~0.8 m.
 rigorous:
   src: /images/skeletals/rahonavis-ostromi-type-ua-8656-known-elements-two-versions.png
+  drawn: 2018
+  updated: 2024
   alt: 'Known skeletal material of Rahonavis ostromi: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-29T13:13:00.000Z
 ---

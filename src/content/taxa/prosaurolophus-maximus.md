@@ -20,9 +20,12 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/prosaurolophus-maximus-skeletal.png
+  drawn: 2017
+  updated: 2020
   alt: Prosaurolophus maximus skeletal reconstruction, left lateral view, reconstructed length ~8 m.
 additionalFigures:
   - src: /images/skeletals/prosaurolophus-maximus-alternate-bipedal-gait.png
+    drawn: 2017
     alt: Prosaurolophus maximus skeletal reconstruction — alternative bipedal gait.
     caption: ''
     label: Alternative bipedal gait

@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/eotyrannus-lengi-type-miwg1997-550-known-remains.png
+  drawn: 2004
+  updated: 2026
   alt: 'Known skeletal material of Eotyrannus lengi, estimated length ~5 m: preserved elements shown in white against a black body silhouette.'
 added: 2026-06-28T12:23:00.000Z
 ---

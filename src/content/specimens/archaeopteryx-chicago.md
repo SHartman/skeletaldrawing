@@ -19,6 +19,7 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/archaeopteryx-lithographica-chicago-specimen-skeletal.png
+  drawn: 2024
   alt: Archaeopteryx lithographica skeletal reconstruction, left lateral view — the Chicago specimen (FMNH PA 830), ~0.3 m.
 overlay: true
 added: ''

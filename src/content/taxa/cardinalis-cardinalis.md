@@ -21,9 +21,13 @@ scaleBar: 1 centimeter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/cardinalis-cardinalis-skeletal.png
+  drawn: 2016
+  updated: 2018
   alt: Cardinalis cardinalis skeletal reconstruction, left lateral view, reconstructed length ~0.09 m.
 additionalFigures:
   - src: /images/skeletals/cardinalis-cardinalis-skeletal-with-feathers-restored.png
+    drawn: 2016
+    updated: 2018
     alt: Cardinalis cardinalis — The same skeletal with the feathers restored — a living dinosaur for scale against its extinct relatives.
     caption: The same skeletal with the feathers restored — a living dinosaur for scale against its extinct relatives.
 added: 2026-06-28T12:12:00.000Z

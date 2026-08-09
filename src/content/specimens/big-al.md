@@ -19,9 +19,13 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/allosaurus-jimmadseni-big-al-mor-693-skeletal.png
+  drawn: 1997
+  updated: 2026
   alt: Allosaurus jimmadseni skeletal reconstruction, left lateral view — the subadult MOR 693 (Big Al), ~6.6 m.
 rigorous:
   src: /images/skeletals/allosaurus-jimmadseni-big-al-mor-693-known-elements.png
+  drawn: 1997
+  updated: 2026
   alt: Known-material diagram of Allosaurus jimmadseni MOR 693 (Big Al) — preserved elements shown in white against a black body silhouette.
 overlay: true
 featured: true

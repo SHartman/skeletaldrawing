@@ -20,12 +20,18 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/barosaurus-lentus-skeletal.png
+  drawn: 2006
+  updated: 2022
   alt: Barosaurus lentus skeletal reconstruction, left lateral view, specimen AMNH 6341, reconstructed length ~25 m.
 rigorous:
   src: /images/skeletals/barosaurus-lentus-known-material.png
+  drawn: 2006
+  updated: 2026
   alt: Known skeletal material of Barosaurus lentus AMNH 6341 — elements preserved in the specimen drawn in white against a black body silhouette.
 additionalFigures:
   - src: /images/skeletals/barosaurus-lentus-rom-3670-known-elements.png
+    drawn: 2007
+    updated: 2026
     alt: Known skeletal material of a second Barosaurus lentus specimen, ROM 3670, shown in white against a black body silhouette.
     caption: Known material of a second specimen, ROM 3670 (Royal Ontario Museum) — a slightly larger individual, shown here for comparison with the AMNH 6341 mount above.
 added: ''

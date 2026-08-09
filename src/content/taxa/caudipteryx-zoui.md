@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/caudipteryx-zoui-type-specimen-ngmc-97-4-a-skeletal.png
+  drawn: 2015
+  updated: 2022
   alt: Caudipteryx zoui skeletal reconstruction, left lateral view, reconstructed length ~0.8 m.
 added: 2026-06-28T12:14:00.000Z
 widthM: 0.78

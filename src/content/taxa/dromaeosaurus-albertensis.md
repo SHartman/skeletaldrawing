@@ -21,6 +21,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/dromaeosaurus-albertensis-skeletal.png
+  drawn: 2015
+  updated: 2019
   alt: Dromaeosaurus albertensis skeletal reconstruction, left lateral view, reconstructed length ~2 m.
 added: 2026-06-28T12:21:00.000Z
 ---

@@ -22,6 +22,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/uintatherium-anceps-skeletal.png
+  drawn: 2010
+  updated: 2018
   alt: Uintatherium anceps skeletal reconstruction, left lateral view, reconstructed length ~3.5 m.
 revisionNote: ''
 added: 2026-07-23T12:00:00.000Z

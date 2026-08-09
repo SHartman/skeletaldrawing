@@ -21,6 +21,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/aurornis-xui-yfgp-t5198-skeletal.png
+  drawn: 2016
+  updated: 2022
   alt: Aurornis xui skeletal reconstruction, left lateral view, reconstructed length ~0.5 m.
 added: 2026-06-28T12:06:00.000Z
 ---

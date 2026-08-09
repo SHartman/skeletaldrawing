@@ -20,9 +20,13 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/furcatoceratops-elucidans-type-nsm-pv-24660-skeletal.png
+  drawn: 2015
+  updated: 2023
   alt: Furcatoceratops elucidans skeletal reconstruction, left lateral view, reconstructed length ~3.6 m.
 rigorous:
   src: /images/skeletals/furcatoceratops-elucidans-type-nsm-pv-24660-known-elements.png
+  drawn: 2015
+  updated: 2023
   alt: Furcatoceratops elucidans — known skeletal material (NSM PV 24660), left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-06T12:00:00.000Z
 widthM: 3.55

@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/nanosaurus-agilis-skeletal.png
+  drawn: 2004
+  updated: 2026
   alt: Nanosaurus agilis skeletal reconstruction, left lateral view, reconstructed length ~2 m.
 added: 2026-07-06T12:00:00.000Z
 widthM: 2

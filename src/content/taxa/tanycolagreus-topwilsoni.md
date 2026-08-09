@@ -21,6 +21,8 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tanycolagreus-topwilsoni-type-tpii-2000-09-29-skeletal.png
+  drawn: 2011
+  updated: 2026
   alt: Tanycolagreus topwilsoni skeletal reconstruction, left lateral view, reconstructed length ~3.8 m.
 added: 2026-06-29T13:21:00.000Z
 ---

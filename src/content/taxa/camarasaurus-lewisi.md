@@ -21,6 +21,8 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/camarasaurus-lewisi-skeletal.png
+  drawn: 2010
+  updated: 2022
   alt: Camarasaurus lewisi skeletal reconstruction, left lateral view, specimen BYU 9047, reconstructed length ~14 m.
 added: ''
 widthM: 12.8

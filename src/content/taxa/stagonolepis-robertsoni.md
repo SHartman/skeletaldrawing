@@ -20,9 +20,11 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/stagonolepis-robertsoni-skeletal.png
+  drawn: 2016
   alt: Stagonolepis robertsoni skeletal reconstruction, left lateral view, length ~3.7 m.
 additionalFigures:
   - src: /images/skeletals/stagonolepis-robertsoni-skeletal-no-armor.png
+    drawn: 2016
     alt: Stagonolepis robertsoni — Without armor.
     caption: ''
     label: Without armor

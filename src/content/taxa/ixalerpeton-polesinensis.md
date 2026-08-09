@@ -20,6 +20,8 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ixalerpeton-polesinensis-skeletal.png
+  drawn: 2016
+  updated: 2021
   alt: Ixalerpeton polesinensis skeletal reconstruction, left lateral view, length 75 cm.
 added: 2026-07-16T12:00:00.000Z
 widthM: 0.741

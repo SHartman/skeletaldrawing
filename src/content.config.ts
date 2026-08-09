@@ -11,14 +11,9 @@ import { glob } from 'astro/loaders';
    CMS-friendly. Build-time responsive optimization is layered on at render.
    -------------------------------------------------------------------------- */
 
-const imageRef = z.object({
-  src: z.string(), // public path, e.g. /images/skeletals/<descriptive-name>.png
-  alt: z.string(), // descriptive alt text (taxon + view + length) — hard rule §3
-  caption: z.string().optional(), // optional visible caption (used by the blog lead image)
-});
-
 // Sveltia materializes empty fields as '' (strings) or null (numbers). Normalize
 // those to `undefined` so optional fields stay optional and defaults still apply.
+// (Declared above imageRef because the image refs use optNum for their year fields.)
 const blank = (v: unknown) => (v === '' || v === null ? undefined : v);
 const optStr = z.preprocess(blank, z.string().optional());
 const optNum = z.preprocess(blank, z.number().optional());
@@ -26,6 +21,25 @@ const optDate = z.preprocess(blank, z.coerce.date().optional()); // CMS-stamped 
 const defStr = (d: string) => z.preprocess(blank, z.string().default(d));
 const nullableDefault = <T extends z.ZodTypeAny>(s: T) =>
   z.preprocess((v) => (v == null ? undefined : v), s);
+
+// When the artwork dates from. Both live on the IMAGE rather than the entry, because they genuinely
+// differ per image: Dreadnoughtus' skeletal is 2010 while its known-material diagram is 2016, and 26
+// entries are like that. They feed the record row and ImageObject dateCreated/dateModified.
+//
+// NEVER baked into the raster (CLAUDE.md §3) — that is the thing the old Squarespace site did, and a
+// baked year would force a re-export on every revision and break the credit mark's one virtue, that
+// it is identical on every image.
+const yearFields = {
+  drawn: optNum, // year the artwork was first made
+  updated: optNum, // year of the latest revision, when there has been one
+};
+
+const imageRef = z.object({
+  src: z.string(), // public path, e.g. /images/skeletals/<descriptive-name>.png
+  alt: z.string(), // descriptive alt text (taxon + view + length) — hard rule §3
+  caption: z.string().optional(), // optional visible caption (used by the blog lead image)
+  ...yearFields,
+});
 
 // A bonus figure shown below the main plates. An optional `label` (e.g.
 // "Muscle reconstruction") gives it a heading and its own ImageObject; without
@@ -39,6 +53,8 @@ const figureRef = z.object({
   // The credit names the real authors/journal/licence; source links the paper. Own figures omit both.
   credit: optStr,
   source: optStr,
+  // Absent on third-party paper figures — they are not his drawings, so they carry no drawing date.
+  ...yearFields,
 });
 
 const taxa = defineCollection({

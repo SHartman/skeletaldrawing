@@ -20,6 +20,7 @@ scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tapejara-wellnhoferi-skeletal.png
+  drawn: 2017
   alt: Tapejara wellnhoferi skeletal reconstruction, left lateral view, length 45 cm, wingspan ~1.2 m.
 added: 2026-07-16T12:00:00.000Z
 wingspanM: 1.2

@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/apatosaurus-louisae-skeletal.png
+  drawn: 2006
+  updated: 2026
   alt: Apatosaurus louisae skeletal reconstruction, left lateral view, specimen CM 3018, reconstructed length ~23 m.
 rigorous:
   src: /images/skeletals/apatosaurus-louisae-known-material.png
+  drawn: 2006
+  updated: 2026
   alt: Known skeletal material of Apatosaurus louisae CM 3018 — elements preserved in the specimen drawn in white against a black body silhouette.
 added: 2026-07-18T10:54
 widthM: 21.8

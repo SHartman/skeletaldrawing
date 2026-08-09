@@ -20,6 +20,8 @@ scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/heyuannia-huangi-skeletal.png
+  drawn: 2004
+  updated: 2024
   alt: Heyuannia huangi skeletal reconstruction, left lateral view, reconstructed length ~1.6 m.
 added: 2026-06-28T12:32:00.000Z
 widthM: 1.45

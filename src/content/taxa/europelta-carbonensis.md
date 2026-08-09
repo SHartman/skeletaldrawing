@@ -20,9 +20,13 @@ scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/europelta-carbonensis-skeletal-with-armor.png
+  drawn: 2013
+  updated: 2014
   alt: Europelta carbonensis skeletal reconstruction, left lateral view, reconstructed length ~5 m.
 rigorous:
   src: /images/skeletals/europelta-carbonensis-known-elements-without-armor.png
+  drawn: 2013
+  updated: 2014
   alt: Europelta carbonensis — known skeletal material, left lateral view; preserved elements in white against a black body silhouette.
 added: 2026-07-06T12:00:00.000Z
 widthM: 4.83

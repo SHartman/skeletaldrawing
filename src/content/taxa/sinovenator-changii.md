@@ -20,6 +20,8 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/sinovenator-changii-skeletal.png
+  drawn: 2002
+  updated: 2024
   alt: Sinovenator changii skeletal reconstruction, left lateral view, reconstructed length ~0.91 m.
 added: 2026-06-29T13:18:00.000Z
 ---

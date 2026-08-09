@@ -20,6 +20,7 @@ scaleBar: 25 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/protoceratops-andrewsi-skeletal.png
+  drawn: 2016
   alt: Protoceratops andrewsi skeletal reconstruction, left lateral view, reconstructed length ~1.8 m.
 featured: true
 added: 2026-07-06T12:00:00.000Z

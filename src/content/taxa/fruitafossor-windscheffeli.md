@@ -20,6 +20,8 @@ scaleBar: 2 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/fruitafossor-windscheffeli-skeletal.png
+  drawn: 2011
+  updated: 2026
   alt: Fruitafossor windscheffeli skeletal reconstruction, left lateral view, length 16 cm.
 added: 2026-07-07T12:00:00.000Z
 widthM: 0.15
