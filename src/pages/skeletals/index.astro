@@ -369,6 +369,29 @@ const description =
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     input.focus({ preventScroll: true });
   }
+
+  // A ?q= in the URL runs as a search on arrival, which does two jobs.
+  //
+  // It rescues the old Squarespace search URLs: /search?q=baryonyx now 301s here (Cloudflare passes
+  // the query string through), and without this the visitor lands on an empty box having already
+  // asked a specific question. And it makes a search LINKABLE — /skeletals/?q=tyrannosaur can go in
+  // a blog post or a reply to someone asking what the site has, which was not possible before.
+  //
+  // Deliberately does NOT auto-navigate to the top hit: that turns one redirect into two hops and
+  // takes the choice away from the reader. It only fills the box and opens the suggestions.
+  //
+  // The canonical on this page is a hard /skeletals/, so ?q= variants Google crawls consolidate back
+  // and carry no duplicate-content risk. Capped at 120 chars because nothing legitimate is longer and
+  // the value is echoed into an input; render() reads input.value, so there is no markup path either
+  // way, but an absurd string would just make a mess of the box.
+  const q = new URLSearchParams(location.search).get('q')?.trim().slice(0, 120);
+  if (q) {
+    input.value = q;
+    render();
+    // Cursor after the text rather than selecting it — the next keystroke should refine the query,
+    // not replace it.
+    input.setSelectionRange(q.length, q.length);
+  }
 </script>
 
 <style>
