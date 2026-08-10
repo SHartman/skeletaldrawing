@@ -345,6 +345,11 @@ const jsonLd = underRevision
             {(f.caption || f.credit || f.date) && (
               <figcaption class="rig-cap">
                 {f.caption}
+                {/* Before the credit, not after. The date runs INLINE with the caption, while
+                    .fig-credit is a block on its own line — so ordering it last would strand the
+                    date on the end of a third-party credit line. Only one figure has both (the
+                    Confuciusornis PNAS figure), but that is the one it would look wrong on. */}
+                {f.date && <span class="fig-date">{f.date}</span>}
                 {f.credit && (
                   <span class="fig-credit">
                     {f.source ? (
@@ -354,7 +359,6 @@ const jsonLd = underRevision
                     )}
                   </span>
                 )}
-                {f.date && <span class="fig-date">{f.date}</span>}
               </figcaption>
             )}
           </figure>
@@ -556,7 +560,7 @@ const jsonLd = underRevision
   /* Drawing date on a NON-HERO figure. Its own line at the end of the caption, in the measurement
      grey used for scale bars and axes — it is metadata about the artwork, not part of the caption's
      prose, and the record row above only ever speaks for the hero image. */
-  .fig-date { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
+  .fig-date { margin-left: .4em; font-size: 12.5px; color: var(--measure); }
 
   /* Two-up related cards (matches the gallery grid) — reads as a clearly separate footer of
      suggestions and cuts the scrolling to see them all. Triggered well above the 600px mobile
