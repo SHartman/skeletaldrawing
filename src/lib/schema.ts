@@ -27,7 +27,7 @@ const CREDIT_DEFAULT = 'Skeletal reconstruction © Scott Hartman / skeletaldrawi
  * trickle in, and this is meant to land with a blog post. Flip to true to launch — that is the whole
  * of it, and nothing else needs touching.
  */
-export const SHOW_DRAWING_DATES = false;
+export const SHOW_DRAWING_DATES = true;
 
 /**
  * How a drawing's age reads in the record row: "2011, revised 2024" when the artwork was reworked,

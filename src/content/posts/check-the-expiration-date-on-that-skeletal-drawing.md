@@ -7,7 +7,7 @@ image:
   src: /images/blog/nanotyrannus-rigorous-skeletal-2014-copyright-date.png
   alt: The back half of a rigorous skeletal drawing of Nanotyrannus, with a clear copyright date of 2014
 featured: false
-draft: true
+draft: false
 ---
 
 It's been two weeks and change since I launched a ground-up rewrite of the website, and the reviews have been almost entirely positive, and occasionally effusive. I'm delighted that the time I invested into the overhaul seems to have been well worth it, and particularly that others agree that mobile navigation is now much better than it used to be.
