@@ -42,6 +42,24 @@ export function formatDrawn(drawn?: number, updated?: number): string {
   return updated != null && updated !== drawn ? `${drawn}, revised ${updated}` : String(drawn);
 }
 
+/**
+ * The same date, for a NON-HERO figure's caption: "Drawn 2016, revised 2018".
+ *
+ * The record row carries the hero image's years and nothing else, which quietly implies they cover
+ * the whole page — and they often don't. A known-material diagram is frequently a different year
+ * from the reconstruction beside it (Dreadnoughtus: 2016 against 2010), and a growth-series plate can
+ * be two decades off its adult. So every other figure states its own, in its caption rather than the
+ * record, which the owner wanted kept uncluttered.
+ *
+ * Returns '' when undated — third-party paper figures carry no drawing date because they are not his
+ * drawings, and the caller renders nothing at all in that case.
+ */
+export function figureDate(drawn?: number, updated?: number): string {
+  if (!SHOW_DRAWING_DATES) return '';
+  const d = formatDrawn(drawn, updated);
+  return d ? `Drawn ${d}` : '';
+}
+
 /** ISO years for ImageObject. Omitted entirely while the feature is gated. */
 function dateProps(drawn?: number, updated?: number) {
   if (!SHOW_DRAWING_DATES) return {};

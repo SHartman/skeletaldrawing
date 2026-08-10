@@ -13,6 +13,7 @@ import {
   formatAuthor,
   formatDrawn,
   SHOW_DRAWING_DATES,
+  figureDate,
 } from '../lib/schema';
 import { expandClades } from '../lib/clades';
 
@@ -31,7 +32,7 @@ const showRigorous = !!(s.reconstruction && s.rigorous);
 const rigImg = showRigorous ? await loadSkeletal(s.rigorous!.src) : null;
 
 const figs = await Promise.all(
-  (s.additionalFigures ?? []).map(async (f) => ({ ...f, img: await loadSkeletal(f.src) })),
+  (s.additionalFigures ?? []).map(async (f) => ({ ...f, img: await loadSkeletal(f.src), date: figureDate(f.drawn, f.updated) })),
 );
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
@@ -205,6 +206,10 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
           <figcaption class="rig-cap">
             Known material of {s.catalog}: elements preserved in the specimen are shown in white;
             unpreserved regions are left as black silhouette.
+            {/* Its own years — the record row's Drawn cell speaks only for the hero image. */}
+            {figureDate(s.rigorous!.drawn, s.rigorous!.updated) && (
+              <span class="fig-date">{figureDate(s.rigorous!.drawn, s.rigorous!.updated)}</span>
+            )}
           </figcaption>
         </figure>
       </section>
@@ -230,7 +235,12 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
                 <img src={f.src} alt={f.alt} class="plate-img" />
               )}
             </div>
-            {f.caption && <figcaption class="rig-cap">{f.caption}</figcaption>}
+            {(f.caption || f.date) && (
+              <figcaption class="rig-cap">
+                {f.caption}
+                {f.date && <span class="fig-date">{f.date}</span>}
+              </figcaption>
+            )}
           </figure>
         ))}
       </section>
@@ -364,6 +374,11 @@ const jsonLd = specimenImageGraph(entry, { taxonName: t.taxon, author: t.author,
     margin-top: 16px; font-size: 15px; color: var(--slate);
     line-height: 1.55; max-width: 760px;
   }
+
+  /* Drawing date on a NON-HERO figure. Its own line at the end of the caption, in the measurement
+     grey used for scale bars and axes — it is metadata about the artwork, not part of the caption's
+     prose, and the record row above only ever speaks for the hero image. */
+  .fig-date { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
 
   .extras {
     border-top: 1px solid var(--hair); margin-top: 40px; padding-top: 30px;

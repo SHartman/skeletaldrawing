@@ -17,6 +17,7 @@ import {
   taxonNameHtml,
   formatDrawn,
   SHOW_DRAWING_DATES,
+  figureDate,
   inlineEmphasisHtml,
   stripEmphasis,
 } from '../lib/schema';
@@ -38,7 +39,7 @@ const rigImg = showRigorousSection ? await loadSkeletal(d.rigorous!.src) : null;
 
 // Bonus figures (e.g. Malawisaurus armor), optimized.
 const figs = await Promise.all(
-  d.additionalFigures.map(async (f) => ({ ...f, img: await loadSkeletal(f.src) })),
+  d.additionalFigures.map(async (f) => ({ ...f, img: await loadSkeletal(f.src), date: figureDate(f.drawn, f.updated) })),
 );
 
 // Absolute URLs: canonical page + stable image URLs for metadata.
@@ -282,6 +283,12 @@ const jsonLd = underRevision
           <figcaption class="rig-cap">
             Known material{d.specimenId ? ` of ${d.specimenId}` : ''}: elements preserved in the
             specimen are shown in white; unpreserved regions are left as black silhouette.
+            {/* Its OWN years, not the hero's. A known-material diagram is frequently a different
+                year from the reconstruction above it — Dreadnoughtus is 2016 against 2010 — and the
+                record row only ever speaks for the hero. */}
+            {figureDate(d.rigorous!.drawn, d.rigorous!.updated) && (
+              <span class="fig-date">{figureDate(d.rigorous!.drawn, d.rigorous!.updated)}</span>
+            )}
           </figcaption>
         </figure>
       </section>
@@ -333,7 +340,9 @@ const jsonLd = underRevision
                 <img src={f.src} alt={f.alt} class="plate-img" />
               )}
             </div>
-            {(f.caption || f.credit) && (
+            {/* `f.date` joins caption and credit as a reason to render a figcaption at all: 13 dated
+                figures carry no caption, and they should still say when they were drawn. */}
+            {(f.caption || f.credit || f.date) && (
               <figcaption class="rig-cap">
                 {f.caption}
                 {f.credit && (
@@ -345,6 +354,7 @@ const jsonLd = underRevision
                     )}
                   </span>
                 )}
+                {f.date && <span class="fig-date">{f.date}</span>}
               </figcaption>
             )}
           </figure>
@@ -542,6 +552,11 @@ const jsonLd = underRevision
   /* attribution for a third-party (CC-BY paper) figure */
   .fig-credit { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
   .fig-credit a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+  /* Drawing date on a NON-HERO figure. Its own line at the end of the caption, in the measurement
+     grey used for scale bars and axes — it is metadata about the artwork, not part of the caption's
+     prose, and the record row above only ever speaks for the hero image. */
+  .fig-date { display: block; margin-top: 4px; font-size: 12.5px; color: var(--measure); }
 
   /* Two-up related cards (matches the gallery grid) — reads as a clearly separate footer of
      suggestions and cuts the scrolling to see them all. Triggered well above the 600px mobile
