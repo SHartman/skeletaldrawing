@@ -43,14 +43,16 @@ const PAIRS = [
 // Every filename mentioned anywhere in content. Deliberately a substring test rather than parsing
 // paths: a filename can appear in front matter, in Markdown prose, or inside an HTML tag, and all
 // three count as a reference.
-// Percent-decoded as well as raw. A filename with a space is written `Luigi%20review.png` in Markdown
-// but sits on disk as `Luigi review.png`, so a raw substring test misses it and reports a referenced
-// image as an orphan. Decoding can throw on a stray `%`, so it falls back to the original.
-const decode = (s) => { try { return decodeURIComponent(s); } catch { return s; } };
 const haystack = CONTENT_DIRS.filter(existsSync)
   .flatMap((d) => readdirSync(d).filter((f) => f.endsWith('.md')).map((f) => readFileSync(join(d, f), 'utf8')))
-  .flatMap((t) => [t, decode(t)])
   .join('\n');
+
+// A filename with a space sits on disk as `Luigi review.png` but is written `Luigi%20review.png` in
+// Markdown, so a raw substring test reports a referenced image as an orphan. Encode the NAME rather
+// than decoding the content: decodeURIComponent on a whole document throws on any stray `%` — and
+// this very post contains `{width=40% right}`, where `% r` is an invalid escape. A try/catch round
+// that just falls back to the raw text, which is a silent no-op rather than a fix.
+const isReferenced = (f) => haystack.includes(f) || haystack.includes(encodeURIComponent(f));
 
 const hash = (p) => createHash('sha1').update(readFileSync(p)).digest('hex');
 const orphans = [];
@@ -58,11 +60,11 @@ const orphans = [];
 for (const [pub, mirror] of PAIRS) {
   if (!existsSync(pub)) continue;
   const files = readdirSync(pub).filter((f) => /\.(png|jpe?g|webp|avif|gif|svg)$/i.test(f));
-  const used = files.filter((f) => haystack.includes(f));
+  const used = files.filter(isReferenced);
   const usedHashes = new Map(used.map((f) => [hash(join(pub, f)), f]));
 
   for (const f of files) {
-    if (haystack.includes(f)) continue;
+    if (isReferenced(f)) continue;
     const twin = usedHashes.get(hash(join(pub, f)));
     orphans.push({
       pub: join(pub, f),
