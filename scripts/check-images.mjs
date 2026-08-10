@@ -22,7 +22,16 @@ import { readdirSync, readFileSync, existsSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
-const CONTENT_DIRS = ['src/content/taxa', 'src/content/specimens', 'src/content/posts', 'src/content/articles', 'src/content/pages'];
+// EVERY content collection, discovered rather than listed. The first version hardcoded the five that
+// existed then, and the day `genera` was added its images started reporting as unreferenced — a false
+// positive, which is the one failure mode that makes a check worth ignoring. A directory scan cannot
+// go stale when the next collection lands.
+const CONTENT_ROOT = 'src/content';
+const CONTENT_DIRS = existsSync(CONTENT_ROOT)
+  ? readdirSync(CONTENT_ROOT, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => join(CONTENT_ROOT, d.name))
+  : [];
 // [served directory, its mirror under src/assets]. sync-assets.mjs copies one to the other and never
 // prunes, so a file deleted from public/ leaves its mirror behind forever unless it is removed too.
 const PAIRS = [
@@ -34,8 +43,13 @@ const PAIRS = [
 // Every filename mentioned anywhere in content. Deliberately a substring test rather than parsing
 // paths: a filename can appear in front matter, in Markdown prose, or inside an HTML tag, and all
 // three count as a reference.
+// Percent-decoded as well as raw. A filename with a space is written `Luigi%20review.png` in Markdown
+// but sits on disk as `Luigi review.png`, so a raw substring test misses it and reports a referenced
+// image as an orphan. Decoding can throw on a stray `%`, so it falls back to the original.
+const decode = (s) => { try { return decodeURIComponent(s); } catch { return s; } };
 const haystack = CONTENT_DIRS.filter(existsSync)
   .flatMap((d) => readdirSync(d).filter((f) => f.endsWith('.md')).map((f) => readFileSync(join(d, f), 'utf8')))
+  .flatMap((t) => [t, decode(t)])
   .join('\n');
 
 const hash = (p) => createHash('sha1').update(readFileSync(p)).digest('hex');
