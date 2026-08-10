@@ -4,7 +4,7 @@ date: 2026-08-09T14:24
 kind: Reconstruction notes
 excerpt: It's been a couple of weeks since the launch, and while feedback has been good there's also been a feature request - returning the year of the most recent update to the skeletals. Let's take a look at the issue, and how I've gone about implementing it...
 image:
-  src: /images/blog/pasted-image-1786303530644.png
+  src: /images/blog/nanotyrannus-rigorous-skeletal-2014-copyright-date.png
   alt: The back half of a rigorous skeletal drawing of Nanotyrannus, with a clear copyright date of 2014
 featured: false
 draft: true
@@ -20,7 +20,7 @@ Since then I've been trying to add some of the rigorous skeletals I skipped beca
 
 I didn't think this was too big of a loss, as those dates were largely intended for my own use, so I could keep track of which version is the most recent. But it turns out several of you also made use of them, presumably also to track when I made updates. I don't want the new website to be a downgrade in any way, so I spent the last week and a half making a database of all of the last edited dates for the skeletals I've posted. And since I had to track down the metadata for each image in their respective folders, I went ahead and added the date they were first created as well.
 
-![Prasokour was one of several people asking about the disappearance of the copyright dates from the images](/images/blog/Prasokour%20request.jpg){width=60% right}
+![Prasokour was one of several people asking about the disappearance of the copyright dates from the images](/images/blog/Prasokour%20request.jpg)
 
 So as of...just now...every skeletal image should have its birth year, and the year it was most recently modified. I only included origin dates for images that are actually connected in some way to the current version - for example in the pre-SD.COM era I drew _Coelophysis_ and  _Tyrannosaurus_ skeletals (the latter based on Sue, FMNH PR 2081) that were ultimately completely abandoned before starting over. So the created dates for those taxa reflect the starting-over point. 
 
