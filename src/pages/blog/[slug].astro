@@ -158,7 +158,7 @@ const title = `${d.title} | Skeletal Drawing`;
      want a horizontal-scroll risk. Everything drops to a centred full-width block. */
   @media (max-width: 600px) {
     .prose :global(figure.fig-left),
-    .prose :global(figure.fig-right) { float: none; max-width: 100%; margin: 24px auto; }
+    .prose :global(figure.fig-right) { float: none; max-width: 100% !important; margin: 24px auto; }
   }
 
   .back { margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--hair); font-size: 14.5px; }

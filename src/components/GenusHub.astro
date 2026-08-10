@@ -338,6 +338,29 @@ const description =
   .genus-prose :global(h3) { font-size: 20px; }
   .genus-prose :global(a) { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
   .genus-prose :global(a:hover) { border-bottom-color: var(--accent); }
+
+  /* Figures from rehype-figures. These rules already exist, twice, scoped to `.prose` in
+     blog/[slug].astro and ArticleView.astro — and were simply absent here, which is why a
+     `{width=40% right}` on the Apatosaurus hub sized correctly (the plugin writes max-width inline)
+     but never floated and kept the browser's default 40px side margins. Values match the blog's copy
+     so the three page types render markdown identically.
+     ⚠ Third copy of the same block. The two existing ones have already drifted from each other
+     (ArticleView centres figcaption, the blog doesn't), so this wants extracting to one shared
+     stylesheet — queued with the other CSS/markdown work rather than done the night of a launch. */
+  .genus-prose :global(img) { max-width: 100%; height: auto; border: 1px solid var(--hair); border-radius: 4px; }
+  .genus-prose :global(figure) { margin: 32px auto; text-align: center; }
+  .genus-prose :global(figure img) { display: inline-block; }
+  .genus-prose :global(figure.fig-left) { float: left; margin: 6px 26px 14px 0; max-width: 50%; }
+  .genus-prose :global(figure.fig-right) { float: right; margin: 6px 0 14px 26px; max-width: 50%; }
+  .genus-prose :global(figcaption) {
+    margin-top: 11px; font-size: 14.5px; line-height: 1.5; color: var(--slate); font-style: italic;
+  }
+  /* A floated half-width image beside text gets cramped on a phone, and we never want a
+     horizontal-scroll risk — everything drops to a centred full-width block. */
+  @media (max-width: 600px) {
+    .genus-prose :global(figure.fig-left),
+    .genus-prose :global(figure.fig-right) { float: none; max-width: 100% !important; margin: 24px auto; }
+  }
   .sec-h {
     margin: 0 0 18px; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
     letter-spacing: .2em; text-transform: uppercase; color: var(--slate);
