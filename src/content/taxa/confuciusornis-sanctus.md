@@ -33,7 +33,6 @@ additionalFigures:
     alt: Confuciusornis sanctus — Life restoration with feathers, in a flying pose.
     caption: Life restoration with feathers, in a flying pose.
   - src: /images/skeletals/confuciusornis-figure-4-pittman-et-al-2022-on-flight-upstrokes.png
-    drawn: 2017
     alt: Soft-tissue evidence for a shoulder-powered flight upstroke in early birds including Confuciusornis (Pittman et al. 2022).
     caption: Preserved soft anatomy indicating a shoulder-powered flight upstroke in Confuciusornis and other early theropod flyers — from a study Scott Hartman co-authored.
     source: https://www.pnas.org/doi/full/10.1073/pnas.2205476119
