@@ -7,7 +7,7 @@ image:
   src: /images/blog/nano-update.png
   alt: Size comparison of the two proposed species of Nanotyrannus
 featured: false
-draft: true
+draft: false
 ---
 
 Since fall of 2025, _Nanotyrannus_ is back. For those who don't know, _Nanotyrannus_ was long a controversial taxon; it was named in 1988, but by the mid-1990s many researchers were questioning whether the scrappy material was really a smaller tyrannosaur, or just juvenile specimens of _T. rex_, which was found in the same environments. The issue was never resolved, but the larger number of theropod workers generally felt there needed to be an "adult" _Nanotyrannus_ specimen found to resolve the issue (the type specimen was just a skull, the Jane specimen was still growing when she died, and the Bloody Mary specimen had long been in private-ownership limbo).
