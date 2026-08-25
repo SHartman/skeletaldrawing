@@ -18,9 +18,26 @@
  */
 import sharp from 'sharp';
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, basename } from 'node:path';
 
 const TRACE_WIDTH = 1000; // downscale target — plenty for a simplified outline
+
+// Finer trace for shapes whose READ depends on small features. A T. rex hand spans ~7 px at the
+// default 1000, so the fingers are already mush by the time RDP sees them and the trace comes out a
+// mitten; at 2400 (the sources are ~3000 wide) the same hand gets 22 points instead of 7.
+//
+// Deliberately opt-in rather than the default: raising TRACE_WIDTH catalogue-wide takes /compare/ from
+// ~167 KB gzipped to ~284 KB, since that page inlines all 264 silhouettes. Per file it costs ~1 KB,
+// so a handful of curated entries is free. Add a pattern when a silhouette's character lives in
+// detail the overlay is losing — hands, crests, frills — not as a general quality knob.
+//
+// Note it is RESOLUTION that buys this, not a looser tolerance: at matched point counts, tracing at
+// 2400/eps 1.4 puts 22 points in the hand where 1000/eps 0.8 puts 16. A smaller eps just scatters
+// points along smooth flanks; more resolution lets RDP spend them where the curvature actually is.
+const DETAIL_WIDTH = 2400;
+const DETAIL_PATTERNS = [/^tyrannosaurus-rex/i];
+const traceWidthFor = (file) =>
+  DETAIL_PATTERNS.some((re) => re.test(basename(file))) ? DETAIL_WIDTH : TRACE_WIDTH;
 const BLACK = 128; // luminance threshold (0–255) below which a pixel is "flesh"
 const CLOSE = 6; // morphological-close radius (px) — seals mouth/rib gaps before fill
 const RDP_EPS = 1.4; // simplify tolerance in downscaled px
@@ -242,7 +259,7 @@ async function traceImage(file, { alpha = false } = {}) {
     // No threshold/close/fill — and crucially no erode, which would sever a thin whip-tail.
     const { data, info } = await sharp(file)
       .ensureAlpha()
-      .resize({ width: TRACE_WIDTH })
+      .resize({ width: traceWidthFor(file) })
       .raw()
       .toBuffer({ resolveWithObject: true });
     W = info.width;
@@ -251,9 +268,10 @@ async function traceImage(file, { alpha = false } = {}) {
     for (let i = 0; i < W * H; i++) mask[i] = data[i * info.channels + 3] > 16 ? 1 : 0;
   } else {
     // Skeletal raster: solid-black flesh with bones knocked out in white.
+    const tw = traceWidthFor(file);
     const { data, info } = await sharp(file)
       .flatten({ background: '#ffffff' })
-      .resize({ width: TRACE_WIDTH })
+      .resize({ width: tw })
       .grayscale()
       .raw()
       .toBuffer({ resolveWithObject: true });
@@ -264,7 +282,11 @@ async function traceImage(file, { alpha = false } = {}) {
 
     // Morphological CLOSE with fill: dilate to seal the thin white channels where a bone
     // void opens to the exterior (mouth gap, rib gaps), fill the now-enclosed voids, erode back.
-    const dil = morph(mask0, W, H, CLOSE, true);
+    // CLOSE is a pixel radius tuned at TRACE_WIDTH, so it must scale with the trace: a finer trace
+    // renders those white channels proportionally wider, and a fixed radius would stop sealing them —
+    // the fill would escape through a rib gap and eat the body.
+    const close = Math.max(1, Math.round((CLOSE * tw) / TRACE_WIDTH));
+    const dil = morph(mask0, W, H, close, true);
     const outside = new Uint8Array(W * H);
     const q = [];
     const seed = (x, y) => {
@@ -293,7 +315,7 @@ async function traceImage(file, { alpha = false } = {}) {
     }
     const filled = new Uint8Array(W * H);
     for (let i = 0; i < W * H; i++) filled[i] = outside[i] ? 0 : 1;
-    mask = morph(filled, W, H, CLOSE, false); // erode back: undo the dilation
+    mask = morph(filled, W, H, close, false); // erode back: undo the dilation, by the same radius
   }
 
   const big = largestComponent(mask, W, H);
@@ -495,6 +517,17 @@ for (const group of Object.values(GENUS_GROUPS))
 Object.assign(silBySpecimen, {
   'archaeopteryx-thermopolis': 'archaeopteryx-lithographica-thermopolis-specimen-silhouette.png',
   'archaeopteryx-chicago': 'archaeopteryx-chicago-specimen-silhouette.png',
+  // The four overlay T. rex. Owner silhouettes for these have been sitting in silhouettes/ unused,
+  // because silBySpecimen was only ever populated from GENUS_GROUPS and there is no Tyrannosaurus
+  // group — so the specimens fell through to raster-tracing the known-material diagram instead.
+  // The alpha path matters here beyond just being the better source: it skips the morphological
+  // close/erode, which at any trace width rounds off features near its radius. That is what was
+  // eating the fingers. Raster + finer trace only got the hand from 7 points to 12; the owner
+  // silhouette at DETAIL_WIDTH gets it to 22.
+  scotty: 'Tyrannosaurus-rex-scotty-rsm-p2523-8-skeletal.png',
+  stan: 'Tyrannosaurus-rex-stan-nhmad-2020-00001-skeletal.png',
+  'usnm-555000': 'Tyrannosaurus-rex-usnm-555000-skeletal.png',
+  sue: 'Tyrannosaurus-rex-sue-fmnh-pr-2081-muscle-reconstsruction.png',
 });
 
 const out = {};
