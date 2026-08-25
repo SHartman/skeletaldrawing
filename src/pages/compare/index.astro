@@ -184,12 +184,6 @@ const description =
       <div class="stage" id="stage"></div>
       <p class="hint" id="hint">Choose animals below to build a comparison.</p>
       <p class="readout" id="readout" hidden></p>
-      {/* Shown only when a selected animal is posed enough for the ruler to read short — a general
-          note on a plate where it does not apply is just noise. */}
-      <p class="posenote" id="posenote" hidden>
-        Lengths are measured along the body, so an animal with a raised neck or a curving tail covers
-        less ground than its full length.
-      </p>
       <div class="legend" id="legend"></div>
     </section>
 
@@ -314,7 +308,6 @@ const description =
     const legend = document.getElementById('legend');
     const hint = document.getElementById('hint');
     const readout = document.getElementById('readout');
-    const posenote = document.getElementById('posenote');
     const capNote = document.getElementById('cap-note');
     const humanToggle = document.getElementById('human-toggle');
     const chips = [...document.querySelectorAll('.chip')];
@@ -431,7 +424,6 @@ const description =
         // Reset here too: this branch returns early, so without it Clear leaves the previous
         // comparison's sentence sitting under an empty plate.
         readout.hidden = true;
-        posenote.hidden = true;
         return;
       }
       hint.hidden = true;
@@ -468,10 +460,12 @@ const description =
         s += `<line x1="${x}" y1="${groundY}" x2="${x}" y2="${groundY + (major ? 8 : 4)}" class="c-tick${major ? ' major' : ''}"/>`;
         if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
       }
-      // "meters of ground covered", not "meters from tail tip": the ruler measures the DRAWN
-      // horizontal extent, which for a raised-neck sauropod falls well short of the quoted along-body
-      // length (Patagotitan: 28 m long, 22.4 m of ground). Naming what it actually measures stops the
-      // ruler from looking like it contradicts the legend. See the pose note below the plate.
+      // "meters of ground covered", not "meters from tail tip". The ruler measures the DRAWN
+      // horizontal extent, which need not equal the legend's along-body length: a raised-neck sauropod
+      // covers less ground than its length (Patagotitan, 28 m long, 22.4 m of ground), while tusks, a
+      // beak or a folded wing push the other way (Mammut, 5 m long, 5.87 m of ground). An explanatory
+      // note was tried and dropped — it could only describe one direction, and the ruler is a reading
+      // aid for the drawing rather than a measurement of the animal. The label carries that on its own.
       s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters of ground covered</text>`;
       // Gold-tint ramp + adaptive opacity, matching ScaleComparison.astro (the hub treatment is
       // canonical). Largest = lightest and painted first (back) -> smallest = darkest and in front.
@@ -530,9 +524,6 @@ const description =
       } else {
         readout.hidden = true;
       }
-
-      // Only surface the pose note when something on the plate actually demonstrates it.
-      posenote.hidden = !items.some((it) => it.widthM / it.lengthM < 0.95);
     }
 
     const toggle = (id) => {
@@ -751,8 +742,7 @@ const description =
     font-size: 17px; line-height: 1.5; color: var(--ink);
   }
   .readout :global(em) { font-style: italic; }
-  .readout[hidden], .posenote[hidden] { display: none; }
-  .posenote { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--slate); max-width: 62ch; }
+  .readout[hidden] { display: none; }
 
   .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--hair); }
   .leg { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; }
