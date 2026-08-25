@@ -26,7 +26,11 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
       const parent = taxaById.get(sp.data.taxon);
       taxon = parent?.data.taxon ?? '';
       const who = sp.data.nickname ?? sp.data.catalog;
-      label = taxon ? `${taxon} — ${who}` : e.label;
+      // Parenthesised, not em-dashed. The label is read as running prose in the plate's title
+      // ("Tyrannosaurus rex (Scotty) is 1.5× the length of…"), where a mid-sentence em dash reads as
+      // an aside rather than as part of the subject. It also matches SpecimenPage, which already
+      // parenthesises the nickname. `who` may be a catalog number, so no quotes around it.
+      label = taxon ? `${taxon} (${who})` : e.label;
     } else {
       const tx = taxaById.get(e.slug);
       if (tx) {
