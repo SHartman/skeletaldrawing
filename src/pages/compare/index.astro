@@ -232,6 +232,7 @@ const description =
       <span class="spacer"></span>
       <button type="button" class="ctl" id="clear">Clear</button>
       <button type="button" class="ctl" id="copy">Copy link</button>
+      <button type="button" class="ctl ctl-go" id="download">Download image</button>
       <span class="copied" id="copied" hidden>Link copied</span>
     </div>
 
@@ -353,6 +354,8 @@ const description =
     const humanToggle = document.getElementById('human-toggle');
     const chips = [...document.querySelectorAll('.chip')];
     let selected = [];
+    let lastPlate = null; // { inner, vbW, vbH } — the current plate, for the export
+    let lastPainted = []; // legend rows with their resolved fill/stroke, for the export
 
     // Mirror of the server-side splitName: italicise the binomial only, so "— Scotty" and catalog
     // numbers stay roman. Labels are built from our own content, but escape anyway — this is the one
@@ -545,8 +548,13 @@ const description =
       }
       s += `</svg>`;
       stage.innerHTML = s;
+      // Kept for the export, which recomposes the plate inside a titled, credited image rather than
+      // re-deriving the geometry. `s` already carries the <svg> wrapper, so the inner content is what
+      // gets translated into the export's layout.
+      lastPlate = { inner: s.replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, ''), vbW, vbH };
       // Swatches carry the same alpha the plate renders, on the same background, so the key shows
       // what is actually drawn rather than the fill at full strength.
+      lastPainted = painted;
       legend.innerHTML = painted
         .map(
           (d) =>
@@ -615,6 +623,228 @@ const description =
       toUrl();
       render();
     });
+    // ---- export ---------------------------------------------------------------------------------
+    // A downloaded image leaves the site permanently, exactly like a scraped skeletal, so CLAUDE.md §3
+    // applies to it: the credit carrying the domain and the scale reference must be ON the artwork.
+    // That makes the export a composed picture — title, plate, key, credit — not a crop of the plate.
+    //
+    // Rasterising an SVG through <img> is where this usually goes wrong twice over, and both traps are
+    // handled below:
+    //   1. A detached SVG resolves no CSS variables and inherits no page stylesheet, so the plate's
+    //      classes would render unstyled and every var() would come out empty. Colours are read off
+    //      the live page and written into the export as literals.
+    //   2. An SVG loaded as an image cannot fetch anything, web fonts included, so text would silently
+    //      fall back. The three faces actually used are fetched (already cached — same origin) and
+    //      inlined as data URIs. ~287 KB, alive only for the moment it takes to draw.
+    const FONTS = [
+      { file: '/fonts/newsreader-roman-latin.woff2', family: 'Newsreader', style: 'normal', weight: 400 },
+      { file: '/fonts/newsreader-italic-latin.woff2', family: 'Newsreader', style: 'italic', weight: 400 },
+      { file: '/fonts/plexmono-400-latin.woff2', family: 'IBM Plex Mono', style: 'normal', weight: 400 },
+    ];
+    let fontCss = null;
+    const loadFontCss = async () => {
+      if (fontCss !== null) return fontCss;
+      const parts = await Promise.all(
+        FONTS.map(async (f) => {
+          const buf = await (await fetch(f.file)).arrayBuffer();
+          let bin = '';
+          const bytes = new Uint8Array(buf);
+          for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+          return `@font-face{font-family:'${f.family}';font-style:${f.style};font-weight:${f.weight};` +
+                 `src:url(data:font/woff2;base64,${btoa(bin)}) format('woff2');}`;
+        }),
+      );
+      fontCss = parts.join('');
+      return fontCss;
+    };
+
+    const cssVar = (n, fallback) => {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+      return v || fallback;
+    };
+
+    // Greedy wrap over styled runs, measured with the real faces via canvas.
+    const measurer = document.createElement('canvas').getContext('2d');
+    const wrapRuns = (runs, font, maxW) => {
+      const words = [];
+      for (const r of runs)
+        for (const w of r.t.split(/(\s+)/)) if (w.length) words.push({ t: w, i: r.i });
+      const lines = [[]];
+      let w = 0;
+      for (const word of words) {
+        measurer.font = `${word.i ? 'italic ' : ''}${font}`;
+        const ww = measurer.measureText(word.t).width;
+        if (w + ww > maxW && lines[lines.length - 1].length && word.t.trim()) {
+          lines.push([]);
+          w = 0;
+        }
+        if (!word.t.trim() && !lines[lines.length - 1].length) continue; // no leading space on a new line
+        lines[lines.length - 1].push(word);
+        w += ww;
+      }
+      return lines.filter((l) => l.length);
+    };
+
+    const exportPng = async () => {
+      if (!lastPlate || !lastPainted.length) return;
+      const ink = cssVar('--ink', '#1b1b1b'),
+        slate = cssVar('--slate', '#5b5b5b'),
+        plateBg = cssVar('--plate', '#faf8f4'),
+        hair = cssVar('--hair', '#e2ded6'),
+        measure = cssVar('--measure', '#8a8378'),
+        accent = cssVar('--accent', '#b8791f');
+
+      const W = 1600;
+      const PAD = 64;
+      const inW = W - PAD * 2;
+      const TITLE_SIZE = 42, TITLE_LH = 54;
+
+      // title
+      const runs = [];
+      for (const node of readout.childNodes)
+        runs.push({ t: node.textContent, i: node.nodeName === 'EM' });
+      const titleLines = readout.hidden ? [] : wrapRuns(runs, `${TITLE_SIZE}px Newsreader, Georgia, serif`, inW);
+
+      let y = PAD;
+      let body = '';
+      for (const line of titleLines) {
+        y += TITLE_LH;
+        const total = line.reduce((n, wd) => {
+          measurer.font = `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
+          return n + measurer.measureText(wd.t).width;
+        }, 0);
+        let x = PAD + (inW - total) / 2;
+        for (const wd of line) {
+          measurer.font = `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
+          body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title"${wd.i ? ' font-style="italic"' : ''}>${esc(wd.t)}</text>`;
+          x += measurer.measureText(wd.t).width;
+        }
+      }
+
+      // plate, scaled to the content width
+      const pScale = inW / lastPlate.vbW;
+      const pH = lastPlate.vbH * pScale;
+      y += titleLines.length ? 44 : 0;
+      body += `<g transform="translate(${PAD} ${y.toFixed(1)}) scale(${pScale.toFixed(5)})">${lastPlate.inner}</g>`;
+      y += pH + 46;
+
+      // key — swatch, name, length; centred as a row
+      const LEG = 22;
+      const segs = lastPainted.map((d) => {
+        const { sci, rest } = (() => {
+          const a = d.it;
+          return a.taxon && a.label.startsWith(a.taxon)
+            ? { sci: a.taxon, rest: a.label.slice(a.taxon.length) }
+            : { sci: '', rest: a.label };
+        })();
+        measurer.font = `italic ${LEG}px Newsreader, Georgia, serif`;
+        const wSci = sci ? measurer.measureText(sci).width : 0;
+        measurer.font = `${LEG}px Newsreader, Georgia, serif`;
+        const wRest = measurer.measureText(rest).width;
+        measurer.font = `${LEG - 4}px 'IBM Plex Mono', monospace`;
+        const lenT = `${d.it.lengthM} m`;
+        const wLen = measurer.measureText(lenT).width;
+        return { d, sci, rest, wSci, wRest, lenT, wLen, w: 34 + wSci + wRest + 12 + wLen };
+      });
+      // Wrap into rows. Five long binomials — the catalogue has several past 30 characters — overrun a
+      // single line and clip the right edge of the image.
+      const gapL = 40, LEG_LH = 34;
+      const rows = [[]];
+      for (const s of segs) {
+        const row = rows[rows.length - 1];
+        const wWith = row.reduce((n, r) => n + r.w, 0) + gapL * row.length + s.w;
+        if (row.length && wWith > inW) rows.push([s]);
+        else row.push(s);
+      }
+      body += `<line x1="${PAD}" y1="${(y - 26).toFixed(1)}" x2="${W - PAD}" y2="${(y - 26).toFixed(1)}" stroke="${hair}" stroke-width="1"/>`;
+      for (const row of rows) {
+        const rowW = row.reduce((n, s) => n + s.w, 0) + gapL * (row.length - 1);
+        let lx = PAD + Math.max(0, (inW - rowW) / 2);
+        for (const s of row) {
+          body += `<rect x="${lx.toFixed(1)}" y="${(y - 15).toFixed(1)}" width="26" height="14" rx="2" fill="${s.d.swatch}" stroke="${s.d.stroke}"/>`;
+          let tx = lx + 34;
+          if (s.sci) {
+            body += `<text x="${tx.toFixed(1)}" y="${y}" class="x-leg" font-style="italic">${esc(s.sci)}</text>`;
+            tx += s.wSci;
+          }
+          if (s.rest) {
+            body += `<text x="${tx.toFixed(1)}" y="${y}" class="x-leg">${esc(s.rest)}</text>`;
+            tx += s.wRest;
+          }
+          body += `<text x="${(tx + 12).toFixed(1)}" y="${y}" class="x-len">${esc(s.lenT)}</text>`;
+          lx += s.w + gapL;
+        }
+        y += LEG_LH;
+      }
+      y += 12;
+      body += `<text x="${W / 2}" y="${y}" class="x-credit" text-anchor="middle">© Scott Hartman · skeletaldrawing.com</text>`;
+      const H = Math.round(y + PAD - 20);
+
+      const css =
+        `${await loadFontCss()}` +
+        `.x-title{font-family:Newsreader,Georgia,serif;font-size:${TITLE_SIZE}px;fill:${ink};}` +
+        `.x-leg{font-family:Newsreader,Georgia,serif;font-size:${LEG}px;fill:${ink};}` +
+        `.x-len{font-family:'IBM Plex Mono',monospace;font-size:${LEG - 4}px;fill:${slate};}` +
+        `.x-credit{font-family:'IBM Plex Mono',monospace;font-size:17px;fill:${measure};letter-spacing:.04em;}` +
+        `.c-ground{stroke:${ink};stroke-width:1.5;}` +
+        `.c-guide{stroke:${accent};stroke-width:1;stroke-dasharray:4 4;opacity:.55;}` +
+        `.c-tick{stroke:${slate};stroke-width:1;}.c-tick.major{stroke:${ink};}` +
+        `.c-ticklabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${slate};text-anchor:middle;}` +
+        `.c-unit{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;fill:${measure};}` +
+        `.c-human{fill:${slate};}` +
+        `.c-humanlabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${slate};}`;
+
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+        `<style>${css}</style><rect width="${W}" height="${H}" fill="${plateBg}"/>${body}</svg>`;
+
+      const SCALE = 2; // a crisp image on a retina screen and usable in a talk
+      const img = new Image();
+      const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }));
+      try {
+        await new Promise((res, rej) => {
+          img.onload = res;
+          img.onerror = () => rej(new Error('svg render failed'));
+          img.src = url;
+        });
+        const cv = document.createElement('canvas');
+        cv.width = W * SCALE;
+        cv.height = H * SCALE;
+        const ctx = cv.getContext('2d');
+        ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+        ctx.drawImage(img, 0, 0);
+        const blob = await new Promise((r) => cv.toBlob(r, 'image/png'));
+        const name =
+          'size-comparison-' +
+          lastPainted.map((d) => d.it.id).join('-').slice(0, 80) +
+          '-skeletaldrawing.png';
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+    };
+
+    document.getElementById('download').addEventListener('click', async (e) => {
+      const b = e.currentTarget;
+      b.disabled = true;
+      const was = b.textContent;
+      b.textContent = 'Building…';
+      try {
+        await exportPng();
+      } catch (err) {
+        b.textContent = 'Export failed';
+        setTimeout(() => (b.textContent = was), 2200);
+        return;
+      } finally {
+        b.disabled = false;
+      }
+      b.textContent = was;
+    });
+
     document.getElementById('copy').addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(location.href);
@@ -773,6 +1003,10 @@ const description =
     color: var(--ink); background: none; border: 1px solid var(--hair-strong); border-radius: 5px; padding: 7px 14px; cursor: pointer;
   }
   .ctl:hover { border-color: var(--slate); }
+  .ctl:disabled { opacity: .55; cursor: default; }
+  /* The one control that produces something to keep, so it carries the accent. */
+  .ctl-go { border-color: var(--accent); color: var(--accent); }
+  .ctl-go:hover { border-color: var(--accent); background: var(--accent-weak); }
   .copied { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: .06em; }
 
   /* stage */
