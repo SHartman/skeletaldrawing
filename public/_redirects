@@ -356,8 +356,10 @@
 /theropods/buitreraptor-gonzolezorum/                /theropods/buitreraptor-gonzalezorum/              301
 /theropods/cardinalis                                /theropods/cardinalis-cardinalis/                  301
 /theropods/cardinalis/                               /theropods/cardinalis-cardinalis/                  301
-/theropods/carnotaurus                               /theropods/carnotaurus-satrei/                     301
-/theropods/carnotaurus/                              /theropods/carnotaurus-satrei/                     301
+/theropods/carnotaurus                               /theropods/carnotaurus-sastrei/                    301
+/theropods/carnotaurus/                              /theropods/carnotaurus-sastrei/                    301
+/theropods/carnotaurus-satrei                        /theropods/carnotaurus-sastrei/                    301
+/theropods/carnotaurus-satrei/                       /theropods/carnotaurus-sastrei/                    301
 /theropods/cathayornis                               /theropods/cathayornis-yandica/                    301
 /theropods/cathayornis/                              /theropods/cathayornis-yandica/                    301
 /theropods/caudipteryx                               /theropods/caudipteryx-zoui/                       301
@@ -404,8 +406,10 @@
 /theropods/gorgosaurus/                              /theropods/gorgosaurus-libratus/                   301
 /theropods/guanlong                                  /theropods/guanlong-wucaii/                        301
 /theropods/guanlong/                                 /theropods/guanlong-wucaii/                        301
-/theropods/herrerasaurus                             /theropods/herrerasaurus-ischgualastensis/         301
-/theropods/herrerasaurus/                            /theropods/herrerasaurus-ischgualastensis/         301
+/theropods/herrerasaurus                             /theropods/herrerasaurus-ischigualastensis/        301
+/theropods/herrerasaurus/                            /theropods/herrerasaurus-ischigualastensis/        301
+/theropods/herrerasaurus-ischgualastensis            /theropods/herrerasaurus-ischigualastensis/        301
+/theropods/herrerasaurus-ischgualastensis/           /theropods/herrerasaurus-ischigualastensis/        301
 /theropods/hesperornis                               /theropods/hesperornis-regalis/                    301
 /theropods/hesperornis/                              /theropods/hesperornis-regalis/                    301
 /theropods/hesperornithoides                         /theropods/hesperornithoides-miessleri/            301
@@ -819,3 +823,7 @@
 # Gonzalez family, not "gonzolezorum". Both image public paths move with it.
 /images/skeletals/buitreraptor-gonzolezorum-skeletal.png                   /images/skeletals/buitreraptor-gonzalezorum-skeletal.png                   301
 /images/skeletals/buitreraptor-gonzolezorum-composite-of-mpca-238-and-245-known-elements.png /images/skeletals/buitreraptor-gonzalezorum-composite-of-mpca-238-and-245-known-elements.png 301
+# Species epithets corrected: Carnotaurus sastrei (Bonaparte, 1985, for Angel Sastre) and
+# Herrerasaurus ischigualastensis (Reig, 1963, for the Ischigualasto Formation).
+/images/skeletals/carnotaurus-satrei-macn-ch-894-skeletal-top-and-bottom-views.png /images/skeletals/carnotaurus-sastrei-macn-ch-894-skeletal-top-and-bottom-views.png 301
+/images/skeletals/herrerasaurus-ischgualastensis-skeletal.png              /images/skeletals/herrerasaurus-ischigualastensis-skeletal.png             301
