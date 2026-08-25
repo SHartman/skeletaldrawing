@@ -577,9 +577,9 @@ for (const s of specs.sort((a, b) => b.lengthM - a.lengthM)) {
     ? await safeTrace(join('silhouettes', ownerSil), { alpha: true }, s.slug)
     : await safeTrace(join('public', s.traceSrc.replace(/^\//, '')), { alpha: false }, s.slug);
   if (!traced) continue;
-  const { w, h, path, points } = traced;
+  const { w, h, path, points, holes } = traced;
   (out[s.taxon] ??= []).push({ slug: s.slug, label: s.nickname || s.catalog, lengthM: s.lengthM, ...wm(s.widthM), w, h, path });
-  console.log(`${s.taxon}/${s.slug}: ${s.lengthM} m${Number.isFinite(s.widthM) ? ` (w ${s.widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts${useSil ? '  (silhouette)' : ''}`);
+  console.log(`${s.taxon}/${s.slug}: ${s.lengthM} m${Number.isFinite(s.widthM) ? ` (w ${s.widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}${useSil ? '  (silhouette)' : ''}`);
 }
 
 // ----- pass 2: curated genus comparisons from owner silhouettes -----
@@ -594,9 +594,9 @@ for (const [key, group] of Object.entries(GENUS_GROUPS)) {
     const { lengthM, widthM } = entryDims(g);
     const traced = await safeTrace(file, { alpha: true }, g.specimen || g.taxon);
     if (!traced) continue;
-    const { w, h, path, points } = traced;
+    const { w, h, path, points, holes } = traced;
     items.push({ slug: g.specimen || g.taxon, label: g.label, lengthM, ...wm(widthM), w, h, path });
-    console.log(`${key}/${g.label}: ${lengthM} m${Number.isFinite(widthM) ? ` (w ${widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts`);
+    console.log(`${key}/${g.label}: ${lengthM} m${Number.isFinite(widthM) ? ` (w ${widthM} m)` : ''}  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}`);
   }
   if (items.length) out[key] = items.sort((a, b) => b.lengthM - a.lengthM);
 }
