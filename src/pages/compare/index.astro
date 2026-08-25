@@ -665,6 +665,15 @@ const description =
 
     // Greedy wrap over styled runs, measured with the real faces via canvas.
     const measurer = document.createElement('canvas').getContext('2d');
+    // Advance by INK EXTENT, not advance width. An italic serif leans past its own advance —
+    // "Tyrannosaurus rex" at 22px measures 157.5 wide but inks to 159.4 — so laying the next run at
+    // the advance lets the final letter lean into the following space. With a 4.9px space that left a
+    // 3px gap, and closed it entirely wherever the space was lost, printing "rex— Scotty".
+    const runW = (font, t) => {
+      measurer.font = font;
+      const m = measurer.measureText(t);
+      return Math.max(m.width, m.actualBoundingBoxRight || 0);
+    };
     const wrapRuns = (runs, font, maxW) => {
       const words = [];
       for (const r of runs)
@@ -672,8 +681,7 @@ const description =
       const lines = [[]];
       let w = 0;
       for (const word of words) {
-        measurer.font = `${word.i ? 'italic ' : ''}${font}`;
-        const ww = measurer.measureText(word.t).width;
+        const ww = runW(`${word.i ? 'italic ' : ''}${font}`, word.t);
         if (w + ww > maxW && lines[lines.length - 1].length && word.t.trim()) {
           lines.push([]);
           w = 0;
@@ -709,15 +717,12 @@ const description =
       let body = '';
       for (const line of titleLines) {
         y += TITLE_LH;
-        const total = line.reduce((n, wd) => {
-          measurer.font = `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
-          return n + measurer.measureText(wd.t).width;
-        }, 0);
+        const tf = (wd) => `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
+        const total = line.reduce((n, wd) => n + runW(tf(wd), wd.t), 0);
         let x = PAD + (inW - total) / 2;
         for (const wd of line) {
-          measurer.font = `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
           body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title"${wd.i ? ' font-style="italic"' : ''}>${esc(wd.t)}</text>`;
-          x += measurer.measureText(wd.t).width;
+          x += runW(tf(wd), wd.t);
         }
       }
 
@@ -733,17 +738,19 @@ const description =
       const segs = lastPainted.map((d) => {
         const { sci, rest } = (() => {
           const a = d.it;
-          return a.taxon && a.label.startsWith(a.taxon)
-            ? { sci: a.taxon, rest: a.label.slice(a.taxon.length) }
-            : { sci: '', rest: a.label };
+          const split =
+            a.taxon && a.label.startsWith(a.taxon)
+              ? { sci: a.taxon, rest: a.label.slice(a.taxon.length) }
+              : { sci: '', rest: a.label };
+          // SVG <text> strips leading whitespace, but measureText counts it — so " — Scotty" is
+          // positioned as though the space were there and then drawn without it, closing the gap to
+          // "rex— Scotty". A non-breaking space is never collapsed, and measures the same.
+          return { ...split, rest: split.rest.replace(/^[ \t]+/, (m) => ' '.repeat(m.length)) };
         })();
-        measurer.font = `italic ${LEG}px Newsreader, Georgia, serif`;
-        const wSci = sci ? measurer.measureText(sci).width : 0;
-        measurer.font = `${LEG}px Newsreader, Georgia, serif`;
-        const wRest = measurer.measureText(rest).width;
-        measurer.font = `${LEG - 4}px 'IBM Plex Mono', monospace`;
+        const wSci = sci ? runW(`italic ${LEG}px Newsreader, Georgia, serif`, sci) : 0;
+        const wRest = runW(`${LEG}px Newsreader, Georgia, serif`, rest);
         const lenT = `${d.it.lengthM} m`;
-        const wLen = measurer.measureText(lenT).width;
+        const wLen = runW(`${LEG - 4}px 'IBM Plex Mono', monospace`, lenT);
         return { d, sci, rest, wSci, wRest, lenT, wLen, w: 34 + wSci + wRest + 12 + wLen };
       });
       // Wrap into rows. Five long binomials — the catalogue has several past 30 characters — overrun a
