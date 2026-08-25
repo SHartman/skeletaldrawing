@@ -51,6 +51,15 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
 }
 const catalog = [...seen.values()].sort((a, b) => a.lengthM - b.lengthM);
 
+// Only the scientific name is italic. `label` is either a bare binomial or "<binomial> — <nickname>",
+// so splitting on the taxon prefix keeps "Scotty" and catalog numbers roman. The picker previously
+// leaned on `::first-line`, which italicises whatever happens to fall on line one — right only until
+// a name wraps.
+const splitName = (a: { label: string; taxon: string }) =>
+  a.taxon && a.label.startsWith(a.taxon)
+    ? { sci: a.taxon, rest: a.label.slice(a.taxon.length) }
+    : { sci: '', rest: a.label };
+
 // ---- facets -----------------------------------------------------------------------------------
 // Gallery chips use scientific display labels even where the slug is vernacular (CLAUDE.md §5).
 const GALLERY_LABEL: Record<string, string> = {
@@ -166,6 +175,32 @@ const description =
     </header>
     </div>
 
+    {/* The plate leads. It used to sit last, and the chooser above it ran past a viewport on every
+        breakpoint — y≈871 on desktop, y≈1079 on a 812px phone — so the page opened on a form rather
+        than on the thing it makes. Capping the picker height was not enough; the header, filters,
+        search, count and controls still stacked past the fold. Result first, controls beneath it,
+        chooser last: every adjustment now changes something already on screen. */}
+    <section class="stage-sec">
+      <div class="stage" id="stage"></div>
+      <p class="hint" id="hint">Choose animals below to build a comparison.</p>
+      <p class="readout" id="readout" hidden></p>
+      {/* Shown only when a selected animal is posed enough for the ruler to read short — a general
+          note on a plate where it does not apply is just noise. */}
+      <p class="posenote" id="posenote" hidden>
+        Lengths are measured along the body, so an animal with a raised neck or a curving tail covers
+        less ground than its full length.
+      </p>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <div class="controls">
+      <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Human for scale</label>
+      <span class="spacer"></span>
+      <button type="button" class="ctl" id="clear">Clear</button>
+      <button type="button" class="ctl" id="copy">Copy link</button>
+      <span class="copied" id="copied" hidden>Link copied</span>
+    </div>
+
     <section class="picker-sec" aria-label="Choose animals">
       {/* Selected row sits ABOVE the filters and never filters out. Without it, narrowing the list
           would appear to discard picks that are still active — the single worst failure mode of a
@@ -186,7 +221,7 @@ const description =
       <div class="filters">
         <label class="search">
           <span class="vh">Search animals</span>
-          <input type="search" id="q" placeholder="Search 262 animals…" autocomplete="off" spellcheck="false" />
+          <input type="search" id="q" placeholder={`Search ${catalog.length} animals…`} autocomplete="off" spellcheck="false" />
         </label>
 
         <div class="facets" id="facets">
@@ -222,6 +257,9 @@ const description =
       </div>
 
       <p class="count" id="count" aria-live="polite"></p>
+      {/* At the cap every unselected chip disables itself. Without a word of explanation that reads
+          as the page breaking, not as a limit — 259 controls going dead at once. */}
+      <p class="cap-note" id="cap-note" role="status" hidden>Five at a time — remove one to add another.</p>
 
       <div class="picker" id="picker">
         {catalog.map((a) => (
@@ -235,24 +273,13 @@ const description =
             data-name={`${a.label} ${a.taxon}`.toLowerCase()}
             aria-pressed="false"
           >
-            <span class="chip-name">{a.label}</span>
+            <span class="chip-name">
+              {splitName(a).sci && <em>{splitName(a).sci}</em>}{splitName(a).rest}
+            </span>
             <span class="chip-len">{a.lengthM} m</span>
           </button>
         ))}
       </div>
-      <div class="controls">
-        <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Human for scale</label>
-        <span class="spacer"></span>
-        <button type="button" class="ctl" id="clear">Clear</button>
-        <button type="button" class="ctl" id="copy">Copy link</button>
-        <span class="copied" id="copied" hidden>Link copied</span>
-      </div>
-    </section>
-
-    <section class="stage-sec">
-      <div class="stage" id="stage"></div>
-      <p class="hint" id="hint">Pick at least one animal above to begin.</p>
-      <div class="legend" id="legend"></div>
     </section>
 
     <noscript>
@@ -286,9 +313,21 @@ const description =
     const stage = document.getElementById('stage');
     const legend = document.getElementById('legend');
     const hint = document.getElementById('hint');
+    const readout = document.getElementById('readout');
+    const posenote = document.getElementById('posenote');
+    const capNote = document.getElementById('cap-note');
     const humanToggle = document.getElementById('human-toggle');
     const chips = [...document.querySelectorAll('.chip')];
     let selected = [];
+
+    // Mirror of the server-side splitName: italicise the binomial only, so "— Scotty" and catalog
+    // numbers stay roman. Labels are built from our own content, but escape anyway — this is the one
+    // place catalog text becomes innerHTML.
+    const esc = (t) => t.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+    const nameHtml = (a) =>
+      a.taxon && a.label.startsWith(a.taxon)
+        ? `<em>${esc(a.taxon)}</em>${esc(a.label.slice(a.taxon.length))}`
+        : esc(a.label);
 
     const fromUrl = () => {
       const p = new URLSearchParams(location.search).get('ids');
@@ -371,12 +410,14 @@ const description =
     };
 
     const syncChips = () => {
+      const atCap = selected.length >= MAX;
       chips.forEach((c) => {
         const on = selected.includes(c.dataset.id);
         c.classList.toggle('on', on);
         c.setAttribute('aria-pressed', String(on));
-        c.disabled = !on && selected.length >= MAX;
+        c.disabled = !on && atCap;
       });
+      capNote.hidden = !atCap;
     };
 
     function render() {
@@ -387,6 +428,10 @@ const description =
         stage.innerHTML = '';
         legend.innerHTML = '';
         hint.hidden = false;
+        // Reset here too: this branch returns early, so without it Clear leaves the previous
+        // comparison's sentence sitting under an empty plate.
+        readout.hidden = true;
+        posenote.hidden = true;
         return;
       }
       hint.hidden = true;
@@ -423,7 +468,11 @@ const description =
         s += `<line x1="${x}" y1="${groundY}" x2="${x}" y2="${groundY + (major ? 8 : 4)}" class="c-tick${major ? ' major' : ''}"/>`;
         if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
       }
-      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters from tail tip</text>`;
+      // "meters of ground covered", not "meters from tail tip": the ruler measures the DRAWN
+      // horizontal extent, which for a raised-neck sauropod falls well short of the quoted along-body
+      // length (Patagotitan: 28 m long, 22.4 m of ground). Naming what it actually measures stops the
+      // ruler from looking like it contradicts the legend. See the pose note below the plate.
+      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters of ground covered</text>`;
       // Gold-tint ramp + adaptive opacity, matching ScaleComparison.astro (the hub treatment is
       // canonical). Largest = lightest and painted first (back) -> smallest = darkest and in front.
       // Opacity comes from how much of the shape BEHIND each silhouette it covers: near-equal sizes
@@ -461,9 +510,29 @@ const description =
       legend.innerHTML = painted
         .map(
           (d) =>
-            `<span class="leg"><span class="leg-sw" style="background:${d.swatch};border:1px solid ${d.stroke}"></span><span class="leg-name">${d.it.label}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
+            `<span class="leg"><span class="leg-sw" style="background:${d.swatch};border:1px solid ${d.stroke}"></span><span class="leg-name">${nameHtml(d.it)}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
         )
         .join('');
+
+      // Stated finding, not just a picture: the drawing shows the difference, this names it — and it
+      // gives an otherwise all-SVG page real text to index.
+      if (items.length >= 2) {
+        const big = items[0], small = items[items.length - 1];
+        const ratio = big.lengthM / small.lengthM;
+        // Kept as a string: +(2.047).toFixed(1) coerces back to 2 and prints "2×", dropping the one
+        // decimal that says how precise the claim is. Above 10× the decimal is false precision.
+        const n = ratio >= 10 ? String(Math.round(ratio)) : ratio.toFixed(1);
+        readout.innerHTML =
+          ratio >= 1.05
+            ? `${nameHtml(big)} is ${n}× the length of ${nameHtml(small)}.`
+            : `${nameHtml(big)} and ${nameHtml(small)} are within a few percent of the same length.`;
+        readout.hidden = false;
+      } else {
+        readout.hidden = true;
+      }
+
+      // Only surface the pose note when something on the plate actually demonstrates it.
+      posenote.hidden = !items.some((it) => it.widthM / it.lengthM < 0.95);
     }
 
     const toggle = (id) => {
@@ -641,10 +710,15 @@ const description =
   .chip.on { border-color: var(--accent); background: var(--accent-weak); }
   .chip:disabled { opacity: .42; cursor: not-allowed; }
   .chip-name { font-size: 15px; }
-  .chip-name::first-line { font-style: italic; }
   .chip-len { font-family: var(--font-mono); font-size: 11px; color: var(--slate); }
 
-  .controls { display: flex; align-items: center; gap: 18px; margin-top: 18px; flex-wrap: wrap; }
+  .cap-note {
+    margin: 0 0 10px; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+  }
+  .cap-note[hidden] { display: none; }
+
+  .controls { display: flex; align-items: center; gap: 18px; margin: 16px 0 30px; flex-wrap: wrap; }
   .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--slate); cursor: pointer; }
   .toggle input { accent-color: var(--accent); }
   .spacer { flex: 1; }
@@ -668,17 +742,39 @@ const description =
   .stage :global(.c-humanlabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
 
   .hint { margin: 14px 0 0; font-size: 14.5px; color: var(--slate); text-align: center; }
-  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--hair); }
+  .hint[hidden] { display: none; }
+
+  /* The stated comparison. Sized up from the legend because it is the page's one sentence of
+     plain-language finding — and the only indexable prose the plate produces. */
+  .readout {
+    margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--hair);
+    font-size: 17px; line-height: 1.5; color: var(--ink);
+  }
+  .readout :global(em) { font-style: italic; }
+  .readout[hidden], .posenote[hidden] { display: none; }
+  .posenote { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--slate); max-width: 62ch; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--hair); }
   .leg { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; }
   /* No `opacity` here: the swatch background now carries the plate's own alpha, and a CSS opacity
      would multiply with it — showing a paler chip than the silhouette actually renders. */
   .leg-sw { width: 22px; height: 12px; border-radius: 2px; flex: 0 0 auto; }
-  .leg-name { font-style: italic; }
+  /* Not a blanket italic — the binomial arrives wrapped in <em>, so a nickname or catalog number
+     after the em dash stays roman, as it should. */
+  .leg-name :global(em) { font-style: italic; }
   .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
   .noscript { margin-top: 20px; color: var(--slate); }
 
   @media (max-width: 600px) {
     .wrap { padding: 30px 18px 0; }
-    .stage-sec { padding: 16px 14px 14px; }
+    /* Full-bleed on phones. A long sauropod is ~3.6:1, so the plate's height is set entirely by the
+       width it is given — at 310px the Diplodocus default renders 89px tall with a 21px human. Paying
+       back the 64px of side padding buys ~15% more height for free. Side borders go with it and the
+       top/bottom rules keep it reading as a plate. */
+    .stage-sec {
+      margin-left: -18px; margin-right: -18px;
+      padding: 16px 10px 14px;
+      border-left: none; border-right: none; border-radius: 0;
+    }
   }
 </style>
