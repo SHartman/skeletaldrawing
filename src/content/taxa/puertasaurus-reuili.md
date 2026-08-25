@@ -1,5 +1,5 @@
 ---
-taxon: Puertasaurus reuli
+taxon: Puertasaurus reuili
 author: Novas et al., 2005
 commonName: ''
 gallery: sauropods-and-kin
@@ -19,9 +19,9 @@ basis: ''
 scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
-  src: /images/skeletals/puertasaurus-reuli-known-material.png
+  src: /images/skeletals/puertasaurus-reuili-known-material.png
   drawn: 2013
-  alt: Known skeletal material of Puertasaurus reuli MPM 10002 — elements preserved in the specimen drawn in white against a black body silhouette, estimated length ~27 m.
+  alt: Known skeletal material of Puertasaurus reuili MPM 10002 — elements preserved in the specimen drawn in white against a black body silhouette, estimated length ~27 m.
 added: ''
 widthM: 22.8
 ---
