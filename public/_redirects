@@ -350,8 +350,10 @@
 /theropods/baryonyx/                                 /theropods/baryonyx-walkeri/                       301
 /theropods/bistahieversor                            /theropods/bistahieversor-sealeyi/                 301
 /theropods/bistahieversor/                           /theropods/bistahieversor-sealeyi/                 301
-/theropods/buitreraptor                              /theropods/buitreraptor-gonzolezorum/              301
-/theropods/buitreraptor/                             /theropods/buitreraptor-gonzolezorum/              301
+/theropods/buitreraptor                              /theropods/buitreraptor-gonzalezorum/              301
+/theropods/buitreraptor/                             /theropods/buitreraptor-gonzalezorum/              301
+/theropods/buitreraptor-gonzolezorum                 /theropods/buitreraptor-gonzalezorum/              301
+/theropods/buitreraptor-gonzolezorum/                /theropods/buitreraptor-gonzalezorum/              301
 /theropods/cardinalis                                /theropods/cardinalis-cardinalis/                  301
 /theropods/cardinalis/                               /theropods/cardinalis-cardinalis/                  301
 /theropods/carnotaurus                               /theropods/carnotaurus-satrei/                     301
@@ -813,3 +815,7 @@
 # Species epithet corrected: Puertasaurus reuili (Novas et al., 2005), not "reuli". The image
 # public path is what the image sitemap and any hotlink point at, so it moves with a 301.
 /images/skeletals/puertasaurus-reuli-known-material.png                    /images/skeletals/puertasaurus-reuili-known-material.png                   301
+# Species epithet corrected: Buitreraptor gonzalezorum (Makovicky et al., 2005), named for the
+# Gonzalez family, not "gonzolezorum". Both image public paths move with it.
+/images/skeletals/buitreraptor-gonzolezorum-skeletal.png                   /images/skeletals/buitreraptor-gonzalezorum-skeletal.png                   301
+/images/skeletals/buitreraptor-gonzolezorum-composite-of-mpca-238-and-245-known-elements.png /images/skeletals/buitreraptor-gonzalezorum-composite-of-mpca-238-and-245-known-elements.png 301
