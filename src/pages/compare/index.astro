@@ -106,6 +106,41 @@ const defaultSel =
     ? prefer
     : [catalog[0]?.id, catalog[catalog.length - 1]?.id].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i);
 
+// The scale figure is an adult and a child in one merged outline, so a label centred under the pair
+// appears to caption both — and it is the adult who measures 1.8 m. Locate the adult by taking the
+// horizontal centre of whatever reaches the top of the figure; derived rather than hardcoded so it
+// still lands correctly if the artwork is ever redrawn.
+const humanPts: number[][] = [];
+{
+  const nums = human.path.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+  for (let i = 0; i + 1 < nums.length; i += 2) humanPts.push([nums[i], nums[i + 1]]);
+}
+const headXs = humanPts.filter((p) => p[1] < 0.12 * human.h).map((p) => p[0]);
+const adultCx = headXs.length ? (Math.min(...headXs) + Math.max(...headXs)) / 2 / human.w : 0.5;
+
+// ---- the plate's title -------------------------------------------------------------------------
+// The comparison sentence is the heading above the plate, so it is rendered server-side for the
+// default selection rather than painted in by script: an empty heading on first paint would shift the
+// layout under it, and the page's one line of plain-language finding should exist in the HTML.
+// The client rebuilds this on every change — KEEP THE TWO WORDINGS IN STEP (see `render`).
+const esc = (t: string) => t.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string);
+const nameMarkup = (a: any) => {
+  const { sci, rest } = splitName(a);
+  return sci ? `<em>${esc(sci)}</em>${esc(rest)}` : esc(rest);
+};
+const defItems = defaultSel.map((id) => seen.get(id)).filter(Boolean).sort((a, b) => b.lengthM - a.lengthM);
+let defaultReadout = '';
+if (defItems.length >= 2) {
+  const big = defItems[0];
+  const small = defItems[defItems.length - 1];
+  const r = big.lengthM / small.lengthM;
+  const n = r >= 10 ? String(Math.round(r)) : r.toFixed(1);
+  defaultReadout =
+    r >= 1.05
+      ? `${nameMarkup(big)} is ${n}× the length of ${nameMarkup(small)}.`
+      : `${nameMarkup(big)} and ${nameMarkup(small)} are within a few percent of the same length.`;
+}
+
 // ---- header silhouette group -------------------------------------------------------------------
 // The search page floats a single Sue behind its heading; here the banner should DEMONSTRATE the tool,
 // so it shows a group at true common scale — built with the same widthM maths the renderer uses, since
@@ -180,10 +215,14 @@ const description =
         than on the thing it makes. Capping the picker height was not enough; the header, filters,
         search, count and controls still stacked past the fold. Result first, controls beneath it,
         chooser last: every adjustment now changes something already on screen. */}
-    <section class="stage-sec">
+    {/* Claim on top, drawing in the middle, numbers at the foot. The sentence and the lengths used to
+        sit together below the plate and read as one block of text; split apart, the sentence titles
+        the figure and the lengths become its key. Largest-vs-smallest keeps the title one clause long
+        whether two animals are selected or five. */}
+    <section class="stage-sec" aria-label="Comparison">
+      <h2 class="readout" id="readout" hidden={!defaultReadout} set:html={defaultReadout} />
       <div class="stage" id="stage"></div>
       <p class="hint" id="hint">Choose animals below to build a comparison.</p>
-      <p class="readout" id="readout" hidden></p>
       <div class="legend" id="legend"></div>
     </section>
 
@@ -283,13 +322,14 @@ const description =
 </BaseLayout>
 
 <script type="application/json" id="catalog" is:inline set:html={JSON.stringify(catalog)}></script>
-<script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel })}></script>
+<script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel, adultCx })}></script>
 <script type="application/json" id="human" is:inline set:html={JSON.stringify(human)}></script>
 
 <script is:inline>
   (() => {
     const catalog = JSON.parse(document.getElementById('catalog').textContent);
     const cfg = JSON.parse(document.getElementById('cfg').textContent);
+    const ADULT_CX = typeof cfg.adultCx === 'number' ? cfg.adultCx : 0.5;
     const human = JSON.parse(document.getElementById('human').textContent);
     const byId = Object.fromEntries(catalog.map((a) => [a.id, a]));
     const PXM = 100,
@@ -496,9 +536,11 @@ const description =
       if (showHuman) {
         s += `<g transform="translate(${humanX} ${groundY - humanH}) scale(${humanScale.toFixed(4)})"><path d="${human.path}" class="c-human"/></g>`;
         // Parenthesised and explicitly "tall": every other number on the plate — the ruler, the
-        // legend, the readout — is a length, so a bare "1.8 m" under the figure reads as one more of
+        // legend, the title — is a length, so a bare "1.8 m" under the figure reads as one more of
         // them. The brackets set it apart as an aside about the reference figure.
-        s += `<text x="${humanX + humanW / 2}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">(1.8 m tall)</text>`;
+        // Sits under the ADULT (ADULT_CX, measured off the artwork server-side), not under the middle
+        // of the pair, where it would appear to caption the child too.
+        s += `<text x="${(humanX + humanW * ADULT_CX).toFixed(1)}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">(1.8 m tall)</text>`;
       }
       s += `</svg>`;
       stage.innerHTML = s;
@@ -511,8 +553,9 @@ const description =
         )
         .join('');
 
-      // Stated finding, not just a picture: the drawing shows the difference, this names it — and it
-      // gives an otherwise all-SVG page real text to index.
+      // The plate's title. Always largest vs smallest, so it stays one clause whether two animals are
+      // selected or five. KEEP IN STEP with the server-rendered `defaultReadout` in the frontmatter,
+      // which paints this same sentence for the default selection before the script runs.
       if (items.length >= 2) {
         const big = items[0], small = items[items.length - 1];
         const ratio = big.lengthM / small.lengthM;
@@ -738,11 +781,12 @@ const description =
   .hint { margin: 14px 0 0; font-size: 14.5px; color: var(--slate); text-align: center; }
   .hint[hidden] { display: none; }
 
-  /* The stated comparison. Sized up from the legend because it is the page's one sentence of
-     plain-language finding — and the only indexable prose the plate produces. */
+  /* The plate's title. No rule above it — it opens the section rather than dividing anything, and the
+     legend's own rule at the foot is what separates drawing from data. */
   .readout {
-    margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--hair);
-    font-size: 17px; line-height: 1.5; color: var(--ink);
+    margin: 0 0 22px; max-width: 54ch;
+    font-weight: 500; font-size: clamp(20px, 2.5vw, 26px); line-height: 1.3; letter-spacing: -.01em;
+    color: var(--ink);
   }
   .readout :global(em) { font-style: italic; }
   .readout[hidden] { display: none; }
