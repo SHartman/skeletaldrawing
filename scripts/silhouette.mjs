@@ -41,7 +41,21 @@ const traceWidthFor = (file) =>
 const BLACK = 128; // luminance threshold (0–255) below which a pixel is "flesh"
 const CLOSE = 6; // morphological-close radius (px) — seals mouth/rib gaps before fill
 const RDP_EPS = 1.4; // simplify tolerance in downscaled px
-const HOLE_MIN_FRAC = 0.0025; // owner-silhouette interior pockets below this share of the canvas are ignored (specks)
+// Floor for what counts as an intentional hole rather than a tracing speck, in traced pixels.
+//
+// This was a share of the canvas (0.0025, so ~1000-1500 px), which silently dropped real anatomy: the
+// occluded mouths that beaked ornithischians get when the beak tips meet at the drawn mandible angle,
+// and the same cavity behind Arctodus' canines. Protoceratops' mouth is 891 px and was being binned.
+//
+// An absolute floor models the noise better than a share of the image, because antialiasing artifacts
+// scale with the traced PERIMETER while the canvas term scales with area — so a fractional floor gets
+// harsher on larger images for no reason. The catalogue's distribution is starkly bimodal: of 531
+// sub-threshold pockets, 496 are under 5 px and 517 are under 20 px, while the smallest real feature
+// (a Euoplocephalus mouth) is 21 px. Anywhere in that gap works; 18 sits in it with room either side.
+//
+// Squared against the trace width so it means the same thing at DETAIL_WIDTH, where a given feature
+// covers ~5.8x the pixels.
+const HOLE_MIN_PX = 18;
 
 // ----- minimal frontmatter read (flat fields + one nested image src) -----
 function readSpecimen(file) {
@@ -341,7 +355,7 @@ async function traceImage(file, { alpha = false } = {}) {
     const holeMask = new Uint8Array(W * H);
     for (let i = 0; i < W * H; i++) holeMask[i] = !big[i] && !outside[i] ? 1 : 0;
     const { label, comps } = labelComponents(holeMask, W, H);
-    const minArea = HOLE_MIN_FRAC * W * H;
+    const minArea = HOLE_MIN_PX * (W / TRACE_WIDTH) ** 2;
     for (const c of comps) {
       if (c.size < minArea) continue;
       const m = new Uint8Array(W * H);
