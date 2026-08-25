@@ -135,10 +135,11 @@ if (defItems.length >= 2) {
   const small = defItems[defItems.length - 1];
   const r = big.lengthM / small.lengthM;
   const n = r >= 10 ? String(Math.round(r)) : r.toFixed(1);
+  // No terminal period — it is a title, not a sentence.
   defaultReadout =
     r >= 1.05
-      ? `${nameMarkup(big)} is ${n}× the length of ${nameMarkup(small)}.`
-      : `${nameMarkup(big)} and ${nameMarkup(small)} are within a few percent of the same length.`;
+      ? `${nameMarkup(big)} is ${n}× the length of ${nameMarkup(small)}`
+      : `${nameMarkup(big)} and ${nameMarkup(small)} are within a few percent of the same length`;
 }
 
 // ---- header silhouette group -------------------------------------------------------------------
@@ -227,7 +228,7 @@ const description =
     </section>
 
     <div class="controls">
-      <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Human for scale</label>
+      <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Humans for scale</label>
       <span class="spacer"></span>
       <button type="button" class="ctl" id="clear">Clear</button>
       <button type="button" class="ctl" id="copy">Copy link</button>
@@ -564,8 +565,8 @@ const description =
         const n = ratio >= 10 ? String(Math.round(ratio)) : ratio.toFixed(1);
         readout.innerHTML =
           ratio >= 1.05
-            ? `${nameHtml(big)} is ${n}× the length of ${nameHtml(small)}.`
-            : `${nameHtml(big)} and ${nameHtml(small)} are within a few percent of the same length.`;
+            ? `${nameHtml(big)} is ${n}× the length of ${nameHtml(small)}`
+            : `${nameHtml(big)} and ${nameHtml(small)} are within a few percent of the same length`;
         readout.hidden = false;
       } else {
         readout.hidden = true;
@@ -673,14 +674,22 @@ const description =
     text-transform: uppercase; color: var(--slate); flex: 0 0 auto;
   }
   .chosen { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chosen-chip {
+  /* :global because these are built by innerHTML. Astro scopes styles with a data-astro-cid attribute
+     stamped on TEMPLATE elements; nodes created at runtime never carry it, so a plain `.chosen-chip`
+     rule silently matches nothing. Scoping still holds — `.chosen` is in the template, so these only
+     apply to its descendants. Same reason `.stage :global(...)` wraps the SVG classes. */
+  .chosen :global(.chosen-chip) {
     display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: inherit;
     font-size: 14px; color: var(--mast-fg); background: var(--ink);
     border: 1px solid var(--ink); border-radius: 999px; padding: 6px 12px;
   }
-  .chosen-chip .x { font-size: 15px; line-height: 1; opacity: .7; }
-  .chosen-chip:hover { opacity: .86; }
-  .chosen-chip:hover .x { opacity: 1; }
+  .chosen :global(.chosen-chip .x) { font-size: 15px; line-height: 1; opacity: .7; }
+  .chosen :global(.chosen-chip:hover) { opacity: .86; }
+  .chosen :global(.chosen-chip:hover .x) { opacity: 1; }
+  /* Without this the screen-reader-only "remove" renders as visible text in every chip. */
+  .chosen :global(.vh) {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
 
   .filters { display: grid; gap: 12px; margin-bottom: 14px; }
   .facets { display: grid; gap: 12px; }
@@ -783,23 +792,33 @@ const description =
 
   /* The plate's title. No rule above it — it opens the section rather than dividing anything, and the
      legend's own rule at the foot is what separates drawing from data. */
+  /* Centred over the plate, which is itself centred at max-width 1000px — so the title sits on the
+     same axis as the whole drawing, humans included, rather than hanging off its left edge. */
   .readout {
-    margin: 0 0 22px; max-width: 54ch;
+    margin: 0 auto 22px; max-width: 54ch; text-align: center;
     font-weight: 500; font-size: clamp(20px, 2.5vw, 26px); line-height: 1.3; letter-spacing: -.01em;
     color: var(--ink);
   }
   .readout :global(em) { font-style: italic; }
   .readout[hidden] { display: none; }
 
-  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--hair); }
-  .leg { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; }
-  /* No `opacity` here: the swatch background now carries the plate's own alpha, and a CSS opacity
-     would multiply with it — showing a paler chip than the silhouette actually renders. */
-  .leg-sw { width: 22px; height: 12px; border-radius: 2px; flex: 0 0 auto; }
+  .legend {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
+    margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--hair);
+  }
+  /* :global for the same reason as .chosen-chip above — the legend is written with innerHTML, so
+     unscoped-looking rules never matched it. That is why the swatch showed as a hairline (no width,
+     only its 1px border) and name and length ran together (the flex gap never applied). */
+  .legend :global(.leg) { display: inline-flex; align-items: baseline; gap: 9px; font-size: 14.5px; }
+  /* No `opacity` here: the swatch background carries the plate's own alpha, and a CSS opacity would
+     multiply with it — showing a paler chip than the silhouette actually renders. */
+  .legend :global(.leg-sw) {
+    width: 22px; height: 12px; border-radius: 2px; flex: 0 0 auto; align-self: center;
+  }
   /* Not a blanket italic — the binomial arrives wrapped in <em>, so a nickname or catalog number
      after the em dash stays roman, as it should. */
-  .leg-name :global(em) { font-style: italic; }
-  .leg-len { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
+  .legend :global(.leg-name em) { font-style: italic; }
+  .legend :global(.leg-len) { font-family: var(--font-mono); font-size: 12px; color: var(--slate); }
   .noscript { margin-top: 20px; color: var(--slate); }
 
   @media (max-width: 600px) {
