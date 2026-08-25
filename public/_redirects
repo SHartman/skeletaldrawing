@@ -538,8 +538,10 @@
 /sauropods-and-kin/patagotitan/                      /sauropods-and-kin/patagotitan-mayorum/            301
 /sauropods-and-kin/plateosaurus                      /sauropods-and-kin/plateosaurus-trossingensis/     301
 /sauropods-and-kin/plateosaurus/                     /sauropods-and-kin/plateosaurus-trossingensis/     301
-/sauropods-and-kin/puertasaurus                      /sauropods-and-kin/puertasaurus-reuli/             301
-/sauropods-and-kin/puertasaurus/                     /sauropods-and-kin/puertasaurus-reuli/             301
+/sauropods-and-kin/puertasaurus                      /sauropods-and-kin/puertasaurus-reuili/            301
+/sauropods-and-kin/puertasaurus/                     /sauropods-and-kin/puertasaurus-reuili/            301
+/sauropods-and-kin/puertasaurus-reuli                /sauropods-and-kin/puertasaurus-reuili/            301
+/sauropods-and-kin/puertasaurus-reuli/               /sauropods-and-kin/puertasaurus-reuili/            301
 /sauropods-and-kin/rapetosaurus                      /sauropods-and-kin/rapetosaurus-krausei/           301
 /sauropods-and-kin/rapetosaurus/                     /sauropods-and-kin/rapetosaurus-krausei/           301
 /sauropods-and-kin/riojasaurus                       /sauropods-and-kin/riojasaurus-incertus/           301
@@ -808,3 +810,6 @@
 # foreseeable future, so the redirect asserts the synonymy rather than dropping visitors in the gallery.
 /ornithiscians/stormbergia                                                 /ornithischians/lesothosaurus-diagnosticus/                                301
 /ornithiscians/stormbergia/                                                /ornithischians/lesothosaurus-diagnosticus/                                301
+# Species epithet corrected: Puertasaurus reuili (Novas et al., 2005), not "reuli". The image
+# public path is what the image sitemap and any hotlink point at, so it moves with a 301.
+/images/skeletals/puertasaurus-reuli-known-material.png                    /images/skeletals/puertasaurus-reuili-known-material.png                   301
