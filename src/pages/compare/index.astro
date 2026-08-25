@@ -495,7 +495,10 @@ const description =
       s += `<line x1="${guideX}" y1="${padT}" x2="${guideX}" y2="${groundY}" class="c-guide"/>`;
       if (showHuman) {
         s += `<g transform="translate(${humanX} ${groundY - humanH}) scale(${humanScale.toFixed(4)})"><path d="${human.path}" class="c-human"/></g>`;
-        s += `<text x="${humanX + humanW / 2}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">1.8 m</text>`;
+        // Parenthesised and explicitly "tall": every other number on the plate — the ruler, the
+        // legend, the readout — is a length, so a bare "1.8 m" under the figure reads as one more of
+        // them. The brackets set it apart as an aside about the reference figure.
+        s += `<text x="${humanX + humanW / 2}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">(1.8 m tall)</text>`;
       }
       s += `</svg>`;
       stage.innerHTML = s;
