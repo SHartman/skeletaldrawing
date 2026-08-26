@@ -7,6 +7,7 @@ import ScaleComparison from '../components/ScaleComparison.astro';
 import { loadSkeletal, loadBlogImage } from '../lib/images';
 import { inlineEmphasisHtml } from '../lib/schema';
 import heroImg from '../assets/home-golden-hero.png';
+import { COMPARE_LIVE, COMPARE_PATH, COMPARE_CTA } from '../lib/flags.mjs';
 
 // Home page — design "Golden Specimen" (HOMEDESIGN.md). Custom chrome (transparent
 // header over the hero + its own bio strip/footer), so it runs BaseLayout in `bare` mode.
@@ -28,11 +29,9 @@ const NAV = [
 const taxa = await getCollection('taxa'); // used by the featured-reconstruction rotation below
 
 // Scale-comparison sampler — rotates per visit among the hubs that have a comparison figure.
-// TOOL enables a "Create your own comparison →" CTA above each hub link. It's null while the
-// interactive /compare/ tool is still a prototype (unlinked anywhere); flip it on the day the tool
-// launches (alongside the intro blog post) — that's the only change needed here.
-const TOOL: { href: string; label: string } | null = null;
-// const TOOL = { href: '/compare/', label: 'Create your own comparison →' };
+// TOOL adds a CTA to the interactive tool above each hub link, and rides COMPARE_LIVE along with
+// every other entry point (src/lib/flags.mjs) so there is nothing to flip here at launch.
+const TOOL = COMPARE_LIVE ? { href: COMPARE_PATH, label: COMPARE_CTA } : null;
 const COMPARISONS = [
   { taxonId: 'diplodocus', total: 3, href: '/sauropods-and-kin/diplodocus/', label: 'Open the Diplodocus hub →',
     note: 'Every reconstruction is measured, so a genus like Diplodocus can be compared specimen against specimen — here its two species and their specimens, with a 1.8 m human for scale.' },

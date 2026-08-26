@@ -4,6 +4,7 @@ import silData from '../../data/silhouettes.json';
 import human from '../../data/human.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { expandClades, isLandmark } from '../../lib/clades';
+import { COMPARE_LIVE } from '../../lib/flags.mjs';
 
 // Interactive size-comparison tool (prototype). Pick 2–5 animals; a client-side renderer draws the
 // chosen silhouettes to a common scale (tail-tips aligned, feet grounded), with a 1.8 m human and a
@@ -181,14 +182,12 @@ if (heroItems.length) {
   heroSvg = `<svg viewBox="0 0 ${HERO_W} ${H}" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="evenodd">${parts.join('')}</g></svg>`;
 }
 
-// ⛔ UNSHIPPED — REMOVE BOTH HALVES OF THIS AT LAUNCH:
-//   1. the <meta robots> below, and
-//   2. the `/compare/` exclusion in astro.config.mjs's sitemap filter.
-// The page is live and returns 200, and being unlinked is NOT protection: it was listed in
-// sitemap-0.xml, which was submitted to Search Console, so Google had been invited to crawl it.
-// noindex (not a robots.txt Disallow) is the right tool — a Disallow would stop the crawl before
+// Dark until COMPARE_LIVE flips in src/lib/flags.mjs, which also drives the sitemap exclusion and
+// every entry point. The page is live and returns 200, and being unlinked is NOT protection: it was
+// listed in sitemap-0.xml, which was submitted to Search Console, so Google had been invited to crawl
+// it. noindex (not a robots.txt Disallow) is the right tool — a Disallow would stop the crawl before
 // Google could read the directive, which is the same trap noted in functions/_middleware.js.
-const UNSHIPPED = true;
+const UNSHIPPED = !COMPARE_LIVE;
 
 const title = 'Size comparison — build your own | Skeletal Drawing';
 const description =

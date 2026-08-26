@@ -6,6 +6,7 @@ import { loadSkeletal } from '../lib/images';
 import { specimenHero, specimenIsKnownMaterialOnly, formatMeters, formatMass, formatAuthor } from '../lib/schema';
 import { expandClades } from '../lib/clades';
 import ScaleComparison from './ScaleComparison.astro';
+import { COMPARE_LIVE, COMPARE_PATH, COMPARE_CTA } from '../lib/flags.mjs';
 
 // Taxon hub for specimen-rich taxa (CLAUDE.md §5): header + compact record →
 // specimen cards (featured) → [scale-comparison overlay — deferred] → sortable
@@ -122,7 +123,7 @@ const imageUrl = new URL(t.reconstruction?.src ?? t.rigorous?.src ?? '', Astro.s
       </ul>
     </section>
 
-    <ScaleComparison taxonId={taxon.id} total={all.length} />
+    <ScaleComparison taxonId={taxon.id} total={all.length} toolHref={COMPARE_LIVE ? COMPARE_PATH : undefined} toolLabel={COMPARE_CTA} />
 
     <section class="block">
       <h2 class="sec-h">All documented specimens <span class="sec-sub">— tap a column to sort</span></h2>

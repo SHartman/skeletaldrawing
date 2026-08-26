@@ -22,11 +22,20 @@ import {
   stripEmphasis,
 } from '../lib/schema';
 import { expandClades, cladeLadder } from '../lib/clades';
+import { COMPARE_LIVE, COMPARE_PATH, COMPARE_CTA } from '../lib/flags.mjs';
+import silData from '../data/silhouettes.json';
 
 // Rendered by [gallery]/[taxon].astro for a single taxon. (Genus hubs go to GenusHub.astro.)
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
+
+// The compare CTA is offered only where the tool can actually draw this animal. 15 of 261 taxa have
+// no traced silhouette yet, and sending them to a tool that silently falls back to its default pair
+// would be a worse link than none.
+const inCompareCatalog = Object.values(silData as Record<string, { slug: string }[]>).some((g) =>
+  g.some((e) => e.slug === entry.id),
+);
 
 const kmOnly = isKnownMaterialOnly(d);
 const underRevision = !!d.underRevision; // outdated skeletal withheld behind a placeholder + notice
@@ -249,6 +258,18 @@ const jsonLd = underRevision
       </div>
     </article>
 
+    {/* Sits directly under the record row because that is where the length is — the reader has just
+        been given a number and this is the thing that makes the number mean something. Only 3 of 261
+        taxa carry a growth series, so the ScaleComparison CTA reaches almost no skeletal page; this
+        one is on all of them. */}
+    {COMPARE_LIVE && inCompareCatalog && (
+      <p class="compare-cta">
+        <a href={`${COMPARE_PATH}?ids=${entry.id}`}>
+          See how <span set:html={taxonNameHtml(d.taxon)} /> compares to any other animal →
+        </a>
+      </p>
+    )}
+
     <p class="licensing">
       Available for editorial, museum &amp; print licensing —
       <a href={d.license}>inquiries &amp; rates →</a>
@@ -307,6 +328,7 @@ const jsonLd = underRevision
         total={0}
         heading="Growth series"
         note={d.growthNote ?? 'The growth stages below, drawn to a common scale.'}
+        toolHref={COMPARE_LIVE ? COMPARE_PATH : undefined} toolLabel={COMPARE_CTA}
       />
     )}
 
@@ -482,6 +504,16 @@ const jsonLd = underRevision
   .ladder { margin: 0; padding: 0; list-style: none; }
   .ladder li { font-size: 14px; line-height: 1.32; padding-left: calc(var(--i) * 0.8em); }
   .ladder li:last-child { font-weight: 600; }
+
+  /* Sits between the record row and the licensing line, and reads as a next step rather than a note:
+     accent-coloured, with the taxon name italic as everywhere else. */
+  .compare-cta { margin: 18px 0 0; font-size: 15px; }
+  .compare-cta a {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft); padding-bottom: 2px;
+  }
+  .compare-cta a:hover { border-bottom-color: var(--accent); }
+  .compare-cta :global(em) { font-style: italic; }
 
   .licensing { margin: 16px 0 0; font-size: 14.5px; color: var(--slate); }
   .licensing a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }

@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadSkeletal } from '../lib/images';
 import { expandClades } from '../lib/clades';
 import ScaleComparison from './ScaleComparison.astro';
+import { COMPARE_LIVE, COMPARE_PATH, COMPARE_CTA } from '../lib/flags.mjs';
 import {
   heroRef,
   formatLength,
@@ -221,7 +222,7 @@ const description =
       </ul>
     </section>
 
-    <ScaleComparison taxonId={hub.slug} total={members.length} />
+    <ScaleComparison taxonId={hub.slug} total={members.length} toolHref={COMPARE_LIVE ? COMPARE_PATH : undefined} toolLabel={COMPARE_CTA} />
 
     {/* Longer prose sits BELOW the cards and the overlay, never above them: the owner's constraint
         was that added copy must not push the images off the first screen. Only rendered when the

@@ -151,6 +151,14 @@ const vbW = Math.round(guideX + rightPad);
 const vbH = Math.round(rulerY + 18);
 
 const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.sh).toFixed(1)}) scale(${d.s.toFixed(4)})`;
+
+// The CTA hands the tool the animals this plate is already showing, so arriving from the Tyrannosaurus
+// hub opens on those specimens rather than the site-wide default — the reader continues their thread
+// instead of starting over. Capped at 5 to match the tool's own limit; it also ignores unknown ids, so
+// a stale slug degrades to the default rather than breaking.
+const toolLink = toolHref
+  ? `${toolHref}${toolHref.includes('?') ? '&' : '?'}ids=${items.slice(0, 5).map((i: any) => i.slug).join(',')}`
+  : undefined;
 ---
 
 {
@@ -159,19 +167,19 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
       {/* The mono label carries no qualifier. It used to read "— tails aligned, drawn to a common
           scale"; the alignment is visible in the plate, and "common scale" only restates the
           heading. The `heading` branch above is the home/growth-series variant and is unaffected. */}
-      {heading ? (
-        <div class="sc-head">
-          <h2 class="sc-title">{heading}</h2>
-          {(toolHref || href) && (
-            <div class="sc-links">
-              {toolHref && <a class="sc-link sc-tool" href={toolHref}>{toolLabel}</a>}
-              {href && <a class="sc-link sc-hub" href={href}>{linkLabel}</a>}
-            </div>
-          )}
-        </div>
-      ) : (
-        <h2 class="sec-h">Scale comparison</h2>
-      )}
+      {/* One head for both variants. The links used to live only inside the `heading` branch, which
+          meant the genus and specimen hubs — the pages that render this WITHOUT a heading — could
+          never show a CTA no matter what was passed in. `.sc-head` is space-between, so the mono
+          label sits left and the links right, the same arrangement the titled variant gets. */}
+      <div class="sc-head">
+        {heading ? <h2 class="sc-title">{heading}</h2> : <h2 class="sec-h sc-head-h">Scale comparison</h2>}
+        {(toolLink || href) && (
+          <div class="sc-links">
+            {toolLink && <a class="sc-link sc-tool" href={toolLink}>{toolLabel}</a>}
+            {href && <a class="sc-link sc-hub" href={href}>{linkLabel}</a>}
+          </div>
+        )}
+      </div>
       <figure class="fig">
         <svg viewBox={`0 0 ${vbW} ${vbH}`} role="img" aria-label={`Scale comparison of ${items.length} skeletals, ${maxLen} meters at the largest${showHuman ? ', with a 1.8-meter adult and a child for scale' : ''}`}>
           {/* ground line */}
@@ -239,6 +247,10 @@ const tx = (d: any) => `translate(${(guideX - d.sw).toFixed(1)} ${(groundY - d.s
   }
 
   .sc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; margin: 0 0 18px; }
+  /* The mono label already carried its own bottom margin from .sec-h; inside the flex head that
+     doubles up with the head's own, so it is dropped here. Kept as its own class so .sec-h stays
+     correct wherever else it is used. */
+  .sc-head-h { margin-bottom: 0; align-self: center; }
   .sc-title { font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -.01em; margin: 0; }
   .sc-links { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; text-align: right; padding-top: 4px; }
   .sc-link {

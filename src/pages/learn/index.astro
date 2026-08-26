@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { inlineEmphasisHtml } from '../../lib/schema';
+import { COMPARE_LIVE, COMPARE_PATH } from '../../lib/flags.mjs';
 
 // The Learn hub (/learn/). One inviting door that unites first-party content (guides &
 // articles) with curated, ANNOTATED external links (museums to visit, peers to read).
@@ -9,8 +10,11 @@ import { inlineEmphasisHtml } from '../../lib/schema';
 // assembles itself from the `articles` and `resources` collections, like the galleries
 // index: adding a guide or a link is one CMS entry and this page updates on its own.
 
+// The size-comparison tool has its card here as an `articles` entry, so its copy stays CMS-editable
+// like every other card. Its VISIBILITY rides COMPARE_LIVE with the rest of the tool's entry points
+// rather than its own `draft` flag — one switch, so the tool cannot end up half-launched.
 const articles = (await getCollection('articles'))
-  .filter((a) => !a.data.draft)
+  .filter((a) => !a.data.draft && (COMPARE_LIVE || a.data.path !== COMPARE_PATH))
   .sort(
     (a, b) =>
       (a.data.order ?? 99) - (b.data.order ?? 99) || a.data.title.localeCompare(b.data.title),

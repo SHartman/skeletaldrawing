@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkTaxonLinks from './src/lib/remark-taxon-links.mjs';
 import rehypeFigures from './src/lib/rehype-figures.mjs';
+import { COMPARE_LIVE, COMPARE_PATH } from './src/lib/flags.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,9 +43,9 @@ export default defineConfig({
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }], rehypeFigures],
   },
 
-  // ⛔ The /compare/ exclusion is TEMPORARY — remove it when the tool ships, together with the
-  // <meta robots="noindex"> in src/pages/compare/index.astro. The page is live and unlinked, but the
-  // sitemap was submitted to Search Console, so listing it there is an explicit invitation to crawl
-  // and index an unfinished tool. Everything else on the site belongs in the sitemap.
-  integrations: [sitemap({ filter: (page) => !page.includes('/compare/') })],
+  // While the tool is dark this drops it from the sitemap, which matters because the sitemap was
+  // submitted to Search Console — listing it there is an explicit invitation to crawl an unfinished
+  // page. Driven by COMPARE_LIVE so it can no longer fall out of step with the noindex meta that used
+  // to be its separate other half. Everything else on the site belongs in the sitemap.
+  integrations: [sitemap({ filter: (page) => COMPARE_LIVE || !page.includes(COMPARE_PATH) })],
 });
