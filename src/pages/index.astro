@@ -34,13 +34,13 @@ const taxa = await getCollection('taxa'); // used by the featured-reconstruction
 const TOOL = COMPARE_LIVE ? { href: COMPARE_PATH, label: COMPARE_CTA } : null;
 const COMPARISONS = [
   { taxonId: 'diplodocus', total: 3, href: '/sauropods-and-kin/diplodocus/', label: 'Open the Diplodocus hub →',
-    note: 'Every reconstruction is measured, so a genus like Diplodocus can be compared specimen against specimen — here its two species and their specimens, with a 1.8 m human for scale.' },
+    note: 'Every reconstruction is measured, so a genus like Diplodocus can be compared specimen against specimen — here its two species and their specimens.' },
   { taxonId: 'tyrannosaurus-rex', total: 6, href: '/theropods/tyrannosaurus-rex/', label: 'Open the Tyrannosaurus hub →',
-    note: 'The best-known Tyrannosaurus rex specimens — Sue, Stan, Scotty and more — drawn to one scale with a 1.8 m human. They differ by only a few percent, but every difference is real.' },
+    note: 'The best-known Tyrannosaurus rex specimens — Sue, Stan, Scotty and more. They differ by only a few percent, but every difference is real.' },
   { taxonId: 'allosaurus-jimmadseni', total: 2, href: '/theropods/allosaurus-jimmadseni/', label: 'Open the Allosaurus jimmadseni hub →',
-    note: 'One species at two life stages: subadult “Big Al” (MOR 693) beside juvenile “Little Al”, drawn to a common scale with a 1.8 m human.' },
+    note: 'One species at two life stages: subadult “Big Al” (MOR 693) beside juvenile “Little Al”.' },
   { taxonId: 'archaeopteryx-lithographica', total: 2, href: '/theropods/archaeopteryx-lithographica/', label: 'Open the Archaeopteryx hub →',
-    note: 'Two specimens of the crow-sized “first bird” Archaeopteryx — the Thermopolis and Chicago individuals — at a common scale, measured in centimeters.' },
+    note: 'Two specimens of the crow-sized “first bird” Archaeopteryx — the Thermopolis and Chicago individuals.' },
 ];
 
 // Featured reconstruction — rotates (weighted toward newest) among the most-recently-added
