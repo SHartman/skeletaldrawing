@@ -1,13 +1,13 @@
 ---
 title: How'd you like to make your own size comparison chart?
-date: 2026-08-27T20:53
+date: 2026-08-28T00:39
 kind: Website Tools
 excerpt: Have you ever wanted to assemble your favorite dinosaurs (or other extinct critters) into a size comparison chart? Well do I have a new website feature for you!
 image:
   src: /images/blog/size-comparison-diplodocus-carnegii-scotty-protoceratops-andrewsi-microraptor-gui-skeletaldrawing.png
   alt: A size comparison of silhouettes of Diplodocus, Tyrannosaurus, Protoceratops and Microraptor, plus two humans
-featured: false
-draft: true
+featured: true
+draft: false
 ---
 
 Have you ever wanted to assemble your favorite dinosaurs (or other extinct critters) into a size comparison chart? Well do I have a new website feature for you! Some of you are going to want to charge right off and try it, while others may have questions, so I'm going to introduce the new size comparison tool in a sort of FAQ format:

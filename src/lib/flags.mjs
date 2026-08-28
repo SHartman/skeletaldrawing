@@ -21,7 +21,7 @@
  *
  * Flip this on the day the tool launches, alongside the announcement post.
  */
-export const COMPARE_LIVE = false;
+export const COMPARE_LIVE = true;
 
 /** Canonical path for the tool. Also identifies its Learn card, whose article entry overrides `path`. */
 export const COMPARE_PATH = '/compare/';
