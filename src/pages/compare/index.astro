@@ -15,6 +15,10 @@ const specimens = await getCollection('specimens');
 const taxaById = new Map(taxa.map((t) => [t.id, t]));
 const specById = new Map(specimens.map((s) => [s.id, s]));
 
+// Longest-first, so "maiasaura-peeblesorum-adult-skeletal" resolves to the two-word taxon rather than
+// stopping at a shorter id that happens to share its opening.
+const taxonIdsByLength = taxa.map((t) => t.id).sort((a, b) => b.length - a.length);
+
 // Flatten silhouettes.json into a de-duplicated catalog, with a readable label per animal.
 const seen = new Map<string, any>();
 for (const group of Object.values(silData as Record<string, any[]>)) {
@@ -37,6 +41,19 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
       if (tx) {
         taxon = tx.data.taxon;
         label = tx.data.taxon;
+      } else {
+        // Growth-series stages. Their key is a silhouette FILENAME, not a taxon or specimen id, so
+        // neither lookup above matches and the label stays whatever the stage was called — "Adult",
+        // "Hatchling". That reads fine on the taxon's own page, where the genus is the heading, but in
+        // a catalogue of 270 animals it identifies nothing, and the plate title would have read
+        // "Adult is 15× the length of Hatchling". Recover the parent from the slug prefix.
+        const parentId = taxonIdsByLength.find((id) => e.slug.startsWith(`${id}-`));
+        const parent = parentId ? taxaById.get(parentId) : null;
+        if (parent) {
+          taxon = parent.data.taxon;
+          const stage = e.label.charAt(0).toLowerCase() + e.label.slice(1); // keeps "TTUP 9002" cased
+          label = `${taxon} (${stage})`;
+        }
       }
     }
     // Facet data. A flat list of 262 chips is unusable, so each entry carries what the filters need:
