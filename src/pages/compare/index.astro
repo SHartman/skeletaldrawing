@@ -824,10 +824,20 @@ const description =
         ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
         ctx.drawImage(img, 0, 0);
         const blob = await new Promise((r) => cv.toBlob(r, 'image/png'));
-        const name =
-          'size-comparison-' +
-          lastPainted.map((d) => d.it.id).join('-').slice(0, 80) +
-          '-skeletaldrawing.png';
+        // Take whole slugs up to the budget rather than slicing the joined string, which cut mid-name
+        // and produced "...-microraptor-gu". The first is always kept even if it alone exceeds the
+        // budget — a long filename beats one that names nothing.
+        const NAME_BUDGET = 80;
+        const ids = [];
+        let used = 0;
+        for (const d of lastPainted) {
+          const id = d.it.id;
+          const cost = (ids.length ? 1 : 0) + id.length;
+          if (ids.length && used + cost > NAME_BUDGET) break;
+          ids.push(id);
+          used += cost;
+        }
+        const name = `size-comparison-${ids.join('-')}-skeletaldrawing.png`;
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = name;
