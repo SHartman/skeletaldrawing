@@ -14,7 +14,7 @@ Have you ever wanted to assemble your favorite dinosaurs (or other extinct critt
 
 ### So...what is this?
 
-I created a [tool](add the tool link here!) specifically to allow you to make size comparison figures of one to five different animals (that I've created a skeletal for), and compare them to humans of two different ontogenetic stages (err, an adult and child). The extinct critters are all aligned with their tails to the right, and the ground plane is also a sort of ruler. It has a color legend with the taxa names and lengths, and a title that compares the largest and smallest animals that you choose. Like this:
+I created a [tool](/compare/) specifically to allow you to make size comparison figures of one to five different animals (that I've created a skeletal for), and compare them to humans of two different ontogenetic stages (err, an adult and child). The extinct critters are all aligned with their tails to the right, and the ground plane is also a sort of ruler. It has a color legend with the taxa names and lengths, and a title that compares the largest and smallest animals that you choose. Like this:
 
 ![A size comparison of Anzu, Velociraptor, Hesperornithoides, Microraptor, Confuciusornis and a parent and child set of humans](/images/blog/size-comparison-anzu-wyliei-velociraptor-mongoliensis-hesperornithoides-miessleri-microraptor-gu-skeletaldrawing.png "If you want, you can make a reminder that not all dinosaurs were titans.")
 
@@ -22,7 +22,7 @@ I created a [tool](add the tool link here!) specifically to allow you to make si
 
 When making the [species](https://www.skeletaldrawing.com/theropods/tyrannosaurus-rex/) and [genus hubs](https://www.skeletaldrawing.com/blog/a-nano-update/), I wanted to add a little flair to them! Alongside a sortable data table, I wanted to add something visual that wasn't just more skeletals - hence silhouette-based size comparisons. But as a static website, this worked best with vector silhouettes that weren't very heavy, which meant creating a pipeline to trace and vectorize them.
 
-At that point it occurred to me that there wasn't anything stopping me from being able to compare _any_ of the them. Well, aside from having to make and maintain a database of all of their lengths, and creating the a usable interface on the web for picking your critters. That's why it didn't launch mid-summer with the rest of the website.
+At that point it occurred to me that there wasn't anything stopping me from being able to compare _any_ of them. Well, aside from having to make and maintain a database of all of their lengths, and creating a usable interface on the web for picking your critters. That's why it didn't launch mid-summer with the rest of the website.
 
 ### I don't want people in my diagram!
 
@@ -30,7 +30,7 @@ You're in luck, there's a dialog box where you can unselect that option.
 
 ### My dinosaur isn't as long as I think it should be!
 
-One of two things is probably happening. First, these are all based on my skeletals, and whenever possible on specific specimens. They aren't always going to agree with other published numbers, and sometimes the specimen I restored just isn't the largest specimen known (this is true for _Giganotosaurus_, for example). 
+One of two things is probably happening. First, these are all based on my skeletals, and whenever possible on specific specimens. They aren't always going to agree with other published numbers, and sometimes the specimen I restored just isn't the largest specimen known (this is true for _Giganotosaurus_, for example).
 
 But _also_, sometimes animals are taller than they are long. _Brachiosaurus_ famously has a long, upright neck. The official length measurement is from the snout, along the neck down the back to the tail - that is, it's not measured in a straight line. So if you are looking at the ground plane, a lot of its 24 meter length is eaten up by its tall neck, so unless it stretched out horizontally, it's not going to cover 24 meters along the ground.
 
