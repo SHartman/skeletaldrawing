@@ -344,17 +344,28 @@ const description =
     const ADULT_CX = typeof cfg.adultCx === 'number' ? cfg.adultCx : 0.5;
     const human = JSON.parse(document.getElementById('human').textContent);
     const byId = Object.fromEntries(catalog.map((a) => [a.id, a]));
-    const PXM = 100,
-      MAX = 5;
+    const MAX = 5;
+    // Target viewBox width. The plate's furniture — ruler caption, tick labels, the human label and
+    // the gaps between them — is fixed in USER units, but the viewBox was a fixed 100 px per metre and
+    // therefore changed width with the selection, then got scaled to fit its container. So the
+    // furniture rendered at whatever that scale happened to be: 59 px for two small birds, 4.6 px for
+    // a Supersaurus plate — a 13x swing, illegible at one end and overbearing at the other, and it
+    // pushed the caption visibly away from the ground line on small selections.
+    //
+    // Holding the viewBox width roughly constant instead, and solving for px-per-metre, fixes both:
+    // every plate is scaled by about the same amount, so fixed user units mean a fixed rendered size.
+    // 1500 is near where the old scale already sat for a mid-sized pair, so typical plates are
+    // unchanged. The animals still scale by widthM against each other — only the coordinate space
+    // moves, so nothing about the comparison itself changes.
+    const TARGET_VB = 1500;
+    const HUMAN_W_M = (human.w / human.h) * 1.8; // the adult+child group is ~1.43 m wide at 1.8 m tall
     // Shared with ScaleComparison.astro — keep in step. Hue/sat drive the lightness ramp; the
     // coverage band maps "how much of the shape behind do I cover" onto fill opacity, anchored to
     // length difference via coverage ~= (length ratio)^2: .90 ~ 5% shorter, .50 ~ 29% shorter.
     const RAMP_HUE = 34, RAMP_SAT = 58;
     const OP_BLEND = 0.75, OP_SOLID = 1, COVER_LO = 0.5, COVER_HI = 0.9;
-    // Human scale reference: the owner's adult + child silhouette, adult scaled to 1.8 m.
-    const humanH = 180,
-      humanScale = humanH / human.h,
-      humanW = +(human.w * humanScale).toFixed(1);
+    // Human scale reference: the owner's adult + child silhouette, adult scaled to 1.8 m. Derived per
+    // render now, since px-per-metre is no longer a constant.
 
     // ---- units ----------------------------------------------------------------------------------
     // A port of formatImperial() from lib/schema.ts — deliberately the same rules, so a length reads
@@ -501,6 +512,15 @@ const description =
       const showHuman = humanToggle.checked;
       const padL = 16,
         padT = 16;
+      const humanGapU = 40, rightGutter = 30;
+      // Solve px-per-metre so the viewBox lands on TARGET_VB:
+      //   vbW = padL + PXM*widthM + [humanGapU + PXM*HUMAN_W_M] + rightGutter
+      const widestM = Math.max(...items.map((i) => i.widthM));
+      const fixedU = padL + rightGutter + (showHuman ? humanGapU : 0);
+      const PXM = (TARGET_VB - fixedU) / (widestM + (showHuman ? HUMAN_W_M : 0));
+      const humanH = 1.8 * PXM,
+        humanScale = humanH / human.h,
+        humanW = +(human.w * humanScale).toFixed(1);
       // Scale by the silhouette's horizontal extent, not its along-body length — otherwise an
       // upright taxon (raised neck, therizinosaur, bird) is drawn as wide as it is long. sw then
       // equals PXM * widthM, so the metre ruler below stays exact.
@@ -510,11 +530,10 @@ const description =
       });
       const maxLen = Math.max(...items.map((i) => i.lengthM)); // biological, for the label
       const maxSW = Math.max(...scaled.map((d) => d.sw));      // geometric, for the layout
-      const maxSH = Math.max(...scaled.map((d) => d.sh), showHuman ? 180 : 0);
+      const maxSH = Math.max(...scaled.map((d) => d.sh), showHuman ? humanH : 0);
       const guideX = padL + maxSW,
         groundY = padT + maxSH;
-      const humanGap = 40,
-        humanX = guideX + humanGap;
+      const humanX = guideX + humanGapU;
       // Ruler spans the drawn extent, not the biological length — otherwise the ticks run off the
       // left edge whenever the widest animal is posture-shortened (widthM < lengthM).
       // Tick spacing per unit. Metric keeps its shipped 1 m step with a major every 5. Feet need their
@@ -522,11 +541,14 @@ const description =
       // grey band. Below ~12 ft the coarse step would draw none, so it falls back.
       const ftTotal = feetOf(maxSW / PXM);
       const step = units === 'ft' ? (ftTotal < 12 ? 1 : 5) : 1;
-      const majorEvery = units === 'ft' ? (ftTotal < 12 ? 5 : 10) : 5;
+      let majorEvery = units === 'ft' ? (ftTotal < 12 ? 5 : 10) : 5;
       const unitPx = units === 'ft' ? PXM / 3.28084 : PXM; // px per foot / per metre
       const marks = Math.floor((units === 'ft' ? ftTotal : maxSW / PXM) / step);
+      // With few ticks the "major" rule labelled almost none of them — a 3 m plate drew ticks at 1, 2
+      // and 3 m but a lone "0" beneath them, which is a ruler with no numbers on it.
+      if (marks <= 6) majorEvery = 1;
       const rulerY = groundY + 20;
-      const rightPad = (showHuman ? humanGap + humanW : 0) + 30;
+      const rightPad = (showHuman ? humanGapU + humanW : 0) + rightGutter;
       const vbW = Math.round(guideX + rightPad),
         vbH = Math.round(rulerY + 22);
 
