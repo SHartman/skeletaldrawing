@@ -34,7 +34,7 @@ additionalFigures:
     drawn: 2010
     updated: 2022
     alt: Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
-    caption: A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
+    caption: A potential growth series — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
 added: 2026-06-30T12:08:00.000Z
 ---
 

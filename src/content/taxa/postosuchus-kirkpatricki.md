@@ -33,7 +33,7 @@ additionalFigures:
     label: Subadult (TTUP 9002)
 featured: true
 growthSeries: true
-growthNote: The adult (TTUP 9000) and a subadult (TTUP 9002), drawn to scale.
+growthNote: The adult (TTUP 9000) and a subadult (TTUP 9002).
 growthStages:
   - label: Adult · TTUP 9000
     src: /images/skeletals/postosuchus-kirkpatricki-ttup-9000-skeletal.png

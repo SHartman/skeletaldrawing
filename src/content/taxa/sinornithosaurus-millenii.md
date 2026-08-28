@@ -33,7 +33,7 @@ additionalFigures:
     drawn: 2019
     updated: 2024
     alt: Sinornithosaurus millenii — Growth series to common scale — the ~1.1 m adult type and the ~0.6 m juvenile “Dave.”
-    caption: Growth series to common scale — the ~1.1 m adult type and the ~0.6 m juvenile “Dave.”
+    caption: Growth series — the ~1.1 m adult type and the ~0.6 m juvenile “Dave.”
 added: 2026-06-29T13:16:00.000Z
 widthM: 1.03
 ---

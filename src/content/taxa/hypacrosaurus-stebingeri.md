@@ -38,7 +38,7 @@ additionalFigures:
     caption: ''
     label: Adult and juvenile
 growthSeries: true
-growthNote: An adult and juvenile _Hypacrosaurus_ to scale. _Hypacrosaurus_ is known from nesting sites, eggs, and embryos, which document its growth from hatchling to adult.
+growthNote: An adult and juvenile _Hypacrosaurus_. _Hypacrosaurus_ is known from nesting sites, eggs, and embryos, which document its growth from hatchling to adult.
 growthStages:
   - label: Adult
     src: /images/skeletals/hypacrosaurus-stebingeri-adult-skeletal.png

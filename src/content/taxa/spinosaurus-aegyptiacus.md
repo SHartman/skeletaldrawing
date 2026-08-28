@@ -28,7 +28,7 @@ additionalFigures:
   - src: /images/skeletals/spinosaurus-aegyptiacus-competing-interpretations.png
     drawn: 2020
     alt: Spinosaurus aegyptiacus — Competing published interpretations of the animal’s build, drawn to a common scale.
-    caption: Competing published interpretations of the animal’s build, drawn to a common scale.
+    caption: Competing published interpretations of the animal’s build.
 added: 2026-07-01T12:07:00.000Z
 ---
 
