@@ -232,6 +232,13 @@ const description =
 
     <div class="controls">
       <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Humans for scale</label>
+      {/* The rest of the site appends imperial in parentheses — "26 m (85 feet)". That cannot work
+          here, because the ruler needs a tick spacing and metres and feet want different ones. So this
+          page toggles instead. Metric leads, as it does everywhere else. */}
+      <div class="units" role="group" aria-label="Units">
+        <button type="button" class="unit on" data-units="m" aria-pressed="true">Meters</button>
+        <button type="button" class="unit" data-units="ft" aria-pressed="false">Feet</button>
+      </div>
       <span class="spacer"></span>
       <button type="button" class="ctl" id="clear">Clear</button>
       <button type="button" class="ctl" id="copy">Copy link</button>
@@ -286,7 +293,7 @@ const description =
         <div class="facet-row" role="group" aria-label="Filter by size">
           <button type="button" class="facet on" data-facet="size" data-val="" aria-pressed="true">Any size</button>
           {SIZE_BANDS.map((b) => (
-            <button type="button" class="facet" data-facet="size" data-val={b.id} aria-pressed="false">
+            <button type="button" class="facet" data-facet="size" data-val={b.id} data-lo={String(b.lo)} data-hi={String(b.hi)} aria-pressed="false">
               {b.label}<span class="facet-n">{b.n}</span>
             </button>
           ))}
@@ -349,6 +356,21 @@ const description =
       humanScale = humanH / human.h,
       humanW = +(human.w * humanScale).toFixed(1);
 
+    // ---- units ----------------------------------------------------------------------------------
+    // A port of formatImperial() from lib/schema.ts — deliberately the same rules, so a length reads
+    // identically here and on the taxon's own page: inches under 2 ft, half-feet under 6, whole feet
+    // above. KEEP IN STEP with that function.
+    let units = 'm';
+    const feetOf = (m) => m * 3.28084;
+    const fmtImperial = (m) => {
+      const inch = Math.round(m * 39.3701);
+      if (inch < 24) return `${inch} in`;
+      const ftExact = feetOf(m);
+      const ft = ftExact < 6 ? Math.round(ftExact * 2) / 2 : Math.round(ftExact);
+      return `${ft % 1 ? ft.toFixed(1) : ft} ft`;
+    };
+    const fmtLen = (m) => (units === 'ft' ? fmtImperial(m) : `${+m.toFixed(2)} m`);
+
     const stage = document.getElementById('stage');
     const legend = document.getElementById('legend');
     const hint = document.getElementById('hint');
@@ -377,6 +399,8 @@ const description =
       const u = new URL(location.href);
       if (selected.length) u.searchParams.set('ids', selected.join(','));
       else u.searchParams.delete('ids');
+      if (units === 'ft') u.searchParams.set('units', 'ft');
+      else u.searchParams.delete('units');
       history.replaceState(null, '', u);
     };
     // ---- filtering ----------------------------------------------------------------------------
@@ -493,7 +517,14 @@ const description =
         humanX = guideX + humanGap;
       // Ruler spans the drawn extent, not the biological length — otherwise the ticks run off the
       // left edge whenever the widest animal is posture-shortened (widthM < lengthM).
-      const meters = Math.floor(maxSW / PXM);
+      // Tick spacing per unit. Metric keeps its shipped 1 m step with a major every 5. Feet need their
+      // own: a 26 m animal is 85 ft, so a 1 ft step would draw 85 ticks — dense to the point of being a
+      // grey band. Below ~12 ft the coarse step would draw none, so it falls back.
+      const ftTotal = feetOf(maxSW / PXM);
+      const step = units === 'ft' ? (ftTotal < 12 ? 1 : 5) : 1;
+      const majorEvery = units === 'ft' ? (ftTotal < 12 ? 5 : 10) : 5;
+      const unitPx = units === 'ft' ? PXM / 3.28084 : PXM; // px per foot / per metre
+      const marks = Math.floor((units === 'ft' ? ftTotal : maxSW / PXM) / step);
       const rulerY = groundY + 20;
       const rightPad = (showHuman ? humanGap + humanW : 0) + 30;
       const vbW = Math.round(guideX + rightPad),
@@ -501,11 +532,12 @@ const description =
 
       let s = `<svg viewBox="0 0 ${vbW} ${vbH}" role="img" aria-label="Scale comparison of ${items.length} animals, largest ${maxLen} meters">`;
       s += `<line x1="${padL}" y1="${groundY}" x2="${showHuman ? humanX + humanW : guideX}" y2="${groundY}" class="c-ground"/>`;
-      for (let m = 0; m <= meters; m++) {
-        const x = guideX - m * PXM;
-        const major = m % 5 === 0;
+      for (let i = 0; i <= marks; i++) {
+        const v = i * step;
+        const x = guideX - v * unitPx;
+        const major = v % majorEvery === 0;
         s += `<line x1="${x}" y1="${groundY}" x2="${x}" y2="${groundY + (major ? 8 : 4)}" class="c-tick${major ? ' major' : ''}"/>`;
-        if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${m}</text>`;
+        if (major) s += `<text x="${x}" y="${rulerY + 6}" class="c-ticklabel">${v}</text>`;
       }
       // "meters of ground covered", not "meters from tail tip". The ruler measures the DRAWN
       // horizontal extent, which need not equal the legend's along-body length: a raised-neck sauropod
@@ -513,7 +545,7 @@ const description =
       // beak or a folded wing push the other way (Mammut, 5 m long, 5.87 m of ground). An explanatory
       // note was tried and dropped — it could only describe one direction, and the ruler is a reading
       // aid for the drawing rather than a measurement of the animal. The label carries that on its own.
-      s += `<text x="${guideX - meters * PXM}" y="${rulerY + 19}" class="c-unit">meters of ground covered</text>`;
+      s += `<text x="${guideX - marks * step * unitPx}" y="${rulerY + 19}" class="c-unit">${units === 'ft' ? 'feet' : 'meters'} of ground covered</text>`;
       // Gold-tint ramp + adaptive opacity, matching ScaleComparison.astro (the hub treatment is
       // canonical). Largest = lightest and painted first (back) -> smallest = darkest and in front.
       // Opacity comes from how much of the shape BEHIND each silhouette it covers: near-equal sizes
@@ -547,7 +579,7 @@ const description =
         // them. The brackets set it apart as an aside about the reference figure.
         // Sits under the ADULT (ADULT_CX, measured off the artwork server-side), not under the middle
         // of the pair, where it would appear to caption the child too.
-        s += `<text x="${(humanX + humanW * ADULT_CX).toFixed(1)}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">(1.8 m tall)</text>`;
+        s += `<text x="${(humanX + humanW * ADULT_CX).toFixed(1)}" y="${groundY + 14}" class="c-humanlabel" text-anchor="middle">(${fmtLen(1.8)} tall)</text>`;
       }
       s += `</svg>`;
       stage.innerHTML = s;
@@ -561,7 +593,7 @@ const description =
       legend.innerHTML = painted
         .map(
           (d) =>
-            `<span class="leg"><span class="leg-sw" style="background:${d.swatch};border:1px solid ${d.stroke}"></span><span class="leg-name">${nameHtml(d.it)}</span><span class="leg-len">${d.it.lengthM} m</span></span>`,
+            `<span class="leg"><span class="leg-sw" style="background:${d.swatch};border:1px solid ${d.stroke}"></span><span class="leg-name">${nameHtml(d.it)}</span><span class="leg-len">${fmtLen(d.it.lengthM)}</span></span>`,
         )
         .join('');
 
@@ -599,6 +631,43 @@ const description =
     humanToggle.addEventListener('change', render);
 
     q.addEventListener('input', () => { filter.text = q.value; applyFilter(); });
+
+    // Units. Every number on the page is derived from metres held in the catalogue, so switching is a
+    // re-render plus a relabel of the chips and size bands — nothing is stored converted.
+    const relabelUnits = () => {
+      for (const c of chips) {
+        const el = c.querySelector('.chip-len');
+        if (el) el.textContent = fmtLen(+c.dataset.len);
+      }
+      for (const b of document.querySelectorAll('.facet[data-facet="size"]')) {
+        const lo = b.dataset.lo, hi = b.dataset.hi;
+        if (lo == null) continue; // the "Any size" chip
+        const n = b.querySelector('.facet-n')?.outerHTML ?? '';
+        // Band edges use whole feet, not fmtLen: these are filter boundaries, and fmtLen's half-foot
+        // rule (meant for animal lengths) turned the 1 m edge into "3.5 ft". The bounds themselves stay
+        // metric, so the counts are unchanged by the toggle — only the labels convert.
+        const e = (v) => (units === 'ft' ? `${Math.round(feetOf(v))} ft` : `${v} m`);
+        const txt =
+          hi === 'Infinity' ? `${e(+lo)} +`
+          : lo === '0' ? `Under ${e(+hi)}`
+          : `${units === 'ft' ? Math.round(feetOf(+lo)) : +lo}–${e(+hi)}`;
+        b.innerHTML = txt + n;
+      }
+    };
+    const setUnits = (u) => {
+      units = u === 'ft' ? 'ft' : 'm';
+      for (const b of document.querySelectorAll('.unit')) {
+        const on = b.dataset.units === units;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', String(on));
+      }
+      relabelUnits();
+      try { localStorage.setItem('sd-units', units); } catch (e) {} // private mode / blocked storage
+      toUrl();
+      render();
+    };
+    for (const b of document.querySelectorAll('.unit'))
+      b.addEventListener('click', () => setUnits(b.dataset.units));
 
     // Facets collapse on phones only. `hidden` is set from JS rather than the markup so the panel is
     // open by default for anyone without JS, and desktop CSS ignores the attribute entirely.
@@ -752,7 +821,7 @@ const description =
         })();
         const wSci = sci ? runW(`italic ${LEG}px Newsreader, Georgia, serif`, sci) : 0;
         const wRest = runW(`${LEG}px Newsreader, Georgia, serif`, rest);
-        const lenT = `${d.it.lengthM} m`;
+        const lenT = fmtLen(d.it.lengthM);
         const wLen = runW(`${LEG - 4}px 'IBM Plex Mono', monospace`, lenT);
         return { d, sci, rest, wSci, wRest, lenT, wLen, w: 34 + wSci + wRest + 12 + wLen };
       });
@@ -876,6 +945,19 @@ const description =
 
     selected = fromUrl();
     if (!selected.length) selected = (cfg.def || []).filter((id) => byId[id]).slice(0, MAX);
+    // Units come from the URL first so a shared link lands in the sender's units, then from a previous
+    // visit. Metric is the default and the fallback, matching the rest of the site.
+    let startUnits = new URLSearchParams(location.search).get('units');
+    if (startUnits !== 'ft' && startUnits !== 'm') {
+      try { startUnits = localStorage.getItem('sd-units'); } catch (e) { startUnits = null; }
+    }
+    units = startUnits === 'ft' ? 'ft' : 'm';
+    for (const b of document.querySelectorAll('.unit')) {
+      const on = b.dataset.units === units;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    }
+    relabelUnits();
     applyFilter(); // seeds the count and hides the sub-clade rows before first paint
     render();
   })();
@@ -1017,6 +1099,18 @@ const description =
   .controls { display: flex; align-items: center; gap: 18px; margin: 16px 0 30px; flex-wrap: wrap; }
   .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--slate); cursor: pointer; }
   .toggle input { accent-color: var(--accent); }
+  /* Segmented pair rather than a checkbox: both options stay visible, so a US reader sees "Feet" is
+     available instead of having to work out what an unlabelled switch would do. */
+  .units { display: inline-flex; border: 1px solid var(--hair-strong); border-radius: 999px; overflow: hidden; }
+  .unit {
+    font: inherit; font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--slate); background: transparent;
+    border: 0; padding: 6px 13px; cursor: pointer;
+  }
+  .unit + .unit { border-left: 1px solid var(--hair-strong); }
+  .unit:hover { color: var(--ink); }
+  .unit.on { background: var(--ink); color: var(--mast-fg); }
+
   .spacer { flex: 1; }
   .ctl {
     font: inherit; font-size: 12px; font-family: var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
