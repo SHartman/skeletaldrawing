@@ -1,7 +1,7 @@
 ---
 title: Size comparison tool
 kind: Interactive tool
-summary: Pick any two to five extinct animals and see them drawn to a single scale, tails aligned and feet on a common ground line, with a human for reference. Every silhouette is measured from the reconstructions used across the site.
+summary: Pick one to five animals and see how big they were, drawn to a single scale with a 1.8 m human for reference. Every animal on the site is available, with more added all the time.
 path: /compare/
 order: 1
 featured: true

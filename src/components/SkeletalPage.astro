@@ -270,15 +270,19 @@ const jsonLd = underRevision
       </p>
     )}
 
-    <p class="licensing">
-      Available for editorial, museum &amp; print licensing —
-      <a href={d.license}>inquiries &amp; rates →</a>
-    </p>
-
     <!-- ===================== methodology prose ===================== -->
     <div class="prose">
       <Content />
     </div>
+
+    {/* Below the description, not above it. Stacked under the record row it made a two-line block of
+        links between the reader and the writing — the commercial ask arriving before the animal had
+        been described. It stays discoverable here, and the front page and About both link licensing
+        directly; a visitor reading about a taxon should not be sold to first. */}
+    <p class="licensing">
+      Available for editorial, museum &amp; print licensing —
+      <a href={d.license}>inquiries &amp; rates →</a>
+    </p>
 
     <!-- ============ known-material (rigorous), only when paired with a reconstruction ============ -->
     {showRigorousSection && (
@@ -515,7 +519,9 @@ const jsonLd = underRevision
   .compare-cta a:hover { border-bottom-color: var(--accent); }
   .compare-cta :global(em) { font-style: italic; }
 
-  .licensing { margin: 16px 0 0; font-size: 14.5px; color: var(--slate); }
+  /* Now follows the description rather than the record row, so it needs a gap that reads as a break
+     and the prose's own measure, to sit under the text column instead of spanning past it. */
+  .licensing { margin: 26px 0 0; max-width: 64ch; font-size: 14.5px; color: var(--slate); }
   .licensing a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
 
   /* ---- methodology prose (Content is global markup) ---- */
