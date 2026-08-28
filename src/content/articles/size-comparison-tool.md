@@ -1,7 +1,7 @@
 ---
 title: Size comparison tool
 kind: Interactive tool
-summary: Pick one to five animals and see how big they were, drawn to a single scale with a 1.8 m human for reference. Every animal on the site is available, with more added all the time.
+summary: Wonder how big (or small) your favorite extinct animals were? Try this tool to select 1–5 animals, and see them compared to each other and people for scale. More animals are added all the time.
 path: /compare/
 order: 1
 featured: true
