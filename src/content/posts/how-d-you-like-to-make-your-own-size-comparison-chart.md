@@ -26,7 +26,7 @@ At that point it occurred to me that there wasn't anything stopping me from bein
 
 ### I don't want people in my diagram!
 
-You're in luck, there's a dialog box where you can unselect that option.
+You're in luck, there's a checkbox where you can turn them off.
 
 ### My dinosaur isn't as long as I think it should be!
 
@@ -36,7 +36,7 @@ But _also_, sometimes animals are taller than they are long. _Brachiosaurus_ fam
 
 ### But I don't like the Metric System, what about Freedom Units?
 
-The tool is made for everyone, there's a dialog box where you can select Old English units (feet) rather than meters.
+The tool is made for everyone, there's a toggle where you can select Old English units (feet) rather than meters.
 
 ### What can I do with the images I make?
 

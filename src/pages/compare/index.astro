@@ -207,7 +207,7 @@ const description =
       <p class="eyebrow">Tools</p>
       <h1 class="display">Size comparison</h1>
       <p class="intro">
-        Pick two to five animals and see them drawn to a single scale — tails aligned, feet on a common
+        Pick one to five animals and see them drawn to a single scale — tails aligned, feet on a common
         ground line, with a 1.8&nbsp;m human for reference. Every silhouette comes from the measured
         reconstructions used across the site. <span class="beta">More animals are added as the library grows.</span>
       </p>
@@ -600,7 +600,12 @@ const description =
       // The plate's title. Always largest vs smallest, so it stays one clause whether two animals are
       // selected or five. KEEP IN STEP with the server-rendered `defaultReadout` in the frontmatter,
       // which paints this same sentence for the default selection before the script runs.
-      if (items.length >= 2) {
+      if (items.length === 1) {
+        // A single animal is a legitimate use — "how big was this thing?" — so it gets a title of its
+        // own rather than a blank space where the comparison sentence would be.
+        readout.innerHTML = `${nameHtml(items[0])} is ${fmtLen(items[0].lengthM)} long`;
+        readout.hidden = false;
+      } else if (items.length >= 2) {
         const big = items[0], small = items[items.length - 1];
         const ratio = big.lengthM / small.lengthM;
         // Kept as a string: +(2.047).toFixed(1) coerces back to 2 and prints "2×", dropping the one
