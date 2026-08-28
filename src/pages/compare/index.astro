@@ -221,8 +221,13 @@ const description =
     <div class="head-band">
     {heroSvg && <div class="hero-sil" aria-hidden="true" set:html={heroSvg} />}
     <header class="head">
-      <p class="eyebrow">Tools</p>
-      <h1 class="display">Size comparison</h1>
+      {/* Every other page on the site labels itself in the eyebrow and invites in the h1 — Learn/Go
+          deeper, Galleries/Browse by group, Blog/Notes from the drawing table. This page had it the
+          other way round: a vague category over a descriptive label, so nothing asked the reader to
+          do anything. The keyword moves to the eyebrow rather than being lost; the <title> still
+          leads with it, as do the intro and the h2 on every plate. */}
+      <p class="eyebrow">Size comparison tool</p>
+      <h1 class="display">Compare your favorites</h1>
       <p class="intro">
         Pick one to five animals and see them drawn to a single scale — tails aligned, feet on a common
         ground line, with a 1.8&nbsp;m human for reference. Every silhouette comes from the measured
