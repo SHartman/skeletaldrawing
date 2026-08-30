@@ -12,8 +12,13 @@ import { COMPARE_LIVE } from '../../lib/flags.mjs';
 // selection lives in the browser. The catalog grows on its own as the silhouette library fills in.
 const taxa = await getCollection('taxa');
 const specimens = await getCollection('specimens');
+// Catalog-only silhouettes — extant animals, extra humans, stray specimens. They have no page, so
+// everything the tool shows for them (label, italic span, facets) is read straight from here; the
+// tracer only ever emits their geometry. See src/content/silhouettes/README.md.
+const silOnly = await getCollection('silhouettes');
 const taxaById = new Map(taxa.map((t) => [t.id, t]));
 const specById = new Map(specimens.map((s) => [s.id, s]));
+const silById = new Map(silOnly.map((s) => [s.id, s]));
 
 // Longest-first, so "maiasaura-peeblesorum-adult-skeletal" resolves to the two-word taxon rather than
 // stopping at a shorter id that happens to share its opening.
@@ -37,8 +42,15 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
     if (seen.has(e.slug)) continue;
     let label = e.label;
     let taxon = '';
+    const so = silById.get(e.slug);
     const sp = specById.get(e.slug);
-    if (sp) {
+    if (so) {
+      // Nothing to derive: a catalog-only entry says what it is. `taxon` is the italic span and may
+      // be absent entirely, which is the point — "Child, 1.2 m" is not a binomial and must not be set
+      // in italics just because everything around it is.
+      label = so.data.label;
+      taxon = so.data.taxon ?? '';
+    } else if (sp) {
       const parent = taxaById.get(sp.data.taxon);
       taxon = parent?.data.taxon ?? '';
       const who = sp.data.nickname ?? sp.data.catalog;
@@ -75,9 +87,12 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
     // Facet data. A flat list of 262 chips is unusable, so each entry carries what the filters need:
     // its gallery (a guaranteed partition of the catalogue) and its FULL clade path, so sub-clade
     // filtering is derived from the data rather than hand-maintained (CLAUDE.md §5).
+    // Catalog-only entries carry their own facets when they have any. Both fields are optional:
+    // Loxodonta belongs in no gallery here, so it simply stays out of the chips and is found by
+    // search — better than inventing a "modern animals" gallery that exists nowhere else on the site.
     const owner = sp ? taxaById.get(sp.data.taxon) : taxaById.get(e.slug);
-    const gallery = owner?.data.gallery ?? '';
-    const clades = owner ? expandClades(owner.data.clade) : [];
+    const gallery = so ? (so.data.gallery ?? '') : (owner?.data.gallery ?? '');
+    const clades = so ? expandClades(so.data.clade) : owner ? expandClades(owner.data.clade) : [];
     seen.set(e.slug, {
       id: e.slug, label, taxon, gallery, clades,
       // widthM is the silhouette's true HORIZONTAL extent; lengthM is measured along the body and is

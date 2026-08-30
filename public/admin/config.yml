@@ -352,6 +352,37 @@ collections:
       - { name: source, label: "Source", widget: select, options: ["site", "disqus"], default: "site" }
       - { name: body, label: "Comment text", widget: text }
 
+  - name: silhouettes
+    label: "Compare-tool extras — animals with no page"
+    label_singular: "Compare-tool extra"
+    # Things the size-comparison tool should be able to draw that shouldn't become skeletal pages:
+    # a modern elephant, an extra human figure, a one-off specimen. Filing one under Skeletals would
+    # give it a page, put it in a gallery, and inflate the reconstruction counts. See
+    # src/content/silhouettes/README.md.
+    folder: "src/content/silhouettes"
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: label
+    slug: "{{slug}}"
+    summary: "{{label}} — {{lengthM}} m"
+    sortable_fields: [label, lengthM]
+    fields:
+      - { name: label, label: "Name as shown", widget: string, hint: "Exactly what the legend prints — e.g. Loxodonta africana, or Child, 1.2 m. The filename made from this is the catalog id and must not clash with any existing skeletal or specimen; the tracer refuses it and says so if it does." }
+      - { name: taxon, label: "Scientific name (italic part)", widget: string, required: false, hint: "The part of the name above to set in italics — e.g. Loxodonta africana. Must match the start of it exactly. Leave blank for anything that isn't a binomial, like a human figure." }
+      - { name: lengthM, label: "Length (meters)", widget: number, value_type: float, hint: "The number shown in the legend. For an upright animal — a human, a rearing pose — this is its height." }
+      - { name: widthM, label: "Horizontal extent (meters)", widget: number, required: false, value_type: float, hint: "Only when the drawing isn't laid out horizontally: the span measured ACROSS as drawn. A standing human is the obvious case — 1.8 m tall but perhaps 0.5 m wide. Blank = same as Length. Get this wrong and the animal is drawn at the wrong size beside the others." }
+      - { name: silhouette, label: "Silhouette", widget: image, media_folder: "/silhouettes", public_folder: "/silhouettes", hint: "Transparent-background body envelope — left lateral, head left, no scale bar or credit, same as the skeletals' silhouettes. (The preview box will stay blank; these are never served to the browser.)" }
+      - { name: gallery, label: "Gallery filter (optional)", widget: string, required: false, hint: "Only if it genuinely belongs in one of the site's galleries — theropods, sauropods-and-kin, ornithischians, synapsids, non-dinosaurs. Leave blank for a modern animal or a human: it stays findable by search, and inventing a gallery here would put a filter chip on the tool that matches nothing else on the site." }
+      - name: clade
+        label: "Clade path (optional)"
+        widget: list
+        required: false
+        field: { name: node, label: "Clade", widget: string }
+        hint: "Same ordered broad → specific path as a skeletal. Only useful alongside a Gallery, since the sub-clade chips appear under one."
+      - { name: body, label: "Note to self", widget: markdown, required: false, hint: "Nothing renders this. Somewhere to record where the outline came from." }
+      - { name: draft, label: "Draft (hide completely)", widget: boolean, default: false, required: false, hint: "Keeps it out of the tool entirely — the tracer skips it, so no geometry is ever generated." }
+
   - name: publications
     label: "Publications — your papers"
     label_singular: "Publication"

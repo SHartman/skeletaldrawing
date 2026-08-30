@@ -808,6 +808,57 @@ if (existsSync(GENERA_DIR)) {
   }
 }
 
+// ----- pass 5: catalogue-only silhouettes (src/content/silhouettes) -----
+// Things worth drawing in the compare tool that shouldn't earn a page of their own: extant animals,
+// extra human figures, one-off specimens, ontogenetic stages with nowhere else to live. A flag on
+// `taxa` would have been cheaper and wrong — an elephant in `taxa` inflates the skeletal counts,
+// appears in galleries, and quietly makes "252 reconstructions" untrue.
+//
+// Only GEOMETRY is emitted here. Taxon, facets and credit are read from the content entry by the
+// compare page, the same way it already reads taxa and specimens — so this file stays about tracing,
+// and an editorial fix doesn't mean re-running it.
+const SILONLY_DIR = 'src/content/silhouettes';
+let silOnlyAdds = 0;
+if (existsSync(SILONLY_DIR)) {
+  for (const f of readdirSync(SILONLY_DIR).filter((x) => x.endsWith('.md') && x !== 'README.md')) {
+    const slug = f.replace(/\.md$/, '');
+    const txt = readFileSync(join(SILONLY_DIR, f), 'utf8');
+    if (/^draft:\s*true\s*$/m.test(txt)) continue;
+    // The catalog is one flat namespace shared with taxa, specimens and derived genus groups. A
+    // silent overwrite here would swap a real skeletal for an elephant, so refuse and say why.
+    if (out[slug]) {
+      console.log(`  !! silhouettes/${f}: "${slug}" is already a taxon, specimen or genus group — rename the entry`);
+      failures.push(`silhouettes/${f}: catalog key "${slug}" collides`);
+      continue;
+    }
+    const file = (txt.match(/^silhouette:\s*(.+)$/m)?.[1] ?? '')
+      .trim()
+      .replace(/^['"]|['"]$/g, '')
+      .replace(/^\/?silhouettes\//, '');
+    const lengthM = numField(txt, 'lengthM');
+    if (!file || !Number.isFinite(lengthM)) {
+      console.log(`  !! silhouettes/${f}: needs both a silhouette filename and a numeric lengthM`);
+      failures.push(`silhouettes/${f}: missing silhouette or lengthM`);
+      continue;
+    }
+    if (!existsSync(join(SIL_DIR, file))) {
+      console.log(`  !! silhouettes/${f}: "${file}" is not in ${SIL_DIR}/`);
+      failures.push(`silhouettes/${f}: ${file} not found in ${SIL_DIR}/`);
+      continue;
+    }
+    // Hand-made silhouette PNGs with real transparency: trace the alpha channel, which also skips
+    // the morphological close that rounds off small features on rastered line art.
+    const traced = await safeTrace(join(SIL_DIR, file), { alpha: true }, slug);
+    if (!traced) continue;
+    const { w, h, path, points, holes } = traced;
+    const label = (txt.match(/^label:\s*(.+)$/m)?.[1] ?? slug).trim().replace(/^['"]|['"]$/g, '');
+    out[slug] = [{ slug, label, lengthM, ...wm(numField(txt, 'widthM')), w, h, path }];
+    silOnlyAdds++;
+    console.log(`silhouette-only ${slug}: ${lengthM} m  bbox ${w}x${h}  ${points} pts${holes ? `  (${holes} hole${holes > 1 ? 's' : ''} cut)` : ''}  <- ${file}`);
+  }
+}
+console.log(`pass 5 added ${silOnlyAdds} catalog-only silhouette${silOnlyAdds === 1 ? '' : 's'}`);
+
 // ----- human scale reference (owner's adult + child silhouette) -----
 const humanFile = join(SIL_DIR, 'Humans.png');
 if (existsSync(humanFile)) {

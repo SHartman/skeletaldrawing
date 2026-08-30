@@ -342,4 +342,30 @@ const publications = defineCollection({
 // Reserved for later phases (defined when their first entry/template lands):
 //   page — standalone pages (About spokes if made CMS-editable, licensing, …)
 
-export const collections = { taxa, specimens, genera, posts, articles, resources, comments, publications };
+// Catalogue-only silhouettes: things the compare tool should be able to draw that do NOT warrant a
+// page. Extant animals traced from the owner's photographs, extra human figures, ontogenetic stages
+// and one-off specimens too fragmentary for a full skeletal.
+//
+// Deliberately its own collection rather than a flag on `taxa`: an elephant filed under taxa would
+// inflate the skeletal counts, surface in the galleries, and undermine "N reconstructions" claims.
+// These are tool ingredients, not publications — and keeping them separate leaves the taxon and
+// specimen page routes untouched.
+//
+// Only name + length + file are required, so adding one stays a two-minute job. `gallery` and
+// `clade` are optional: supply them and the entry joins the facets like anything else, omit them and
+// it is simply reachable by search.
+const silhouettes = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '!README.md'], base: './src/content/silhouettes' }),
+  schema: z.object({
+    label: z.string(),            // exactly what the legend shows, e.g. "Loxodonta africana (adult female)"
+    taxon: optStr,                // the italic part; must be a prefix of `label`. Omit for non-taxa ("Child, 1.2 m")
+    lengthM: z.number(),          // biological length — the legend figure
+    widthM: optNum,               // true horizontal extent; falls back to lengthM. See silhouette-detail-tuning
+    silhouette: z.string(),       // filename inside /silhouettes
+    gallery: optStr,              // optional facet; omit and the entry is simply found by search
+    clade: nullableDefault(z.array(z.string()).default([])), // optional facet, same ordered path as taxa
+    draft: nullableDefault(z.boolean().default(false)), // hidden from the tracer, so it never reaches the tool
+  }),
+});
+
+export const collections = { taxa, specimens, genera, posts, articles, resources, comments, publications, silhouettes };
