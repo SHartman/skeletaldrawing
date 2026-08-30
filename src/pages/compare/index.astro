@@ -19,6 +19,17 @@ const specById = new Map(specimens.map((s) => [s.id, s]));
 // stopping at a shorter id that happens to share its opening.
 const taxonIdsByLength = taxa.map((t) => t.id).sort((a, b) => b.length - a.length);
 
+// " (subadult)" for a non-adult individual, "" otherwise. Entries write the field freely — "juvenile",
+// "Sub-adult", "Juvenile (adult proportions differ)" — so it is normalised here rather than in 252
+// content files: anything parenthesised is dropped, because a chip and a legend row have no space for
+// a caveat and the taxon's own page still carries the full text. Only the first letter is lowercased,
+// which leaves a catalog number or proper noun in the value intact.
+const stageSuffix = (raw?: string) => {
+  const s = (raw ?? '').split('(')[0].trim();
+  if (!s || /^adults?$/i.test(s)) return '';
+  return ` (${s.charAt(0).toLowerCase()}${s.slice(1)})`;
+};
+
 // Flatten silhouettes.json into a de-duplicated catalog, with a readable label per animal.
 const seen = new Map<string, any>();
 for (const group of Object.values(silData as Record<string, any[]>)) {
@@ -40,7 +51,12 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
       const tx = taxaById.get(e.slug);
       if (tx) {
         taxon = tx.data.taxon;
-        label = tx.data.taxon;
+        // Show the life stage when the restored individual is NOT an adult. The commonest complaint
+        // after launch was "this animal looks smaller than I expect" — which is a question about the
+        // INDIVIDUAL, and the honest answer is its stage, not its catalog number. A subadult
+        // Triceratops prorsus beside an adult T. horridus otherwise reads as a much smaller species.
+        // Adults stay bare: it is the default assumption, and labelling every one would be noise.
+        label = tx.data.taxon + stageSuffix(tx.data.lifeStage);
       } else {
         // Growth-series stages. Their key is a silhouette FILENAME, not a taxon or specimen id, so
         // neither lookup above matches and the label stays whatever the stage was called — "Adult",
