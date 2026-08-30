@@ -247,7 +247,16 @@ const description =
         whether two animals are selected or five. */}
     <section class="stage-sec" aria-label="Comparison">
       <h2 class="readout" id="readout" hidden={!defaultReadout} set:html={defaultReadout} />
-      <div class="stage" id="stage"></div>
+      {/* The credit sits ON the plate because people screenshot rather than download — especially on
+          phones — and a screenshot carries no baked mark, which is the CLAUDE.md §3 problem arriving
+          through a door the tool opened. It is HTML rather than SVG text on purpose: SVG text scales
+          with the plate, so at phone width (a 1500-unit viewBox drawn 355px wide) it would render
+          around 2.4px, illegible exactly where it matters most. Fixed CSS size stays readable at every
+          width, and being outside the <svg> it never reaches the export, which composes its own. */}
+      <div class="plate-wrap">
+        <div class="stage" id="stage"></div>
+        <span class="plate-credit" aria-hidden="true">© Scott Hartman · skeletaldrawing.com</span>
+      </div>
       <p class="hint" id="hint">Choose animals below to build a comparison.</p>
       <div class="legend" id="legend"></div>
     </section>
@@ -1207,6 +1216,23 @@ const description =
   .stage :global(.c-unit) { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
   .stage :global(.c-human) { fill: var(--slate); }
   .stage :global(.c-humanlabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
+
+  /* Deliberately quiet: the same muted colour and mono face as the ruler caption, which has always sat
+     on the plate without anyone noticing it. Loud enough to read in a screenshot, not loud enough to
+     compete with the figure. */
+  /* Mirrors the plate's own `max-width: 1000px; margin: 0 auto`, so the credit anchors to the SVG's
+     right edge rather than the section's — otherwise it overhangs the figure on a wide screen. */
+  .plate-wrap { position: relative; max-width: 1000px; margin: 0 auto; }
+  /* Below the plate rather than over it. Overlaid at the bottom-right it ran straight through the "0"
+     tick — the one that marks the tail alignment — and which zone is free changes with the selection,
+     so there is no safe corner to overlay. Immediately under the ruler it is still within the figure a
+     screenshot captures, and it can never collide. */
+  .plate-credit {
+    display: block; margin-top: 6px; text-align: right;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em;
+    color: var(--measure); user-select: none;
+  }
+  @media (max-width: 600px) { .plate-credit { font-size: 9.5px; margin-top: 4px; } }
 
   .hint { margin: 14px 0 0; font-size: 14.5px; color: var(--slate); text-align: center; }
   .hint[hidden] { display: none; }
