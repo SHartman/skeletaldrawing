@@ -62,7 +62,7 @@ collections:
       - { name: lengthLabel, label: "Length display override", widget: string, required: false, hint: "Replaces the displayed length TEXT only (e.g. a range); no effect on scaling." }
       - { name: massKg, label: "Body mass (kg)", widget: number, required: false, value_type: float, hint: "Numeric; displays as kg or tonnes automatically." }
       - { name: massSource, label: "Mass source", widget: string, required: false, hint: "e.g. PaleoGDI" }
-      - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "e.g. Juvenile (adult proportions differ)" }
+      - { name: lifeStage, label: "Life stage", widget: string, required: false, hint: "Capitalised and unhyphenated — Adult, Subadult, Juvenile, Hatchling. It prints verbatim in the record row beside Sex and View, so the wording has to match theirs; the size-comparison tool lowercases it on its own to make \"(subadult)\". A parenthesised caveat is fine and the tool drops it: Juvenile (adult proportions differ). Fill it in whenever the restored individual is NOT an adult — that is the one thing that explains an animal looking smaller than expected." }
       - { name: sex, label: "Sex", widget: string, required: false, hint: "For sexually dimorphic taxa (mammals, pterosaurs) — e.g. Male, Female. Renders a record cell only when set; leave blank otherwise." }
       - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }

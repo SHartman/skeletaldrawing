@@ -13,7 +13,7 @@ widthM: 0.99
 lengthLabel: ''
 massKg: null
 massSource: ''
-lifeStage: ''
+lifeStage: Subadult
 sex: ''
 view: Left lateral
 basis: ''

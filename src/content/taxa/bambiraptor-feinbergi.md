@@ -13,7 +13,7 @@ widthM: 0.97
 lengthLabel: ''
 massKg: null
 massSource: ''
-lifeStage: juvenile
+lifeStage: Juvenile
 sex: ''
 view: Left lateral
 basis: ''
