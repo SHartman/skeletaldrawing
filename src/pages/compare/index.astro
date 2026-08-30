@@ -811,7 +811,25 @@ const description =
         lines[lines.length - 1].push(word);
         w += ww;
       }
-      return lines.filter((l) => l.length);
+      // Words were only ever a WRAPPING unit. Merge each finished line back into contiguous
+      // same-style runs, so the drawing step emits one <text> per run and the font renders the
+      // spaces inside it — see the note at the draw site for why word-by-word was a liability.
+      return lines
+        .filter((l) => l.length)
+        .map((line) => {
+          const merged = [];
+          for (const wd of line) {
+            const last = merged[merged.length - 1];
+            if (last && last.i === wd.i) last.t += wd.t;
+            else merged.push({ t: wd.t, i: wd.i });
+          }
+          // A wrap can leave whitespace hanging at either end, which would throw the centring off.
+          if (merged.length) {
+            merged[0].t = merged[0].t.replace(/^\s+/, '');
+            merged[merged.length - 1].t = merged[merged.length - 1].t.replace(/\s+$/, '');
+          }
+          return merged.filter((r) => r.t.length);
+        });
     };
 
     const exportPng = async () => {
@@ -836,14 +854,20 @@ const description =
 
       let y = PAD;
       let body = '';
+      // One <text> per STYLE RUN, not per word. Word-by-word meant every space in the title was
+      // reconstructed arithmetically from measureText, and at least one user's export lost the space
+      // inside italic binomials outright ("Silesaurusopolensis") — never reproducible here, so fixed
+      // structurally rather than chased. The legend has always drawn each name as a single run and
+      // has never broken. xml:space keeps the spaces the font renders, since SVG strips leading and
+      // trailing whitespace from <text> by default.
       for (const line of titleLines) {
         y += TITLE_LH;
-        const tf = (wd) => `${wd.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
-        const total = line.reduce((n, wd) => n + runW(tf(wd), wd.t), 0);
+        const tf = (r) => `${r.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
+        const total = line.reduce((n, r) => n + runW(tf(r), r.t), 0);
         let x = PAD + (inW - total) / 2;
-        for (const wd of line) {
-          body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title"${wd.i ? ' font-style="italic"' : ''}>${esc(wd.t)}</text>`;
-          x += runW(tf(wd), wd.t);
+        for (const r of line) {
+          body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title" xml:space="preserve"${r.i ? ' font-style="italic"' : ''}>${esc(r.t)}</text>`;
+          x += runW(tf(r), r.t);
         }
       }
 
