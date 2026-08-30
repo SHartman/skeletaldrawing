@@ -294,6 +294,10 @@ const description =
 
     <div class="controls">
       <label class="toggle"><input type="checkbox" id="human-toggle" checked /> Humans for scale</label>
+      {/* Off by default. It answers a real question — the commonest thing asked of a length
+          comparison is how TALL something was — but it is furniture over the artwork, and the plate
+          should open as the drawing. */}
+      <label class="toggle"><input type="checkbox" id="grid-toggle" /> Height grid</label>
       {/* The rest of the site appends imperial in parentheses — "26 m (85 feet)". That cannot work
           here, because the ruler needs a tick spacing and metres and feet want different ones. So this
           page toggles instead. Metric leads, as it does everywhere else. */}
@@ -435,6 +439,20 @@ const description =
     // above. KEEP IN STEP with that function.
     let units = 'm';
     const feetOf = (m) => m * 3.28084;
+    // A 1/2/5×10ⁿ step, aiming for about `target` divisions. The height grid can't reuse the metre
+    // ruler's fixed step: it spans anything from a 0.3 m bird to a 13 m sauropod's raised neck, and
+    // a fixed step draws either one line or forty. Rounding to 1/2/5 keeps the labels ones a reader
+    // adds up without thinking — 2, 4, 6 rather than 2.6, 5.2, 7.8.
+    const niceStep = (span, target) => {
+      if (!(span > 0)) return 1;
+      const raw = span / target;
+      const pow = 10 ** Math.floor(Math.log10(raw));
+      const n = raw / pow;
+      // Thresholds sit between the choices, not on them, so this rounds to the NEAREST of 1/2/5/10.
+      // Rounding up instead is what a first cut does, and it quietly halves the grid: a 12.5 m
+      // Brachiosaurus wants a 2.5 m step, gets 5, and is left with two lines across the whole plate.
+      return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * pow;
+    };
     const fmtImperial = (m) => {
       const inch = Math.round(m * 39.3701);
       if (inch < 24) return `${inch} in`;
@@ -450,6 +468,7 @@ const description =
     const readout = document.getElementById('readout');
     const capNote = document.getElementById('cap-note');
     const humanToggle = document.getElementById('human-toggle');
+    const gridToggle = document.getElementById('grid-toggle');
     const chips = [...document.querySelectorAll('.chip')];
     let selected = [];
     let lastPlate = null; // { inner, vbW, vbH } — the current plate, for the export
@@ -572,7 +591,11 @@ const description =
       }
       hint.hidden = true;
       const showHuman = humanToggle.checked;
-      const padL = 16,
+      const showGrid = gridToggle.checked;
+      // The grid's numbers get a gutter of their own rather than being printed over whatever animal
+      // reaches the left edge. It goes into padL, so it is paid for out of the width solve below and
+      // the plate keeps its rendered size instead of growing when the grid is switched on.
+      const padL = 16 + (showGrid ? 34 : 0),
         padT = 16;
       const humanGapU = 40, rightGutter = 30;
       // Solve px-per-metre so the viewBox lands on TARGET_VB:
@@ -616,6 +639,35 @@ const description =
 
       let s = `<svg viewBox="0 0 ${vbW} ${vbH}" role="img" aria-label="Scale comparison of ${items.length} animals, largest ${maxLen} meters">`;
       s += `<line x1="${padL}" y1="${groundY}" x2="${showHuman ? humanX + humanW : guideX}" y2="${groundY}" class="c-ground"/>`;
+      // ---- optional height grid -------------------------------------------------------------
+      // Rules across the plate, not a ruler up one side. The animals fan out from the tail-tip
+      // line, so a vertical scale at a single x is unreadable against a head three metres away
+      // from it; a horizontal rule can be read wherever the animal happens to be.
+      //
+      // It offers a scale and never states a height. Height is not standardised the way length is
+      // — shoulder, hip, back and crown heights are all in use and which one is meant differs by
+      // animal — so the plate gives something to estimate against and leaves the reading to the
+      // reader. Drawn before the silhouettes, so it sits behind the art rather than ruled across it.
+      if (showGrid) {
+        const spanU = units === 'ft' ? feetOf(maxSH / PXM) : maxSH / PXM;
+        const gStep = niceStep(spanU, 5);
+        const gRight = showHuman ? humanX + humanW : guideX;
+        const rows = [];
+        for (let i = 1; ; i++) {
+          const y = groundY - i * gStep * unitPx;
+          if (y < padT) break;
+          rows.push({ v: i * gStep, y });
+        }
+        rows.forEach((r, i) => {
+          // The unit is named once, on the topmost line. A bare column of numbers beside a plate
+          // whose other scale is in the same unit is ambiguous for exactly one reader — the one
+          // who switched to feet — and repeating it down the column is noise.
+          const top = i === rows.length - 1;
+          const t = `${+r.v.toFixed(2)}${top ? (units === 'ft' ? ' ft' : ' m') : ''}`;
+          s += `<line x1="${padL}" y1="${r.y.toFixed(1)}" x2="${gRight}" y2="${r.y.toFixed(1)}" class="c-grid"/>`;
+          s += `<text x="${padL - 7}" y="${(r.y + 3.6).toFixed(1)}" class="c-gridlabel">${t}</text>`;
+        });
+      }
       for (let i = 0; i <= marks; i++) {
         const v = i * step;
         const x = guideX - v * unitPx;
@@ -718,6 +770,7 @@ const description =
 
     chips.forEach((c) => c.addEventListener('click', () => toggle(c.dataset.id)));
     humanToggle.addEventListener('change', render);
+    gridToggle.addEventListener('change', render);
 
     q.addEventListener('input', () => { filter.text = q.value; applyFilter(); });
 
@@ -984,7 +1037,9 @@ const description =
         `.c-ticklabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${slate};text-anchor:middle;}` +
         `.c-unit{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;fill:${measure};}` +
         `.c-human{fill:${slate};}` +
-        `.c-humanlabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${slate};}`;
+        `.c-humanlabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${slate};}` +
+        `.c-grid{stroke:${hair};stroke-width:1;}` +
+        `.c-gridlabel{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:${measure};text-anchor:end;}`;
 
       const svg =
         `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
@@ -1247,6 +1302,10 @@ const description =
   .stage :global(.c-unit) { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; fill: var(--measure); text-transform: uppercase; }
   .stage :global(.c-human) { fill: var(--slate); }
   .stage :global(.c-humanlabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--slate); }
+  /* Lighter than the ground line, which stays the one solid horizontal. The grid is a reading aid
+     laid under the drawings, so it has to be legible in the gaps without competing with them. */
+  .stage :global(.c-grid) { stroke: var(--hair); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .stage :global(.c-gridlabel) { font-family: var(--font-mono); font-size: 11px; fill: var(--measure); text-anchor: end; }
 
   /* Deliberately quiet: the same muted colour and mono face as the ruler caption, which has always sat
      on the plate without anyone noticing it. Loud enough to read in a screenshot, not loud enough to
