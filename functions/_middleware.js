@@ -15,10 +15,19 @@
 // COST — read `public/_routes.json` alongside this file. A root _middleware runs on EVERY request
 // Pages routes through Functions, which by default means every image, font, CSS and JS file too:
 // ~94% of this site's files are static assets (6,305 in /_astro/ + 587 in /images/), and on
-// 2026-07-24 that burned 67,626 of the free tier's 100,000 daily Functions requests — on a static
-// site, for a header only HTML needs. Since exceeding that ceiling would fail requests site-wide
-// (everything routes through here), _routes.json excludes the asset directories so this runs on
-// HTML and /api/* only. If you add a new top-level asset directory, exclude it there too.
+// 2026-07-24 that burned 67,626 of the then-free tier's 100,000 daily Functions requests — on a
+// static site, for a header only HTML needs. _routes.json excludes the asset directories so this
+// runs on HTML and /api/* only. If you add a new top-level asset directory, exclude it there too.
+//
+// That exclusion is what carried the 2026-08-28 launch. The tool went viral: 1.7M requests in a
+// week, of which only 211,046 (~12%) reached Functions — the rest were excluded assets. Unexcluded,
+// all 1.7M would have invoked this, blowing the daily ceiling on the launch morning and failing
+// requests SITE-WIDE, since everything HTML routes through here. Zero errors were recorded.
+//
+// The account moved to Workers Paid ($5/mo) on 2026-08-30, so the ceiling is now 10M requests/month
+// rather than 100k/day and a spike can no longer take the site down. Keep the exclusions anyway:
+// past the included tier the requests are billed, and the compare tool is unusually asset-light
+// (inlined CSS, inline catalogue JSON), so its traffic maps close to 1:1 onto Functions calls.
 //
 // Why not delete this middleware and gate pages.dev behind Cloudflare Access instead: the Pages
 // "Preview access → Restrict previews" toggle covers per-commit PREVIEW URLs only. The stable
