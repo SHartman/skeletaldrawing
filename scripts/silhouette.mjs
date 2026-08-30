@@ -727,15 +727,50 @@ for (const slug of [...new Set([...Object.keys(filesByTaxon), ...Object.keys(dec
     failures.push(`${slug}: declared silhouette ${declared[slug]} not found`);
   }
   // Otherwise prefer a plain skeletal silhouette; fall back to a known-* one only when that's all
-  // there is.
-  const pick =
-    (declared[slug] && existsSync(join(SIL_DIR, declared[slug])) ? declared[slug] : null) ??
-    cands.find((f) => /-silhouette\.png$/i.test(f) && !isKnown(f)) ??
-    cands.find((f) => /without-armor/i.test(f)) ??
-    cands.find((f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f)) ??
-    cands.find((f) => !isKnown(f)) ??
-    cands[0]; // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
+  // there is. Written as an ordered rule list rather than a ?? chain of find()s so the losers in the
+  // WINNING tier stay visible — see the ambiguity warning below.
+  const RULES = [
+    (f) => /-silhouette\.png$/i.test(f) && !isKnown(f),
+    // "without-armor" and "no-armor" are the same intent spelled two ways; the pattern only knew one,
+    // so Araripesuchus and Stagonolepis were landing on the unarmoured outline by array order rather
+    // than by this rule. Same outcome, now on purpose.
+    (f) => /(without|no)-armor/i.test(f),
+    (f) => /-skeletal/i.test(f) && !/with-armor/i.test(f) && !isKnown(f),
+    (f) => !isKnown(f),
+    () => true, // only a known-material silhouette exists (e.g. Puertasaurus) — still full-body
+  ];
+  const named = declared[slug] && existsSync(join(SIL_DIR, declared[slug])) ? declared[slug] : null;
+  let tier = [];
+  if (!named) for (const rule of RULES) { tier = cands.filter(rule); if (tier.length) break; }
+  // Tie-break on the individual the entry says it depicts. Applied INSIDE the winning tier rather
+  // than as another rule above, so it never overrides a deliberate preference — a hand-corrected
+  // `-silhouette.png` still beats a raw `-skeletal.png` of the named specimen.
+  //
+  // This is the difference between guessing and reading: Compsognathus says BSP AS I 563 and owns a
+  // file with that number in it, while the outline being drawn was the larger ex-Corallestris
+  // individual. The entry knew all along; nothing had asked it.
+  if (!named && tier.length > 1) {
+    const sid = (taxTxt.match(/^specimenId:\s*(.+)$/m)?.[1] ?? '').trim().replace(/^['"]|['"]$/g, '');
+    const key = sid.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const bySpec = key ? tier.filter((f) => f.toLowerCase().includes(key)) : [];
+    if (bySpec.length === 1) tier = bySpec;
+  }
+  const pick = named ?? tier[0];
   if (!pick) continue; // declared file missing and nothing in the folder matches the convention
+  // Several files were EQUALLY good and array order broke the tie — which is to say, nothing chose.
+  // This is not cosmetic: Ceratosaurus has a juvenile, the type and a larger adult all filed as plain
+  // `-skeletal.png`, so the catalogue spent months drawing the juvenile's outline stretched to the
+  // type's 5.7 m. The taxon page, the overlay and the size tool all looked fine while showing the
+  // wrong animal, because nothing in the pipeline knows one theropod outline from another.
+  //
+  // The cascade above resolves the differences it can name — armour, feathers, known material. A tie
+  // inside one tier means the difference is one only the author can see, so say so and let the entry
+  // settle it. Naming the file in front matter silences this permanently.
+  if (!named && tier.length > 1)
+    console.log(
+      `  !! ${slug}: ${tier.length} silhouettes match equally well — using ${pick}. ` +
+        `Set the entry's Silhouette field to choose. Also matched: ${tier.slice(1).join(', ')}`,
+    );
   const traced = await safeTrace(join(SIL_DIR, pick), { alpha: true }, slug);
   if (!traced) continue;
   const { w, h, path, points, holes } = traced;
