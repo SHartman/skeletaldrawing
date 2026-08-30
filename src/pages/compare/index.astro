@@ -102,6 +102,30 @@ for (const group of Object.values(silData as Record<string, any[]>)) {
     });
   }
 }
+// A taxon whose own silhouette IS one of its growth stages arrives twice: once keyed by taxon slug
+// from pass 3, once keyed by silhouette filename from the growth pass. Same file, same length, same
+// animal — so "Maiasaura peeblesorum" and "Maiasaura peeblesorum (adult)" both sat in a picker of
+// 271, identical and adjacent, and every growth series had the same pair.
+//
+// Collapsed on traced geometry plus length rather than on the id, because the ids are exactly what
+// differ. The taxon-level entry wins: it is the id that /compare/?ids= links, the taxon-page CTA and
+// the gallery all use, and the one a reader would guess. The stage's "(adult)" is no loss — the taxon
+// entry already says the stage when it is not an adult, and says nothing when it is.
+const ALIAS: Record<string, string> = {};
+const byShape = new Map<string, string>();
+for (const a of seen.values()) {
+  const shape = `${a.w}x${a.h}:${a.lengthM}:${a.path}`;
+  const held = byShape.get(shape);
+  if (held == null) { byShape.set(shape, a.id); continue; }
+  // Prefer the entry that IS a taxon or specimen; otherwise keep whichever arrived first.
+  const better = taxaById.has(a.id) || specById.has(a.id) ? a.id : held;
+  const worse = better === a.id ? held : a.id;
+  byShape.set(shape, better);
+  ALIAS[worse] = better;
+}
+// Aliases rather than a silent deletion: a comparison shared before this change may name a dropped
+// id, and a link that quietly loses an animal is worse than the duplicate ever was.
+for (const id of Object.keys(ALIAS)) seen.delete(id);
 const catalog = [...seen.values()].sort((a, b) => a.lengthM - b.lengthM);
 
 // Only the scientific name is italic. `label` is either a bare binomial or "<binomial> — <nickname>",
@@ -400,7 +424,7 @@ const description =
 </BaseLayout>
 
 <script type="application/json" id="catalog" is:inline set:html={JSON.stringify(catalog)}></script>
-<script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel, adultCx })}></script>
+<script type="application/json" id="cfg" is:inline set:html={JSON.stringify({ def: defaultSel, adultCx, alias: ALIAS })}></script>
 <script type="application/json" id="human" is:inline set:html={JSON.stringify(human)}></script>
 
 <script is:inline>
@@ -483,9 +507,18 @@ const description =
         ? `<em>${esc(a.taxon)}</em>${esc(a.label.slice(a.taxon.length))}`
         : esc(a.label);
 
+    // Ids retired by the duplicate collapse still resolve, so a comparison shared before that change
+    // keeps every animal it was built with. De-duplicated after mapping, since a link could name both
+    // halves of a collapsed pair and would otherwise spend two of its five slots on one animal.
+    const alias = (id) => (cfg.alias && cfg.alias[id]) || id;
     const fromUrl = () => {
       const p = new URLSearchParams(location.search).get('ids');
-      return p ? p.split(',').filter((id) => byId[id]).slice(0, MAX) : [];
+      if (!p) return [];
+      return p
+        .split(',')
+        .map(alias)
+        .filter((id, i, a) => byId[id] && a.indexOf(id) === i)
+        .slice(0, MAX);
     };
     const toUrl = () => {
       const u = new URL(location.href);
