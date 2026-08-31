@@ -1,6 +1,7 @@
 ---
 title: How'd you like to make your own size comparison chart?
 date: 2026-08-28T00:39
+updated: 2026-08-30T12:00
 kind: Website Tools
 excerpt: Have you ever wanted to assemble your favorite dinosaurs (or other extinct critters) into a size comparison chart? Well do I have a new website feature for you!
 image:
@@ -55,3 +56,7 @@ Cool, either leave feedback in a comment below, or [send it to me through the co
 Yup. Most importantly, have fun!
 
 ![A size comparison of Supersaurus, Tyrannosaurus and a blue whale to a parent and child set of humans](/images/blog/size-comparison-supersaurus-vivianae-balaenoptera-musculus-scotty-skeletaldrawing.png "They might be giants, although the people aren't.")
+
+### Update
+
+After helpful feedback, I have a few updates for the tool. You can now choose to have a vertical measurement with grid-lines (in either metric or freedom units). You will also see (non-adult) growth stages reflected in the title and legend now, so when a skeletal drawing is based on a juvenile or sub-adult it will be more obvious what is being compared. There were also a couple of errors present, causing some taxa to be present twice, and _Ceratosaurus_ to only show one of three specimens (along with the incorrect silhouette!). Anyone wanting a _Ceratosaurus_ comparison is encouraged to make it again. Thanks again for your feedback.
