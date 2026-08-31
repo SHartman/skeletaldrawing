@@ -21,16 +21,16 @@ scaleBar: ''
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ceratosaurus-nasicornis-type-usnm-4735-skeletal.png
-  alt: Ceratosaurus nasicornis skeletal reconstruction, left lateral view, reconstructed length ~6 m.
+  alt: Ceratosaurus nasicornis skeletal reconstruction, left lateral view, reconstructed length ~5.7 m.
   drawn: 2010
   updated: 2022
 rigorous: null
 additionalFigures:
   - src: /images/skeletals/ceratosaurus-nasicornis-potential-growth-series-skeletals.png
-    alt: Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
+    alt: Ceratosaurus nasicornis — A potential growth series drawn to common scale — the type (5.7 m), the larger UMNH VP 5278 (6.6 m), and a juvenile (4.6 m).
     drawn: 2010
     updated: 2022
-    caption: A potential growth series — the type (~6 m), the larger UMNH VP 5278 (~6.5 m), and a juvenile (~4.5 m).
+    caption: A potential growth series — the type (5.7 m), the larger UMNH VP 5278 (6.6 m), and a juvenile (4.6 m).
   - src: /images/skeletals/ceratosaurus-nasicornis-umnh-vp-5278-known-elements.png
     alt: 'Known skeletal material of Ceratosaurus nasicornis: preserved elements shown in white against a black body silhouette.'
     drawn: 2010
@@ -63,7 +63,7 @@ growthStages:
     femurM: 0.44
     humerusM: 0.22
     specimen: ''
-growthTableNote: ''
+growthTableNote: Measured against the femur (thigh bone), the juvenile has both the proportionally largest skull and the longest humerus (upper arm bone), the subadult type has the smallest of each, and the adult falls between them. That isn't the order a tidy growth series would predict. Some of it will be individual variation — unlike a bonebed sample or a matched pair, these are three unrelated animals. But irregular growth of this kind turns up in the earliest dinosaurs, and quite a few lineages appear to have kept it well after that, so a neat progression may not be what we should expect.
 revisionNote: ''
 added: 2026-06-30T12:08:00.000Z
 ---
