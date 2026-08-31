@@ -36,7 +36,33 @@ additionalFigures:
     drawn: 2010
     updated: 2022
     caption: The known skeletal elements recovered for UMNH VP 5278
-growthNote: ''
+growthSeries: true
+growthNote: A potential growth series — the juvenile, the type (USNM 4735), and the larger UMNH VP 5278, which was originally described as _Ceratosaurus dentisulcatus_.
+growthStages:
+  - label: Adult · UMNH VP 5278
+    src: /images/skeletals/ceratosaurus-nasicornis-umnh-vp-5278-skeletal.png
+    lengthM: 6.6
+    widthM: 6.46
+    skullM: 0.79
+    femurM: 0.72
+    humerusM: 0.32
+    specimen: UMNH VP 5278
+  - label: Subadult · USNM 4735
+    src: /images/skeletals/ceratosaurus-nasicornis-type-usnm-4735-skeletal.png
+    lengthM: 5.7
+    widthM: 5.59
+    skullM: 0.68
+    femurM: 0.63
+    humerusM: 0.26
+    specimen: USNM 4735
+  - label: Juvenile
+    src: /images/skeletals/ceratosaurus-nasicornis-juvenile-skeletal.png
+    lengthM: 4.6
+    widthM: 4.46
+    skullM: 0.51
+    femurM: 0.44
+    humerusM: 0.22
+    specimen: ''
 growthTableNote: ''
 revisionNote: ''
 added: 2026-06-30T12:08:00.000Z
