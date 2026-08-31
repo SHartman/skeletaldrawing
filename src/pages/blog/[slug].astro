@@ -29,6 +29,7 @@ const jsonLd = {
   '@type': 'BlogPosting',
   headline: d.title,
   datePublished: d.date.toISOString(),
+  ...(d.updated ? { dateModified: d.updated.toISOString() } : {}),
   author: { '@type': 'Person', name: 'Scott Hartman', url: 'https://www.skeletaldrawing.com/about/' },
   publisher: { '@type': 'Person', name: 'Scott Hartman' },
   mainEntityOfPage: pageUrl,
@@ -57,7 +58,14 @@ const title = `${d.title} | Skeletal Drawing`;
       <header class="phead">
         {d.kind && <p class="kind">{d.kind}</p>}
         <h1 class="ptitle">{d.title}</h1>
-        <p class="date">{fmtDate(d.date)}</p>
+        {/* Both dates, not one. An article replaces its publish date with "Updated", because it is
+            evergreen and only its current state matters. A post is dated news: when it was written
+            is part of what it says, and a reader who followed a link from the week it went out needs
+            to see that something has changed since. */}
+        <p class="date">
+          {fmtDate(d.date)}
+          {d.updated && <span class="updated"> · Updated {fmtDate(d.updated)}</span>}
+        </p>
       </header>
 
       {d.image && (
@@ -113,6 +121,9 @@ const title = `${d.title} | Skeletal Drawing`;
   .date {
     margin: 16px 0 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--measure);
   }
+  /* Same size and face — it is a peer of the publish date, not a footnote to it — but held back a
+     little so the date the post was written still reads first. */
+  .date .updated { color: var(--slate); opacity: .8; }
 
   .hero {
     margin: 30px 0 0; background: var(--plate); border: 1px solid var(--hair); border-radius: 5px;

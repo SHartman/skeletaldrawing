@@ -215,6 +215,12 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.preprocess(blank, z.coerce.date()), // publish date — sorts the blog + home section
+    // Set when a post is meaningfully revised after publishing — an update appended to an
+    // announcement, a correction. It ADDS to the publish date rather than replacing it, unlike an
+    // article's `updated`, because a post is dated news and when it was written stays part of it.
+    // Feeds `dateModified` in the JSON-LD, which is the only thing telling a crawler a ranking page
+    // has changed; without it an edit is invisible outside the site.
+    updated: optDate,
     kind: optStr, // category eyebrow, e.g. "Reconstruction notes"
     excerpt: optStr, // card/teaser summary
     image: nullableDefault(imageRef.optional()), // optional lead image (+ alt)

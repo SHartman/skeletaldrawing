@@ -240,6 +240,7 @@ collections:
     fields:
       - { name: title, label: "Title", widget: string }
       - { name: date, label: "Date", widget: datetime, hint: "Publish date — sorts the blog and the home page's 'From the blog' section." }
+      - { name: updated, label: "Updated (only if revised)", widget: datetime, required: false, hint: "Set this ONLY when you go back and meaningfully change a published post — appending an update to an announcement, or correcting something. It shows beside the publish date rather than replacing it, and it is what tells Google the page has changed; without it an edit to a ranking post is invisible outside the site. Leave blank for a typo fix." }
       - { name: kind, label: "Category", widget: string, required: false, hint: "Small eyebrow label, e.g. Reconstruction notes, In the literature, You're doing it wrong" }
       - { name: excerpt, label: "Excerpt", widget: text, required: false, hint: "Teaser shown on the blog index and the home page. Wrap scientific names in underscores — _Sphenacodon_ — to italicise them, exactly as in the body. The markers are stripped automatically from the search-engine description, so they never show up as stray characters." }
       - name: image
