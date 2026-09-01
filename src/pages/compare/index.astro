@@ -989,30 +989,32 @@ const description =
 
       let y = PAD;
       let body = '';
-      // One <text> per STYLE RUN, not per word. Word-by-word meant every space in the title was
-      // reconstructed arithmetically from measureText, and at least one user's export lost the space
-      // inside italic binomials outright ("Silesaurusopolensis") — never reproducible here, so fixed
-      // structurally rather than chased. The legend has always drawn each name as a single run and
-      // has never broken.
+      // ONE <text> per line, with <tspan> for the italic runs — the engine lays the line out itself.
       //
-      // That fixed the space INSIDE a binomial and broke the ones on either side of it: the run
-      // boundaries then carried the leading and trailing spaces, and xml:space was trusted to keep
-      // them. It doesn't, in Firefox — reported on Firefox/macOS as "sastreiis 3.7x the length
-      // ofMasiakasaurus". The edges are now non-breaking spaces, which no engine may strip; the
-      // xml:space attribute stays as belt and braces for the engines that do honour it.
+      // Three attempts got here. Word-by-word placed every word arithmetically from measureText and
+      // lost the space inside italic binomials ("Silesaurusopolensis"). Run-by-run fixed that and
+      // broke the spaces on either side, which then sat at run boundaries where SVG strips them.
+      // Non-breaking spaces fixed the stripping — and the title STILL failed on Firefox, now with
+      // the runs visibly overlapping ("sastreïs"), which is the tell that the problem was never
+      // really about spaces: run N+1 was positioned at run N's measureText width, and Firefox
+      // renders that run wider than its canvas measurement claims. Chrome only looked correct
+      // because the italic overhang allowance below happened to overshoot in the same direction.
+      //
+      // Absolute positions per run cannot be right unless canvas metrics and SVG rendering agree
+      // exactly, and across engines and font-loading states they don't. So don't compute positions:
+      // emit one text element, let it lay out its own runs, and centre it with text-anchor rather
+      // than by summing widths. measureText is left doing only what it can be trusted with —
+      // choosing where to WRAP, where being a few pixels out moves a line break and nothing else.
+      //
+      // The non-breaking spaces stay: the boundary space now lives between tspans inside one text
+      // element, and NBSP is what keeps any engine from collapsing it there either.
+      const cx = (PAD + inW / 2).toFixed(1);
       for (const line of titleLines) {
         y += TITLE_LH;
-        const tf = (r) => `${r.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
-        // Harden the run edges FIRST, then measure and draw the same string. The space between an
-        // italic binomial and the roman text around it lives at a run boundary, so it is the one
-        // space in the title that no font ever gets to render — see hardEdges.
-        const parts = line.map((r) => ({ ...r, t: hardEdges(r.t) }));
-        const total = parts.reduce((n, r) => n + runW(tf(r), r.t), 0);
-        let x = PAD + (inW - total) / 2;
-        for (const r of parts) {
-          body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title" xml:space="preserve"${r.i ? ' font-style="italic"' : ''}>${esc(r.t)}</text>`;
-          x += runW(tf(r), r.t);
-        }
+        const inner = line
+          .map((r) => (r.i ? `<tspan font-style="italic">${esc(hardEdges(r.t))}</tspan>` : esc(hardEdges(r.t))))
+          .join('');
+        body += `<text x="${cx}" y="${y}" class="x-title" text-anchor="middle" xml:space="preserve">${inner}</text>`;
       }
 
       // plate, scaled to the content width
@@ -1058,16 +1060,17 @@ const description =
         let lx = PAD + Math.max(0, (inW - rowW) / 2);
         for (const s of row) {
           body += `<rect x="${lx.toFixed(1)}" y="${(y - 15).toFixed(1)}" width="26" height="14" rx="2" fill="${s.d.swatch}" stroke="${s.d.stroke}"/>`;
-          let tx = lx + 34;
-          if (s.sci) {
-            body += `<text x="${tx.toFixed(1)}" y="${y}" class="x-leg" font-style="italic">${esc(s.sci)}</text>`;
-            tx += s.wSci;
-          }
-          if (s.rest) {
-            body += `<text x="${tx.toFixed(1)}" y="${y}" class="x-leg">${esc(s.rest)}</text>`;
-            tx += s.wRest;
-          }
-          body += `<text x="${(tx + 12).toFixed(1)}" y="${y}" class="x-len">${esc(s.lenT)}</text>`;
+          // One <text> per entry, like the title, for the same reason: the name, its parenthetical
+          // and the length were three absolutely-positioned elements chained off measureText widths.
+          // Non-breaking spaces stopped them colliding, which made the arithmetic look correct — but
+          // it is the same construction that overlapped in the title on Firefox, and here it was
+          // simply being masked. dx moves the length along from wherever the name actually ended,
+          // rather than from where canvas guessed it would.
+          const entry =
+            (s.sci ? `<tspan font-style="italic">${esc(s.sci)}</tspan>` : '') +
+            (s.rest ? esc(s.rest) : '') +
+            `<tspan class="x-len" dx="12">${esc(s.lenT)}</tspan>`;
+          body += `<text x="${(lx + 34).toFixed(1)}" y="${y}" class="x-leg" xml:space="preserve">${entry}</text>`;
           lx += s.w + gapL;
         }
         y += LEG_LH;
