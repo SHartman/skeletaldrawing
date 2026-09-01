@@ -921,6 +921,15 @@ const description =
       const m = measurer.measureText(t);
       return Math.max(m.width, m.actualBoundingBoxRight || 0);
     };
+    // Whitespace at the START or END of an SVG <text> is not reliably rendered: the default XML
+    // handling strips it, and `xml:space="preserve"` — the documented escape hatch — was removed in
+    // SVG 2 in favour of CSS `white-space`, so engines disagree about honouring it. Firefox does not.
+    // measureText counts those spaces either way, so a run gets positioned as though the space were
+    // there and then drawn without it, closing the gap: "sastreiis 3.7x the length ofMasiakasaurus".
+    //
+    // U+00A0 is not whitespace, so nothing strips or collapses it, and it measures the same. Applied
+    // BEFORE measuring so the width used for layout is the width of the string actually drawn.
+    const hardEdges = (t) => t.replace(/^[ \t]+|[ \t]+$/g, (m) => '\u00A0'.repeat(m.length));
     const wrapRuns = (runs, font, maxW) => {
       const words = [];
       for (const r of runs)
@@ -984,14 +993,23 @@ const description =
       // reconstructed arithmetically from measureText, and at least one user's export lost the space
       // inside italic binomials outright ("Silesaurusopolensis") — never reproducible here, so fixed
       // structurally rather than chased. The legend has always drawn each name as a single run and
-      // has never broken. xml:space keeps the spaces the font renders, since SVG strips leading and
-      // trailing whitespace from <text> by default.
+      // has never broken.
+      //
+      // That fixed the space INSIDE a binomial and broke the ones on either side of it: the run
+      // boundaries then carried the leading and trailing spaces, and xml:space was trusted to keep
+      // them. It doesn't, in Firefox — reported on Firefox/macOS as "sastreiis 3.7x the length
+      // ofMasiakasaurus". The edges are now non-breaking spaces, which no engine may strip; the
+      // xml:space attribute stays as belt and braces for the engines that do honour it.
       for (const line of titleLines) {
         y += TITLE_LH;
         const tf = (r) => `${r.i ? 'italic ' : ''}${TITLE_SIZE}px Newsreader, Georgia, serif`;
-        const total = line.reduce((n, r) => n + runW(tf(r), r.t), 0);
+        // Harden the run edges FIRST, then measure and draw the same string. The space between an
+        // italic binomial and the roman text around it lives at a run boundary, so it is the one
+        // space in the title that no font ever gets to render — see hardEdges.
+        const parts = line.map((r) => ({ ...r, t: hardEdges(r.t) }));
+        const total = parts.reduce((n, r) => n + runW(tf(r), r.t), 0);
         let x = PAD + (inW - total) / 2;
-        for (const r of line) {
+        for (const r of parts) {
           body += `<text x="${x.toFixed(1)}" y="${y}" class="x-title" xml:space="preserve"${r.i ? ' font-style="italic"' : ''}>${esc(r.t)}</text>`;
           x += runW(tf(r), r.t);
         }
@@ -1016,7 +1034,7 @@ const description =
           // SVG <text> strips leading whitespace, but measureText counts it — so " — Scotty" is
           // positioned as though the space were there and then drawn without it, closing the gap to
           // "rex— Scotty". A non-breaking space is never collapsed, and measures the same.
-          return { ...split, rest: split.rest.replace(/^[ \t]+/, (m) => ' '.repeat(m.length)) };
+          return { ...split, rest: split.rest.replace(/^[ \t]+/, (m) => '\u00A0'.repeat(m.length)) };
         })();
         const wSci = sci ? runW(`italic ${LEG}px Newsreader, Georgia, serif`, sci) : 0;
         const wRest = runW(`${LEG}px Newsreader, Georgia, serif`, rest);
