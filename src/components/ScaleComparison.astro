@@ -73,13 +73,20 @@ const RAMP_HUE = 34, RAMP_SAT = 58;
 // The band is anchored to LENGTH difference, which is how the sizes actually read, via
 // coverage ≈ (length ratio)²:  5% shorter ≈ .90 · 10% ≈ .81 · 20% ≈ .64 · 29% ≈ .50 · 41% ≈ .35.
 // COVER_HI .90 = "within ~5% — genuinely near-equal, must blend or the one behind disappears";
-// COVER_LO .50 = "~29% shorter — different enough to read on its own, so paint it solid".
+// COVER_LO .72 = "~15% shorter — a clear margin all the way round, so paint it solid".
 // An earlier .35–.65 band was far too conservative: it withheld ALL solidity until a 19% length
 // difference, so the two Archaeopteryx (19% apart, coverage .655) landed .005 above the threshold
 // and rendered identically to the four T. rex adults that differ by 2–4%.
+//
+// COVER_LO was then .50 (~29% shorter), which erred the other way. Owner caught it on a five-
+// theropod plate: Dilophosaurus and Ceratosaurus came out at .92 opacity — too transparent to look
+// clean, nowhere near transparent enough to reveal anything, so the animal behind bled through as
+// noise. The bottom half of that ramp was doing no work at all. Transparency only pays where the
+// front shape would otherwise CONCEAL the one behind, and that needs near-equality; the tint ramp
+// already tells the animals apart, so solid costs nothing below it.
 const OP_BLEND = 0.75; // near-equal sizes — let the shape behind read through (the previous constant)
 const OP_SOLID = 1;    // clearly smaller — it hides almost nothing, so paint it solid
-const COVER_LO = 0.50, COVER_HI = 0.90;
+const COVER_LO = 0.72, COVER_HI = 0.90;
 
 let smallestBehind = Infinity; // smallest footprint painted so far = the tightest constraint
 const ramp = scaled.map((d) => {

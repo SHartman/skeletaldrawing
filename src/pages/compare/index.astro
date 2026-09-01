@@ -449,11 +449,13 @@ const description =
     // moves, so nothing about the comparison itself changes.
     const TARGET_VB = 1500;
     const HUMAN_W_M = (human.w / human.h) * 1.8; // the adult+child group is ~1.43 m wide at 1.8 m tall
-    // Shared with ScaleComparison.astro — keep in step. Hue/sat drive the lightness ramp; the
-    // coverage band maps "how much of the shape behind do I cover" onto fill opacity, anchored to
-    // length difference via coverage ~= (length ratio)^2: .90 ~ 5% shorter, .50 ~ 29% shorter.
+    // Shared with ScaleComparison.astro — keep in step; that file carries the full reasoning. Hue/sat
+    // drive the lightness ramp; the coverage band maps "how much of the shape behind do I cover" onto
+    // fill opacity, anchored to length difference via coverage ~= (length ratio)^2: .90 ~ 5% shorter,
+    // .72 ~ 15% shorter. Below .72 the fill is solid, because transparency only pays where the front
+    // shape would otherwise CONCEAL the one behind.
     const RAMP_HUE = 34, RAMP_SAT = 58;
-    const OP_BLEND = 0.75, OP_SOLID = 1, COVER_LO = 0.5, COVER_HI = 0.9;
+    const OP_BLEND = 0.75, OP_SOLID = 1, COVER_LO = 0.72, COVER_HI = 0.9;
     // Human scale reference: the owner's adult + child silhouette, adult scaled to 1.8 m. Derived per
     // render now, since px-per-metre is no longer a constant.
 
