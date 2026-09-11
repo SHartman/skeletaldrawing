@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 50 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ngwevu-intloko-type-bp-1-4779-skeletal.png

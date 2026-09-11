@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/massospondylus-carinatus-neotype-bp-1-4934-skeletal.png

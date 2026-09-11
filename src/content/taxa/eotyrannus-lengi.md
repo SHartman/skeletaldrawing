@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/eotyrannus-lengi-type-miwg1997-550-known-remains.png

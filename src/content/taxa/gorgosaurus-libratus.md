@@ -17,7 +17,7 @@ lifeStage: Juvenile
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/gorgosaurus-libratus-juvenile-tmp-91-36-500-skeletal.png

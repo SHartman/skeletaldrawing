@@ -15,7 +15,7 @@ completenessPct: null
 collectedYear: null
 view: Left lateral
 basis: Known material only — formerly referred to Diplodocus longus
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/diplodocus-hallorum-amnh-223-known-material.png

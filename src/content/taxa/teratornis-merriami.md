@@ -16,7 +16,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/teratornis-merriami-under-revision-silhouette.png

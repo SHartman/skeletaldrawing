@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tanycolagreus-topwilsoni-type-tpii-2000-09-29-skeletal.png

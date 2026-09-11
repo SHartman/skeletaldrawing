@@ -15,7 +15,7 @@ completenessPct: 73
 collectedYear: 1990
 view: Left lateral
 basis: Single individual — among the most complete Tyrannosaurus skeletons known
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-sue-fmnh-pr-2081-skeletal-two-views.png

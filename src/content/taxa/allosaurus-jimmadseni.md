@@ -16,7 +16,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/allosaurus-jimmadseni-big-al-mor-693-skeletal.png

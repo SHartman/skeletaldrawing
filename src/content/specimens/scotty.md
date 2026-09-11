@@ -15,7 +15,7 @@ completenessPct: 65
 collectedYear: 1991
 view: Left lateral
 basis: Single individual; among the most robustly built Tyrannosaurus specimens
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-scotty-rsm-p2523-8-skeletal.png

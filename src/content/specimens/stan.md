@@ -15,7 +15,7 @@ completenessPct: 63
 collectedYear: 1987
 view: Left lateral
 basis: Single individual; one of the most-replicated Tyrannosaurus skeletons
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/tyrannosaurus-rex-stan-nhmad-2020-00001-skeletal.png

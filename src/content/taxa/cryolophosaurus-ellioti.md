@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/cryolophosaurus-ellioti-type-fmnh-pr-1821-skeletal.png

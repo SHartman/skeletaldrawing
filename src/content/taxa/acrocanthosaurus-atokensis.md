@@ -15,7 +15,7 @@ massSource: ''
 lifeStage: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/acrocanthosaurus-atokensis-skeletal.png

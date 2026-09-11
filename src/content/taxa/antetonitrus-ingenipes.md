@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/antetonitrus-ingenipes-type-bp-1-4952-known-elements.png

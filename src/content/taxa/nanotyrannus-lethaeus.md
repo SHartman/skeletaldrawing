@@ -17,7 +17,7 @@ lifeStage: Subadult
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/nanotyrannus-lethaeus-jane-type-bmrp-2002-4-1-skeletal.png

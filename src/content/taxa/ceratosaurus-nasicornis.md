@@ -17,7 +17,7 @@ lifeStage: Subadult
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/ceratosaurus-nasicornis-type-usnm-4735-skeletal.png

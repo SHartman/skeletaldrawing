@@ -17,7 +17,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/torvosaurus-gurneyi-known-elements.png

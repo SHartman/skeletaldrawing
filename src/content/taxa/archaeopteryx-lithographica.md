@@ -16,7 +16,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 10 centimeters
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/archaeopteryx-lithographica-thermopolis-specimen-skeletal.png

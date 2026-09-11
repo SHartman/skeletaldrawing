@@ -16,7 +16,7 @@ lifeStage: ''
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/monolophosaurus-jiangi-type-specimen-ivpp-84019-skeletal.png

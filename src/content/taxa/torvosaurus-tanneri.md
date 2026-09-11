@@ -7,6 +7,7 @@ clade: ["Megalosauroidea"]
 lengthM: 8.1
 widthM: 7.99
 view: "Left lateral"
+scaleBar: "1 meter"
 reconstruction:
   src: "/images/skeletals/torvosaurus-tanneri-skeletal.png"
   drawn: 2010

@@ -17,7 +17,7 @@ lifeStage: Subadult
 sex: ''
 view: Left lateral
 basis: ''
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/baryonyx-walkeri-nhmuk-pv-r9951-skeletal.png

@@ -15,7 +15,7 @@ completenessPct: 95
 collectedYear: null
 view: Left lateral
 basis: Subadult individual; one of the most complete allosaurs ever found
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 reconstruction:
   src: /images/skeletals/allosaurus-jimmadseni-big-al-mor-693-skeletal.png

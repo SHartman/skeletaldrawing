@@ -15,7 +15,7 @@ completenessPct: null
 collectedYear: null
 view: Left lateral
 basis: Known material only — holotype, too incompletely preserved to restore
-scaleBar: ''
+scaleBar: 1 meter
 drawingCredit: ''
 rigorous:
   src: /images/skeletals/diplodocus-hallorum-nmmnh-3690-known-material.png
