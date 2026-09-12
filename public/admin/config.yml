@@ -66,7 +66,7 @@ collections:
       - { name: sex, label: "Sex", widget: string, required: false, hint: "For sexually dimorphic taxa (mammals, pterosaurs) — e.g. Male, Female. Renders a record cell only when set; leave blank otherwise." }
       - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }
-      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: false, hint: "What the baked-in bar measures, spelled out — e.g. 1 meter, 50 centimeters" }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: true, hint: "What the bar in THIS drawing measures, spelled out — e.g. 1 meter, 50 centimeters. Required, because it prints as the caption directly under the artwork: a blank used to inherit \"1 meter\" silently, and three drawings ended up captioned a metre over 50 cm and 10 cm bars. Read the bar in the file rather than accepting the default. `npm run check:scalebars` measures every drawing against this and reports the ones that disagree." }
       - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false, hint: "Leave blank for the default © Scott Hartman" }
       # `license` and `creditText` are site-wide constants — provided by the schema defaults in
       # content.config.ts and intentionally NOT exposed here, so the CMS never writes them per entry.
@@ -186,7 +186,7 @@ collections:
       - { name: collectedYear, label: "Collected (year)", widget: number, required: false, value_type: int }
       - { name: view, label: "View", widget: string, default: "Left lateral", required: false }
       - { name: basis, label: "Basis", widget: string, required: false }
-      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: false, hint: "Spelled out — e.g. 1 meter, 50 centimeters" }
+      - { name: scaleBar, label: "Scale bar", widget: string, default: "1 meter", required: true, hint: "What the bar in THIS drawing measures, spelled out — e.g. 1 meter, 50 centimeters. Required: it prints as the caption under the artwork, so an inherited default is a claim nobody has checked. `npm run check:scalebars` verifies it against the drawing." }
       - { name: drawingCredit, label: "Drawing credit (caption)", widget: string, default: "© Scott Hartman", required: false }
       - name: reconstruction
         label: "Reconstruction image"

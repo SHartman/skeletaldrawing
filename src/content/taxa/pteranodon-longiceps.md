@@ -31,7 +31,7 @@ additionalFigures:
 featured: true
 added: 2026-07-16T12:00:00.000Z
 wingspanM: 6.3
-widthM: 2.2
+widthM: 3.19
 ---
 
 _Pteranodon_ is the iconic, crested pterosaur from the Late Cretaceous of North America, where it soared over the Western Interior Seaway on wings spanning six meters (20 feet) or more. With a toothless beak, _Pteranodon_ may have caught fish on the wing as it soared over the seaway. Pterosaurs were not dinosaurs, but they were quite close relatives.

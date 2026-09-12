@@ -9,7 +9,7 @@ family: ''
 specimenId: MUCPv-Ch1
 specimenName: ''
 lengthM: 11.8
-widthM: 11.5
+widthM: 11.8
 lengthLabel: ''
 massKg: null
 massSource: ''

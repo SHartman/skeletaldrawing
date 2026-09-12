@@ -12,7 +12,8 @@
     "astro": "astro",
     "credit": "node scripts/watermark.mjs",
     "credit:regen": "node scripts/generate-credit.mjs",
-    "check:images": "node scripts/check-images.mjs"
+    "check:images": "node scripts/check-images.mjs",
+    "check:scalebars": "node scripts/check-scalebars.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",

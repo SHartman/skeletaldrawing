@@ -8,7 +8,7 @@ repositoryUrl: https://www.fieldmuseum.org/
 formation: Hell Creek Formation
 locality: ''
 lengthM: 12.3
-widthM: 12.08
+widthM: 11.64
 femurM: 1.32
 massKg: null
 completenessPct: 73

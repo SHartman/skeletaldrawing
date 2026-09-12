@@ -8,6 +8,7 @@ family: ''
 specimenId: MACN-N 15
 specimenName: ''
 lengthM: 13.5
+widthM: 13.03
 lengthLabel: ''
 massKg: null
 massSource: ''

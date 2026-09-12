@@ -8,7 +8,7 @@ repositoryUrl: https://royalsaskmuseum.ca/
 formation: Frenchman Formation
 locality: Saskatchewan, Canada
 lengthM: 12.7
-widthM: 12.34
+widthM: 11.7
 femurM: 1.33
 massKg: null
 completenessPct: 65
